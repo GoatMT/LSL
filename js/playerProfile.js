@@ -3,7 +3,7 @@ import { renderFormStrip } from "../components/formStrip.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js";
 import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, getCurrentPlayer, getNextTeamMatch, playerOVR, winnerTeamId } from "./leagueEngine.js?v=3.2";
 import { setupLayout } from "./main.js";
-import { controlSelect, escapeHTML, formatDate, getQueryParam, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
+import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
 setupLayout("players.html");
 
@@ -273,17 +273,20 @@ function renderInterMadrasahSection(allData, playerId, aliases) {
 }
 
 function renderProfileHeader(profile, current, ovr) {
+  const avatar = profile.photo
+    ? `<img class="official-profile-photo" src="${escapeHTML(profile.photo)}" alt="${escapeHTML(profile.name)}">`
+    : `<div class="official-profile-photo placeholder" aria-hidden="true">${escapeHTML(initials(profile.name))}</div>`;
   return `
     <section class="official-profile-header">
-      <div class="official-profile-ovr-card" title="Overall rating based on career stats">
-        <span>OVR</span>
-        <strong>${escapeHTML(ovr)}</strong>
-      </div>
-      ${profile.photo ? `<img class="official-profile-photo" src="${escapeHTML(profile.photo)}" alt="${escapeHTML(profile.name)}">` : ""}
+      ${avatar}
       <div class="official-profile-identity">
         <span class="eyebrow">Player Profile</span>
         <h1>${escapeHTML(profile.name)}</h1>
         <p>${escapeHTML(current?.division || profile.division || "Division TBA")} | ${escapeHTML(current?.position || profile.position || "Position TBA")}</p>
+      </div>
+      <div class="official-profile-ovr-card" title="Overall rating based on career stats">
+        <span>OVR</span>
+        <strong>${escapeHTML(ovr)}</strong>
       </div>
       <div class="official-profile-actions">
         <a class="button secondary" href="./players.html">Back To Stats</a>
