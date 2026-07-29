@@ -1090,12 +1090,23 @@ button {
 }
 
 .official-profile-photo {
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   flex: 0 0 auto;
+  align-self: center;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
   border: 2px solid rgba(64, 99, 136, 0.25);
   box-shadow: 0 4px 12px rgba(0, 26, 58, 0.12);
+}
+
+.official-profile-photo.placeholder {
+  display: grid;
+  place-items: center;
+  background: #edf7ff;
+  color: #001a3a;
+  font-weight: 850;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
 }

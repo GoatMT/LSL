@@ -158,6 +158,7 @@ function teamContributionRows(data, teamId) {
   const players = new Map(computePlayerStats(data, { stage: "regular" }).map((player) => [player.id, player]));
   const teams = new Map((data.teams || []).map((team) => [team.id, team]));
   const rows = new Map();
+  const entryTeamId = (entry = {}) => entry.teamId || players.get(entry.playerId)?.teamId || "";
   const ensureRow = (entry = {}) => {
     if (!entry.playerId) return null;
     const base = players.get(entry.playerId) || {};
@@ -181,7 +182,7 @@ function teamContributionRows(data, teamId) {
     .filter((match) => match.stage === "regular" && isCompletedMatch(match))
     .forEach((match) => {
       (match.scorers || [])
-        .filter((scorer) => scorer.teamId === teamId)
+        .filter((scorer) => entryTeamId(scorer) === teamId)
         .forEach((scorer) => {
           const row = ensureRow(scorer);
           if (!row) return;
@@ -189,7 +190,7 @@ function teamContributionRows(data, teamId) {
           row.points = row.goals + row.assists;
         });
       (match.assists || [])
-        .filter((assist) => assist.teamId === teamId)
+        .filter((assist) => entryTeamId(assist) === teamId)
         .forEach((assist) => {
           const row = ensureRow(assist);
           if (!row) return;
