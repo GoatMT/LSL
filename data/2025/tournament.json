@@ -1,0 +1,119 @@
+{
+  "season": "2025",
+  "event": {
+    "host": "Lantern of Knowledge Academy",
+    "name": "Inter-Madrasah Soccer Tournament",
+    "dates": "Saturday, August 2, 2025",
+    "schedule": "Full Day",
+    "eligibleAges": "Open to the community",
+    "venue": "Grenoble Public School (Grenoble P.S.)",
+    "address": "9 Grenoble Dr, Toronto, ON M3C 1C3",
+    "phone": "437-888-0261"
+  },
+  "divisions": [
+    {
+      "id": "toronto",
+      "name": "Toronto Division",
+      "teams": [
+        {
+          "id": "al-khair-musalla",
+          "name": "Al-Khair Musalla (Darul Khair Islamic Centre)",
+          "shortName": "AKM",
+          "roster": ["Suleman Nazari", "Abdul Baseer Ahmed", "Muhammad Ibrahim", "Abdullahi", "Hamza", "Suleman Shah", "Musawer", "Abdul Hakeem", "Yaseen", "Ahmedu", "Ossama", "Bilal Momo", "Roholla", "Waris"]
+        },
+        {
+          "id": "hifz-city",
+          "name": "Hifz City",
+          "shortName": "HFC",
+          "roster": ["Yakub Shaikh", "Hashir Abid", "Bilal Ali Sabyr", "Nurhussein Nurhussein", "Berat Ozturk", "Marwan Akram", "Sami Sanger", "Musab Omer", "Muneeb Ezaz", "Basel Hossein", "Khalid Takles", "AbuBakar Lawal", "Rayyan Sayed", "Mazin Ezaz", "Hamza Karagoz"]
+        },
+        {
+          "id": "lantern-of-knowledge-academy",
+          "name": "Lantern of Knowledge Academy",
+          "shortName": "LOK",
+          "roster": ["Hafizullah", "Abdul Basit Mesbah", "Muzamil Kharooti", "Rehan Adam", "Umar Ajmal", "Shaheer", "Abu Bakr Manjra", "Taha Nakhuda", "Muhummud Teli", "Ziyad Adam", "Mubashir Kharooti", "Uthman Manira", "Basir Dastagiri", "Mudassir Nabizada", "Hassan Faraz"]
+        },
+        {
+          "id": "madinah-masjid",
+          "name": "Madinah Masjid",
+          "shortName": "MM",
+          "roster": ["Ammar Mamun", "Abu Mamun", "Huzaifa Vadia", "Zakariya Chibu", "Ali Oakdia", "Faizan Bhaiyat", "Maaz Kassuji", "Ali Khan", "Ehsan Somali", "Yassir Somali"]
+        }
+      ],
+      "standings": [
+        { "rank": 1, "teamId": "hifz-city", "team": "Hifz City", "w": 3, "d": 0, "l": 0, "gf": 6, "ga": 1, "gd": 5, "pts": 9 },
+        { "rank": 2, "teamId": "lantern-of-knowledge-academy", "team": "Lantern of Knowledge", "w": 2, "d": 0, "l": 1, "gf": 6, "ga": 2, "gd": 4, "pts": 6 },
+        { "rank": 3, "teamId": "al-khair-musalla", "team": "Darul Khair", "w": 1, "d": 0, "l": 2, "gf": 3, "ga": 2, "gd": 1, "pts": 3 },
+        { "rank": 4, "teamId": "madinah-masjid", "team": "Madinah Masjid", "w": 0, "d": 0, "l": 3, "gf": 2, "ga": 9, "gd": -7, "pts": 0 }
+      ]
+    },
+    {
+      "id": "scarborough-markham",
+      "name": "Scarborough/Markham Division",
+      "teams": [
+        {
+          "id": "as-salaam-institute",
+          "name": "As-Salaam Institute",
+          "shortName": "ASI",
+          "roster": ["Zayaan Howlader", "Aadil Memon", "Aamir Memon", "Mateen Minayar", "Saad Khan", "Talhah Ahmed", "Musa Khalid", "Talhah Ahmed", "Musa Jawad", "Talha Jawed", "Bilal Baig", "Massih Minayar", "Musab Abdul Matin", "Khalfan Abus Suboor", "Hamza Memon"]
+        },
+        {
+          "id": "darul-imaan",
+          "name": "Darul Imaan",
+          "shortName": "DI",
+          "roster": ["Affan Mir", "Hassaan Mir", "Affaan Qureshi", "Khalid Mohammed", "Huzaifa Qureshi", "Yusuf Qureshi", "Ali Qazi", "Haseeb Hasan", "Salman Zouhar", "Maaz Khan", "Affan Tariq", "Hassan Khan", "Usman Malik", "Mohsin Khan", "Humayd Khan"]
+        },
+        {
+          "id": "islamic-foundation",
+          "name": "Islamic Foundation (IFT)",
+          "shortName": "IFT",
+          "roster": ["Ahmed Patel", "Taim Al-Jaunita", "Abdullah Al-Tasman", "Raihan Matadar", "Haitham Al-Khalil", "Loai Al-Karri", "Abdulaziz Al-Henedi", "Zohair Sharif", "Ibrahim Roowala", "Aakif Shairaz", "Rayan S. Yousuf", "Uwais Patel", "Ishaaq Ali", "Yassin Al-Jaouni", "Yahya Jeebhai"]
+        },
+        {
+          "id": "khairul-ummah",
+          "name": "Khairul Ummah",
+          "shortName": "KU",
+          "roster": ["Marwan Ahmed", "Ahmad Ingar", "Ibrahim Mohammed", "Yousaf Hosseinzada", "Khalid Bana", "Abdul Raqib", "Musa Shamsuddin", "Noman Hasan", "Subhan Ali Syed", "Abdul Hannan", "Tamzid Ahmad", "Uthmaan Bana", "Muhammad Farooq Q. Shaikh", "Hassan Mohammed", "Affan Mohammed"]
+        }
+      ],
+      "standings": [
+        { "rank": 1, "teamId": "islamic-foundation", "team": "Islamic Foundation", "w": 2, "d": 1, "l": 0, "gf": 11, "ga": 1, "gd": 10, "pts": 7 },
+        { "rank": 2, "teamId": "darul-imaan", "team": "Darul Imaan", "w": 2, "d": 1, "l": 0, "gf": 4, "ga": 1, "gd": 3, "pts": 7 },
+        { "rank": 3, "teamId": "as-salaam-institute", "team": "As-Salaam Institute", "w": 0, "d": 1, "l": 2, "gf": 0, "ga": 6, "gd": -6, "pts": 1 },
+        { "rank": 4, "teamId": "khairul-ummah", "team": "Khairul Ummah", "w": 0, "d": 1, "l": 2, "gf": 0, "ga": 7, "gd": -7, "pts": 1 }
+      ]
+    }
+  ],
+  "matches": [
+    { "id": "imt-2025-g1", "divisionId": "toronto", "label": "Game 1", "homeTeamId": "hifz-city", "homeTeamName": "Hifz City", "awayTeamId": "lantern-of-knowledge-academy", "awayTeamName": "Lantern of Knowledge", "homeScore": 1, "awayScore": 0 },
+    { "id": "imt-2025-g2", "divisionId": "toronto", "label": "Game 2", "homeTeamId": "al-khair-musalla", "homeTeamName": "Darul Khair", "awayTeamId": "madinah-masjid", "awayTeamName": "Madinah Masjid", "homeScore": 3, "awayScore": 1 },
+    { "id": "imt-2025-g3", "divisionId": "scarborough-markham", "label": "Game 3", "homeTeamId": "as-salaam-institute", "homeTeamName": "Assalam Institute", "awayTeamId": "khairul-ummah", "awayTeamName": "Khairul Ummah", "homeScore": 0, "awayScore": 0 },
+    { "id": "imt-2025-g4", "divisionId": "scarborough-markham", "label": "Game 4", "homeTeamId": "islamic-foundation", "homeTeamName": "Islamic Foundation", "awayTeamId": "darul-imaan", "awayTeamName": "Darul Imaan", "homeScore": 1, "awayScore": 1 },
+    { "id": "imt-2025-g5", "divisionId": "toronto", "label": "Game 5", "homeTeamId": "lantern-of-knowledge-academy", "homeTeamName": "Lantern of Knowledge", "awayTeamId": "madinah-masjid", "awayTeamName": "Madinah Masjid", "homeScore": 4, "awayScore": 0 },
+    { "id": "imt-2025-g6", "divisionId": "toronto", "label": "Game 6", "homeTeamId": "hifz-city", "homeTeamName": "Hifz City", "awayTeamId": "al-khair-musalla", "awayTeamName": "Darul Khair", "homeScore": 2, "awayScore": 0 },
+    { "id": "imt-2025-g7", "divisionId": "scarborough-markham", "label": "Game 7", "homeTeamId": "as-salaam-institute", "homeTeamName": "Assalam Institute", "awayTeamId": "islamic-foundation", "awayTeamName": "Islamic Foundation", "homeScore": 0, "awayScore": 5 },
+    { "id": "imt-2025-g8", "divisionId": "scarborough-markham", "label": "Game 8", "homeTeamId": "darul-imaan", "homeTeamName": "Darul Imaan", "awayTeamId": "khairul-ummah", "awayTeamName": "Khairul Ummah", "homeScore": 2, "awayScore": 0 },
+    { "id": "imt-2025-g9", "divisionId": "toronto", "label": "Game 9", "homeTeamId": "lantern-of-knowledge-academy", "homeTeamName": "Lantern of Knowledge", "awayTeamId": "al-khair-musalla", "awayTeamName": "Darul Khair", "homeScore": 2, "awayScore": 1 },
+    { "id": "imt-2025-g10", "divisionId": "toronto", "label": "Game 10", "homeTeamId": "hifz-city", "homeTeamName": "Hifz City", "awayTeamId": "madinah-masjid", "awayTeamName": "Madinah Masjid", "homeScore": 3, "awayScore": 1 },
+    { "id": "imt-2025-g11", "divisionId": "scarborough-markham", "label": "Game 11", "homeTeamId": "darul-imaan", "homeTeamName": "Darul Imaan", "awayTeamId": "as-salaam-institute", "awayTeamName": "Assalam Institute", "homeScore": 1, "awayScore": 0 },
+    { "id": "imt-2025-g12", "divisionId": "scarborough-markham", "label": "Game 12", "homeTeamId": "islamic-foundation", "homeTeamName": "Islamic Foundation", "awayTeamId": "khairul-ummah", "awayTeamName": "Khairul Ummah", "homeScore": 5, "awayScore": 0 }
+  ],
+  "playoffs": {
+    "champion": "Hifz City",
+    "rounds": [
+      {
+        "name": "Semifinals",
+        "matches": [
+          { "label": "SF 1", "homeTeamId": "hifz-city", "homeTeamName": "Hifz City", "awayTeamId": "darul-imaan", "awayTeamName": "Darul Imaan", "homeScore": 5, "awayScore": 1, "winnerId": "hifz-city", "note": "Hifz City advanced to the final." },
+          { "label": "SF 2", "homeTeamId": "islamic-foundation", "homeTeamName": "Islamic Foundation (IFT)", "awayTeamId": "lantern-of-knowledge-academy", "awayTeamName": "Lantern of Knowledge Academy", "homeScore": 2, "awayScore": 0, "winnerId": "islamic-foundation", "note": "IFT advanced with a shutout." }
+        ]
+      },
+      {
+        "name": "Final",
+        "matches": [
+          { "label": "Grand Final", "homeTeamId": "hifz-city", "homeTeamName": "Hifz City", "awayTeamId": "islamic-foundation", "awayTeamName": "Islamic Foundation (IFT)", "homeScore": 4, "awayScore": 0, "winnerId": "hifz-city", "note": "Hifz City won the first Inter-Madrasah tournament." }
+        ]
+      }
+    ]
+  }
+}

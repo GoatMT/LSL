@@ -1,0 +1,1265 @@
+{
+  "season": "2026",
+  "matches": [
+    {
+      "id": "2026-seniors-week-1-game-4",
+      "week": 1,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 4",
+      "date": "2026-06-13",
+      "time": "11:30 AM - 12:15 PM",
+      "homeTeamId": "rawaha-royals",
+      "awayTeamId": "leeward-lions",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mudassir",
+          "teamId": "leeward-lions",
+          "name": "Mudassir",
+          "goals": 1
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "ajmal-shakkari",
+          "teamId": "leeward-lions",
+          "name": "Ajmal Chakkari",
+          "assists": 1
+        }
+      ],
+      "notes": [
+        "Final score reported June 13, 2026.",
+        "Rawaha Royals tied Leeward Lions 1-1.",
+        "Mudassir scored for Leeward Lions in the 1-1 tie.",
+        "Ajmal Chakkari assisted the Leeward Lions goal."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-1-game-3",
+      "week": 1,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 3",
+      "date": "2026-06-13",
+      "time": "10:45 AM - 11:30 AM",
+      "homeTeamId": "memon-mavericks",
+      "awayTeamId": "gangat-warriors",
+      "homeScore": 0,
+      "awayScore": 1,
+      "winnerId": "gangat-warriors",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "taha-nakhuda",
+          "teamId": "gangat-warriors",
+          "name": "Taaha Nakhuda",
+          "goals": 1
+        }
+      ],
+      "notes": [
+        "Gangat Warriors defeated Memon Mavericks 1-0.",
+        "Taaha Nakhuda scored the winning goal on a penalty kick."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-1-game-2",
+      "week": 1,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 2",
+      "date": "2026-06-13",
+      "time": "10:00 AM - 10:45 AM",
+      "homeTeamId": "em-haulers-fc",
+      "awayTeamId": "amax-visionaries",
+      "homeScore": 9,
+      "awayScore": 4,
+      "winnerId": "em-haulers-fc",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "haroon-ahmadi",
+          "teamId": "em-haulers-fc",
+          "name": "Haroon Ahmadi",
+          "goals": 4
+        },
+        {
+          "playerId": "muzamil-kharooti",
+          "teamId": "em-haulers-fc",
+          "name": "Muzamil Kharooti",
+          "goals": 2
+        },
+        {
+          "playerId": "abdul-ghiyas-solyman",
+          "teamId": "em-haulers-fc",
+          "name": "Abdul Ghiyas Solyman",
+          "goals": 2
+        },
+        {
+          "playerId": "uwais-bemat",
+          "teamId": "em-haulers-fc",
+          "name": "Uwais Bemat",
+          "goals": 1
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "abdul-ghiyas-solyman",
+          "teamId": "em-haulers-fc",
+          "name": "Abdul Ghiyas Solyman",
+          "assists": 1
+        }
+      ],
+      "stars": [
+        {
+          "rank": 1,
+          "playerId": "haroon-ahmadi",
+          "teamName": "EM Haulers FC",
+          "note": "Four goals in a 9-4 win"
+        },
+        {
+          "rank": 2,
+          "playerId": "abdul-ghiyas-solyman",
+          "teamName": "EM Haulers FC",
+          "note": "Two goals and one assist"
+        },
+        {
+          "rank": 3,
+          "playerId": "muzamil-kharooti",
+          "teamName": "EM Haulers FC",
+          "note": "Two goals, including a half field goal"
+        }
+      ],
+      "notes": [
+        "Final score reported June 13, 2026.",
+        "Haroon Ahmadi scored four goals for EM Haulers FC.",
+        "Muzamil Kharooti scored twice, including a half field goal for EM Haulers FC.",
+        "Abdul Ghiyas Solyman scored twice and added one assist for EM Haulers FC.",
+        "Uwais Bemat scored once for EM Haulers FC."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-1-game-1",
+      "week": 1,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 1",
+      "date": "2026-06-13",
+      "time": "9:15 AM - 10:00 AM",
+      "homeTeamId": "sharp-strikers",
+      "awayTeamId": "refuel-rovers",
+      "homeScore": 5,
+      "awayScore": 1,
+      "winnerId": "sharp-strikers",
+      "status": "Complete",
+      "notes": [
+        "Final score reported June 13, 2026.",
+        "Sharp Strikers defeated Refuel Rovers 5-1.",
+        "Ishaaq Ali was forced to play goalie for Refuel Rovers; he is normally a defender.",
+        "Marwan Ahmed and Mohammed Rayyan Syed each scored for Sharp Strikers.",
+        "Additional scorer details are coming soon."
+      ],
+      "scorers": [
+        {
+          "playerId": "marwan-ahmad",
+          "teamId": "sharp-strikers",
+          "name": "Marwan Ahmed",
+          "goals": 1
+        },
+        {
+          "playerId": "mohammed-rayyan-sayed",
+          "teamId": "sharp-strikers",
+          "name": "Mohammed Rayyan Syed",
+          "goals": 1
+        }
+      ]
+    },
+    {
+      "id": "2026-juniors-week-1-skills",
+      "week": 1,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-06-13",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling, Scrimmage",
+      "status": "Completed Activity",
+      "notes": [
+        "LSL Week 1 Juniors skills, dribbling, and scrimmage session was completed on June 13, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-2-game-5",
+      "week": 2,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 5",
+      "date": "2026-06-20",
+      "time": "9:15 AM - 10:00 AM",
+      "homeTeamId": "refuel-rovers",
+      "awayTeamId": "amax-visionaries",
+      "homeScore": 1,
+      "awayScore": 0,
+      "winnerId": "refuel-rovers",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mosa-fazli",
+          "teamId": "refuel-rovers",
+          "name": "Mosa Fazli",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Refuel Rovers defeated Amax Visionaries 1-0.",
+        "Mosa Fazli scored the winning goal."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-2-game-6",
+      "week": 2,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 6",
+      "date": "2026-06-20",
+      "time": "10:00 AM - 10:45 AM",
+      "homeTeamId": "gangat-warriors",
+      "awayTeamId": "leeward-lions",
+      "homeScore": 0,
+      "awayScore": 6,
+      "winnerId": "leeward-lions",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mudassir",
+          "teamId": "leeward-lions",
+          "name": "Mudassir",
+          "goals": 3
+        },
+        {
+          "playerId": "ajmal-shakkari",
+          "teamId": "leeward-lions",
+          "name": "Ajmal Chakkari",
+          "goals": 2
+        },
+        {
+          "playerId": "muhammad-teli",
+          "teamId": "leeward-lions",
+          "name": "Muhummud Teli",
+          "goals": 1
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "mudassir",
+          "teamId": "leeward-lions",
+          "name": "Mudassir",
+          "assists": 1
+        }
+      ],
+      "stars": [
+        {
+          "rank": 1,
+          "playerId": "mudassir",
+          "teamName": "Leeward Lions",
+          "note": "Three goals and one assist"
+        },
+        {
+          "rank": 2,
+          "playerId": "ajmal-shakkari",
+          "teamName": "Leeward Lions",
+          "note": "Two goals in the 6-0 win"
+        },
+        {
+          "rank": 3,
+          "playerId": "muhammad-teli",
+          "teamName": "Leeward Lions",
+          "note": "Added a goal in the shutout win"
+        }
+      ],
+      "notes": [
+        "Leeward Lions defeated Gangat Warriors 6-0.",
+        "Mudassir recorded three goals and one assist.",
+        "Ajmal Chakkari scored twice and Muhummud Teli scored once."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-2-game-7",
+      "week": 2,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 7",
+      "date": "2026-06-20",
+      "time": "10:45 AM - 11:30 AM",
+      "homeTeamId": "memon-mavericks",
+      "awayTeamId": "rawaha-royals",
+      "homeScore": 2,
+      "awayScore": 3,
+      "winnerId": "rawaha-royals",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "hasan-hamraz",
+          "teamId": "memon-mavericks",
+          "name": "Hasan Hamraz",
+          "goals": 1
+        },
+        {
+          "playerId": "nasibullah",
+          "teamId": "memon-mavericks",
+          "name": "Nasibullah Barak",
+          "goals": 1
+        },
+        {
+          "playerId": "uthman",
+          "teamId": "rawaha-royals",
+          "name": "Uthman Manira",
+          "goals": 1
+        },
+        {
+          "playerId": "mohammed-ibrahim",
+          "teamId": "rawaha-royals",
+          "name": "Mohammad Ibrahim",
+          "goals": 2
+        }
+      ],
+      "assists": [],
+      "stars": [
+        {
+          "rank": 1,
+          "playerId": "mohammed-ibrahim",
+          "teamName": "Rawaha Royals",
+          "note": "Two goals in a 3-2 comeback win"
+        },
+        {
+          "rank": 2,
+          "playerId": "uthman",
+          "teamName": "Rawaha Royals",
+          "note": "Penalty goal in the comeback"
+        },
+        {
+          "rank": 3,
+          "playerId": "nasibullah",
+          "teamName": "Memon Mavericks",
+          "note": "Scored while Memon built a 2-0 halftime lead"
+        }
+      ],
+      "notes": [
+        "Rawaha Royals came back to defeat Memon Mavericks 3-2.",
+        "Memon Mavericks led 2-0 at halftime.",
+        "Hasan Hamraz and Nasibullah Barak scored for Memon Mavericks.",
+        "Uthman Manira scored a penalty and Mohammad Ibrahim scored twice for Rawaha Royals."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-2-game-8",
+      "week": 2,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 8",
+      "date": "2026-06-20",
+      "time": "11:30 AM - 12:15 PM",
+      "homeTeamId": "em-haulers-fc",
+      "awayTeamId": "sharp-strikers",
+      "homeScore": 3,
+      "awayScore": 2,
+      "winnerId": "em-haulers-fc",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "haroon-ahmadi",
+          "teamId": "em-haulers-fc",
+          "name": "Haroon Ahmadi",
+          "goals": 3
+        },
+        {
+          "playerId": "marwan-ahmad",
+          "teamId": "sharp-strikers",
+          "name": "Marwan Ahmed",
+          "goals": 1
+        },
+        {
+          "playerId": "mohammed-rayyan-sayed",
+          "teamId": "sharp-strikers",
+          "name": "Mohammed Rayyan Syed",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "referee": "Hafizullah",
+      "stars": [
+        {
+          "rank": 1,
+          "playerId": "haroon-ahmadi",
+          "teamName": "EM Haulers FC",
+          "note": "Hat trick, including a kickoff goal"
+        },
+        {
+          "rank": 2,
+          "playerId": "uwais-bemat",
+          "teamName": "EM Haulers FC",
+          "note": "Emergency goalkeeper and saved a penalty"
+        },
+        {
+          "rank": 3,
+          "playerId": "marwan-ahmad",
+          "teamName": "Sharp Strikers",
+          "note": "Scored for Sharp Strikers"
+        }
+      ],
+      "notes": [
+        "EM Haulers FC defeated Sharp Strikers 3-2.",
+        "Haroon Ahmadi scored all three EM goals, including one directly from kickoff and one after carrying the ball through the opposing team.",
+        "Hafizullah refereed the match.",
+        "Uwais Bemat, normally a field player, was forced to play goalkeeper for EM Haulers FC.",
+        "Marwan Ahmed and Mohammed Rayyan Syed scored for Sharp Strikers.",
+        "Marwan Ahmed had a penalty opportunity saved by Uwais Bemat.",
+        "Several calls were disputed during the match, and Coach Sameer was reported as especially upset with the officiating."
+      ]
+    },
+    {
+      "id": "2026-juniors-week-2-skills",
+      "week": 2,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-06-20",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling, Scrimmage",
+      "status": "Completed Activity",
+      "notes": [
+        "LSL Week 2 Juniors skills, dribbling, and scrimmage session was completed on June 20, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-3-game-9",
+      "week": 3,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 9",
+      "date": "2026-06-27",
+      "time": "9:15 AM - 10:00 AM",
+      "homeTeamId": "gangat-warriors",
+      "awayTeamId": "sharp-strikers",
+      "homeScore": 1,
+      "awayScore": 6,
+      "winnerId": "sharp-strikers",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "taha-nakhuda",
+          "teamId": "gangat-warriors",
+          "name": "Taaha Nakhuda",
+          "goals": 1
+        },
+        {
+          "playerId": "rehan-ahmed-mohammed",
+          "teamId": "sharp-strikers",
+          "name": "Rehan Mohammed",
+          "goals": 2
+        },
+        {
+          "playerId": "m-yahya",
+          "teamId": "sharp-strikers",
+          "name": "M Yahya",
+          "goals": 4
+        }
+      ],
+      "stars": [
+        {
+          "rank": 1,
+          "playerId": "m-yahya",
+          "teamName": "Sharp Strikers",
+          "note": "Four goals in a 6-1 win"
+        },
+        {
+          "rank": 2,
+          "playerId": "rehan-ahmed-mohammed",
+          "teamName": "Sharp Strikers",
+          "note": "Two goals against Gangat Warriors"
+        },
+        {
+          "rank": 3,
+          "playerId": "taha-nakhuda",
+          "teamName": "Gangat Warriors",
+          "note": "Scored Gangat Warriors' goal"
+        }
+      ],
+      "notes": [
+        "Sharp Strikers defeated Gangat Warriors 6-1 in Week 3.",
+        "M Yahya scored four goals for Sharp Strikers.",
+        "Rehan Mohammed scored twice for Sharp Strikers.",
+        "Taaha Nakhuda scored for Gangat Warriors."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-3-game-10",
+      "week": 3,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 10",
+      "date": "2026-06-27",
+      "time": "10:00 AM - 10:45 AM",
+      "homeTeamId": "refuel-rovers",
+      "awayTeamId": "memon-mavericks",
+      "homeScore": 5,
+      "awayScore": 0,
+      "winnerId": "refuel-rovers",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mosa-fazli",
+          "teamId": "refuel-rovers",
+          "name": "Mosa Fazli",
+          "goals": 3
+        },
+        {
+          "playerId": "hasibullah-kharooti",
+          "teamId": "refuel-rovers",
+          "name": "Hasibullah Kharooti",
+          "goals": 1
+        },
+        {
+          "playerId": "ishaaq-ali",
+          "teamId": "refuel-rovers",
+          "name": "Ishaaq Ali",
+          "goals": 1
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "abdul-ghiyas-solyman",
+          "teamId": "refuel-rovers",
+          "name": "Abdul Ghiyas Solyman",
+          "assists": 2
+        }
+      ],
+      "stars": [
+        {
+          "rank": 1,
+          "playerId": "mosa-fazli",
+          "teamName": "Refuel Rovers",
+          "note": "Three goals in a 5-0 win"
+        },
+        {
+          "rank": 2,
+          "playerId": "hasibullah-kharooti",
+          "teamName": "Refuel Rovers",
+          "note": "Goal in a clean-sheet win"
+        },
+        {
+          "rank": 3,
+          "playerId": "abdul-ghiyas-solyman",
+          "teamName": "Refuel Rovers",
+          "note": "Two assists in the clean-sheet win"
+        }
+      ],
+      "notes": [
+        "Refuel Rovers defeated Memon Mavericks 5-0 in Week 3.",
+        "Mosa Fazli scored three goals.",
+        "Hasibullah Kharooti scored once.",
+        "Ishaaq Ali scored once.",
+        "Abdul Ghiyas Solyman added two assists.",
+        "Refuel Rovers kept a clean sheet."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-3-game-11",
+      "week": 3,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 11",
+      "date": "2026-06-27",
+      "time": "10:45 AM - 11:30 AM",
+      "homeTeamId": "leeward-lions",
+      "awayTeamId": "amax-visionaries",
+      "homeScore": 6,
+      "awayScore": 1,
+      "winnerId": "leeward-lions",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mudassir",
+          "teamId": "leeward-lions",
+          "name": "Mudassir",
+          "goals": 3
+        },
+        {
+          "playerId": "ajmal-shakkari",
+          "teamId": "leeward-lions",
+          "name": "Ajmal Chakkari",
+          "goals": 3
+        },
+        {
+          "playerId": "adil-mubashir",
+          "teamId": "amax-visionaries",
+          "name": "Adil Mubashir",
+          "goals": 1
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "muhammad-teli",
+          "teamId": "leeward-lions",
+          "name": "Muhummud Teli",
+          "assists": 1
+        }
+      ],
+      "stars": [
+        {
+          "rank": 1,
+          "playerId": "mudassir",
+          "teamName": "Leeward Lions",
+          "note": "Three goals in the 6-1 win"
+        },
+        {
+          "rank": 2,
+          "playerId": "ajmal-shakkari",
+          "teamName": "Leeward Lions",
+          "note": "Three goals against Amax Visionaries"
+        },
+        {
+          "rank": 3,
+          "playerId": "muhammad-teli",
+          "teamName": "Leeward Lions",
+          "note": "Assisted one of Ajmal Chakkari's goals"
+        }
+      ],
+      "notes": [
+        "Leeward Lions defeated Amax Visionaries 6-1 in Week 3.",
+        "Mudassir scored three goals.",
+        "Ajmal Chakkari scored three goals.",
+        "Muhummud Teli assisted one of Ajmal Chakkari's goals.",
+        "Adil Mubashir scored for Amax Visionaries."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-3-game-12",
+      "week": 3,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 12",
+      "date": "2026-06-27",
+      "time": "11:30 AM - 12:15 PM",
+      "homeTeamId": "em-haulers-fc",
+      "awayTeamId": "rawaha-royals",
+      "homeScore": 6,
+      "awayScore": 1,
+      "winnerId": "em-haulers-fc",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mohammed-ibrahim",
+          "teamId": "rawaha-royals",
+          "name": "Mohammad Ibrahim",
+          "goals": 1
+        },
+        {
+          "playerId": "muzamil-kharooti",
+          "teamId": "em-haulers-fc",
+          "name": "Muzamil Kharooti",
+          "goals": 4
+        },
+        {
+          "playerId": "haroon-ahmadi",
+          "teamId": "em-haulers-fc",
+          "name": "Haroon Ahmadi",
+          "goals": 2
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "haroon-ahmadi",
+          "teamId": "em-haulers-fc",
+          "name": "Haroon Ahmadi",
+          "assists": 1
+        }
+      ],
+      "stars": [
+        {
+          "rank": 1,
+          "playerId": "muzamil-kharooti",
+          "teamName": "EM Haulers FC",
+          "note": "Four goals in a 6-1 win"
+        },
+        {
+          "rank": 2,
+          "playerId": "haroon-ahmadi",
+          "teamName": "EM Haulers FC",
+          "note": "Two goals and one assist for EM Haulers FC"
+        },
+        {
+          "rank": 3,
+          "playerId": "mohammed-ibrahim",
+          "teamName": "Rawaha Royals",
+          "note": "Scored Rawaha Royals' goal"
+        }
+      ],
+      "notes": [
+        "EM Haulers FC defeated Rawaha Royals 6-1 in Week 3.",
+        "Muzamil Kharooti scored four goals.",
+        "Haroon Ahmadi scored twice and added one assist.",
+        "Mohammad Ibrahim scored for Rawaha Royals."
+      ]
+    },
+    {
+      "id": "2026-juniors-week-3-skills",
+      "week": 3,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-06-27",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling, Scrimmage",
+      "status": "Completed",
+      "notes": [
+        "Week 3 Juniors skills, dribbling, and scrimmage session was completed on June 27, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-4-game-13",
+      "week": 4,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 13",
+      "date": "2026-07-04",
+      "time": "9:15 AM - 10:00 AM",
+      "homeTeamId": "memon-mavericks",
+      "awayTeamId": "leeward-lions",
+      "homeScore": 2,
+      "awayScore": 8,
+      "winnerId": "leeward-lions",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mudassir",
+          "teamId": "leeward-lions",
+          "name": "Mudassir",
+          "goals": 5
+        },
+        {
+          "playerId": "ajmal-shakkari",
+          "teamId": "leeward-lions",
+          "name": "Ajmal Chakkari",
+          "goals": 2
+        },
+        {
+          "playerId": "abubakr-manjra",
+          "teamId": "leeward-lions",
+          "name": "Abu Bakr Manjra",
+          "goals": 1
+        },
+        {
+          "playerId": "nasibullah",
+          "teamId": "memon-mavericks",
+          "name": "Nasibullah Barak",
+          "goals": 2
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Leeward Lions defeated Memon Mavericks 8-2 in Week 4.",
+        "Mudassir scored five goals.",
+        "Ajmal Chakkari scored twice.",
+        "Abu Bakr Manjra scored once.",
+        "Nasibullah Barak scored both Memon Mavericks goals."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-4-game-14",
+      "week": 4,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 14",
+      "date": "2026-07-04",
+      "time": "10:00 AM - 10:45 AM",
+      "homeTeamId": "sharp-strikers",
+      "awayTeamId": "rawaha-royals",
+      "homeScore": 4,
+      "awayScore": 3,
+      "winnerId": "sharp-strikers",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "rehan-ahmed-mohammed",
+          "teamId": "sharp-strikers",
+          "name": "Rehan Mohammed",
+          "goals": 1
+        },
+        {
+          "playerId": "marwan-ahmad",
+          "teamId": "sharp-strikers",
+          "name": "Marwan Ahmed",
+          "goals": 1
+        },
+        {
+          "playerId": "m-yahya",
+          "teamId": "sharp-strikers",
+          "name": "M Yahya",
+          "goals": 1
+        },
+        {
+          "playerId": "mohammed-rayyan-sayed",
+          "teamId": "sharp-strikers",
+          "name": "Mohammed Rayyan Syed",
+          "goals": 1
+        },
+        {
+          "playerId": "mubashir-kharooti",
+          "teamId": "rawaha-royals",
+          "name": "Mubashir Kharooti",
+          "goals": 1
+        },
+        {
+          "playerId": "uthman",
+          "teamId": "rawaha-royals",
+          "name": "Uthman Manira",
+          "goals": 1
+        },
+        {
+          "playerId": "mohammed-ibrahim",
+          "teamId": "rawaha-royals",
+          "name": "Mohammad Ibrahim",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Sharp Strikers defeated Rawaha Royals 4-3 in Week 4.",
+        "Rehan Mohammed, Marwan Ahmed, M Yahya, and Mohammed Rayyan Syed each scored for Sharp Strikers.",
+        "Mubashir Kharooti, Uthman Manira, and Mohammad Ibrahim each scored for Rawaha Royals."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-4-game-15",
+      "week": 4,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 15",
+      "date": "2026-07-04",
+      "time": "10:45 AM - 11:30 AM",
+      "homeTeamId": "refuel-rovers",
+      "awayTeamId": "em-haulers-fc",
+      "homeScore": 1,
+      "awayScore": 2,
+      "winnerId": "em-haulers-fc",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "abdul-ghiyas-solyman",
+          "teamId": "refuel-rovers",
+          "name": "Abdul Ghiyas Solyman",
+          "goals": 1
+        },
+        {
+          "playerId": "muzamil-kharooti",
+          "teamId": "em-haulers-fc",
+          "name": "Muzamil Kharooti",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "EM Haulers FC defeated Refuel Rovers 2-1 in Week 4.",
+        "Abdul Ghiyas Solyman scored a penalty kick for Refuel Rovers.",
+        "Muzamil Kharooti scored for EM Haulers FC.",
+        "More match details are coming soon."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-4-game-16",
+      "week": 4,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 16",
+      "date": "2026-07-04",
+      "time": "11:30 AM - 12:15 PM",
+      "homeTeamId": "amax-visionaries",
+      "awayTeamId": "gangat-warriors",
+      "homeScore": 2,
+      "awayScore": 0,
+      "winnerId": "amax-visionaries",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "adil-mubashir",
+          "teamId": "amax-visionaries",
+          "name": "Adil Mubashir",
+          "goals": 1
+        },
+        {
+          "playerId": "reda-alijalam",
+          "teamId": "amax-visionaries",
+          "name": "Mohamad Reda Alijalam",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Amax Visionaries defeated Gangat Warriors 2-0 in Week 4.",
+        "Adil Mubashir and Mohamad Reda Alijalam scored for Amax Visionaries."
+      ]
+    },
+    {
+      "id": "2026-juniors-week-4-skills",
+      "week": 4,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-07-04",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling & Scrimmage",
+      "status": "Completed Activity",
+      "notes": [
+        "Week 4 Juniors skills, dribbling, and scrimmage were held on Saturday, July 4, 2026 from 12:15 PM to 1:15 PM."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-5-game-17",
+      "week": 5,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 17",
+      "date": "2026-07-18",
+      "time": "9:00 AM - 9:45 AM",
+      "homeTeamId": "amax-visionaries",
+      "awayTeamId": "rawaha-royals",
+      "homeScore": 1,
+      "awayScore": 4,
+      "winnerId": "rawaha-royals",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "adil-mubashir",
+          "teamId": "amax-visionaries",
+          "name": "Adil Mubashir",
+          "goals": 1
+        },
+        {
+          "playerId": "mohammed-ibrahim",
+          "teamId": "rawaha-royals",
+          "name": "Mohammad Ibrahim",
+          "goals": 2
+        },
+        {
+          "playerId": "tulha-ahmed",
+          "teamId": "rawaha-royals",
+          "name": "Tulha Ahmed",
+          "goals": 1
+        },
+        {
+          "playerId": "uthman",
+          "teamId": "rawaha-royals",
+          "name": "Uthman Manira",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Rawaha Royals defeated Amax Visionaries 4-1 in Week 5.",
+        "Mohammad Ibrahim scored twice for Rawaha Royals.",
+        "Tulha Ahmed and Uthman Manira each scored once for Rawaha Royals.",
+        "Adil Mubashir scored for Amax Visionaries.",
+        "Week 5 was played on July 18, 2026 after schedule changes around rain and Inter-Madrasah play."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-5-game-18",
+      "week": 5,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 18",
+      "date": "2026-07-18",
+      "time": "10:00 AM - 10:45 AM",
+      "homeTeamId": "gangat-warriors",
+      "awayTeamId": "refuel-rovers",
+      "homeScore": 0,
+      "awayScore": 1,
+      "winnerId": "refuel-rovers",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mosa-fazli",
+          "teamId": "refuel-rovers",
+          "name": "Mosa Fazli",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Refuel Rovers defeated Gangat Warriors 1-0 in Week 5.",
+        "Mosa Fazli scored the winning goal."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-5-game-19",
+      "week": 5,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 19",
+      "date": "2026-07-18",
+      "time": "10:45 AM - 11:30 AM",
+      "homeTeamId": "leeward-lions",
+      "awayTeamId": "em-haulers-fc",
+      "homeScore": 1,
+      "awayScore": 0,
+      "winnerId": "leeward-lions",
+      "status": "Finished Early",
+      "scorers": [
+        {
+          "playerId": "mudassir",
+          "teamId": "leeward-lions",
+          "name": "Mudassir",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Leeward Lions led EM Haulers FC 1-0 when the match was finished early with around five minutes remaining.",
+        "Mudassir scored the Leeward Lions goal.",
+        "Tensions rose when Muzamil Kharooti shoved Sayem Mohamed Saad away from the ball in the Leeward Lions defensive zone.",
+        "Both players quickly got back to their feet and exchanged punches before players and coaches separated them.",
+        "Officials appeared to discipline both players, but card details are still unclear.",
+        "The match was ruled finished early, and the 1-0 result stands."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-5-game-20",
+      "week": 5,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 20",
+      "date": "2026-07-18",
+      "time": "11:30 AM - 12:15 PM",
+      "homeTeamId": "sharp-strikers",
+      "awayTeamId": "memon-mavericks",
+      "homeScore": 1,
+      "awayScore": 0,
+      "winnerId": "sharp-strikers",
+      "status": "Finished Early",
+      "scorers": [
+        {
+          "playerId": "mohammed-rayyan-sayed",
+          "teamId": "sharp-strikers",
+          "name": "Mohammed Rayyan Syed",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Sharp Strikers defeated Memon Mavericks 1-0 in Week 5.",
+        "Mohammed Rayyan Syed scored the winning goal.",
+        "The match finished early."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-6-game-21",
+      "week": 6,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 21",
+      "date": "2026-07-25",
+      "time": "9:15 AM - 10:00 AM",
+      "homeTeamId": "leeward-lions",
+      "awayTeamId": "sharp-strikers",
+      "homeScore": 4,
+      "awayScore": 5,
+      "winnerId": "sharp-strikers",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mudassir",
+          "teamId": "leeward-lions",
+          "name": "Mudassir",
+          "goals": 3
+        },
+        {
+          "playerId": "muhammad-teli",
+          "teamId": "leeward-lions",
+          "name": "Muhummud Teli",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Sharp Strikers defeated Leeward Lions 5-4 in Week 6.",
+        "Mudassir scored three goals for Leeward Lions.",
+        "Muhummud Teli scored for Leeward Lions.",
+        "Additional scorer details are coming soon."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-6-game-22",
+      "week": 6,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 22",
+      "date": "2026-07-25",
+      "time": "10:00 AM - 10:45 AM",
+      "homeTeamId": "amax-visionaries",
+      "awayTeamId": "memon-mavericks",
+      "homeScore": 2,
+      "awayScore": 0,
+      "winnerId": "amax-visionaries",
+      "status": "Complete",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Amax Visionaries defeated Memon Mavericks 2-0 in Week 6.",
+        "Scorer details are coming soon."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-6-game-23",
+      "week": 6,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 23",
+      "date": "2026-07-25",
+      "time": "10:45 AM - 11:30 AM",
+      "homeTeamId": "em-haulers-fc",
+      "awayTeamId": "gangat-warriors",
+      "homeScore": 4,
+      "awayScore": 3,
+      "winnerId": "em-haulers-fc",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "haroon-ahmadi",
+          "teamId": "em-haulers-fc",
+          "name": "Haroon Ahmadi",
+          "goals": 3
+        },
+        {
+          "playerId": "tayyib-mohammed",
+          "teamId": "em-haulers-fc",
+          "name": "Tayyib Mohammed",
+          "goals": 1
+        },
+        {
+          "playerId": "taha-nakhuda",
+          "teamId": "gangat-warriors",
+          "name": "Taaha Nakhuda",
+          "goals": 3
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "EM Haulers FC defeated Gangat Warriors 4-3 in Week 6.",
+        "Haroon Ahmadi scored three goals for EM Haulers FC.",
+        "Tayyib Mohammed scored for EM Haulers FC.",
+        "Taaha Nakhuda scored all three Gangat Warriors goals."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-6-game-24",
+      "week": 6,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 24",
+      "date": "2026-07-25",
+      "time": "11:30 AM - 12:15 PM",
+      "homeTeamId": "rawaha-royals",
+      "awayTeamId": "refuel-rovers",
+      "homeScore": 2,
+      "awayScore": 0,
+      "winnerId": "rawaha-royals",
+      "status": "Complete",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Rawaha Royals defeated Refuel Rovers 2-0 in Week 6.",
+        "Scorer details are coming soon."
+      ]
+    },
+    {
+      "id": "2026-juniors-week-6-skills",
+      "week": 6,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-07-25",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling, Scrimmage",
+      "status": "Completed Activity",
+      "notes": [
+        "Week 6 Juniors skills, dribbling, and scrimmage session was completed on July 25, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-7-game-25",
+      "week": 7,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 25",
+      "date": "2026-08-01",
+      "time": "9:15 AM - 10:00 AM",
+      "homeTeamId": "amax-visionaries",
+      "awayTeamId": "sharp-strikers",
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Week 7 matchup on the official schedule.",
+        "Results will be posted after the game."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-7-game-26",
+      "week": 7,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 26",
+      "date": "2026-08-01",
+      "time": "10:00 AM - 10:45 AM",
+      "homeTeamId": "em-haulers-fc",
+      "awayTeamId": "memon-mavericks",
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Week 7 matchup on the official schedule.",
+        "Results will be posted after the game."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-7-game-27",
+      "week": 7,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 27",
+      "date": "2026-08-01",
+      "time": "10:45 AM - 11:30 AM",
+      "homeTeamId": "gangat-warriors",
+      "awayTeamId": "rawaha-royals",
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Week 7 matchup on the official schedule.",
+        "Results will be posted after the game."
+      ]
+    },
+    {
+      "id": "2026-seniors-week-7-game-28",
+      "week": 7,
+      "stage": "regular",
+      "division": "Seniors",
+      "label": "Game 28",
+      "date": "2026-08-01",
+      "time": "11:30 AM - 12:15 PM",
+      "homeTeamId": "leeward-lions",
+      "awayTeamId": "refuel-rovers",
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Week 7 matchup on the official schedule.",
+        "Results will be posted after the game."
+      ]
+    }
+  ]
+}

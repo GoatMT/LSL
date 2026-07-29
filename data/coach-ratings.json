@@ -1,0 +1,154 @@
+{
+  "coaches": {
+    "coach-aadil": {
+      "overallGrade": "A+",
+      "tacticalStyle": "Balanced",
+      "strength": "Playoff Coaching",
+      "weakness": "Consistency",
+      "experience": "3rd year",
+      "categories": {
+        "tactics": "A",
+        "playerDevelopment": "A",
+        "motivation": "A",
+        "playoffPerformance": "S",
+        "experience": "A"
+      },
+      "achievements": ["2024 senior championship", "2024 finals appearance"]
+    },
+    "coach-abdul-hakeem": {
+      "overallGrade": "A+",
+      "tacticalStyle": "Counter-Attack",
+      "strength": "Playoff Coaching",
+      "weakness": "Experience",
+      "experience": "2nd year",
+      "categories": {
+        "tactics": "A+",
+        "playerDevelopment": "A",
+        "motivation": "A+",
+        "playoffPerformance": "S",
+        "experience": "B+"
+      },
+      "achievements": ["2025 senior championship", "2025 finals appearance"]
+    },
+    "coach-tanveer": {
+      "overallGrade": "S",
+      "tacticalStyle": "Attacking",
+      "strength": "Player Development",
+      "weakness": "Experience",
+      "experience": "2nd year",
+      "categories": {
+        "tactics": "A+",
+        "playerDevelopment": "S",
+        "motivation": "A+",
+        "playoffPerformance": "S",
+        "experience": "B+"
+      },
+      "achievements": ["2025 Junior championship", "2025 Junior finals appearance"]
+    },
+    "coach-ashique": {
+      "overallGrade": "A",
+      "tacticalStyle": "Balanced",
+      "strength": "Motivation",
+      "weakness": "Consistency",
+      "experience": "3rd year",
+      "categories": {
+        "tactics": "A-",
+        "playerDevelopment": "A",
+        "motivation": "A+",
+        "playoffPerformance": "A",
+        "experience": "A"
+      },
+      "achievements": ["2 finals appearances"]
+    },
+    "coach-sameer": {
+      "overallGrade": "A",
+      "tacticalStyle": "Possession",
+      "strength": "Tactics",
+      "weakness": "Consistency",
+      "experience": "3rd coaching stint",
+      "categories": {
+        "tactics": "A+",
+        "playerDevelopment": "A",
+        "motivation": "A",
+        "playoffPerformance": "B+",
+        "experience": "A"
+      },
+      "achievements": ["2025 senior 3rd-place coach"]
+    },
+    "coach-asim": {
+      "overallGrade": "A-",
+      "tacticalStyle": "Attacking",
+      "strength": "Tactics",
+      "weakness": "Experience",
+      "experience": "1st year",
+      "categories": {
+        "tactics": "A",
+        "playerDevelopment": "B+",
+        "motivation": "A-",
+        "playoffPerformance": "Not Rated",
+        "experience": "C+"
+      },
+      "achievements": ["First 2026 senior coach to reach 2 wins"]
+    },
+    "coach-shodmon": {
+      "overallGrade": "B",
+      "tacticalStyle": "Defensive",
+      "strength": "Motivation",
+      "weakness": "Attack",
+      "experience": "2nd year",
+      "categories": {
+        "tactics": "B",
+        "playerDevelopment": "B",
+        "motivation": "B+",
+        "playoffPerformance": "B-",
+        "experience": "B"
+      },
+      "achievements": []
+    },
+    "coach-elhaj": {
+      "overallGrade": "C",
+      "tacticalStyle": "Balanced",
+      "strength": "Player Development",
+      "weakness": "Experience",
+      "experience": "1st year",
+      "categories": {
+        "tactics": "C+",
+        "playerDevelopment": "B-",
+        "motivation": "B-",
+        "playoffPerformance": "Not Rated",
+        "experience": "C"
+      },
+      "achievements": []
+    },
+    "coach-saud": {
+      "overallGrade": "D",
+      "tacticalStyle": "Defensive",
+      "strength": "Motivation",
+      "weakness": "Attack",
+      "experience": "1 season listed",
+      "categories": {
+        "tactics": "C",
+        "playerDevelopment": "C+",
+        "motivation": "C+",
+        "playoffPerformance": "D",
+        "experience": "C"
+      },
+      "achievements": []
+    },
+    "coach-fahad": {
+      "overallGrade": "D",
+      "tacticalStyle": "Balanced",
+      "strength": "Player Development",
+      "weakness": "Defense",
+      "experience": "1 season listed",
+      "categories": {
+        "tactics": "C",
+        "playerDevelopment": "C+",
+        "motivation": "C+",
+        "playoffPerformance": "D",
+        "experience": "C"
+      },
+      "achievements": []
+    }
+  }
+}

@@ -1,0 +1,896 @@
+{
+  "season": "2025",
+  "event": {
+    "host": "Lantern Soccer League",
+    "name": "Boys Soccer Tournament (season 2)",
+    "dates": "June 9 - August 9, 2025",
+    "schedule": "Every Saturday, 9:30 AM - 12:30 PM",
+    "eligibleAges": "9 - 15 years old",
+    "cost": "$65",
+    "venue": "Grenoble P.S. (Grenoble Public School)",
+    "address": "9 Grenoble Dr, Toronto, ON M3C 1C3",
+    "phone": "437-888-0261",
+    "source": "LSL - 2025.pdf"
+  },
+  "teams": [
+    {
+      "id": "asif-gangat-united-2025",
+      "name": "Asif Gangat United",
+      "shortName": "AGU",
+      "logo": "./Logos/2025 Teams/Asif Gangat United.jpg",
+      "logoBg": "#868a69",
+      "division": "Seniors",
+      "coachId": "coach-shodmon",
+      "coachName": "Shadman",
+      "history": "2025 regular season table leader and semifinalist.",
+      "roster": [
+        {
+          "id": "mohammed-rayyan-sayed",
+          "name": "Mohammed Rayyan Sayed",
+          "jersey": 1,
+          "position": "Goalkeeper"
+        },
+        {
+          "id": "hafizullah",
+          "name": "Hafizullah",
+          "photo": "./Logos/Player Pics/Hafizullah.png",
+          "jersey": 2,
+          "position": "Forward",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "muhammad-affan",
+          "name": "Mohammed Affan",
+          "jersey": 3,
+          "position": "Forward",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "sayem-mohammed-sadi",
+          "name": "Sayem Mohammed Sadi",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiya Solyman",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "hammad-shaikh",
+          "name": "Hammad Shaikh",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-salim",
+          "name": "Mohammed Salim",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "huzaifa-ahmad-vadia",
+          "name": "Huzaifa Ahmed Vadia",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "haroon-sarood",
+          "name": "Haroon Sarood",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-shah",
+          "name": "Muhammad Shah",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "abdullah-patel",
+          "name": "Abdullah Patel",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "bilal-sami-ahmad",
+          "name": "Bilal Sami Syed",
+          "jersey": 12,
+          "position": "Field",
+          "previousTeamId": "islamic-bookstore-runners",
+          "previousTeamName": "Islamic Bookstore Runners",
+          "tradeEffectiveDate": "2025-06-14",
+          "tradeNote": "2025 team adjustment after the exhibition match: moved from Islamic Bookstore Runners to Asif Gangat United."
+        }
+      ]
+    },
+    {
+      "id": "umer-memon-fc-2025",
+      "name": "Umer Memon FC",
+      "shortName": "UMF",
+      "logo": "./Logos/2025 Teams/Umer Memon FC.jpg",
+      "logoBg": "#b8b088",
+      "division": "Seniors",
+      "coachId": "coach-abdul-hakeem",
+      "coachName": "Abdul Hakeem \"Ya Salaam\"",
+      "history": "2025 senior champion under Abdul Hakeem \"Ya Salaam\" after a Cinderella playoff run and 1-0 final win.",
+      "roster": [
+        {
+          "id": "saad-khan",
+          "name": "Saad Khan",
+          "jersey": 1,
+          "position": "Goalkeeper"
+        },
+        {
+          "id": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 7,
+          "position": "Forward",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "yousaf-hosseinzada",
+          "name": "Yousaf Hosseinzada",
+          "jersey": 3,
+          "position": "Field"
+        },
+        {
+          "id": "azizullah",
+          "name": "Azizullah",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "ishaaq-ali",
+          "name": "Ishaaq Ali",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "adil-mubashir",
+          "name": "Adil Mubashir",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "mohammed-hanzala",
+          "name": "Mohammed Hanzala Hasan",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "yusuf-ahmed-baharustani",
+          "name": "Yusuf Ahmed Baharustani",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "uwais-bemat",
+          "name": "Uwais Bemat",
+          "jersey": 10,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "hasan-hatia",
+          "name": "Hasan Hatia",
+          "photo": "./Logos/Player Pics/Hasan Hatia.png",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "abdul-ahad-muabir",
+          "name": "Abdul Ahad Muabir",
+          "jersey": 12,
+          "position": "Field"
+        }
+      ]
+    },
+    {
+      "id": "islamic-bookstore-runners",
+      "name": "Islamic Bookstore Runners",
+      "shortName": "IBR",
+      "logo": "./Logos/2025 Teams/Islamic Bookstore.jpg",
+      "logoBg": "#6a603c",
+      "division": "Seniors",
+      "coachId": "coach-saud",
+      "coachName": "Saud",
+      "history": "2025 playoff qualifier from the sixth seed.",
+      "roster": [
+        {
+          "id": "rayyan-kazi-mohammed",
+          "name": "Rayyan Kazi Mohammed",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "mudassir",
+          "name": "Mudassir",
+          "jersey": 2,
+          "position": "Forward",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "ahmad-ingar",
+          "name": "Ahmad Ingar",
+          "jersey": 3,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "tayyib-mohammed",
+          "name": "Tayyib Mohammed",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "zain-adam",
+          "name": "Zain Adam",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-farooq",
+          "name": "Muhammad Farooq",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "mohammed-hasan",
+          "name": "Mohammed Hasan",
+          "jersey": 7,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "previousTeamId": "amax-optical-kickers",
+          "previousTeamName": "Amax Optical Kickers",
+          "tradeEffectiveDate": "2025-06-14",
+          "tradeNote": "2025 team adjustment after the exhibition match: moved from Amax Optical Kickers to Islamic Bookstore Runners."
+        },
+        {
+          "id": "basir-ahmad-dastagiri",
+          "name": "Basir Ahmad Dastagiri",
+          "photo": "./Logos/Player Pics/Basir Dastagiri.png",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "abubakar-mamun",
+          "name": "Abubakar Mamun",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "abdul-wahab-dastagiri",
+          "name": "Abdul Wahab Dastagiri",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-badin",
+          "name": "Muhammed Badin",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "zakariyya-dualeh",
+          "name": "Zakariyya Dualeh",
+          "jersey": 12,
+          "position": "Field"
+        }
+      ]
+    },
+    {
+      "id": "amax-optical-kickers",
+      "name": "Amax Optical Kickers",
+      "shortName": "AOK",
+      "logo": "./Logos/2025 Teams/AMAX OPTICAL KICKERS.jpg",
+      "logoBg": "#b4ad83",
+      "division": "Seniors",
+      "coachId": "coach-aadil",
+      "coachName": "Aadil",
+      "history": "2025 playoff qualifier from the fifth seed.",
+      "roster": [
+        {
+          "id": "ataa-shaikh",
+          "name": "Ataa Shaikh",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "uthman",
+          "name": "Uthman",
+          "jersey": 2,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "tulha-ahmed",
+          "name": "Tulha Ahmed",
+          "jersey": 3,
+          "position": "Field",
+          "previousTeamId": "asif-gangat-united-2025",
+          "previousTeamName": "Asif Gangat United",
+          "tradeEffectiveDate": "2025-06-14",
+          "tradeNote": "2025 team adjustment after the exhibition match: moved from Asif Gangat United to Amax Optical Kickers."
+        },
+        {
+          "id": "taha-nakhuda",
+          "name": "Taaha Nakhuda",
+          "jersey": 4,
+          "position": "Field",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "hamza-akalwala",
+          "name": "Hamza Akalwala",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "ammar-mamun",
+          "name": "Ammar Mamun",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "subhan-ali-syed",
+          "name": "Subhan Ali Syed",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "mumin-milhan",
+          "name": "Mumin Milhan",
+          "jersey": 8,
+          "position": "Forward"
+        },
+        {
+          "id": "aamir-jogiat",
+          "name": "Aamir Jogiat",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "maaz",
+          "name": "Maaz",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "hammad-hatia",
+          "name": "Hammad Hatia",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "zakariyya-motala",
+          "name": "Zakariyya Motala",
+          "jersey": 12,
+          "position": "Field"
+        },
+        {
+          "id": "sufyan-munshi",
+          "name": "Sufyan Munshi",
+          "jersey": 13,
+          "position": "Field",
+          "previousTeamId": "the-travel-builder-united",
+          "previousTeamName": "Travel Builder United",
+          "tradeEffectiveDate": "2025-06-14",
+          "tradeNote": "2025 team adjustment after the exhibition match: moved up to Seniors with Amax Optical Kickers."
+        }
+      ]
+    },
+    {
+      "id": "im-construction-sc",
+      "name": "IM Construction SC",
+      "shortName": "IMC",
+      "logo": "./Logos/2025 Teams/IM Construction SC.jpg",
+      "logoBg": "#675f3d",
+      "division": "Seniors",
+      "coachId": "coach-sameer",
+      "coachName": "Sameer",
+      "history": "2025 second seed, semifinalist, and senior third-place team.",
+      "roster": [
+        {
+          "id": "muhammad-hasan-faraz",
+          "name": "Muhammad Hasan Faraz",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "jersey": 2,
+          "position": "Forward",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "omar-ajmal",
+          "name": "Omar Ajmal",
+          "jersey": 3,
+          "position": "Forward",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "waise-sherzi",
+          "name": "Waise Sherzi",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "amadu",
+          "name": "Amadu",
+          "photo": "./Logos/Player Pics/Amadu.png",
+          "jersey": 5,
+          "position": "Forward",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "abdul-basit-mesbah",
+          "name": "Abdul Basit Mesbah",
+          "photo": "./Logos/Player Pics/Abdul Basit Mesbah.png",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "ayub-jan",
+          "name": "Ayub Jan",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "rehan-ahmed-mohammed",
+          "name": "Rehan Ahmed Mohammed",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "zakariya-chhibu",
+          "name": "Zakariya Chhibu",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "mohammed-ali-siddiqui",
+          "name": "Mohammed Ali Siddiqui",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "ayaan-tutla",
+          "name": "Ayaan Tutla",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "jersey": 12,
+          "position": "Goalkeeper"
+        }
+      ]
+    },
+    {
+      "id": "refuel-juicery-athletic",
+      "name": "Refuel Juicery Athletic",
+      "shortName": "RJA",
+      "logo": "./Logos/2025 Teams/Refuel Juicery.jpg",
+      "logoBg": "#67613d",
+      "division": "Seniors",
+      "coachId": "coach-ashique",
+      "coachName": "Ashique",
+      "history": "2025 finalist after a strong playoff surge.",
+      "roster": [
+        {
+          "id": "usman",
+          "name": "Usman",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "jersey": 2,
+          "position": "Forward",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "reda-alijalam",
+          "name": "Mohamad Reda Alijalam",
+          "jersey": 3,
+          "position": "Forward"
+        },
+        {
+          "id": "mohammed-ibrahim",
+          "name": "Mohammed Ibrahim",
+          "jersey": 4,
+          "position": "Forward",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "ziyad-adam",
+          "name": "Ziyad Adam",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "abdur-rakib",
+          "name": "Abdur Rakib",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "nasibullah",
+          "name": "Nasibullah",
+          "jersey": 7,
+          "position": "Forward"
+        },
+        {
+          "id": "tamzid-ahmed",
+          "name": "Tamzid Ahmed",
+          "jersey": 8,
+          "position": "Forward"
+        },
+        {
+          "id": "bashir-ahmad-dastagiri",
+          "name": "Bashir Ahmad Dastagiri",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "taha-ahmed",
+          "name": "Taha Ahmed",
+          "photo": "./Logos/Player Pics/Taha Ahmed.png",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "abubakr-manjra",
+          "name": "Abubakr Manjra",
+          "jersey": 11,
+          "position": "Defender"
+        },
+        {
+          "id": "rizwan-haque",
+          "name": "Rizwan Haque",
+          "jersey": 12,
+          "position": "Goalkeeper"
+        },
+        {
+          "id": "m-yahya",
+          "name": "M Yahya",
+          "jersey": 11,
+          "position": "Forward",
+          "leadershipRole": "assistant",
+          "achievements": [
+            "2025 Seniors Golden Boot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dhahabiya-strikers",
+      "name": "Dhahabiya Strikers",
+      "shortName": "DHS",
+      "division": "Juniors",
+      "coachId": "coach-tanveer",
+      "coachName": "Tanveer",
+      "history": "2025 Junior League champion after finishing first in the regular season at 4-2-0.",
+      "roster": [
+        {
+          "id": "azaan",
+          "name": "Azaan",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "saifan",
+          "name": "Saifan",
+          "jersey": 2,
+          "position": "Field"
+        },
+        {
+          "id": "mustafa-sakhiyar",
+          "name": "Mustafa Sakhiyar",
+          "jersey": 3,
+          "position": "Field"
+        },
+        {
+          "id": "shafiullah",
+          "name": "Shafiullah",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "mohammed-wahedi",
+          "name": "Mohammed Wahedi",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "abdullah-juniors",
+          "name": "Abdullah",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "hasibullah-kharooti",
+          "name": "Hasibullah Kharooti",
+          "jersey": 8,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "mohammed-maaz-aswat",
+          "name": "Mohammed Maaz Aswat",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "aijaz-khan",
+          "name": "Aijaz Khan",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "ajmal-shakkari",
+          "name": "Ajmal Shakkari",
+          "jersey": 11,
+          "position": "Forward",
+          "leadershipRole": "captain",
+          "tradeEffectiveDate": "2025-06-14",
+          "tradeNote": "2025 junior team adjustment after the exhibition match: added by Dhahabiya Strikers."
+        },
+        {
+          "id": "rafiullah",
+          "name": "Rafiullah",
+          "jersey": 12,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "tradeEffectiveDate": "2025-06-14",
+          "tradeNote": "2025 junior team adjustment after the exhibition match: added by Dhahabiya Strikers."
+        }
+      ]
+    },
+    {
+      "id": "the-travel-builder-united",
+      "name": "Travel Builder United",
+      "shortName": "TBU",
+      "division": "Juniors",
+      "coachId": "coach-ashique",
+      "coachName": "Ashique",
+      "history": "2025 Junior playoff semifinalist and third-place regular season team.",
+      "roster": [
+        {
+          "id": "syed-zaeem-arshad",
+          "name": "Syed Zaeem Arshad",
+          "jersey": 2,
+          "position": "Field"
+        },
+        {
+          "id": "hammad-parekh",
+          "name": "Hammad Parekh",
+          "jersey": 3,
+          "position": "Field"
+        },
+        {
+          "id": "ammar-haque",
+          "name": "Ammar Haque",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "arsham",
+          "name": "Arsham",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "umar-manjra",
+          "name": "Umar Manjra",
+          "jersey": 6,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "ahmed-ibadullah-minhas",
+          "name": "Ahmed Ibadullah Minhas",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "suleman-asmal",
+          "name": "Suleman Asmal",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "yahya-mohammed",
+          "name": "Yahya Mohammed",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "ali-shadab-shaikh",
+          "name": "Ali Shadab Shaikh",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "idrees-nawabi-travel",
+          "name": "Idrees Nawabi",
+          "jersey": 17,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "previousTeamId": "em-truck-repair-fc",
+          "previousTeamName": "EM Truck Repair FC",
+          "tradeEffectiveDate": "2025-06-14",
+          "tradeNote": "2025 junior team adjustment after the exhibition match: moved from EM Truck Repair FC to Travel Builder United."
+        }
+      ]
+    },
+    {
+      "id": "em-truck-repair-fc",
+      "name": "EM Truck Repair FC",
+      "shortName": "EMT",
+      "division": "Juniors",
+      "coachId": "coach-fahad",
+      "coachName": "Fahad",
+      "history": "2025 Junior playoff qualifier from the fourth seed.",
+      "roster": [
+        {
+          "id": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "jersey": 1,
+          "position": "Field",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "umair",
+          "name": "Umair",
+          "jersey": 2,
+          "position": "Field"
+        },
+        {
+          "id": "arifur-rahman",
+          "name": "Arifur Rahman",
+          "jersey": 3,
+          "position": "Field"
+        },
+        {
+          "id": "azizur-rahman",
+          "name": "Azizur Rahman",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "raees-gauri",
+          "name": "Raees Gauri",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "jamal-mujaddidi",
+          "name": "Jamal Mujaddidi",
+          "jersey": 7,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "raffan-mohammed",
+          "name": "Raffan Mohammed",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "murtaza-ahmadi",
+          "name": "Murtaza Ahmadi",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "huzaifa-kotwal",
+          "name": "Huzaifa Kotwal",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "abrar-makrod",
+          "name": "Abrar Makrod",
+          "jersey": 11,
+          "position": "Field",
+          "previousTeamId": "dhahabiya-strikers",
+          "previousTeamName": "Dhahabiya Strikers",
+          "tradeEffectiveDate": "2025-06-14",
+          "tradeNote": "2025 junior team adjustment after the exhibition match: moved from Dhahabiya Strikers to EM Truck Repair FC."
+        }
+      ]
+    },
+    {
+      "id": "rafik-enterprise-fc",
+      "name": "Rafik Enterprise FC",
+      "shortName": "REF",
+      "division": "Juniors",
+      "coachId": "coach-sameer",
+      "coachName": "Sameer",
+      "history": "2025 Junior finalist and second-place regular season team with the best goal difference.",
+      "roster": [
+        {
+          "id": "zakariya",
+          "name": "Zakariya",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "ilyas-salim",
+          "name": "Ilyas Salim",
+          "jersey": 2,
+          "position": "Field",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "yonus-dualeh",
+          "name": "Yonus Dualeh",
+          "jersey": 3,
+          "position": "Field"
+        },
+        {
+          "id": "mohammed-hammad-syed",
+          "name": "Mohammed Hammad Syed",
+          "jersey": 4,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "ibad-sheikh",
+          "name": "Ibad Sheikh",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "ibrahim-syed",
+          "name": "Ibrahim Syed",
+          "jersey": 6,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "raiyan-jahir",
+          "name": "Raiyan Jahir",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "ammar-kazi",
+          "name": "Ammar Kazi",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "ibrahim-jawal-ahmed",
+          "name": "Ibrahim Jawal Ahmed",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "rehan-patel",
+          "name": "Rehan Patel",
+          "jersey": 10,
+          "position": "Field"
+        }
+      ]
+    }
+  ]
+}

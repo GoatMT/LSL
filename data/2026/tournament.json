@@ -1,0 +1,266 @@
+{
+  "season": "2026",
+  "event": {
+    "host": "Lantern of Knowledge Academy",
+    "name": "Inter-Madrasah Soccer Tournament",
+    "edition": "2nd Annual",
+    "headline": "Eight institutions. Two divisions. One champion.",
+    "statusLabel": "Tournament Complete",
+    "currentStatus": "Champion: Islamic Foundation of Toronto",
+    "champion": "Islamic Foundation of Toronto",
+    "runnerUp": "Khairul Ummah Academy",
+    "date": "Saturday, July 11, 2026",
+    "isoDate": "2026-07-11",
+    "time": "9:00 AM - 6:30 PM",
+    "gameLength": "Games are 25-30 minutes",
+    "venue": "Grenoble Public School Field",
+    "address": "9 Grenoble Dr, North York, ON M3C 1C3",
+    "intro": [
+      "The Inter-Madrasah Soccer Tournament is back.",
+      "After an incredible first year, madaris came together once again for a day of competition, unity, and community. Players represented their madrasa, showcased their skills, and competed for the top spot."
+    ],
+    "interestFormLabel": "Inter-Madrasah Interest Form",
+    "interestFormUrl": "https://forms.gle/C5G7kataN1FMSUNa6",
+    "interestForm": {
+      "title": "Inter-Madrasah Interest Form",
+      "greeting": "Assalamwalaykum ww",
+      "body": [
+        "Welcome to the 2nd annual Inter-Madrasah Tournament Interest Form.",
+        "The tournament brings together students from different madrasahs for a full day of competition, teamwork, and community.",
+        "The cost per team is $300. Youth born in 2011 or younger are eligible.",
+        "This form helps measure interest, organize teams and age groups, and plan the event smoothly. Players, coaches, volunteers, and supporters are welcome to fill out the form.",
+        "More information regarding schedules, rules, location, and registration details will be shared soon, Insha'Allah."
+      ],
+      "contacts": [
+        "647-784-6357",
+        "437-263-6611"
+      ]
+    }
+  },
+  "media": [
+    {
+      "title": "Champion Team",
+      "src": "./IMT/2026/Champion Team.jpg",
+      "caption": "2026 Inter-Madrasah champion team."
+    },
+    {
+      "title": "Khairul Ummah Team",
+      "src": "./IMT/2026/Khairul Ummah Team.jpg",
+      "caption": "Khairul Ummah Academy reached the championship final."
+    },
+    {
+      "title": "Tournament MVP",
+      "src": "./IMT/2026/MVP.jpg",
+      "caption": "2026 Inter-Madrasah Tournament MVP."
+    }
+  ],
+  "divisions": [
+    {
+      "id": "west",
+      "name": "Western Division",
+      "theme": "west",
+      "accent": "#d94b4b",
+      "description": "Lantern, Galt, Madinah, and IST battled through the Western Division.",
+      "teams": [
+        {
+          "id": "lantern-of-knowledge-academy",
+          "name": "Lantern of Knowledge Academy",
+          "shortName": "Lantern",
+          "logo": "./IMT/2026/Team Logos/LanternofKnowledgeAcademy.webp",
+          "logoText": "LOK",
+          "logoBg": "#001a3a",
+          "role": "Host",
+          "owner": "Moulana Junaid",
+          "coach": "Ashique",
+          "assistantCoach": "Hafizullah",
+          "roster": [
+            { "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "jersey": 7, "role": "Assistant Captain" },
+            { "id": "fares", "name": "Fares", "jersey": 4, "role": "Player" },
+            { "id": "saad-khan", "name": "Saad Khan", "jersey": 1, "role": "Starting Goalie" },
+            { "id": "abubakr-manjra", "name": "Abu Bakr Manjra", "jersey": 3, "role": "Defender" },
+            { "id": "uwais-bemat", "name": "Uwais Bemat", "jersey": 12, "role": "Defender" },
+            { "id": "mudassir", "name": "Mudassir", "jersey": 10, "role": "Captain" },
+            { "id": "muhammad-teli", "name": "Muhummud Teli", "jersey": 34, "role": "Defender" },
+            { "id": "haroon-ahmadi", "name": "Haroon Ahmadi", "jersey": 19, "role": "Assistant Captain" },
+            { "id": "usman-ahmad-popal", "name": "Usman Ahmad Popal", "jersey": 2, "role": "Backup Goalie" },
+            { "id": "taha-nakhuda", "name": "Taaha Nakhuda", "jersey": 13, "role": "On Roster - Did Not Play" },
+            { "id": "mosa-fazli", "name": "Mosa Fazli", "role": "Player" },
+            { "id": "ilham", "name": "Ilham", "role": "Player" },
+            { "id": "nasibullah", "name": "Nasibullah Barak", "role": "Player" }
+          ]
+        },
+        {
+          "id": "galt-islamic-centre",
+          "name": "Galt Islamic Centre",
+          "shortName": "Galt",
+          "logo": "./IMT/2026/Team Logos/GaltIslamicCenter.webp",
+          "logoText": "GIC",
+          "logoBg": "#dceeff",
+          "roster": []
+        },
+        {
+          "id": "madinah-masjid",
+          "name": "Madinah Masjid",
+          "shortName": "Madinah",
+          "logo": "./IMT/2026/Team Logos/Madinah Masjid.png",
+          "logoText": "MM",
+          "logoBg": "#f4f6f8",
+          "roster": []
+        },
+        {
+          "id": "islamic-society-of-toronto",
+          "name": "Islamic Society of Toronto",
+          "shortName": "IST",
+          "logo": "./IMT/2026/Team Logos/Islamic Society Toronto.png",
+          "logoText": "IST",
+          "logoBg": "#e7f3ff",
+          "roster": []
+        }
+      ],
+      "standings": [
+        { "rank": 1, "teamId": "lantern-of-knowledge-academy", "team": "Lantern of Knowledge", "gp": 5, "w": 5, "d": 0, "l": 0, "gf": 14, "ga": 4, "gd": 10, "pts": 15 },
+        { "rank": 2, "teamId": "islamic-society-of-toronto", "team": "Islamic Society of Toronto", "gp": 5, "w": 2, "d": 2, "l": 1, "gf": 12, "ga": 10, "gd": 2, "pts": 8 },
+        { "rank": 3, "teamId": "galt-islamic-centre", "team": "Galt Islamic Centre", "gp": 5, "w": 1, "d": 0, "l": 4, "gf": 8, "ga": 12, "gd": -4, "pts": 3 },
+        { "rank": 4, "teamId": "madinah-masjid", "team": "Madinah Masjid", "gp": 5, "w": 0, "d": 2, "l": 3, "gf": 5, "ga": 13, "gd": -8, "pts": 2 }
+      ]
+    },
+    {
+      "id": "east",
+      "name": "Eastern Division",
+      "theme": "east",
+      "accent": "#48aaff",
+      "description": "IFT, Khairul Ummah, SMA, and Assalaam Institute formed the Eastern Division.",
+      "teams": [
+        {
+          "id": "assalam-institute-of-quran",
+          "name": "Assalaam Institute of Quran",
+          "shortName": "Assalaam",
+          "logo": "./IMT/2026/Team Logos/AssalaamInstitute.webp",
+          "logoText": "AIQ",
+          "logoBg": "#dceeff",
+          "roster": []
+        },
+        {
+          "id": "islamic-foundation-of-toronto",
+          "name": "Islamic Foundation of Toronto",
+          "shortName": "IFT",
+          "logo": "./IMT/2026/Team Logos/IslamicFoundationOfToronto.jpg",
+          "logoText": "IFT",
+          "logoBg": "#001a3a",
+          "roster": []
+        },
+        {
+          "id": "khairul-ummah-academy",
+          "name": "Khairul Ummah Academy",
+          "shortName": "KUA",
+          "logo": "./IMT/2026/Team Logos/KhairulUmmah.png",
+          "logoText": "KUA",
+          "logoBg": "#99c4dd",
+          "roster": []
+        },
+        {
+          "id": "scarborough-muslim-association",
+          "name": "Scarborough Muslim Association",
+          "shortName": "SMA",
+          "logo": "./IMT/2026/Team Logos/ScarboroughMuslimAssociation.png",
+          "logoText": "SMA",
+          "logoBg": "#f4f6f8",
+          "roster": []
+        }
+      ],
+      "standings": [
+        { "rank": 1, "teamId": "islamic-foundation-of-toronto", "team": "Islamic Foundation", "gp": 3, "w": 3, "d": 0, "l": 0, "gf": 11, "ga": 1, "gd": 10, "pts": 9 },
+        { "rank": 2, "teamId": "khairul-ummah-academy", "team": "Khairul Ummah", "gp": 3, "w": 1, "d": 1, "l": 1, "gf": 2, "ga": 4, "gd": -2, "pts": 4 },
+        { "rank": 3, "teamId": "scarborough-muslim-association", "team": "Scarborough Muslim Association", "gp": 3, "w": 1, "d": 1, "l": 1, "gf": 2, "ga": 6, "gd": -4, "pts": 4 },
+        { "rank": 4, "teamId": "assalam-institute-of-quran", "team": "Assalam Institute", "gp": 3, "w": 0, "d": 0, "l": 3, "gf": 2, "ga": 6, "gd": -4, "pts": 0 }
+      ]
+    }
+  ],
+  "matches": [
+    { "id": "imt-2026-g1", "divisionId": "east", "round": "Group Stage", "label": "Game 1", "time": "9:00-9:25 AM", "homeTeamId": "khairul-ummah-academy", "homeTeamName": "Khairul Ummah School", "awayTeamId": "scarborough-muslim-association", "awayTeamName": "SMA", "homeScore": 0, "awayScore": 0, "status": "Draw" },
+    { "id": "imt-2026-g2", "divisionId": "east", "round": "Group Stage", "label": "Game 2", "time": "9:30-9:55 AM", "homeTeamId": "assalam-institute-of-quran", "homeTeamName": "As Salaam Institute", "awayTeamId": "islamic-foundation-of-toronto", "awayTeamName": "IFT", "homeScore": 1, "awayScore": 2, "status": "IFT Win" },
+    { "id": "imt-2026-g3", "divisionId": "west", "round": "Group Stage", "label": "Game 3", "time": "10:00-10:25 AM", "homeTeamId": "lantern-of-knowledge-academy", "homeTeamName": "Lantern", "awayTeamId": "madinah-masjid", "awayTeamName": "Madina Masjid", "homeScore": 4, "awayScore": 0, "status": "Lantern Win" },
+    { "id": "imt-2026-g4", "divisionId": "west", "round": "Group Stage", "label": "Game 4", "time": "10:30-10:55 AM", "homeTeamId": "galt-islamic-centre", "homeTeamName": "Galt Islamic Centre", "awayTeamId": "islamic-society-of-toronto", "awayTeamName": "IST", "homeScore": 1, "awayScore": 2, "status": "IST Win" },
+    { "id": "imt-2026-g5", "divisionId": "east", "round": "Group Stage", "label": "Game 5", "time": "11:00-11:25 AM", "homeTeamId": "assalam-institute-of-quran", "homeTeamName": "As Salaam Institute", "awayTeamId": "scarborough-muslim-association", "awayTeamName": "SMA", "homeScore": 1, "awayScore": 2, "status": "SMA Win" },
+    { "id": "imt-2026-g6", "divisionId": "east", "round": "Group Stage", "label": "Game 6", "time": "11:30-11:55 AM", "homeTeamId": "khairul-ummah-academy", "homeTeamName": "Khairul Ummah School", "awayTeamId": "islamic-foundation-of-toronto", "awayTeamName": "IFT", "homeScore": 1, "awayScore": 4, "status": "IFT Win" },
+    { "id": "imt-2026-g7", "divisionId": "west", "round": "Group Stage", "label": "Game 7", "time": "12:00-12:25 PM", "homeTeamId": "lantern-of-knowledge-academy", "homeTeamName": "Lantern", "awayTeamId": "islamic-society-of-toronto", "awayTeamName": "IST", "homeScore": 2, "awayScore": 1, "status": "Lantern Win" },
+    { "id": "imt-2026-g8", "divisionId": "west", "round": "Group Stage", "label": "Game 8", "time": "12:30-12:55 PM", "homeTeamId": "galt-islamic-centre", "homeTeamName": "Galt Islamic Centre", "awayTeamId": "madinah-masjid", "awayTeamName": "Madina Masjid", "homeScore": 3, "awayScore": 2, "status": "Galt Win" },
+    { "id": "imt-2026-g9", "divisionId": "east", "round": "Group Stage", "label": "Game 9", "time": "1:00-1:25 PM", "homeTeamId": "khairul-ummah-academy", "homeTeamName": "Khairul Ummah School", "awayTeamId": "assalam-institute-of-quran", "awayTeamName": "As Salaam Institute", "homeScore": 2, "awayScore": 0, "status": "Khairul Ummah Win" },
+    { "id": "imt-2026-g10", "divisionId": "east", "round": "Group Stage", "label": "Game 10", "time": "1:30-1:55 PM", "homeTeamId": "scarborough-muslim-association", "homeTeamName": "SMA", "awayTeamId": "islamic-foundation-of-toronto", "awayTeamName": "IFT", "homeScore": 0, "awayScore": 5, "status": "IFT Win" },
+    { "id": "imt-2026-g11", "divisionId": "west", "round": "Group Stage", "label": "Game 11", "time": "2:00-2:25 PM", "homeTeamId": "galt-islamic-centre", "homeTeamName": "Galt Islamic Centre", "awayTeamId": "lantern-of-knowledge-academy", "awayTeamName": "Lantern", "homeScore": 1, "awayScore": 2, "status": "Lantern Win" },
+    { "id": "imt-2026-g12", "divisionId": "west", "round": "Group Stage", "label": "Game 12", "time": "2:30-2:55 PM", "homeTeamId": "islamic-society-of-toronto", "homeTeamName": "IST", "awayTeamId": "madinah-masjid", "awayTeamName": "Madina Masjid", "homeScore": 3, "awayScore": 3, "status": "Draw" },
+    { "id": "imt-2026-break", "round": "Break", "label": "Dhuhr Break", "time": "2:55-3:15 PM", "activityTitle": "Dhuhr Break", "status": "Break" },
+    { "id": "imt-2026-qf1", "round": "Quarter-Finals", "label": "Quarter Final 1", "time": "3:15-3:45 PM", "homeTeamId": "khairul-ummah-academy", "homeTeamName": "Khairul Ummah Academy", "awayTeamId": "galt-islamic-centre", "awayTeamName": "Galt Islamic Centre", "homeScore": 4, "awayScore": 1, "status": "Khairul Ummah advanced" },
+    { "id": "imt-2026-qf2", "round": "Quarter-Finals", "label": "Quarter Final 2", "time": "3:50-4:20 PM", "homeTeamId": "islamic-society-of-toronto", "homeTeamName": "Islamic Society of Toronto", "awayTeamId": "scarborough-muslim-association", "awayTeamName": "Scarborough Muslim Association", "homeScore": 0, "awayScore": 0, "penaltyScore": "3-0", "status": "IST advanced on penalties" },
+    { "id": "imt-2026-sf1", "round": "Semi-Finals", "label": "Semi Final 1", "time": "4:25-4:55 PM", "homeTeamId": "lantern-of-knowledge-academy", "homeTeamName": "Lantern of Knowledge", "awayTeamId": "khairul-ummah-academy", "awayTeamName": "Khairul Ummah Academy", "homeScore": 0, "awayScore": 1, "status": "Khairul Ummah advanced" },
+    { "id": "imt-2026-sf2", "round": "Semi-Finals", "label": "Semi Final 2", "time": "5:00-5:30 PM", "homeTeamId": "islamic-foundation-of-toronto", "homeTeamName": "Islamic Foundation of Toronto", "awayTeamId": "islamic-society-of-toronto", "awayTeamName": "Islamic Society of Toronto", "homeScore": 3, "awayScore": 1, "status": "IFT advanced" },
+    { "id": "imt-2026-final", "round": "Final", "label": "Final", "time": "5:50-6:20 PM", "homeTeamId": "islamic-foundation-of-toronto", "homeTeamName": "Islamic Foundation of Toronto", "awayTeamId": "khairul-ummah-academy", "awayTeamName": "Khairul Ummah Academy", "homeScore": 3, "awayScore": 1, "status": "IFT Champions" }
+  ],
+  "lanternTeam": {
+    "name": "Lantern Team - Inter-Madrasah 2026",
+    "logo": "./IMT/2026/Team Logos/LanternofKnowledgeAcademy.webp",
+    "owner": "Moulana Junaid",
+    "headCoach": "Ashique",
+    "assistantCoach": "Hafizullah",
+    "record": "Group stage wins over Madinah Masjid, IST, and Galt Islamic Centre before a semifinal loss to Khairul Ummah Academy.",
+    "roster": [
+      { "id": "muzamil-kharooti", "jersey": 7, "name": "Muzamil Kharooti", "role": "Assistant Captain" },
+      { "id": "fares", "jersey": 4, "name": "Fares", "role": "Player" },
+      { "id": "saad-khan", "jersey": 1, "name": "Saad Khan", "role": "Starting Goalie" },
+      { "id": "abubakr-manjra", "jersey": 3, "name": "Abu Bakr Manjra", "role": "Defender" },
+      { "id": "uwais-bemat", "jersey": 12, "name": "Uwais Bemat", "role": "Defender" },
+      { "id": "mudassir", "jersey": 10, "name": "Mudassir", "role": "Captain" },
+      { "id": "muhammad-teli", "jersey": 34, "name": "Muhummud Teli", "role": "Defender" },
+      { "id": "haroon-ahmadi", "jersey": 19, "name": "Haroon Ahmadi", "role": "Assistant Captain" },
+      { "id": "usman-ahmad-popal", "jersey": 2, "name": "Usman Ahmad Popal", "role": "Backup Goalie" },
+      { "id": "taha-nakhuda", "jersey": 13, "name": "Taaha Nakhuda", "role": "On Roster - Did Not Play" },
+      { "id": "mosa-fazli", "name": "Mosa Fazli", "role": "Player" },
+      { "id": "ilham", "name": "Ilham", "role": "Player" },
+      { "id": "nasibullah", "name": "Nasibullah Barak", "role": "Player" }
+    ]
+  },
+  "playoffs": {
+    "champion": "Islamic Foundation of Toronto",
+    "runnerUp": "Khairul Ummah Academy",
+    "format": "Top teams advanced into quarter-finals, semi-finals, and a championship final.",
+    "rounds": [
+      {
+        "name": "Quarter-Finals",
+        "matches": [
+          { "label": "QF 1", "homeTeamId": "khairul-ummah-academy", "homeTeamName": "Khairul Ummah Academy", "awayTeamId": "galt-islamic-centre", "awayTeamName": "Galt Islamic Centre", "homeScore": 4, "awayScore": 1, "winnerId": "khairul-ummah-academy", "note": "Khairul Ummah advanced with a 4-1 win." },
+          { "label": "QF 2", "homeTeamId": "islamic-society-of-toronto", "homeTeamName": "Islamic Society of Toronto", "awayTeamId": "scarborough-muslim-association", "awayTeamName": "Scarborough Muslim Association", "homeScore": 0, "awayScore": 0, "winnerId": "islamic-society-of-toronto", "note": "IST advanced 3-0 on penalties." }
+        ]
+      },
+      {
+        "name": "Semi-Finals",
+        "matches": [
+          { "label": "SF 1", "homeTeamId": "lantern-of-knowledge-academy", "homeTeamName": "Lantern of Knowledge", "awayTeamId": "khairul-ummah-academy", "awayTeamName": "Khairul Ummah Academy", "homeScore": 0, "awayScore": 1, "winnerId": "khairul-ummah-academy", "note": "Khairul Ummah defeated Lantern 1-0." },
+          { "label": "SF 2", "homeTeamId": "islamic-foundation-of-toronto", "homeTeamName": "Islamic Foundation of Toronto", "awayTeamId": "islamic-society-of-toronto", "awayTeamName": "Islamic Society of Toronto", "homeScore": 3, "awayScore": 1, "winnerId": "islamic-foundation-of-toronto", "note": "IFT advanced to the final." }
+        ]
+      },
+      {
+        "name": "Final",
+        "matches": [
+          { "label": "Championship Final", "homeTeamId": "islamic-foundation-of-toronto", "homeTeamName": "Islamic Foundation of Toronto", "awayTeamId": "khairul-ummah-academy", "awayTeamName": "Khairul Ummah Academy", "homeScore": 3, "awayScore": 1, "winnerId": "islamic-foundation-of-toronto", "note": "IFT defeated Khairul Ummah 3-1 to win the tournament." }
+        ]
+      }
+    ]
+  },
+  "news": [
+    {
+      "label": "Champion",
+      "title": "Islamic Foundation Wins The 2026 Tournament",
+      "body": "Islamic Foundation of Toronto finished the day as champion after defeating Khairul Ummah Academy 3-1 in the final."
+    },
+    {
+      "label": "Lantern",
+      "title": "Lantern Win Group Games Before Semifinal Exit",
+      "body": "Lantern defeated Madinah Masjid, IST, and Galt Islamic Centre before falling 1-0 to Khairul Ummah Academy in the semifinal."
+    },
+    {
+      "label": "MVP",
+      "title": "Tournament MVP Recognized",
+      "body": "The 2026 MVP was recognized after a full tournament day of standout performances."
+    }
+  ]
+}

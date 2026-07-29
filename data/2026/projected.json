@@ -1,0 +1,1085 @@
+{
+  "season": "2026",
+  "title": "2026 Projected Season",
+  "status": "Projected",
+  "officialStatus": "Not Official",
+  "lastUpdated": "July 25, 2026",
+  "summary": "These predictions reflect the completed Week 6 results, current player form, coaching history, roster strength, and playoff outlook. They are projections only, not official final standings.",
+  "methodology": [
+    "Current standings through the latest posted senior result",
+    "Player form through the latest reported senior matches",
+    "Roster balance, goalkeeper stability, and scoring depth",
+    "Coach history, previous playoff success, roster movement, and late-season performance"
+  ],
+  "openingNotes": [
+    {
+      "title": "Current Table",
+      "message": "EM Haulers FC are first after Week 6, Sharp Strikers are second, and Leeward Lions sit third."
+    },
+    {
+      "title": "Attack Watch",
+      "message": "Mudassir leads the 2026 scoring race with 16 goals, while Haroon Ahmadi, Ajmal Chakkari, Muzamil Kharooti, Mohammad Ibrahim, Mosa Fazli, Taaha Nakhuda, and M Yahya remain near the top."
+    },
+    {
+      "title": "Week 6 Shift",
+      "message": "Sharp beat Leeward 5-4, Amax beat Memon, EM beat Gangat 4-3, and Rawaha beat Refuel."
+    },
+    {
+      "title": "Calendar Note",
+      "message": "Week 6 was played on July 25, 2026."
+    },
+    {
+      "title": "Prediction Only",
+      "message": "Future scores and playoff outcomes are predictions and will change as the season continues."
+    }
+  ],
+  "standings": [
+    {
+      "rank": 1,
+      "teamId": "em-haulers-fc",
+      "wins": 5,
+      "ties": 0,
+      "losses": 1,
+      "goalsFor": 24,
+      "goalsAgainst": 12,
+      "points": 15,
+      "reason": "EM sit first on tiebreakers after a 4-3 Week 6 win. Haroon Ahmadi and Muzamil Kharooti still give them one of the highest-end scoring cores."
+    },
+    {
+      "rank": 2,
+      "teamId": "sharp-strikers",
+      "wins": 5,
+      "ties": 0,
+      "losses": 1,
+      "goalsFor": 23,
+      "goalsAgainst": 12,
+      "points": 15,
+      "reason": "Sharp beat Leeward 5-4 in Week 6 and sit level with EM on points."
+    },
+    {
+      "rank": 3,
+      "teamId": "leeward-lions",
+      "wins": 4,
+      "ties": 1,
+      "losses": 1,
+      "goalsFor": 26,
+      "goalsAgainst": 9,
+      "points": 13,
+      "reason": "Leeward lost 5-4 to Sharp in Week 6, but Mudassir, Ajmal Chakkari, Abu Bakr Manjra, and Muhummud Teli keep them as a major playoff threat."
+    },
+    {
+      "rank": 4,
+      "teamId": "refuel-rovers",
+      "wins": 4,
+      "ties": 0,
+      "losses": 3,
+      "goalsFor": 12,
+      "goalsAgainst": 10,
+      "points": 12,
+      "reason": "Refuel remain in the playoff field, but the Week 6 loss to Rawaha tightens the race."
+    },
+    {
+      "rank": 5,
+      "teamId": "rawaha-royals",
+      "wins": 3,
+      "ties": 1,
+      "losses": 3,
+      "goalsFor": 17,
+      "goalsAgainst": 17,
+      "points": 10,
+      "reason": "Rawaha strengthened the middle of the table with a Week 6 win over Refuel."
+    },
+    {
+      "rank": 6,
+      "teamId": "amax-visionaries",
+      "wins": 2,
+      "ties": 0,
+      "losses": 5,
+      "goalsFor": 12,
+      "goalsAgainst": 22,
+      "points": 6,
+      "reason": "Amax still project into the last playoff spot after a Week 6 win over Memon Mavericks."
+    },
+    {
+      "rank": 7,
+      "teamId": "gangat-warriors",
+      "wins": 1,
+      "ties": 0,
+      "losses": 6,
+      "goalsFor": 5,
+      "goalsAgainst": 20,
+      "points": 3,
+      "reason": "Gangat have coach experience and new pieces, but the 4-3 Week 6 loss keeps them below the projected line."
+    },
+    {
+      "rank": 8,
+      "teamId": "memon-mavericks",
+      "wins": 0,
+      "ties": 0,
+      "losses": 7,
+      "goalsFor": 5,
+      "goalsAgainst": 23,
+      "points": 0,
+      "reason": "Memon are still searching for their first senior win after a Week 6 loss to Amax."
+    }
+  ],
+  "teams": [
+    {
+      "teamId": "leeward-lions",
+      "projectedFinish": "3rd",
+      "keyPlayers": [
+        "Mudassir",
+        "Ajmal Chakkari",
+        "Muhummud Teli",
+        "Abu Bakr Manjra"
+      ],
+      "strength": "First-place form, explosive attack, and a strong goal difference.",
+      "weakness": "Must keep discipline in emotional games.",
+      "explanation": "Leeward Lions lost 5-4 to Sharp Strikers in Week 6, but Mudassir leads the scoring race and the team remains firmly in the top group."
+    },
+    {
+      "teamId": "em-haulers-fc",
+      "projectedFinish": "1st",
+      "keyPlayers": [
+        "Haroon Ahmadi",
+        "Muzamil Kharooti",
+        "Uwais Bemat",
+        "Mohammed Wahedi"
+      ],
+      "strength": "Elite scoring ceiling and a strong start.",
+      "weakness": "Needs to keep discipline tight in emotional games.",
+      "explanation": "EM Haulers FC are no longer perfect, but their scoring profile still keeps them projected for a semifinal bye."
+    },
+    {
+      "teamId": "sharp-strikers",
+      "projectedFinish": "2nd",
+      "keyPlayers": [
+        "M Yahya",
+        "Rehan Mohammed",
+        "Marwan Ahmed",
+        "Jamal Mujaddidi"
+      ],
+      "strength": "Multiple finishers and strong bounce-back ability.",
+      "weakness": "Needs cleaner defensive control against top teams.",
+      "explanation": "Sharp Strikers jumped back into the top-two conversation after beating Leeward Lions 5-4 in Week 6."
+    },
+    {
+      "teamId": "refuel-rovers",
+      "projectedFinish": "5th",
+      "keyPlayers": [
+        "Mosa Fazli",
+        "Abdul Ghiyas Solyman",
+        "Hasibullah Kharooti",
+        "Ishaaq Ali"
+      ],
+      "strength": "Improving defense and clutch scoring from Mosa Fazli.",
+      "weakness": "Attack still needs more depth against top opponents.",
+      "explanation": "Refuel Rovers remain in the playoff field, but the Week 6 loss to Rawaha Royals tightened their path."
+    },
+    {
+      "teamId": "rawaha-royals",
+      "projectedFinish": "4th",
+      "keyPlayers": [
+        "Mohammad Ibrahim",
+        "Uthman Manira",
+        "Mubashir Kharooti",
+        "Saad Khan"
+      ],
+      "strength": "Comeback ability and a big Week 6 response.",
+      "weakness": "Goal difference remains uneven.",
+      "explanation": "Rawaha Royals moved above Refuel in the current table after their Week 6 win."
+    },
+    {
+      "teamId": "amax-visionaries",
+      "projectedFinish": "6th",
+      "keyPlayers": [
+        "Adil Mubashir",
+        "Ali Razzaq",
+        "Muhammad Salim",
+        "Mohamad Reda Alijalam"
+      ],
+      "strength": "Individual talent and a possible late response.",
+      "weakness": "Defensive form has been the biggest issue.",
+      "explanation": "Amax Visionaries still have a path to the last playoff spot after their Week 6 win over Memon Mavericks."
+    },
+    {
+      "teamId": "gangat-warriors",
+      "projectedFinish": "7th",
+      "keyPlayers": [
+        "Taaha Nakhuda",
+        "Ahmad Ingar",
+        "Hammad Shaikh",
+        "Ayaan Tutla"
+      ],
+      "strength": "Coach experience and playoff toughness.",
+      "weakness": "Scoring depth and recent results.",
+      "explanation": "Gangat Warriors need a late-season response after a narrow 4-3 Week 6 loss to EM Haulers FC."
+    },
+    {
+      "teamId": "memon-mavericks",
+      "projectedFinish": "8th",
+      "keyPlayers": [
+        "Hasan Hamraz",
+        "Nasibullah Barak",
+        "M. Affan",
+        "Idris Nawabi"
+      ],
+      "strength": "Pieces who can still steal a result.",
+      "weakness": "No wins yet and not enough goals.",
+      "explanation": "Memon Mavericks are still searching for their first senior win after a Week 6 loss to Amax Visionaries."
+    }
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "matches": [
+        {
+          "homeTeamId": "sharp-strikers",
+          "awayTeamId": "refuel-rovers",
+          "homeScore": 5,
+          "awayScore": 1,
+          "time": "9:15 AM - 10:00 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Marwan Ahmed"
+              },
+              {
+                "name": "Mohammed Rayyan Syed"
+              }
+            ],
+            "away": []
+          }
+        },
+        {
+          "homeTeamId": "em-haulers-fc",
+          "awayTeamId": "amax-visionaries",
+          "homeScore": 9,
+          "awayScore": 4,
+          "time": "10:00 AM - 10:45 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Haroon Ahmadi",
+                "goals": 4
+              },
+              {
+                "name": "Abdul Ghiyas Solyman",
+                "goals": 2
+              },
+              {
+                "name": "Muzamil Kharooti",
+                "goals": 2
+              },
+              {
+                "name": "Uwais Bemat"
+              }
+            ],
+            "away": []
+          }
+        },
+        {
+          "homeTeamId": "memon-mavericks",
+          "awayTeamId": "gangat-warriors",
+          "homeScore": 0,
+          "awayScore": 1,
+          "time": "10:45 AM - 11:30 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [],
+            "away": [
+              {
+                "name": "Taaha Nakhuda"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "rawaha-royals",
+          "awayTeamId": "leeward-lions",
+          "homeScore": 1,
+          "awayScore": 1,
+          "time": "11:30 AM - 12:15 PM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [],
+            "away": [
+              {
+                "name": "Mudassir"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "matches": [
+        {
+          "homeTeamId": "refuel-rovers",
+          "awayTeamId": "amax-visionaries",
+          "homeScore": 1,
+          "awayScore": 0,
+          "time": "9:15 AM - 10:00 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [],
+            "away": [
+              {
+                "name": "Mosa Fazli"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "gangat-warriors",
+          "awayTeamId": "leeward-lions",
+          "homeScore": 0,
+          "awayScore": 6,
+          "time": "10:00 AM - 10:45 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [],
+            "away": [
+              {
+                "name": "Mudassir",
+                "goals": 3
+              },
+              {
+                "name": "Ajmal Chakkari",
+                "goals": 2
+              },
+              {
+                "name": "Muhummud Teli"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "memon-mavericks",
+          "awayTeamId": "rawaha-royals",
+          "homeScore": 2,
+          "awayScore": 3,
+          "time": "10:45 AM - 11:30 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Hasan Hamraz"
+              },
+              {
+                "name": "Nasibullah Barak"
+              }
+            ],
+            "away": [
+              {
+                "name": "Uthman Manira"
+              },
+              {
+                "name": "Mohammad Ibrahim",
+                "goals": 2
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "em-haulers-fc",
+          "awayTeamId": "sharp-strikers",
+          "homeScore": 3,
+          "awayScore": 2,
+          "time": "11:30 AM - 12:15 PM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Haroon Ahmadi",
+                "goals": 3
+              }
+            ],
+            "away": [
+              {
+                "name": "Marwan Ahmed"
+              },
+              {
+                "name": "Mohammed Rayyan Syed"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "matches": [
+        {
+          "homeTeamId": "gangat-warriors",
+          "awayTeamId": "sharp-strikers",
+          "homeScore": 1,
+          "awayScore": 6,
+          "time": "9:15 AM - 10:00 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Taaha Nakhuda"
+              }
+            ],
+            "away": [
+              {
+                "name": "Rehan Mohammed",
+                "goals": 2
+              },
+              {
+                "name": "M Yahya",
+                "goals": 4
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "refuel-rovers",
+          "awayTeamId": "memon-mavericks",
+          "homeScore": 5,
+          "awayScore": 0,
+          "time": "10:00 AM - 10:45 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Mosa Fazli",
+                "goals": 3
+              },
+              {
+                "name": "Hasibullah Kharooti"
+              },
+              {
+                "name": "Ishaaq Ali"
+              }
+            ],
+            "away": []
+          }
+        },
+        {
+          "homeTeamId": "leeward-lions",
+          "awayTeamId": "amax-visionaries",
+          "homeScore": 6,
+          "awayScore": 1,
+          "time": "10:45 AM - 11:30 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Mudassir",
+                "goals": 3
+              },
+              {
+                "name": "Ajmal Chakkari",
+                "goals": 2
+              },
+              {
+                "name": "Muhummud Teli"
+              }
+            ],
+            "away": [
+              {
+                "name": "Adil Mubashir"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "em-haulers-fc",
+          "awayTeamId": "rawaha-royals",
+          "homeScore": 6,
+          "awayScore": 1,
+          "time": "11:30 AM - 12:15 PM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Muzamil Kharooti",
+                "goals": 4
+              },
+              {
+                "name": "Haroon Ahmadi",
+                "goals": 2
+              }
+            ],
+            "away": [
+              {
+                "name": "Mohammad Ibrahim"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "matches": [
+        {
+          "homeTeamId": "memon-mavericks",
+          "awayTeamId": "leeward-lions",
+          "homeScore": 2,
+          "awayScore": 8,
+          "time": "9:15 AM - 10:00 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Nasibullah Barak",
+                "goals": 2
+              }
+            ],
+            "away": [
+              {
+                "name": "Mudassir",
+                "goals": 5
+              },
+              {
+                "name": "Ajmal Chakkari",
+                "goals": 2
+              },
+              {
+                "name": "Abu Bakr Manjra"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "sharp-strikers",
+          "awayTeamId": "rawaha-royals",
+          "homeScore": 4,
+          "awayScore": 3,
+          "time": "10:00 AM - 10:45 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Rehan Mohammed"
+              },
+              {
+                "name": "Marwan Ahmed"
+              },
+              {
+                "name": "M Yahya"
+              },
+              {
+                "name": "Mohammed Rayyan Syed"
+              }
+            ],
+            "away": [
+              {
+                "name": "Mubashir Kharooti"
+              },
+              {
+                "name": "Uthman Manira"
+              },
+              {
+                "name": "Mohammad Ibrahim"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "refuel-rovers",
+          "awayTeamId": "em-haulers-fc",
+          "homeScore": 1,
+          "awayScore": 2,
+          "time": "10:45 AM - 11:30 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Abdul Ghiyas Solyman"
+              }
+            ],
+            "away": [
+              {
+                "name": "Muzamil Kharooti"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "amax-visionaries",
+          "awayTeamId": "gangat-warriors",
+          "homeScore": 2,
+          "awayScore": 0,
+          "time": "11:30 AM - 12:15 PM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Adil Mubashir"
+              },
+              {
+                "name": "Mohamad Reda Alijalam"
+              }
+            ],
+            "away": []
+          }
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "matches": [
+        {
+          "homeTeamId": "amax-visionaries",
+          "awayTeamId": "rawaha-royals",
+          "homeScore": 1,
+          "awayScore": 4,
+          "time": "9:00 AM - 9:45 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Adil Mubashir"
+              }
+            ],
+            "away": [
+              {
+                "name": "Mohammad Ibrahim",
+                "goals": 2
+              },
+              {
+                "name": "Tulha Ahmed"
+              },
+              {
+                "name": "Uthman Manira"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "gangat-warriors",
+          "awayTeamId": "refuel-rovers",
+          "homeScore": 0,
+          "awayScore": 1,
+          "time": "10:00 AM - 10:45 AM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [],
+            "away": [
+              {
+                "name": "Mosa Fazli"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "leeward-lions",
+          "awayTeamId": "em-haulers-fc",
+          "homeScore": 1,
+          "awayScore": 0,
+          "time": "10:45 AM - 11:30 AM",
+          "scoreLabel": "Abandoned Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Mudassir"
+              }
+            ],
+            "away": []
+          }
+        },
+        {
+          "homeTeamId": "sharp-strikers",
+          "awayTeamId": "memon-mavericks",
+          "homeScore": 1,
+          "awayScore": 0,
+          "time": "11:30 AM - 12:15 PM",
+          "scoreLabel": "Final",
+          "scorerLabel": "Known scorers",
+          "scorers": {
+            "home": [
+              {
+                "name": "Mohammed Rayyan Syed"
+              }
+            ],
+            "away": []
+          }
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "matches": [
+        {
+          "homeTeamId": "em-haulers-fc",
+          "awayTeamId": "gangat-warriors",
+          "homeScore": 3,
+          "awayScore": 1,
+          "scorers": {
+            "home": [
+              {
+                "name": "Haroon Ahmadi"
+              },
+              {
+                "name": "Muzamil Kharooti"
+              },
+              {
+                "name": "Mohammed Wahedi"
+              }
+            ],
+            "away": [
+              {
+                "name": "Taaha Nakhuda"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "leeward-lions",
+          "awayTeamId": "sharp-strikers",
+          "homeScore": 2,
+          "awayScore": 1,
+          "scorers": {
+            "home": [
+              {
+                "name": "Mudassir"
+              },
+              {
+                "name": "Ajmal Chakkari"
+              }
+            ],
+            "away": [
+              {
+                "name": "M Yahya"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "refuel-rovers",
+          "awayTeamId": "rawaha-royals",
+          "homeScore": 2,
+          "awayScore": 1,
+          "scorers": {
+            "home": [
+              {
+                "name": "Mosa Fazli"
+              },
+              {
+                "name": "Abdul Ghiyas Solyman"
+              }
+            ],
+            "away": [
+              {
+                "name": "Mohammad Ibrahim"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "memon-mavericks",
+          "awayTeamId": "amax-visionaries",
+          "homeScore": 1,
+          "awayScore": 2,
+          "scorers": {
+            "home": [
+              {
+                "name": "Nasibullah Barak"
+              }
+            ],
+            "away": [
+              {
+                "name": "Adil Mubashir"
+              },
+              {
+                "name": "Shafiullah"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "matches": [
+        {
+          "homeTeamId": "em-haulers-fc",
+          "awayTeamId": "leeward-lions",
+          "homeScore": 3,
+          "awayScore": 2,
+          "scorers": {
+            "home": [
+              {
+                "name": "Haroon Ahmadi"
+              },
+              {
+                "name": "Muzamil Kharooti"
+              },
+              {
+                "name": "Mohammed Wahedi"
+              }
+            ],
+            "away": [
+              {
+                "name": "Mudassir"
+              },
+              {
+                "name": "Ajmal Chakkari"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "refuel-rovers",
+          "awayTeamId": "gangat-warriors",
+          "homeScore": 2,
+          "awayScore": 1,
+          "scorers": {
+            "home": [
+              {
+                "name": "Mosa Fazli"
+              },
+              {
+                "name": "Abdul Ghiyas Solyman"
+              }
+            ],
+            "away": [
+              {
+                "name": "Taaha Nakhuda"
+              }
+            ]
+          }
+        },
+        {
+          "homeTeamId": "sharp-strikers",
+          "awayTeamId": "memon-mavericks",
+          "homeScore": 4,
+          "awayScore": 0,
+          "scorers": {
+            "home": [
+              {
+                "name": "M Yahya",
+                "goals": 2
+              },
+              {
+                "name": "Marwan Ahmed"
+              },
+              {
+                "name": "Rehan Mohammed"
+              }
+            ],
+            "away": []
+          }
+        },
+        {
+          "homeTeamId": "rawaha-royals",
+          "awayTeamId": "amax-visionaries",
+          "homeScore": 2,
+          "awayScore": 1,
+          "scorers": {
+            "home": [
+              {
+                "name": "Mohammad Ibrahim"
+              },
+              {
+                "name": "Uthman Manira"
+              }
+            ],
+            "away": [
+              {
+                "name": "Adil Mubashir"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "playoffs": {
+    "formatNote": "Projected senior playoff format from the current-adjusted table: top 2 get byes, 3rd vs 6th, 4th vs 5th, then semifinals and final.",
+    "championTeamId": "em-haulers-fc",
+    "championNote": "Projected champion only. EM Haulers FC are the current pick because they sit first after Week 6 and have one of the strongest scoring cores.",
+    "rounds": [
+      {
+        "name": "Quarterfinals",
+        "matches": [
+          {
+            "label": "Q1",
+            "homeTeamId": "leeward-lions",
+            "homeSeed": 3,
+            "awayTeamId": "amax-visionaries",
+            "awaySeed": 6,
+            "homeScore": 3,
+            "awayScore": 1,
+            "winnerTeamId": "leeward-lions",
+            "note": "Projected winner: Leeward Lions",
+            "scorers": {
+              "home": [
+                {
+                  "name": "Mudassir"
+                },
+                {
+                  "name": "Ajmal Chakkari"
+                },
+                {
+                  "name": "Muhummud Teli"
+                }
+              ],
+              "away": [
+                {
+                  "name": "Adil Mubashir"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Q2",
+            "homeTeamId": "refuel-rovers",
+            "homeSeed": 4,
+            "awayTeamId": "rawaha-royals",
+            "awaySeed": 5,
+            "homeScore": 2,
+            "awayScore": 1,
+            "winnerTeamId": "refuel-rovers",
+            "note": "Projected winner: Refuel Rovers",
+            "scorers": {
+              "home": [
+                {
+                  "name": "Mosa Fazli"
+                },
+                {
+                  "name": "Abdul Ghiyas Solyman"
+                }
+              ],
+              "away": [
+                {
+                  "name": "Mohammad Ibrahim"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Semifinals",
+        "matches": [
+          {
+            "label": "S1",
+            "homeTeamId": "em-haulers-fc",
+            "homeSeed": 1,
+            "awayTeamId": "leeward-lions",
+            "awaySeed": 3,
+            "homeScore": 3,
+            "awayScore": 2,
+            "winnerTeamId": "em-haulers-fc",
+            "note": "Projected #1 seed vs projected Q1 winner",
+            "scorers": {
+              "home": [
+                {
+                  "name": "Haroon Ahmadi"
+                },
+                {
+                  "name": "Muzamil Kharooti"
+                },
+                {
+                  "name": "Tayyib Mohammed"
+                }
+              ],
+              "away": [
+                {
+                  "name": "Mudassir"
+                },
+                {
+                  "name": "Ajmal Chakkari"
+                }
+              ]
+            }
+          },
+          {
+            "label": "S2",
+            "homeTeamId": "sharp-strikers",
+            "homeSeed": 2,
+            "awayTeamId": "refuel-rovers",
+            "awaySeed": 4,
+            "homeScore": 3,
+            "awayScore": 2,
+            "winnerTeamId": "sharp-strikers",
+            "note": "Projected #2 seed vs projected Q2 winner",
+            "scorers": {
+              "home": [
+                {
+                  "name": "M Yahya"
+                },
+                {
+                  "name": "Marwan Ahmed"
+                },
+                {
+                  "name": "Mohammed Rayyan Syed"
+                }
+              ],
+              "away": [
+                {
+                  "name": "Abdul Ghiyas Solyman"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Final",
+        "matches": [
+          {
+            "label": "Final",
+            "homeTeamId": "em-haulers-fc",
+            "homeSeed": 1,
+            "awayTeamId": "sharp-strikers",
+            "awaySeed": 2,
+            "homeScore": 3,
+            "awayScore": 2,
+            "winnerTeamId": "em-haulers-fc",
+            "note": "Projected champion: EM Haulers FC",
+            "scorers": {
+              "home": [
+                {
+                  "name": "Haroon Ahmadi"
+                },
+                {
+                  "name": "Muzamil Kharooti"
+                },
+                {
+                  "name": "Uwais Bemat"
+                }
+              ],
+              "away": [
+                {
+                  "name": "M Yahya"
+                },
+                {
+                  "name": "Marwan Ahmed"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

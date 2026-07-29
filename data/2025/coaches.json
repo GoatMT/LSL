@@ -1,0 +1,101 @@
+{
+  "season": "2025",
+  "coaches": [
+    {
+      "id": "coach-shodmon",
+      "name": "Shadman",
+      "teamId": "asif-gangat-united-2025",
+      "teamName": "Asif Gangat United",
+      "division": "Seniors",
+      "championships": 0,
+      "finals": 0,
+      "notes": "Listed as Shadman for the 2025 senior season."
+    },
+    {
+      "id": "coach-abdul-hakeem",
+      "name": "Abdul Hakeem \"Ya Salaam\"",
+      "teamId": "umer-memon-fc-2025",
+      "teamName": "Umer Memon F.C.",
+      "division": "Seniors",
+      "championships": 1,
+      "finals": 1,
+      "notes": "Won the 2025 senior championship with Umer Memon F.C."
+    },
+    {
+      "id": "coach-saud",
+      "name": "Saud",
+      "teamId": "islamic-bookstore-runners",
+      "teamName": "Islamic Bookstore Runners",
+      "division": "Seniors",
+      "championships": 0,
+      "finals": 0
+    },
+    {
+      "id": "coach-aadil",
+      "name": "Aadil",
+      "teamId": "amax-optical-kickers",
+      "teamName": "Amax Optical Kickers",
+      "division": "Seniors",
+      "championships": 0,
+      "finals": 0
+    },
+    {
+      "id": "coach-sameer",
+      "name": "Sameer",
+      "teamId": "im-construction-sc",
+      "teamName": "IM Construction SC",
+      "division": "Seniors",
+      "championships": 0,
+      "finals": 0
+    },
+    {
+      "id": "coach-ashique",
+      "name": "Ashique",
+      "teamId": "refuel-juicery-athletic",
+      "teamName": "Refuel Juicery Athletic",
+      "division": "Seniors",
+      "championships": 0,
+      "finals": 1
+    },
+    {
+      "id": "coach-tanveer",
+      "name": "Tanveer",
+      "teamId": "dhahabiya-strikers",
+      "teamName": "Dhahabiya Strikers",
+      "division": "Juniors",
+      "championships": 1,
+      "finals": 1,
+      "notes": "Won the 2025 Junior championship with Dhahabiya Strikers."
+    },
+    {
+      "id": "coach-ashique",
+      "name": "Ashique",
+      "teamId": "the-travel-builder-united",
+      "teamName": "The Travel Builder United",
+      "division": "Juniors",
+      "championships": 0,
+      "finals": 0,
+      "notes": "2025 Juniors coach."
+    },
+    {
+      "id": "coach-fahad",
+      "name": "Fahad",
+      "teamId": "em-truck-repair-fc",
+      "teamName": "EM Truck Repair FC",
+      "division": "Juniors",
+      "championships": 0,
+      "finals": 0,
+      "notes": "2025 Juniors coach."
+    },
+    {
+      "id": "coach-sameer",
+      "name": "Sameer",
+      "teamId": "rafik-enterprise-fc",
+      "teamName": "Rafik Enterprise FC",
+      "division": "Juniors",
+      "championships": 0,
+      "finals": 0,
+      "notes": "2025 Juniors coach."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "season": "2025",
+  "awards": [
+    {
+      "division": "Seniors",
+      "category": "Champion Team",
+      "winner": "Umer Memon F.C.",
+      "teamId": "umer-memon-fc-2025",
+      "sourceNote": "Listed as 2025 senior champions."
+    },
+    {
+      "division": "Seniors",
+      "category": "2nd Place Team",
+      "winner": "Refuel Juicery Athletic",
+      "teamId": "refuel-juicery-athletic",
+      "sourceNote": "Grand final opponent."
+    },
+    {
+      "division": "Seniors",
+      "category": "3rd Place Team",
+      "winner": "IM Construction SC",
+      "teamId": "im-construction-sc",
+      "sourceNote": "Updated result: IM Construction SC came 3rd in the 2025 senior playoffs."
+    },
+    {
+      "division": "Seniors",
+      "category": "Best Regular Season Team",
+      "winner": "Asif Gangat United",
+      "teamId": "asif-gangat-united-2025",
+      "sourceNote": "Finished first in the 2025 Seniors regular season with 12 points."
+    },
+    {
+      "division": "Seniors",
+      "category": "MVP",
+      "winner": "Marwan Ahmed",
+      "playerId": "marwan-ahmad",
+      "teamId": "refuel-juicery-athletic",
+      "sourceNote": "2025 Seniors MVP."
+    },
+    {
+      "division": "Seniors",
+      "category": "Golden Boot",
+      "winner": "M Yahya",
+      "playerId": "m-yahya",
+      "teamId": "refuel-juicery-athletic",
+      "sourceNote": "Won the 2025 Seniors Golden Boot with Refuel Juicery Athletic."
+    },
+    {
+      "division": "Juniors",
+      "category": "Champion Team",
+      "winner": "Dhahabiya Strikers",
+      "teamId": "dhahabiya-strikers",
+      "sourceNote": "2025 Junior champions after a 2-1 final win over Rafik Enterprise FC."
+    },
+    {
+      "division": "Juniors",
+      "category": "2nd Place Team",
+      "winner": "Rafik Enterprise FC",
+      "teamId": "rafik-enterprise-fc",
+      "sourceNote": "2025 Junior finalist."
+    },
+    {
+      "division": "Juniors",
+      "category": "3rd Place Team",
+      "winner": "Travel Builder United",
+      "teamId": "the-travel-builder-united",
+      "sourceNote": "Listed from the final regular season standings and playoff seeding."
+    },
+    {
+      "division": "Juniors",
+      "category": "Best Regular Season Team",
+      "winner": "Dhahabiya Strikers",
+      "teamId": "dhahabiya-strikers",
+      "sourceNote": "Finished first in the 2025 Juniors regular season with 14 points."
+    },
+    {
+      "division": "Juniors",
+      "category": "MVP",
+      "winner": "Not announced",
+      "sourceNote": "The 2025 Juniors MVP has not been announced."
+    }
+  ]
+}

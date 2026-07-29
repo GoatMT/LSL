@@ -1,0 +1,442 @@
+{
+  "title": "Trades",
+  "label": "Trade Tracker",
+  "subtitle": "Official LSL trades and player movement for the active season.",
+  "updated": "July 17, 2026",
+  "transactions": [
+    {
+      "id": "2026-trade-leeward-gangat-multi-player",
+      "date": "July 17, 2026",
+      "time": "Roster update",
+      "season": "2026",
+      "division": "Seniors",
+      "type": "Trade",
+      "status": "Official",
+      "summary": "Leeward Lions acquired Zaid Badin and Ibrahim Kadam. Gangat Warriors acquired Byram Loukil and Umar Manjra.",
+      "teams": [
+        {
+          "teamId": "leeward-lions",
+          "teamName": "Leeward Lions",
+          "receives": [
+            {
+              "playerId": "zayd-badin",
+              "name": "Zaid Badin",
+              "note": "Moved from Memon Mavericks to Leeward Lions."
+            },
+            {
+              "playerId": "ibrahim-kadam",
+              "name": "Ibrahim Kadam",
+              "note": "Moved from Gangat Warriors to Leeward Lions."
+            }
+          ]
+        },
+        {
+          "teamId": "gangat-warriors",
+          "teamName": "Gangat Warriors",
+          "receives": [
+            {
+              "playerId": "bayram-loukil",
+              "name": "Byram Loukil",
+              "note": "Moved from Leeward Lions to Gangat Warriors."
+            },
+            {
+              "playerId": "umar-manjra",
+              "name": "Umar Manjra",
+              "note": "Moved from Leeward Lions to Gangat Warriors."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Leeward Lions add two roster pieces while keeping their main leadership group intact.",
+        "Gangat Warriors bring in Byram Loukil and Umar Manjra as they look for a response after a tough stretch.",
+        "The move changes the senior playoff race because both teams are fighting for position."
+      ]
+    },
+    {
+      "id": "2026-waiver-memon-affan",
+      "date": "July 17, 2026",
+      "time": "Waiver pickup",
+      "season": "2026",
+      "division": "Seniors",
+      "type": "Waiver Pickup",
+      "status": "Official",
+      "summary": "Memon Mavericks claimed M. Affan from waivers.",
+      "teams": [
+        {
+          "teamId": "memon-mavericks",
+          "teamName": "Memon Mavericks",
+          "receives": [
+            {
+              "playerId": "muhammad-affan",
+              "name": "M. Affan",
+              "note": "Claimed from waivers."
+            }
+          ]
+        },
+        {
+          "teamName": "Waivers",
+          "receives": [
+            {
+              "name": "Roster claim",
+              "href": "./transactions.html",
+              "note": "Memon Mavericks used a waiver pickup."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Memon Mavericks add M. Affan as they look to strengthen the roster.",
+        "The waiver claim gives Memon another experienced LSL player profile."
+      ]
+    },
+    {
+      "id": "2026-trade-abdul-wahedi",
+      "date": "June 12, 2026",
+      "time": "Before Week 2",
+      "season": "2026",
+      "division": "Seniors",
+      "type": "Trade",
+      "status": "Official",
+      "summary": "Refuel Rovers acquired Abdul Ghiyas Solyman from EM Haulers FC. EM Haulers FC acquired Mohammed Wahedi from Refuel Rovers.",
+      "teams": [
+        {
+          "teamId": "refuel-rovers",
+          "teamName": "Refuel Rovers",
+          "receives": [
+            {
+              "playerId": "abdul-ghiyas-solyman",
+              "name": "Abdul Ghiyas Solyman",
+              "note": "Two goals and one assist in Week 1 before the trade."
+            }
+          ]
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "teamName": "EM Haulers FC",
+          "receives": [
+            {
+              "playerId": "mohammed-wahedi",
+              "name": "Mohammed Wahedi",
+              "note": "Adds another flexible roster piece for EM Haulers FC."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Refuel Rovers add a proven scorer after opening the season with one goal.",
+        "EM Haulers FC keep their strong attacking core while adding Mohammed Wahedi.",
+        "This move changes the Week 2 roster picture before Refuel Rovers face Amax Visionaries."
+      ]
+    },
+    {
+      "id": "2026-trade-adil-jamal",
+      "date": "June 12, 2026",
+      "time": "Before Week 2",
+      "season": "2026",
+      "division": "Seniors",
+      "type": "Trade",
+      "status": "Official",
+      "summary": "Amax Visionaries acquired Adil Mubashir from Sharp Strikers. Sharp Strikers acquired Jamal Mujaddidi from Amax Visionaries.",
+      "teams": [
+        {
+          "teamId": "amax-visionaries",
+          "teamName": "Amax Visionaries",
+          "receives": [
+            {
+              "playerId": "adil-mubashir",
+              "name": "Adil Mubashir",
+              "note": "Gives Amax a new option after a difficult Week 1 loss."
+            }
+          ]
+        },
+        {
+          "teamId": "sharp-strikers",
+          "teamName": "Sharp Strikers",
+          "receives": [
+            {
+              "playerId": "jamal-mujaddidi",
+              "name": "Jamal Mujaddidi",
+              "note": "Adds depth to a Sharp Strikers team that started the season with a win."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Amax Visionaries respond to their Week 1 defensive problems with a roster change.",
+        "Sharp Strikers stay aggressive after a strong opening result.",
+        "Both teams get a fresh look before the Week 2 schedule."
+      ]
+    },
+    {
+      "id": "2025-seniors-hasan-to-islamic",
+      "date": "After 2025 exhibition match",
+      "time": "Team adjustment",
+      "season": "2025",
+      "division": "Seniors",
+      "type": "Team Adjustment",
+      "status": "Official",
+      "summary": "Islamic Bookstore Runners received Mohammed Hasan from Amax Optical Kickers after the 2025 exhibition match.",
+      "teams": [
+        {
+          "teamId": "islamic-bookstore-runners",
+          "teamName": "Islamic Bookstore Runners",
+          "receives": [
+            {
+              "playerId": "mohammed-hasan",
+              "name": "Mohammed Hasan",
+              "note": "Moved from Amax Optical Kickers."
+            }
+          ]
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "teamName": "Amax Optical Kickers",
+          "receives": [
+            {
+              "name": "Roster spot",
+              "href": "./team.html?season=2025&id=amax-optical-kickers",
+              "note": "Team adjustment after the exhibition match."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Islamic Bookstore Runners added Mohammed Hasan to their senior roster.",
+        "Amax Optical Kickers opened a roster spot as part of the adjustment."
+      ]
+    },
+    {
+      "id": "2025-seniors-bilal-to-asif",
+      "date": "After 2025 exhibition match",
+      "time": "Team adjustment",
+      "season": "2025",
+      "division": "Seniors",
+      "type": "Team Adjustment",
+      "status": "Official",
+      "summary": "Asif Gangat United received Bilal Sami Syed from Islamic Bookstore Runners after the 2025 exhibition match.",
+      "teams": [
+        {
+          "teamId": "asif-gangat-united-2025",
+          "teamName": "Asif Gangat United",
+          "receives": [
+            {
+              "playerId": "bilal-sami-ahmad",
+              "name": "Bilal Sami Syed",
+              "note": "Moved from Islamic Bookstore Runners."
+            }
+          ]
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "teamName": "Islamic Bookstore Runners",
+          "receives": [
+            {
+              "name": "Roster spot",
+              "href": "./team.html?season=2025&id=islamic-bookstore-runners",
+              "note": "Team adjustment after the exhibition match."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Asif Gangat United added Bilal Sami Syed to their senior roster.",
+        "Islamic Bookstore Runners adjusted their roster after moving Bilal."
+      ]
+    },
+    {
+      "id": "2025-seniors-tulha-to-amax",
+      "date": "After 2025 exhibition match",
+      "time": "Team adjustment",
+      "season": "2025",
+      "division": "Seniors",
+      "type": "Team Adjustment",
+      "status": "Official",
+      "summary": "Amax Optical Kickers received Tulha Ahmed from Asif Gangat United after the 2025 exhibition match.",
+      "teams": [
+        {
+          "teamId": "amax-optical-kickers",
+          "teamName": "Amax Optical Kickers",
+          "receives": [
+            {
+              "playerId": "tulha-ahmed",
+              "name": "Tulha Ahmed",
+              "note": "Moved from Asif Gangat United."
+            }
+          ]
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "teamName": "Asif Gangat United",
+          "receives": [
+            {
+              "name": "Roster spot",
+              "href": "./team.html?season=2025&id=asif-gangat-united-2025",
+              "note": "Team adjustment after the exhibition match."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Amax Optical Kickers added Tulha Ahmed to their senior roster.",
+        "Asif Gangat United adjusted their roster after moving Tulha."
+      ]
+    },
+    {
+      "id": "2025-seniors-sufyan-to-amax",
+      "date": "After 2025 exhibition match",
+      "time": "Senior move",
+      "season": "2025",
+      "division": "Seniors",
+      "type": "Team Adjustment",
+      "status": "Official",
+      "summary": "Sufyan Munshi moved up to Seniors with Amax Optical Kickers after the 2025 exhibition match.",
+      "teams": [
+        {
+          "teamId": "amax-optical-kickers",
+          "teamName": "Amax Optical Kickers",
+          "receives": [
+            {
+              "playerId": "sufyan-munshi",
+              "name": "Sufyan Munshi",
+              "note": "Moved up to the Seniors division."
+            }
+          ]
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "teamName": "Travel Builder United",
+          "receives": [
+            {
+              "name": "Junior roster spot",
+              "href": "./team.html?season=2025&id=the-travel-builder-united",
+              "note": "Sufyan moved up to Seniors."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Amax Optical Kickers added Sufyan Munshi as a senior player.",
+        "Travel Builder United opened a junior roster spot."
+      ]
+    },
+    {
+      "id": "2025-juniors-dhahabiya-adds-ajmal-rafiullah",
+      "date": "After 2025 exhibition match",
+      "time": "Junior additions",
+      "season": "2025",
+      "division": "Juniors",
+      "type": "Team Adjustment",
+      "status": "Official",
+      "summary": "Dhahabiya Strikers added Ajmal Shakkari and Rafiullah after the 2025 exhibition match.",
+      "teams": [
+        {
+          "teamId": "dhahabiya-strikers",
+          "teamName": "Dhahabiya Strikers",
+          "receives": [
+            {
+              "playerId": "ajmal-shakkari",
+              "name": "Ajmal Shakkari",
+              "note": "Added to Dhahabiya Strikers."
+            },
+            {
+              "playerId": "rafiullah",
+              "name": "Rafiullah",
+              "note": "Added to Dhahabiya Strikers."
+            }
+          ]
+        },
+        {
+          "teamName": "LSL Junior Player Pool",
+          "receives": [
+            {
+              "name": "Roster adjustment",
+              "href": "./transactions.html",
+              "note": "Junior team adjustment after the exhibition match."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Dhahabiya Strikers added Ajmal Shakkari and Rafiullah to the junior roster.",
+        "The move strengthened the eventual 2025 Juniors champion roster."
+      ]
+    },
+    {
+      "id": "2025-juniors-abrar-to-em",
+      "date": "After 2025 exhibition match",
+      "time": "Team adjustment",
+      "season": "2025",
+      "division": "Juniors",
+      "type": "Team Adjustment",
+      "status": "Official",
+      "summary": "EM Truck Repair FC received Abrar Makrod from Dhahabiya Strikers after the 2025 exhibition match.",
+      "teams": [
+        {
+          "teamId": "em-truck-repair-fc",
+          "teamName": "EM Truck Repair FC",
+          "receives": [
+            {
+              "playerId": "abrar-makrod",
+              "name": "Abrar Makrod",
+              "note": "Moved from Dhahabiya Strikers."
+            }
+          ]
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "teamName": "Dhahabiya Strikers",
+          "receives": [
+            {
+              "name": "Roster spot",
+              "href": "./team.html?season=2025&id=dhahabiya-strikers",
+              "note": "Team adjustment after Abrar moved to EM Truck Repair FC."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "EM Truck Repair FC added Abrar Makrod to the junior roster.",
+        "Dhahabiya Strikers adjusted after adding Ajmal Shakkari and Rafiullah."
+      ]
+    },
+    {
+      "id": "2025-juniors-idrees-to-travel",
+      "date": "After 2025 exhibition match",
+      "time": "Team adjustment",
+      "season": "2025",
+      "division": "Juniors",
+      "type": "Team Adjustment",
+      "status": "Official",
+      "summary": "Travel Builder United received Idrees Nawabi after the 2025 exhibition match.",
+      "teams": [
+        {
+          "teamId": "the-travel-builder-united",
+          "teamName": "Travel Builder United",
+          "receives": [
+            {
+              "playerId": "idrees-nawabi-travel",
+              "name": "Idrees Nawabi",
+              "note": "Moved to Travel Builder United."
+            }
+          ]
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "teamName": "EM Truck Repair FC",
+          "receives": [
+            {
+              "name": "Roster spot",
+              "href": "./team.html?season=2025&id=em-truck-repair-fc",
+              "note": "Team adjustment after Idrees moved to Travel Builder United."
+            }
+          ]
+        }
+      ],
+      "impact": [
+        "Travel Builder United added Idrees Nawabi to the junior roster.",
+        "EM Truck Repair FC opened a roster spot as part of the adjustment."
+      ]
+    }
+  ]
+}

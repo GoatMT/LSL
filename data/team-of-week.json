@@ -1,0 +1,56 @@
+{
+  "season": "2026",
+  "week": "Week 6",
+  "date": "July 25, 2026",
+  "division": "Seniors",
+  "playerOfTheWeek": {
+    "playerId": "haroon-ahmadi",
+    "name": "Haroon Ahmadi",
+    "teamId": "em-haulers-fc",
+    "teamName": "EM Haulers FC",
+    "summary": "Scored three goals in EM Haulers FC's 4-3 Week 6 win over Gangat Warriors.",
+    "tag": "Player of the Week"
+  },
+  "topPlayers": [
+    {
+      "rank": 1,
+      "playerId": "haroon-ahmadi",
+      "name": "Haroon Ahmadi",
+      "teamId": "em-haulers-fc",
+      "teamName": "EM Haulers FC",
+      "summary": "Three goals in EM Haulers FC's 4-3 win"
+    },
+    {
+      "rank": 2,
+      "playerId": "mudassir",
+      "name": "Mudassir",
+      "teamId": "leeward-lions",
+      "teamName": "Leeward Lions",
+      "summary": "Three goals for Leeward Lions in a 5-4 loss"
+    },
+    {
+      "rank": 3,
+      "playerId": "taha-nakhuda",
+      "name": "Taaha Nakhuda",
+      "teamId": "gangat-warriors",
+      "teamName": "Gangat Warriors",
+      "summary": "Three goals against EM Haulers FC"
+    },
+    {
+      "rank": 4,
+      "playerId": "muhammad-teli",
+      "name": "Muhummud Teli",
+      "teamId": "leeward-lions",
+      "teamName": "Leeward Lions",
+      "summary": "Scored for Leeward Lions in a 5-4 loss"
+    },
+    {
+      "rank": 5,
+      "playerId": "tayyib-mohammed",
+      "name": "Tayyib Mohammed",
+      "teamId": "em-haulers-fc",
+      "teamName": "EM Haulers FC",
+      "summary": "Scored in EM Haulers FC's 4-3 win"
+    }
+  ]
+}

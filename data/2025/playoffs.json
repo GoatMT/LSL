@@ -1,0 +1,145 @@
+{
+  "season": "2025",
+  "divisions": [
+    {
+      "season": "2025",
+      "division": "Seniors",
+      "format": "Six-team senior playoff. Seeds 1 and 2 received semifinal byes.",
+      "champion": "Umer Memon F.C.",
+      "layout": "wide",
+      "rounds": [
+        {
+          "name": "Quarterfinals",
+          "matches": [
+            {
+              "label": "Q1",
+              "homeTeamId": "umer-memon-fc-2025",
+              "homeTeamName": "Umer Memon F.C.",
+              "awayTeamId": "amax-optical-kickers",
+              "awayTeamName": "Amax Optical Kickers",
+              "homeScore": 3,
+              "awayScore": 0,
+              "winnerId": "umer-memon-fc-2025",
+              "note": "Muzamil Kharooti scored twice; Adil Mubashir scored once."
+            },
+            {
+              "label": "Q2",
+              "homeTeamId": "refuel-juicery-athletic",
+              "homeTeamName": "Refuel Juicery Athletic",
+              "awayTeamId": "islamic-bookstore-runners",
+              "awayTeamName": "Islamic Bookstore Runners",
+              "homeScore": 3,
+              "awayScore": 0,
+              "winnerId": "refuel-juicery-athletic",
+              "note": "M Yahya scored twice; Mohammed Ibrahim scored once."
+            }
+          ]
+        },
+        {
+          "name": "Semifinals",
+          "matches": [
+            {
+              "label": "S1",
+              "homeTeamId": "asif-gangat-united-2025",
+              "homeTeamName": "Asif Gangat United (1st Place Team)",
+              "awayTeamId": "umer-memon-fc-2025",
+              "awayTeamName": "Umer Memon F.C.",
+              "homeScore": 1,
+              "awayScore": 1,
+              "winnerId": "umer-memon-fc-2025",
+              "note": "Umer won 3-2 on penalties."
+            },
+            {
+              "label": "S2",
+              "homeTeamId": "im-construction-sc",
+              "homeTeamName": "IM Construction SC (2nd Place Team)",
+              "awayTeamId": "refuel-juicery-athletic",
+              "awayTeamName": "Refuel Juicery Athletic",
+              "homeScore": 2,
+              "awayScore": 2,
+              "winnerId": "refuel-juicery-athletic",
+              "note": "Refuel won 3-1 on penalties."
+            }
+          ]
+        },
+        {
+          "name": "Finals",
+          "matches": [
+            {
+              "label": "Finals",
+              "homeTeamId": "umer-memon-fc-2025",
+              "homeTeamName": "Umer Memon F.C.",
+              "awayTeamId": "refuel-juicery-athletic",
+              "awayTeamName": "Refuel Juicery Athletic",
+              "homeScore": 2,
+              "awayScore": 1,
+              "winnerId": "umer-memon-fc-2025"
+            },
+            {
+              "label": "3rd Place",
+              "homeTeamId": "asif-gangat-united-2025",
+              "homeTeamName": "Asif Gangat United",
+              "awayTeamId": "im-construction-sc",
+              "awayTeamName": "IM Construction SC",
+              "homeScore": null,
+              "awayScore": null,
+              "winnerId": "im-construction-sc",
+              "note": "IM Construction SC listed as the 2025 senior third-place team. Score not listed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "season": "2025",
+      "division": "Juniors",
+      "format": "Four-team junior playoff. Semifinals are 1 vs 4 and 2 vs 3.",
+      "champion": "Dhahabiya Strikers",
+      "rounds": [
+        {
+          "name": "Semifinals",
+          "matches": [
+            {
+              "label": "S1",
+              "homeTeamId": "dhahabiya-strikers",
+              "homeTeamName": "Dhahabiya Strikers (1st Place Team)",
+              "awayTeamId": "em-truck-repair-fc",
+              "awayTeamName": "EM Truck Repair FC",
+              "homeScore": 2,
+              "awayScore": 0,
+              "winnerId": "dhahabiya-strikers",
+              "note": "Dhahabiya advanced by default after EM Truck Repair FC forfeited."
+            },
+            {
+              "label": "S2",
+              "homeTeamId": "rafik-enterprise-fc",
+              "homeTeamName": "Rafik Enterprise FC (2nd Place Team)",
+              "awayTeamId": "the-travel-builder-united",
+              "awayTeamName": "Travel Builder United",
+              "homeScore": 3,
+              "awayScore": 0,
+              "winnerId": "rafik-enterprise-fc",
+              "note": "Rafik Enterprise FC booked a final spot with a clean 3-0 win."
+            }
+          ]
+        },
+        {
+          "name": "Finals",
+          "matches": [
+            {
+              "label": "Finals",
+              "homeTeamId": "dhahabiya-strikers",
+              "homeTeamName": "Dhahabiya Strikers",
+              "awayTeamId": "rafik-enterprise-fc",
+              "awayTeamName": "Rafik Enterprise FC",
+              "homeScore": 2,
+              "awayScore": 1,
+              "winnerId": "dhahabiya-strikers",
+              "note": "Dhahabiya Strikers won the 2025 Junior League championship."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

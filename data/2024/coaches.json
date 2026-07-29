@@ -1,0 +1,15 @@
+{
+  "season": "2024",
+  "coaches": [
+    {
+      "id": "coach-aadil",
+      "name": "Aadil",
+      "teamId": "shifa-pharmacy-fc",
+      "teamName": "Shifa Pharmacy F.C.",
+      "division": "Seniors",
+      "championships": 1,
+      "finals": 1,
+      "notes": "Coached Shifa Pharmacy F.C. to the 2024 LSL championship."
+    }
+  ]
+}

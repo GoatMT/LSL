@@ -1,0 +1,127 @@
+{
+  "title": "Rules",
+  "label": "League Information",
+  "subtitle": "Clear game-day rules and player reminders.",
+  "updated": "July 25, 2026",
+  "summary": [
+    { "label": "Arrival", "value": "20 minutes early", "note": "Meet your coach, teammates, and prepare before kickoff." },
+    { "label": "Start Times", "value": "Strict", "note": "Referees begin games at the listed time." },
+    { "label": "Footwear", "value": "Indoor shoes only", "note": "Metal, pointed, blade, and stud cleats are not allowed." },
+    { "label": "Water", "value": "Bring your own", "note": "Every player should arrive with enough water." },
+    { "label": "Grass Access", "value": "Game time only", "note": "Parents and spectators must stay off the grass during games." }
+  ],
+  "suspensions": [
+    {
+      "status": "2 Game Suspension",
+      "title": "Muzamil Kharooti",
+      "team": "EM Haulers FC",
+      "body": [
+        "Muzamil Kharooti (EM Haulers FC) is serving a 2 game suspension.",
+        "He did not play in Week 6 against Gangat Warriors and will not play in Week 7."
+      ]
+    },
+    {
+      "status": "1 Game Suspension (Reduced)",
+      "title": "Basir Ahmad Dastagiri",
+      "body": [
+        "Last season, Basir Ahmad Dastagiri received a 2 game suspension for throwing fireworks on the field.",
+        "The suspension was reduced to 1 game due to \"good behavior\"."
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "title": "Arrive Before Your Game",
+      "tag": "Arrival",
+      "body": ["All players are required to arrive 20 minutes before their game so they can meet their coach and teammates, receive their jersey, and be ready for game time."]
+    },
+    {
+      "title": "Games Start On Time",
+      "tag": "Schedule",
+      "body": ["Game start times are strictly followed. Referees will not wait for late players.", "A 9:15 AM game begins at 9:15 AM. The same rule applies to the 12:15 PM Juniors session."]
+    },
+    {
+      "title": "Indoor Footwear Only",
+      "tag": "Equipment",
+      "body": ["Pointed cleats, metal blades, studs, and outdoor cleats are not allowed. Players may only use appropriate indoor soccer footwear."]
+    },
+    {
+      "title": "Respect The Game",
+      "tag": "Sportsmanship",
+      "body": ["All players must show good sportsmanship. LSL is here to play, have fun, and create brotherhood.", "Swearing and violence are not tolerated. Serious behaviour may result in an automatic red card."]
+    },
+    {
+      "title": "Snacks, Garbage, and Field Care",
+      "tag": "Field Care",
+      "body": ["Juice and granola bars may be given to players after their game.", "Garbage bags will be placed around the field. Players and families are expected to use them and leave the field clean."]
+    },
+    {
+      "title": "Bring Your Own Water",
+      "tag": "Player Prep",
+      "body": ["Players are responsible for bringing their own water to every matchday."]
+    },
+    {
+      "title": "Grass Access During Games",
+      "tag": "Sidelines",
+      "category": "Matchday",
+      "severity": "Required",
+      "body": [
+        "No one is allowed on the grass during games unless it is their game time, or unless they are a coach, referee, or volunteer.",
+        "Parents and spectators are expected to remain off the grass while games are being played."
+      ]
+    },
+    {
+      "title": "Parents And Sideline Concerns",
+      "tag": "Sidelines",
+      "category": "Discipline",
+      "severity": "Required",
+      "body": [
+        "Parents should not step onto the grass or enter the game to handle a concern themselves.",
+        "If there is an issue, please speak to your child's coach. The coach will address it through the proper process with referees, volunteers, and league staff.",
+        "Parents should not interfere with coaches, referees, or players during game time. Let the coaches coach, let the referees manage the game, and let the kids play."
+      ]
+    },
+    {
+      "title": "Goalie Crowding And Player Comments",
+      "tag": "Respect",
+      "category": "Discipline",
+      "severity": "Reminder",
+      "body": [
+        "Players should not crowd the goalie, stand too close to the goalie, crowd the sidelines, or make comments toward the goalie.",
+        "Coaches, referees, and volunteers will work with players to address this behaviour properly."
+      ]
+    },
+    {
+      "title": "Parent Grass Rule Consequence",
+      "tag": "Sidelines",
+      "category": "Discipline",
+      "severity": "Required",
+      "body": [
+        "If a parent comes onto the grass during a game, their child may be benched.",
+        "This is not meant to target anyone. It is meant to keep the same standard for everyone and keep games organized."
+      ]
+    },
+    {
+      "title": "Mandatory Handshakes",
+      "tag": "Sportsmanship",
+      "category": "Discipline",
+      "severity": "Required",
+      "body": [
+        "After every game, handshakes are mandatory.",
+        "LSL wants to continue building good character, respect, and sportsmanship in the league."
+      ]
+    },
+    {
+      "title": "Official Rule Book",
+      "tag": "Rule Book",
+      "category": "Matchday",
+      "severity": "Reminder",
+      "body": ["The official rule book will be available at the desk for anyone who wants to review it."]
+    },
+    {
+      "title": "Rain and Weather Updates",
+      "tag": "Weather",
+      "body": ["Light rain does not automatically cancel games.", "LSL will send a message on the morning of matchday if weather changes the schedule. Check the latest league update before travelling."]
+    }
+  ]
+}

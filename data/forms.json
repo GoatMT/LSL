@@ -1,0 +1,22 @@
+{
+  "forms": [
+    {
+      "id": "lsl-2026-registration",
+      "title": "2026 LSL Registration Form",
+      "category": "League Registration",
+      "season": "2026",
+      "status": "Open",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScqaT7YwuPz5SSxwCbnYP7zKixohzEQsVnGG04hAaulXBIMjw/viewform",
+      "description": "Registration form for the 2026 Lantern Soccer League season."
+    },
+    {
+      "id": "inter-madrasa-interest",
+      "title": "Inter-Madrasa Tournament Interest Form",
+      "category": "Inter-Madrasa Tournament",
+      "season": "2026",
+      "status": "Open",
+      "url": "https://forms.gle/C5G7kataN1FMSUNa6",
+      "description": "Interest form for the Inter-Madrasa Soccer Tournament."
+    }
+  ]
+}

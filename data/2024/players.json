@@ -1,0 +1,52 @@
+{
+  "season": "2024",
+  "players": [
+    {
+      "id": "hafizullah",
+      "name": "Hafizullah",
+      "teamId": "asif-gangat-united",
+      "division": "Seniors",
+      "position": "Forward",
+      "achievements": [
+        "2024 player of the week mention"
+      ]
+    },
+    {
+      "id": "muhammad-affan",
+      "name": "Muhammad Affan",
+      "teamId": "shifa-pharmacy-fc",
+      "division": "Seniors",
+      "position": "Forward",
+      "achievements": [
+        "2024 week 5 player of the week"
+      ]
+    },
+    {
+      "id": "muzamil-kharooti",
+      "name": "Muzamil Kharooti",
+      "teamId": "refuel-juicery-kickers",
+      "division": "Seniors",
+      "position": "Forward",
+      "achievements": [
+        "2024 player of the game hat-trick mention"
+      ]
+    },
+    {
+      "id": "mubashir-kharooti",
+      "name": "Mubashir Kharooti",
+      "teamId": "jogiat-palace",
+      "division": "Seniors",
+      "achievements": [
+        "2024 playoff player of the week mention"
+      ]
+    },
+    {
+      "id": "shaheer-baig",
+      "name": "Shaheer Baig",
+      "teamId": "jogiat-palace",
+      "teamName": "Jogiat Palace",
+      "division": "Seniors",
+      "position": "Field"
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "defaultView": "all-time",
+  "teams": {
+    "all-time": {
+      "label": "All-Time",
+      "seasonLabel": "All-Time",
+      "formation": "3-4-3",
+      "formationName": "All-Time LSL XI",
+      "description": "A stat-first all-time lineup using the strongest current league records. This is manually curated from confirmed LSL performances.",
+      "why": "Selection starts with goals, wins, official MVP and Golden Boot honors, and goalie record. Because LSL does not fully track defenders and midfielders, field positions are used as a clean formation graphic while the picks prioritize the strongest available performance and honors.",
+      "coach": {
+        "id": "coach-abdul-hakeem",
+        "name": "Coach Abdul Hakeem",
+        "teamName": "Umer Memon F.C. / Gangat Warriors",
+        "note": "Championship-winning coach and one of the biggest coaching storylines in LSL."
+      },
+      "assistantCoaches": [
+        {
+          "id": "coach-aadil",
+          "name": "Coach Aadil",
+          "teamName": "Shifa Pharmacy F.C. / Rawaha Royals",
+          "note": "2024 championship-winning coach."
+        },
+        {
+          "id": "coach-tanveer",
+          "name": "Coach Tanveer",
+          "teamName": "Dhahabiya Strikers / Leeward Lions",
+          "note": "2025 Junior championship-winning coach."
+        }
+      ],
+      "players": [
+        { "slot": "LW", "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "teamId": "em-haulers-fc", "teamName": "EM Haulers FC", "x": 22, "y": 18 },
+        { "slot": "ST", "id": "hafizullah", "name": "Hafizullah", "teamId": "asif-gangat-united-2025", "teamName": "Asif Gangat United", "x": 50, "y": 16 },
+        { "slot": "RW", "id": "rehaan-adam", "name": "Rehaan Adam", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 78, "y": 18 },
+        { "slot": "LM", "id": "ajmal-shakkari", "name": "Ajmal Chakkari", "teamId": "leeward-lions", "teamName": "Leeward Lions", "x": 15, "y": 45 },
+        { "slot": "LCM", "id": "amadu", "name": "Amadu", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 38, "y": 48 },
+        { "slot": "RCM", "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "teamId": "refuel-rovers", "teamName": "Refuel Rovers", "x": 62, "y": 48 },
+        { "slot": "RM", "id": "mohammed-ibrahim", "name": "Mohammad Ibrahim", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "x": 85, "y": 45 },
+        { "slot": "LCB", "id": "marwan-ahmad", "name": "Marwan Ahmed", "teamId": "sharp-strikers", "teamName": "Sharp Strikers", "x": 25, "y": 72 },
+        { "slot": "CB", "id": "mohammed-hammad-syed", "name": "Mohammed Hammad Syed", "teamId": "sharp-strikers", "teamName": "Sharp Strikers", "x": 50, "y": 74 },
+        { "slot": "RCB", "id": "m-yahya", "name": "M Yahya", "teamId": "sharp-strikers", "teamName": "Sharp Strikers", "x": 75, "y": 72 },
+        { "slot": "GK", "id": "ali-razzaq", "name": "Ali Razzaq", "teamId": "amax-visionaries", "teamName": "Amax Visionaries", "x": 50, "y": 89 }
+      ],
+      "bench": [
+        { "id": "haroon-ahmadi", "name": "Haroon Ahmadi", "teamName": "EM Haulers FC" },
+        { "id": "mohammed-hasan", "name": "Mohammed Hasan", "teamName": "Amax Optical Kickers" },
+        { "id": "mudassir", "name": "Mudassir", "teamName": "Leeward Lions" },
+        { "id": "muhammad-affan", "name": "Mohammed Affan", "teamName": "Asif Gangat United" },
+        { "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "teamName": "Rawaha Royals" },
+        { "id": "taha-nakhuda", "name": "Taaha Nakhuda", "teamName": "Gangat Warriors" },
+        { "id": "aneeq-shaikh", "name": "Aneeq Shaikh", "teamName": "Shifa Pharmacy F.C." }
+      ]
+    },
+    "2024": {
+      "label": "2024",
+      "seasonLabel": "2024",
+      "formation": "3-4-3",
+      "formationName": "2024 Season XI",
+      "description": "A stat-first 2024 lineup using goals, wins, title impact, and available goalie records.",
+      "why": "The 2024 XI starts with the highest scorers, then uses wins and championship impact as tie-breakers. Aneeq Shaikh gets the keeper spot because Shifa Pharmacy won the 2024 title and his goalie record matches the top win total.",
+      "coach": {
+        "id": "coach-aadil",
+        "name": "Coach Aadil",
+        "teamName": "Shifa Pharmacy F.C.",
+        "note": "2024 championship-winning coach."
+      },
+      "assistantCoaches": [
+        {
+          "id": "coach-ashique",
+          "name": "Coach Ashique",
+          "teamName": "Refuel Juicery Kickers",
+          "note": "Assistant pick for Refuel's strong 2024 regular season and finals-level team context."
+        },
+        {
+          "id": "coach-abdul-hakeem",
+          "name": "Coach Abdul Hakeem",
+          "teamName": "Future Umer Memon F.C. champion coach",
+          "note": "Assistant pick for all-time coaching impact across LSL."
+        }
+      ],
+      "players": [
+        { "slot": "LW", "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "teamId": "refuel-juicery-kickers", "teamName": "Refuel Juicery Kickers", "x": 22, "y": 18 },
+        { "slot": "ST", "id": "hafizullah", "name": "Hafizullah", "teamId": "asif-gangat-united", "teamName": "Asif Gangat United", "x": 50, "y": 16 },
+        { "slot": "RW", "id": "bayizedsha", "name": "Bayizedsha", "teamId": "shifa-pharmacy-fc", "teamName": "Shifa Pharmacy F.C.", "x": 78, "y": 18 },
+        { "slot": "LM", "id": "muhammad-affan", "name": "Muhammad Affan", "teamId": "shifa-pharmacy-fc", "teamName": "Shifa Pharmacy F.C.", "x": 15, "y": 45 },
+        { "slot": "LCM", "id": "rehaan-adam", "name": "Rehaan Adam", "teamId": "jogiat-palace", "teamName": "Jogiat Palace", "x": 38, "y": 48 },
+        { "slot": "RCM", "id": "abdur-rakib", "name": "Abdur Rakib", "teamId": "jogiat-palace", "teamName": "Jogiat Palace", "x": 62, "y": 48 },
+        { "slot": "RM", "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "teamId": "jogiat-palace", "teamName": "Jogiat Palace", "x": 85, "y": 45 },
+        { "slot": "LCB", "id": "muhammad-teli", "name": "Muhummud Teli", "teamId": "jogiat-palace", "teamName": "Jogiat Palace", "x": 25, "y": 72 },
+        { "slot": "CB", "id": "taha-nakhuda", "name": "Taaha Nakhuda", "teamId": "shifa-pharmacy-fc", "teamName": "Shifa Pharmacy F.C.", "x": 50, "y": 74 },
+        { "slot": "RCB", "id": "yousuf-haqqani", "name": "Yousuf Haqqani", "teamId": "refuel-juicery-kickers", "teamName": "Refuel Juicery Kickers", "x": 75, "y": 72 },
+        { "slot": "GK", "id": "aneeq-shaikh", "name": "Aneeq Shaikh", "teamId": "shifa-pharmacy-fc", "teamName": "Shifa Pharmacy F.C.", "x": 50, "y": 89 }
+      ],
+      "bench": [
+        { "id": "ayhaam-khalefa", "name": "Ayhaam Khalefa", "teamName": "Jogiat Palace" },
+        { "id": "ibrahim-mohamed", "name": "Ibrahim Mohamed", "teamName": "Umer Memon F.C." },
+        { "id": "marwan-ahmad", "name": "Marwan Ahmad", "teamName": "Silver Suits Strikers" },
+        { "id": "saad-khan", "name": "Saad Khan", "teamName": "Refuel Juicery Kickers" },
+        { "id": "ali-razzaq", "name": "Ali Razzaq", "teamName": "Jogiat Palace" },
+        { "id": "haroon-sarood", "name": "Haroon Sarood", "teamName": "Umer Memon F.C." },
+        { "id": "omar-ajmal", "name": "Omar Ajmal", "teamName": "Refuel Juicery Kickers" }
+      ]
+    },
+    "2025": {
+      "label": "2025",
+      "seasonLabel": "2025",
+      "formation": "3-4-3",
+      "formationName": "2025 Season XI",
+      "description": "A stat-first 2025 lineup using the best senior and junior production from the season.",
+      "why": "The 2025 XI uses goals first, then official honors, team success, and playoff context. Marwan Ahmed earns a place as Seniors MVP and M Yahya as Seniors Golden Boot winner. Coach Abdul Hakeem keeps the coach slot for the senior championship, while Coach Tanveer's junior championship remains part of the 2025 context.",
+      "coach": {
+        "id": "coach-abdul-hakeem",
+        "name": "Coach Abdul Hakeem",
+        "teamName": "Umer Memon F.C.",
+        "note": "Won the 2025 senior championship with Umer Memon F.C."
+      },
+      "assistantCoaches": [
+        {
+          "id": "coach-tanveer",
+          "name": "Coach Tanveer",
+          "teamName": "Dhahabiya Strikers",
+          "note": "Won the 2025 Junior championship."
+        },
+        {
+          "id": "coach-ashique",
+          "name": "Coach Ashique",
+          "teamName": "Refuel Juicery Athletic",
+          "note": "2025 senior finals appearance."
+        }
+      ],
+      "players": [
+        { "slot": "LW", "id": "ajmal-shakkari", "name": "Ajmal Shakkari", "teamId": "dhahabiya-strikers", "teamName": "Dhahabiya Strikers", "x": 22, "y": 18 },
+        { "slot": "ST", "id": "hafizullah", "name": "Hafizullah", "teamId": "asif-gangat-united-2025", "teamName": "Asif Gangat United", "x": 50, "y": 16 },
+        { "slot": "RW", "id": "rehaan-adam", "name": "Rehaan Adam", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 78, "y": 18 },
+        { "slot": "LM", "id": "amadu", "name": "Amadu", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 15, "y": 45 },
+        { "slot": "LCM", "id": "mohammed-ibrahim", "name": "Mohammed Ibrahim", "teamId": "refuel-juicery-athletic", "teamName": "Refuel Juicery Athletic", "x": 38, "y": 48 },
+        { "slot": "RCM", "id": "mohammed-hammad-syed", "name": "Mohammed Hammad Syed", "teamId": "rafik-enterprise-fc", "teamName": "Rafik Enterprise FC", "x": 62, "y": 48 },
+        { "slot": "RM", "id": "musaddiq-khan", "name": "Musaddiq Khan", "teamId": "rafik-enterprise-fc", "teamName": "Rafik Enterprise FC", "x": 85, "y": 45 },
+        { "slot": "LCB", "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "teamId": "umer-memon-fc-2025", "teamName": "Umer Memon F.C.", "x": 25, "y": 72 },
+        { "slot": "CB", "id": "marwan-ahmad", "name": "Marwan Ahmed", "teamId": "refuel-juicery-athletic", "teamName": "Refuel Juicery Athletic", "x": 50, "y": 74 },
+        { "slot": "RCB", "id": "m-yahya", "name": "M Yahya", "teamId": "refuel-juicery-athletic", "teamName": "Refuel Juicery Athletic", "x": 75, "y": 72 },
+        { "slot": "GK", "id": "ali-razzaq", "name": "Ali Razzaq", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 50, "y": 89 }
+      ],
+      "bench": [
+        { "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "teamName": "Asif Gangat United" },
+        { "id": "mohammed-hasan", "name": "Mohammed Hasan", "teamName": "Amax Optical Kickers" },
+        { "id": "mudassir", "name": "Mudassir", "teamName": "Islamic Bookstore Runners" },
+        { "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "teamName": "EM Truck Repair FC" },
+        { "id": "reda-alijalam", "name": "Mohamad Reda Alijalam", "teamName": "Refuel Juicery Athletic" },
+        { "id": "saad-khan", "name": "Saad Khan", "teamName": "Umer Memon F.C." },
+        { "id": "uwais-bemat", "name": "Uwais Bemat", "teamName": "Umer Memon F.C." }
+      ]
+    },
+    "2026": {
+      "label": "2026",
+      "seasonLabel": "2026",
+      "formation": "3-4-3",
+      "formationName": "2026 Team Through Week 6",
+      "description": "A stat-first 2026 lineup based on confirmed results and player production through reported Week 6 results.",
+      "why": "The 2026 XI prioritizes confirmed goal production through the latest reported Week 6 results. Mudassir leads with 16 goals, Haroon Ahmadi has 12 goals, Ajmal Chakkari has 7 goals, Muzamil Kharooti has 7 goals, Mohammad Ibrahim has 6 goals, Mosa Fazli has 5 goals, and Taaha Nakhuda is climbing after a Week 6 hat trick. Remaining places use confirmed goals, wins, and current team results without adding unknown statistics.",
+      "coach": {
+        "id": "coach-tanveer",
+        "name": "Coach Tanveer",
+        "teamName": "Leeward Lions",
+        "note": "Still led the senior goal race through Week 6 after scoring three in a 5-4 loss to Sharp Strikers."
+      },
+      "assistantCoaches": [
+        {
+          "id": "coach-asim",
+          "name": "Coach Asim",
+          "teamName": "EM Haulers FC",
+          "note": "Kept EM Haulers FC near the top after a perfect four-game start."
+        },
+        {
+          "id": "coach-ashique",
+          "name": "Coach Ashique",
+          "teamName": "Refuel Rovers",
+          "note": "Guided Refuel Rovers through a strong midseason response, including a 5-0 Week 3 clean sheet."
+        }
+      ],
+      "players": [
+        { "slot": "LW", "id": "haroon-ahmadi", "name": "Haroon Ahmadi", "teamId": "em-haulers-fc", "teamName": "EM Haulers FC", "x": 22, "y": 18 },
+        { "slot": "ST", "id": "mudassir", "name": "Mudassir", "teamId": "leeward-lions", "teamName": "Leeward Lions", "x": 50, "y": 16 },
+        { "slot": "RW", "id": "ajmal-shakkari", "name": "Ajmal Chakkari", "teamId": "leeward-lions", "teamName": "Leeward Lions", "x": 78, "y": 18 },
+        { "slot": "LM", "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "teamId": "refuel-rovers", "teamName": "Refuel Rovers", "x": 15, "y": 45 },
+        { "slot": "LCM", "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "teamId": "em-haulers-fc", "teamName": "EM Haulers FC", "x": 38, "y": 48 },
+        { "slot": "RCM", "id": "mohammed-ibrahim", "name": "Mohammad Ibrahim", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "x": 62, "y": 48 },
+        { "slot": "RM", "id": "m-yahya", "name": "M Yahya", "teamId": "sharp-strikers", "teamName": "Sharp Strikers", "x": 85, "y": 45 },
+        { "slot": "LCB", "id": "mosa-fazli", "name": "Mosa Fazli", "teamId": "refuel-rovers", "teamName": "Refuel Rovers", "x": 25, "y": 72 },
+        { "slot": "CB", "id": "uthman", "name": "Uthman Manira", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "x": 50, "y": 74 },
+        { "slot": "RCB", "id": "taha-nakhuda", "name": "Taaha Nakhuda", "teamId": "gangat-warriors", "teamName": "Gangat Warriors", "x": 75, "y": 72 },
+        { "slot": "GK", "id": "saad-khan", "name": "Saad Khan", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "x": 50, "y": 89 }
+      ],
+      "bench": [
+        { "id": "mohammed-hammad-syed", "name": "Mohammed Hammad Syed", "teamName": "Sharp Strikers" },
+        { "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "teamName": "Rawaha Royals" },
+        { "id": "ali-razzaq", "name": "Ali Razzaq", "teamName": "Amax Visionaries" },
+        { "id": "muhammad-teli", "name": "Muhummud Teli", "teamName": "Leeward Lions" },
+        { "id": "nasibullah", "name": "Nasibullah Barak", "teamName": "Memon Mavericks" },
+        { "id": "uwais-bemat", "name": "Uwais Bemat", "teamName": "EM Haulers FC" },
+        { "id": "ishaaq-ali", "name": "Ishaaq Ali", "teamName": "Refuel Rovers" },
+        { "id": "marwan-ahmad", "name": "Marwan Ahmed", "teamName": "Sharp Strikers" }
+      ]
+    }
+  }
+}

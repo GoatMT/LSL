@@ -1,0 +1,787 @@
+{
+  "season": "2024",
+  "matches": [
+    {
+      "id": "2024-w1-g1",
+      "week": 1,
+      "label": "Week 1",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-06-29",
+      "homeTeamId": "asif-gangat-united",
+      "awayTeamId": "umer-memon-fc",
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "jersey": 1,
+          "goals": 2
+        }
+      ],
+      "assists": [],
+      "shots": [
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "jersey": 1,
+          "shots": 5
+        }
+      ],
+      "notes": [
+        "Goal tracking sheet listed Hafizullah twice."
+      ]
+    },
+    {
+      "id": "2024-w1-g2",
+      "week": 1,
+      "label": "Week 1",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-06-29",
+      "homeTeamId": "jogiat-palace",
+      "awayTeamId": "shifa-pharmacy-fc",
+      "homeScore": 1,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "ayhaam-khalefa",
+          "name": "Ayhaam Khalefa",
+          "jersey": 11,
+          "goals": 1
+        },
+        {
+          "playerId": "taha-nakhuda",
+          "name": "Taaha Nakhuda",
+          "jersey": 2,
+          "goals": 1
+        },
+        {
+          "playerId": "muhammad-affan",
+          "name": "Mohammed Affan",
+          "jersey": 5,
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "shots": [
+        {
+          "playerId": "ayhaam-khalefa",
+          "name": "Ayhaam Khalefa",
+          "jersey": 11,
+          "shots": 1
+        },
+        {
+          "playerId": "taha-nakhuda",
+          "name": "Taaha Nakhuda",
+          "jersey": 2,
+          "shots": 1
+        },
+        {
+          "playerId": "muhammad-affan",
+          "name": "Mohammed Affan",
+          "jersey": 5,
+          "shots": 2
+        }
+      ],
+      "notes": [
+        "Incident note appeared to read: No cleats."
+      ]
+    },
+    {
+      "id": "2024-w1-g3",
+      "week": 1,
+      "label": "Week 1",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-06-29",
+      "homeTeamId": "silver-suits-strikers",
+      "awayTeamId": "refuel-juicery-kickers",
+      "homeScore": 1,
+      "awayScore": 4,
+      "status": "Complete",
+      "scorers": [
+        {
+          "name": "Silver Suits scorer unclear",
+          "goals": 1
+        },
+        {
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 2,
+          "goals": 3
+        },
+        {
+          "playerId": "yousuf-haqqani",
+          "name": "Yousuf Haqqani",
+          "jersey": 10,
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "playerOfMatchId": "muzamil-kharooti",
+      "notes": [
+        "Silver Suits scored once, but the scorer is not clear on the sheet.",
+        "Shots were marked with check marks instead of player numbers, so exact shots per scorer were not readable.",
+        "Player of the game was Muzamil Kharooti after a hat trick in Refuel's 4-1 win."
+      ]
+    },
+    {
+      "id": "2024-w3-g1",
+      "week": 3,
+      "label": "Week 3",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-13",
+      "homeTeamId": "refuel-juicery-kickers",
+      "awayTeamId": "shifa-pharmacy-fc",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 9,
+          "goals": 2
+        },
+        {
+          "playerId": "bayizedsha",
+          "name": "Bayizedsha",
+          "jersey": 11,
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "shots": [
+        {
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 9,
+          "shots": 3
+        },
+        {
+          "playerId": "muhammad-hassan",
+          "name": "Muhammad Hassan",
+          "jersey": 4,
+          "shots": 1
+        },
+        {
+          "playerId": "omar-ajmal",
+          "name": "Omar Ajmal",
+          "jersey": 6,
+          "shots": 1
+        },
+        {
+          "playerId": "ziyad-adam",
+          "name": "Ziyad Adam",
+          "jersey": 73,
+          "shots": 1
+        },
+        {
+          "playerId": "ayub-jan",
+          "name": "Ayub Jan",
+          "jersey": 99,
+          "shots": 1
+        },
+        {
+          "playerId": "muhammad-affan",
+          "name": "Muhammad Affan",
+          "jersey": 9,
+          "shots": 1
+        },
+        {
+          "playerId": "bayizedsha",
+          "name": "Bayizedsha",
+          "jersey": 11,
+          "shots": 2
+        },
+        {
+          "playerId": "tayyib-mohammed",
+          "name": "Tayyib Mohammad",
+          "jersey": 25,
+          "shots": 1
+        }
+      ],
+      "notes": [
+        "Week 2 was affected by rainy conditions; an extra game was played later.",
+        "One Shifa shot entry was unclear on the sheet."
+      ]
+    },
+    {
+      "id": "2024-w3-g2",
+      "week": 3,
+      "label": "Week 3",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-13",
+      "homeTeamId": "jogiat-palace",
+      "awayTeamId": "umer-memon-fc",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "jersey": 6,
+          "goals": 2
+        },
+        {
+          "playerId": "ibrahim-mohamed",
+          "name": "Ibrahim Mohamed",
+          "jersey": 56,
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "shots": [
+        {
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "jersey": 6,
+          "shots": 3
+        },
+        {
+          "playerId": "mubashir-kharooti",
+          "name": "Ahmad Mubashir Kharooti",
+          "jersey": 4,
+          "shots": 2
+        },
+        {
+          "name": "Abdul Wahhab Dastagiri",
+          "jersey": 7,
+          "shots": 1
+        },
+        {
+          "playerId": "shaheer-baig",
+          "name": "Shaheer Baig",
+          "jersey": 87,
+          "shots": 1
+        },
+        {
+          "playerId": "m-yahya",
+          "name": "M Yahya",
+          "jersey": 56,
+          "shots": 1
+        },
+        {
+          "playerId": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "jersey": 66,
+          "shots": 1
+        },
+        {
+          "playerId": "ibrahim-mohamed",
+          "name": "Ibrahim Mohamed",
+          "jersey": 56,
+          "shots": 2
+        },
+        {
+          "playerId": "zain-adam",
+          "name": "Zain Adam",
+          "jersey": 9,
+          "shots": 2
+        }
+      ],
+      "notes": [
+        "Match notes included clean-up and coach timing reminders.",
+        "Abdul Wahhab Dastagiri was listed on the Jogiat shot sheet but does not match the current Jogiat roster, so that shot is shown in match details only."
+      ]
+    },
+    {
+      "id": "2024-w3-g3",
+      "week": 3,
+      "label": "Week 3",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-13",
+      "homeTeamId": "silver-suits-strikers",
+      "awayTeamId": "asif-gangat-united",
+      "homeScore": 1,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "jersey": 11,
+          "goals": 1
+        },
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "jersey": 25,
+          "goals": 2
+        }
+      ],
+      "assists": [],
+      "shots": [
+        {
+          "playerId": "mohammed-hanzala",
+          "name": "Mohammad Hanzala Hassan",
+          "jersey": 9,
+          "shots": 2
+        },
+        {
+          "playerId": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "jersey": 11,
+          "shots": 2
+        },
+        {
+          "playerId": "mustafa-sakhiyar",
+          "name": "Mustafa Sakhiyar",
+          "jersey": 2,
+          "shots": 2
+        },
+        {
+          "playerId": "ahmad-ingar",
+          "name": "Ahmad Ingar",
+          "jersey": 56,
+          "shots": 1
+        },
+        {
+          "playerId": "uzair-sidat",
+          "name": "Uzair Sidat",
+          "jersey": 4,
+          "shots": 1
+        },
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "jersey": 25,
+          "shots": 7
+        },
+        {
+          "playerId": "mussadiq-khan",
+          "name": "Mussadiq Khan",
+          "jersey": 2,
+          "shots": 2
+        }
+      ],
+      "playerOfMatchId": "hafizullah",
+      "notes": [
+        "Hafizullah was noted as #25 in this match and #1 on a previous sheet.",
+        "The shot list showed 6 for Hafizullah, while the player-of-game note listed 7 shots; 7 is used here."
+      ]
+    },
+    {
+      "id": "2024-w3-g4",
+      "week": 3,
+      "label": "Week 3 extra game",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-13",
+      "homeTeamId": "jogiat-palace",
+      "awayTeamId": "refuel-juicery-kickers",
+      "homeScore": 2,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "abdur-rakib",
+          "name": "Abdur Rakib",
+          "jersey": 25,
+          "goals": 2
+        },
+        {
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 9,
+          "goals": 2
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "mubashir-kharooti",
+          "name": "Ahmad Mubashir Kharooti",
+          "jersey": 4,
+          "assists": 1
+        },
+        {
+          "playerId": "abdur-rakib",
+          "name": "Abdur Rakib",
+          "jersey": 25,
+          "assists": 1
+        }
+      ],
+      "shots": [
+        {
+          "playerId": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "jersey": 66,
+          "shots": 2
+        },
+        {
+          "playerId": "aamir-jogiat",
+          "name": "Aamir Jogiat",
+          "jersey": 43,
+          "shots": 2
+        },
+        {
+          "playerId": "m-yahya",
+          "name": "M Yahya",
+          "jersey": 56,
+          "shots": 1
+        },
+        {
+          "playerId": "mubashir-kharooti",
+          "name": "Ahmad Mubashir Kharooti",
+          "jersey": 4,
+          "shots": 1
+        },
+        {
+          "playerId": "shaheer-baig",
+          "name": "Shaheer Baig",
+          "jersey": 87,
+          "shots": 1
+        },
+        {
+          "playerId": "abdur-rakib",
+          "name": "Abdur Rakib",
+          "jersey": 25,
+          "shots": 1
+        },
+        {
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 9,
+          "shots": 3
+        },
+        {
+          "playerId": "muhammad-hassan",
+          "name": "Muhammad Hassan",
+          "jersey": 4,
+          "shots": 2
+        },
+        {
+          "playerId": "muhammad-iqrash",
+          "name": "Muhammad Iqrash",
+          "jersey": 56,
+          "shots": 1
+        },
+        {
+          "playerId": "subhanullah-sharza",
+          "name": "Subhanullah Sharza",
+          "jersey": 2,
+          "shots": 1
+        },
+        {
+          "playerId": "abubakr-amirat",
+          "name": "Abubakr Amirat",
+          "jersey": 25,
+          "shots": 1
+        }
+      ],
+      "notes": [
+        "Extra game played because rainy conditions forced an earlier cancellation.",
+        "A few Jogiat sheet entries were messy; Abdur Rakib's shot was marked as unclear."
+      ]
+    },
+    {
+      "id": "2024-w4-g1",
+      "week": 4,
+      "label": "Week 4",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-20",
+      "homeTeamId": "jogiat-palace",
+      "awayTeamId": "asif-gangat-united",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [],
+      "assists": []
+    },
+    {
+      "id": "2024-w4-g2",
+      "week": 4,
+      "label": "Week 4",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-20",
+      "homeTeamId": "silver-suits-strikers",
+      "awayTeamId": "shifa-pharmacy-fc",
+      "homeScore": 0,
+      "awayScore": 4,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "bayizedsha",
+          "name": "Bayizedsha",
+          "jersey": 11,
+          "goals": 3
+        }
+      ],
+      "assists": [],
+      "shots": [
+        {
+          "playerId": "bayizedsha",
+          "name": "Bayizedsha",
+          "jersey": 11,
+          "shots": 9
+        }
+      ],
+      "notes": [
+        "Player of the week note listed Bayizedsha #11 with 3 goals and 9 shots. Full goal distribution for Shifa's fourth goal was not listed."
+      ]
+    },
+    {
+      "id": "2024-w4-g3",
+      "week": 4,
+      "label": "Week 4",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-20",
+      "homeTeamId": "umer-memon-fc",
+      "awayTeamId": "refuel-juicery-kickers",
+      "homeScore": 0,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [],
+      "assists": []
+    },
+    {
+      "id": "2024-w4-g4",
+      "week": 4,
+      "label": "Week 4",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-20",
+      "homeTeamId": "asif-gangat-united",
+      "awayTeamId": "shifa-pharmacy-fc",
+      "homeScore": 2,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [],
+      "assists": []
+    },
+    {
+      "id": "2024-w5-g1",
+      "week": 5,
+      "label": "Week 5 final week",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-27",
+      "homeTeamId": "refuel-juicery-kickers",
+      "awayTeamId": "asif-gangat-united",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "goals": 1
+        },
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Top performers note listed M. Kharooti and Hafizullah among scorers."
+      ]
+    },
+    {
+      "id": "2024-w5-g2",
+      "week": 5,
+      "label": "Week 5 final week",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-27",
+      "homeTeamId": "shifa-pharmacy-fc",
+      "awayTeamId": "umer-memon-fc",
+      "homeScore": 3,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "muhammad-affan",
+          "name": "M. Affan",
+          "jersey": 9,
+          "goals": 2
+        },
+        {
+          "playerId": "asad-khan",
+          "name": "Asad Khan",
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "shots": [
+        {
+          "playerId": "muhammad-affan",
+          "name": "M. Affan",
+          "jersey": 9,
+          "shots": 4
+        }
+      ],
+      "playerOfMatchId": "muhammad-affan",
+      "notes": [
+        "M. Affan was named player of the week."
+      ]
+    },
+    {
+      "id": "2024-w5-g3",
+      "week": 5,
+      "label": "Week 5 final week",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-27",
+      "homeTeamId": "jogiat-palace",
+      "awayTeamId": "silver-suits-strikers",
+      "homeScore": 3,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "goals": 1
+        },
+        {
+          "playerId": "muhammad-teli",
+          "name": "M. Teli",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2024-w5-g4",
+      "week": 5,
+      "label": "Week 5 final week",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2024-07-27",
+      "homeTeamId": "umer-memon-fc",
+      "awayTeamId": "silver-suits-strikers",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [],
+      "assists": []
+    },
+    {
+      "id": "2024-p-qf1",
+      "week": 6,
+      "label": "Quarterfinal",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2024-08-03",
+      "homeTeamId": "silver-suits-strikers",
+      "awayTeamId": "jogiat-palace",
+      "homeScore": 2,
+      "awayScore": 3,
+      "winnerId": "jogiat-palace",
+      "status": "Jogiat Palace won 3-2 on penalties",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Jogiat Palace advanced to the semifinals by winning 3-2 against Silver Suits in a penalty shootout."
+      ]
+    },
+    {
+      "id": "2024-p-qf2",
+      "week": 6,
+      "label": "Quarterfinal",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2024-08-03",
+      "homeTeamId": "asif-gangat-united",
+      "awayTeamId": "umer-memon-fc",
+      "homeScore": 3,
+      "awayScore": 4,
+      "winnerId": "umer-memon-fc",
+      "status": "Umer advanced on penalties",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Source described the result as a penalty shootout."
+      ]
+    },
+    {
+      "id": "2024-p-sf1",
+      "week": 6,
+      "label": "Semifinal",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2024-08-03",
+      "homeTeamId": "jogiat-palace",
+      "awayTeamId": "shifa-pharmacy-fc",
+      "homeScore": 3,
+      "awayScore": 5,
+      "winnerId": "shifa-pharmacy-fc",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2024-p-sf2",
+      "week": 6,
+      "label": "Semifinal",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2024-08-03",
+      "homeTeamId": "umer-memon-fc",
+      "awayTeamId": "refuel-juicery-kickers",
+      "homeScore": 1,
+      "awayScore": 2,
+      "winnerId": "refuel-juicery-kickers",
+      "status": "Complete",
+      "scorers": [],
+      "assists": []
+    },
+    {
+      "id": "2024-p-final",
+      "week": 7,
+      "label": "Grand Final",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2024-08-10",
+      "homeTeamId": "shifa-pharmacy-fc",
+      "awayTeamId": "refuel-juicery-kickers",
+      "homeScore": null,
+      "awayScore": null,
+      "winnerId": "shifa-pharmacy-fc",
+      "status": "Shifa Pharmacy F.C. champion",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Final score is coming soon."
+      ]
+    },
+    {
+      "id": "2024-p-third",
+      "week": 7,
+      "label": "3rd Place",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2024-08-10",
+      "homeTeamId": "jogiat-palace",
+      "awayTeamId": "umer-memon-fc",
+      "homeScore": null,
+      "awayScore": null,
+      "winnerId": "jogiat-palace",
+      "status": "Jogiat Palace 3rd place winner",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Jogiat Palace is listed as the 2024 third-place winner. Score was not listed."
+      ]
+    }
+  ]
+}

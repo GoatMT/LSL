@@ -1,0 +1,130 @@
+{
+  "season": "2025",
+  "players": [
+    {
+      "id": "ajmal-shakkari",
+      "name": "Ajmal Shakkari",
+      "teamId": "dhahabiya-strikers",
+      "teamName": "Dhahabiya Strikers",
+      "division": "Juniors",
+      "position": "Forward",
+      "jersey": 10,
+      "achievements": [
+        "2025 Juniors top scorer from visible data"
+      ]
+    },
+    {
+      "id": "hafizullah",
+      "name": "Hafizullah",
+      "teamId": "asif-gangat-united-2025",
+      "division": "Seniors",
+      "position": "Forward",
+      "achievements": [
+        "2025 Golden Boot race leader mention"
+      ]
+    },
+    {
+      "id": "ibad-travel-builder",
+      "name": "Ibad",
+      "teamId": "the-travel-builder-united",
+      "teamName": "Travel Builder United",
+      "division": "Juniors",
+      "position": "Field",
+      "jersey": 16
+    },
+    {
+      "id": "idrees-nawabi-travel",
+      "name": "Idrees Nawabi",
+      "teamId": "the-travel-builder-united",
+      "teamName": "Travel Builder United",
+      "division": "Juniors",
+      "position": "Field",
+      "jersey": 17
+    },
+    {
+      "id": "khan-19-rafik",
+      "name": "Khan",
+      "teamId": "rafik-enterprise-fc",
+      "teamName": "Rafik Enterprise FC",
+      "division": "Juniors",
+      "position": "Field",
+      "jersey": 19
+    },
+    {
+      "id": "m-yahya",
+      "name": "M Yahya",
+      "teamId": "refuel-juicery-athletic",
+      "teamName": "Refuel Juicery Athletic",
+      "division": "Seniors",
+      "position": "Forward",
+      "jersey": 11,
+      "achievements": [
+        "2025 Seniors Golden Boot"
+      ]
+    },
+    {
+      "id": "marwan-ahmad",
+      "name": "Marwan Ahmed",
+      "teamId": "refuel-juicery-athletic",
+      "teamName": "Refuel Juicery Athletic",
+      "division": "Seniors",
+      "position": "Forward",
+      "jersey": 2,
+      "achievements": [
+        "2025 Seniors MVP"
+      ]
+    },
+    {
+      "id": "reda-alijalam",
+      "name": "Mohamad Reda Alijalam",
+      "teamId": "refuel-juicery-athletic",
+      "division": "Seniors",
+      "position": "Forward"
+    },
+    {
+      "id": "mohammed-ibrahim",
+      "name": "Mohammed Ibrahim",
+      "teamId": "refuel-juicery-athletic",
+      "division": "Seniors",
+      "position": "Forward"
+    },
+    {
+      "id": "musaddiq-khan",
+      "name": "Musaddiq Khan",
+      "teamId": "rafik-enterprise-fc",
+      "teamName": "Rafik Enterprise FC",
+      "division": "Juniors",
+      "position": "Forward",
+      "achievements": [
+        "Five-goal junior match in 2025 Week 3"
+      ]
+    },
+    {
+      "id": "muzamil-kharooti",
+      "name": "Muzamil Kharooti",
+      "teamId": "umer-memon-fc-2025",
+      "division": "Seniors",
+      "position": "Forward",
+      "jersey": 7
+    },
+    {
+      "id": "rehaan-adam",
+      "name": "Rehaan Adam",
+      "teamId": "im-construction-sc",
+      "division": "Seniors",
+      "position": "Forward",
+      "achievements": [
+        "Scored two goals in 2025 semifinal"
+      ]
+    },
+    {
+      "id": "salman-em-juniors",
+      "name": "Salman",
+      "teamId": "em-truck-repair-fc",
+      "teamName": "EM Truck Repair FC",
+      "division": "Juniors",
+      "position": "Field",
+      "jersey": 15
+    }
+  ]
+}

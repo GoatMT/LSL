@@ -1,0 +1,96 @@
+{
+  "season": "2026",
+  "week": "Week 6",
+  "date": "July 25, 2026",
+  "title": "Award Watch",
+  "subtitle": "Early leaders after the latest reported Week 6 results in the LSL Seniors League.",
+  "categories": [
+    {
+      "label": "MVP Watch",
+      "note": "Goal-first MVP race through the latest senior week.",
+      "leaders": [
+        {
+          "rank": 1,
+          "playerId": "mudassir",
+          "name": "Mudassir",
+          "teamName": "Leeward Lions",
+          "stat": "16 goals",
+          "reason": "Still leads the senior goal race after scoring three in Week 6."
+        },
+        {
+          "rank": 2,
+          "playerId": "haroon-ahmadi",
+          "name": "Haroon Ahmadi",
+          "teamName": "EM Haulers FC",
+          "stat": "12 goals",
+          "reason": "Added another hat trick in EM Haulers FC's 4-3 Week 6 win over Gangat Warriors."
+        },
+        {
+          "rank": 3,
+          "playerId": "ajmal-shakkari",
+          "name": "Ajmal Chakkari",
+          "teamName": "Leeward Lions",
+          "stat": "7 goals",
+          "reason": "Seven senior goals keep him in the top group."
+        }
+      ]
+    },
+    {
+      "label": "Golden Boot Watch",
+      "note": "Senior goal race leaders.",
+      "leaders": [
+        {
+          "rank": 1,
+          "playerId": "mudassir",
+          "name": "Mudassir",
+          "teamName": "Leeward Lions",
+          "stat": "16 goals",
+          "reason": "Three more goals in Week 6 moved him farther ahead in the senior goal race."
+        },
+        {
+          "rank": 2,
+          "playerId": "haroon-ahmadi",
+          "name": "Haroon Ahmadi",
+          "teamName": "EM Haulers FC",
+          "stat": "12 goals",
+          "reason": "A Week 6 hat trick moved him back toward the front of the chase."
+        },
+        {
+          "rank": 3,
+          "playerId": "ajmal-shakkari",
+          "name": "Ajmal Chakkari",
+          "teamName": "Leeward Lions",
+          "stat": "7 goals",
+          "reason": "Seven goals through Week 6."
+        }
+      ]
+    },
+    {
+      "label": "Team Award Watch",
+      "note": "Best regular season team race.",
+      "leaders": [
+        {
+          "rank": 1,
+          "teamId": "em-haulers-fc",
+          "name": "EM Haulers FC",
+          "stat": "5-0-1",
+          "reason": "Moved top on tiebreakers after a 4-3 Week 6 win over Gangat Warriors."
+        },
+        {
+          "rank": 2,
+          "teamId": "sharp-strikers",
+          "name": "Sharp Strikers",
+          "stat": "5-0-1",
+          "reason": "Beat Leeward Lions 5-4 and sit level with EM on points."
+        },
+        {
+          "rank": 3,
+          "teamId": "leeward-lions",
+          "name": "Leeward Lions",
+          "stat": "4-1-1",
+          "reason": "Still near the top even after the 5-4 Week 6 loss to Sharp Strikers."
+        }
+      ]
+    }
+  ]
+}

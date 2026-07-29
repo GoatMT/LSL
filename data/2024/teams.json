@@ -1,0 +1,584 @@
+{
+  "season": "2024",
+  "event": {
+    "host": "Lantern Soccer League",
+    "name": "Boys Soccer Tournament (season 1)",
+    "dates": "June 29 - August 15, 2024",
+    "schedule": "Every Saturday, 9:30 AM - 12:00 PM",
+    "eligibleAges": "9 - 14 years old",
+    "cost": "$55",
+    "venue": "Grenoble P.S. (Grenoble Public School)",
+    "address": "9 Grenoble Dr, Toronto, ON M3C 1C3",
+    "phone": "437-888-0261",
+    "source": "LSL - 2024.pdf"
+  },
+  "teams": [
+    {
+      "id": "silver-suits-strikers",
+      "name": "Silver Suits Strikers",
+      "shortName": "SSS",
+      "logo": "./Logos/2024 Teams/silver-suits-strikers.png",
+      "logoBg": "#f8f8f8",
+      "division": "Seniors",
+      "history": "Season 1 senior team. Qualified for the full 2024 playoff field.",
+      "roster": [
+        {
+          "id": "abdul-wahab-dastagiri",
+          "name": "Abdul Wahab Dastagiri",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "abdul-jalil-alosman",
+          "name": "AbdulJalil Alosman",
+          "jersey": 2,
+          "position": "Field"
+        },
+        {
+          "id": "ahmad-ingar",
+          "name": "Ahmad Ingar",
+          "jersey": 3,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "ayaan-jogiyat",
+          "name": "Ayaan Jogiyat",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "hussain-rizvi",
+          "name": "Hussain Rizvi",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "marwan-ahmad",
+          "name": "Marwan Ahmad",
+          "jersey": 6,
+          "position": "Field",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "mustafa-sakhiyar",
+          "name": "Mustafa Sakhiyar",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "mustafa-hussain-rizvi",
+          "name": "Mustafa Hussain Rizvi",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-zahran",
+          "name": "Muhammad Zahran",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "mohammed-hanzala",
+          "name": "Mohammed Hanzala",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "mohammed-hammad-syed",
+          "name": "Mohammed Hammad Syed",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "uzair-sidat",
+          "name": "Uzair Sidat",
+          "jersey": 12,
+          "position": "Field"
+        },
+        {
+          "id": "hammad-shaikh",
+          "name": "Hammad Shaikh",
+          "jersey": 13,
+          "position": "Goalkeeper",
+          "leadershipRole": "assistant"
+        }
+      ]
+    },
+    {
+      "id": "refuel-juicery-kickers",
+      "name": "Refuel Juicery Kickers",
+      "shortName": "RJK",
+      "logo": "./Logos/2024 Teams/refuel-juicery-kickers.png",
+      "logoBg": "#2a4b47",
+      "division": "Seniors",
+      "history": "Undefeated 2024 regular season table leader and 2024 finalist.",
+      "roster": [
+        {
+          "id": "abubakr-amirat",
+          "name": "Abubakr Amirat",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 9,
+          "position": "Forward",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "muhammad-hassan",
+          "name": "Muhammad Hassan",
+          "jersey": 3,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-iqrash",
+          "name": "Muhammad Iqrash",
+          "photo": "./Logos/Player Pics/Muhammad Iqrash.png",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-zaidan",
+          "name": "Muhammad Zaidan",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "reda-alijalam",
+          "name": "Mohamad Reda Alijalam",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "omar-ajmal",
+          "name": "Omar Ajmal",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "subhanullah-sharza",
+          "name": "Subhanullah Sharza",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "sufyan-munshi",
+          "name": "Sufyan Munshi",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "taha-ahmed",
+          "name": "Taha Ahmed",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "umar-nakhuda",
+          "name": "Umar Nakhuda",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "yousuf-haqqani",
+          "name": "Yousuf Haqqani",
+          "jersey": 12,
+          "position": "Field"
+        },
+        {
+          "id": "ziyad-adam",
+          "name": "Ziyad Adam",
+          "jersey": 13,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "saad-khan",
+          "name": "Saad Khan",
+          "jersey": 14,
+          "position": "Goalkeeper",
+          "leadershipRole": "assistant"
+        }
+      ]
+    },
+    {
+      "id": "shifa-pharmacy-fc",
+      "name": "Shifa Pharmacy F.C.",
+      "shortName": "SPF",
+      "logo": "./Logos/2024 Teams/shifa-pharmacy-fc.png",
+      "logoBg": "#94bcc5",
+      "division": "Seniors",
+      "coachId": "coach-aadil",
+      "coachName": "Aadil",
+      "history": "Season 1 champion coached by Aadil after defeating Refuel Juicery in the 2024 final.",
+      "roster": [
+        {
+          "id": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiyas Solyman",
+          "jersey": 1,
+          "position": "Field",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "ali-shadab-shaikh",
+          "name": "Ali Shadab Shaikh",
+          "jersey": 2,
+          "position": "Field"
+        },
+        {
+          "id": "ayaz-a-tutla",
+          "name": "Ayaz A Tutla",
+          "jersey": 3,
+          "position": "Field"
+        },
+        {
+          "id": "ayub-jan",
+          "name": "Ayub Jan",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "bayizedsha",
+          "name": "Bayizedsha",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "basir-ahmad-dastagiri",
+          "name": "Basir Ahmad Dastagiri",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "ilyas-salim",
+          "name": "Ilyas Salim",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-affan",
+          "name": "Muhammad Affan",
+          "jersey": 8,
+          "position": "Forward",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "mohammad-hamzah-wahab",
+          "name": "Mohammad hamzah wahab",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "taha-nakhuda",
+          "name": "Taha Nakhuda",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "tayyib-mohammed",
+          "name": "Tayyib Mohammad",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "tulha-ahmad",
+          "name": "Tulha Ahmad",
+          "jersey": 12,
+          "position": "Field"
+        },
+        {
+          "id": "aneeq-shaikh",
+          "name": "Aneeq Shaikh",
+          "jersey": 13,
+          "position": "Goalkeeper",
+          "leadershipRole": "assistant"
+        }
+      ]
+    },
+    {
+      "id": "jogiat-palace",
+      "name": "Jogiat Palace",
+      "shortName": "JOG",
+      "logo": "./Logos/2024 Teams/jogiat-palace.png",
+      "logoBg": "#08684c",
+      "division": "Seniors",
+      "history": "Finished third in the 2024 playoffs after a strong late-season push.",
+      "roster": [
+        {
+          "id": "aamir-jogiat",
+          "name": "Aamir Jogiat",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "abdur-rakib",
+          "name": "Abdur Rakib",
+          "jersey": 3,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "ayhaam-khalefa",
+          "name": "Ayhaam Khalefa",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "elyas-roien",
+          "name": "Elyas Roien",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "ismail-mohammed",
+          "name": "Ismail Mohammed",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "m-yahya",
+          "name": "M Yahya",
+          "jersey": 7,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-nakhuda",
+          "name": "Muhammad Nakhuda",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "mohamed-aathif",
+          "name": "Mohamed Aathif",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "jersey": 6,
+          "position": "Forward",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "zakariya-chhibu",
+          "name": "Zakariya Chhibu",
+          "jersey": 12,
+          "position": "Field"
+        },
+        {
+          "id": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "jersey": 13,
+          "position": "Goalkeeper"
+        }
+      ]
+    },
+    {
+      "id": "asif-gangat-united",
+      "name": "Asif Gangat United",
+      "shortName": "AGU",
+      "logo": "./Logos/2024 Teams/asif-gangat-united.png",
+      "logoBg": "#766078",
+      "division": "Seniors",
+      "history": "A 2024 playoff qualifier with one of the league's top scorers in Hafizullah.",
+      "roster": [
+        {
+          "id": "abdul-basit-mesbah",
+          "name": "Abdul Basit Mesbah",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "azizullah",
+          "name": "Azizullah",
+          "jersey": 2,
+          "position": "Field"
+        },
+        {
+          "id": "hafizullah",
+          "name": "Hafizullah",
+          "jersey": 3,
+          "position": "Forward",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "hamzah-gangat",
+          "name": "Hamzah Gangat",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "huzaifa-ahmad-vadia",
+          "name": "Huzaifa Ahmad Vadia",
+          "jersey": 5,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-badin",
+          "name": "Muhammad Badin",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "muhammad-salim",
+          "name": "Muhammad Salim",
+          "jersey": 7,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "muhammad-okasha",
+          "name": "Muhammad Okasha",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "mussadiq-khan",
+          "name": "Mussadiq Khan",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "rehan-ahmad",
+          "name": "Rehan Ahmad",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "rizwaan-amirat",
+          "name": "Rizwaan Amirat",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "rizwan-khan",
+          "name": "Rizwan Khan",
+          "jersey": 12,
+          "position": "Field"
+        },
+        {
+          "id": "saifan-mohammed",
+          "name": "Saifan Mohammed",
+          "jersey": 13,
+          "position": "Field"
+        }
+      ]
+    },
+    {
+      "id": "umer-memon-fc",
+      "name": "Umer Memon F.C.",
+      "shortName": "UMF",
+      "logo": "./Logos/2024 Teams/umer-memon-fc.png",
+      "logoBg": "#d8d3d3",
+      "division": "Seniors",
+      "history": "Made a 2024 playoff run from the lower seed and pushed Refuel Juicery in the semifinals.",
+      "roster": [
+        {
+          "id": "anan-abrar",
+          "name": "Anan Abrar",
+          "jersey": 1,
+          "position": "Field"
+        },
+        {
+          "id": "asad-khan",
+          "name": "Asad Khan",
+          "jersey": 2,
+          "position": "Field"
+        },
+        {
+          "id": "bashir-ahmad-dastagiri",
+          "name": "Bashir Ahmad Dadtagiri",
+          "jersey": 3,
+          "position": "Field"
+        },
+        {
+          "id": "bilal-sami-ahmad",
+          "name": "Bilal Sami Ahmad",
+          "jersey": 4,
+          "position": "Field"
+        },
+        {
+          "id": "haroon-sarood",
+          "name": "Haroon Sarood",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": "captain"
+        },
+        {
+          "id": "hashir-hassan",
+          "name": "Hashir Hassan",
+          "jersey": 6,
+          "position": "Field"
+        },
+        {
+          "id": "ibrahim-mohamed",
+          "name": "Ibrahim Mohamed",
+          "jersey": 56,
+          "position": "Field"
+        },
+        {
+          "id": "imran-abdulimiti",
+          "name": "Imran Abdulimiti",
+          "jersey": 8,
+          "position": "Field"
+        },
+        {
+          "id": "md-ismail-rayyan",
+          "name": "MD Ismail Rayyan",
+          "jersey": 9,
+          "position": "Field"
+        },
+        {
+          "id": "mubashir-khan",
+          "name": "Mubashir Khan",
+          "jersey": 10,
+          "position": "Field"
+        },
+        {
+          "id": "mubeen-tagari",
+          "name": "Mubeen Tagari",
+          "jersey": 11,
+          "position": "Field"
+        },
+        {
+          "id": "uwais-bemat",
+          "name": "Uwais Bemat",
+          "jersey": 12,
+          "position": "Field",
+          "leadershipRole": "assistant"
+        },
+        {
+          "id": "zain-adam",
+          "name": "Zain Adam",
+          "jersey": 13,
+          "position": "Field"
+        },
+        {
+          "id": "mohammed-rayyan-sayed",
+          "name": "Mohammed Rayyan Sayed",
+          "jersey": 14,
+          "position": "Goalkeeper",
+          "leadershipRole": "assistant"
+        }
+      ]
+    }
+  ]
+}

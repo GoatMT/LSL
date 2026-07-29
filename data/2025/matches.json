@@ -1,0 +1,1045 @@
+{
+  "season": "2025",
+  "matches": [
+    {
+      "id": "2025-pre-g1",
+      "week": 0,
+      "label": "Preseason exhibition",
+      "stage": "exhibition",
+      "division": "Seniors",
+      "date": "2025-06-14",
+      "time": "9:00 AM",
+      "homeTeamId": "asif-gangat-united-2025",
+      "awayTeamId": "umer-memon-fc-2025",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "Exhibition",
+      "scorers": [],
+      "assists": []
+    },
+    {
+      "id": "2025-w1-g1",
+      "week": 1,
+      "label": "Week 1",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-06-21",
+      "time": "9:50 AM",
+      "homeTeamId": "im-construction-sc",
+      "awayTeamId": "amax-optical-kickers",
+      "homeScore": 5,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "goals": 2
+        },
+        {
+          "playerId": "amadu",
+          "name": "Amadu",
+          "goals": 2
+        },
+        {
+          "playerId": "omar-ajmal",
+          "name": "O. Ajmal",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w1-g2",
+      "week": 1,
+      "label": "Week 1",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-06-21",
+      "time": "10:40 AM",
+      "homeTeamId": "refuel-juicery-athletic",
+      "awayTeamId": "umer-memon-fc-2025",
+      "homeScore": 4,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mohammed-ibrahim",
+          "name": "M. Ibrahim",
+          "goals": 2
+        },
+        {
+          "playerId": "nasibullah",
+          "name": "Nasibullah",
+          "goals": 1
+        },
+        {
+          "playerId": "m-yahya",
+          "name": "M. Yahya",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w1-g3",
+      "week": 1,
+      "label": "Week 1",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-06-21",
+      "time": "9:00 AM",
+      "homeTeamId": "asif-gangat-united-2025",
+      "awayTeamId": "islamic-bookstore-runners",
+      "homeScore": 3,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "goals": 2
+        },
+        {
+          "name": "Own Goal",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w2-g1",
+      "week": 2,
+      "label": "Week 2",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-06-28",
+      "homeTeamId": "refuel-juicery-athletic",
+      "awayTeamId": "im-construction-sc",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "reda-alijalam",
+          "name": "Mohamad Reda Alijalam",
+          "goals": 1
+        },
+        {
+          "playerId": "amadu",
+          "name": "Amadu",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w2-g2",
+      "week": 2,
+      "label": "Week 2",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-06-28",
+      "homeTeamId": "asif-gangat-united-2025",
+      "awayTeamId": "umer-memon-fc-2025",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w2-g3",
+      "week": 2,
+      "label": "Week 2",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-06-28",
+      "homeTeamId": "amax-optical-kickers",
+      "awayTeamId": "islamic-bookstore-runners",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "subhan-ali-syed",
+          "name": "Subhan Ali Syed",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w3-g1",
+      "week": 3,
+      "label": "Week 3",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-07-05",
+      "homeTeamId": "umer-memon-fc-2025",
+      "awayTeamId": "im-construction-sc",
+      "homeScore": 2,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "muhammad-teli",
+          "name": "Muhummud T.",
+          "goals": 1
+        },
+        {
+          "playerId": "abdul-ahad-muabir",
+          "name": "Abdul Ahad",
+          "goals": 1
+        },
+        {
+          "playerId": "amadu",
+          "name": "Amadu",
+          "goals": 1
+        },
+        {
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w3-g2",
+      "week": 3,
+      "label": "Week 3",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-07-05",
+      "homeTeamId": "asif-gangat-united-2025",
+      "awayTeamId": "amax-optical-kickers",
+      "homeScore": 5,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "goals": 3
+        },
+        {
+          "playerId": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiya Solyman",
+          "goals": 2
+        },
+        {
+          "playerId": "mohammed-hasan",
+          "name": "Mohammed Hasan",
+          "goals": 2
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w3-g3",
+      "week": 3,
+      "label": "Week 3",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-07-05",
+      "homeTeamId": "refuel-juicery-athletic",
+      "awayTeamId": "islamic-bookstore-runners",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "goals": 1
+        },
+        {
+          "playerId": "mudassir",
+          "name": "Mudassir",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w4-g1",
+      "week": 4,
+      "label": "Week 4",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-07-12",
+      "homeTeamId": "asif-gangat-united-2025",
+      "awayTeamId": "refuel-juicery-athletic",
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "goals": 1
+        },
+        {
+          "playerId": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiya Solyman",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w4-g2",
+      "week": 4,
+      "label": "Week 4",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-07-12",
+      "homeTeamId": "umer-memon-fc-2025",
+      "awayTeamId": "amax-optical-kickers",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 7,
+          "goals": 1
+        },
+        {
+          "playerId": "taha-nakhuda",
+          "name": "Taaha Nakhuda",
+          "jersey": 3,
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Updated result: 1-1 tie. Muzamil Kharooti #7 scored for Umer Memon; Taaha Nakhuda #3 scored for Amax Optical."
+      ]
+    },
+    {
+      "id": "2025-w4-g3",
+      "week": 4,
+      "label": "Week 4",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-07-12",
+      "homeTeamId": "im-construction-sc",
+      "awayTeamId": "islamic-bookstore-runners",
+      "homeScore": 4,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "goals": 1
+        },
+        {
+          "playerId": "amadu",
+          "name": "Amadu",
+          "goals": 1
+        },
+        {
+          "playerId": "abdul-basit-mesbah",
+          "name": "Abdul Basit Mesbah",
+          "goals": 1
+        },
+        {
+          "playerId": "mohammed-ali-siddiqui",
+          "name": "Mohammed Ali Siddiqui",
+          "goals": 1
+        },
+        {
+          "playerId": "mudassir",
+          "name": "Mudassir",
+          "goals": 2
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w5-g1",
+      "week": 5,
+      "label": "Week 5 final week",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-07-19",
+      "homeTeamId": "refuel-juicery-athletic",
+      "awayTeamId": "amax-optical-kickers",
+      "homeScore": 4,
+      "awayScore": 3,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mohammed-ibrahim",
+          "name": "M. Ibrahim",
+          "goals": 2
+        },
+        {
+          "playerId": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "goals": 1
+        },
+        {
+          "name": "Own Goal by Amax Optical",
+          "goals": 1
+        },
+        {
+          "playerId": "mohammed-hasan",
+          "name": "Mohammed Hasan",
+          "goals": 2
+        },
+        {
+          "playerId": "uthman",
+          "name": "Uthman",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-w5-g2",
+      "week": 5,
+      "label": "Week 5 final week",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-07-19",
+      "homeTeamId": "umer-memon-fc-2025",
+      "awayTeamId": "islamic-bookstore-runners",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "goals": 2
+        },
+        {
+          "playerId": "ahmad-ingar",
+          "name": "Ahmad Ingar",
+          "jersey": 5,
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Updated scorer: Ahmad Ingar #5 scored for Islamic Bookstore."
+      ]
+    },
+    {
+      "id": "2025-w5-g3",
+      "week": 5,
+      "label": "Week 5 final week",
+      "stage": "regular",
+      "division": "Seniors",
+      "date": "2025-07-19",
+      "homeTeamId": "im-construction-sc",
+      "awayTeamId": "asif-gangat-united-2025",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "goals": 1
+        },
+        {
+          "playerId": "amadu",
+          "name": "Amadu",
+          "goals": 1
+        },
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-p-qf1",
+      "week": 6,
+      "label": "Quarterfinal",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2025-07-26",
+      "homeTeamId": "umer-memon-fc-2025",
+      "awayTeamId": "amax-optical-kickers",
+      "homeScore": 3,
+      "awayScore": 0,
+      "winnerId": "umer-memon-fc-2025",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 7,
+          "goals": 2
+        },
+        {
+          "playerId": "adil-mubashir",
+          "name": "Adil Mubashir",
+          "jersey": 3,
+          "goals": 1
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Updated playoff result: Umer Memon defeated Amax Optical 3-0."
+      ]
+    },
+    {
+      "id": "2025-p-qf2",
+      "week": 6,
+      "label": "Quarterfinal",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2025-07-26",
+      "homeTeamId": "refuel-juicery-athletic",
+      "awayTeamId": "islamic-bookstore-runners",
+      "homeScore": 3,
+      "awayScore": 0,
+      "winnerId": "refuel-juicery-athletic",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "m-yahya",
+          "name": "M Yahya",
+          "jersey": 11,
+          "goals": 2
+        },
+        {
+          "playerId": "mohammed-ibrahim",
+          "name": "Mohammed Ibrahim",
+          "jersey": 8,
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-p-sf1",
+      "week": 6,
+      "label": "Semifinal",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2025-07-26",
+      "homeTeamId": "umer-memon-fc-2025",
+      "awayTeamId": "asif-gangat-united-2025",
+      "homeScore": 1,
+      "awayScore": 1,
+      "winnerId": "umer-memon-fc-2025",
+      "status": "Umer won 3-2 on penalties",
+      "scorers": [
+        {
+          "playerId": "yusuf-ahmed-baharustani",
+          "name": "Usuf",
+          "goals": 1
+        },
+        {
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-p-sf2",
+      "week": 6,
+      "label": "Semifinal",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2025-07-26",
+      "homeTeamId": "refuel-juicery-athletic",
+      "awayTeamId": "im-construction-sc",
+      "homeScore": 2,
+      "awayScore": 2,
+      "winnerId": "refuel-juicery-athletic",
+      "status": "Refuel won 3-1 on penalties",
+      "scorers": [
+        {
+          "playerId": "mohammed-ibrahim",
+          "name": "M. Ibrahim",
+          "goals": 1
+        },
+        {
+          "playerId": "reda-alijalam",
+          "name": "Mohamad Reda Alijalam",
+          "goals": 1
+        },
+        {
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "goals": 2
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-p-third",
+      "week": 7,
+      "label": "Third Place Match",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2025-08-09",
+      "homeTeamId": "asif-gangat-united-2025",
+      "awayTeamId": "im-construction-sc",
+      "homeScore": null,
+      "awayScore": null,
+      "winnerId": "im-construction-sc",
+      "status": "IM Construction SC 3rd place winner",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "IM Construction SC came 3rd. Score was not listed."
+      ]
+    },
+    {
+      "id": "2025-p-final",
+      "week": 7,
+      "label": "Grand Final",
+      "stage": "playoffs",
+      "division": "Seniors",
+      "date": "2025-08-09",
+      "homeTeamId": "umer-memon-fc-2025",
+      "awayTeamId": "refuel-juicery-athletic",
+      "homeScore": 1,
+      "awayScore": 0,
+      "winnerId": "umer-memon-fc-2025",
+      "status": "Umer Memon F.C. champion",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "2025 Grand Final official result."
+      ]
+    },
+    {
+      "id": "2025-jr-w1-g1",
+      "week": 1,
+      "label": "Week 1",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-06-14",
+      "homeTeamId": "dhahabiya-strikers",
+      "awayTeamId": "the-travel-builder-united",
+      "homeScore": 3,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "ajmal-shakkari",
+          "name": "Ajmal Shakkari",
+          "jersey": 10,
+          "goals": 3
+        },
+        {
+          "playerId": "arsham",
+          "name": "Arsham",
+          "jersey": 11,
+          "goals": 1
+        },
+        {
+          "playerId": "ammar-haque",
+          "name": "Ammar Haq",
+          "jersey": 4,
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-jr-w1-g2",
+      "week": 1,
+      "label": "Week 1",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-06-14",
+      "homeTeamId": "em-truck-repair-fc",
+      "awayTeamId": "rafik-enterprise-fc",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mubashir-kharooti",
+          "name": "M. Kharooti",
+          "jersey": 13,
+          "goals": 1
+        },
+        {
+          "playerId": "ibrahim-syed",
+          "name": "Ibrahim Syed",
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-jr-w2-g1",
+      "week": 2,
+      "label": "Week 2",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-06-21",
+      "homeTeamId": "em-truck-repair-fc",
+      "awayTeamId": "the-travel-builder-united",
+      "homeScore": 2,
+      "awayScore": 2,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mubashir-kharooti",
+          "name": "M. Kharooti",
+          "jersey": 13,
+          "goals": 1
+        },
+        {
+          "playerId": "murtaza-ahmadi",
+          "name": "Murtaza Ahmad",
+          "jersey": 8,
+          "goals": 1
+        },
+        {
+          "name": "Idrees Nawabi",
+          "goals": 1
+        },
+        {
+          "playerId": "arsham",
+          "name": "Arsham",
+          "jersey": 11,
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-jr-w2-g2",
+      "week": 2,
+      "label": "Week 2",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-06-21",
+      "homeTeamId": "dhahabiya-strikers",
+      "awayTeamId": "rafik-enterprise-fc",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "ajmal-shakkari",
+          "name": "Ajmal Shakkari",
+          "jersey": 10,
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-jr-w3-g1",
+      "week": 3,
+      "label": "Week 3",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-06-28",
+      "homeTeamId": "rafik-enterprise-fc",
+      "awayTeamId": "the-travel-builder-united",
+      "homeScore": 5,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "musaddiq-khan",
+          "name": "Musaddiq Khan",
+          "goals": 5
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "ilyas-salim",
+          "name": "Ilyas Salim",
+          "assists": 1
+        }
+      ]
+    },
+    {
+      "id": "2025-jr-w3-g2",
+      "week": 3,
+      "label": "Week 3",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-06-28",
+      "homeTeamId": "dhahabiya-strikers",
+      "awayTeamId": "em-truck-repair-fc",
+      "homeScore": 4,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "ajmal-shakkari",
+          "name": "Ajmal Shakkari",
+          "jersey": 10,
+          "goals": 3
+        },
+        {
+          "playerId": "hasibullah-kharooti",
+          "name": "Hasibullah Kharooti",
+          "jersey": 8,
+          "goals": 1
+        },
+        {
+          "playerId": "jamal-mujaddidi",
+          "name": "Jamal Mujadiddi",
+          "jersey": 5,
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-jr-w4-g1",
+      "week": 4,
+      "label": "Week 4",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-07-05",
+      "homeTeamId": "dhahabiya-strikers",
+      "awayTeamId": "the-travel-builder-united",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Scorers were not shown in the supplied image."
+      ]
+    },
+    {
+      "id": "2025-jr-w4-g2",
+      "week": 4,
+      "label": "Week 4 default",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-07-05",
+      "homeTeamId": "rafik-enterprise-fc",
+      "awayTeamId": "em-truck-repair-fc",
+      "homeScore": 2,
+      "awayScore": 0,
+      "winnerId": "rafik-enterprise-fc",
+      "status": "Rafik Enterprise FC won by default",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Default result counted as a 2-0 win for Rafik Enterprise FC in the standings."
+      ]
+    },
+    {
+      "id": "2025-jr-w5-g1",
+      "week": 5,
+      "label": "Week 5",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-07-12",
+      "homeTeamId": "rafik-enterprise-fc",
+      "awayTeamId": "dhahabiya-strikers",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "khan-19-rafik",
+          "name": "Khan",
+          "jersey": 19,
+          "goals": 1
+        },
+        {
+          "playerId": "ajmal-shakkari",
+          "name": "Shakkari",
+          "jersey": 10,
+          "goals": 1
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "mohammed-hammad-syed",
+          "name": "Syed",
+          "jersey": 4,
+          "assists": 1
+        }
+      ]
+    },
+    {
+      "id": "2025-jr-w5-g2",
+      "week": 5,
+      "label": "Week 5",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-07-12",
+      "homeTeamId": "em-truck-repair-fc",
+      "awayTeamId": "the-travel-builder-united",
+      "homeScore": 3,
+      "awayScore": 4,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "salman-em-juniors",
+          "name": "Salman",
+          "jersey": 15,
+          "goals": 2
+        },
+        {
+          "playerId": "mubashir-kharooti",
+          "name": "Kharooti",
+          "jersey": 13,
+          "goals": 1
+        },
+        {
+          "playerId": "umar-manjra",
+          "name": "Manjra",
+          "jersey": 7,
+          "goals": 1
+        },
+        {
+          "playerId": "ibad-travel-builder",
+          "name": "Ibad",
+          "jersey": 16,
+          "goals": 1
+        },
+        {
+          "playerId": "idrees-nawabi-travel",
+          "name": "Nawabi",
+          "jersey": 17,
+          "goals": 2
+        }
+      ],
+      "assists": [],
+      "notes": [
+        "Final standings count this game as 3-4. The supplied score graphic appeared to show 3-5 and Manjra/Manra #7 with two goals."
+      ]
+    },
+    {
+      "id": "2025-jr-w6-g1",
+      "week": 6,
+      "label": "Week 6",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-07-19",
+      "homeTeamId": "rafik-enterprise-fc",
+      "awayTeamId": "the-travel-builder-united",
+      "homeScore": 6,
+      "awayScore": 0,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "mohammed-hammad-syed",
+          "name": "Syed",
+          "jersey": 14,
+          "goals": 5
+        },
+        {
+          "playerId": "ilyas-salim",
+          "name": "Ilyas",
+          "jersey": 20,
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-jr-w6-g2",
+      "week": 6,
+      "label": "Week 6",
+      "stage": "regular",
+      "division": "Juniors",
+      "date": "2025-07-19",
+      "homeTeamId": "dhahabiya-strikers",
+      "awayTeamId": "em-truck-repair-fc",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "ajmal-shakkari",
+          "name": "Shakkari",
+          "jersey": 10,
+          "goals": 2
+        },
+        {
+          "playerId": "mubashir-kharooti",
+          "name": "Kharooti",
+          "jersey": 13,
+          "goals": 1
+        }
+      ],
+      "assists": []
+    },
+    {
+      "id": "2025-jp-sf1",
+      "week": 7,
+      "label": "Semifinal",
+      "stage": "playoffs",
+      "division": "Juniors",
+      "date": "2025-07-26",
+      "homeTeamId": "dhahabiya-strikers",
+      "awayTeamId": "em-truck-repair-fc",
+      "homeScore": 2,
+      "awayScore": 0,
+      "winnerId": "dhahabiya-strikers",
+      "status": "Dhahabiya advanced by default",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Dhahabiya Strikers advanced by default after EM Truck Repair FC forfeited."
+      ]
+    },
+    {
+      "id": "2025-jp-sf2",
+      "week": 7,
+      "label": "Semifinal",
+      "stage": "playoffs",
+      "division": "Juniors",
+      "date": "2025-07-26",
+      "homeTeamId": "rafik-enterprise-fc",
+      "awayTeamId": "the-travel-builder-united",
+      "homeScore": 3,
+      "awayScore": 0,
+      "winnerId": "rafik-enterprise-fc",
+      "status": "Complete",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Rafik Enterprise FC advanced to the final with a 3-0 semifinal win."
+      ]
+    },
+    {
+      "id": "2025-jp-final",
+      "week": 8,
+      "label": "Grand Final",
+      "stage": "playoffs",
+      "division": "Juniors",
+      "date": "2025-08-09",
+      "homeTeamId": "dhahabiya-strikers",
+      "awayTeamId": "rafik-enterprise-fc",
+      "homeScore": 2,
+      "awayScore": 1,
+      "winnerId": "dhahabiya-strikers",
+      "status": "Dhahabiya Strikers junior champions",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Dhahabiya Strikers defeated Rafik Enterprise FC 2-1 to win the 2025 Junior League championship."
+      ]
+    }
+  ]
+}

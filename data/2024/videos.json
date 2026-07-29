@@ -1,0 +1,137 @@
+{
+  "season": "2024",
+  "videos": [
+    {
+      "id": "2024-video-01",
+      "title": "Week 5 Highlights",
+      "division": "Seniors",
+      "category": "Playoffs",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 senior highlight clip.",
+      "videoUrl": "./Videos/2024/A%20couple%20goals%2C%20plays%20and%20celebrations%20from%20week%205!Who%E2%80%99s%20ready%20for%20playoffs.mp4",
+      "matchReference": "Playoffs"
+    },
+    {
+      "id": "2024-video-02",
+      "title": "Midseason Recap",
+      "division": "Seniors",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 senior highlight clip.",
+      "videoUrl": "./Videos/2024/Alhumdulillah%20we%20have%20reached%20the%20mid%20season%20mark%20of%20our%20tournament.%20Jazakallah%20Khair%20to%20everyon.mp4",
+      "matchReference": "Highlights"
+    },
+    {
+      "id": "2024-video-03",
+      "title": "Week 2 Highlights",
+      "division": "Seniors",
+      "category": "Weekly Highlights",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 senior highlight clip.",
+      "videoUrl": "./Videos/2024/Another%20great%20week%20at%20Lantern%20Soccer%20League%20Alhamdulillah%2C%20enjoy%20our%20top%20highlights%20from%20week%202!.mp4",
+      "matchReference": "Weekly Highlights"
+    },
+    {
+      "id": "2024-video-04",
+      "title": "Playoff Highlight 1",
+      "division": "Seniors",
+      "category": "Playoffs",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 playoff clip.",
+      "videoUrl": "./Videos/2024/Playoff%20Highlights.%20Jogiatpalace%20advances%20to%20semis%20by%20winning%203-2%20against%20silver%20suits%20in%20penalt%20(1).mp4",
+      "matchReference": "Playoffs"
+    },
+    {
+      "id": "2024-video-05",
+      "title": "Playoff Highlight 2",
+      "division": "Seniors",
+      "category": "Playoffs",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 playoff clip.",
+      "videoUrl": "./Videos/2024/Playoff%20Highlights.%20Jogiatpalace%20advances%20to%20semis%20by%20winning%203-2%20against%20silver%20suits%20in%20penalt%20(2).mp4",
+      "matchReference": "Playoffs"
+    },
+    {
+      "id": "2024-video-06",
+      "title": "Playoff Highlight 3",
+      "division": "Seniors",
+      "category": "Playoffs",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 playoff clip.",
+      "videoUrl": "./Videos/2024/Playoff%20Highlights.%20Jogiatpalace%20advances%20to%20semis%20by%20winning%203-2%20against%20silver%20suits%20in%20penalt%20(3).mp4",
+      "matchReference": "Playoffs"
+    },
+    {
+      "id": "2024-video-07",
+      "title": "Playoff Highlight 4",
+      "division": "Seniors",
+      "category": "Playoffs",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 playoff clip.",
+      "videoUrl": "./Videos/2024/Playoff%20Highlights.%20Jogiatpalace%20advances%20to%20semis%20by%20winning%203-2%20against%20silver%20suits%20in%20penalt%20(4).mp4",
+      "matchReference": "Playoffs"
+    },
+    {
+      "id": "2024-video-08",
+      "title": "Playoff Highlight 5",
+      "division": "Seniors",
+      "category": "Playoffs",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 playoff clip.",
+      "videoUrl": "./Videos/2024/Playoff%20Highlights.%20Jogiatpalace%20advances%20to%20semis%20by%20winning%203-2%20against%20silver%20suits%20in%20penalt%20(5).mp4",
+      "matchReference": "Playoffs"
+    },
+    {
+      "id": "2024-video-09",
+      "title": "Playoff Highlight 6",
+      "division": "Seniors",
+      "category": "Playoffs",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 playoff clip.",
+      "videoUrl": "./Videos/2024/Playoff%20Highlights.%20Jogiatpalace%20advances%20to%20semis%20by%20winning%203-2%20against%20silver%20suits%20in%20penalt%20(6).mp4",
+      "matchReference": "Playoffs"
+    },
+    {
+      "id": "2024-video-10",
+      "title": "Playoff Highlight 7",
+      "division": "Seniors",
+      "category": "Playoffs",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 playoff clip.",
+      "videoUrl": "./Videos/2024/Playoff%20Highlights.%20Jogiatpalace%20advances%20to%20semis%20by%20winning%203-2%20against%20silver%20suits%20in%20penalt%20(7).mp4",
+      "matchReference": "Playoffs"
+    },
+    {
+      "id": "2024-video-11",
+      "title": "Playoff Highlight 8",
+      "division": "Seniors",
+      "category": "Playoffs",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 playoff clip.",
+      "videoUrl": "./Videos/2024/Playoff%20Highlights.%20Jogiatpalace%20advances%20to%20semis%20by%20winning%203-2%20against%20silver%20suits%20in%20penalt.mp4",
+      "matchReference": "Playoffs"
+    }
+  ]
+}
