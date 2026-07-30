@@ -3,7 +3,7 @@ import { loadAllSeasons } from "../js/dataLoader.js";
 import { computeCoachSummary, computeCombinedPlayerStats } from "../js/leagueEngine.js";
 import { escapeHTML } from "../js/utils.js";
 
-const MAIN_NAV_HREFS = new Set(["index.html", "news.html", "matchday.html", "standings.html", "matches.html", "teams.html", "tournament.html"]);
+const MAIN_NAV_HREFS = new Set(["index.html", "news.html", "matchday.html", "standings.html", "matches.html", "playoffs.html", "tournament.html"]);
 
 export function renderNavbar(activeHref = "") {
   const primary = NAV_LINKS.filter((link) => MAIN_NAV_HREFS.has(link.href));
