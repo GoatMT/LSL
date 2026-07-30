@@ -1,12 +1,52 @@
 {
   "articles": [
     {
+      "id": "mudassir-breaks-alltime-regular-season-goal-record",
+      "category": "Record Watch",
+      "storyLabel": "History Made",
+      "isDeveloping": false,
+      "reportStatus": "Confirmed Record",
+      "isLatest": true,
+      "headline": "Mudassir Breaks the All-Time Record: Leeward Lions Star Passes Muzamil Kharooti and the Once-Unbeatable Hafizullah Mark",
+      "subtitle": "A three-goal Week 6 performance pushed Mudassir to 19 career regular-season goals in just 11 games, the most in LSL history, and left both Muzamil Kharooti and the retired Hafizullah behind him on the all-time list.",
+      "date": "July 30, 2026",
+      "time": "Record feature",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Leeward Lions.jpg",
+      "heroImage": "./Logos/2026 Teams/Leeward Lions.jpg",
+      "tags": ["Record Watch", "Mudassir", "Muzamil Kharooti", "Hafizullah", "Leeward Lions", "EM Haulers FC", "Regular Season Record", "Week 6"],
+      "playerProfiles": [
+        { "id": "mudassir", "label": "View Mudassir Profile" },
+        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" },
+        { "id": "hafizullah", "label": "View Hafizullah Profile" }
+      ],
+      "caption": "Mudassir's 19 career regular-season goals now stand alone as the highest total in LSL history.",
+      "related": [
+        { "label": "Where It Started", "articleId": "hafizullah-retires-at-17", "title": "Hafizullah Retires at 17, Leaving Behind One of LSL's Best Careers" },
+        { "label": "The First Challenger", "articleId": "muzamil-ties-hafizullah-goal-record", "title": "Hafizullah Retired, Muzamil Kharooti Ties Regular-Season Goal Record at 13" },
+        { "label": "Week 6 Recap", "articleId": "week-6-recap-leeward-em-amax-rawaha", "title": "Week 6 Recap: Sharp Edge Leeward as EM Win Another 4-3 Thriller" }
+      ],
+      "body": [
+        "For most of the 2026 season, the biggest number in LSL history belonged to Muzamil Kharooti. As of Week 6, it belongs to Mudassir.",
+        "Leeward Lions lost their Week 6 matchup with Sharp Strikers 5-4 on July 25, but Mudassir's personal night was historic regardless of the result. His three goals in the loss pushed his career regular-season total to 19 goals in only 11 regular-season games, the highest regular-season goal total any player has recorded in LSL history, ahead of both Muzamil Kharooti and the retired Hafizullah.",
+        "The record's origin traces back to Hafizullah, who retired at 17 after two seasons with Asif Gangat United. He finished his regular-season career with 13 goals in 10 games, a mark built on efficiency as much as volume, and one that looked untouchable the moment he stepped away from the game in June.",
+        "Muzamil Kharooti was the first to reach him. His two goals in EM Haulers FC's 9-4 Week 1 win tied Hafizullah's mark at 13. Two weeks later, a four-goal outburst against Rawaha Royals pushed Muzamil to 17 and put him alone at the top for the first time. A goal in the Week 4 win over Refuel Rovers made it 18, where his regular-season total has sat since.",
+        "Mudassir's path to the record was quieter. He managed just 3 goals in 5 games in his prior season, nothing that suggested a record chase was coming. Then 2026 happened: 1 goal in the Week 1 draw, 3 in the Week 2 rout of Gangat Warriors, 3 more in Week 3 against Amax Visionaries, 5 in the Week 4 blowout of Memon Mavericks, the lone goal in Leeward's tense 1-0 Week 5 win over EM Haulers FC, and 3 more in the Week 6 loss to Sharp Strikers. That is 16 regular-season goals in six games this season alone.",
+        "The record actually changed hands in Week 4, without much fanfare. Mudassir's five-goal game that day carried his career regular-season total from 10 to 15, quietly passing Hafizullah's long-standing mark while the headlines that week focused on Leeward's 8-2 scoreline. Two weeks later, his Week 6 hat trick carried him from 16 to 19, moving him past Muzamil Kharooti's 18 for outright ownership of the record.",
+        "The efficiency gap is the part that separates this from a simple volume record. Mudassir has produced his 19 goals and 1 assist across only 11 regular-season games, a rate of about 1.82 points per game. Muzamil's 18 goals across 16 regular-season games work out to roughly 1.13 points per game, and Hafizullah's 13 goals in 10 games sit at about 1.3. Mudassir set the new career mark in fewer games than Hafizullah needed to set the old one.",
+        "One record still belongs to Muzamil, for now. Once playoff goals are added in, Muzamil's all-time career total sits at 20 goals across 21 games to Mudassir's 19 across 12, since Muzamil has an extra season and a longer playoff resume behind him. But add assists into the mix and the two are dead even at 20 career points apiece, with Mudassir needing nine fewer games to get there. The next goal or assist Mudassir records, in any game, moves him into sole possession of that mark as well.",
+        "The single-season record fell even harder. Before this year, the mark for regular-season goals in one season was 8, shared by Muzamil in 2024 and Hafizullah in 2025. Mudassir has already scored 16 in 2026 alone, doubling the old single-season record with games still left to play before the regular season closes on August 8.",
+        "None of this makes the record permanent. Muzamil Kharooti is still active every week for EM Haulers FC and has already shown he can add four goals in a single afternoon. Hafizullah, meanwhile, has been spotted at recent LSL matchdays helping set up cones for the Juniors sessions, a reminder that his name built the record Mudassir just broke, even if it no longer belongs to him.",
+        "For now, the number to beat is 19, and the player holding it plays every Saturday for Leeward Lions."
+      ]
+    },
+    {
       "id": "week-6-recap-leeward-em-amax-rawaha",
       "category": "Results",
       "storyLabel": "Week 6 Recap",
       "isDeveloping": false,
       "reportStatus": "Reported Result",
-      "isLatest": true,
+      "isLatest": false,
       "headline": "Week 6 Recap: Sharp Edge Leeward as EM Win Another 4-3 Thriller",
       "subtitle": "Sharp Strikers, Amax Visionaries, EM Haulers FC, and Rawaha Royals all picked up senior division wins on July 25.",
       "date": "July 25, 2026",

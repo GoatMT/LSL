@@ -1,6 +1,13 @@
 {
   "items": [
     {
+      "label": "Record Watch",
+      "homeFeatured": true,
+      "message": "Mudassir has broken the all-time LSL regular-season goal record. His Week 6 hat trick in a 5-4 loss to Sharp Strikers pushed his career regular-season total to 19 goals in 11 games, passing Muzamil Kharooti's 18 and the retired Hafizullah's 13.",
+      "source": "LSL News Desk / record watch",
+      "date": "July 30, 2026"
+    },
+    {
       "label": "Week 6 Recap",
       "homeFeatured": true,
       "message": "Week 6 is posted: Sharp Strikers beat Leeward Lions 5-4, Amax Visionaries beat Memon Mavericks 2-0, EM Haulers FC beat Gangat Warriors 4-3, and Rawaha Royals beat Refuel Rovers 2-0.",
