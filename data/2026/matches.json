@@ -1081,6 +1081,18 @@
           "teamId": "leeward-lions",
           "name": "Muhummud Teli",
           "goals": 1
+        },
+        {
+          "playerId": "m-yahya",
+          "teamId": "sharp-strikers",
+          "name": "M Yahya",
+          "goals": 3
+        },
+        {
+          "playerId": "rehan-ahmed-mohammed",
+          "teamId": "sharp-strikers",
+          "name": "Rehan Mohammed",
+          "goals": 2
         }
       ],
       "assists": [],
@@ -1088,7 +1100,8 @@
         "Sharp Strikers defeated Leeward Lions 5-4 in Week 6.",
         "Mudassir scored three goals for Leeward Lions.",
         "Muhummud Teli scored for Leeward Lions.",
-        "Additional scorer details are coming soon."
+        "M Yahya scored three goals for Sharp Strikers.",
+        "Rehan Mohammed scored twice for Sharp Strikers."
       ]
     },
     {
@@ -1101,15 +1114,42 @@
       "time": "10:00 AM - 10:45 AM",
       "homeTeamId": "amax-visionaries",
       "awayTeamId": "memon-mavericks",
-      "homeScore": 2,
-      "awayScore": 0,
+      "homeScore": 4,
+      "awayScore": 2,
       "winnerId": "amax-visionaries",
       "status": "Complete",
-      "scorers": [],
+      "scorers": [
+        {
+          "playerId": "adil-mubashir",
+          "teamId": "amax-visionaries",
+          "name": "Adil Mubashir",
+          "goals": 3
+        },
+        {
+          "playerId": "uzair-sidat",
+          "teamId": "amax-visionaries",
+          "name": "Uzair Sidat",
+          "goals": 1
+        },
+        {
+          "playerId": "hasan-hamraz",
+          "teamId": "memon-mavericks",
+          "name": "Hasan Hamraz",
+          "goals": 1
+        },
+        {
+          "playerId": "nasibullah",
+          "teamId": "memon-mavericks",
+          "name": "Nasibullah Barak",
+          "goals": 1
+        }
+      ],
       "assists": [],
       "notes": [
-        "Amax Visionaries defeated Memon Mavericks 2-0 in Week 6.",
-        "Scorer details are coming soon."
+        "Amax Visionaries defeated Memon Mavericks 4-2 in Week 6.",
+        "Adil Mubashir scored three goals for Amax Visionaries.",
+        "Uzair Sidat scored for Amax Visionaries.",
+        "Hasan Hamraz and Nasibullah Barak each scored for Memon Mavericks."
       ]
     },
     {
@@ -1169,11 +1209,18 @@
       "awayScore": 0,
       "winnerId": "rawaha-royals",
       "status": "Complete",
-      "scorers": [],
+      "scorers": [
+        {
+          "playerId": "mohammed-ibrahim",
+          "teamId": "rawaha-royals",
+          "name": "Mohammad Ibrahim",
+          "goals": 2
+        }
+      ],
       "assists": [],
       "notes": [
         "Rawaha Royals defeated Refuel Rovers 2-0 in Week 6.",
-        "Scorer details are coming soon."
+        "Mohammad Ibrahim scored both Rawaha Royals goals."
       ]
     },
     {
