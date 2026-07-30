@@ -1,7 +1,7 @@
 import { renderMatchCard } from "../components/matchCard.js";
 import { renderPlayoffBracket } from "../components/playoffBracket.js";
 import { renderStandingsTable } from "../components/standingsTable.js?v=3.1";
-import { PLAYOFF_RULES, SITE } from "./config.js";
+import { playoffRulesFor, SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js";
 import { filterMatches, getWeeks, standingsWithMovement } from "./leagueEngine.js?v=3.2";
 import { setupLayout } from "./main.js";
@@ -36,7 +36,7 @@ function divisionOptions(data) {
 function render(data) {
   const divisions = divisionOptions(data);
   if (!divisions.includes(state.division)) state.division = divisions[0] || "Seniors";
-  const rule = PLAYOFF_RULES[state.division];
+  const rule = playoffRulesFor(data.year, state.division);
   const weeks = weekOptions(data);
   if (!weeks.some((item) => String(item.value) === String(state.week))) state.week = "all";
 

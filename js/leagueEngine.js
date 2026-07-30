@@ -1,4 +1,4 @@
-import { PLAYOFF_RULES } from "./config.js";
+import { playoffRulesFor } from "./config.js";
 import { byId, formatPercent, unique } from "./utils.js";
 
 export function teamMap(data) {
@@ -164,7 +164,7 @@ export function calculateStandings(data, { division = "Seniors", upToWeek = "all
         .map((candidate, candidateIndex) => (sameStandingsRank(row, candidate) ? candidateIndex + 1 : null))
         .filter(Boolean);
       const rankLabel = tieIndexes.length > 1 ? `${tieIndexes[0]}/${tieIndexes.at(-1)}` : String(rank);
-      const rule = PLAYOFF_RULES[division] || {};
+      const rule = playoffRulesFor(data.year, division);
       return {
         ...row,
         rank,

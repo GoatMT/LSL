@@ -148,7 +148,7 @@
       ],
       "strength": "Elite scoring ceiling and a strong start.",
       "weakness": "Needs to keep discipline tight in emotional games.",
-      "explanation": "EM Haulers FC are no longer perfect, but their scoring profile still keeps them projected for a semifinal bye."
+      "explanation": "EM Haulers FC are no longer perfect, but their scoring profile still keeps them projected as the top seed heading into the eight-team playoff bracket."
     },
     {
       "teamId": "sharp-strikers",
@@ -913,7 +913,7 @@
     }
   ],
   "playoffs": {
-    "formatNote": "Projected senior playoff format from the current-adjusted table: top 2 get byes, 3rd vs 6th, 4th vs 5th, then semifinals and final.",
+    "formatNote": "Projected senior playoff format from the current-adjusted table: eight teams qualify, no byes. Quarterfinals are 1 vs 8, 2 vs 7, 3 vs 6, and 4 vs 5, followed by semifinals and the final. All rounds are scheduled for Saturday, August 8, 2026.",
     "championTeamId": "em-haulers-fc",
     "championNote": "Projected champion only. EM Haulers FC are the current pick because they sit first after Week 6 and have one of the strongest scoring cores.",
     "rounds": [
@@ -922,6 +922,63 @@
         "matches": [
           {
             "label": "Q1",
+            "homeTeamId": "em-haulers-fc",
+            "homeSeed": 1,
+            "awayTeamId": "memon-mavericks",
+            "awaySeed": 8,
+            "homeScore": 5,
+            "awayScore": 0,
+            "winnerTeamId": "em-haulers-fc",
+            "note": "Projected winner: EM Haulers FC",
+            "scorers": {
+              "home": [
+                {
+                  "name": "Haroon Ahmadi",
+                  "goals": 2
+                },
+                {
+                  "name": "Muzamil Kharooti",
+                  "goals": 2
+                },
+                {
+                  "name": "Mohammed Wahedi"
+                }
+              ],
+              "away": []
+            }
+          },
+          {
+            "label": "Q2",
+            "homeTeamId": "sharp-strikers",
+            "homeSeed": 2,
+            "awayTeamId": "gangat-warriors",
+            "awaySeed": 7,
+            "homeScore": 4,
+            "awayScore": 1,
+            "winnerTeamId": "sharp-strikers",
+            "note": "Projected winner: Sharp Strikers",
+            "scorers": {
+              "home": [
+                {
+                  "name": "M Yahya",
+                  "goals": 2
+                },
+                {
+                  "name": "Marwan Ahmed"
+                },
+                {
+                  "name": "Rehan Mohammed"
+                }
+              ],
+              "away": [
+                {
+                  "name": "Taaha Nakhuda"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Q3",
             "homeTeamId": "leeward-lions",
             "homeSeed": 3,
             "awayTeamId": "amax-visionaries",
@@ -950,7 +1007,7 @@
             }
           },
           {
-            "label": "Q2",
+            "label": "Q4",
             "homeTeamId": "refuel-rovers",
             "homeSeed": 4,
             "awayTeamId": "rawaha-royals",
@@ -984,12 +1041,12 @@
             "label": "S1",
             "homeTeamId": "em-haulers-fc",
             "homeSeed": 1,
-            "awayTeamId": "leeward-lions",
-            "awaySeed": 3,
+            "awayTeamId": "refuel-rovers",
+            "awaySeed": 4,
             "homeScore": 3,
-            "awayScore": 2,
+            "awayScore": 1,
             "winnerTeamId": "em-haulers-fc",
-            "note": "Projected #1 seed vs projected Q1 winner",
+            "note": "Projected Q1 winner (1 vs 8) vs projected Q4 winner (4 vs 5). No byes in the 8-team format.",
             "scorers": {
               "home": [
                 {
@@ -1004,10 +1061,7 @@
               ],
               "away": [
                 {
-                  "name": "Mudassir"
-                },
-                {
-                  "name": "Ajmal Chakkari"
+                  "name": "Abdul Ghiyas Solyman"
                 }
               ]
             }
@@ -1016,12 +1070,12 @@
             "label": "S2",
             "homeTeamId": "sharp-strikers",
             "homeSeed": 2,
-            "awayTeamId": "refuel-rovers",
-            "awaySeed": 4,
+            "awayTeamId": "leeward-lions",
+            "awaySeed": 3,
             "homeScore": 3,
             "awayScore": 2,
             "winnerTeamId": "sharp-strikers",
-            "note": "Projected #2 seed vs projected Q2 winner",
+            "note": "Projected Q2 winner (2 vs 7) vs projected Q3 winner (3 vs 6). Sharp already beat Leeward 5-4 in Week 6.",
             "scorers": {
               "home": [
                 {
@@ -1036,7 +1090,8 @@
               ],
               "away": [
                 {
-                  "name": "Abdul Ghiyas Solyman"
+                  "name": "Mudassir",
+                  "goals": 2
                 }
               ]
             }

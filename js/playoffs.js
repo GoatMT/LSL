@@ -1,6 +1,6 @@
 import { renderPlayoffBracket } from "../components/playoffBracket.js";
 import { renderStandingsTable } from "../components/standingsTable.js?v=3.1";
-import { PLAYOFF_RULES, SITE } from "./config.js";
+import { playoffRulesFor, SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js";
 import { calculateStandings } from "./leagueEngine.js?v=3.2";
 import { setupLayout } from "./main.js";
@@ -35,8 +35,10 @@ function placeholderTeam(name) {
 function buildCurrentBracket(data, rows, division) {
   if (data.year !== SITE.defaultSeason || division !== "Seniors") return null;
 
-  const seeded = rows.filter((row) => row.gp > 0 && !row.scorePending).slice(0, 6);
-  if (seeded.length < 6) return null;
+  // 2026 expanded the senior field to 8 teams with no byes: quarterfinals are
+  // 1v8, 2v7, 3v6, and 4v5, all played the same day (August 8) as the semis and final.
+  const seeded = rows.filter((row) => row.gp > 0 && !row.scorePending).slice(0, 8);
+  if (seeded.length < 8) return null;
 
   const seed1 = seedTeam(seeded[0]);
   const seed2 = seedTeam(seeded[1]);
@@ -44,8 +46,12 @@ function buildCurrentBracket(data, rows, division) {
   const seed4 = seedTeam(seeded[3]);
   const seed5 = seedTeam(seeded[4]);
   const seed6 = seedTeam(seeded[5]);
+  const seed7 = seedTeam(seeded[6]);
+  const seed8 = seedTeam(seeded[7]);
   const q1Winner = placeholderTeam("Winner Q1");
   const q2Winner = placeholderTeam("Winner Q2");
+  const q3Winner = placeholderTeam("Winner Q3");
+  const q4Winner = placeholderTeam("Winner Q4");
   const s1Winner = placeholderTeam("Winner S1");
   const s2Winner = placeholderTeam("Winner S2");
 
@@ -55,12 +61,37 @@ function buildCurrentBracket(data, rows, division) {
     layout: "wide",
     champion: "",
     isCurrentProjection: true,
+    format: "Eight-team single-day bracket. Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026.",
     rounds: [
       {
         name: "Quarterfinals",
         matches: [
           {
             label: "Q1",
+            homeTeamId: seed1.id,
+            homeTeamName: seed1.name,
+            homeSeed: 1,
+            awayTeamId: seed8.id,
+            awayTeamName: seed8.name,
+            awaySeed: 8,
+            homeScore: null,
+            awayScore: null,
+            note: "Current seed 1 vs current seed 8."
+          },
+          {
+            label: "Q2",
+            homeTeamId: seed2.id,
+            homeTeamName: seed2.name,
+            homeSeed: 2,
+            awayTeamId: seed7.id,
+            awayTeamName: seed7.name,
+            awaySeed: 7,
+            homeScore: null,
+            awayScore: null,
+            note: "Current seed 2 vs current seed 7."
+          },
+          {
+            label: "Q3",
             homeTeamId: seed3.id,
             homeTeamName: seed3.name,
             homeSeed: 3,
@@ -72,7 +103,7 @@ function buildCurrentBracket(data, rows, division) {
             note: "Current seed 3 vs current seed 6."
           },
           {
-            label: "Q2",
+            label: "Q4",
             homeTeamId: seed4.id,
             homeTeamName: seed4.name,
             homeSeed: 4,
@@ -90,25 +121,23 @@ function buildCurrentBracket(data, rows, division) {
         matches: [
           {
             label: "S1",
-            homeTeamId: seed1.id,
-            homeTeamName: seed1.name,
-            homeSeed: 1,
-            awayTeamId: q1Winner.id,
-            awayTeamName: q1Winner.name,
+            homeTeamId: q1Winner.id,
+            homeTeamName: q1Winner.name,
+            awayTeamId: q4Winner.id,
+            awayTeamName: q4Winner.name,
             homeScore: null,
             awayScore: null,
-            note: "Current seed 1 gets a bye and faces the Q1 winner."
+            note: "Winner of Q1 (1v8) faces the winner of Q4 (4v5). No byes in the 8-team format."
           },
           {
             label: "S2",
-            homeTeamId: seed2.id,
-            homeTeamName: seed2.name,
-            homeSeed: 2,
-            awayTeamId: q2Winner.id,
-            awayTeamName: q2Winner.name,
+            homeTeamId: q2Winner.id,
+            homeTeamName: q2Winner.name,
+            awayTeamId: q3Winner.id,
+            awayTeamName: q3Winner.name,
             homeScore: null,
             awayScore: null,
-            note: "Current seed 2 gets a bye and faces the Q2 winner."
+            note: "Winner of Q2 (2v7) faces the winner of Q3 (3v6)."
           }
         ]
       },
@@ -123,7 +152,7 @@ function buildCurrentBracket(data, rows, division) {
             awayTeamName: s2Winner.name,
             homeScore: null,
             awayScore: null,
-            note: "Projected bracket spot only. Not an official result."
+            note: "Projected bracket spot only. Not an official result. Championship is played the same day as the quarterfinals and semifinals."
           }
         ]
       }
@@ -150,7 +179,7 @@ function divisionOptions(data) {
 function render(data) {
   const divisions = divisionOptions(data);
   if (!divisions.includes(state.division)) state.division = divisions[0] || "Seniors";
-  const rule = PLAYOFF_RULES[state.division];
+  const rule = playoffRulesFor(state.season, state.division);
   const rows = calculateStandings(data, { division: state.division });
   const publishedPlayoffData = playoffDataForDivision(data.playoffs, state.division);
   const playoffData = (publishedPlayoffData.rounds || []).length ? publishedPlayoffData : buildCurrentBracket(data, rows, state.division) || publishedPlayoffData;

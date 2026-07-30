@@ -54,17 +54,48 @@ export const DATA_FILES = [
   "videos",
 ];
 
+const SIX_TEAM_SENIOR_RULE = {
+  teams: 6,
+  cutoff: 6,
+  byes: 2,
+  description: "Six-team senior playoff field. Seeds 1 and 2 receive semifinal byes.",
+};
+
+const FOUR_TEAM_JUNIOR_RULE = {
+  teams: 4,
+  cutoff: 4,
+  byes: 0,
+  description: "Top 4 junior teams qualify. Semifinals are 1 vs 4 and 2 vs 3.",
+};
+
+// Playoff format is season-specific: the senior field expanded from 6 teams (2024-2025)
+// to 8 teams in 2026, so rules are keyed by year first, then division.
 export const PLAYOFF_RULES = {
-  Seniors: {
-    teams: 6,
-    cutoff: 6,
-    byes: 2,
-    description: "Six-team senior playoff field. Seeds 1 and 2 receive semifinal byes.",
+  "2024": {
+    Seniors: SIX_TEAM_SENIOR_RULE,
+    Juniors: FOUR_TEAM_JUNIOR_RULE,
   },
-  Juniors: {
-    teams: 4,
-    cutoff: 4,
-    byes: 0,
-    description: "Top 4 junior teams qualify. Semifinals are 1 vs 4 and 2 vs 3.",
+  "2025": {
+    Seniors: SIX_TEAM_SENIOR_RULE,
+    Juniors: FOUR_TEAM_JUNIOR_RULE,
+  },
+  "2026": {
+    Seniors: {
+      teams: 8,
+      cutoff: 8,
+      byes: 0,
+      description: "Eight-team senior playoff field, no byes. Quarterfinals are 1 vs 8, 2 vs 7, 3 vs 6, and 4 vs 5. Quarterfinals, semifinals, and the championship are all played on Saturday, August 8, 2026.",
+    },
+    Juniors: FOUR_TEAM_JUNIOR_RULE,
   },
 };
+
+// Fallback used only if a season is ever missing from the map above.
+export const DEFAULT_PLAYOFF_RULES = {
+  Seniors: SIX_TEAM_SENIOR_RULE,
+  Juniors: FOUR_TEAM_JUNIOR_RULE,
+};
+
+export function playoffRulesFor(year, division) {
+  return (PLAYOFF_RULES[String(year)] && PLAYOFF_RULES[String(year)][division]) || DEFAULT_PLAYOFF_RULES[division] || {};
+}
