@@ -267,6 +267,17 @@ function renderInterestForm(tournament) {
   `;
 }
 
+function mediaKey(title = "") {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function isVideoSrc(src = "") {
+  return /\.(mp4|webm|mov|m4v)$/i.test(src);
+}
+
 function renderMediaStrip(tournament) {
   const media = tournament.media || [];
   if (!media.length) return "";
@@ -274,14 +285,18 @@ function renderMediaStrip(tournament) {
     <section class="imt-section">
       <div class="imt-section-head">
         <span class="imt-blue-kicker">Tournament Photos</span>
-        <h2>2026 Gallery</h2>
+        <h2>${escapeHTML(tournament.season || "")} Gallery</h2>
       </div>
       <div class="imt-media-grid">
         ${media
           .map(
             (item) => `
-              <article class="imt-media-card">
-                <img src="${escapeHTML(item.src)}" alt="${escapeHTML(item.title)}">
+              <article class="imt-media-card imt-media-${escapeHTML(item.key || mediaKey(item.title || ""))}">
+                ${
+                  isVideoSrc(item.src)
+                    ? `<video src="${escapeHTML(item.src)}" controls preload="metadata"></video>`
+                    : `<img src="${escapeHTML(item.src)}" alt="${escapeHTML(item.title)}" loading="lazy">`
+                }
                 <div>
                   <strong>${escapeHTML(item.title)}</strong>
                   <p>${escapeHTML(item.caption || "Tournament photo.")}</p>

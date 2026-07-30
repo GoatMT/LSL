@@ -1552,13 +1552,19 @@ details.clean-details summary {
 }
 
 .team-card-head .team-mark,
-.team-card-head .team-logo,
+.team-card-head .team-logo {
+  width: 52px;
+  height: 52px;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+}
+
 .person-avatar,
 .person-photo {
   width: 52px;
   height: 52px;
   aspect-ratio: 1 / 1;
-  border-radius: 14px;
+  border-radius: 50%;
 }
 
 .team-logo {

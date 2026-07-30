@@ -39,18 +39,21 @@
   },
   "media": [
     {
-      "title": "Champion Team",
-      "src": "./IMT/2026/Champion Team.jpg",
+      "key": "champion-team",
+      "title": "Islamic Foundation of Toronto (Champion Team)",
+      "src": "./IMT/2026/Photos and Videos/Champion Team.jpg",
       "caption": "2026 Inter-Madrasah champion team."
     },
     {
+      "key": "khairul-ummah-team",
       "title": "Khairul Ummah Team",
-      "src": "./IMT/2026/Khairul Ummah Team.jpg",
+      "src": "./IMT/2026/Photos and Videos/Khairul Ummah Team.jpg",
       "caption": "Khairul Ummah Academy reached the championship final."
     },
     {
+      "key": "tournament-mvp",
       "title": "Tournament MVP",
-      "src": "./IMT/2026/MVP.jpg",
+      "src": "./IMT/2026/Photos and Videos/MVP.jpg",
       "caption": "2026 Inter-Madrasah Tournament MVP."
     }
   ],

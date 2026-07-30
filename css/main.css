@@ -1090,11 +1090,13 @@ button {
 }
 
 .official-profile-photo {
-  width: 96px;
-  height: 96px;
+  width: 96px !important;
+  height: 96px !important;
+  aspect-ratio: 1 / 1;
   flex: 0 0 auto;
   align-self: center;
-  border-radius: 50%;
+  border-radius: 50% !important;
+  overflow: hidden;
   object-fit: cover;
   object-position: center top;
   border: 2px solid rgba(64, 99, 136, 0.25);
@@ -1109,4 +1111,27 @@ button {
   font-weight: 850;
   font-size: 1.4rem;
   letter-spacing: 0.02em;
+}
+
+.imt-media-card video {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  background: #001a3a;
+}
+
+.imt-media-card.imt-media-tournament-mvp img,
+.imt-media-card.imt-media-tournament-mvp video {
+  aspect-ratio: 1170 / 2080;
+  object-fit: contain;
+  background: #001a3a;
+}
+
+.imt-media-card.imt-media-champion-team img {
+  object-position: center 25%;
+}
+
+.imt-media-card.imt-media-khairul-ummah-team img {
+  object-position: center 25%;
 }

@@ -870,12 +870,19 @@
   }
 
   .team-card-head .team-mark,
-  .team-card-head .team-logo,
-  .person-avatar {
+  .team-card-head .team-logo {
     width: 46px;
     height: 46px;
     aspect-ratio: 1 / 1;
     border-radius: 12px;
+  }
+
+  .person-avatar,
+  .person-photo {
+    width: 46px;
+    height: 46px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
   }
 
   .team-card-head .team-logo {
