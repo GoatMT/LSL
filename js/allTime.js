@@ -14,7 +14,7 @@ let coachRatings = {};
 const state = {
   view: "players",
   stage: "regular",
-  division: "All",
+  division: "Seniors",
   season: "All",
   week: "All",
   playersExpanded: false,
@@ -32,7 +32,6 @@ const stageOptions = [
 ];
 
 const divisionOptions = [
-  { value: "All", label: "Both" },
   { value: "Seniors", label: "Seniors" },
   { value: "Juniors", label: "Juniors" },
 ];
@@ -160,7 +159,7 @@ function stageLabel() {
 }
 
 function divisionLabel() {
-  return divisionOptions.find((option) => option.value === state.division)?.label || "Both";
+  return divisionOptions.find((option) => option.value === state.division)?.label || "Seniors";
 }
 
 function seasonLabel() {
@@ -174,14 +173,14 @@ function weekLabel() {
 }
 
 function matchesDivision(item) {
-  return state.division === "All" || item.division === state.division;
+  return item.division === state.division;
 }
 
 function championTeamIds(season) {
   return new Set(
     (season.awards?.awards || [])
       .filter((award) => award.category === "Champion Team")
-      .filter((award) => state.division === "All" || award.division === state.division)
+      .filter((award) => award.division === state.division)
       .map((award) => award.teamId)
       .filter(Boolean)
   );
@@ -412,7 +411,7 @@ function currentFilterPills() {
     { label: "View", value: state.view === "players" ? "Players" : "Coaches" },
     { label: "Season", value: seasonLabel() },
     { label: "Type", value: stageLabel() },
-    { label: "Division", value: `${divisionLabel()} Divisions` },
+    { label: "Division", value: divisionLabel() },
   ];
   const week = weekLabel();
   if (week) pills.push({ label: "Week", value: week });
