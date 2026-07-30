@@ -4102,7 +4102,7 @@ details.clean-details summary {
   object-position: center top;
   background: var(--card);
   border: 1px solid rgba(199, 163, 103, 0.42);
-  border-radius: 22px;
+  border-radius: 50%;
 }
 
 .official-profile-photo.placeholder {
@@ -8989,7 +8989,6 @@ details.clean-details summary {
 .imt-lsl-home,
 .imt-blue-button,
 .imt-quick-actions button,
-.imt-subnav button,
 .imt-choice-row button {
   min-height: 46px;
   display: inline-flex;
@@ -9000,6 +8999,21 @@ details.clean-details summary {
   background: #001a3a;
   border: 1px solid rgba(72, 170, 255, 0.58);
   border-radius: 16px;
+  font-weight: 950;
+  text-align: center;
+  text-decoration: none;
+}
+
+.imt-subnav button {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 10px;
+  color: #ffffff;
+  background: #001a3a;
+  border: 1px solid rgba(72, 170, 255, 0.58);
+  border-radius: 12px;
   font-weight: 950;
   text-align: center;
   text-decoration: none;
@@ -9146,11 +9160,19 @@ details.clean-details summary {
   font-weight: 850;
 }
 
-.imt-subnav,
 .imt-quick-actions {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
+  padding: 12px;
+  box-shadow: none;
+}
+
+.imt-subnav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  align-items: stretch;
+  gap: 8px;
   padding: 12px;
   box-shadow: none;
 }
@@ -9536,7 +9558,7 @@ details.clean-details summary {
 
 .imt-standings-row {
   display: grid;
-  grid-template-columns: 54px minmax(190px, 1.4fr) repeat(8, minmax(62px, 0.5fr));
+  grid-template-columns: 112px minmax(190px, 1.4fr) repeat(8, minmax(62px, 0.5fr));
   gap: 10px;
   align-items: center;
   min-width: 0;
@@ -9546,22 +9568,43 @@ details.clean-details summary {
   border-radius: 22px;
 }
 
-.imt-position {
-  width: 50px;
-  height: 50px;
-  display: grid;
-  place-items: center;
-  color: #ffffff;
-  background: #001a3a;
-  border-radius: 16px;
-  font-weight: 950;
-}
-
-.imt-standing-name {
+.imt-standing-rank {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 18px;
+}
+
+.imt-standing-rank.west {
+  background: rgba(217, 75, 75, 0.16);
+}
+
+.imt-standing-rank.east {
+  background: rgba(72, 170, 255, 0.16);
+}
+
+.imt-standing-position {
+  min-width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  padding: 0 6px;
+  color: #ffffff;
+  background: #001a3a;
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: 0.85rem;
+}
+
+.imt-standing-rank.west .imt-standing-position {
+  background: #d94b4b;
+}
+
+.imt-standing-rank.east .imt-standing-position {
+  background: #48aaff;
 }
 
 .imt-standing-name-text {

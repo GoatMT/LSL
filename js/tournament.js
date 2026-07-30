@@ -23,7 +23,7 @@ const VIEWS = [
 let state = {
   season: "2026",
   view: window.location.hash?.replace("#", "") || "home",
-  standingsView: "all",
+  standingsView: "",
 };
 
 function playerHref(playerId = "") {
@@ -389,18 +389,64 @@ function renderSchedule(tournament) {
   `;
 }
 
+function groupStageMatches(tournament, divisionId) {
+  return (tournament.matches || []).filter(
+    (match) => !match.activityTitle && (!match.round || match.round === "Group Stage") && (!divisionId || match.divisionId === divisionId)
+  );
+}
+
+function computeDivisionStandings(tournament, division) {
+  const records = new Map();
+  const ensureRecord = (id, name) => {
+    if (!records.has(id)) records.set(id, { teamId: id, team: name, gp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0 });
+    return records.get(id);
+  };
+  (division.teams || []).forEach((team) => ensureRecord(team.id, team.name));
+
+  groupStageMatches(tournament, division.id).forEach((match) => {
+    if (!Number.isFinite(match.homeScore) || !Number.isFinite(match.awayScore)) return;
+    [
+      { id: match.homeTeamId, name: match.homeTeamName, gf: match.homeScore, ga: match.awayScore },
+      { id: match.awayTeamId, name: match.awayTeamName, gf: match.awayScore, ga: match.homeScore },
+    ].forEach((side) => {
+      const record = ensureRecord(side.id, side.name);
+      record.gp += 1;
+      record.gf += side.gf;
+      record.ga += side.ga;
+      if (side.gf > side.ga) record.w += 1;
+      else if (side.gf < side.ga) record.l += 1;
+      else record.d += 1;
+    });
+  });
+
+  return [...records.values()].map((record) => ({ ...record, gd: record.gf - record.ga, pts: record.w * 3 + record.d }));
+}
+
+function sortStandings(rows) {
+  return [...rows].sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf || a.team.localeCompare(b.team));
+}
+
 function standingsRows(tournament, mode) {
   const divisions = tournament.divisions || [];
   const teams = teamById(tournament);
   const withTeamInfo = (row) => ({ ...row, teamInfo: teams.get(row.teamId) || {} });
+
   if (mode === "combined") {
-    return divisions
-      .flatMap((division) => (division.standings || []).map((row) => ({ ...row, divisionName: division.name, divisionTheme: division.theme || division.id })))
-      .map(withTeamInfo)
-      .sort((a, b) => b.pts - a.pts || b.w - a.w || b.gd - a.gd || a.team.localeCompare(b.team));
+    const combined = divisions.flatMap((division) =>
+      computeDivisionStandings(tournament, division).map((row) => ({ ...row, divisionName: division.name, divisionTheme: division.theme || division.id }))
+    );
+    return sortStandings(combined).map((row, index) => ({ ...row, rank: index + 1 })).map(withTeamInfo);
   }
-  const selected = divisions.filter((division) => mode === "all" || division.id === mode);
-  return selected.flatMap((division) => (division.standings || []).map((row) => ({ ...row, divisionName: division.name, divisionTheme: division.theme || division.id }))).map(withTeamInfo);
+
+  const selected = divisions.filter((division) => division.id === mode);
+  return selected.flatMap((division) =>
+    sortStandings(computeDivisionStandings(tournament, division)).map((row, index) => ({
+      ...row,
+      rank: index + 1,
+      divisionName: division.name,
+      divisionTheme: division.theme || division.id,
+    }))
+  ).map(withTeamInfo);
 }
 
 function renderStandingsList(rows) {
@@ -409,17 +455,17 @@ function renderStandingsList(rows) {
     <div class="imt-standings-list">
       ${rows
         .map(
-          (row, index) => `
+          (row) => `
             <article class="imt-standings-row ${escapeHTML(row.divisionTheme || "")}">
-              <div class="imt-position">${escapeHTML(row.rank || index + 1)}</div>
-              <div class="imt-standing-name">
+              <div class="imt-standing-rank ${escapeHTML(row.divisionTheme || "")}">
+                <span class="imt-standing-position">${escapeHTML(row.rank)}</span>
                 ${logoMark(row.teamInfo, "small")}
-                <div class="imt-standing-name-text">
-                  <strong>${escapeHTML(row.team)}</strong>
-                  <span>${escapeHTML(row.divisionName || "Division")}</span>
-                </div>
               </div>
-              <div class="imt-standing-stat"><span>GP</span><strong>${escapeHTML(row.gp ?? row.w + row.d + row.l)}</strong></div>
+              <div class="imt-standing-name-text">
+                <strong>${escapeHTML(row.team)}</strong>
+                <span>${escapeHTML(row.divisionName || "Division")}</span>
+              </div>
+              <div class="imt-standing-stat"><span>GP</span><strong>${escapeHTML(row.gp)}</strong></div>
               <div class="imt-standing-stat"><span>W</span><strong>${escapeHTML(row.w)}</strong></div>
               <div class="imt-standing-stat"><span>D</span><strong>${escapeHTML(row.d)}</strong></div>
               <div class="imt-standing-stat"><span>L</span><strong>${escapeHTML(row.l)}</strong></div>
@@ -437,23 +483,24 @@ function renderStandingsList(rows) {
 
 function renderStandings(tournament) {
   const options = [
-    { id: "all", label: "All" },
     ...(tournament.divisions || []).map((division) => ({ id: division.id, label: division.name })),
     { id: "combined", label: "Combined" },
   ];
-  const rows = standingsRows(tournament, state.standingsView);
+  const activeStandingsView = options.some((option) => option.id === state.standingsView) ? state.standingsView : options[0]?.id || "combined";
+  state.standingsView = activeStandingsView;
+  const rows = standingsRows(tournament, activeStandingsView);
 
   return `
     <section class="imt-section">
       <div class="imt-section-head">
         <span class="imt-blue-kicker">Standings</span>
         <h2>Division Tables</h2>
-        <p>Western teams use red accents. Eastern teams use blue accents.</p>
+        <p>Round robin standings only (no playoff results). Western teams use red accents. Eastern teams use blue accents.</p>
       </div>
       <div class="imt-choice-row" role="tablist" aria-label="Tournament standings view">
         ${options
           .map(
-            (option) => `<button class="${state.standingsView === option.id ? "active" : ""}" type="button" data-imt-standings="${escapeHTML(option.id)}">${escapeHTML(option.label)}</button>`
+            (option) => `<button class="${activeStandingsView === option.id ? "active" : ""}" type="button" data-imt-standings="${escapeHTML(option.id)}">${escapeHTML(option.label)}</button>`
           )
           .join("")}
       </div>
@@ -669,7 +716,7 @@ function hydrate(tournament) {
   document.getElementById("imt-year")?.addEventListener("change", async (event) => {
     state.season = event.target.value;
     state.view = "home";
-    state.standingsView = "all";
+    state.standingsView = "";
     window.history.replaceState(null, "", window.location.pathname);
     render(await loadSeasonData(state.season));
   });
@@ -684,7 +731,7 @@ function hydrate(tournament) {
 
   root.querySelectorAll("[data-imt-standings]").forEach((button) => {
     button.addEventListener("click", () => {
-      state.standingsView = button.dataset.imtStandings || "all";
+      state.standingsView = button.dataset.imtStandings || "combined";
       render({ tournament });
     });
   });

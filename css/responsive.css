@@ -2195,7 +2195,7 @@
   }
 
   .imt-standings-row {
-    grid-template-columns: 54px minmax(0, 1fr) repeat(4, minmax(70px, 1fr));
+    grid-template-columns: 96px minmax(0, 1fr) repeat(4, minmax(70px, 1fr));
   }
 
   .imt-standing-stat {
@@ -2282,16 +2282,19 @@
   }
 
   .imt-standings-row {
-    grid-template-columns: 46px minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
 
-  .imt-position {
-    width: 46px;
-    height: 46px;
+  .imt-standing-rank {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
   }
 
-  .imt-standing-name {
+  .imt-standing-name-text {
+    grid-column: 2;
+    grid-row: 1;
     align-self: center;
   }
 
@@ -2308,22 +2311,8 @@
     grid-column: auto;
   }
 
-  .imt-standing-name + .imt-standing-stat {
+  .imt-standing-name-text + .imt-standing-stat {
     grid-column: 1 / -1;
-  }
-
-  .imt-standings-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .imt-position {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .imt-standing-name {
-    grid-column: 2;
-    grid-row: 1;
   }
 
   .imt-bracket-match div {
