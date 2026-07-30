@@ -3508,11 +3508,32 @@ details.clean-details summary {
   content: "\25B2";
 }
 
+.award-season-body {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.award-season-row {
+  display: grid;
+  gap: 12px;
+}
+
+.award-season-row-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
 .award-season-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
   gap: 16px;
-  margin-top: 18px;
 }
 
 .award-champion-card,

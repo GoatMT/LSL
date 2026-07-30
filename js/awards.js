@@ -7,6 +7,15 @@ import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./ut
 setupLayout("awards.html");
 setDocumentTitle("Awards");
 
+// Award selection policy (MVP / Golden Boot):
+// These winners are picked from that season's actual stats and match data
+// (goals, assists, player-of-the-match notes, team success), not assumed to
+// be a single "obvious" pick. A season can have more than one deserving MVP
+// (e.g. a close goal race, or a stats leader on a team that didn't advance
+// vs. a leader on the champion team) - when that happens, add multiple award
+// entries with the same category (e.g. two "MVP" objects) in that season's
+// awards.json instead of forcing a single winner.
+
 const root = document.getElementById("page-root");
 const awardTabs = ["All", "Champions", "Player Awards", "Team Awards"];
 let state = { season: "All", division: "Seniors", tab: "All", search: "" };
@@ -159,43 +168,6 @@ function renderTabs(awards) {
   `;
 }
 
-function renderChampionStrip(awards) {
-  const champions = awards.filter((award) => award.category === "Champion Team");
-  if (!champions.length) return "";
-
-  return `
-    <section class="section-panel awards-champions-panel">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Champions</span>
-          <h2>Champion Teams</h2>
-          <p>League title winners appear before every other season honor.</p>
-        </div>
-      </div>
-      <div class="awards-champion-grid">
-        ${champions
-          .map((award) => {
-            return `
-              <article class="card award-champion-card">
-                <div class="award-champion-topline">
-                  <span class="award-champion-trophy" aria-hidden="true">🏆</span>
-                </div>
-                <div class="award-champion-badges">
-                  <span>${escapeHTML(award.season)}</span>
-                  <span>${escapeHTML(award.division || "All Divisions")}</span>
-                </div>
-                <span class="award-title">Champion Team</span>
-                <h3>${winnerMarkup(award, "award-winner-link")}</h3>
-                <p class="source-note">${escapeHTML(cleanSourceNote(award.sourceNote))}</p>
-              </article>
-            `;
-          })
-          .join("")}
-      </div>
-    </section>
-  `;
-}
-
 function renderAwardCard(award) {
   const type = awardType(award);
   return `
@@ -217,9 +189,9 @@ function renderAwardCard(award) {
 function categoryRank(category) {
   return {
     "Champion Team": 1,
-    "2nd Place Team": 2,
-    "3rd Place Team": 3,
-    "Best Regular Season Team": 4,
+    "Best Regular Season Team": 2,
+    "2nd Place Team": 3,
+    "3rd Place Team": 4,
     MVP: 5,
     "Golden Boot": 6,
   }[category] || 99;
@@ -242,12 +214,14 @@ function renderAwardSeasonGroups(awards) {
         <div>
           <span class="eyebrow">Season Honors</span>
           <h2>Awards by Season</h2>
-          <p>${awards.length} non-championship honors match the current selections.</p>
+          <p>${awards.length} honors match the current selections.</p>
         </div>
       </div>
       <div class="award-season-list">
         ${[...groups.entries()]
           .map(([season, seasonAwards], index) => {
+            const teamAwards = seasonAwards.filter(isTeamAward);
+            const playerAwards = seasonAwards.filter(isPlayerAward);
             return `
               <details class="award-season-section"${index === 0 ? " open" : ""}>
                 <summary class="award-season-head">
@@ -259,8 +233,31 @@ function renderAwardSeasonGroups(awards) {
                     <span class="award-season-total">${seasonAwards.length} ${seasonAwards.length === 1 ? "award" : "awards"}</span>
                   </div>
                 </summary>
-                <div class="award-season-grid">
-                  ${seasonAwards.map(renderAwardCard).join("")}
+                <div class="award-season-body">
+                  ${
+                    teamAwards.length
+                      ? `
+                        <div class="award-season-row">
+                          <span class="award-season-row-label">Team Awards</span>
+                          <div class="award-season-grid">
+                            ${teamAwards.map(renderAwardCard).join("")}
+                          </div>
+                        </div>
+                      `
+                      : ""
+                  }
+                  ${
+                    playerAwards.length
+                      ? `
+                        <div class="award-season-row">
+                          <span class="award-season-row-label">Player Awards</span>
+                          <div class="award-season-grid">
+                            ${playerAwards.map(renderAwardCard).join("")}
+                          </div>
+                        </div>
+                      `
+                      : ""
+                  }
                 </div>
               </details>
             `;
@@ -340,8 +337,6 @@ function render(allData, focusSearch = false) {
 
   const scopedAwards = getAwards(allData, { season: state.season, division: state.division });
   const awards = filteredAwards(allData);
-  const champions = awards.filter((award) => award.category === "Champion Team");
-  const otherAwards = awards.filter((award) => award.category !== "Champion Team");
 
   root.innerHTML = `
     <section class="section-panel awards-hero-panel">
@@ -391,9 +386,8 @@ function render(allData, focusSearch = false) {
     ${
       awards.length
         ? `
-          ${renderChampionStrip(champions)}
           ${renderAwardHistory(awards)}
-          ${renderAwardSeasonGroups(otherAwards)}
+          ${renderAwardSeasonGroups(awards)}
         `
         : `<section class="section-panel awards-empty-panel">${statusMessage("empty", "No awards match these filters.")}</section>`
     }
