@@ -149,7 +149,7 @@ function render(allData) {
     .filter((player) => player.goals > 0)
     .sort((a, b) => b.goals - a.goals || b.points - a.points || a.name.localeCompare(b.name))
     .slice(0, 5);
-  const careerGoals = computeCombinedPlayerStats(allData, { stage: "all" })
+  const careerGoals = computeCombinedPlayerStats(allData, { stage: "regular" })
     .filter(matchesDivision)
     .filter((player) => player.goals > 0)
     .sort((a, b) => b.goals - a.goals || b.points - a.points || a.name.localeCompare(b.name))
@@ -190,7 +190,7 @@ function render(allData) {
           { label: "Team", render: (row) => teamLink(row, row.season) },
           { label: "Goals", num: true, render: (row) => row.goals },
         ])}
-        ${recordTable("Career Goals", "All listed regular season and playoff goals.", careerGoals, [
+        ${recordTable("Career Goals", "Regular-season goals only, combined across all listed seasons.", careerGoals, [
           { label: "Player", render: playerLink },
           { label: "Teams", render: (row) => escapeHTML(row.teamName || "Team TBA") },
           { label: "Goals", num: true, render: (row) => row.goals },
