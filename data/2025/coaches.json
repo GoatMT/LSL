@@ -53,6 +53,7 @@
       "name": "Ashique",
       "teamId": "refuel-juicery-athletic",
       "teamName": "Refuel Juicery Athletic",
+      "photo": "./Logos/Player Pics/Coach Ashique.png",
       "division": "Seniors",
       "championships": 0,
       "finals": 1
@@ -72,6 +73,7 @@
       "name": "Ashique",
       "teamId": "the-travel-builder-united",
       "teamName": "The Travel Builder United",
+      "photo": "./Logos/Player Pics/Coach Ashique.png",
       "division": "Juniors",
       "championships": 0,
       "finals": 0,

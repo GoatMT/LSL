@@ -1,7 +1,7 @@
 {
   "season": "2026",
   "coaches": [
-    { "id": "coach-ashique", "name": "Ashique", "teamId": "refuel-rovers", "teamName": "Refuel Rovers", "division": "Seniors", "championships": 0, "finals": 2, "reportedSeasons": 3, "notes": "Third year coaching with two finals appearances." },
+    { "id": "coach-ashique", "name": "Ashique", "teamId": "refuel-rovers", "teamName": "Refuel Rovers", "photo": "./Logos/Player Pics/Coach Ashique.png", "division": "Seniors", "championships": 0, "finals": 2, "reportedSeasons": 3, "notes": "Third year coaching with two finals appearances." },
     { "id": "coach-elhaj", "name": "Elhaj", "teamId": "amax-visionaries", "teamName": "Amax Visionaries", "division": "Seniors", "championships": 0, "finals": 0, "reportedSeasons": 1, "notes": "First year coaching." },
     { "id": "coach-tanveer", "name": "Tanveer", "teamId": "leeward-lions", "teamName": "Leeward Lions", "division": "Seniors", "championships": 0, "finals": 0, "reportedSeasons": 2, "notes": "Second year coaching." },
     { "id": "coach-aadil", "name": "Aadil", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "division": "Seniors", "championships": 0, "finals": 0, "reportedSeasons": 3, "notes": "Third year coaching, championship winner, and finals appearance in debut season." },

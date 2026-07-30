@@ -3,10 +3,13 @@ import { renderFormStrip } from "./formStrip.js";
 
 export function renderPlayerCard(player, index = 0) {
   const rank = Number.isFinite(index) ? index + 1 : "";
+  const avatar = player.photo
+    ? `<img class="person-photo" src="${escapeHTML(player.photo)}" alt="">`
+    : `<span class="person-avatar">${escapeHTML(initials(player.name))}</span>`;
   return `
     <article class="card person-card player-card">
       <div class="person-card-head">
-        <span class="person-avatar">${escapeHTML(initials(player.name))}</span>
+        ${avatar}
         <div class="person-title">
           ${rank ? `<span class="person-rank">#${rank}</span>` : ""}
           <h3><a href="./player.html?id=${escapeHTML(player.id)}">${escapeHTML(player.name)}</a></h3>

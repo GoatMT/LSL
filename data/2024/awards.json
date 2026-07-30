@@ -5,6 +5,7 @@
     { "division": "Seniors", "category": "2nd Place Team", "winner": "Refuel Juicery Kickers", "teamId": "refuel-juicery-kickers", "sourceNote": "Grand final opponent." },
     { "division": "Seniors", "category": "3rd Place Team", "winner": "Jogiat Palace", "teamId": "jogiat-palace", "sourceNote": "Listed as the 2024 playoff third-place winner." },
     { "division": "Seniors", "category": "Best Regular Season Team", "winner": "Refuel Juicery Kickers", "teamId": "refuel-juicery-kickers", "sourceNote": "Finished first in the 2024 Seniors regular season with 13 points." },
-    { "division": "Seniors", "category": "MVP", "winner": "Not announced", "sourceNote": "The 2024 Seniors MVP has not been announced." }
+    { "division": "Seniors", "category": "MVP", "winner": "Muzamil Kharooti", "playerId": "muzamil-kharooti", "teamId": "refuel-juicery-kickers", "sourceNote": "Claude's pick: led the 2024 Seniors with 8 regular-season goals and was named Player of the Game for a hat trick, helping Refuel Juicery Kickers reach the final." },
+    { "division": "Seniors", "category": "Golden Boot", "winner": "Muzamil Kharooti", "playerId": "muzamil-kharooti", "teamId": "refuel-juicery-kickers", "sourceNote": "Led the 2024 Seniors with 8 regular-season goals, a total Hafizullah later matched in 2025." }
   ]
 }

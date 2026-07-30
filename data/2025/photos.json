@@ -3,124 +3,113 @@
   "photos": [
     {
       "id": "2025-photo-01",
-      "title": "Junior Champions 1",
-      "division": "Juniors",
-      "category": "Champions",
+      "title": "2025 Season Photo 1",
+      "division": "All",
+      "category": "Highlights",
       "teamId": "",
-      "teamName": "Juniors",
+      "teamName": "All",
       "uploadDate": "",
-      "description": "2025 junior champions photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Your%202025%20Junior%20Champions%20%E2%80%93%20Dhahabiya%20Strikers!%201%20.jpg"
+      "description": "2025 season photo.",
+      "imageUrl": "./Photos%20and%20Videos/2025/528973100_17905418532216707_3014957640196011584_n..webp"
     },
     {
       "id": "2025-photo-02",
-      "title": "Junior Champions 2",
+      "title": "2025 Season Photo 2",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./Photos%20and%20Videos/2025/529158301_17905414485216707_2437091673176133455_n..webp"
+    },
+    {
+      "id": "2025-photo-03",
+      "title": "2025 Season Photo 3",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./Photos%20and%20Videos/2025/529481106_17905423491216707_6474331647491072942_n..webp"
+    },
+    {
+      "id": "2025-photo-04",
+      "title": "2025 Season Photo 4",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./Photos%20and%20Videos/2025/529622893_17905407606216707_8548830623383900289_n..webp"
+    },
+    {
+      "id": "2025-photo-05",
+      "title": "2025 Season Photo 5",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./Photos%20and%20Videos/2025/529732825_17905421196216707_4836434942429015011_n..webp"
+    },
+    {
+      "id": "2025-photo-06",
+      "title": "Award Time",
+      "division": "All",
+      "category": "Awards",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season awards photo.",
+      "imageUrl": "./Photos%20and%20Videos/2025/Award%20Time.webp"
+    },
+    {
+      "id": "2025-photo-07",
+      "title": "Pizza Time",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season team photo.",
+      "imageUrl": "./Photos%20and%20Videos/2025/Pizza%20Time.webp"
+    },
+    {
+      "id": "2025-photo-08",
+      "title": "Junior Champions - Dhahabiya Strikers (Photo 1)",
       "division": "Juniors",
       "category": "Champions",
       "teamId": "",
       "teamName": "Juniors",
       "uploadDate": "",
-      "description": "2025 junior champions photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Your%202025%20Junior%20Champions%20%E2%80%93%20Dhahabiya%20Strikers!%202%20.jpg"
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "imageUrl": "./Photos%20and%20Videos/2025/Your%202025%20Junior%20Champions%20%E2%80%93%20Dhahabiya%20Strikers%21%20%F0%9F%8F%86%E2%9A%BDAfter%20a%20hard-fought%20battle%2C%20Dhahabiya%20edged%20%20%281%29.jpg"
     },
     {
-      "id": "2025-photo-03",
-      "title": "Senior Champions",
+      "id": "2025-photo-09",
+      "title": "Junior Champions - Dhahabiya Strikers (Photo 2)",
+      "division": "Juniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "imageUrl": "./Photos%20and%20Videos/2025/Your%202025%20Junior%20Champions%20%E2%80%93%20Dhahabiya%20Strikers%21%20%F0%9F%8F%86%E2%9A%BDAfter%20a%20hard-fought%20battle%2C%20Dhahabiya%20edged%20.jpg"
+    },
+    {
+      "id": "2025-photo-10",
+      "title": "Senior Champions - Umer Memon FC",
       "division": "Seniors",
       "category": "Champions",
       "teamId": "",
       "teamName": "Seniors",
       "uploadDate": "",
-      "description": "2025 senior champions photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Your%202025%20Senior%20Champions%20%E2%80%93%20Umer%20Memon%20FC!%20%F0%9F%8F%86%E2%9A%BDIn%20a%20tense%20final%20that%20went%20down%20to%20the%20wire%2C%20Umer.jpg"
-    },
-    {
-      "id": "2025-photo-04",
-      "title": "Tournament Photo 1",
-      "division": "Tournament",
-      "category": "Inter-Madrasa Tournament",
-      "teamId": "",
-      "teamName": "Inter-Madrasa Tournament",
-      "uploadDate": "",
-      "description": "2025 Inter-Madrasa Tournament photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Inter-Madrasa%20Tournament/2025IMST%20(1).jpg"
-    },
-    {
-      "id": "2025-photo-05",
-      "title": "Tournament Photo 2",
-      "division": "Tournament",
-      "category": "Inter-Madrasa Tournament",
-      "teamId": "",
-      "teamName": "Inter-Madrasa Tournament",
-      "uploadDate": "",
-      "description": "2025 Inter-Madrasa Tournament photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Inter-Madrasa%20Tournament/2025IMST%20(2).jpg"
-    },
-    {
-      "id": "2025-photo-06",
-      "title": "Tournament Photo 3",
-      "division": "Tournament",
-      "category": "Inter-Madrasa Tournament",
-      "teamId": "",
-      "teamName": "Inter-Madrasa Tournament",
-      "uploadDate": "",
-      "description": "2025 Inter-Madrasa Tournament photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Inter-Madrasa%20Tournament/2025IMST%20(3).jpg"
-    },
-    {
-      "id": "2025-photo-07",
-      "title": "Tournament Photo 4",
-      "division": "Tournament",
-      "category": "Inter-Madrasa Tournament",
-      "teamId": "",
-      "teamName": "Inter-Madrasa Tournament",
-      "uploadDate": "",
-      "description": "2025 Inter-Madrasa Tournament photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Inter-Madrasa%20Tournament/2025IMST%20(4).jpg"
-    },
-    {
-      "id": "2025-photo-08",
-      "title": "Tournament Photo 5",
-      "division": "Tournament",
-      "category": "Inter-Madrasa Tournament",
-      "teamId": "",
-      "teamName": "Inter-Madrasa Tournament",
-      "uploadDate": "",
-      "description": "2025 Inter-Madrasa Tournament photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Inter-Madrasa%20Tournament/2025IMST%20(5).jpg"
-    },
-    {
-      "id": "2025-photo-09",
-      "title": "Tournament Photo 6",
-      "division": "Tournament",
-      "category": "Inter-Madrasa Tournament",
-      "teamId": "",
-      "teamName": "Inter-Madrasa Tournament",
-      "uploadDate": "",
-      "description": "2025 Inter-Madrasa Tournament photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Inter-Madrasa%20Tournament/2025IMST%20(6).jpg"
-    },
-    {
-      "id": "2025-photo-10",
-      "title": "Tournament Photo 7",
-      "division": "Tournament",
-      "category": "Inter-Madrasa Tournament",
-      "teamId": "",
-      "teamName": "Inter-Madrasa Tournament",
-      "uploadDate": "",
-      "description": "2025 Inter-Madrasa Tournament photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Inter-Madrasa%20Tournament/2025IMST%20(7).jpg"
-    },
-    {
-      "id": "2025-photo-11",
-      "title": "Tournament Photo 8",
-      "division": "Tournament",
-      "category": "Inter-Madrasa Tournament",
-      "teamId": "",
-      "teamName": "Inter-Madrasa Tournament",
-      "uploadDate": "",
-      "description": "2025 Inter-Madrasa Tournament photo.",
-      "imageUrl": "./Photo%20Gallery/2025/Inter-Madrasa%20Tournament/2025IMST%20(8).jpg"
+      "description": "Umer Memon FC are the 2025 Senior champions after a tense final that went down to the wire.",
+      "imageUrl": "./Photos%20and%20Videos/2025/Your%202025%20Senior%20Champions%20%E2%80%93%20Umer%20Memon%20FC%21%20%F0%9F%8F%86%E2%9A%BDIn%20a%20tense%20final%20that%20went%20down%20to%20the%20wire%2C%20Umer.jpg"
     }
   ]
 }

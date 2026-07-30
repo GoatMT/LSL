@@ -1,4 +1,27 @@
 {
   "season": "2024",
-  "photos": []
+  "photos": [
+    {
+      "id": "2024-photo-01",
+      "title": "2024 Season Photo",
+      "division": "Seniors",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 season photo.",
+      "imageUrl": "./Photos%20and%20Videos/2024/573828100_18102838831634729_1200055207419726539_n..jpg"
+    },
+    {
+      "id": "2024-photo-02",
+      "title": "MVP Spotlight - Mubashir Kharooti",
+      "division": "Seniors",
+      "category": "Awards",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "2024 season photo.",
+      "imageUrl": "./Photos%20and%20Videos/2024/Mubashir%20Kharooti%20-%20MVP.jpg"
+    }
+  ]
 }

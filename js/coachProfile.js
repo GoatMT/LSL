@@ -4,7 +4,7 @@ import { loadAllSeasons, loadJSON } from "./dataLoader.js";
 import { COACH_GRADE_SCALE, decorateCoachGrade } from "./coachRatings.js";
 import { buildCoachCareer, calculateCoachForm, computeCoachSummary, getCurrentCoach, getNextTeamMatch } from "./leagueEngine.js?v=3.2";
 import { setupLayout } from "./main.js";
-import { escapeHTML, formatDate, getQueryParam, setDocumentTitle, statusMessage, unique } from "./utils.js";
+import { escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, statusMessage, unique } from "./utils.js";
 
 setupLayout("coaches.html");
 
@@ -72,10 +72,14 @@ async function init() {
   }
 
   const summary = decorateCoachGrade(summaryBase, ratings);
+  const avatar = summary.photo
+    ? `<img class="person-photo" src="${escapeHTML(summary.photo)}" alt="">`
+    : `<span class="person-avatar">${escapeHTML(initials(summary.name))}</span>`;
   setDocumentTitle(summary.name);
   root.innerHTML = `
     <section class="section-panel coach-profile-page">
       <div class="section-head">
+        ${avatar}
         <div>
           <span class="eyebrow">Coach Profile</span>
           <h1>${escapeHTML(summary.name)}</h1>

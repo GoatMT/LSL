@@ -1553,7 +1553,8 @@ details.clean-details summary {
 
 .team-card-head .team-mark,
 .team-card-head .team-logo,
-.person-avatar {
+.person-avatar,
+.person-photo {
   width: 52px;
   height: 52px;
   aspect-ratio: 1 / 1;
@@ -1589,13 +1590,21 @@ details.clean-details summary {
   padding: 6px;
 }
 
-.person-avatar {
+.person-avatar,
+.person-photo {
   display: grid;
   place-items: center;
   color: #ffffff;
   background: var(--green);
   border: 1px solid rgba(199, 163, 103, 0.42);
   font-weight: 900;
+}
+
+.person-photo {
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  background: var(--card);
 }
 
 .people-hero-panel {
@@ -3272,11 +3281,6 @@ details.clean-details summary {
   border-radius: 16px;
 }
 
-.award-latest-item.pending {
-  background: rgba(255, 255, 255, 0.035);
-  border-color: var(--line);
-}
-
 .award-latest-icon {
   width: 42px;
   height: 42px;
@@ -3577,25 +3581,6 @@ details.clean-details summary {
   white-space: nowrap;
 }
 
-.award-status-badge.confirmed {
-  color: #ffffff;
-  background: var(--green);
-  border: 1px solid rgba(199, 163, 103, 0.4);
-}
-
-.award-status-badge.pending {
-  color: var(--gold);
-  background: rgba(199, 163, 103, 0.09);
-  border: 1px solid rgba(199, 163, 103, 0.28);
-}
-
-.award-champion-card.pending,
-.award-card.pending {
-  background: var(--card);
-  border-color: var(--line);
-  opacity: 0.88;
-}
-
 .award-card.champion {
   background: #263126;
   border-color: rgba(199, 163, 103, 0.45);
@@ -3630,11 +3615,6 @@ details.clean-details summary {
   font-size: 1.3rem;
   line-height: 1.25;
   overflow-wrap: anywhere;
-}
-
-.award-card.pending h3,
-.award-champion-card.pending h3 {
-  color: var(--muted);
 }
 
 .award-meta-row {
@@ -3740,10 +3720,6 @@ details.clean-details summary {
   min-width: 0;
   color: #ffffff;
   overflow-wrap: anywhere;
-}
-
-.award-history-row.pending {
-  opacity: 0.74;
 }
 
 .awards-empty-panel {
@@ -4116,6 +4092,26 @@ details.clean-details summary {
   background: #202920;
   border: 1px solid rgba(199, 163, 103, 0.32);
   border-radius: 28px;
+}
+
+.official-profile-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  background: var(--card);
+  border: 1px solid rgba(199, 163, 103, 0.42);
+  border-radius: 22px;
+}
+
+.official-profile-photo.placeholder {
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: var(--green);
+  font-weight: 900;
+  font-size: 2.4rem;
 }
 
 .official-profile-ovr-card {

@@ -8,17 +8,8 @@ setupLayout("awards.html");
 setDocumentTitle("Awards");
 
 const root = document.getElementById("page-root");
-const awardTabs = ["All", "Champions", "Player Awards", "Team Awards", "Pending"];
-let state = { season: "All", division: "All", tab: "All", search: "" };
-
-function isPendingAward(award) {
-  if (String(award.status || "").toLowerCase() === "pending") return true;
-  return /not listed|not announced|to be announced|pending|\btba\b/i.test(award.winner || "");
-}
-
-function awardStatus(award) {
-  return isPendingAward(award) ? "Pending" : "Confirmed";
-}
+const awardTabs = ["All", "Champions", "Player Awards", "Team Awards"];
+let state = { season: "All", division: "Seniors", tab: "All", search: "" };
 
 function isTeamAward(award) {
   return /team/i.test(award.category || "");
@@ -51,7 +42,6 @@ function awardMatchesTab(award) {
   if (state.tab === "Champions") return award.category === "Champion Team";
   if (state.tab === "Player Awards") return isPlayerAward(award);
   if (state.tab === "Team Awards") return isTeamAward(award);
-  if (state.tab === "Pending") return isPendingAward(award);
   return true;
 }
 
@@ -92,18 +82,14 @@ function summaryTile(icon, label, value, note) {
 }
 
 function renderAwardSummary(awards) {
-  const confirmed = awards.filter((award) => !isPendingAward(award)).length;
-  const pending = awards.length - confirmed;
-  const champions = awards.filter((award) => award.category === "Champion Team" && !isPendingAward(award)).length;
+  const champions = awards.filter((award) => award.category === "Champion Team").length;
   const playerHonors = awards.filter(isPlayerAward).length;
   const teamHonors = awards.filter(isTeamAward).length;
 
   return `
     <div class="awards-summary-grid">
       ${summaryTile("🏅", "Total Awards", awards.length, "matching selections")}
-      ${summaryTile("✓", "Confirmed", confirmed, "winners announced")}
-      ${summaryTile("🏆", "Champions", champions, "confirmed titles")}
-      ${summaryTile("⏳", "Pending", pending, "awaiting announcement")}
+      ${summaryTile("🏆", "Champions", champions, "titles")}
       ${summaryTile("⭐", "Player Honors", playerHonors, "individual awards")}
       ${summaryTile("⚽", "Team Honors", teamHonors, "team awards")}
     </div>
@@ -133,7 +119,7 @@ function renderLatestSeason(allData) {
                 .slice(0, 4)
                 .map(
                   (award) => `
-                    <article class="award-latest-item${isPendingAward(award) ? " pending" : ""}">
+                    <article class="award-latest-item">
                       <span class="award-latest-icon" aria-hidden="true">${awardIcon(award)}</span>
                       <div>
                         <small>${escapeHTML(award.category)} | ${escapeHTML(award.division || "All Divisions")}</small>
@@ -159,7 +145,6 @@ function renderTabs(awards) {
             if (tab === "Champions") return award.category === "Champion Team";
             if (tab === "Player Awards") return isPlayerAward(award);
             if (tab === "Team Awards") return isTeamAward(award);
-            if (tab === "Pending") return isPendingAward(award);
             return true;
           }).length;
           return `
@@ -190,12 +175,10 @@ function renderChampionStrip(awards) {
       <div class="awards-champion-grid">
         ${champions
           .map((award) => {
-            const pending = isPendingAward(award);
             return `
-              <article class="card award-champion-card${pending ? " pending" : ""}">
+              <article class="card award-champion-card">
                 <div class="award-champion-topline">
                   <span class="award-champion-trophy" aria-hidden="true">🏆</span>
-                  <span class="award-status-badge ${pending ? "pending" : "confirmed"}">${escapeHTML(awardStatus(award))}</span>
                 </div>
                 <div class="award-champion-badges">
                   <span>${escapeHTML(award.season)}</span>
@@ -214,13 +197,11 @@ function renderChampionStrip(awards) {
 }
 
 function renderAwardCard(award) {
-  const pending = isPendingAward(award);
   const type = awardType(award);
   return `
-    <article class="card award-card ${type}${pending ? " pending" : ""}">
+    <article class="card award-card ${type}">
       <div class="award-card-top">
         <span class="award-card-icon" aria-hidden="true">${awardIcon(award)}</span>
-        <span class="award-status-badge ${pending ? "pending" : "confirmed"}">${escapeHTML(awardStatus(award))}</span>
       </div>
       <span class="award-title">${escapeHTML(award.category)}</span>
       <h3>${winnerMarkup(award, "award-winner-link")}</h3>
@@ -267,8 +248,6 @@ function renderAwardSeasonGroups(awards) {
       <div class="award-season-list">
         ${[...groups.entries()]
           .map(([season, seasonAwards], index) => {
-            const confirmed = seasonAwards.filter((award) => !isPendingAward(award)).length;
-            const pending = seasonAwards.length - confirmed;
             return `
               <details class="award-season-section"${index === 0 ? " open" : ""}>
                 <summary class="award-season-head">
@@ -277,8 +256,6 @@ function renderAwardSeasonGroups(awards) {
                     <h3>${escapeHTML(season)} Awards</h3>
                   </div>
                   <div class="award-season-counts">
-                    <span class="award-status-badge confirmed">${confirmed} confirmed</span>
-                    ${pending ? `<span class="award-status-badge pending">${pending} pending</span>` : ""}
                     <span class="award-season-total">${seasonAwards.length} ${seasonAwards.length === 1 ? "award" : "awards"}</span>
                   </div>
                 </summary>
@@ -311,7 +288,7 @@ function renderHistoryGroup(title, icon, awards) {
           ${rows
             .map(
               (award) => `
-                <div class="award-history-row${isPendingAward(award) ? " pending" : ""}">
+                <div class="award-history-row">
                   <span data-label="Season">${escapeHTML(award.season)}</span>
                   <span data-label="Division">${escapeHTML(award.division || "All Divisions")}</span>
                   <strong data-label="Winner">${winnerMarkup(award, "award-winner-link")}</strong>
@@ -355,10 +332,11 @@ function filteredAwards(allData) {
 }
 
 function render(allData, focusSearch = false) {
-  const selectedSeasons = state.season === "All" ? allData : allData.filter((season) => season.year === state.season);
-  const divisions = [...new Set(selectedSeasons.flatMap((season) => (season.awards?.awards || []).map((award) => award.division)).filter(Boolean))];
-  const divisionOptions = [{ value: "All", label: "All" }, ...divisions.map((division) => ({ value: division, label: division }))];
-  if (!divisionOptions.some((option) => option.value === state.division)) state.division = "All";
+  const divisionOptions = [
+    { value: "Seniors", label: "Seniors" },
+    { value: "Juniors", label: "Juniors" },
+  ];
+  if (!divisionOptions.some((option) => option.value === state.division)) state.division = "Seniors";
 
   const scopedAwards = getAwards(allData, { season: state.season, division: state.division });
   const awards = filteredAwards(allData);

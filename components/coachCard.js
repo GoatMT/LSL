@@ -9,10 +9,13 @@ export function renderCoachCard(coach, index = null) {
   const style = coach.tacticalStyle || "Not Rated";
   const strength = coach.strength || "Not Rated";
   const weakness = coach.weakness || "Not Rated";
+  const avatar = coach.photo
+    ? `<img class="person-photo" src="${escapeHTML(coach.photo)}" alt="">`
+    : `<span class="person-avatar">${escapeHTML(initials(coach.name))}</span>`;
   return `
     <article class="card person-card coach-card">
       <div class="coach-card-head">
-        <span class="person-avatar">${escapeHTML(initials(coach.name))}</span>
+        ${avatar}
         <div class="person-title">
           ${rank ? `<span class="person-rank">#${rank}</span>` : ""}
           <h3><a href="./coach.html?id=${escapeHTML(coach.id)}">${escapeHTML(coach.name)}</a></h3>

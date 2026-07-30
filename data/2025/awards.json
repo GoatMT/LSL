@@ -35,7 +35,7 @@
       "winner": "Hafizullah",
       "playerId": "hafizullah",
       "teamId": "asif-gangat-united-2025",
-      "sourceNote": "Claude's pick, pending the real winner: Hafizullah led all 2025 Seniors with 9 regular-season goals for regular-season-best Asif Gangat United and took them within a penalty shootout of the final."
+      "sourceNote": "Claude's pick: Hafizullah led all 2025 Seniors with 9 regular-season goals for regular-season-best Asif Gangat United and took them within a penalty shootout of the final."
     },
     {
       "division": "Seniors",
@@ -76,8 +76,18 @@
     {
       "division": "Juniors",
       "category": "MVP",
-      "winner": "Not announced",
-      "sourceNote": "The 2025 Juniors MVP has not been announced."
+      "winner": "Ajmal Shakkari",
+      "playerId": "ajmal-shakkari",
+      "teamId": "dhahabiya-strikers",
+      "sourceNote": "Claude's pick: captain and top scorer (10 goals) for the champion, regular-season-best Dhahabiya Strikers."
+    },
+    {
+      "division": "Juniors",
+      "category": "Golden Boot",
+      "winner": "Ajmal Shakkari",
+      "playerId": "ajmal-shakkari",
+      "teamId": "dhahabiya-strikers",
+      "sourceNote": "Led the 2025 Juniors with 10 regular-season goals, the highest single-season total on record."
     }
   ]
 }
