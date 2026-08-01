@@ -1,56 +1,56 @@
 {
   "season": "2026",
-  "week": "Week 6",
-  "date": "July 25, 2026",
+  "week": "Week 7",
+  "date": "August 1, 2026",
   "division": "Seniors",
   "playerOfTheWeek": {
-    "playerId": "haroon-ahmadi",
-    "name": "Haroon Ahmadi",
-    "teamId": "em-haulers-fc",
-    "teamName": "EM Haulers FC",
-    "summary": "Scored three goals in EM Haulers FC's 4-3 Week 6 win over Gangat Warriors.",
+    "playerId": "uthman",
+    "name": "Uthman Manira",
+    "teamId": "rawaha-royals",
+    "teamName": "Rawaha Royals",
+    "summary": "Scored three goals in Rawaha Royals' 8-4 Week 7 win over Gangat Warriors.",
     "tag": "Player of the Week"
   },
   "topPlayers": [
     {
       "rank": 1,
-      "playerId": "haroon-ahmadi",
-      "name": "Haroon Ahmadi",
-      "teamId": "em-haulers-fc",
-      "teamName": "EM Haulers FC",
-      "summary": "Three goals in EM Haulers FC's 4-3 win"
+      "playerId": "uthman",
+      "name": "Uthman Manira",
+      "teamId": "rawaha-royals",
+      "teamName": "Rawaha Royals",
+      "summary": "Three goals in Rawaha Royals' 8-4 win"
     },
     {
       "rank": 2,
-      "playerId": "mudassir",
-      "name": "Mudassir",
-      "teamId": "leeward-lions",
-      "teamName": "Leeward Lions",
-      "summary": "Three goals for Leeward Lions in a 5-4 loss"
-    },
-    {
-      "rank": 3,
       "playerId": "taha-nakhuda",
       "name": "Taaha Nakhuda",
       "teamId": "gangat-warriors",
       "teamName": "Gangat Warriors",
-      "summary": "Three goals against EM Haulers FC"
+      "summary": "Two assists for Gangat Warriors in the 8-4 loss"
+    },
+    {
+      "rank": 3,
+      "playerId": "saad-khan",
+      "name": "Saad Khan",
+      "teamId": "rawaha-royals",
+      "teamName": "Rawaha Royals",
+      "summary": "Added an assist from goalie for Rawaha Royals"
     },
     {
       "rank": 4,
-      "playerId": "muhammad-teli",
-      "name": "Muhummud Teli",
+      "playerId": "ajmal-shakkari",
+      "name": "Ajmal Chakkari",
       "teamId": "leeward-lions",
       "teamName": "Leeward Lions",
-      "summary": "Scored for Leeward Lions in a 5-4 loss"
+      "summary": "Scored the only goal in a 1-0 win over Refuel Rovers"
     },
     {
       "rank": 5,
-      "playerId": "tayyib-mohammed",
-      "name": "Tayyib Mohammed",
+      "playerId": "haroon-ahmadi",
+      "name": "Haroon Ahmadi",
       "teamId": "em-haulers-fc",
       "teamName": "EM Haulers FC",
-      "summary": "Scored in EM Haulers FC's 4-3 win"
+      "summary": "Tied the game for EM Haulers FC in a 1-1 draw with Memon Mavericks"
     }
   ]
 }

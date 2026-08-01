@@ -1,9 +1,9 @@
 {
   "season": "2026",
-  "week": "Week 6",
-  "date": "July 25, 2026",
+  "week": "Week 7",
+  "date": "August 1, 2026",
   "title": "Award Watch",
-  "subtitle": "Early leaders after the latest reported Week 6 results in the LSL Seniors League.",
+  "subtitle": "Early leaders after the latest reported Week 7 results in the LSL Seniors League.",
   "categories": [
     {
       "label": "MVP Watch",
@@ -15,23 +15,23 @@
           "name": "Mudassir",
           "teamName": "Leeward Lions",
           "stat": "16 goals",
-          "reason": "Still leads the senior goal race after scoring three in Week 6."
+          "reason": "Still leads the senior goal race after being held scoreless in Week 7's 1-0 win over Refuel Rovers."
         },
         {
           "rank": 2,
           "playerId": "haroon-ahmadi",
           "name": "Haroon Ahmadi",
           "teamName": "EM Haulers FC",
-          "stat": "12 goals",
-          "reason": "Added another hat trick in EM Haulers FC's 4-3 Week 6 win over Gangat Warriors."
+          "stat": "13 goals",
+          "reason": "Scored the equalizer in EM Haulers FC's 1-1 Week 7 draw with Memon Mavericks."
         },
         {
           "rank": 3,
           "playerId": "ajmal-shakkari",
           "name": "Ajmal Chakkari",
           "teamName": "Leeward Lions",
-          "stat": "7 goals",
-          "reason": "Seven senior goals keep him in the top group."
+          "stat": "8 goals",
+          "reason": "Scored the winner in Week 7 and is now tied for third with M Yahya and Mohammed Ibrahim at 8."
         }
       ]
     },
@@ -45,23 +45,23 @@
           "name": "Mudassir",
           "teamName": "Leeward Lions",
           "stat": "16 goals",
-          "reason": "Three more goals in Week 6 moved him farther ahead in the senior goal race."
+          "reason": "Leads the senior goal race by three after Week 7."
         },
         {
           "rank": 2,
           "playerId": "haroon-ahmadi",
           "name": "Haroon Ahmadi",
           "teamName": "EM Haulers FC",
-          "stat": "12 goals",
-          "reason": "A Week 6 hat trick moved him back toward the front of the chase."
+          "stat": "13 goals",
+          "reason": "Pulled to within three goals of the lead with his Week 7 equalizer."
         },
         {
           "rank": 3,
           "playerId": "ajmal-shakkari",
           "name": "Ajmal Chakkari",
           "teamName": "Leeward Lions",
-          "stat": "7 goals",
-          "reason": "Seven goals through Week 6."
+          "stat": "8 goals",
+          "reason": "Level with M Yahya and Mohammed Ibrahim for third after his Week 7 winner."
         }
       ]
     },
@@ -71,24 +71,24 @@
       "leaders": [
         {
           "rank": 1,
-          "teamId": "em-haulers-fc",
-          "name": "EM Haulers FC",
-          "stat": "5-0-1",
-          "reason": "Moved top on tiebreakers after a 4-3 Week 6 win over Gangat Warriors."
+          "teamId": "leeward-lions",
+          "name": "Leeward Lions",
+          "stat": "5-1-1",
+          "reason": "Moved into a three-way tie atop the standings and leads on goal differential (+18) after Week 7."
         },
         {
           "rank": 2,
-          "teamId": "sharp-strikers",
-          "name": "Sharp Strikers",
-          "stat": "5-0-1",
-          "reason": "Beat Leeward Lions 5-4 and sit level with EM on points."
+          "teamId": "em-haulers-fc",
+          "name": "EM Haulers FC",
+          "stat": "5-1-1",
+          "reason": "Tied on points after a 1-1 Week 7 draw with Memon Mavericks; second on goal differential (+12)."
         },
         {
           "rank": 3,
-          "teamId": "leeward-lions",
-          "name": "Leeward Lions",
-          "stat": "4-1-1",
-          "reason": "Still near the top even after the 5-4 Week 6 loss to Sharp Strikers."
+          "teamId": "sharp-strikers",
+          "name": "Sharp Strikers",
+          "stat": "5-1-1",
+          "reason": "Tied on points after a 1-1 Week 7 draw with Amax Visionaries; third on goal differential (+11)."
         }
       ]
     }

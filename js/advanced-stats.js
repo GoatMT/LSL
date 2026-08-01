@@ -1,5 +1,5 @@
 import { loadSeasonData } from "./dataLoader.js";
-import { calculateStandings, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.2";
+import { calculateStandings, computePlayerStats, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.2";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, formatPercent, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
@@ -253,6 +253,12 @@ function renderTacticalQuadrant(rows) {
           )
           .join("")}
       </div>
+      <div class="advanced-quadrant-legend">
+        <div><span>Park The Bus</span><small>Low goals scored, low goals conceded &mdash; cautious, defense-first teams.</small></div>
+        <div><span>Elite Balance</span><small>High goals scored, low goals conceded &mdash; the strongest all-around teams.</small></div>
+        <div><span>Struggling</span><small>Low goals scored, high goals conceded &mdash; teams still finding their form.</small></div>
+        <div><span>Open Attack</span><small>High goals scored, high goals conceded &mdash; entertaining but leaky teams.</small></div>
+      </div>
     </article>
   `;
 }
@@ -304,6 +310,10 @@ function renderGoalsVsWins(rows) {
         <h3>Stat Padding Check</h3>
       </div>
       <div class="advanced-scatter compact">
+        <span class="axis top-left">Efficient Wins</span>
+        <span class="axis top-right">True Quality</span>
+        <span class="axis bottom-left">Low Output</span>
+        <span class="axis bottom-right">Stat Padding</span>
         ${points
           .map(
             ({ row, x, y }) => `
@@ -313,6 +323,12 @@ function renderGoalsVsWins(rows) {
             `
           )
           .join("")}
+      </div>
+      <div class="advanced-quadrant-legend">
+        <div><span>Efficient Wins</span><small>Fewer goals scored but still racking up points &mdash; wins on the scoreboard, not the stat sheet.</small></div>
+        <div><span>True Quality</span><small>High goals scored and high points &mdash; the production backs up the results.</small></div>
+        <div><span>Low Output</span><small>Few goals scored and few points &mdash; still building toward results.</small></div>
+        <div><span>Stat Padding</span><small>High goals scored but few points &mdash; racking up goals without matching wins.</small></div>
       </div>
     </article>
   `;
@@ -407,8 +423,8 @@ function radarPoint(cx, cy, radius, index, total, value) {
 }
 
 function renderRadar(rows) {
-  const [first, second] = rows;
-  if (!first || !second) return "";
+  const top = rows.slice(0, 3);
+  if (top.length < 2) return "";
   const max = {
     pts: Math.max(1, ...rows.map((row) => row.pts)),
     gf: Math.max(1, ...rows.map((row) => row.gf)),
@@ -422,21 +438,20 @@ function renderRadar(rows) {
     ["Margin", (row) => (row.gd + 20) / max.gd],
   ];
   const polygon = (row) => metrics.map((metric, index) => radarPoint(150, 150, 95, index, metrics.length, metric[1](row))).join(" ");
+  const seriesClasses = ["radar-a", "radar-b", "radar-c"];
   return `
     <article class="advanced-chart-card">
       <div class="advanced-chart-head">
         <span>Radar DNA</span>
-        <h3>${escapeHTML(first.team.name)} vs ${escapeHTML(second.team.name)}</h3>
+        <h3>Top ${top.length} Teams Compared</h3>
       </div>
-      <svg class="advanced-radar" viewBox="0 0 300 300" role="img" aria-label="Radar comparison for top two teams">
+      <svg class="advanced-radar" viewBox="0 0 300 300" role="img" aria-label="Radar comparison for the top teams">
         <polygon class="radar-grid" points="${metrics.map((_, index) => radarPoint(150, 150, 95, index, metrics.length, 1)).join(" ")}"></polygon>
         ${metrics.map((metric, index) => `<text x="${radarPoint(150, 150, 122, index, metrics.length, 1).split(",")[0]}" y="${radarPoint(150, 150, 122, index, metrics.length, 1).split(",")[1]}">${metric[0]}</text>`).join("")}
-        <polygon class="radar-a" points="${polygon(first)}"></polygon>
-        <polygon class="radar-b" points="${polygon(second)}"></polygon>
+        ${top.map((row, index) => `<polygon class="${seriesClasses[index]}" points="${polygon(row)}"></polygon>`).join("")}
       </svg>
       <div class="advanced-chart-legend">
-        <span class="radar-a">${escapeHTML(first.team.name)}</span>
-        <span class="radar-b">${escapeHTML(second.team.name)}</span>
+        ${top.map((row, index) => `<span class="${seriesClasses[index]}">${escapeHTML(row.team.name)}</span>`).join("")}
       </div>
     </article>
   `;
@@ -463,6 +478,250 @@ function renderGoalMarginHeatmap(rows) {
             }).join("")}
           `)
           .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderTopScorers(data) {
+  const players = computePlayerStats(data, { stage: "regular" })
+    .filter((player) => player.division === state.division)
+    .filter((player) => player.goals > 0)
+    .sort((a, b) => b.goals - a.goals || b.assists - a.assists)
+    .slice(0, 8);
+  if (!players.length) return "";
+  const max = Math.max(1, ...players.map((player) => player.goals));
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Individual Leaders</span>
+        <h3>Top Scorers</h3>
+      </div>
+      <div class="advanced-stack-list">
+        ${players
+          .map(
+            (player) => `
+              <div class="advanced-stack-row">
+                <strong><a class="team-name" href="./player.html?id=${escapeHTML(player.id)}">${escapeHTML(player.name)}</a></strong>
+                <div class="advanced-stack-bar">
+                  <span class="elite" style="width:${pct(player.goals, max)}%"></span>
+                </div>
+                <small>${player.goals} goals | ${player.assists || 0} assists | ${escapeHTML(player.teamName || "Team TBA")}</small>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderAssistLeaders(data) {
+  const players = computePlayerStats(data, { stage: "regular" })
+    .filter((player) => player.division === state.division)
+    .filter((player) => player.assists > 0)
+    .sort((a, b) => b.assists - a.assists || b.goals - a.goals)
+    .slice(0, 8);
+  if (!players.length) return "";
+  const max = Math.max(1, ...players.map((player) => player.assists));
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Individual Leaders</span>
+        <h3>Top Assists</h3>
+      </div>
+      <div class="advanced-stack-list">
+        ${players
+          .map(
+            (player) => `
+              <div class="advanced-stack-row">
+                <strong><a class="team-name" href="./player.html?id=${escapeHTML(player.id)}">${escapeHTML(player.name)}</a></strong>
+                <div class="advanced-stack-bar">
+                  <span class="mid" style="width:${pct(player.assists, max)}%"></span>
+                </div>
+                <small>${player.assists} assists | ${player.goals || 0} goals | ${escapeHTML(player.teamName || "Team TBA")}</small>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderHomeAwaySplit(matches, rows) {
+  const splits = new Map(rows.map((row) => [row.teamId, { home: blankRecord(), away: blankRecord() }]));
+  matches.forEach((match) => {
+    const winner = winnerTeamId(match);
+    const home = splits.get(match.homeTeamId);
+    const away = splits.get(match.awayTeamId);
+    if (home) addMatch(home.home, match.homeScore, match.awayScore, winner, match.homeTeamId);
+    if (away) addMatch(away.away, match.awayScore, match.homeScore, winner, match.awayTeamId);
+  });
+  const ranked = rows.filter((row) => splits.get(row.teamId).home.gp + splits.get(row.teamId).away.gp > 0);
+  if (!ranked.length) return "";
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Venue Split</span>
+        <h3>Home vs Away Performance</h3>
+      </div>
+      <div class="advanced-tug-list">
+        ${ranked
+          .map((row) => {
+            const split = splits.get(row.teamId);
+            const max = Math.max(1, split.home.pts, split.away.pts);
+            return `
+              <div class="advanced-tug-row">
+                <strong>${escapeHTML(row.team.name)}</strong>
+                <div class="advanced-tug-bar">
+                  <span class="against" style="width:${pct(split.away.pts, max)}%">Away ${escapeHTML(recordLabel(split.away))}</span>
+                  <i></i>
+                  <span class="for" style="width:${pct(split.home.pts, max)}%">Home ${escapeHTML(recordLabel(split.home))}</span>
+                </div>
+              </div>
+            `;
+          })
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderCleanSheets(matches, rows) {
+  const counts = new Map(rows.map((row) => [row.teamId, 0]));
+  matches.forEach((match) => {
+    if (match.awayScore === 0 && counts.has(match.homeTeamId)) counts.set(match.homeTeamId, counts.get(match.homeTeamId) + 1);
+    if (match.homeScore === 0 && counts.has(match.awayTeamId)) counts.set(match.awayTeamId, counts.get(match.awayTeamId) + 1);
+  });
+  const ranked = rows
+    .map((row) => ({ row, cleanSheets: counts.get(row.teamId) || 0 }))
+    .filter((entry) => entry.cleanSheets > 0)
+    .sort((a, b) => b.cleanSheets - a.cleanSheets);
+  if (!ranked.length) return "";
+  const max = Math.max(1, ...ranked.map((entry) => entry.cleanSheets));
+  return `
+    <article class="advanced-chart-card">
+      <div class="advanced-chart-head">
+        <span>Defense</span>
+        <h3>Clean Sheets</h3>
+      </div>
+      <div class="advanced-stack-list">
+        ${ranked
+          .map(
+            ({ row, cleanSheets }) => `
+              <div class="advanced-stack-row">
+                <strong>${escapeHTML(row.team.name)}</strong>
+                <div class="advanced-stack-bar">
+                  <span class="elite" style="width:${pct(cleanSheets, max)}%"></span>
+                </div>
+                <small>${cleanSheets} shutout${cleanSheets === 1 ? "" : "s"}</small>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderPointsRace(matches, rows) {
+  const weekList = [...new Set(matches.map((match) => Number(match.week)).filter(Number.isFinite))].sort((a, b) => a - b);
+  if (weekList.length < 2) return "";
+  const topRows = rows.slice(0, 6);
+  const cumulative = new Map(topRows.map((row) => [row.teamId, 0]));
+  const series = new Map(topRows.map((row) => [row.teamId, []]));
+
+  weekList.forEach((week) => {
+    matches
+      .filter((match) => Number(match.week) === week)
+      .forEach((match) => {
+        const winner = winnerTeamId(match);
+        [match.homeTeamId, match.awayTeamId].forEach((teamId) => {
+          if (!cumulative.has(teamId)) return;
+          if (!winner) cumulative.set(teamId, cumulative.get(teamId) + 1);
+          else if (winner === teamId) cumulative.set(teamId, cumulative.get(teamId) + 3);
+        });
+      });
+    topRows.forEach((row) => series.get(row.teamId).push(cumulative.get(row.teamId)));
+  });
+
+  const maxPts = Math.max(1, ...[...series.values()].flat());
+  const innerLeft = 60;
+  const innerRight = 520;
+  const xFor = (index) => innerLeft + (weekList.length === 1 ? 0 : (index * (innerRight - innerLeft)) / (weekList.length - 1));
+  const yFor = (value) => 230 - pct(value, maxPts) * 1.9;
+
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Season Trend</span>
+        <h3>Points Race By Week</h3>
+      </div>
+      <svg class="advanced-line-chart" viewBox="0 0 560 260" role="img" aria-label="Cumulative points by week for the top teams">
+        <line x1="${innerLeft}" y1="230" x2="${innerRight}" y2="230"></line>
+        <line x1="${innerLeft}" y1="30" x2="${innerLeft}" y2="230"></line>
+        ${weekList.map((week, index) => `<text x="${xFor(index)}" y="250">W${week}</text>`).join("")}
+        ${topRows
+          .map((row, index) => {
+            const points = series.get(row.teamId).map((value, i) => `${xFor(i)},${yFor(value)}`).join(" ");
+            return `<polyline class="line-${index}" points="${points}"></polyline>`;
+          })
+          .join("")}
+      </svg>
+      <div class="advanced-chart-legend">
+        ${topRows.map((row, index) => `<span class="line-${index}">${escapeHTML(row.team.name)}</span>`).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderBiggestWins(matches, teamsById) {
+  const decided = matches
+    .filter((match) => match.homeScore !== match.awayScore)
+    .map((match) => {
+      const winner = match.homeScore > match.awayScore ? match.homeTeamId : match.awayTeamId;
+      const loser = winner === match.homeTeamId ? match.awayTeamId : match.homeTeamId;
+      const winnerScore = Math.max(match.homeScore, match.awayScore);
+      const loserScore = Math.min(match.homeScore, match.awayScore);
+      return { match, winner, loser, margin: winnerScore - loserScore, winnerScore, loserScore };
+    })
+    .sort((a, b) => b.margin - a.margin)
+    .slice(0, 6);
+  if (!decided.length) return "";
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Blowouts</span>
+        <h3>Biggest Wins This Season</h3>
+      </div>
+      <div class="table-wrap mobile-card-table-wrap">
+        <table class="data-table mobile-card-table advanced-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Winner</th>
+              <th>Opponent</th>
+              <th class="num">Score</th>
+              <th class="num">Margin</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${decided
+              .map(
+                ({ match, winner, loser, margin, winnerScore, loserScore }) => `
+                  <tr>
+                    <td data-label="Week">${escapeHTML(match.week ?? "-")}</td>
+                    <td data-label="Winner">${escapeHTML(teamsById.get(winner)?.name || "Team")}</td>
+                    <td data-label="Opponent">${escapeHTML(teamsById.get(loser)?.name || "Team")}</td>
+                    <td class="num" data-label="Score">${winnerScore}-${loserScore}</td>
+                    <td class="num" data-label="Margin">+${margin}</td>
+                  </tr>
+                `
+              )
+              .join("")}
+          </tbody>
+        </table>
       </div>
     </article>
   `;
@@ -549,8 +808,14 @@ function render(data) {
         ${renderRadar(rows)}
         ${renderPpgHeatmap(rows)}
         ${renderTugOfWar(rows)}
+        ${renderHomeAwaySplit(matches, rows)}
         ${renderElasticity(rows)}
         ${renderGoalMarginHeatmap(rows)}
+        ${renderPointsRace(matches, rows)}
+        ${renderBiggestWins(matches, new Map(rows.map((row) => [row.teamId, row.team])))}
+        ${renderTopScorers(data)}
+        ${renderAssistLeaders(data)}
+        ${renderCleanSheets(matches, rows)}
       </div>
     </section>
     ${renderTeamTable(rows)}

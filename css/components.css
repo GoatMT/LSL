@@ -8971,19 +8971,19 @@ details.clean-details summary {
 
 .imt-blue-page {
   background:
-    linear-gradient(180deg, #111820 0, #151a1f 240px, #0f1215 100%);
-  color: #001a3a;
+    linear-gradient(180deg, var(--page) 0, var(--panel) 240px, var(--page) 100%);
+  color: var(--ink);
 }
 
 .imt-blue-page .site-header {
-  background: #001a3a;
-  border-bottom-color: rgba(153, 196, 221, 0.42);
+  background: var(--green);
+  border-bottom-color: rgba(199, 163, 103, 0.32);
 }
 
 .imt-blue-page .site-footer {
-  color: #e8f6ff;
-  background: #001a3a;
-  border-top-color: rgba(153, 196, 221, 0.35);
+  color: var(--ink);
+  background: var(--green);
+  border-top-color: rgba(199, 163, 103, 0.28);
 }
 
 .imt-blue-page .page-shell {
@@ -8993,7 +8993,7 @@ details.clean-details summary {
 .imt-page-shell {
   display: grid;
   gap: 28px;
-  color: #001a3a;
+  color: var(--ink);
 }
 
 .imt-site-bar,
@@ -9003,10 +9003,10 @@ details.clean-details summary {
 .imt-section,
 .imt-quick-actions {
   min-width: 0;
-  background: #dceeff;
-  border: 1px solid rgba(64, 99, 136, 0.24);
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: 28px;
-  box-shadow: 0 18px 44px rgba(0, 26, 58, 0.12);
+  box-shadow: var(--shadow);
 }
 
 .imt-site-bar {
@@ -9016,9 +9016,9 @@ details.clean-details summary {
   align-items: end;
   justify-content: space-between;
   padding: 18px;
-  background: #001a3a;
-  border-color: rgba(153, 196, 221, 0.42);
-  box-shadow: 0 18px 44px rgba(0, 26, 58, 0.18);
+  background: var(--green);
+  border-color: rgba(199, 163, 103, 0.3);
+  box-shadow: var(--shadow);
 }
 
 .imt-lsl-home,
@@ -9030,9 +9030,9 @@ details.clean-details summary {
   align-items: center;
   justify-content: center;
   padding: 10px 16px;
-  color: #ffffff;
-  background: #001a3a;
-  border: 1px solid rgba(72, 170, 255, 0.58);
+  color: var(--ink);
+  background: var(--green-2);
+  border: 1px solid rgba(199, 163, 103, 0.42);
   border-radius: 16px;
   font-weight: 950;
   text-align: center;
@@ -9045,9 +9045,9 @@ details.clean-details summary {
   align-items: center;
   justify-content: center;
   padding: 9px 10px;
-  color: #ffffff;
-  background: #001a3a;
-  border: 1px solid rgba(72, 170, 255, 0.58);
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 12px;
   font-weight: 950;
   text-align: center;
@@ -9056,9 +9056,9 @@ details.clean-details summary {
 
 .imt-lsl-home {
   justify-self: start;
-  color: #001a3a;
-  background: #99c4dd;
-  border-color: #48aaff;
+  color: var(--green);
+  background: var(--gold);
+  border-color: var(--gold);
 }
 
 .imt-year-control .control {
@@ -9069,27 +9069,27 @@ details.clean-details summary {
 .imt-blue-kicker,
 .imt-section-head > span,
 .imt-schedule-group h3 {
-  color: #406388;
+  color: var(--muted);
   font-size: 0.78rem;
   font-weight: 950;
   text-transform: uppercase;
 }
 
 .imt-site-bar .control label {
-  color: #99c4dd;
+  color: #efd3a5;
 }
 
 .imt-year-control .control select {
   min-height: 46px;
-  color: #001a3a;
-  background-color: #f5fbff;
-  border-color: rgba(64, 99, 136, 0.3);
-  color-scheme: light;
+  color: var(--ink);
+  background-color: var(--card);
+  border-color: var(--line);
+  color-scheme: dark;
 }
 
 .imt-year-control .control select option {
-  color: #001a3a;
-  background: #ffffff;
+  color: var(--ink);
+  background: var(--panel);
 }
 
 .imt-blue-hero {
@@ -9098,10 +9098,10 @@ details.clean-details summary {
   gap: 22px;
   padding: clamp(24px, 4vw, 42px);
   background:
-    linear-gradient(135deg, rgba(0, 26, 58, 0.96), rgba(64, 99, 136, 0.92)),
-    #001a3a;
-  color: #ffffff;
-  border-color: rgba(153, 196, 221, 0.45);
+    linear-gradient(135deg, rgba(17, 60, 31, 0.96), rgba(27, 86, 48, 0.92)),
+    var(--green);
+  color: var(--ink);
+  border-color: rgba(199, 163, 103, 0.32);
 }
 
 .imt-blue-hero-copy {
@@ -9130,12 +9130,12 @@ details.clean-details summary {
 
 .imt-blue-hero p {
   max-width: 760px;
-  color: #d9ecf8;
+  color: var(--muted);
   font-size: 1.08rem;
 }
 
 .imt-blue-hero .imt-blue-kicker {
-  color: #99c4dd;
+  color: #efd3a5;
 }
 
 .imt-hero-facts {
@@ -9155,9 +9155,9 @@ details.clean-details summary {
 
 .imt-hero-facts span {
   padding: 9px 12px;
-  color: #ffffff;
-  background: rgba(153, 196, 221, 0.18);
-  border: 1px solid rgba(153, 196, 221, 0.32);
+  color: var(--ink);
+  background: rgba(199, 163, 103, 0.16);
+  border: 1px solid rgba(199, 163, 103, 0.3);
   font-weight: 900;
 }
 
@@ -9167,9 +9167,9 @@ details.clean-details summary {
   gap: 12px;
   min-width: 0;
   padding: 24px;
-  color: #001a3a;
-  background: #dceeff;
-  border: 1px solid rgba(72, 170, 255, 0.35);
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid rgba(199, 163, 103, 0.28);
   border-radius: 24px;
 }
 
@@ -9177,21 +9177,21 @@ details.clean-details summary {
   width: max-content;
   max-width: 100%;
   padding: 7px 12px;
-  color: #ffffff;
-  background: #48aaff;
+  color: var(--green);
+  background: var(--gold);
   font-size: 0.78rem;
   font-weight: 950;
   text-transform: uppercase;
 }
 
 .imt-live-card strong {
-  color: #001a3a;
+  color: var(--ink);
   font-size: clamp(1.45rem, 3vw, 2.4rem);
   line-height: 1.08;
 }
 
 .imt-live-card p {
-  color: #406388;
+  color: var(--muted);
   font-weight: 850;
 }
 
@@ -9213,31 +9213,32 @@ details.clean-details summary {
 }
 
 .imt-subnav {
-  background: #001a3a;
-  border-color: rgba(153, 196, 221, 0.42);
+  background: var(--green);
+  border-color: rgba(199, 163, 103, 0.3);
 }
 
 .imt-subnav button,
 .imt-quick-actions button,
 .imt-choice-row button {
-  color: #001a3a;
-  background: #dceeff;
-  border-color: rgba(64, 99, 136, 0.22);
+  color: var(--ink);
+  background: var(--card);
+  border-color: var(--line);
+}
+
+.imt-subnav button:hover:not(.active),
+.imt-quick-actions button:hover,
+.imt-choice-row button:hover:not(.active) {
+  color: var(--ink);
+  background: var(--green-2);
+  border-color: rgba(199, 163, 103, 0.45);
 }
 
 .imt-subnav button.active,
-.imt-subnav button:hover,
-.imt-quick-actions button:hover,
 .imt-choice-row button.active {
-  color: #ffffff;
-  background: #48aaff;
-  border-color: #99c4dd;
-}
-
-.imt-subnav button.active {
-  color: #001a3a;
-  background: #ffffff;
-  border-color: #48aaff;
+  color: var(--green);
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 10px 22px rgba(199, 163, 103, 0.35);
 }
 
 .imt-status-panel {
@@ -9253,14 +9254,14 @@ details.clean-details summary {
   gap: 8px;
   min-height: 170px;
   padding: 24px;
-  color: #ffffff;
-  background: #001a3a;
-  border: 1px solid rgba(72, 170, 255, 0.42);
+  color: var(--ink);
+  background: var(--green);
+  border: 1px solid rgba(199, 163, 103, 0.32);
   border-radius: 24px;
 }
 
 .imt-status-main .imt-blue-kicker {
-  color: #99c4dd;
+  color: #efd3a5;
 }
 
 .imt-status-main h2 {
@@ -9271,7 +9272,7 @@ details.clean-details summary {
 
 .imt-status-main p {
   margin: 0;
-  color: #d9ecf8;
+  color: var(--muted);
   font-weight: 850;
 }
 
@@ -9288,8 +9289,8 @@ details.clean-details summary {
   gap: 6px;
   min-width: 0;
   padding: 16px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.2);
+  background: var(--card);
+  border: 1px solid var(--line);
 }
 
 .imt-status-mini-grid span,
@@ -9301,7 +9302,7 @@ details.clean-details summary {
 .imt-staff-panel span,
 .imt-lantern-results span,
 .imt-form-layout aside span {
-  color: #406388;
+  color: var(--muted);
   font-size: 0.72rem;
   font-weight: 950;
   text-transform: uppercase;
@@ -9309,7 +9310,7 @@ details.clean-details summary {
 
 .imt-status-mini-grid strong,
 .imt-event-detail-grid strong {
-  color: #001a3a;
+  color: var(--ink);
   font-size: 1.2rem;
   line-height: 1.12;
 }
@@ -9324,13 +9325,13 @@ details.clean-details summary {
   display: grid;
   gap: 8px;
   padding: 18px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.18);
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 22px;
 }
 
 .imt-section-head h2 {
-  color: #001a3a;
+  color: var(--ink);
   font-size: clamp(1.55rem, 3vw, 2.35rem);
   line-height: 1.08;
 }
@@ -9338,7 +9339,7 @@ details.clean-details summary {
 .imt-section-head p,
 .imt-intro-copy p,
 .imt-form-layout p {
-  color: #406388;
+  color: var(--muted);
 }
 
 .imt-intro-copy {
@@ -9364,7 +9365,7 @@ details.clean-details summary {
 }
 
 .imt-event-detail-grid small {
-  color: #528ed5;
+  color: #efd3a5;
   font-weight: 800;
 }
 
@@ -9373,8 +9374,8 @@ details.clean-details summary {
   display: grid;
   gap: 16px;
   padding: 18px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.2);
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 24px;
 }
 
@@ -9402,14 +9403,14 @@ details.clean-details summary {
 .imt-division-card-head span,
 .imt-schedule-group h3,
 .imt-bracket-round h3 {
-  color: #001a3a;
+  color: var(--ink);
   font-weight: 950;
 }
 
 .imt-division-card-head strong {
   padding: 7px 11px;
-  color: #ffffff;
-  background: #406388;
+  color: var(--ink);
+  background: var(--green-2);
   border-radius: 999px;
   font-size: 0.8rem;
 }
@@ -9427,19 +9428,19 @@ details.clean-details summary {
   gap: 10px;
   align-items: center;
   padding: 12px;
-  background: #f8fcff;
-  border: 1px solid rgba(64, 99, 136, 0.26);
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 18px;
 }
 
 .imt-institution-chip .imt-team-logo {
-  border-color: rgba(0, 26, 58, 0.32);
+  border-color: rgba(199, 163, 103, 0.3);
 }
 
 .imt-logo-lantern-of-knowledge-academy {
   color: #ffffff;
   background: #528ed5 !important;
-  border-color: #001a3a;
+  border-color: var(--green);
 }
 
 .imt-institution-chip strong,
@@ -9450,7 +9451,7 @@ details.clean-details summary {
 }
 
 .imt-institution-chip small {
-  color: #528ed5;
+  color: var(--muted);
   font-weight: 850;
 }
 
@@ -9464,9 +9465,9 @@ details.clean-details summary {
   object-fit: contain;
   object-position: center;
   padding: 8px;
-  color: #001a3a;
-  background: var(--logo-bg, #dceeff);
-  border: 1px solid rgba(64, 99, 136, 0.22);
+  color: var(--green);
+  background: var(--logo-bg, var(--card));
+  border: 1px solid var(--line);
   border-radius: 18px;
   font-weight: 950;
 }
@@ -9491,15 +9492,15 @@ details.clean-details summary {
   display: grid;
   gap: 0;
   overflow: hidden;
-  border: 2px solid rgba(64, 99, 136, 0.42);
+  border: 2px solid var(--line);
   border-radius: 22px;
 }
 
 .imt-schedule-group h3 {
   margin: 0;
   padding: 14px 18px;
-  color: #ffffff;
-  background: #001a3a;
+  color: var(--ink);
+  background: var(--green);
   font-size: 0.9rem;
   text-transform: uppercase;
 }
@@ -9511,21 +9512,21 @@ details.clean-details summary {
   align-items: center;
   min-width: 0;
   padding: 16px 18px;
-  color: #001a3a;
-  background: #dceeff;
-  border-top: 2px solid rgba(64, 99, 136, 0.42);
+  color: var(--ink);
+  background: var(--card);
+  border-top: 2px solid var(--line);
 }
 
 .imt-schedule-row.highlight {
-  background: #f0f3f6;
+  background: var(--soft);
 }
 
 .imt-schedule-row.break {
-  background: #eef6fb;
+  background: var(--panel);
 }
 
 .imt-schedule-time {
-  color: #001a3a;
+  color: var(--ink);
   font-size: 1.02rem;
   font-weight: 950;
 }
@@ -9556,7 +9557,7 @@ details.clean-details summary {
 
 .imt-schedule-match small {
   grid-column: 1 / -1;
-  color: #406388;
+  color: var(--muted);
   font-weight: 850;
 }
 
@@ -9566,8 +9567,8 @@ details.clean-details summary {
   gap: 2px;
   min-height: 58px;
   padding: 8px 10px;
-  color: #ffffff;
-  background: #528ed5;
+  color: var(--ink);
+  background: var(--green-2);
   text-align: center;
 }
 
@@ -9581,8 +9582,8 @@ details.clean-details summary {
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 10px;
   padding: 10px;
-  background: #eef6fb;
-  border: 1px solid rgba(64, 99, 136, 0.18);
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: 20px;
 }
 
@@ -9598,8 +9599,8 @@ details.clean-details summary {
   align-items: center;
   min-width: 0;
   padding: 14px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.2);
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 22px;
 }
 
@@ -9627,8 +9628,8 @@ details.clean-details summary {
   display: grid;
   place-items: center;
   padding: 0 6px;
-  color: #ffffff;
-  background: #001a3a;
+  color: var(--ink);
+  background: var(--green);
   border-radius: 999px;
   font-weight: 950;
   font-size: 0.85rem;
@@ -9649,12 +9650,12 @@ details.clean-details summary {
 }
 
 .imt-standing-name strong {
-  color: #001a3a;
+  color: var(--ink);
   overflow-wrap: anywhere;
 }
 
 .imt-standing-name span {
-  color: #406388;
+  color: var(--muted);
   font-weight: 850;
 }
 
@@ -9663,24 +9664,24 @@ details.clean-details summary {
   display: grid;
   place-items: center;
   padding: 8px 6px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.16);
+  background: var(--card);
+  border: 1px solid var(--line);
   text-align: center;
 }
 
 .imt-standing-stat strong {
-  color: #001a3a;
+  color: var(--ink);
   font-size: 1.08rem;
 }
 
 .imt-standing-stat.points {
-  color: #ffffff;
-  background: #48aaff;
+  color: var(--green);
+  background: var(--gold);
 }
 
 .imt-standing-stat.points span,
 .imt-standing-stat.points strong {
-  color: #ffffff;
+  color: var(--green);
 }
 
 .imt-bracket {
@@ -9705,8 +9706,8 @@ details.clean-details summary {
   display: grid;
   gap: 10px;
   padding: 16px;
-  background: #edf7ff;
-  border: 2px solid rgba(64, 99, 136, 0.22);
+  background: var(--card);
+  border: 2px solid var(--line);
   border-radius: 22px;
 }
 
@@ -9714,8 +9715,8 @@ details.clean-details summary {
   width: max-content;
   max-width: 100%;
   padding: 7px 12px;
-  color: #ffffff;
-  background: #406388;
+  color: var(--ink);
+  background: var(--green-2);
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 950;
@@ -9727,14 +9728,14 @@ details.clean-details summary {
   gap: 10px;
   align-items: center;
   padding: 10px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.15);
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: 14px;
 }
 
 .imt-bracket-match div.winner {
-  background: #dceeff;
-  border-color: rgba(72, 170, 255, 0.5);
+  background: var(--soft-gold);
+  border-color: rgba(199, 163, 103, 0.5);
 }
 
 .imt-bracket-team-name {
@@ -9746,7 +9747,7 @@ details.clean-details summary {
 
 .imt-bracket-match strong {
   min-width: 0;
-  color: #001a3a;
+  color: var(--ink);
   overflow-wrap: anywhere;
 }
 
@@ -9754,14 +9755,14 @@ details.clean-details summary {
   min-height: 38px;
   display: grid;
   place-items: center;
-  color: #ffffff;
-  background: #48aaff;
+  color: var(--ink);
+  background: var(--green-2);
   border-radius: 12px;
 }
 
 .imt-bracket-match p {
   margin: 0;
-  color: #406388;
+  color: var(--muted);
   line-height: 1.45;
 }
 
@@ -9776,8 +9777,8 @@ details.clean-details summary {
   display: grid;
   gap: 14px;
   padding: 18px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.28);
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 24px;
 }
 
@@ -9789,7 +9790,7 @@ details.clean-details summary {
 }
 
 .imt-team-card h3 {
-  color: #001a3a;
+  color: var(--ink);
   font-size: 1.24rem;
   line-height: 1.14;
   overflow-wrap: anywhere;
@@ -9797,7 +9798,7 @@ details.clean-details summary {
 
 .imt-team-card small,
 .imt-team-meta span {
-  color: #528ed5;
+  color: var(--muted);
   font-weight: 850;
 }
 
@@ -9809,20 +9810,20 @@ details.clean-details summary {
 
 .imt-team-meta span {
   padding: 7px 10px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.16);
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: 999px;
 }
 
 .imt-team-card details {
-  background: #dceeff;
-  border: 1px solid rgba(64, 99, 136, 0.26);
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: 18px;
 }
 
 .imt-team-card summary {
   padding: 12px 14px;
-  color: #001a3a;
+  color: var(--ink);
   font-weight: 950;
   cursor: pointer;
 }
@@ -9844,22 +9845,22 @@ details.clean-details summary {
   gap: 10px;
   align-items: center;
   padding: 12px;
-  color: #001a3a;
-  background: #eaf5fc;
-  border: 2px solid rgba(64, 99, 136, 0.22);
+  color: var(--ink);
+  background: var(--soft);
+  border: 2px solid var(--line);
   border-radius: 14px;
 }
 
 .imt-roster-list li:hover,
 .imt-team-match-list div:hover {
-  border-color: #48aaff;
-  background: #f8fcff;
+  border-color: var(--gold);
+  background: var(--card);
 }
 
 .imt-roster-list a {
   min-width: 0;
   display: block;
-  color: #001a3a;
+  color: var(--ink);
   font-weight: 950;
   overflow-wrap: anywhere;
   text-decoration: none;
@@ -9868,7 +9869,7 @@ details.clean-details summary {
 .imt-roster-list span,
 .imt-team-match-list span,
 .imt-team-match-list small {
-  color: #406388;
+  color: var(--muted);
   font-size: 0.82rem;
   font-weight: 850;
 }
@@ -9893,8 +9894,8 @@ details.clean-details summary {
   display: grid;
   gap: 12px;
   padding: 18px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.26);
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 22px;
 }
 
@@ -9902,13 +9903,13 @@ details.clean-details summary {
   display: grid;
   gap: 5px;
   padding: 14px;
-  background: #eaf5fc;
-  border: 1px solid rgba(64, 99, 136, 0.22);
+  background: var(--soft);
+  border: 1px solid var(--line);
   border-radius: 16px;
 }
 
 .imt-staff-panel strong {
-  color: #001a3a;
+  color: var(--ink);
   font-size: 1.12rem;
 }
 
@@ -9925,22 +9926,22 @@ details.clean-details summary {
   display: grid;
   gap: 8px;
   padding: 16px;
-  background: #edf7ff;
-  border: 1px solid rgba(64, 99, 136, 0.24);
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 22px;
 }
 
 .imt-lantern-results strong,
 .imt-news-card h3,
 .imt-media-card strong {
-  color: #001a3a;
+  color: var(--ink);
   overflow-wrap: anywhere;
 }
 
 .imt-lantern-results small,
 .imt-news-card p,
 .imt-media-card p {
-  color: #406388;
+  color: var(--muted);
   font-weight: 800;
 }
 
@@ -9950,17 +9951,17 @@ details.clean-details summary {
 }
 
 .imt-form-layout > div strong {
-  color: #001a3a;
+  color: var(--ink);
 }
 
 .imt-form-layout aside strong {
-  color: #001a3a;
+  color: var(--ink);
   font-size: 2.1rem;
   line-height: 1;
 }
 
 .imt-form-layout aside small {
-  color: #406388;
+  color: var(--muted);
   font-weight: 850;
 }
 
@@ -9973,7 +9974,7 @@ details.clean-details summary {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 18px;
-  background: #dceeff;
+  background: var(--card);
 }
 
 .advanced-hero-panel,
@@ -10386,6 +10387,43 @@ details.clean-details summary {
   fill: rgba(199, 163, 103, 0.25);
   stroke: #c7a367;
   stroke-width: 4;
+}
+
+.radar-c {
+  color: #7ae093;
+  fill: rgba(122, 224, 147, 0.25);
+  stroke: #7ae093;
+  stroke-width: 4;
+}
+
+.advanced-quadrant-legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.advanced-quadrant-legend div {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.advanced-quadrant-legend span {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.advanced-quadrant-legend small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .advanced-table .team-cell small {
