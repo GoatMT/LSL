@@ -1166,6 +1166,7 @@
       "awayScore": 3,
       "winnerId": "em-haulers-fc",
       "status": "Complete",
+      "absences": ["muzamil-kharooti"],
       "scorers": [
         {
           "playerId": "haroon-ahmadi",
@@ -1247,12 +1248,29 @@
       "time": "9:15 AM - 10:00 AM",
       "homeTeamId": "leeward-lions",
       "awayTeamId": "refuel-rovers",
-      "status": "Scheduled",
-      "scorers": [],
-      "assists": [],
+      "homeScore": 1,
+      "awayScore": 0,
+      "winnerId": "leeward-lions",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "ajmal-shakkari",
+          "teamId": "leeward-lions",
+          "name": "Ajmal Chakkari",
+          "goals": 1
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "muhammad-teli",
+          "teamId": "leeward-lions",
+          "name": "Muhummud Teli",
+          "assists": 1
+        }
+      ],
       "notes": [
-        "Week 7 matchup on the official schedule.",
-        "Results will be posted after the game."
+        "Leeward Lions defeated Refuel Rovers 1-0 in Week 7.",
+        "Ajmal Chakkari scored the only goal, assisted by Muhummud Teli."
       ]
     },
     {
@@ -1265,13 +1283,24 @@
       "time": "10:00 AM - 10:45 AM",
       "homeTeamId": "em-haulers-fc",
       "awayTeamId": "memon-mavericks",
-      "status": "Scheduled",
-      "scorers": [],
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
+      "absences": ["muzamil-kharooti"],
+      "scorers": [
+        {
+          "playerId": "haroon-ahmadi",
+          "teamId": "em-haulers-fc",
+          "name": "Haroon Ahmadi",
+          "goals": 1
+        }
+      ],
       "assists": [],
       "notes": [
-        "Week 7 matchup on the official schedule.",
-        "Results will be posted after the game.",
-        "Muzamil Kharooti is not expected to play for EM Haulers FC in Week 7."
+        "EM Haulers FC tied Memon Mavericks 1-1 in Week 7.",
+        "Memon Mavericks scored first; the scorer was not specified.",
+        "Haroon Ahmadi tied the game for EM Haulers FC.",
+        "Muzamil Kharooti did not play for EM Haulers FC in Week 7."
       ]
     },
     {
@@ -1284,12 +1313,51 @@
       "time": "10:45 AM - 11:30 AM",
       "homeTeamId": "gangat-warriors",
       "awayTeamId": "rawaha-royals",
-      "status": "Scheduled",
-      "scorers": [],
-      "assists": [],
+      "homeScore": 4,
+      "awayScore": 8,
+      "winnerId": "rawaha-royals",
+      "status": "Complete",
+      "scorers": [
+        {
+          "playerId": "uthman",
+          "teamId": "rawaha-royals",
+          "name": "Uthman Manira",
+          "goals": 3
+        },
+        {
+          "playerId": "umar-manjra",
+          "teamId": "gangat-warriors",
+          "name": "Umar Manjra",
+          "goals": 1
+        },
+        {
+          "playerId": "yahya-adil-butt",
+          "teamId": "gangat-warriors",
+          "name": "Yahya Adill Butt",
+          "goals": 1
+        }
+      ],
+      "assists": [
+        {
+          "playerId": "saad-khan",
+          "teamId": "rawaha-royals",
+          "name": "Saad Khan",
+          "assists": 1
+        },
+        {
+          "playerId": "taha-nakhuda",
+          "teamId": "gangat-warriors",
+          "name": "Taaha Nakhuda",
+          "assists": 2
+        }
+      ],
       "notes": [
-        "Week 7 matchup on the official schedule.",
-        "Results will be posted after the game."
+        "Rawaha Royals defeated Gangat Warriors 8-4 in Week 7.",
+        "Uthman Manira scored three goals for Rawaha Royals.",
+        "Saad Khan, playing goalie, added an assist for Rawaha Royals.",
+        "Umar Manjra and Yahya Adill Butt scored for Gangat Warriors.",
+        "Taaha Nakhuda added two assists for Gangat Warriors.",
+        "Additional scorer details for the remaining goals are coming soon."
       ]
     },
     {
@@ -1302,12 +1370,14 @@
       "time": "11:30 AM - 12:15 PM",
       "homeTeamId": "amax-visionaries",
       "awayTeamId": "sharp-strikers",
-      "status": "Scheduled",
+      "homeScore": 1,
+      "awayScore": 1,
+      "status": "Complete",
       "scorers": [],
       "assists": [],
       "notes": [
-        "Week 7 matchup on the official schedule.",
-        "Results will be posted after the game."
+        "Amax Visionaries tied Sharp Strikers 1-1 in Week 7.",
+        "Scorer details are coming soon."
       ]
     }
   ]

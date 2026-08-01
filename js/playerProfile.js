@@ -282,7 +282,7 @@ function renderProfileHeader(profile, current, ovr) {
       <div class="official-profile-identity">
         <span class="eyebrow">Player Profile</span>
         <h1>${escapeHTML(profile.name)}</h1>
-        <p>${escapeHTML(current?.division || profile.division || "Division TBA")} | ${escapeHTML(current?.position || profile.position || "Position TBA")}</p>
+        <p>${escapeHTML(current?.division || profile.division || "Division TBA")} | ${escapeHTML(current?.position || profile.position || "Position TBA")}${(current?.jersey || profile.jersey) ? ` | #${escapeHTML(current?.jersey || profile.jersey)}` : ""}</p>
       </div>
       <div class="official-profile-ovr-card" title="Overall rating based on career stats">
         <span>OVR</span>

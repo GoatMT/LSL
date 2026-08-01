@@ -105,7 +105,7 @@ function renderRoster(team, ratings = new Map()) {
         .map(
           (player) => `
             <li>
-              <a href="./player.html?id=${escapeHTML(player.id)}">${leadershipBadge(player)}${escapeHTML(player.name)}</a>
+              <a href="./player.html?id=${escapeHTML(player.id)}">${leadershipBadge(player)}${player.jersey ? `<span class="roster-jersey">#${escapeHTML(player.jersey)}</span>` : ""}${escapeHTML(player.name)}</a>
               <span class="roster-ovr-chip">${escapeHTML(ratings.get(player.id) ? `OVR ${ratings.get(player.id)}` : player.position || "Field")}</span>
             </li>
           `

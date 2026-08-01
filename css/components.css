@@ -2474,6 +2474,14 @@ details.clean-details summary {
   overflow-wrap: normal;
 }
 
+.roster-list .roster-jersey {
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 0.8rem;
+  margin-right: 4px;
+  overflow-wrap: normal;
+}
+
 .roster-list .roster-leader-chip.captain,
 .projection-roster-details .roster-leader-chip.captain {
   color: #111111;

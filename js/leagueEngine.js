@@ -408,7 +408,9 @@ function playerTeamForMatch(player, match = {}) {
 }
 
 function countRosterMatch(stats, players, teamId, winner, match) {
+  const absentees = new Set(match.absences || []);
   players.forEach((player) => {
+    if (absentees.has(player.id)) return;
     if (playerTeamForMatch(player, match) !== teamId) return;
     const row = stats.get(player.id);
     if (!row) return;
@@ -420,7 +422,9 @@ function countRosterMatch(stats, players, teamId, winner, match) {
 }
 
 function countRosterTie(stats, players, teamId, match) {
+  const absentees = new Set(match.absences || []);
   players.forEach((player) => {
+    if (absentees.has(player.id)) return;
     if (playerTeamForMatch(player, match) !== teamId) return;
     const row = stats.get(player.id);
     if (!row) return;
