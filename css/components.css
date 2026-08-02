@@ -3324,6 +3324,81 @@ details.clean-details summary {
   overflow-wrap: anywhere;
 }
 
+.awards-cup-panel {
+  border-color: rgba(199, 163, 103, 0.42);
+}
+
+.awards-cup-list {
+  display: grid;
+  gap: 16px;
+}
+
+.awards-cup-entry {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.5fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.awards-cup-image-wrap {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(199, 163, 103, 0.4);
+  box-shadow: var(--shadow);
+}
+
+.awards-cup-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.awards-cup-copy {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.awards-cup-copy h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+
+.awards-cup-copy p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.awards-cup-name-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 8px 14px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.awards-cup-name-list li {
+  min-width: 0;
+  padding: 9px 12px;
+  color: #ffffff;
+  background: rgba(199, 163, 103, 0.1);
+  border: 1px solid rgba(199, 163, 103, 0.3);
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
+}
+
 .awards-filter-panel,
 .awards-summary-panel,
 .awards-champions-panel,
@@ -8973,15 +9048,15 @@ details.clean-details summary {
   --green: #001a3a;
   --green-2: #0a3563;
   --gold: #1f7bd1;
-  --page: #f2f8fd;
-  --panel: #dceeff;
-  --card: #ffffff;
-  --card-2: #eaf3fb;
-  --soft: #eef7ff;
+  --page: #c3cad1;
+  --panel: #a9bbcc;
+  --card: #ccd3d9;
+  --card-2: #b9c5cf;
+  --soft: #bfc9d0;
   --soft-gold: #fdecc8;
-  --line: rgba(0, 26, 58, 0.14);
-  --ink: #0b2540;
-  --muted: #3f6a8c;
+  --line: rgba(0, 26, 58, 0.24);
+  --ink: #101d2c;
+  --muted: #3d5770;
   background:
     linear-gradient(180deg, var(--page) 0, var(--page) 100%);
   color: var(--ink);

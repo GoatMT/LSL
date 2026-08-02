@@ -546,14 +546,14 @@ function renderBracket(tournament) {
                     (match) => `
                       <article class="imt-bracket-match">
                         <span>${escapeHTML(match.label || round.name)}</span>
-                        <div class="${match.winnerId === match.homeTeamId ? "winner" : ""}">
+                        <div class="${[teams.get(match.homeTeamId)?.divisionTheme, match.winnerId === match.homeTeamId ? "winner" : ""].filter(Boolean).join(" ")}">
                           <span class="imt-bracket-team-name">
                             ${logoMark(teams.get(match.homeTeamId) || {}, "small")}
                             <strong>${escapeHTML(match.homeTeamName)}</strong>
                           </span>
                           <b>${escapeHTML(match.homeScore)}</b>
                         </div>
-                        <div class="${match.winnerId === match.awayTeamId ? "winner" : ""}">
+                        <div class="${[teams.get(match.awayTeamId)?.divisionTheme, match.winnerId === match.awayTeamId ? "winner" : ""].filter(Boolean).join(" ")}">
                           <span class="imt-bracket-team-name">
                             ${logoMark(teams.get(match.awayTeamId) || {}, "small")}
                             <strong>${escapeHTML(match.awayTeamName)}</strong>

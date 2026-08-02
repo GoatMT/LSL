@@ -1836,6 +1836,14 @@
   .recap-award-grid {
     grid-template-columns: 1fr;
   }
+
+  .awards-cup-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .awards-cup-name-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 430px) {

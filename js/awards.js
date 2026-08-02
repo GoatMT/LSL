@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js";
 import { getAwards } from "./leagueEngine.js?v=3.2";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
@@ -19,6 +19,7 @@ setDocumentTitle("Awards");
 const root = document.getElementById("page-root");
 const awardTabs = ["All", "Champions", "Player Awards", "Team Awards"];
 let state = { season: "All", division: "Seniors", tab: "All", search: "" };
+let cupEngravings = [];
 
 function isTeamAward(award) {
   return /team/i.test(award.category || "");
@@ -142,6 +143,44 @@ function renderLatestSeason(allData) {
         }
       </div>
     </div>
+  `;
+}
+
+function renderCupEngravings() {
+  if (!cupEngravings.length) return "";
+  const sorted = [...cupEngravings].sort((a, b) => Number(b.season) - Number(a.season));
+
+  return `
+    <section class="section-panel awards-cup-panel">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Names On The Cup</span>
+          <h2>Engraved On The League Cup</h2>
+          <p>Every champion roster engraved onto the Lantern Soccer League cup, season by season.</p>
+        </div>
+      </div>
+      <div class="awards-cup-list">
+        ${sorted
+          .map(
+            (entry) => `
+              <article class="awards-cup-entry">
+                <div class="awards-cup-image-wrap">
+                  <img src="${escapeHTML(entry.image)}" alt="${escapeHTML(entry.season)} Lantern Soccer League cup engraving" loading="lazy">
+                </div>
+                <div class="awards-cup-copy">
+                  <span class="eyebrow">${escapeHTML(entry.season)} Champions</span>
+                  <h3>${escapeHTML(entry.champion || "Champion Team")}</h3>
+                  <p>${escapeHTML(entry.caption || "Engraved on the league cup.")}</p>
+                  <ul class="awards-cup-name-list">
+                    ${(entry.names || []).map((name) => `<li>${escapeHTML(name)}</li>`).join("")}
+                  </ul>
+                </div>
+              </article>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -353,6 +392,8 @@ function render(allData, focusSearch = false) {
       </div>
     </section>
 
+    ${renderCupEngravings()}
+
     <section class="section-panel awards-filter-panel">
       <div class="section-head compact-head">
         <div>
@@ -421,7 +462,11 @@ function render(allData, focusSearch = false) {
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading awards...");
   try {
-    const allData = await loadAllSeasons();
+    const [allData, cupData] = await Promise.all([
+      loadAllSeasons(),
+      loadJSON(`${SITE.dataPath}/cup-names.json`, { engravings: [] }),
+    ]);
+    cupEngravings = cupData?.engravings || [];
     render(allData);
   } catch (error) {
     console.error("Could not load awards", error);
