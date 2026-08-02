@@ -1379,6 +1379,82 @@
         "Amax Visionaries tied Sharp Strikers 1-1 in Week 7.",
         "Scorer details are coming soon."
       ]
+    },
+    {
+      "id": "2026-seniors-playoffs-qf1",
+      "week": 8,
+      "stage": "playoffs",
+      "division": "Seniors",
+      "label": "Quarterfinal 1",
+      "date": "2026-08-08",
+      "homeTeamId": "leeward-lions",
+      "awayTeamId": "memon-mavericks",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Quarterfinal 1: #1 seed Leeward Lions vs #8 seed Memon Mavericks.",
+        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-playoffs-qf2",
+      "week": 8,
+      "stage": "playoffs",
+      "division": "Seniors",
+      "label": "Quarterfinal 2",
+      "date": "2026-08-08",
+      "homeTeamId": "em-haulers-fc",
+      "awayTeamId": "gangat-warriors",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Quarterfinal 2: #2 seed EM Haulers FC vs #7 seed Gangat Warriors.",
+        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-playoffs-qf3",
+      "week": 8,
+      "stage": "playoffs",
+      "division": "Seniors",
+      "label": "Quarterfinal 3",
+      "date": "2026-08-08",
+      "homeTeamId": "sharp-strikers",
+      "awayTeamId": "amax-visionaries",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Quarterfinal 3: #3 seed Sharp Strikers vs #6 seed Amax Visionaries.",
+        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-playoffs-qf4",
+      "week": 8,
+      "stage": "playoffs",
+      "division": "Seniors",
+      "label": "Quarterfinal 4",
+      "date": "2026-08-08",
+      "homeTeamId": "rawaha-royals",
+      "awayTeamId": "refuel-rovers",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Quarterfinal 4: #4 seed Rawaha Royals vs #5 seed Refuel Rovers.",
+        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
+      ]
     }
   ]
 }

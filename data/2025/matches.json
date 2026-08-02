@@ -562,30 +562,70 @@
       "stage": "playoffs",
       "division": "Seniors",
       "date": "2025-07-26",
+      "time": "12:25 PM",
       "homeTeamId": "refuel-juicery-athletic",
       "awayTeamId": "im-construction-sc",
-      "homeScore": 2,
-      "awayScore": 2,
+      "homeScore": 7,
+      "awayScore": 5,
       "winnerId": "refuel-juicery-athletic",
-      "status": "Refuel won 3-1 on penalties",
+      "status": "Complete",
       "scorers": [
         {
+          "playerId": "marwan-ahmad",
+          "teamId": "refuel-juicery-athletic",
+          "name": "Marwan Ahmed",
+          "jersey": 2,
+          "goals": 3
+        },
+        {
           "playerId": "mohammed-ibrahim",
-          "name": "M. Ibrahim",
+          "teamId": "refuel-juicery-athletic",
+          "name": "Mohammed Ibrahim",
+          "jersey": 8,
+          "goals": 2
+        },
+        {
+          "playerId": "m-yahya",
+          "teamId": "refuel-juicery-athletic",
+          "name": "M Yahya",
+          "jersey": 11,
           "goals": 1
         },
         {
-          "playerId": "reda-alijalam",
-          "name": "Mohamad Reda Alijalam",
+          "teamId": "refuel-juicery-athletic",
+          "name": "Ahmad",
+          "jersey": 1,
           "goals": 1
+        },
+        {
+          "playerId": "amadu",
+          "teamId": "im-construction-sc",
+          "name": "Amadu",
+          "jersey": 2,
+          "goals": 2
+        },
+        {
+          "playerId": "omar-ajmal",
+          "teamId": "im-construction-sc",
+          "name": "Omar Ajmal",
+          "jersey": 1,
+          "goals": 2
         },
         {
           "playerId": "rehaan-adam",
+          "teamId": "im-construction-sc",
           "name": "Rehaan Adam",
-          "goals": 2
+          "jersey": 6,
+          "goals": 1
         }
       ],
-      "assists": []
+      "assists": [],
+      "notes": [
+        "Updated result: Refuel Juicery Athletic defeated IM Construction SC 7-5 in regulation (not on penalties as previously listed).",
+        "Match started at 12:25 PM.",
+        "Marwan Ahmed scored three goals and Mohammed Ibrahim scored two goals for Refuel Juicery Athletic. M Yahya and a player identified as Ahmad (#1) each scored once.",
+        "Amadu and Omar Ajmal each scored twice for IM Construction SC, and Rehaan Adam scored once."
+      ]
     },
     {
       "id": "2025-p-third",

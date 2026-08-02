@@ -1,0 +1,96 @@
+{
+  "modeName": "LSL Franchise Mode",
+  "subModeName": "Fantasy Draft",
+  "tagline": "Reset the entire league and become the general manager of one of six teams.",
+  "description": "Fantasy Draft resets the league into a brand-new six-team universe, separate from the real LSL season. You take over as general manager of one team while the CPU runs the other five, starting with a snake draft and running through a six-week season into the playoffs.",
+  "userTeams": 1,
+  "cpuTeams": 5,
+  "totalTeams": 6,
+  "season": {
+    "weeks": 6,
+    "gameDay": "Saturday",
+    "simulation": "daily",
+    "note": "The calendar advances day by day. Games are simulated automatically whenever Saturday arrives."
+  },
+  "teams": [
+    { "id": "northside-falcons", "name": "Northside Falcons", "abbr": "NSF", "color": "#1d4ed8" },
+    { "id": "ironbridge-fc", "name": "Ironbridge FC", "abbr": "IBF", "color": "#b91c1c" },
+    { "id": "crestview-comets", "name": "Crestview Comets", "abbr": "CVC", "color": "#7c3aed" },
+    { "id": "harbor-city-sc", "name": "Harbor City SC", "abbr": "HCS", "color": "#0f766e" },
+    { "id": "summit-rangers", "name": "Summit Rangers", "abbr": "SMR", "color": "#c2410c" },
+    { "id": "meridian-united", "name": "Meridian United", "abbr": "MRU", "color": "#15803d" }
+  ],
+  "playoffFormat": {
+    "qualifiers": 6,
+    "byes": 2,
+    "rounds": [
+      {
+        "name": "Quarterfinal 1",
+        "shortName": "QF1",
+        "matchup": "3rd place vs. 6th place"
+      },
+      {
+        "name": "Quarterfinal 2",
+        "shortName": "QF2",
+        "matchup": "4th place vs. 5th place"
+      },
+      {
+        "name": "Semifinal 1",
+        "shortName": "SF1",
+        "matchup": "1st place vs. Quarterfinal 2 winner"
+      },
+      {
+        "name": "Semifinal 2",
+        "shortName": "SF2",
+        "matchup": "2nd place vs. Quarterfinal 1 winner"
+      },
+      {
+        "name": "Final",
+        "shortName": "Final",
+        "matchup": "Semifinal 1 winner vs. Semifinal 2 winner"
+      }
+    ]
+  },
+  "features": [
+    "Six teams",
+    "One user-controlled team",
+    "Five CPU teams",
+    "Fantasy snake draft",
+    "Six-week season",
+    "Games every Saturday",
+    "Daily simulation system",
+    "Multiple playable seasons"
+  ],
+  "roadmap": [
+    {
+      "part": 1,
+      "title": "League Structure",
+      "status": "available",
+      "summary": "Team select, season format, and playoff structure."
+    },
+    {
+      "part": 2,
+      "title": "Draft, Contracts, and Trading",
+      "status": "coming soon",
+      "summary": "Snake draft, CPU draft logic, salary cap contracts, and hard-difficulty trading."
+    },
+    {
+      "part": 3,
+      "title": "Team Management",
+      "status": "coming soon",
+      "summary": "Chemistry, captains, injuries, morale, training, lineups, formations, player development, and free agency."
+    },
+    {
+      "part": 4,
+      "title": "Statistics and Awards",
+      "status": "coming soon",
+      "summary": "Full stat tracking, season awards, and all-time franchise records."
+    },
+    {
+      "part": 5,
+      "title": "User Interface",
+      "status": "coming soon",
+      "summary": "The full Franchise Hub and supporting pages: Draft Centre, Team Management, Trade Centre, Free Agency, Statistics, Records, and Awards."
+    }
+  ]
+}

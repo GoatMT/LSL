@@ -161,8 +161,11 @@ function renderCupEngravings() {
       </div>
       <div class="awards-cup-list">
         ${sorted
-          .map(
-            (entry) => `
+          .map((entry) => {
+            const names = entry.names || [];
+            const coachNames = names.filter((name) => /^coach\b/i.test(name.trim()));
+            const playerNames = names.filter((name) => !/^coach\b/i.test(name.trim()));
+            return `
               <article class="awards-cup-entry">
                 <div class="awards-cup-image-wrap">
                   <img src="${escapeHTML(entry.image)}" alt="${escapeHTML(entry.season)} Lantern Soccer League cup engraving" loading="lazy">
@@ -171,13 +174,18 @@ function renderCupEngravings() {
                   <span class="eyebrow">${escapeHTML(entry.season)} Champions</span>
                   <h3>${escapeHTML(entry.champion || "Champion Team")}</h3>
                   <p>${escapeHTML(entry.caption || "Engraved on the league cup.")}</p>
+                  ${
+                    coachNames.length
+                      ? `<ul class="awards-cup-coach-list">${coachNames.map((name) => `<li>${escapeHTML(name)}</li>`).join("")}</ul>`
+                      : ""
+                  }
                   <ul class="awards-cup-name-list">
-                    ${(entry.names || []).map((name) => `<li>${escapeHTML(name)}</li>`).join("")}
+                    ${playerNames.map((name) => `<li>${escapeHTML(name)}</li>`).join("")}
                   </ul>
                 </div>
               </article>
-            `
-          )
+            `;
+          })
           .join("")}
       </div>
     </section>

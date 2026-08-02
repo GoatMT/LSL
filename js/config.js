@@ -39,6 +39,7 @@ export const NAV_LINKS = [
   { label: "Recap", href: "season-recap.html", group: "League" },
   { label: "Media", href: "videos.html", group: "Info" },
   { label: "Owners", href: "owners.html", group: "Info" },
+  { label: "Franchise Mode", href: "franchise.html", group: "Franchise" },
 ];
 
 export const DATA_FILES = [

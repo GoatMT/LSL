@@ -160,8 +160,17 @@ function buildCurrentBracket(data, rows, division) {
   };
 }
 
-function bracketNotice(playoffData) {
+function bracketNotice(playoffData, seasonComplete) {
   if (!playoffData?.isCurrentProjection) return "";
+  if (seasonComplete) {
+    return `
+      <div class="card playoff-current-notice">
+        <span class="pill green">Official Bracket</span>
+        <h3>Quarterfinal matchups are set</h3>
+        <p>The ${escapeHTML(state.season)} regular season is complete, so these are the official quarterfinal matchups based on final standings. Scores will be added as each game is played.</p>
+      </div>
+    `;
+  }
   return `
     <div class="card playoff-current-notice">
       <span class="pill green">Current Bracket</span>
@@ -169,6 +178,11 @@ function bracketNotice(playoffData) {
       <p>This bracket is built from the current ${escapeHTML(state.season)} standings. It is not official and will change as more regular season games are completed.</p>
     </div>
   `;
+}
+
+function regularSeasonComplete(data, division) {
+  const regularMatches = (data.matches || []).filter((match) => match.division === division && match.stage === "regular");
+  return regularMatches.length > 0 && regularMatches.every((match) => match.homeScore != null && match.awayScore != null);
 }
 
 function divisionOptions(data) {
@@ -197,7 +211,7 @@ function render(data) {
         ${controlSelect("season", "Season", SITE.seasons, state.season)}
         ${controlSelect("division", "Division", divisions, state.division)}
       </div>
-      ${bracketNotice(playoffData)}
+      ${bracketNotice(playoffData, regularSeasonComplete(data, state.division))}
       ${renderPlayoffBracket(playoffData)}
     </section>
     <section class="section-panel">
