@@ -8972,28 +8972,29 @@ details.clean-details summary {
 .imt-blue-page {
   --green: #001a3a;
   --green-2: #0a3563;
-  --gold: #48aaff;
-  --page: #eaf3fb;
-  --panel: #001a3a;
-  --card: #0a3563;
+  --gold: #1f7bd1;
+  --page: #f2f8fd;
+  --panel: #dceeff;
+  --card: #ffffff;
   --card-2: #eaf3fb;
-  --soft: #123f6e;
-  --soft-gold: #164a7d;
-  --line: rgba(153, 196, 221, 0.32);
-  --ink: #eaf3fb;
-  --muted: #9fc3e0;
+  --soft: #eef7ff;
+  --soft-gold: #fdecc8;
+  --line: rgba(0, 26, 58, 0.14);
+  --ink: #0b2540;
+  --muted: #3f6a8c;
   background:
-    linear-gradient(180deg, var(--page) 0, var(--panel) 240px, var(--page) 100%);
+    linear-gradient(180deg, var(--page) 0, var(--page) 100%);
   color: var(--ink);
 }
 
 .imt-blue-page .site-header {
   background: var(--green);
   border-bottom-color: rgba(199, 163, 103, 0.32);
+  color: #eaf3fb;
 }
 
 .imt-blue-page .site-footer {
-  color: var(--ink);
+  color: #eaf3fb;
   background: var(--green);
   border-top-color: rgba(72, 170, 255, 0.28);
 }
@@ -9031,6 +9032,7 @@ details.clean-details summary {
   background: var(--green);
   border-color: rgba(72, 170, 255, 0.3);
   box-shadow: var(--shadow);
+  color: #eaf3fb;
 }
 
 .imt-lsl-home,
@@ -9042,7 +9044,7 @@ details.clean-details summary {
   align-items: center;
   justify-content: center;
   padding: 10px 16px;
-  color: var(--ink);
+  color: #eaf3fb;
   background: var(--green-2);
   border: 1px solid rgba(72, 170, 255, 0.42);
   border-radius: 16px;
@@ -9096,7 +9098,7 @@ details.clean-details summary {
   color: var(--ink);
   background-color: var(--card);
   border-color: var(--line);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 .imt-year-control .control select option {
@@ -9112,7 +9114,7 @@ details.clean-details summary {
   background:
     linear-gradient(135deg, rgba(0, 26, 58, 0.96), rgba(10, 53, 99, 0.92)),
     var(--green);
-  color: var(--ink);
+  color: #eaf3fb;
   border-color: rgba(72, 170, 255, 0.32);
 }
 
@@ -9142,7 +9144,7 @@ details.clean-details summary {
 
 .imt-blue-hero p {
   max-width: 760px;
-  color: var(--muted);
+  color: #cfe8ff;
   font-size: 1.08rem;
 }
 
@@ -9266,7 +9268,7 @@ details.clean-details summary {
   gap: 8px;
   min-height: 170px;
   padding: 24px;
-  color: var(--ink);
+  color: #eaf3fb;
   background: var(--green);
   border: 1px solid rgba(72, 170, 255, 0.32);
   border-radius: 24px;
@@ -9284,7 +9286,7 @@ details.clean-details summary {
 
 .imt-status-main p {
   margin: 0;
-  color: var(--muted);
+  color: #cfe8ff;
   font-weight: 850;
 }
 
@@ -9377,7 +9379,7 @@ details.clean-details summary {
 }
 
 .imt-event-detail-grid small {
-  color: #cfe8ff;
+  color: var(--gold);
   font-weight: 800;
 }
 
@@ -9513,7 +9515,7 @@ details.clean-details summary {
 .imt-schedule-group h3 {
   margin: 0;
   padding: 14px 18px;
-  color: var(--ink);
+  color: #eaf3fb;
   background: var(--green);
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -9581,7 +9583,7 @@ details.clean-details summary {
   gap: 2px;
   min-height: 58px;
   padding: 8px 10px;
-  color: var(--ink);
+  color: #eaf3fb;
   background: var(--green-2);
   text-align: center;
 }
@@ -9642,7 +9644,7 @@ details.clean-details summary {
   display: grid;
   place-items: center;
   padding: 0 6px;
-  color: var(--ink);
+  color: #eaf3fb;
   background: var(--green);
   border-radius: 999px;
   font-weight: 950;
@@ -9729,7 +9731,7 @@ details.clean-details summary {
   width: max-content;
   max-width: 100%;
   padding: 7px 12px;
-  color: var(--ink);
+  color: #eaf3fb;
   background: var(--green-2);
   border-radius: 999px;
   font-size: 0.78rem;
@@ -9749,7 +9751,27 @@ details.clean-details summary {
 
 .imt-bracket-match div.winner {
   background: var(--soft-gold);
+  border-color: #d9a63c;
+}
+
+.imt-bracket-match div.west {
+  background: rgba(217, 75, 75, 0.12);
+  border-color: rgba(217, 75, 75, 0.5);
+}
+
+.imt-bracket-match div.east {
+  background: rgba(72, 170, 255, 0.12);
   border-color: rgba(72, 170, 255, 0.5);
+}
+
+.imt-bracket-match div.west.winner {
+  background: rgba(217, 75, 75, 0.28);
+  border-color: #d94b4b;
+}
+
+.imt-bracket-match div.east.winner {
+  background: rgba(72, 170, 255, 0.28);
+  border-color: #48aaff;
 }
 
 .imt-bracket-team-name {
@@ -9769,7 +9791,7 @@ details.clean-details summary {
   min-height: 38px;
   display: grid;
   place-items: center;
-  color: var(--ink);
+  color: #eaf3fb;
   background: var(--green-2);
   border-radius: 12px;
 }
