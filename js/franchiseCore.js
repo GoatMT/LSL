@@ -62,7 +62,7 @@ export function createFranchiseSave(config, userTeamId) {
   const teams = config.teams || [];
   const teamIds = teams.map((team) => team.id);
   return {
-    version: 2,
+    version: 3,
     createdAt: new Date().toISOString(),
     userTeamId,
     season: 1,
@@ -95,6 +95,10 @@ export function createFranchiseSave(config, userTeamId) {
     trades: [],
     tradeBlock: Object.fromEntries(teamIds.map((id) => [id, []])),
     history: [],
+    playerSeasonStats: {},
+    careerStats: {},
+    teamStreaks: {},
+    awardsHistory: [],
   };
 }
 
@@ -381,4 +385,624 @@ export function proposeCpuToCpuTrade(save, allPlayers) {
 
   const trade = executeTrade(save, offer);
   return { executed: true, trade, playerFromA, playerFromB };
+}
+
+// =====================================================================
+// Part 3: Team Management (chemistry, captains, injuries, morale,
+// training, lineups/formations, player development), season simulation,
+// playoffs, owner objectives, and free agency (offers/competing bids,
+// waivers, retirements).
+// =====================================================================
+
+export const SEASON_WEEKS = 6;
+export const TRAINING_SUCCESS_CHANCE = 0.55;
+export const INJURY_CHANCE_PER_GAME = 0.02;
+export const DEVELOPMENT_CHANCE_PER_GAME = 0.08;
+
+// ---------- Schedule + ratings ----------
+
+export function buildRoundRobinSchedule(teamIds, weeks = SEASON_WEEKS) {
+  const teams = [...teamIds];
+  if (teams.length % 2 !== 0) teams.push(null);
+  const n = teams.length;
+  const roundsNeeded = n - 1;
+  const baseSchedule = [];
+  let arr = [...teams];
+  for (let r = 0; r < roundsNeeded; r += 1) {
+    const roundMatches = [];
+    for (let i = 0; i < n / 2; i += 1) {
+      const home = arr[i];
+      const away = arr[n - 1 - i];
+      if (home !== null && away !== null) {
+        if (r % 2 === 0) roundMatches.push({ homeTeamId: home, awayTeamId: away });
+        else roundMatches.push({ homeTeamId: away, awayTeamId: home });
+      }
+    }
+    baseSchedule.push(roundMatches);
+    const fixed = arr[0];
+    const rest = arr.slice(1);
+    rest.unshift(rest.pop());
+    arr = [fixed, ...rest];
+  }
+  const schedule = [];
+  for (let w = 0; w < weeks; w += 1) {
+    schedule.push(baseSchedule[w % baseSchedule.length]);
+  }
+  return schedule;
+}
+
+export function computeChemistry(save, teamId) {
+  const roster = save.rosters[teamId] || [];
+  if (!roster.length) return 50;
+  const counts = positionCounts(roster);
+  let balanceScore = 0;
+  Object.keys(POSITION_TARGETS).forEach((position) => {
+    const have = counts[position] || 0;
+    const target = POSITION_TARGETS[position];
+    balanceScore += Math.max(0, 10 - Math.abs(have - target) * 3);
+  });
+  const captainBonus = save.captains?.[teamId] ? 8 : 0;
+  const avgMorale = roster.reduce((sum, player) => sum + (player.morale ?? 70), 0) / roster.length;
+  const moraleFactor = (avgMorale - 50) * 0.4;
+  const base = 40 + balanceScore + captainBonus + moraleFactor;
+  return Math.max(10, Math.min(99, Math.round(base)));
+}
+
+export function teamOverallRating(save, teamId) {
+  const healthy = (save.rosters[teamId] || []).filter((player) => !player.injury || !player.injury.weeksOut);
+  const pool = healthy.length ? healthy : save.rosters[teamId] || [];
+  if (!pool.length) return 50;
+  const top = [...pool].sort((a, b) => b.rating - a.rating).slice(0, 8);
+  const avgRating = top.reduce((sum, player) => sum + player.rating, 0) / top.length;
+  const avgMorale = top.reduce((sum, player) => sum + (player.morale ?? 70), 0) / top.length;
+  const chemistry = computeChemistry(save, teamId);
+  return avgRating + (avgMorale - 70) * 0.05 + (chemistry - 70) * 0.08;
+}
+
+export function simulateMatch(ratingA, ratingB) {
+  const diff = ratingA - ratingB;
+  const expectedA = 1.6 + diff / 22;
+  const expectedB = 1.6 - diff / 22;
+  const roll = (lambda) => Math.max(0, Math.round(Math.max(0.15, lambda) + (Math.random() - 0.5) * 2.4));
+  return { scoreA: roll(expectedA), scoreB: roll(expectedB) };
+}
+
+// ---------- Season lifecycle ----------
+
+export function ensureRosterMeta(save) {
+  Object.keys(save.rosters).forEach((teamId) => {
+    save.rosters[teamId] = (save.rosters[teamId] || []).map((player) => ({
+      morale: 70,
+      injury: null,
+      development: 0,
+      ...player,
+    }));
+  });
+  return save;
+}
+
+export function startSeason(save) {
+  ensureRosterMeta(save);
+  ensurePlayerStatsShape(save);
+  Object.keys(save.rosters).forEach((teamId) => {
+    (save.rosters[teamId] || []).forEach((player) => {
+      player.seasonStartRating = player.rating;
+    });
+  });
+  save.playerSeasonStats = {};
+  const teamIds = save.teams.map((team) => team.id);
+  save.schedule = buildRoundRobinSchedule(teamIds, SEASON_WEEKS);
+  save.week = 1;
+  save.phase = "season";
+  save.results = save.results || [];
+  save.ownerObjectives = save.ownerObjectives || { reachedSemis: false, wonChampionship: false, winningRecord: false };
+  save.lineups = save.lineups || {};
+  save.captains = save.captains || {};
+  save.trainingLog = save.trainingLog || [];
+  save.injuryLog = save.injuryLog || [];
+  save.retirementLog = save.retirementLog || [];
+  return save;
+}
+
+function applyPostMatchEffects(save, teamId, outcome) {
+  const roster = save.rosters[teamId] || [];
+  roster.forEach((player) => {
+    if (player.injury?.weeksOut > 0) {
+      player.injury.weeksOut -= 1;
+      if (player.injury.weeksOut <= 0) player.injury = null;
+    }
+    const moraleShift = outcome === "win" ? 4 : outcome === "draw" ? 0 : -4;
+    player.morale = Math.max(0, Math.min(100, Math.round((player.morale ?? 70) + moraleShift + (Math.random() * 2 - 1))));
+    if (!player.injury && Math.random() < INJURY_CHANCE_PER_GAME) {
+      const weeksOut = 1 + Math.floor(Math.random() * 3);
+      player.injury = { weeksOut, sinceWeek: save.week };
+      save.injuryLog = save.injuryLog || [];
+      save.injuryLog.unshift({ week: save.week, teamId, playerId: player.id, playerName: player.name, weeksOut });
+    }
+    if (Math.random() < DEVELOPMENT_CHANCE_PER_GAME) {
+      const delta = player.rating < 65 || Math.random() < 0.5 ? 1 : -1;
+      player.rating = Math.max(40, Math.min(99, player.rating + delta));
+      player.development = (player.development || 0) + delta;
+    }
+  });
+}
+
+export function advanceWeek(save) {
+  if (save.phase !== "season") return save;
+  const weekIndex = save.week - 1;
+  const matches = (save.schedule || [])[weekIndex] || [];
+  const weekResults = matches.map((match) => {
+    const ratingA = teamOverallRating(save, match.homeTeamId);
+    const ratingB = teamOverallRating(save, match.awayTeamId);
+    const { scoreA, scoreB } = simulateMatch(ratingA, ratingB);
+    const teamA = save.teams.find((team) => team.id === match.homeTeamId);
+    const teamB = save.teams.find((team) => team.id === match.awayTeamId);
+
+    teamA.goalsFor += scoreA;
+    teamA.goalsAgainst += scoreB;
+    teamB.goalsFor += scoreB;
+    teamB.goalsAgainst += scoreA;
+
+    if (scoreA > scoreB) {
+      teamA.wins += 1;
+      teamA.points += 3;
+      teamB.losses += 1;
+      applyPostMatchEffects(save, match.homeTeamId, "win");
+      applyPostMatchEffects(save, match.awayTeamId, "loss");
+      recordStreak(save, match.homeTeamId, "win");
+      recordStreak(save, match.awayTeamId, "loss");
+    } else if (scoreB > scoreA) {
+      teamB.wins += 1;
+      teamB.points += 3;
+      teamA.losses += 1;
+      applyPostMatchEffects(save, match.homeTeamId, "loss");
+      applyPostMatchEffects(save, match.awayTeamId, "win");
+      recordStreak(save, match.homeTeamId, "loss");
+      recordStreak(save, match.awayTeamId, "win");
+    } else {
+      teamA.draws += 1;
+      teamA.points += 1;
+      teamB.draws += 1;
+      teamB.points += 1;
+      applyPostMatchEffects(save, match.homeTeamId, "draw");
+      applyPostMatchEffects(save, match.awayTeamId, "draw");
+      recordStreak(save, match.homeTeamId, "draw");
+      recordStreak(save, match.awayTeamId, "draw");
+    }
+
+    recordTeamMatchStats(save, match.homeTeamId, scoreB, scoreA);
+    recordTeamMatchStats(save, match.awayTeamId, scoreA, scoreB);
+
+    return { week: save.week, homeTeamId: match.homeTeamId, awayTeamId: match.awayTeamId, homeScore: scoreA, awayScore: scoreB };
+  });
+
+  save.results = [...(save.results || []), ...weekResults];
+  save.week += 1;
+  if (save.week > SEASON_WEEKS) save.phase = "postseason-ready";
+  return save;
+}
+
+export function standingsForSave(save) {
+  return [...save.teams].sort(
+    (a, b) => b.points - a.points || (b.goalsFor - b.goalsAgainst) - (a.goalsFor - a.goalsAgainst) || b.goalsFor - a.goalsFor
+  );
+}
+
+export function runPlayoffs(save) {
+  const table = standingsForSave(save);
+  const seed = (rank) => table[rank - 1];
+
+  const simRound = (teamA, teamB) => {
+    if (!teamA) return teamB;
+    if (!teamB) return teamA;
+    const ratingA = teamOverallRating(save, teamA.id) + Math.random() * 3;
+    const ratingB = teamOverallRating(save, teamB.id) + Math.random() * 3;
+    const { scoreA, scoreB } = simulateMatch(ratingA, ratingB);
+    if (scoreA === scoreB) return Math.random() < 0.5 + (ratingA - ratingB) / 100 ? teamA : teamB;
+    return scoreA > scoreB ? teamA : teamB;
+  };
+
+  const qf1Winner = simRound(seed(3), seed(6));
+  const qf2Winner = simRound(seed(4), seed(5));
+  const sf1Winner = simRound(seed(1), qf2Winner);
+  const sf2Winner = simRound(seed(2), qf1Winner);
+  const champion = simRound(sf1Winner, sf2Winner);
+
+  const userTeamId = save.userTeamId;
+  const reachedSemis = [seed(1)?.id, seed(2)?.id, sf1Winner?.id, sf2Winner?.id].includes(userTeamId);
+  const userTeam = save.teams.find((team) => team.id === userTeamId);
+  const winningRecord = !!userTeam && userTeam.wins > userTeam.losses;
+
+  save.playoffResults = {
+    qf1: { teamA: seed(3), teamB: seed(6), winner: qf1Winner },
+    qf2: { teamA: seed(4), teamB: seed(5), winner: qf2Winner },
+    sf1: { teamA: seed(1), teamB: qf2Winner, winner: sf1Winner },
+    sf2: { teamA: seed(2), teamB: qf1Winner, winner: sf2Winner },
+    final: { teamA: sf1Winner, teamB: sf2Winner, winner: champion },
+    champion,
+  };
+
+  save.ownerObjectives = {
+    reachedSemis,
+    wonChampionship: champion?.id === userTeamId,
+    winningRecord,
+  };
+
+  save.history = save.history || [];
+  save.history.push({
+    season: save.season,
+    champion: champion?.name,
+    championTeamId: champion?.id || null,
+    userResult: champion?.id === userTeamId ? "Champion" : reachedSemis ? "Reached Semifinals" : "Missed Semifinals",
+    record: userTeam ? `${userTeam.wins}-${userTeam.losses}-${userTeam.draws}` : "",
+  });
+
+  save.lastSeasonAwards = computeSeasonAwards(save);
+
+  save.phase = "playoffs-complete";
+  return save;
+}
+
+export function startNextSeason(save) {
+  archiveSeasonStatsToCareer(save);
+  const { retired } = processRetirements(save);
+  save.season += 1;
+  save.week = 0;
+  save.results = [];
+  save.playoffResults = null;
+  save.trainingLog = [];
+  save.injuryLog = [];
+  save.teams = save.teams.map((team) => ({ ...team, wins: 0, losses: 0, draws: 0, points: 0, goalsFor: 0, goalsAgainst: 0 }));
+  save.phase = "offseason";
+  return { save, retired };
+}
+
+// ---------- Team management: captains, training, lineups ----------
+
+export function setCaptain(save, teamId, playerId) {
+  save.captains = save.captains || {};
+  save.captains[teamId] = playerId;
+  return save;
+}
+
+export function applyTraining(save, teamId, playerId) {
+  const roster = save.rosters[teamId] || [];
+  const player = roster.find((item) => item.id === playerId);
+  if (!player) return { success: false };
+  save.trainingLog = save.trainingLog || [];
+  if (Math.random() < TRAINING_SUCCESS_CHANCE) {
+    player.rating = Math.min(99, player.rating + 1);
+    player.morale = Math.min(100, (player.morale ?? 70) + 3);
+    save.trainingLog.unshift({ week: save.week, teamId, playerId, playerName: player.name, result: "improved" });
+    return { success: true, player };
+  }
+  player.morale = Math.max(0, (player.morale ?? 70) - 1);
+  save.trainingLog.unshift({ week: save.week, teamId, playerId, playerName: player.name, result: "no change" });
+  return { success: false, player };
+}
+
+export const FORMATIONS = ["4-3-3", "4-4-2", "3-5-2", "5-3-2"];
+export const STARTING_XI_SIZE = 11;
+
+export function setLineup(save, teamId, formation, startingIds) {
+  save.lineups = save.lineups || {};
+  save.lineups[teamId] = { formation, startingIds };
+  return save;
+}
+
+// ---------- Free agency: offers, competing bids, waivers, retirements ----------
+
+export function freeAgentPool(save, allPlayers) {
+  const set = new Set(save.freeAgents || []);
+  return allPlayers.filter((player) => set.has(player.id));
+}
+
+export function signFreeAgent(save, teamId, playerId, allPlayers) {
+  const player = allPlayers.find((item) => item.id === playerId);
+  if (!player) return { success: false, reason: "Player not found." };
+  if (!(save.freeAgents || []).includes(playerId)) return { success: false, reason: "Player is no longer a free agent." };
+
+  const contract = { ...generateContract(player), seasonSigned: save.season };
+  if (teamCapSpace(save, teamId) < contract.salary) {
+    return { success: false, reason: `Not enough cap space to offer ${player.name} a contract.` };
+  }
+
+  if (teamId === save.userTeamId) {
+    const rivals = save.teams.filter((team) => team.id !== teamId);
+    for (const rival of rivals) {
+      const rivalRoster = save.rosters[rival.id] || [];
+      const need = teamNeedScore(rivalRoster, player.position);
+      const rivalBids = need > 4 && Math.random() < 0.35;
+      if (rivalBids && teamCapSpace(save, rival.id) >= contract.salary) {
+        save.rosters[rival.id] = save.rosters[rival.id] || [];
+        save.rosters[rival.id].push({ ...player, contract: { ...generateContract(player), seasonSigned: save.season }, morale: 70, injury: null });
+        save.freeAgents = save.freeAgents.filter((id) => id !== playerId);
+        return { success: false, reason: `${rival.name} won a competing bid for ${player.name}.`, lostTo: rival.name };
+      }
+    }
+  }
+
+  save.rosters[teamId] = save.rosters[teamId] || [];
+  save.rosters[teamId].push({ ...player, contract, morale: 70, injury: null });
+  save.freeAgents = (save.freeAgents || []).filter((id) => id !== playerId);
+  return { success: true, player };
+}
+
+export function waivePlayer(save, teamId, playerId) {
+  const roster = save.rosters[teamId] || [];
+  const index = roster.findIndex((item) => item.id === playerId);
+  if (index === -1) return { success: false };
+  const [player] = roster.splice(index, 1);
+  save.freeAgents = save.freeAgents || [];
+  save.freeAgents.push(player.id);
+  if (save.captains?.[teamId] === playerId) delete save.captains[teamId];
+  return { success: true, player };
+}
+
+export function processRetirements(save) {
+  const retired = [];
+  Object.keys(save.rosters).forEach((teamId) => {
+    save.rosters[teamId] = (save.rosters[teamId] || []).filter((player) => {
+      const retireChance = player.rating < 58 ? 0.12 : 0.03;
+      if (Math.random() < retireChance) {
+        retired.push({ teamId, player });
+        return false;
+      }
+      return true;
+    });
+  });
+  save.retirementLog = [
+    ...(save.retirementLog || []),
+    ...retired.map((entry) => ({ season: save.season, playerName: entry.player.name, teamId: entry.teamId })),
+  ];
+  return { save, retired };
+}
+
+// =====================================================================
+// Part 4: Statistics and Awards
+//
+// Per-player season/career statistics (goals, assists, points, minutes
+// played, clean sheets), plus end-of-season awards (MVP, Golden Boot,
+// Best Goalkeeper, Rookie of the Year, Most Improved Player) and
+// franchise records (most goals/assists/points, longest winning streak,
+// most championships). Team-level statistics (wins, losses, goal
+// difference) already live on save.teams / standingsForSave.
+// =====================================================================
+
+const POSITION_GOAL_WEIGHT = { Forward: 6, Midfielder: 2.5, Defender: 0.6, Goalkeeper: 0.05 };
+const POSITION_ASSIST_WEIGHT = { Forward: 2.5, Midfielder: 4, Defender: 1.5, Goalkeeper: 0.2 };
+const UNASSISTED_GOAL_CHANCE = 0.22;
+
+function weightedRandomPick(candidates, weightFn) {
+  const weighted = candidates.map((item) => ({ item, weight: Math.max(0.01, weightFn(item)) }));
+  const total = weighted.reduce((sum, entry) => sum + entry.weight, 0);
+  let roll = Math.random() * total;
+  for (const entry of weighted) {
+    roll -= entry.weight;
+    if (roll <= 0) return entry.item;
+  }
+  return weighted[weighted.length - 1]?.item || null;
+}
+
+function matchLineup(save, teamId) {
+  const roster = save.rosters[teamId] || [];
+  const healthy = roster.filter((player) => !player.injury?.weeksOut);
+  const lineup = save.lineups?.[teamId];
+  if (lineup?.startingIds?.length) {
+    const starters = lineup.startingIds.map((id) => healthy.find((player) => player.id === id)).filter(Boolean);
+    if (starters.length) return starters;
+  }
+  return [...healthy].sort((a, b) => b.rating - a.rating).slice(0, STARTING_XI_SIZE);
+}
+
+export function ensurePlayerStatsShape(save) {
+  save.playerSeasonStats = save.playerSeasonStats || {};
+  save.careerStats = save.careerStats || {};
+  save.teamStreaks = save.teamStreaks || {};
+  save.awardsHistory = save.awardsHistory || [];
+  return save;
+}
+
+function statLine(save, playerId, meta) {
+  save.playerSeasonStats[playerId] = save.playerSeasonStats[playerId] || {
+    playerId,
+    name: meta.name,
+    teamId: meta.teamId,
+    position: meta.position,
+    goals: 0,
+    assists: 0,
+    minutesPlayed: 0,
+    cleanSheets: 0,
+    gamesPlayed: 0,
+  };
+  return save.playerSeasonStats[playerId];
+}
+
+function recordTeamMatchStats(save, teamId, opponentGoals, goalsScored) {
+  ensurePlayerStatsShape(save);
+  const starters = matchLineup(save, teamId);
+  if (!starters.length) return;
+
+  starters.forEach((player) => {
+    const line = statLine(save, player.id, player);
+    line.teamId = teamId;
+    line.minutesPlayed += 90;
+    line.gamesPlayed += 1;
+  });
+
+  const goalkeeper = starters.find((player) => player.position === "Goalkeeper");
+  if (goalkeeper && opponentGoals === 0) {
+    statLine(save, goalkeeper.id, goalkeeper).cleanSheets += 1;
+  }
+
+  for (let i = 0; i < goalsScored; i += 1) {
+    const scorer = weightedRandomPick(starters, (player) => POSITION_GOAL_WEIGHT[player.position] * (0.5 + player.rating / 100));
+    if (!scorer) continue;
+    statLine(save, scorer.id, scorer).goals += 1;
+
+    if (Math.random() > UNASSISTED_GOAL_CHANCE) {
+      const assistCandidates = starters.filter((player) => player.id !== scorer.id);
+      const assister = weightedRandomPick(assistCandidates, (player) => POSITION_ASSIST_WEIGHT[player.position] * (0.5 + player.rating / 100));
+      if (assister) statLine(save, assister.id, assister).assists += 1;
+    }
+  }
+}
+
+function recordStreak(save, teamId, outcome) {
+  save.teamStreaks = save.teamStreaks || {};
+  const streak = save.teamStreaks[teamId] || { current: 0, best: 0 };
+  streak.current = outcome === "win" ? streak.current + 1 : 0;
+  streak.best = Math.max(streak.best, streak.current);
+  save.teamStreaks[teamId] = streak;
+}
+
+// ---------- Season/career stat lookups ----------
+
+export function playerSeasonStatLine(save, playerId) {
+  return save.playerSeasonStats?.[playerId] || null;
+}
+
+export function playerCareerStatLine(save, playerId) {
+  return save.careerStats?.[playerId] || null;
+}
+
+export function seasonStatLeaders(save, key, limit = 10) {
+  ensurePlayerStatsShape(save);
+  return Object.values(save.playerSeasonStats)
+    .filter((line) => line.gamesPlayed > 0)
+    .sort((a, b) => b[key] - a[key])
+    .slice(0, limit);
+}
+
+// ---------- End-of-season archiving ----------
+
+export function archiveSeasonStatsToCareer(save) {
+  ensurePlayerStatsShape(save);
+  Object.values(save.playerSeasonStats).forEach((line) => {
+    const career = save.careerStats[line.playerId] || {
+      playerId: line.playerId,
+      name: line.name,
+      goals: 0,
+      assists: 0,
+      minutesPlayed: 0,
+      cleanSheets: 0,
+      gamesPlayed: 0,
+    };
+    career.name = line.name;
+    career.goals += line.goals;
+    career.assists += line.assists;
+    career.minutesPlayed += line.minutesPlayed;
+    career.cleanSheets += line.cleanSheets;
+    career.gamesPlayed += line.gamesPlayed;
+    save.careerStats[line.playerId] = career;
+  });
+  return save;
+}
+
+// ---------- Awards ----------
+
+export function computeSeasonAwards(save) {
+  ensurePlayerStatsShape(save);
+  const lines = Object.values(save.playerSeasonStats).filter((line) => line.gamesPlayed > 0);
+  if (!lines.length) return { season: save.season, mvp: null, goldenBoot: null, bestGoalkeeper: null, rookieOfTheYear: null, mostImprovedPlayer: null };
+
+  const rosterPlayer = (playerId) => {
+    for (const teamId of Object.keys(save.rosters)) {
+      const found = (save.rosters[teamId] || []).find((player) => player.id === playerId);
+      if (found) return found;
+    }
+    return null;
+  };
+
+  const goldenBootLine = [...lines].sort((a, b) => b.goals - a.goals)[0];
+  const goldenBoot = goldenBootLine?.goals > 0 ? goldenBootLine : null;
+
+  const keeperLines = lines.filter((line) => line.position === "Goalkeeper");
+  const bestGoalkeeper = keeperLines.length
+    ? [...keeperLines].sort((a, b) => b.cleanSheets - a.cleanSheets || b.gamesPlayed - a.gamesPlayed)[0]
+    : null;
+
+  const mvpScore = (line) => line.goals * 3 + line.assists * 2 + (rosterPlayer(line.playerId)?.rating || 0) * 0.5;
+  const mvp = [...lines].sort((a, b) => mvpScore(b) - mvpScore(a))[0] || null;
+
+  const rookieLines = lines.filter((line) => {
+    const career = save.careerStats[line.playerId];
+    return !career || career.gamesPlayed === 0;
+  });
+  const rookieScore = (line) => line.goals * 2 + line.assists + (rosterPlayer(line.playerId)?.rating || 0);
+  const rookieOfTheYear = rookieLines.length ? [...rookieLines].sort((a, b) => rookieScore(b) - rookieScore(a))[0] : null;
+
+  const improvementCandidates = Object.keys(save.rosters)
+    .flatMap((teamId) => (save.rosters[teamId] || []).map((player) => ({ player, teamId })))
+    .filter(({ player }) => typeof player.seasonStartRating === "number")
+    .map(({ player, teamId }) => ({
+      playerId: player.id,
+      name: player.name,
+      teamId,
+      startRating: player.seasonStartRating,
+      endRating: player.rating,
+      delta: player.rating - player.seasonStartRating,
+    }))
+    .sort((a, b) => b.delta - a.delta);
+  const mostImprovedPlayer = improvementCandidates.length && improvementCandidates[0].delta > 0 ? improvementCandidates[0] : null;
+
+  return {
+    season: save.season,
+    mvp: mvp ? { playerId: mvp.playerId, name: mvp.name, teamId: mvp.teamId, goals: mvp.goals, assists: mvp.assists } : null,
+    goldenBoot: goldenBoot ? { playerId: goldenBoot.playerId, name: goldenBoot.name, teamId: goldenBoot.teamId, goals: goldenBoot.goals } : null,
+    bestGoalkeeper: bestGoalkeeper
+      ? { playerId: bestGoalkeeper.playerId, name: bestGoalkeeper.name, teamId: bestGoalkeeper.teamId, cleanSheets: bestGoalkeeper.cleanSheets }
+      : null,
+    rookieOfTheYear: rookieOfTheYear
+      ? { playerId: rookieOfTheYear.playerId, name: rookieOfTheYear.name, teamId: rookieOfTheYear.teamId, goals: rookieOfTheYear.goals, assists: rookieOfTheYear.assists }
+      : null,
+    mostImprovedPlayer,
+  };
+}
+
+// ---------- Franchise records ----------
+
+export function computeFranchiseRecords(save) {
+  ensurePlayerStatsShape(save);
+  const careerLines = Object.values(save.careerStats);
+
+  const topBy = (key) => (careerLines.length ? [...careerLines].sort((a, b) => b[key] - a[key])[0] : null);
+  const mostGoalsLine = topBy("goals");
+  const mostAssistsLine = topBy("assists");
+  const mostPointsLine = careerLines.length
+    ? [...careerLines].sort((a, b) => b.goals + b.assists - (a.goals + a.assists))[0]
+    : null;
+
+  const streakEntries = Object.entries(save.teamStreaks || {}).map(([teamId, streak]) => ({
+    teamId,
+    teamName: save.teams.find((team) => team.id === teamId)?.name || teamId,
+    best: streak.best,
+  }));
+  const longestWinningStreak = streakEntries.length ? [...streakEntries].sort((a, b) => b.best - a.best)[0] : null;
+
+  const championshipCounts = {};
+  (save.history || []).forEach((entry) => {
+    if (!entry.championTeamId) return;
+    championshipCounts[entry.championTeamId] = (championshipCounts[entry.championTeamId] || 0) + 1;
+  });
+  const mostChampionshipsEntry = Object.entries(championshipCounts).sort((a, b) => b[1] - a[1])[0];
+  const mostChampionships = mostChampionshipsEntry
+    ? {
+        teamId: mostChampionshipsEntry[0],
+        teamName: save.teams.find((team) => team.id === mostChampionshipsEntry[0])?.name || mostChampionshipsEntry[0],
+        count: mostChampionshipsEntry[1],
+      }
+    : null;
+
+  return {
+    mostGoals: mostGoalsLine && mostGoalsLine.goals > 0 ? { playerId: mostGoalsLine.playerId, name: mostGoalsLine.name, value: mostGoalsLine.goals } : null,
+    mostAssists:
+      mostAssistsLine && mostAssistsLine.assists > 0 ? { playerId: mostAssistsLine.playerId, name: mostAssistsLine.name, value: mostAssistsLine.assists } : null,
+    mostPoints:
+      mostPointsLine && mostPointsLine.goals + mostPointsLine.assists > 0
+        ? { playerId: mostPointsLine.playerId, name: mostPointsLine.name, value: mostPointsLine.goals + mostPointsLine.assists }
+        : null,
+    longestWinningStreak: longestWinningStreak && longestWinningStreak.best > 0 ? longestWinningStreak : null,
+    mostChampionships,
+  };
 }

@@ -33,6 +33,7 @@ function awardType(award) {
   if (award.category === "Champion Team") return "champion";
   if (award.category === "MVP") return "mvp";
   if (award.category === "Golden Boot") return "golden-boot";
+  if (award.category === "Best Goalkeeper") return "goalkeeper";
   if (["2nd Place Team", "3rd Place Team"].includes(award.category)) return "podium";
   return isTeamAward(award) ? "team" : "player";
 }
@@ -42,6 +43,7 @@ function awardIcon(award) {
     champion: "🏆",
     mvp: "⭐",
     "golden-boot": "⚽",
+    goalkeeper: "🧤",
     podium: "🥉",
     team: "🏅",
     player: "⭐",
@@ -241,6 +243,7 @@ function categoryRank(category) {
     "3rd Place Team": 4,
     MVP: 5,
     "Golden Boot": 6,
+    "Best Goalkeeper": 7,
   }[category] || 99;
 }
 
@@ -351,7 +354,8 @@ function renderAwardHistory(awards) {
   const champions = awards.filter((award) => award.category === "Champion Team");
   const mvps = awards.filter((award) => award.category === "MVP");
   const goldenBoots = awards.filter((award) => award.category === "Golden Boot");
-  if (!champions.length && !mvps.length && !goldenBoots.length) return "";
+  const bestGoalkeepers = awards.filter((award) => award.category === "Best Goalkeeper");
+  if (!champions.length && !mvps.length && !goldenBoots.length && !bestGoalkeepers.length) return "";
 
   return `
     <section class="section-panel awards-history-panel">
@@ -359,13 +363,14 @@ function renderAwardHistory(awards) {
         <div>
           <span class="eyebrow">History</span>
           <h2>Award History</h2>
-          <p>Champions, MVPs, and Golden Boots organized by season and division.</p>
+          <p>Champions, MVPs, Golden Boots, and Best Goalkeepers organized by season and division.</p>
         </div>
       </div>
       <div class="award-history-groups">
         ${renderHistoryGroup("Champions by Year", "🏆", champions)}
         ${renderHistoryGroup("MVPs by Year", "⭐", mvps)}
         ${renderHistoryGroup("Golden Boots by Year", "⚽", goldenBoots)}
+        ${renderHistoryGroup("Best Goalkeepers by Year", "🧤", bestGoalkeepers)}
       </div>
     </section>
   `;

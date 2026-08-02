@@ -77,14 +77,14 @@
     {
       "part": 3,
       "title": "Team Management",
-      "status": "coming soon",
+      "status": "available",
       "summary": "Chemistry, captains, injuries, morale, training, lineups, formations, player development, and free agency."
     },
     {
       "part": 4,
       "title": "Statistics and Awards",
-      "status": "coming soon",
-      "summary": "Full stat tracking, season awards, and all-time franchise records."
+      "status": "available",
+      "summary": "Per-player goals, assists, points, minutes played, and clean sheets tracked every match, plus end-of-season MVP, Golden Boot, Best Goalkeeper, Rookie of the Year, and Most Improved Player awards, and all-time franchise records. Engine complete; a dedicated Statistics/Records/Awards UI is coming in Part 5."
     },
     {
       "part": 5,
