@@ -97,7 +97,7 @@
       "coachName": "Tanveer",
       "history": "2026 senior team coached by Tanveer in his second year.",
       "roster": [
-        { "id": "mudassir", "name": "Mudassir", "position": "Field", "leadershipRole": "assistant" },
+        { "id": "mudassir", "name": "Mudassir", "position": "Field", "leadershipRole": "captain" },
         { "id": "ajmal-shakkari", "name": "Ajmal Chakkari", "position": "Field" },
         { "id": "subhanullah-sharza", "name": "Subhanallah Sharzah", "position": "Field" },
         { "id": "abdullah-hosseinzadah", "name": "Abdullah Hosseinzadah", "position": "Field" },
@@ -105,7 +105,7 @@
         { "id": "ibrahim-kadam", "name": "Ibrahim Kadam", "position": "Field", "previousTeamId": "gangat-warriors", "previousTeamName": "Gangat Warriors", "tradeEffectiveDate": "2026-07-17", "tradeNote": "Officially traded to Leeward Lions in the Gangat Warriors multi-player trade." },
         { "id": "usman-ahmad-popal", "name": "Usman Ahmad Popal", "position": "Field" },
         { "id": "muhammad-teli", "name": "Muhummud Teli", "photo": "./Logos/Player Pics/Muhummud Teli.png", "position": "Field", "leadershipRole": "assistant" },
-        { "id": "abubakr-manjra", "name": "Abu Bakr Manjra", "photo": "./Logos/Player Pics/Abu Bakr Manjra.png", "position": "Defender", "leadershipRole": "captain" },
+        { "id": "abubakr-manjra", "name": "Abu Bakr Manjra", "photo": "./Logos/Player Pics/Abu Bakr Manjra.png", "position": "Defender", "leadershipRole": "assistant" },
         { "id": "sayem-mohammed-sadi", "name": "Sayem Mohamed Saad", "photo": "./Logos/Player Pics/Sayem Mohamed Saad.png", "position": "Field" }
       ]
     },

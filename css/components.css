@@ -10686,3 +10686,242 @@ details.clean-details summary {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+.franchise-draft-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 4px;
+}
+
+.franchise-draft-filters button {
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.franchise-draft-pool {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.franchise-draft-player {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.franchise-draft-player-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.franchise-draft-player-name span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.franchise-draft-player-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.franchise-draft-log {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.franchise-draft-log h3 {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+}
+
+.franchise-draft-log-row {
+  display: grid;
+  grid-template-columns: 44px 52px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 7px 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.franchise-draft-log-row strong {
+  color: var(--ink);
+}
+
+.franchise-draft-log-row.you {
+  color: var(--gold);
+}
+
+.franchise-draft-log-row.you strong {
+  color: var(--gold);
+}
+
+.franchise-cap-bar {
+  height: 12px;
+  margin-top: 14px;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.franchise-cap-bar span {
+  display: block;
+  height: 100%;
+  background: var(--green-2);
+}
+
+.franchise-roster-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.franchise-roster-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.franchise-roster-row > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.franchise-roster-row > div:first-child span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.franchise-roster-contract {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.franchise-roster-contract small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.franchise-trade-block {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.franchise-trade-block h3,
+.franchise-trade-builder h3,
+.franchise-trade-history h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.franchise-trade-builder {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.franchise-trade-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.franchise-trade-side {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.franchise-trade-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.franchise-trade-checkbox small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.franchise-trade-value {
+  margin: 6px 0 0;
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.franchise-trade-message {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.franchise-trade-message.accepted {
+  color: #dff5e6;
+  background: #1b4d2d;
+  border: 1px solid #2f7045;
+}
+
+.franchise-trade-message.rejected {
+  color: #ffd7d2;
+  background: rgba(117, 27, 27, 0.72);
+  border: 1px solid rgba(255, 130, 118, 0.46);
+}
+
+.franchise-trade-history {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.franchise-trade-history-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.franchise-trade-history-row strong {
+  color: var(--ink);
+}

@@ -1387,6 +1387,7 @@
       "division": "Seniors",
       "label": "Quarterfinal 1",
       "date": "2026-08-08",
+      "time": "9:15 AM - 10:00 AM",
       "homeTeamId": "leeward-lions",
       "awayTeamId": "memon-mavericks",
       "homeScore": null,
@@ -1406,6 +1407,7 @@
       "division": "Seniors",
       "label": "Quarterfinal 2",
       "date": "2026-08-08",
+      "time": "10:00 AM - 10:45 AM",
       "homeTeamId": "em-haulers-fc",
       "awayTeamId": "gangat-warriors",
       "homeScore": null,
@@ -1425,6 +1427,7 @@
       "division": "Seniors",
       "label": "Quarterfinal 3",
       "date": "2026-08-08",
+      "time": "10:45 AM - 11:30 AM",
       "homeTeamId": "sharp-strikers",
       "awayTeamId": "amax-visionaries",
       "homeScore": null,
@@ -1444,6 +1447,7 @@
       "division": "Seniors",
       "label": "Quarterfinal 4",
       "date": "2026-08-08",
+      "time": "11:30 AM - 12:15 PM",
       "homeTeamId": "rawaha-royals",
       "awayTeamId": "refuel-rovers",
       "homeScore": null,
@@ -1453,6 +1457,72 @@
       "assists": [],
       "notes": [
         "Quarterfinal 4: #4 seed Rawaha Royals vs #5 seed Refuel Rovers.",
+        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-playoffs-sf1",
+      "week": 8,
+      "stage": "playoffs",
+      "division": "Seniors",
+      "label": "Semifinal 1",
+      "date": "2026-08-08",
+      "time": "12:15 PM - 1:00 PM",
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "homeTeamName": "Winner QF1",
+      "awayTeamName": "Winner QF4",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Semifinal 1: Winner of Quarterfinal 1 vs winner of Quarterfinal 4.",
+        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-playoffs-sf2",
+      "week": 8,
+      "stage": "playoffs",
+      "division": "Seniors",
+      "label": "Semifinal 2",
+      "date": "2026-08-08",
+      "time": "1:00 PM - 1:45 PM",
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "homeTeamName": "Winner QF2",
+      "awayTeamName": "Winner QF3",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Semifinal 2: Winner of Quarterfinal 2 vs winner of Quarterfinal 3.",
+        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-playoffs-final",
+      "week": 8,
+      "stage": "playoffs",
+      "division": "Seniors",
+      "label": "Championship",
+      "date": "2026-08-08",
+      "time": "1:45 PM - 2:30 PM",
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "homeTeamName": "Winner SF1",
+      "awayTeamName": "Winner SF2",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Championship: Winner of Semifinal 1 vs winner of Semifinal 2.",
         "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
       ]
     }
