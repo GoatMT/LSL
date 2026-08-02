@@ -8970,6 +8970,18 @@ details.clean-details summary {
 }
 
 .imt-blue-page {
+  --green: #001a3a;
+  --green-2: #0a3563;
+  --gold: #48aaff;
+  --page: #eaf3fb;
+  --panel: #001a3a;
+  --card: #0a3563;
+  --card-2: #eaf3fb;
+  --soft: #123f6e;
+  --soft-gold: #164a7d;
+  --line: rgba(153, 196, 221, 0.32);
+  --ink: #eaf3fb;
+  --muted: #9fc3e0;
   background:
     linear-gradient(180deg, var(--page) 0, var(--panel) 240px, var(--page) 100%);
   color: var(--ink);
@@ -8983,7 +8995,7 @@ details.clean-details summary {
 .imt-blue-page .site-footer {
   color: var(--ink);
   background: var(--green);
-  border-top-color: rgba(199, 163, 103, 0.28);
+  border-top-color: rgba(72, 170, 255, 0.28);
 }
 
 .imt-blue-page .page-shell {
@@ -9017,7 +9029,7 @@ details.clean-details summary {
   justify-content: space-between;
   padding: 18px;
   background: var(--green);
-  border-color: rgba(199, 163, 103, 0.3);
+  border-color: rgba(72, 170, 255, 0.3);
   box-shadow: var(--shadow);
 }
 
@@ -9032,7 +9044,7 @@ details.clean-details summary {
   padding: 10px 16px;
   color: var(--ink);
   background: var(--green-2);
-  border: 1px solid rgba(199, 163, 103, 0.42);
+  border: 1px solid rgba(72, 170, 255, 0.42);
   border-radius: 16px;
   font-weight: 950;
   text-align: center;
@@ -9076,7 +9088,7 @@ details.clean-details summary {
 }
 
 .imt-site-bar .control label {
-  color: #efd3a5;
+  color: #cfe8ff;
 }
 
 .imt-year-control .control select {
@@ -9098,10 +9110,10 @@ details.clean-details summary {
   gap: 22px;
   padding: clamp(24px, 4vw, 42px);
   background:
-    linear-gradient(135deg, rgba(17, 60, 31, 0.96), rgba(27, 86, 48, 0.92)),
+    linear-gradient(135deg, rgba(0, 26, 58, 0.96), rgba(10, 53, 99, 0.92)),
     var(--green);
   color: var(--ink);
-  border-color: rgba(199, 163, 103, 0.32);
+  border-color: rgba(72, 170, 255, 0.32);
 }
 
 .imt-blue-hero-copy {
@@ -9135,7 +9147,7 @@ details.clean-details summary {
 }
 
 .imt-blue-hero .imt-blue-kicker {
-  color: #efd3a5;
+  color: #cfe8ff;
 }
 
 .imt-hero-facts {
@@ -9156,8 +9168,8 @@ details.clean-details summary {
 .imt-hero-facts span {
   padding: 9px 12px;
   color: var(--ink);
-  background: rgba(199, 163, 103, 0.16);
-  border: 1px solid rgba(199, 163, 103, 0.3);
+  background: rgba(72, 170, 255, 0.16);
+  border: 1px solid rgba(72, 170, 255, 0.3);
   font-weight: 900;
 }
 
@@ -9169,7 +9181,7 @@ details.clean-details summary {
   padding: 24px;
   color: var(--ink);
   background: var(--card);
-  border: 1px solid rgba(199, 163, 103, 0.28);
+  border: 1px solid rgba(72, 170, 255, 0.28);
   border-radius: 24px;
 }
 
@@ -9214,7 +9226,7 @@ details.clean-details summary {
 
 .imt-subnav {
   background: var(--green);
-  border-color: rgba(199, 163, 103, 0.3);
+  border-color: rgba(72, 170, 255, 0.3);
 }
 
 .imt-subnav button,
@@ -9230,7 +9242,7 @@ details.clean-details summary {
 .imt-choice-row button:hover:not(.active) {
   color: var(--ink);
   background: var(--green-2);
-  border-color: rgba(199, 163, 103, 0.45);
+  border-color: rgba(72, 170, 255, 0.45);
 }
 
 .imt-subnav button.active,
@@ -9238,7 +9250,7 @@ details.clean-details summary {
   color: var(--green);
   background: var(--gold);
   border-color: var(--gold);
-  box-shadow: 0 10px 22px rgba(199, 163, 103, 0.35);
+  box-shadow: 0 10px 22px rgba(72, 170, 255, 0.35);
 }
 
 .imt-status-panel {
@@ -9256,12 +9268,12 @@ details.clean-details summary {
   padding: 24px;
   color: var(--ink);
   background: var(--green);
-  border: 1px solid rgba(199, 163, 103, 0.32);
+  border: 1px solid rgba(72, 170, 255, 0.32);
   border-radius: 24px;
 }
 
 .imt-status-main .imt-blue-kicker {
-  color: #efd3a5;
+  color: #cfe8ff;
 }
 
 .imt-status-main h2 {
@@ -9365,7 +9377,7 @@ details.clean-details summary {
 }
 
 .imt-event-detail-grid small {
-  color: #efd3a5;
+  color: #cfe8ff;
   font-weight: 800;
 }
 
@@ -9436,7 +9448,7 @@ details.clean-details summary {
 }
 
 .imt-institution-chip .imt-team-logo {
-  border-color: rgba(199, 163, 103, 0.3);
+  border-color: rgba(72, 170, 255, 0.3);
 }
 
 .imt-logo-lantern-of-knowledge-academy {
@@ -9737,7 +9749,7 @@ details.clean-details summary {
 
 .imt-bracket-match div.winner {
   background: var(--soft-gold);
-  border-color: rgba(199, 163, 103, 0.5);
+  border-color: rgba(72, 170, 255, 0.5);
 }
 
 .imt-bracket-team-name {
