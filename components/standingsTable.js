@@ -4,6 +4,7 @@ import { SITE } from "../js/config.js";
 function statusBadge(row, season = "") {
   if (row.notStarted) return `<span class="source-note">Not started yet</span>`;
   if (row.scorePending) return `<span class="pill">Score pending</span>`;
+  if (row.rank === 1) return `<span class="pill">President Trophy</span>`;
   if (row.bye) return `<span class="pill green">Semifinal bye</span>`;
   if (row.playoff) return `<span class="pill">Playoff seed</span>`;
   if (String(season) === String(SITE.defaultSeason)) return `<span class="pill red">Outside Playoff Line</span>`;

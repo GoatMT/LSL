@@ -309,7 +309,7 @@ function renderGoalsVsWins(rows) {
         <span>Goals vs Wins</span>
         <h3>Stat Padding Check</h3>
       </div>
-      <div class="advanced-scatter compact">
+      <div class="advanced-scatter">
         <span class="axis top-left">Efficient Wins</span>
         <span class="axis top-right">True Quality</span>
         <span class="axis bottom-left">Low Output</span>
@@ -380,6 +380,49 @@ function renderTugOfWar(rows) {
             </div>
           `)
           .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderScoringRates(rows, matches) {
+  const shutouts = computeShutoutCounts(matches, rows);
+  const ranked = [...rows].sort((a, b) => b.gfPerGame - a.gfPerGame || a.gaPerGame - b.gaPerGame);
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Scoring Rates</span>
+        <h3>Goals For / Against Per Game</h3>
+      </div>
+      <div class="table-wrap mobile-card-table-wrap">
+        <table class="data-table mobile-card-table advanced-table">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th class="num">GF</th>
+              <th class="num">GA</th>
+              <th class="num">GF/G</th>
+              <th class="num">GA/G</th>
+              <th class="num">Shutouts</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${ranked
+              .map(
+                (row) => `
+                  <tr>
+                    <td data-label="Team">${escapeHTML(row.team.name)}</td>
+                    <td class="num" data-label="GF">${row.gf}</td>
+                    <td class="num" data-label="GA">${row.ga}</td>
+                    <td class="num" data-label="GF/G">${row.gfPerGame.toFixed(2)}</td>
+                    <td class="num" data-label="GA/G">${row.gaPerGame.toFixed(2)}</td>
+                    <td class="num" data-label="Shutouts">${shutouts.get(row.teamId) || 0}</td>
+                  </tr>
+                `
+              )
+              .join("")}
+          </tbody>
+        </table>
       </div>
     </article>
   `;
@@ -516,39 +559,6 @@ function renderTopScorers(data) {
   `;
 }
 
-function renderAssistLeaders(data) {
-  const players = computePlayerStats(data, { stage: "regular" })
-    .filter((player) => player.division === state.division)
-    .filter((player) => player.assists > 0)
-    .sort((a, b) => b.assists - a.assists || b.goals - a.goals)
-    .slice(0, 8);
-  if (!players.length) return "";
-  const max = Math.max(1, ...players.map((player) => player.assists));
-  return `
-    <article class="advanced-chart-card wide">
-      <div class="advanced-chart-head">
-        <span>Individual Leaders</span>
-        <h3>Top Assists</h3>
-      </div>
-      <div class="advanced-stack-list">
-        ${players
-          .map(
-            (player) => `
-              <div class="advanced-stack-row">
-                <strong><a class="team-name" href="./player.html?id=${escapeHTML(player.id)}">${escapeHTML(player.name)}</a></strong>
-                <div class="advanced-stack-bar">
-                  <span class="mid" style="width:${pct(player.assists, max)}%"></span>
-                </div>
-                <small>${player.assists} assists | ${player.goals || 0} goals | ${escapeHTML(player.teamName || "Team TBA")}</small>
-              </div>
-            `
-          )
-          .join("")}
-      </div>
-    </article>
-  `;
-}
-
 function renderHomeAwaySplit(matches, rows) {
   const splits = new Map(rows.map((row) => [row.teamId, { home: blankRecord(), away: blankRecord() }]));
   matches.forEach((match) => {
@@ -588,12 +598,17 @@ function renderHomeAwaySplit(matches, rows) {
   `;
 }
 
-function renderCleanSheets(matches, rows) {
+function computeShutoutCounts(matches, rows) {
   const counts = new Map(rows.map((row) => [row.teamId, 0]));
   matches.forEach((match) => {
     if (match.awayScore === 0 && counts.has(match.homeTeamId)) counts.set(match.homeTeamId, counts.get(match.homeTeamId) + 1);
     if (match.homeScore === 0 && counts.has(match.awayTeamId)) counts.set(match.awayTeamId, counts.get(match.awayTeamId) + 1);
   });
+  return counts;
+}
+
+function renderCleanSheets(matches, rows) {
+  const counts = computeShutoutCounts(matches, rows);
   const ranked = rows
     .map((row) => ({ row, cleanSheets: counts.get(row.teamId) || 0 }))
     .filter((entry) => entry.cleanSheets > 0)
@@ -661,6 +676,7 @@ function renderPointsRace(matches, rows) {
       <svg class="advanced-line-chart" viewBox="0 0 560 260" role="img" aria-label="Cumulative points by week for the top teams">
         <line x1="${innerLeft}" y1="230" x2="${innerRight}" y2="230"></line>
         <line x1="${innerLeft}" y1="30" x2="${innerLeft}" y2="230"></line>
+        <text x="18" y="130" transform="rotate(-90, 18, 130)">Points</text>
         ${weekList.map((week, index) => `<text x="${xFor(index)}" y="250">W${week}</text>`).join("")}
         ${topRows
           .map((row, index) => {
@@ -808,13 +824,13 @@ function render(data) {
         ${renderRadar(rows)}
         ${renderPpgHeatmap(rows)}
         ${renderTugOfWar(rows)}
+        ${renderScoringRates(rows, matches)}
         ${renderHomeAwaySplit(matches, rows)}
         ${renderElasticity(rows)}
         ${renderGoalMarginHeatmap(rows)}
         ${renderPointsRace(matches, rows)}
         ${renderBiggestWins(matches, new Map(rows.map((row) => [row.teamId, row.team])))}
         ${renderTopScorers(data)}
-        ${renderAssistLeaders(data)}
         ${renderCleanSheets(matches, rows)}
       </div>
     </section>

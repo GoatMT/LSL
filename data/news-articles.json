@@ -61,8 +61,6 @@
         "Amax Visionaries and Sharp Strikers played to a 1-1 draw in the only meeting between the two clubs this season, with no individual scorers listed on the match sheet.",
         "The final 2026 Seniors regular-season table: Leeward Lions finished 5-1-1 for 16 points and a +18 goal difference, EM Haulers FC 5-1-1 for 16 points and +12, and Sharp Strikers 5-1-1 for 16 points and +11, with seeding among the three tied leaders decided by goal difference. Rawaha Royals finished fourth at 4-1-2 for 13 points and +4, Refuel Rovers fifth at 3-0-4 for 9 points and -1, Amax Visionaries sixth at 2-1-4 for 7 points and -10, Gangat Warriors seventh at 1-0-6 for 3 points and -18, and Memon Mavericks finished last at 0-1-6 for 1 point and -16.",
         "Week 7 also closed out two long losing streaks and one long winning finish. Gangat Warriors lost their final six matches in a row after opening the season with a Week 1 win, getting outscored 27-8 across that stretch. Memon Mavericks went the entire season without a win, dropping their first six matches before the Week 7 draw with EM Haulers FC gave them their only point of the year. Rawaha Royals closed the opposite way, winning three of their last four to enter the playoffs on a three-game unbeaten run that includes back-to-back wins over Refuel Rovers and Gangat Warriors by a combined 10-2.",
-        "In the day's other individual notes, Uthman Manira's three-goal game lifted his season total to 6, his third multi-goal outing of the year, while Rawaha goalkeeper Saad Khan picked up his first assist of the season on the play. For Gangat Warriors, Taaha Nakhuda's two assists were also his first of the year, adding an uncharacteristic playmaking angle to a difficult afternoon for the team.",
-        "With the individual regular season complete too, here is the scoring leader on each of the eight teams: Mudassir finished atop Leeward Lions with 16 goals, well clear of Ajmal Chakkari's 8. Haroon Ahmadi's 13 topped EM Haulers FC, ahead of Muzamil Kharooti's 7 despite Muzamil missing the final two weeks. M Yahya's 8 led Sharp Strikers, ahead of Rehan Mohammed's 5. Mohammad Ibrahim's 8 and Uthman Manira's 6 led Rawaha Royals. Mosa Fazli's 5 topped Refuel Rovers, Adil Mubashir's 6 led Amax Visionaries, Taaha Nakhuda's 5 led Gangat Warriors, and Nasibullah Barak's 4 led winless Memon Mavericks.",
         "With the regular season complete, the standings are final and the quarterfinal matchups are set: #1 Leeward Lions vs #8 Memon Mavericks, #2 EM Haulers FC vs #7 Gangat Warriors, #3 Sharp Strikers vs #6 Amax Visionaries, and #4 Rawaha Royals vs #5 Refuel Rovers. All four quarterfinals, the semifinals, and the championship are scheduled for Saturday, August 8, 2026.",
         "Stat-by-stat previews of all four matchups, along with a numbers-based look at how the bracket could play out, are posted separately."
       ]
@@ -79,8 +77,9 @@
       "date": "August 2, 2026",
       "time": "Quarterfinal preview",
       "author": "LSL News Desk",
-      "thumbnail": "./Logos/2026 Teams/Leeward Lions.jpg",
-      "heroImage": "./Logos/2026 Teams/Leeward Lions.jpg",
+      "thumbnail": "./Playoff Designs/Leeward Lions vs Memon Mavericks.png",
+      "heroImage": "./Playoff Designs/Leeward Lions vs Memon Mavericks.png",
+      "mediaFit": "cover",
       "tags": [
         "Playoffs",
         "Leeward Lions",
@@ -139,8 +138,9 @@
       "date": "August 2, 2026",
       "time": "Quarterfinal preview",
       "author": "LSL News Desk",
-      "thumbnail": "./Logos/2026 Teams/EM Haulers FC.jpg",
-      "heroImage": "./Logos/2026 Teams/EM Haulers FC.jpg",
+      "thumbnail": "./Playoff Designs/EM Haulers FC vs Gangat Warriors.png",
+      "heroImage": "./Playoff Designs/EM Haulers FC vs Gangat Warriors.png",
+      "mediaFit": "cover",
       "tags": [
         "Playoffs",
         "EM Haulers FC",
@@ -201,8 +201,9 @@
       "date": "August 2, 2026",
       "time": "Quarterfinal preview",
       "author": "LSL News Desk",
-      "thumbnail": "./Logos/2026 Teams/Sharp Strikers.jpg",
-      "heroImage": "./Logos/2026 Teams/Sharp Strikers.jpg",
+      "thumbnail": "./Playoff Designs/Sharp Strikers vs Amax Visionaries.png",
+      "heroImage": "./Playoff Designs/Sharp Strikers vs Amax Visionaries.png",
+      "mediaFit": "cover",
       "tags": [
         "Playoffs",
         "Sharp Strikers",
@@ -257,8 +258,9 @@
       "date": "August 2, 2026",
       "time": "Quarterfinal preview",
       "author": "LSL News Desk",
-      "thumbnail": "./Logos/2026 Teams/Rawaha Royals.jpg",
-      "heroImage": "./Logos/2026 Teams/Rawaha Royals.jpg",
+      "thumbnail": "./Playoff Designs/Rawaha Royals vs Refuel Rovers.png",
+      "heroImage": "./Playoff Designs/Rawaha Royals vs Refuel Rovers.png",
+      "mediaFit": "cover",
       "tags": [
         "Playoffs",
         "Rawaha Royals",
