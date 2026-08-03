@@ -13,7 +13,13 @@ const stageOptions = [
   { value: "regular", label: "Regular Season" },
   { value: "playoffs", label: "Playoffs" },
 ];
-let state = { stage: "all" };
+let state = { stage: "all", vsStage: "all", vsYear: "all" };
+
+const vsStageOptions = [
+  { value: "all", label: "All Games" },
+  { value: "regular", label: "Regular Season" },
+  { value: "playoffs", label: "Playoffs" },
+];
 
 function canonicalTournamentPlayerId(name, aliases = {}) {
   const slug = slugify(name);
@@ -378,9 +384,32 @@ function renderPlayerDetailSections(allData, playerId, profile) {
   `;
 }
 
-function renderVsOpponentSection(allData, playerId) {
-  const seasonRows = computePlayerVsTeamStatsBySeason(allData, playerId);
-  if (!seasonRows.length) return "";
+function vsYearOptions(allData, playerId) {
+  const allRows = computePlayerVsTeamStatsBySeason(allData, playerId, { stage: "all" });
+  const years = unique(allRows.map((row) => row.year)).sort((a, b) => Number(b) - Number(a));
+  return [{ value: "all", label: "All Seasons" }, ...years.map((year) => ({ value: year, label: year }))];
+}
+
+function meetingBadge(game) {
+  const cls = game.result === "W" ? "win" : game.result === "D" ? "draw" : "loss";
+  const detailBits = [formatDate(game.date), game.result];
+  if (game.goals) detailBits.push(`${game.goals} goal${game.goals === 1 ? "" : "s"}`);
+  if (game.assists) detailBits.push(`${game.assists} assist${game.assists === 1 ? "" : "s"}`);
+  return `<span class="form-badge mini ${cls}" title="${escapeHTML(detailBits.join(" - "))}">${escapeHTML(game.result)}</span>`;
+}
+
+function renderVsOpponentSection(allData, playerId, viewState) {
+  const allRows = computePlayerVsTeamStatsBySeason(allData, playerId, { stage: "all" });
+  if (!allRows.length) return "";
+
+  const careerByYear = new Map(buildPlayerCareer(allData, playerId, { stage: "all" }).map((row) => [row.year, row]));
+  const wasTraded = [...careerByYear.values()].some((row) => String(row.team || "").includes(" / "));
+
+  const yearOptions = vsYearOptions(allData, playerId);
+  let seasonRows = computePlayerVsTeamStatsBySeason(allData, playerId, { stage: viewState.vsStage });
+  if (viewState.vsYear !== "all") {
+    seasonRows = seasonRows.filter((row) => row.year === viewState.vsYear);
+  }
 
   return `
     <section class="card vs-opponent-card">
@@ -388,54 +417,81 @@ function renderVsOpponentSection(allData, playerId) {
         <div>
           <span class="eyebrow">Matchups</span>
           <h2>Stats vs Opponent</h2>
-          <p>Games played, record, goals, and assists against each opponent, broken out by season.</p>
+          <p>Games played, record, goals, and assists against each opponent. Use the season and stats-type dropdowns to switch between individual years, regular season, playoffs, or all games. When this player faced the same team more than once in a season, each meeting shows as its own small W/D/L badge next to the games played total — hover a badge to see that game's date and stats.${
+            wasTraded
+              ? " This player was traded during at least one season shown below — each season heading lists every team they suited up for, and opponent totals only count games actually played for that roster, so a former team will not show up as an opponent for games played while still on that team."
+              : ""
+          }</p>
         </div>
       </div>
-      <div class="award-season-list">
-        ${seasonRows
-          .map(
-            (season, index) => `
-              <details class="award-season-section"${index === 0 ? " open" : ""}>
-                <summary class="award-season-head">
-                  <div>
-                    <span class="eyebrow">Season</span>
-                    <h3>${escapeHTML(season.year)}</h3>
-                  </div>
-                  <span class="history-season">${season.opponents.length} opponent${season.opponents.length === 1 ? "" : "s"}</span>
-                </summary>
-                <div class="table-wrap mobile-card-table-wrap">
-                  <table class="data-table mobile-card-table vs-opponent-table">
-                    <thead>
-                      <tr>
-                        <th>Opponent</th>
-                        <th class="num">GP</th>
-                        <th class="num">W-D-L</th>
-                        <th class="num">Goals</th>
-                        <th class="num">Assists</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      ${season.opponents
-                        .map(
-                          (row) => `
-                            <tr>
-                              <td data-label="Opponent"><a class="team-name" href="./team.html?id=${encodeURIComponent(row.teamId)}">${escapeHTML(row.teamName)}</a></td>
-                              <td class="num" data-label="GP">${row.gp}</td>
-                              <td class="num" data-label="W-D-L">${row.wins}-${row.draws}-${row.losses}</td>
-                              <td class="num" data-label="Goals">${row.goals}</td>
-                              <td class="num" data-label="Assists">${row.assists}</td>
-                            </tr>
-                          `
-                        )
-                        .join("")}
-                    </tbody>
-                  </table>
-                </div>
-              </details>
-            `
-          )
-          .join("")}
+      <div class="official-filter-body vs-opponent-filter-body">
+        <div class="official-filter-control">
+          ${controlSelect("vs-year", "Season", yearOptions, viewState.vsYear)}
+        </div>
+        <div class="official-filter-control">
+          ${controlSelect("vs-stage", "Stats Type", vsStageOptions, viewState.vsStage)}
+        </div>
       </div>
+      ${
+        seasonRows.length
+          ? `<div class="award-season-list">
+              ${seasonRows
+                .map(
+                  (season, index) => `
+                    <details class="award-season-section"${index === 0 ? " open" : ""}>
+                      <summary class="award-season-head">
+                        <div>
+                          <span class="eyebrow">Season</span>
+                          <h3>${escapeHTML(season.year)}</h3>
+                          <p class="source-note">${escapeHTML(careerByYear.get(season.year)?.team || "Team TBA")}</p>
+                        </div>
+                        <span class="history-season">${season.opponents.length} opponent${season.opponents.length === 1 ? "" : "s"}</span>
+                      </summary>
+                      <div class="table-wrap player-career-wrap">
+                        <table class="data-table player-career-table vs-opponent-table">
+                          <colgroup>
+                            <col class="vs-opponent-col-team">
+                            <col class="vs-opponent-col-stat">
+                            <col class="vs-opponent-col-stat">
+                            <col class="vs-opponent-col-stat">
+                            <col class="vs-opponent-col-stat">
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th>Opponent</th>
+                              <th class="num">GP</th>
+                              <th class="num">W-D-L</th>
+                              <th class="num">Goals</th>
+                              <th class="num">Assists</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            ${season.opponents
+                              .map(
+                                (row) => `
+                                  <tr>
+                                    <td><a class="team-name" href="./team.html?id=${encodeURIComponent(row.teamId)}">${escapeHTML(row.teamName)}</a></td>
+                                    <td class="num">
+                                      <span class="vs-gp-value">${row.gp}</span>
+                                      ${row.gp > 1 ? `<span class="vs-meetings">${row.games.map((game) => meetingBadge(game)).join("")}</span>` : ""}
+                                    </td>
+                                    <td class="num">${row.wins}-${row.draws}-${row.losses}</td>
+                                    <td class="num">${row.goals}</td>
+                                    <td class="num">${row.assists}</td>
+                                  </tr>
+                                `
+                              )
+                              .join("")}
+                          </tbody>
+                        </table>
+                      </div>
+                    </details>
+                  `
+                )
+                .join("")}
+            </div>`
+          : statusMessage("empty", "No matchups found for the selected season and stats type.")
+      }
     </section>
   `;
 }
@@ -472,7 +528,7 @@ async function init() {
         ${renderNextMatchCard(allData, current)}
         ${renderCareerSection(career, stageLabel, form)}
         ${renderSeasonProductionSection(career, stageLabel)}
-        ${renderVsOpponentSection(allData, id)}
+        ${renderVsOpponentSection(allData, id, state)}
         ${renderInterMadrasahSection(allData, id, aliases)}
         ${renderPlayerDetailSections(allData, id, profile)}
       </section>
@@ -480,6 +536,16 @@ async function init() {
 
     document.getElementById("stage").addEventListener("change", (event) => {
       state.stage = event.target.value;
+      render();
+    });
+
+    document.getElementById("vs-year")?.addEventListener("change", (event) => {
+      state.vsYear = event.target.value;
+      render();
+    });
+
+    document.getElementById("vs-stage")?.addEventListener("change", (event) => {
+      state.vsStage = event.target.value;
       render();
     });
   }

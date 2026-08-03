@@ -84,13 +84,13 @@
       "part": 4,
       "title": "Statistics and Awards",
       "status": "available",
-      "summary": "Per-player goals, assists, points, minutes played, and clean sheets tracked every match, plus end-of-season MVP, Golden Boot, Best Goalkeeper, Rookie of the Year, and Most Improved Player awards, and all-time franchise records. Engine complete; a dedicated Statistics/Records/Awards UI is coming in Part 5."
+      "summary": "Per-player goals, assists, points, minutes played, and clean sheets tracked every match, plus end-of-season MVP, Golden Boot, Best Goalkeeper, Rookie of the Year, and Most Improved Player awards, and all-time franchise records."
     },
     {
       "part": 5,
       "title": "User Interface",
-      "status": "coming soon",
-      "summary": "The full Franchise Hub and supporting pages: Draft Centre, Team Management, Trade Centre, Free Agency, Statistics, Records, and Awards."
+      "status": "available",
+      "summary": "The full Franchise Hub and supporting pages: Draft Centre, Team Management, Trade Centre, Free Agency, Statistics, Records, and Awards, all in one fast tabbed app shell."
     }
   ]
 }

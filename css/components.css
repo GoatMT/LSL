@@ -4904,6 +4904,14 @@ details.clean-details summary {
   font-size: 0.88rem;
 }
 
+.vs-opponent-table .vs-opponent-col-team {
+  width: 40%;
+}
+
+.vs-opponent-table .vs-opponent-col-stat {
+  width: 15%;
+}
+
 .player-detail-panels {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

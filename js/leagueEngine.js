@@ -613,7 +613,8 @@ export function playersWithOVR(players = [], comparisonPlayers = players) {
   }));
 }
 
-export function computePlayerVsTeamStatsBySeason(seasons, playerId) {
+export function computePlayerVsTeamStatsBySeason(seasons, playerId, { stage = "all" } = {}) {
+  const allowedStages = stage === "all" ? ["regular", "playoffs"] : [stage];
   return seasons
     .map((data) => {
       const players = playerMap(data);
@@ -623,6 +624,7 @@ export function computePlayerVsTeamStatsBySeason(seasons, playerId) {
       const opponents = new Map();
 
       (data.matches || [])
+        .filter((match) => allowedStages.includes(match.stage))
         .filter((match) => isCompletedMatch(match))
         .forEach((match) => {
           const playerTeamId = playerTeamForMatch(player, match);
@@ -644,6 +646,7 @@ export function computePlayerVsTeamStatsBySeason(seasons, playerId) {
               losses: 0,
               goals: 0,
               assists: 0,
+              games: [],
             });
           }
 
@@ -651,21 +654,40 @@ export function computePlayerVsTeamStatsBySeason(seasons, playerId) {
           row.gp += 1;
 
           const winner = winnerTeamId(match);
-          if (!winner) row.draws += 1;
-          else if (winner === playerTeamId) row.wins += 1;
+          const result = !winner ? "D" : winner === playerTeamId ? "W" : "L";
+          if (result === "D") row.draws += 1;
+          else if (result === "W") row.wins += 1;
           else row.losses += 1;
 
+          let matchGoals = 0;
+          let matchAssists = 0;
           (match.scorers || []).forEach((scorer) => {
-            if (scorer.playerId === playerId) row.goals += Number(scorer.goals) || 0;
+            if (scorer.playerId === playerId) matchGoals += Number(scorer.goals) || 0;
           });
           (match.assists || []).forEach((assist) => {
-            if (assist.playerId === playerId) row.assists += Number(assist.assists) || 0;
+            if (assist.playerId === playerId) matchAssists += Number(assist.assists) || 0;
+          });
+          row.goals += matchGoals;
+          row.assists += matchAssists;
+          row.games.push({
+            date: match.date || "",
+            week: match.week,
+            stage: match.stage,
+            result,
+            goals: matchGoals,
+            assists: matchAssists,
+            sortValue: seasonMatchSortValue(data, match),
           });
         });
 
-      const rows = [...opponents.values()].sort(
-        (a, b) => b.gp - a.gp || b.goals + b.assists - (a.goals + a.assists) || a.teamName.localeCompare(b.teamName)
-      );
+      const rows = [...opponents.values()]
+        .map((row) => ({
+          ...row,
+          games: row.games.sort((a, b) => a.sortValue - b.sortValue),
+        }))
+        .sort(
+          (a, b) => b.gp - a.gp || b.goals + b.assists - (a.goals + a.assists) || a.teamName.localeCompare(b.teamName)
+        );
       if (!rows.length) return null;
       return { year: data.year, division: player.division, opponents: rows };
     })
