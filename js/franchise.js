@@ -3,6 +3,8 @@ import { setupLayout } from "./main.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 import {
   CAP_MAX,
+  CAPTAIN_MORALE_BONUS,
+  CAPTAIN_RATING_BONUS,
   DRAFT_ROUNDS,
   FORMATIONS,
   MAX_CONTRACT_YEARS,
@@ -35,6 +37,7 @@ import {
   runPlayoffs,
   saveFranchiseSave,
   seasonStatLeaders,
+  setAssistantCaptain,
   setCaptain,
   setLineup,
   signFreeAgent,
@@ -1355,6 +1358,16 @@ function attachHandlers(config) {
       const save = loadFranchiseSave();
       if (!save) return;
       setCaptain(save, save.userTeamId, button.dataset.setCaptain);
+      saveFranchiseSave(save);
+      render(config);
+    });
+  });
+
+  [...document.querySelectorAll("[data-set-assistant]")].forEach((button) => {
+    button.addEventListener("click", () => {
+      const save = loadFranchiseSave();
+      if (!save) return;
+      setAssistantCaptain(save, save.userTeamId, button.dataset.setAssistant);
       saveFranchiseSave(save);
       render(config);
     });
