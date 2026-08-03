@@ -15,120 +15,6 @@ const stageOptions = [
 ];
 let state = { stage: "all" };
 
-function playerTeamNames(seasons, playerId, fallback = "Team TBA") {
-  const teams = seasons
-    .flatMap((data) => data.players || [])
-    .filter((player) => player.id === playerId)
-    .flatMap((player) => [player.previousTeamName, player.teamName])
-    .filter(Boolean);
-  return [...new Set(teams)].join(" / ") || fallback;
-}
-
-function successRate(points, gamesPlayed) {
-  return gamesPlayed ? points / gamesPlayed : 0;
-}
-
-function formatPPG(value) {
-  return Number.isFinite(value) ? value.toFixed(2) : "0.00";
-}
-
-function buildSuccessRow(allData, playerId) {
-  const regularStats = new Map(computeCombinedPlayerStats(allData, { stage: "regular" }).map((player) => [player.id, player]));
-  const playoffStats = new Map(computeCombinedPlayerStats(allData, { stage: "playoffs" }).map((player) => [player.id, player]));
-  const player = computeCombinedPlayerStats(allData, { stage: "all" }).find((item) => item.id === playerId);
-  if (!player) return null;
-
-  const regular = regularStats.get(player.id) || {};
-  const playoffs = playoffStats.get(player.id) || {};
-  const regularPoints = (Number(regular.goals) || 0) + (Number(regular.assists) || 0);
-  const playoffPoints = (Number(playoffs.goals) || 0) + (Number(playoffs.assists) || 0);
-  const regularGP = Number(regular.gamesPlayed) || 0;
-  const playoffGP = Number(playoffs.gamesPlayed) || 0;
-  const regularSuccess = successRate(regularPoints, regularGP);
-  const playoffSuccess = successRate(playoffPoints, playoffGP);
-
-  return {
-    id: player.id,
-    name: player.name,
-    teams: playerTeamNames(allData, player.id, player.teamName),
-    regularGP,
-    playoffGP,
-    regularSuccess,
-    playoffSuccess,
-    difference: playoffSuccess - regularSuccess,
-  };
-}
-
-function renderSuccessBar(label, value, maxValue, type) {
-  const width = value > 0 && maxValue ? Math.max(4, Math.min(100, (value / maxValue) * 100)) : 0;
-  return `
-    <div class="success-bar-group">
-      <div class="success-bar-label">
-        <span>${escapeHTML(label)}</span>
-        <strong>${formatPPG(value)}</strong>
-      </div>
-      <div class="success-bar-track" aria-label="${escapeHTML(label)} points per game ${formatPPG(value)}">
-        <span class="success-bar-fill ${escapeHTML(type)}" style="width: ${width}%"></span>
-      </div>
-    </div>
-  `;
-}
-
-function renderSuccessComparison(allData, currentPlayerId) {
-  const row = buildSuccessRow(allData, currentPlayerId);
-  if (!row) return "";
-  const maxSuccess = Math.max(row.regularSuccess, row.playoffSuccess, 1);
-  const badge = row.difference > 0 ? "Playoff Riser" : "Regular Season Star";
-  const badgeClass = row.difference > 0 ? "riser" : "regular";
-
-  return `
-    <section class="card success-comparison-card">
-      <div class="section-head compact-head">
-        <div>
-          <span class="eyebrow">Career Comparison</span>
-          <h2>Regular Season vs Playoff Success</h2>
-          <p>This compares ${escapeHTML(row.name)}'s points per game in the regular season and playoffs.</p>
-        </div>
-      </div>
-      <div class="success-chart">
-        <article class="success-row current single">
-          <div class="success-player">
-            <span class="success-player-icon">PPG</span>
-            <div>
-              <h3>${escapeHTML(row.name)}</h3>
-              <p>${escapeHTML(row.teams)}</p>
-            </div>
-          </div>
-          <div class="success-bars">
-            ${renderSuccessBar(`Regular (${row.regularGP} GP)`, row.regularSuccess, maxSuccess, "regular")}
-            ${renderSuccessBar(`Playoffs (${row.playoffGP} GP)`, row.playoffSuccess, maxSuccess, "playoffs")}
-          </div>
-          <div class="success-result">
-            <span class="success-badge ${badgeClass}">${escapeHTML(badge)}</span>
-            <strong>${row.difference >= 0 ? "+" : ""}${formatPPG(row.difference)}</strong>
-            <small>difference</small>
-          </div>
-        </article>
-      </div>
-      <div class="success-explainer">
-        <div>
-          <span>Regular PPG</span>
-          <strong>(Regular goals + regular assists) / regular games</strong>
-        </div>
-        <div>
-          <span>Playoff PPG</span>
-          <strong>(Playoff goals + playoff assists) / playoff games</strong>
-        </div>
-        <div>
-          <span>Difference</span>
-          <strong>Playoff PPG - regular PPG</strong>
-        </div>
-        <p>Playoff games are counted from the player's team playoff bracket appearances, even if the player did not score.</p>
-      </div>
-    </section>
-  `;
-}
-
 function canonicalTournamentPlayerId(name, aliases = {}) {
   const slug = slugify(name);
   return aliases[slug] || slug;
@@ -588,7 +474,6 @@ async function init() {
         ${renderSeasonProductionSection(career, stageLabel)}
         ${renderVsOpponentSection(allData, id)}
         ${renderInterMadrasahSection(allData, id, aliases)}
-        ${renderSuccessComparison(allData, id)}
         ${renderPlayerDetailSections(allData, id, profile)}
       </section>
     `;
