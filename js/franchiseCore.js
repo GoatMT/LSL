@@ -307,6 +307,7 @@ export function executeTrade(save, offer) {
       const roster = save.rosters[fromTeamId] || [];
       const index = roster.findIndex((item) => item.id === playerId);
       if (index === -1) return;
+      clearCaptaincyRole(save, fromTeamId, playerId);
       const [player] = roster.splice(index, 1);
       save.rosters[toTeamId] = save.rosters[toTeamId] || [];
       save.rosters[toTeamId].push(player);
@@ -396,8 +397,9 @@ export function proposeCpuToCpuTrade(save, allPlayers) {
 
 export const SEASON_WEEKS = 6;
 export const TRAINING_SUCCESS_CHANCE = 0.55;
-export const INJURY_CHANCE_PER_GAME = 0.02;
 export const DEVELOPMENT_CHANCE_PER_GAME = 0.08;
+export const CAPTAIN_MORALE_BONUS = 15;
+export const CAPTAIN_RATING_BONUS = 6;
 
 // ---------- Schedule + ratings ----------
 
@@ -449,8 +451,7 @@ export function computeChemistry(save, teamId) {
 }
 
 export function teamOverallRating(save, teamId) {
-  const healthy = (save.rosters[teamId] || []).filter((player) => !player.injury || !player.injury.weeksOut);
-  const pool = healthy.length ? healthy : save.rosters[teamId] || [];
+  const pool = save.rosters[teamId] || [];
   if (!pool.length) return 50;
   const top = [...pool].sort((a, b) => b.rating - a.rating).slice(0, 8);
   const avgRating = top.reduce((sum, player) => sum + player.rating, 0) / top.length;
@@ -473,8 +474,8 @@ export function ensureRosterMeta(save) {
   Object.keys(save.rosters).forEach((teamId) => {
     save.rosters[teamId] = (save.rosters[teamId] || []).map((player) => ({
       morale: 70,
-      injury: null,
       development: 0,
+      captaincyBoosted: false,
       ...player,
     }));
   });
@@ -498,8 +499,8 @@ export function startSeason(save) {
   save.ownerObjectives = save.ownerObjectives || { reachedSemis: false, wonChampionship: false, winningRecord: false };
   save.lineups = save.lineups || {};
   save.captains = save.captains || {};
+  save.assistantCaptains = save.assistantCaptains || {};
   save.trainingLog = save.trainingLog || [];
-  save.injuryLog = save.injuryLog || [];
   save.retirementLog = save.retirementLog || [];
   return save;
 }
@@ -507,18 +508,8 @@ export function startSeason(save) {
 function applyPostMatchEffects(save, teamId, outcome) {
   const roster = save.rosters[teamId] || [];
   roster.forEach((player) => {
-    if (player.injury?.weeksOut > 0) {
-      player.injury.weeksOut -= 1;
-      if (player.injury.weeksOut <= 0) player.injury = null;
-    }
     const moraleShift = outcome === "win" ? 4 : outcome === "draw" ? 0 : -4;
     player.morale = Math.max(0, Math.min(100, Math.round((player.morale ?? 70) + moraleShift + (Math.random() * 2 - 1))));
-    if (!player.injury && Math.random() < INJURY_CHANCE_PER_GAME) {
-      const weeksOut = 1 + Math.floor(Math.random() * 3);
-      player.injury = { weeksOut, sinceWeek: save.week };
-      save.injuryLog = save.injuryLog || [];
-      save.injuryLog.unshift({ week: save.week, teamId, playerId: player.id, playerName: player.name, weeksOut });
-    }
     if (Math.random() < DEVELOPMENT_CHANCE_PER_GAME) {
       const delta = player.rating < 65 || Math.random() < 0.5 ? 1 : -1;
       player.rating = Math.max(40, Math.min(99, player.rating + delta));
@@ -651,7 +642,6 @@ export function startNextSeason(save) {
   save.results = [];
   save.playoffResults = null;
   save.trainingLog = [];
-  save.injuryLog = [];
   save.teams = save.teams.map((team) => ({ ...team, wins: 0, losses: 0, draws: 0, points: 0, goalsFor: 0, goalsAgainst: 0 }));
   save.phase = "offseason";
   return { save, retired };
@@ -659,9 +649,73 @@ export function startNextSeason(save) {
 
 // ---------- Team management: captains, training, lineups ----------
 
+function applyCaptaincyBoost(player) {
+  if (player.captaincyBoosted) return;
+  player.rating = Math.min(99, player.rating + CAPTAIN_RATING_BONUS);
+  player.morale = Math.min(100, (player.morale ?? 70) + CAPTAIN_MORALE_BONUS);
+  player.captaincyBoosted = true;
+}
+
+function removeCaptaincyBoost(player) {
+  if (!player.captaincyBoosted) return;
+  player.rating = Math.max(40, player.rating - CAPTAIN_RATING_BONUS);
+  player.morale = Math.max(0, (player.morale ?? 70) - CAPTAIN_MORALE_BONUS);
+  player.captaincyBoosted = false;
+}
+
+export function clearCaptaincyRole(save, teamId, playerId) {
+  const roster = save.rosters[teamId] || [];
+  const player = roster.find((item) => item.id === playerId);
+  let changed = false;
+  if (save.captains?.[teamId] === playerId) {
+    delete save.captains[teamId];
+    changed = true;
+  }
+  if (save.assistantCaptains?.[teamId] === playerId) {
+    delete save.assistantCaptains[teamId];
+    changed = true;
+  }
+  if (changed && player) removeCaptaincyBoost(player);
+}
+
 export function setCaptain(save, teamId, playerId) {
   save.captains = save.captains || {};
+  save.assistantCaptains = save.assistantCaptains || {};
+  const roster = save.rosters[teamId] || [];
+  const previousCaptainId = save.captains[teamId];
+  const assistantId = save.assistantCaptains[teamId];
+  if (previousCaptainId === playerId) return save;
+
+  if (previousCaptainId && previousCaptainId !== assistantId) {
+    const prevPlayer = roster.find((item) => item.id === previousCaptainId);
+    if (prevPlayer) removeCaptaincyBoost(prevPlayer);
+  }
+  if (assistantId === playerId) save.assistantCaptains[teamId] = null;
+
   save.captains[teamId] = playerId;
+  const newPlayer = roster.find((item) => item.id === playerId);
+  if (newPlayer) applyCaptaincyBoost(newPlayer);
+  return save;
+}
+
+export function setAssistantCaptain(save, teamId, playerId) {
+  save.assistantCaptains = save.assistantCaptains || {};
+  save.captains = save.captains || {};
+  const roster = save.rosters[teamId] || [];
+  const captainId = save.captains[teamId];
+  if (captainId === playerId) return save;
+
+  const previousAssistantId = save.assistantCaptains[teamId];
+  if (previousAssistantId === playerId) return save;
+
+  if (previousAssistantId && previousAssistantId !== captainId) {
+    const prevPlayer = roster.find((item) => item.id === previousAssistantId);
+    if (prevPlayer) removeCaptaincyBoost(prevPlayer);
+  }
+
+  save.assistantCaptains[teamId] = playerId;
+  const newPlayer = roster.find((item) => item.id === playerId);
+  if (newPlayer) applyCaptaincyBoost(newPlayer);
   return save;
 }
 
@@ -715,7 +769,7 @@ export function signFreeAgent(save, teamId, playerId, allPlayers) {
       const rivalBids = need > 4 && Math.random() < 0.35;
       if (rivalBids && teamCapSpace(save, rival.id) >= contract.salary) {
         save.rosters[rival.id] = save.rosters[rival.id] || [];
-        save.rosters[rival.id].push({ ...player, contract: { ...generateContract(player), seasonSigned: save.season }, morale: 70, injury: null });
+        save.rosters[rival.id].push({ ...player, contract: { ...generateContract(player), seasonSigned: save.season }, morale: 70 });
         save.freeAgents = save.freeAgents.filter((id) => id !== playerId);
         return { success: false, reason: `${rival.name} won a competing bid for ${player.name}.`, lostTo: rival.name };
       }
@@ -723,7 +777,7 @@ export function signFreeAgent(save, teamId, playerId, allPlayers) {
   }
 
   save.rosters[teamId] = save.rosters[teamId] || [];
-  save.rosters[teamId].push({ ...player, contract, morale: 70, injury: null });
+  save.rosters[teamId].push({ ...player, contract, morale: 70 });
   save.freeAgents = (save.freeAgents || []).filter((id) => id !== playerId);
   return { success: true, player };
 }
@@ -732,10 +786,10 @@ export function waivePlayer(save, teamId, playerId) {
   const roster = save.rosters[teamId] || [];
   const index = roster.findIndex((item) => item.id === playerId);
   if (index === -1) return { success: false };
+  clearCaptaincyRole(save, teamId, playerId);
   const [player] = roster.splice(index, 1);
   save.freeAgents = save.freeAgents || [];
   save.freeAgents.push(player.id);
-  if (save.captains?.[teamId] === playerId) delete save.captains[teamId];
   return { success: true, player };
 }
 
@@ -745,6 +799,7 @@ export function processRetirements(save) {
     save.rosters[teamId] = (save.rosters[teamId] || []).filter((player) => {
       const retireChance = player.rating < 58 ? 0.12 : 0.03;
       if (Math.random() < retireChance) {
+        clearCaptaincyRole(save, teamId, player.id);
         retired.push({ teamId, player });
         return false;
       }
@@ -786,13 +841,12 @@ function weightedRandomPick(candidates, weightFn) {
 
 function matchLineup(save, teamId) {
   const roster = save.rosters[teamId] || [];
-  const healthy = roster.filter((player) => !player.injury?.weeksOut);
   const lineup = save.lineups?.[teamId];
   if (lineup?.startingIds?.length) {
-    const starters = lineup.startingIds.map((id) => healthy.find((player) => player.id === id)).filter(Boolean);
+    const starters = lineup.startingIds.map((id) => roster.find((player) => player.id === id)).filter(Boolean);
     if (starters.length) return starters;
   }
-  return [...healthy].sort((a, b) => b.rating - a.rating).slice(0, STARTING_XI_SIZE);
+  return [...roster].sort((a, b) => b.rating - a.rating).slice(0, STARTING_XI_SIZE);
 }
 
 export function ensurePlayerStatsShape(save) {

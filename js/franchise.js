@@ -669,7 +669,6 @@ function renderFranchiseHub(config, save) {
       return `${escapeHTML(teamA?.name || "A team")} completed a trade with ${escapeHTML(teamB?.name || "another team")}.`;
     }),
     ...recentDraft.map((entry) => `${escapeHTML(entry.playerName)} was drafted with pick #${escapeHTML(entry.overall)}.`),
-    ...(save.injuryLog || []).slice(0, 2).map((entry) => `${escapeHTML(entry.playerName)} is out ${escapeHTML(entry.weeksOut)} week${entry.weeksOut === 1 ? "" : "s"} with an injury.`),
   ].slice(0, 5);
 
   return `
@@ -720,7 +719,7 @@ function renderTeamManagementPanel(config, save) {
   const roster = save.rosters[save.userTeamId] || [];
   const chemistry = computeChemistry(save, save.userTeamId);
   const captainId = save.captains?.[save.userTeamId];
-  const injured = roster.filter((player) => player.injury?.weeksOut > 0);
+  const assistantId = save.assistantCaptains?.[save.userTeamId];
 
   if (!lineupFormation) lineupFormation = save.lineups?.[save.userTeamId]?.formation || FORMATIONS[0];
   if (!lineupSelectionInit) {
@@ -733,49 +732,32 @@ function renderTeamManagementPanel(config, save) {
       <div class="section-head">
         <div>
           <span class="eyebrow">Part 3: Team Management</span>
-          <h2>Chemistry, Captain &amp; Roster Health</h2>
-          <p>Team chemistry blends roster balance, your captain pick, and average morale. Keep morale up with wins and training.</p>
+          <h2>Chemistry, Captaincy &amp; Roster</h2>
+          <p>Team chemistry blends roster balance, leadership, and average morale. A captain and an assistant captain each give that player +${CAPTAIN_RATING_BONUS} OVR and +${CAPTAIN_MORALE_BONUS} morale, so put those armbands on players you want to lean on.</p>
         </div>
         <span class="pill${chemistry >= 70 ? " green" : ""}">Chemistry: ${escapeHTML(chemistry)}</span>
       </div>
 
-      ${
-        injured.length
-          ? `
-            <div class="franchise-injury-list">
-              <h3>Injury Report</h3>
-              ${injured
-                .map(
-                  (player) => `
-                    <div class="franchise-injury-row">
-                      <strong>${escapeHTML(player.name)}</strong>
-                      <span>${escapeHTML(player.position)}</span>
-                      <span>${escapeHTML(player.injury.weeksOut)} week${player.injury.weeksOut === 1 ? "" : "s"} out</span>
-                    </div>
-                  `
-                )
-                .join("")}
-            </div>
-          `
-          : `<p class="franchise-note">No injuries on your roster right now.</p>`
-      }
-
       <div class="franchise-roster-list">
         ${roster
-          .map(
-            (player) => `
+          .map((player) => {
+            const isCaptain = player.id === captainId;
+            const isAssistant = player.id === assistantId;
+            const roleTag = isCaptain ? " (C)" : isAssistant ? " (AC)" : "";
+            return `
               <article class="franchise-roster-row franchise-management-row">
                 <div>
-                  <strong>${player.id === captainId ? "&#127937; " : ""}${escapeHTML(player.name)}</strong>
-                  <span>${escapeHTML(player.position)} | OVR ${escapeHTML(player.rating)} | Morale ${escapeHTML(player.morale ?? 70)}${player.injury?.weeksOut ? ` | Injured (${escapeHTML(player.injury.weeksOut)}w)` : ""}</span>
+                  <strong>${escapeHTML(player.name)}${roleTag}</strong>
+                  <span>${escapeHTML(player.position)} | OVR ${escapeHTML(player.rating)} | Morale ${escapeHTML(player.morale ?? 70)}${isCaptain || isAssistant ? " | Captaincy boost active" : ""}</span>
                 </div>
                 <div class="franchise-management-actions">
-                  <button type="button" class="pill${player.id === captainId ? " green" : ""}" data-set-captain="${escapeHTML(player.id)}">${player.id === captainId ? "Captain" : "Make Captain"}</button>
+                  <button type="button" class="pill${isCaptain ? " green" : ""}" data-set-captain="${escapeHTML(player.id)}" ${isCaptain ? "disabled" : ""}>${isCaptain ? "Captain" : "Make Captain"}</button>
+                  <button type="button" class="pill${isAssistant ? " green" : ""}" data-set-assistant="${escapeHTML(player.id)}" ${isAssistant || isCaptain ? "disabled" : ""}>${isAssistant ? "Assistant Captain" : "Make Assistant"}</button>
                   <button type="button" class="pill" data-train-player="${escapeHTML(player.id)}">Train</button>
                 </div>
               </article>
-            `
-          )
+            `;
+          })
           .join("")}
       </div>
       ${trainingMessage ? `<p class="franchise-trade-message${trainingMessage.success ? " accepted" : " rejected"}">${escapeHTML(trainingMessage.text)}</p>` : ""}
