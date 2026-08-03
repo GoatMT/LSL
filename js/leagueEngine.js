@@ -400,7 +400,7 @@ function teamAwardAchievements(data, teamId) {
     .map((award) => `${data.year} ${award.category}: ${award.winner}`);
 }
 
-function playerTeamForMatch(player, match = {}) {
+export function playerTeamForMatch(player, match = {}) {
   if (player.previousTeamId && player.tradeEffectiveDate && match.date && String(match.date) < String(player.tradeEffectiveDate)) {
     return player.previousTeamId;
   }
@@ -611,6 +611,66 @@ export function playersWithOVR(players = [], comparisonPlayers = players) {
     ...player,
     ovr: playerOVR(player, comparisonPlayers),
   }));
+}
+
+export function computePlayerVsTeamStatsBySeason(seasons, playerId) {
+  return seasons
+    .map((data) => {
+      const players = playerMap(data);
+      const player = players.get(playerId);
+      if (!player) return null;
+      const teamsById = teamMap(data);
+      const opponents = new Map();
+
+      (data.matches || [])
+        .filter((match) => isCompletedMatch(match))
+        .forEach((match) => {
+          const playerTeamId = playerTeamForMatch(player, match);
+          if (match.homeTeamId !== playerTeamId && match.awayTeamId !== playerTeamId) return;
+          const absentees = new Set(match.absences || []);
+          if (absentees.has(playerId)) return;
+
+          const opponentId = match.homeTeamId === playerTeamId ? match.awayTeamId : match.homeTeamId;
+          if (!opponentId || opponentId === playerTeamId) return;
+
+          if (!opponents.has(opponentId)) {
+            const opponentTeam = teamsById.get(opponentId);
+            opponents.set(opponentId, {
+              teamId: opponentId,
+              teamName: opponentTeam?.name || "Opponent TBA",
+              gp: 0,
+              wins: 0,
+              draws: 0,
+              losses: 0,
+              goals: 0,
+              assists: 0,
+            });
+          }
+
+          const row = opponents.get(opponentId);
+          row.gp += 1;
+
+          const winner = winnerTeamId(match);
+          if (!winner) row.draws += 1;
+          else if (winner === playerTeamId) row.wins += 1;
+          else row.losses += 1;
+
+          (match.scorers || []).forEach((scorer) => {
+            if (scorer.playerId === playerId) row.goals += Number(scorer.goals) || 0;
+          });
+          (match.assists || []).forEach((assist) => {
+            if (assist.playerId === playerId) row.assists += Number(assist.assists) || 0;
+          });
+        });
+
+      const rows = [...opponents.values()].sort(
+        (a, b) => b.gp - a.gp || b.goals + b.assists - (a.goals + a.assists) || a.teamName.localeCompare(b.teamName)
+      );
+      if (!rows.length) return null;
+      return { year: data.year, division: player.division, opponents: rows };
+    })
+    .filter(Boolean)
+    .sort((a, b) => Number(b.year) - Number(a.year));
 }
 
 export function buildPlayerCareer(seasons, playerId, options = {}) {

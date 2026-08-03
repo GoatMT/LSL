@@ -4885,6 +4885,25 @@ details.clean-details summary {
   text-transform: uppercase;
 }
 
+.vs-opponent-card {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 26px;
+  background: #202920;
+  border-color: rgba(199, 163, 103, 0.28);
+}
+
+.vs-opponent-card .section-head {
+  background: #142b1b;
+  border-color: rgba(199, 163, 103, 0.28);
+}
+
+.vs-opponent-table th,
+.vs-opponent-table td {
+  font-size: 0.88rem;
+}
+
 .player-detail-panels {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

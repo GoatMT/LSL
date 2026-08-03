@@ -28,15 +28,15 @@
       "coachName": "Ashique",
       "history": "2026 senior team coached by Ashique. Current note: third year coaching with two finals appearances.",
       "roster": [
-        { "id": "mosa-fazli", "name": "Mosa Fazli", "position": "Field", "leadershipRole": "assistant" },
-        { "id": "yousaf-hosseinzada", "name": "Yousaf Hosseinzada", "photo": "./Logos/Player Pics/Yousaf Hosseinzada.png", "position": "Field" },
+        { "id": "mosa-fazli", "name": "Mosa Fazli", "jersey": 1, "position": "Striker", "leadershipRole": "assistant" },
+        { "id": "yousaf-hosseinzada", "name": "Yousaf Hosseinzada", "photo": "./Logos/Player Pics/Yousaf Hosseinzada.png", "jersey": 2, "position": "Midfielder" },
         { "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "photo": "./Logos/Player Pics/Abdul Ghiyas Solyman.png", "position": "Field", "leadershipRole": "captain", "previousTeamId": "em-haulers-fc", "previousTeamName": "EM Haulers FC", "tradeEffectiveDate": "2026-06-12", "tradeNote": "Officially traded to Refuel Rovers for Mohammed Wahedi." },
-        { "id": "ishaaq-ali", "name": "Ishaaq Ali", "photo": "./Logos/Player Pics/Ishaaq Ali.png", "position": "Defender", "leadershipRole": "assistant" },
-        { "id": "ibrahim-syed", "name": "Ibrahim Syed", "position": "Field" },
-        { "id": "azizullah", "name": "Azizullah", "photo": "./Logos/Player Pics/Azizullah.png", "position": "Field" },
-        { "id": "mohammad-usman", "name": "Mohammad Usman", "position": "Field" },
+        { "id": "ishaaq-ali", "name": "Ishaaq Ali", "photo": "./Logos/Player Pics/Ishaaq Ali.png", "jersey": 4, "position": "Defender", "leadershipRole": "assistant" },
+        { "id": "ibrahim-syed", "name": "Ibrahim Syed", "jersey": 5, "position": "Field" },
+        { "id": "azizullah", "name": "Azizullah", "photo": "./Logos/Player Pics/Azizullah.png", "jersey": 6, "position": "Defender" },
+        { "id": "mohammad-usman", "name": "Mohammad Usman", "jersey": 7, "position": "Field" },
         { "id": "zakariya-mohmed-bemat", "name": "Zakariya Mohmed Bemat", "position": "Field" },
-        { "id": "ayub-jan", "name": "Ayub Jan", "position": "Field" },
+        { "id": "ayub-jan", "name": "Ayub Jan", "jersey": 9, "position": "Field" },
         { "id": "hasibullah-kharooti", "name": "Hasibullah Kharooti", "position": "Field" }
       ]
     },

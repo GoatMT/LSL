@@ -1,7 +1,7 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js";
-import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, getCurrentPlayer, getNextTeamMatch, playerOVR, winnerTeamId } from "./leagueEngine.js?v=3.2";
+import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerVsTeamStatsBySeason, getCurrentPlayer, getNextTeamMatch, playerOVR, winnerTeamId } from "./leagueEngine.js?v=3.2";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
@@ -492,6 +492,68 @@ function renderPlayerDetailSections(allData, playerId, profile) {
   `;
 }
 
+function renderVsOpponentSection(allData, playerId) {
+  const seasonRows = computePlayerVsTeamStatsBySeason(allData, playerId);
+  if (!seasonRows.length) return "";
+
+  return `
+    <section class="card vs-opponent-card">
+      <div class="section-head compact-head">
+        <div>
+          <span class="eyebrow">Matchups</span>
+          <h2>Stats vs Opponent</h2>
+          <p>Games played, record, goals, and assists against each opponent, broken out by season.</p>
+        </div>
+      </div>
+      <div class="award-season-list">
+        ${seasonRows
+          .map(
+            (season, index) => `
+              <details class="award-season-section"${index === 0 ? " open" : ""}>
+                <summary class="award-season-head">
+                  <div>
+                    <span class="eyebrow">Season</span>
+                    <h3>${escapeHTML(season.year)}</h3>
+                  </div>
+                  <span class="history-season">${season.opponents.length} opponent${season.opponents.length === 1 ? "" : "s"}</span>
+                </summary>
+                <div class="table-wrap mobile-card-table-wrap">
+                  <table class="data-table mobile-card-table vs-opponent-table">
+                    <thead>
+                      <tr>
+                        <th>Opponent</th>
+                        <th class="num">GP</th>
+                        <th class="num">W-D-L</th>
+                        <th class="num">Goals</th>
+                        <th class="num">Assists</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${season.opponents
+                        .map(
+                          (row) => `
+                            <tr>
+                              <td data-label="Opponent"><a class="team-name" href="./team.html?id=${encodeURIComponent(row.teamId)}">${escapeHTML(row.teamName)}</a></td>
+                              <td class="num" data-label="GP">${row.gp}</td>
+                              <td class="num" data-label="W-D-L">${row.wins}-${row.draws}-${row.losses}</td>
+                              <td class="num" data-label="Goals">${row.goals}</td>
+                              <td class="num" data-label="Assists">${row.assists}</td>
+                            </tr>
+                          `
+                        )
+                        .join("")}
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading player profile...");
   const requestedId = getQueryParam("id");
@@ -524,6 +586,7 @@ async function init() {
         ${renderNextMatchCard(allData, current)}
         ${renderCareerSection(career, stageLabel, form)}
         ${renderSeasonProductionSection(career, stageLabel)}
+        ${renderVsOpponentSection(allData, id)}
         ${renderInterMadrasahSection(allData, id, aliases)}
         ${renderSuccessComparison(allData, id)}
         ${renderPlayerDetailSections(allData, id, profile)}
