@@ -31,7 +31,7 @@
         { "id": "mosa-fazli", "name": "Mosa Fazli", "jersey": 1, "position": "Striker", "leadershipRole": "assistant" },
         { "id": "yousaf-hosseinzada", "name": "Yousaf Hosseinzada", "photo": "./Logos/Player Pics/Yousaf Hosseinzada.png", "jersey": 2, "position": "Midfielder" },
         { "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "photo": "./Logos/Player Pics/Abdul Ghiyas Solyman.png", "position": "Field", "leadershipRole": "captain", "previousTeamId": "em-haulers-fc", "previousTeamName": "EM Haulers FC", "tradeEffectiveDate": "2026-06-12", "tradeNote": "Officially traded to Refuel Rovers for Mohammed Wahedi." },
-        { "id": "ishaaq-ali", "name": "Ishaaq Ali", "photo": "./Logos/Player Pics/Ishaaq Ali.png", "jersey": 4, "position": "Defender", "leadershipRole": "assistant" },
+        { "id": "ishaaq-ali", "name": "Ishaaq Ali", "photo": "./Logos/Player Pics/Ishaaq Ali.png", "jersey": 4, "position": "Defender", "leadershipRole": "assistant", "ovrOverride": 99 },
         { "id": "ibrahim-syed", "name": "Ibrahim Syed", "jersey": 5, "position": "Field" },
         { "id": "azizullah", "name": "Azizullah", "photo": "./Logos/Player Pics/Azizullah.png", "jersey": 6, "position": "Defender" },
         { "id": "mohammad-usman", "name": "Mohammad Usman", "jersey": 7, "position": "Field" },
@@ -143,7 +143,7 @@
       "coachName": "Abdul Hakeem \"Ya Salaam\"",
       "history": "2026 senior team coached by Abdul Hakeem \"Ya Salaam\", listed as defending champion coach.",
       "roster": [
-        { "id": "taha-nakhuda", "name": "Taaha Nakhuda", "position": "Field", "leadershipRole": "captain" },
+        { "id": "taha-nakhuda", "name": "Taaha Nakhuda", "position": "Field", "leadershipRole": "captain", "ovrOverride": 99 },
         { "id": "hammad-shaikh", "name": "Hammad Shaikh", "position": "Goalie", "leadershipRole": "assistant" },
         { "id": "ahmad-ingar", "name": "Ahmad Ingar", "position": "Field", "leadershipRole": "assistant" },
         { "id": "huzaifa-ahmad-vadia", "name": "Huzaifa Ahmed Vadia", "position": "Field" },

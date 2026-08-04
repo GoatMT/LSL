@@ -551,6 +551,7 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
         losses: 0,
         playerOfMatch: 0,
         mvpScore: 0,
+        ovrOverride: row.ovrOverride,
       };
       existing.goals += row.goals;
       existing.assists += row.assists;
@@ -562,6 +563,7 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
       existing.losses += row.losses;
       existing.playerOfMatch += row.playerOfMatch;
       existing.mvpScore += row.mvpScore;
+      if (Number.isFinite(row.ovrOverride)) existing.ovrOverride = row.ovrOverride;
       existing.achievements = unique([...(existing.achievements || []), ...(row.achievements || [])]);
       existing.name = row.name || existing.name;
       existing.teamId = row.teamId || existing.teamId;
@@ -597,6 +599,7 @@ export function playerRatingScore(player = {}) {
 }
 
 export function playerOVR(player = {}, comparisonPlayers = []) {
+  if (Number.isFinite(player.ovrOverride)) return Math.max(0, Math.min(99, Math.round(player.ovrOverride)));
   const pool = comparisonPlayers.length ? comparisonPlayers : [player];
   const scores = [...new Set(pool.map((item) => playerRatingScore(item)))].sort((a, b) => a - b);
   const score = playerRatingScore(player);
