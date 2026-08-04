@@ -6,7 +6,7 @@ export const CAP_MAX = 100_000_000;
 export const MAX_CONTRACT_YEARS = 2;
 export const DRAFT_ROUNDS = 10;
 export const TRADE_DEADLINE_WEEK = 4;
-export const HARD_TRADE_MARGIN = 1.15; // CPU wants 15% more value coming in than going out
+export const HARD_TRADE_MARGIN = 1.28; // CPU wants 28% more value coming in than going out — hard mode, no easy fleecing
 
 export const POSITION_TARGETS = { Forward: 3, Midfielder: 3, Defender: 3, Goalkeeper: 1 };
 
@@ -169,7 +169,7 @@ export function teamNeedScore(roster, position) {
   const target = POSITION_TARGETS[position] || 2;
   const have = counts[position] || 0;
   // Bigger bonus the further below target a team is; small penalty once past target.
-  return have < target ? (target - have) * 6 : (target - have) * 2;
+  return have < target ? (target - have) * 7 : (target - have) * 2;
 }
 
 export function cpuBestPick(save, teamId, allPlayers) {
@@ -451,13 +451,28 @@ export function computeChemistry(save, teamId) {
 }
 
 export function teamOverallRating(save, teamId) {
-  const pool = save.rosters[teamId] || [];
-  if (!pool.length) return 50;
-  const top = [...pool].sort((a, b) => b.rating - a.rating).slice(0, 8);
-  const avgRating = top.reduce((sum, player) => sum + player.rating, 0) / top.length;
-  const avgMorale = top.reduce((sum, player) => sum + (player.morale ?? 70), 0) / top.length;
+  const roster = save.rosters[teamId] || [];
+  if (!roster.length) return 50;
+  const lineup = save.lineups?.[teamId];
+  const starters = matchLineup(save, teamId);
+  const understaffed = Math.max(0, STARTING_XI_SIZE - starters.length);
+  const bench = roster.filter((player) => !starters.some((starter) => starter.id === player.id));
+
+  const avgStarterRating = starters.reduce((sum, player) => sum + player.rating, 0) / (starters.length || 1);
+  const avgMorale = starters.reduce((sum, player) => sum + (player.morale ?? 70), 0) / (starters.length || 1);
   const chemistry = computeChemistry(save, teamId);
-  return avgRating + (avgMorale - 70) * 0.05 + (chemistry - 70) * 0.08;
+  const formationScore = formationFitScore(starters, lineup?.formation || FORMATIONS[0]);
+  const understaffedPenalty = understaffed * 4; // fielding fewer than 11 hurts badly
+  const benchDepthBonus = Math.min(3, bench.length * 0.15); // deeper benches offer a little cover
+
+  return (
+    avgStarterRating +
+    (avgMorale - 70) * 0.05 +
+    (chemistry - 70) * 0.08 +
+    formationScore -
+    understaffedPenalty +
+    benchDepthBonus
+  );
 }
 
 export function simulateMatch(ratingA, ratingB) {
@@ -502,6 +517,8 @@ export function startSeason(save) {
   save.assistantCaptains = save.assistantCaptains || {};
   save.trainingLog = save.trainingLog || [];
   save.retirementLog = save.retirementLog || [];
+  autoAssignCpuCaptains(save);
+  autoSetCpuLineups(save);
   return save;
 }
 
@@ -520,6 +537,9 @@ function applyPostMatchEffects(save, teamId, outcome) {
 
 export function advanceWeek(save) {
   if (save.phase !== "season") return save;
+  autoAssignCpuCaptains(save);
+  autoSetCpuLineups(save);
+  autoTrainCpuTeams(save);
   const weekIndex = save.week - 1;
   const matches = (save.schedule || [])[weekIndex] || [];
   const weekResults = matches.map((match) => {
@@ -738,9 +758,103 @@ export function applyTraining(save, teamId, playerId) {
 export const FORMATIONS = ["4-3-3", "4-4-2", "3-5-2", "5-3-2"];
 export const STARTING_XI_SIZE = 11;
 
+const FORMATION_SHAPE = {
+  "4-3-3": { Goalkeeper: 1, Defender: 4, Midfielder: 3, Forward: 3 },
+  "4-4-2": { Goalkeeper: 1, Defender: 4, Midfielder: 4, Forward: 2 },
+  "3-5-2": { Goalkeeper: 1, Defender: 3, Midfielder: 5, Forward: 2 },
+  "5-3-2": { Goalkeeper: 1, Defender: 5, Midfielder: 3, Forward: 2 },
+};
+
+function formationFitScore(startingXI, formation) {
+  const shape = FORMATION_SHAPE[formation] || FORMATION_SHAPE["4-3-3"];
+  const counts = positionCounts(startingXI);
+  let mismatch = 0;
+  Object.keys(shape).forEach((position) => {
+    mismatch += Math.abs((counts[position] || 0) - shape[position]);
+  });
+  // A perfectly shaped XI is worth a real bonus; a badly shaped one actively costs you.
+  return Math.max(-8, 6 - mismatch * 1.2);
+}
+
 export function setLineup(save, teamId, formation, startingIds) {
   save.lineups = save.lineups || {};
   save.lineups[teamId] = { formation, startingIds };
+  return save;
+}
+
+function bestLineupForFormation(roster, formation) {
+  const shape = FORMATION_SHAPE[formation] || FORMATION_SHAPE["4-3-3"];
+  const used = new Set();
+  const starters = [];
+  Object.keys(shape).forEach((position) => {
+    const need = shape[position];
+    const candidates = roster
+      .filter((player) => player.position === position && !used.has(player.id))
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, need);
+    candidates.forEach((player) => used.add(player.id));
+    starters.push(...candidates);
+  });
+  if (starters.length < STARTING_XI_SIZE) {
+    const filler = [...roster]
+      .filter((player) => !used.has(player.id))
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, STARTING_XI_SIZE - starters.length);
+    filler.forEach((player) => used.add(player.id));
+    starters.push(...filler);
+  }
+  return starters.slice(0, STARTING_XI_SIZE);
+}
+
+// CPU GMs never sit idle: they always field their strongest legal XI in the
+// formation that best fits their roster, always have a captain, and always
+// spend their weekly training session — the same tools the user has to work
+// for, applied automatically so a lazy human can't out-manage a CPU by default.
+export function autoAssignCpuCaptains(save) {
+  save.teams.forEach((team) => {
+    if (team.id === save.userTeamId) return;
+    const roster = save.rosters[team.id] || [];
+    if (!roster.length) return;
+    const currentCaptainId = save.captains?.[team.id];
+    const stillOnRoster = currentCaptainId && roster.some((player) => player.id === currentCaptainId);
+    if (stillOnRoster) return;
+    const best = [...roster].sort((a, b) => b.rating - a.rating)[0];
+    if (best) setCaptain(save, team.id, best.id);
+  });
+  return save;
+}
+
+export function autoSetCpuLineups(save) {
+  save.teams.forEach((team) => {
+    if (team.id === save.userTeamId) return;
+    const roster = save.rosters[team.id] || [];
+    if (!roster.length) return;
+    let bestFormation = FORMATIONS[0];
+    let bestStarters = null;
+    let bestScore = -Infinity;
+    FORMATIONS.forEach((formation) => {
+      const starters = bestLineupForFormation(roster, formation);
+      const avgRating = starters.reduce((sum, player) => sum + player.rating, 0) / (starters.length || 1);
+      const score = avgRating + formationFitScore(starters, formation);
+      if (score > bestScore) {
+        bestScore = score;
+        bestFormation = formation;
+        bestStarters = starters;
+      }
+    });
+    if (bestStarters) setLineup(save, team.id, bestFormation, bestStarters.map((player) => player.id));
+  });
+  return save;
+}
+
+export function autoTrainCpuTeams(save) {
+  save.teams.forEach((team) => {
+    if (team.id === save.userTeamId) return;
+    const roster = (save.rosters[team.id] || []).filter((player) => player.rating < 99);
+    if (!roster.length) return;
+    const target = [...roster].sort((a, b) => b.rating - a.rating)[0];
+    applyTraining(save, team.id, target.id);
+  });
   return save;
 }
 
@@ -766,7 +880,9 @@ export function signFreeAgent(save, teamId, playerId, allPlayers) {
     for (const rival of rivals) {
       const rivalRoster = save.rosters[rival.id] || [];
       const need = teamNeedScore(rivalRoster, player.position);
-      const rivalBids = need > 4 && Math.random() < 0.35;
+      const qualityDrive = Math.min(0.45, Math.max(0, (player.rating - 50) / 100));
+      const needDrive = need > 4 ? 0.18 : 0;
+      const rivalBids = Math.random() < 0.25 + qualityDrive + needDrive;
       if (rivalBids && teamCapSpace(save, rival.id) >= contract.salary) {
         save.rosters[rival.id] = save.rosters[rival.id] || [];
         save.rosters[rival.id].push({ ...player, contract: { ...generateContract(player), seasonSigned: save.season }, morale: 70 });
