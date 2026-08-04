@@ -1,7 +1,7 @@
 import { renderPhotoCard } from "../components/photoCard.js";
 import { renderVideoCard } from "../components/videoCard.js";
 import { SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js";
+import { loadSeasonData } from "./dataLoader.js?v=1.0";
 import { setupLayout } from "./main.js";
 import { controlSelect, setDocumentTitle, statusMessage } from "./utils.js";
 

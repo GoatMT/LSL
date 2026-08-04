@@ -79,6 +79,7 @@ function normalizeRosterPlayer(player, team, year, aliases = {}) {
     tradeNote: player.tradeNote || "",
     leadershipRole: player.leadershipRole || "",
     season: String(year),
+    ovrOverride: Number.isFinite(player.ovrOverride) ? player.ovrOverride : undefined,
     achievements: [...(player.achievements || []), ...(player.tradeNote ? [player.tradeNote] : [])],
   };
 }

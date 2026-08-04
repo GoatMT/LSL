@@ -1,7 +1,7 @@
 import { renderTeamCard } from "../components/teamCard.js?v=3.2";
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js";
-import { calculateTeamForm, coachMap, computeCombinedPlayerStats, getTeamStats, playersWithOVR } from "./leagueEngine.js?v=3.2";
+import { loadAllSeasons } from "./dataLoader.js?v=1.0";
+import { calculateTeamForm, coachMap, computeCombinedPlayerStats, getTeamStats, playersWithOVR } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

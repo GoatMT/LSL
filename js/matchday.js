@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js";
-import { filterMatches, getMatchTeams, isCompletedMatch, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.2";
+import { loadSeasonData } from "./dataLoader.js?v=1.0";
+import { filterMatches, getMatchTeams, isCompletedMatch, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 

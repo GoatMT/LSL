@@ -2,8 +2,8 @@ import { renderMatchCard } from "../components/matchCard.js";
 import { renderPlayoffBracket } from "../components/playoffBracket.js";
 import { renderStandingsTable } from "../components/standingsTable.js?v=3.1";
 import { playoffRulesFor, SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js";
-import { filterMatches, getWeeks, standingsWithMovement } from "./leagueEngine.js?v=3.2";
+import { loadSeasonData } from "./dataLoader.js?v=1.0";
+import { filterMatches, getWeeks, standingsWithMovement } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

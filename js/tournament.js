@@ -1,4 +1,4 @@
-import { loadSeasonData } from "./dataLoader.js";
+import { loadSeasonData } from "./dataLoader.js?v=1.0";
 import { renderFooter } from "../components/footer.js";
 import { controlSelect, escapeHTML, initials, setDocumentTitle, statusMessage } from "./utils.js";
 

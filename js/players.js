@@ -1,7 +1,7 @@
 import { renderFormStrip } from "../components/formStrip.js";
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js";
-import { calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.2";
+import { loadAllSeasons } from "./dataLoader.js?v=1.0";
+import { calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlInput, controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

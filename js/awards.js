@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js";
-import { getAwards } from "./leagueEngine.js?v=3.2";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
+import { getAwards } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

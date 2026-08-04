@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
 import { setupLayout } from "./main.js";
 import { escapeHTML, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 

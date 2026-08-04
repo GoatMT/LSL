@@ -1,8 +1,8 @@
 import { renderCoachCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
 import { COACH_GRADE_SCALE, decorateCoachGrade } from "./coachRatings.js";
-import { buildCoachCareer, calculateCoachForm, computeCoachSummary, getCurrentCoach, getNextTeamMatch } from "./leagueEngine.js?v=3.2";
+import { buildCoachCareer, calculateCoachForm, computeCoachSummary, getCurrentCoach, getNextTeamMatch } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, statusMessage, unique } from "./utils.js";
 

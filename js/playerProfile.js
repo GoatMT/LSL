@@ -1,7 +1,7 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js";
-import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerVsTeamStatsBySeason, getCurrentPlayer, getNextTeamMatch, playerOVR, winnerTeamId } from "./leagueEngine.js?v=3.2";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
+import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerVsTeamStatsBySeason, getCurrentPlayer, getNextTeamMatch, playerOVR, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 

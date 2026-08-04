@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js";
+import { loadJSON } from "./dataLoader.js?v=1.0";
 import { SITE } from "./config.js";
 import { setupLayout } from "./main.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";

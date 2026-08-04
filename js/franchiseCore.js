@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js";
+import { loadJSON } from "./dataLoader.js?v=1.0";
 
 const STORAGE_KEY = "lsl-franchise-save-v1";
 

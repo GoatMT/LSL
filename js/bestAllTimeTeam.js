@@ -1,4 +1,4 @@
-import { loadAllSeasons, loadJSON } from "./dataLoader.js";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
 import { setupLayout } from "./main.js";
 import { escapeHTML, initials, setDocumentTitle, statusMessage } from "./utils.js";
 

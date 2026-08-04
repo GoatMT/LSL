@@ -1,8 +1,8 @@
 import { renderFooter } from "../components/footer.js";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js";
-import { computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch } from "./leagueEngine.js?v=3.2";
+import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.0";
+import { computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch } from "./leagueEngine.js?v=3.3";
 import { controlSelect, escapeHTML, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 function playerHref(playerId = "") {
