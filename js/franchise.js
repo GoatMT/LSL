@@ -5,6 +5,7 @@ import {
   CAP_MAX,
   CAPTAIN_MORALE_BONUS,
   CAPTAIN_RATING_BONUS,
+  DIFFICULTIES,
   DRAFT_ROUNDS,
   FORMATIONS,
   MAX_CONTRACT_YEARS,
@@ -20,6 +21,7 @@ import {
   computeFranchiseRecords,
   createFranchiseSave,
   currentPick,
+  difficultySettings,
   draftPlayer,
   evaluateTradeOffer,
   executeTrade,
@@ -56,6 +58,7 @@ setDocumentTitle("Franchise Mode");
 const root = document.getElementById("page-root");
 
 let pickedTeamId = "";
+let pickedDifficulty = "medium";
 let playerPool = [];
 let draftPositionFilter = "All";
 let tradePartnerId = "";
@@ -153,6 +156,45 @@ function renderRoadmap(roadmap = []) {
   `;
 }
 
+function renderDifficultyPicker(save) {
+  const activeDifficulty = save?.difficulty || pickedDifficulty;
+  return `
+    <div class="franchise-difficulty-block">
+      <span class="eyebrow">Before You Start</span>
+      <h3>Choose Your Difficulty</h3>
+      <p class="franchise-note">Difficulty locks in once your franchise starts and can't be changed mid-save.</p>
+      <div class="grid franchise-difficulty-grid">
+        ${Object.values(DIFFICULTIES)
+          .map((mode) => {
+            const isActive = mode.key === activeDifficulty;
+            const trainingNote =
+              mode.key === "hard"
+                ? "Training disabled"
+                : mode.key === "medium"
+                ? "10 training sessions max"
+                : "Unlimited training";
+            const tradeNote = mode.key === "hard" ? "Much harder trades" : mode.key === "medium" ? "Standard trade resistance" : "Easier trades";
+            const capNote = mode.key === "hard" ? "95 OVR cap on your players" : "No OVR cap";
+            return `
+              <button
+                type="button"
+                class="franchise-difficulty-card ${escapeHTML(mode.key)}${isActive ? " selected" : ""}"
+                data-franchise-difficulty="${escapeHTML(mode.key)}"
+                ${save ? "disabled" : ""}
+              >
+                <strong>${escapeHTML(mode.label)}</strong>
+                <span>${escapeHTML(trainingNote)}</span>
+                <span>${escapeHTML(tradeNote)}</span>
+                <span>${escapeHTML(capNote)}</span>
+              </button>
+            `;
+          })
+          .join("")}
+      </div>
+    </div>
+  `;
+}
+
 function renderTeamPicker(config, save) {
   const teams = config.teams || [];
   const activeTeamId = save?.userTeamId || pickedTeamId;
@@ -187,6 +229,7 @@ function renderTeamPicker(config, save) {
           })
           .join("")}
       </div>
+      ${renderDifficultyPicker(save)}
       ${
         save
           ? `<div class="button-row"><button type="button" class="button" id="franchise-reset-button">Reset League</button></div>`
@@ -214,6 +257,7 @@ function renderSeasonFormat(config, save) {
         <div class="rule-pill"><span>Season length</span><strong>${escapeHTML(season.weeks)} weeks</strong></div>
         <div class="rule-pill"><span>Game day</span><strong>${escapeHTML(season.gameDay)}</strong></div>
         <div class="rule-pill"><span>Simulation</span><strong>Daily</strong></div>
+        ${save ? `<div class="rule-pill"><span>Difficulty</span><strong class="franchise-difficulty-tag ${escapeHTML(save.difficulty)}">${escapeHTML(difficultySettings(save).label)}</strong></div>` : ""}
       </div>
       <p class="franchise-note">${escapeHTML(season.note || "")}</p>
     </section>
@@ -584,13 +628,15 @@ function renderTradeHistory(save) {
 
 function renderTradeCenter(config, save) {
   const deadlinePassed = isTradeDeadlinePassed(save);
+  const settings = difficultySettings(save);
+  const marginPct = Math.round((settings.tradeMargin - 1) * 100);
   return `
     <section class="section-panel">
       <div class="section-head">
         <div>
           <span class="eyebrow">Part 2: Trading</span>
           <h2>Trade Centre</h2>
-          <p>Hard-difficulty trading: CPU teams only accept offers where they come out ahead on value. Trades lock after week ${escapeHTML(TRADE_DEADLINE_WEEK)}.</p>
+          <p>${escapeHTML(settings.label)} difficulty: CPU teams want at least ${marginPct}% more value coming in than going out before they'll accept an offer. Trades lock after week ${escapeHTML(TRADE_DEADLINE_WEEK)}.</p>
         </div>
         <span class="pill${deadlinePassed ? "" : " green"}">${deadlinePassed ? "Trade deadline passed" : `Week ${escapeHTML(save.week)} of ${escapeHTML(TRADE_DEADLINE_WEEK)} deadline`}</span>
       </div>
@@ -782,6 +828,16 @@ function renderTeamManagementPanel(config, save) {
   const chemistry = computeChemistry(save, save.userTeamId);
   const captainId = save.captains?.[save.userTeamId];
   const assistantId = save.assistantCaptains?.[save.userTeamId];
+  const settings = difficultySettings(save);
+  const trainingUsed = save.userTrainingCount || 0;
+  const trainingBlocked = settings.trainingLimit <= 0;
+  const trainingExhausted = !trainingBlocked && Number.isFinite(settings.trainingLimit) && trainingUsed >= settings.trainingLimit;
+  const trainingDisabled = trainingBlocked || trainingExhausted;
+  const trainingStatusText = trainingBlocked
+    ? `Training is disabled on ${settings.label} difficulty.`
+    : Number.isFinite(settings.trainingLimit)
+    ? `Training sessions used: ${trainingUsed} / ${settings.trainingLimit}`
+    : "Unlimited training sessions.";
 
   if (!lineupFormation) lineupFormation = save.lineups?.[save.userTeamId]?.formation || FORMATIONS[0];
   if (!lineupSelectionInit) {
@@ -795,10 +851,14 @@ function renderTeamManagementPanel(config, save) {
         <div>
           <span class="eyebrow">Part 3: Team Management</span>
           <h2>Chemistry, Captaincy &amp; Roster</h2>
-          <p>Team chemistry blends roster balance, leadership, and average morale. A captain and an assistant captain each give that player +${CAPTAIN_RATING_BONUS} OVR and +${CAPTAIN_MORALE_BONUS} morale, so put those armbands on players you want to lean on.</p>
+          <p>Team chemistry blends roster balance, leadership, and average morale. A captain and an assistant captain each give that player +${CAPTAIN_RATING_BONUS} OVR and +${CAPTAIN_MORALE_BONUS} morale, so put those armbands on players you want to lean on.${
+            settings.ovrCap < 99 ? ` Your players are capped at ${settings.ovrCap} OVR on ${settings.label} difficulty.` : ""
+          }</p>
         </div>
         <span class="pill${chemistry >= 70 ? " green" : ""}">Chemistry: ${escapeHTML(chemistry)}</span>
       </div>
+
+      <p class="franchise-note franchise-training-status ${trainingBlocked ? "blocked" : ""}">${escapeHTML(trainingStatusText)}</p>
 
       <div class="franchise-roster-list">
         ${roster
@@ -815,7 +875,7 @@ function renderTeamManagementPanel(config, save) {
                 <div class="franchise-management-actions">
                   <button type="button" class="pill${isCaptain ? " green" : ""}" data-set-captain="${escapeHTML(player.id)}" ${isCaptain ? "disabled" : ""}>${isCaptain ? "Captain" : "Make Captain"}</button>
                   <button type="button" class="pill${isAssistant ? " green" : ""}" data-set-assistant="${escapeHTML(player.id)}" ${isAssistant || isCaptain ? "disabled" : ""}>${isAssistant ? "Assistant Captain" : "Make Assistant"}</button>
-                  <button type="button" class="pill" data-train-player="${escapeHTML(player.id)}">Train</button>
+                  <button type="button" class="pill" data-train-player="${escapeHTML(player.id)}" ${trainingDisabled ? "disabled" : ""}>Train</button>
                 </div>
               </article>
             `;
@@ -1186,6 +1246,14 @@ function attachHandlers(config) {
     });
   });
 
+  [...document.querySelectorAll("[data-franchise-difficulty]")].forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.disabled) return;
+      pickedDifficulty = button.dataset.franchiseDifficulty;
+      render(config);
+    });
+  });
+
   const teamButtons = [...document.querySelectorAll("[data-franchise-team]")];
   teamButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -1198,7 +1266,7 @@ function attachHandlers(config) {
   const startButton = document.getElementById("franchise-start-button");
   startButton?.addEventListener("click", () => {
     if (!pickedTeamId) return;
-    const save = createFranchiseSave(config, pickedTeamId);
+    const save = createFranchiseSave(config, pickedTeamId, pickedDifficulty);
     saveFranchiseSave(save);
     currentPage = "draft";
     render(config);
@@ -1210,6 +1278,7 @@ function attachHandlers(config) {
     if (!confirmed) return;
     clearFranchiseSave();
     pickedTeamId = "";
+    pickedDifficulty = "medium";
     tradePartnerId = "";
     tradeGivePlayerIds = new Set();
     tradeReceivePlayerIds = new Set();
@@ -1443,12 +1512,14 @@ function attachHandlers(config) {
       const save = loadFranchiseSave();
       if (!save) return;
       const result = applyTraining(save, save.userTeamId, button.dataset.trainPlayer);
-      trainingMessage = {
-        success: result.success,
-        text: result.success
-          ? `${result.player.name} improved during training (now OVR ${result.player.rating}).`
-          : `${result.player?.name || "The player"} showed no improvement this session.`,
-      };
+      trainingMessage = result.blocked
+        ? { success: false, text: result.reason }
+        : {
+            success: result.success,
+            text: result.success
+              ? `${result.player.name} improved during training (now OVR ${result.player.rating}).`
+              : `${result.player?.name || "The player"} showed no improvement this session.`,
+          };
       saveFranchiseSave(save);
       render(config);
     });

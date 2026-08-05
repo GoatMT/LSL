@@ -127,6 +127,12 @@ function articleDateValue(article) {
   return Number.isFinite(value) ? value : 0;
 }
 
+const PRIORITY_HEADLINE_PREFIXES = ["Week 7 Recap:", "Quarterfinal Preview:", "What The Numbers Say:"];
+
+function isPriorityArticle(article) {
+  return PRIORITY_HEADLINE_PREFIXES.some((prefix) => (article.headline || "").startsWith(prefix));
+}
+
 function renderCategoryFilters(articles) {
   return `
     <div class="news-category-filter" aria-label="News category filters">
@@ -337,7 +343,8 @@ function render(articles) {
 
   state.articleId = selected.id;
   setDocumentTitle(`${selected.headline} | News`);
-  const collapsedArticles = visibleArticles.slice(0, 10);
+  const priorityArticles = visibleArticles.filter(isPriorityArticle);
+  const collapsedArticles = priorityArticles.length ? priorityArticles : visibleArticles.slice(0, 10);
   const listedArticles = state.storiesExpanded ? visibleArticles : collapsedArticles;
   const hasOlderStories = visibleArticles.length > collapsedArticles.length;
 

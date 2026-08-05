@@ -35,7 +35,7 @@
         { "id": "ibrahim-syed", "name": "Ibrahim Syed", "jersey": 5, "position": "Field" },
         { "id": "azizullah", "name": "Azizullah", "photo": "./Logos/Player Pics/Azizullah.png", "jersey": 6, "position": "Defender" },
         { "id": "mohammad-usman", "name": "Mohammad Usman", "jersey": 7, "position": "Field" },
-        { "id": "zakariya-mohmed-bemat", "name": "Zakariya Mohmed Bemat", "position": "Field" },
+        { "id": "zakariya-mohmed-bemat", "name": "Zakariya Mohmed Bemat", "position": "Goalie" },
         { "id": "ayub-jan", "name": "Ayub Jan", "jersey": 9, "position": "Field" },
         { "id": "hasibullah-kharooti", "name": "Hasibullah Kharooti", "position": "Field" }
       ]

@@ -6,7 +6,23 @@ export const CAP_MAX = 100_000_000;
 export const MAX_CONTRACT_YEARS = 2;
 export const DRAFT_ROUNDS = 10;
 export const TRADE_DEADLINE_WEEK = 4;
-export const HARD_TRADE_MARGIN = 1.28; // CPU wants 28% more value coming in than going out — hard mode, no easy fleecing
+export const HARD_TRADE_MARGIN = 1.28; // legacy default, superseded by DIFFICULTIES[*].tradeMargin
+
+export const DIFFICULTIES = {
+  easy: { key: "easy", label: "Easy", glow: "green", tradeMargin: 1.12, trainingLimit: Infinity, ovrCap: 99 },
+  medium: { key: "medium", label: "Medium", glow: "orange", tradeMargin: 1.28, trainingLimit: 10, ovrCap: 99 },
+  hard: { key: "hard", label: "Hard", glow: "red", tradeMargin: 1.55, trainingLimit: 0, ovrCap: 95 },
+};
+
+export function difficultySettings(save) {
+  return DIFFICULTIES[save?.difficulty] || DIFFICULTIES.medium;
+}
+
+function capUserRating(save, teamId, player) {
+  if (!player || teamId !== save.userTeamId) return;
+  const cap = difficultySettings(save).ovrCap;
+  if (player.rating > cap) player.rating = cap;
+}
 
 export const POSITION_TARGETS = { Forward: 3, Midfielder: 3, Defender: 3, Goalkeeper: 1 };
 
@@ -58,11 +74,13 @@ export function formatMoney(value = 0) {
 
 // ---------- Save creation ----------
 
-export function createFranchiseSave(config, userTeamId) {
+export function createFranchiseSave(config, userTeamId, difficulty = "medium") {
   const teams = config.teams || [];
   const teamIds = teams.map((team) => team.id);
   return {
     version: 3,
+    difficulty: DIFFICULTIES[difficulty] ? difficulty : "medium",
+    userTrainingCount: 0,
     createdAt: new Date().toISOString(),
     userTeamId,
     season: 1,
@@ -196,6 +214,7 @@ export function draftPlayer(save, playerId, allPlayers) {
 
   save.rosters[pick.teamId] = save.rosters[pick.teamId] || [];
   save.rosters[pick.teamId].push({ ...player, contract: null });
+  capUserRating(save, pick.teamId, save.rosters[pick.teamId].at(-1));
   save.freeAgents = save.freeAgents.filter((id) => id !== playerId);
   save.draftLog.push({ overall: pick.overall, round: pick.round, teamId: pick.teamId, playerId: player.id, playerName: player.name });
   save.draftPickIndex += 1;
@@ -271,6 +290,7 @@ export function evaluateTradeOffer(save, offer) {
   const { teamAId, teamBId, teamAGives, teamBGives } = offer;
   const valueFromAToB = offerSideValue(save, teamAId, teamAGives);
   const valueFromBToA = offerSideValue(save, teamBId, teamBGives);
+  const margin = difficultySettings(save).tradeMargin;
 
   const teamAIsCpu = teamAId !== save.userTeamId;
   const teamBIsCpu = teamBId !== save.userTeamId;
@@ -279,14 +299,14 @@ export function evaluateTradeOffer(save, offer) {
   let reason = "Both general managers agree to the terms.";
 
   if (teamBIsCpu) {
-    // Team B (often the CPU side being pitched an offer) must receive at least HARD_TRADE_MARGIN times what it gives up.
-    if (valueFromAToB < valueFromBToA * HARD_TRADE_MARGIN) {
+    // Team B (often the CPU side being pitched an offer) must receive at least `margin` times what it gives up.
+    if (valueFromAToB < valueFromBToA * margin) {
       cpuAccepts = false;
       reason = `${offer.teamBName || "The CPU"} wants more value coming back before agreeing to this trade.`;
     }
   }
   if (teamAIsCpu && cpuAccepts) {
-    if (valueFromBToA < valueFromAToB * HARD_TRADE_MARGIN) {
+    if (valueFromBToA < valueFromAToB * margin) {
       cpuAccepts = false;
       reason = `${offer.teamAName || "The CPU"} wants more value coming back before agreeing to this trade.`;
     }
@@ -311,6 +331,7 @@ export function executeTrade(save, offer) {
       const [player] = roster.splice(index, 1);
       save.rosters[toTeamId] = save.rosters[toTeamId] || [];
       save.rosters[toTeamId].push(player);
+      capUserRating(save, toTeamId, player);
     });
   };
 
@@ -530,6 +551,7 @@ function applyPostMatchEffects(save, teamId, outcome) {
     if (Math.random() < DEVELOPMENT_CHANCE_PER_GAME) {
       const delta = player.rating < 65 || Math.random() < 0.5 ? 1 : -1;
       player.rating = Math.max(40, Math.min(99, player.rating + delta));
+      capUserRating(save, teamId, player);
       player.development = (player.development || 0) + delta;
     }
   });
@@ -669,9 +691,10 @@ export function startNextSeason(save) {
 
 // ---------- Team management: captains, training, lineups ----------
 
-function applyCaptaincyBoost(player) {
+function applyCaptaincyBoost(save, teamId, player) {
   if (player.captaincyBoosted) return;
   player.rating = Math.min(99, player.rating + CAPTAIN_RATING_BONUS);
+  capUserRating(save, teamId, player);
   player.morale = Math.min(100, (player.morale ?? 70) + CAPTAIN_MORALE_BONUS);
   player.captaincyBoosted = true;
 }
@@ -714,7 +737,7 @@ export function setCaptain(save, teamId, playerId) {
 
   save.captains[teamId] = playerId;
   const newPlayer = roster.find((item) => item.id === playerId);
-  if (newPlayer) applyCaptaincyBoost(newPlayer);
+  if (newPlayer) applyCaptaincyBoost(save, teamId, newPlayer);
   return save;
 }
 
@@ -735,7 +758,7 @@ export function setAssistantCaptain(save, teamId, playerId) {
 
   save.assistantCaptains[teamId] = playerId;
   const newPlayer = roster.find((item) => item.id === playerId);
-  if (newPlayer) applyCaptaincyBoost(newPlayer);
+  if (newPlayer) applyCaptaincyBoost(save, teamId, newPlayer);
   return save;
 }
 
@@ -744,8 +767,27 @@ export function applyTraining(save, teamId, playerId) {
   const player = roster.find((item) => item.id === playerId);
   if (!player) return { success: false };
   save.trainingLog = save.trainingLog || [];
+
+  if (teamId === save.userTeamId) {
+    const settings = difficultySettings(save);
+    save.userTrainingCount = save.userTrainingCount || 0;
+    if (settings.trainingLimit <= 0) {
+      return { success: false, blocked: true, player, reason: `Training is disabled on ${settings.label} difficulty.` };
+    }
+    if (save.userTrainingCount >= settings.trainingLimit) {
+      return {
+        success: false,
+        blocked: true,
+        player,
+        reason: `You've used all ${settings.trainingLimit} training sessions allowed on ${settings.label} difficulty.`,
+      };
+    }
+    save.userTrainingCount += 1;
+  }
+
   if (Math.random() < TRAINING_SUCCESS_CHANCE) {
     player.rating = Math.min(99, player.rating + 1);
+    capUserRating(save, teamId, player);
     player.morale = Math.min(100, (player.morale ?? 70) + 3);
     save.trainingLog.unshift({ week: save.week, teamId, playerId, playerName: player.name, result: "improved" });
     return { success: true, player };
@@ -894,6 +936,7 @@ export function signFreeAgent(save, teamId, playerId, allPlayers) {
 
   save.rosters[teamId] = save.rosters[teamId] || [];
   save.rosters[teamId].push({ ...player, contract, morale: 70 });
+  capUserRating(save, teamId, save.rosters[teamId].at(-1));
   save.freeAgents = (save.freeAgents || []).filter((id) => id !== playerId);
   return { success: true, player };
 }
