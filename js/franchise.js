@@ -126,31 +126,57 @@ function renderFeaturePills(features = []) {
   `;
 }
 
-function renderRoadmap(roadmap = []) {
+function renderTutorial() {
   return `
-    <section class="section-panel">
+    <section class="section-panel franchise-tutorial">
       <div class="section-head">
         <div>
-          <span class="eyebrow">Build Roadmap</span>
-          <h2>Franchise Mode Parts</h2>
-          <p>Franchise Mode is being built in five parts. Parts 1, 2, and 3 are live below; the rest are coming next.</p>
+          <span class="eyebrow">Getting Started</span>
+          <h2>How Franchise Mode Works</h2>
+          <p>A quick primer before you pick a team and start your first draft.</p>
         </div>
       </div>
-      <div class="grid franchise-roadmap-grid">
-        ${roadmap
-          .map(
-            (item) => `
-              <article class="card franchise-roadmap-card${item.status === "available" ? " available" : ""}">
-                <div class="franchise-roadmap-top">
-                  <span class="pill${item.status === "available" ? " green" : ""}">Part ${escapeHTML(item.part)}</span>
-                  <span class="franchise-roadmap-status">${item.status === "available" ? "Available now" : "Coming soon"}</span>
-                </div>
-                <h3>${escapeHTML(item.title)}</h3>
-                <p>${escapeHTML(item.summary)}</p>
-              </article>
-            `
-          )
-          .join("")}
+      <div class="franchise-tutorial-grid">
+        <article class="franchise-tutorial-step">
+          <span class="franchise-tutorial-number">1</span>
+          <h3>Pick your team and difficulty</h3>
+          <p>Choose one of six teams to run below. The CPU manages the other five. Difficulty controls training limits, trade resistance, and whether an OVR cap applies to your roster, and it locks in once you start.</p>
+        </article>
+        <article class="franchise-tutorial-step">
+          <span class="franchise-tutorial-number">2</span>
+          <h3>Draft a balanced roster</h3>
+          <p>The snake draft reverses order every round. Don't just take the highest OVR available &mdash; you need enough Forwards, Midfielders, Defenders, and at least one Goalkeeper to compete.</p>
+        </article>
+        <article class="franchise-tutorial-step">
+          <span class="franchise-tutorial-number">3</span>
+          <h3>Watch your salary cap</h3>
+          <p>Every drafted player signs a contract against your salary cap. Check the Contracts panel for your cap space before signing free agents or taking on salary in a trade.</p>
+        </article>
+        <article class="franchise-tutorial-step">
+          <span class="franchise-tutorial-number">4</span>
+          <h3>Name a captain and assistant captain</h3>
+          <p>From Team Management, assign a captain and an assistant captain. Both roles give that player +${CAPTAIN_RATING_BONUS} OVR and +${CAPTAIN_MORALE_BONUS} morale, so put the armbands on players you're building around.</p>
+        </article>
+        <article class="franchise-tutorial-step">
+          <span class="franchise-tutorial-number">5</span>
+          <h3>Train, trade, and sign free agents</h3>
+          <p>Training sessions have a chance to permanently boost a player's rating, though your difficulty may limit how many you get. Use the Trade Centre and Free Agency Centre to fill roster gaps the draft didn't solve.</p>
+        </article>
+        <article class="franchise-tutorial-step">
+          <span class="franchise-tutorial-number">6</span>
+          <h3>Simulate the season</h3>
+          <p>Advance one week at a time from the Franchise Hub or Team Management page. Wins boost morale, losses hurt it, and morale feeds directly into team chemistry and your overall rating.</p>
+        </article>
+        <article class="franchise-tutorial-step">
+          <span class="franchise-tutorial-number">7</span>
+          <h3>Make the playoffs</h3>
+          <p>The top teams qualify, with the top two seeds earning a bye. Reach the semifinals, win the championship, and finish with a winning record to complete your owner objectives.</p>
+        </article>
+        <article class="franchise-tutorial-step">
+          <span class="franchise-tutorial-number">8</span>
+          <h3>Track stats, records, and awards</h3>
+          <p>The Statistics, Records, and Awards pages update automatically as you simulate games and seasons, so you can follow the scoring race and chase franchise history.</p>
+        </article>
       </div>
     </section>
   `;
@@ -1174,7 +1200,7 @@ function renderStatsPanel(config, save) {
 
 function renderHomePage(config, save) {
   return `
-    ${renderRoadmap(config.roadmap)}
+    ${renderTutorial()}
     ${renderTeamPicker(config, save)}
     ${renderSeasonFormat(config, save)}
     ${renderPlayoffFormat(config)}
