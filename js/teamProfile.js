@@ -115,6 +115,65 @@ function renderRoster(team, ratings = new Map()) {
   `;
 }
 
+function positionGroupKey(position = "") {
+  const value = String(position).toLowerCase();
+  if (/goal/.test(value)) return "goalie";
+  if (/(striker|winger|forward)/.test(value)) return "attack";
+  if (/midfield/.test(value)) return "midfield";
+  if (/defen/.test(value)) return "defense";
+  return "field";
+}
+
+const POSITION_GROUP_META = {
+  attack: "Strikers / Wingers",
+  midfield: "Midfielders",
+  defense: "Defensemen",
+  field: "Field Players",
+  goalie: "Goalies",
+};
+
+const POSITION_GROUP_ORDER = ["attack", "midfield", "defense", "field", "goalie"];
+
+function renderPositionGroups(team, ratings = new Map()) {
+  const roster = team.roster || [];
+  if (!roster.length) return statusMessage("empty", "Roster has not been published yet.");
+
+  const groups = new Map();
+  roster.forEach((player) => {
+    const key = positionGroupKey(player.position);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(player);
+  });
+
+  const rows = POSITION_GROUP_ORDER.filter((key) => groups.has(key))
+    .map((key) => {
+      const players = groups.get(key);
+      return `
+        <div class="position-row">
+          <div class="position-row-head">
+            <span class="eyebrow">${escapeHTML(POSITION_GROUP_META[key])}</span>
+            <span class="position-row-count">${players.length}</span>
+          </div>
+          <div class="position-row-players">
+            ${players
+              .map(
+                (player) => `
+                  <a class="position-chip" href="./player.html?id=${escapeHTML(player.id)}">
+                    ${leadershipBadge(player)}${player.jersey ? `<span class="roster-jersey">#${escapeHTML(player.jersey)}</span>` : ""}${escapeHTML(player.name)}
+                    ${ratings.get(player.id) ? `<small>OVR ${escapeHTML(ratings.get(player.id))}</small>` : ""}
+                  </a>
+                `
+              )
+              .join("")}
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  return `<div class="position-groups">${rows}</div>`;
+}
+
 function sortTeamLeaders(players, key) {
   return [...players]
     .filter((player) => Number(player[key]) > 0)
@@ -513,6 +572,14 @@ function render(allData) {
         </div>
       </div>
       ${renderRoster(team, ratings)}
+      <div class="section-head compact-head team-profile-subhead">
+        <div>
+          <span class="eyebrow">Formation</span>
+          <h2>Players By Position</h2>
+          <p>Roster grouped by role: strikers/wingers, midfielders, and defensemen, with goalies listed last.</p>
+        </div>
+      </div>
+      ${renderPositionGroups(team, ratings)}
     </section>
 
     <section class="section-panel team-profile-panel" id="stats" data-team-panel="stats" hidden>

@@ -2503,6 +2503,77 @@ details.clean-details summary {
   white-space: nowrap;
 }
 
+.position-groups {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.position-row {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.position-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.position-row-count {
+  min-width: 26px;
+  height: 26px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 8px;
+  color: #ffffff;
+  background: var(--green);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.position-row-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.position-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  color: var(--ink);
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.position-chip:hover {
+  border-color: rgba(199, 163, 103, 0.5);
+}
+
+.position-chip small {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.position-chip .roster-jersey {
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
 .ranking-list {
   display: grid;
   gap: 10px;

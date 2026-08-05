@@ -743,6 +743,316 @@ function renderBiggestWins(matches, teamsById) {
   `;
 }
 
+function renderPlaymakers(data) {
+  const players = computePlayerStats(data, { stage: "regular" })
+    .filter((player) => player.division === state.division)
+    .filter((player) => player.assists > 0)
+    .sort((a, b) => b.assists - a.assists || b.goals - a.goals)
+    .slice(0, 8);
+  if (!players.length) return "";
+  const max = Math.max(1, ...players.map((player) => player.assists));
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Individual Leaders</span>
+        <h3>Playmakers</h3>
+      </div>
+      <div class="advanced-stack-list">
+        ${players
+          .map(
+            (player) => `
+              <div class="advanced-stack-row">
+                <strong><a class="team-name" href="./player.html?id=${escapeHTML(player.id)}">${escapeHTML(player.name)}</a></strong>
+                <div class="advanced-stack-bar">
+                  <span class="mid" style="width:${pct(player.assists, max)}%"></span>
+                </div>
+                <small>${player.assists} assists | ${player.goals} goals | ${escapeHTML(player.teamName || "Team TBA")}</small>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function computeStarLeaders(matches) {
+  const tally = new Map();
+  matches.forEach((match) => {
+    (match.stars || []).forEach((star) => {
+      if (!star || (!star.playerId && !star.name)) return;
+      const key = star.playerId || star.name;
+      const existing = tally.get(key) || { id: "", name: star.name || "Player TBA", teamName: star.teamName || "", momCount: 0, nodCount: 0 };
+      existing.nodCount += 1;
+      if (Number(star.rank) === 1) existing.momCount += 1;
+      existing.name = star.name || existing.name;
+      existing.teamName = star.teamName || existing.teamName;
+      if (star.playerId) existing.id = star.playerId;
+      tally.set(key, existing);
+    });
+  });
+  return [...tally.values()].sort((a, b) => b.momCount - a.momCount || b.nodCount - a.nodCount).slice(0, 8);
+}
+
+function renderStarLeaders(matches) {
+  const leaders = computeStarLeaders(matches);
+  if (!leaders.length) return "";
+  const max = Math.max(1, ...leaders.map((entry) => entry.momCount || entry.nodCount));
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Weekly Standouts</span>
+        <h3>Star Of The Match Leaders</h3>
+      </div>
+      <div class="advanced-stack-list">
+        ${leaders
+          .map(
+            (entry) => `
+              <div class="advanced-stack-row">
+                <strong>${entry.id ? `<a class="team-name" href="./player.html?id=${escapeHTML(entry.id)}">${escapeHTML(entry.name)}</a>` : escapeHTML(entry.name)}</strong>
+                <div class="advanced-stack-bar">
+                  <span class="elite" style="width:${pct(entry.momCount || entry.nodCount, max)}%"></span>
+                </div>
+                <small>${entry.momCount} Man of the Match | ${entry.nodCount} total star nod${entry.nodCount === 1 ? "" : "s"} | ${escapeHTML(entry.teamName || "Team TBA")}</small>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderPowerRankings(rows) {
+  if (rows.length < 2) return "";
+  const scored = rows.map((row) => ({
+    row,
+    score: row.winPct * 0.5 + (row.gfPerGame - row.gaPerGame) * 12,
+  }));
+  const minScore = Math.min(...scored.map((entry) => entry.score));
+  const shifted = scored.map((entry) => ({ ...entry, score: entry.score - minScore + 1 })).sort((a, b) => b.score - a.score);
+  const max = Math.max(1, ...shifted.map((entry) => entry.score));
+
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Composite Ranking</span>
+        <h3>Power Rankings</h3>
+      </div>
+      <div class="advanced-stack-list">
+        ${shifted
+          .map(
+            ({ row, score }, index) => `
+              <div class="advanced-stack-row">
+                <strong>${index + 1}. <a class="team-name" href="${escapeHTML(teamProfileHref(row.teamId, state.season))}">${escapeHTML(row.team.name)}</a></strong>
+                <div class="advanced-stack-bar">
+                  <span class="${escapeHTML(row.tier)}" style="width:${pct(score, max)}%"></span>
+                </div>
+                <small>${row.pts} pts | ${row.gfPerGame.toFixed(2)} GF/G | ${row.gaPerGame.toFixed(2)} GA/G</small>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function marginBucket(margin) {
+  if (margin <= 1) return "close";
+  if (margin <= 3) return "mid";
+  return "blowout";
+}
+
+function renderMarginBuckets(matches, rows) {
+  const decided = matches.filter((match) => match.homeScore !== match.awayScore);
+  if (!decided.length) return "";
+  const counts = new Map(rows.map((row) => [row.teamId, { close: 0, mid: 0, blowout: 0 }]));
+  decided.forEach((match) => {
+    const margin = Math.abs(match.homeScore - match.awayScore);
+    const bucket = marginBucket(margin);
+    [match.homeTeamId, match.awayTeamId].forEach((teamId) => {
+      const entry = counts.get(teamId);
+      if (entry) entry[bucket] += 1;
+    });
+  });
+  const ranked = rows.filter((row) => {
+    const entry = counts.get(row.teamId);
+    return entry && entry.close + entry.mid + entry.blowout > 0;
+  });
+  if (!ranked.length) return "";
+
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Game Scripts</span>
+        <h3>Nail-Biters vs Blowouts</h3>
+      </div>
+      <div class="advanced-stack-list">
+        ${ranked
+          .map((row) => {
+            const entry = counts.get(row.teamId);
+            const total = Math.max(1, entry.close + entry.mid + entry.blowout);
+            return `
+              <div class="advanced-stack-row">
+                <strong>${escapeHTML(row.team.name)}</strong>
+                <div class="advanced-stack-bar">
+                  <span class="elite" style="width:${pct(entry.close, total)}%" title="1-goal games: ${entry.close}"></span>
+                  <span class="mid" style="width:${pct(entry.mid, total)}%" title="2-3 goal games: ${entry.mid}"></span>
+                  <span class="bad" style="width:${pct(entry.blowout, total)}%" title="4+ goal games: ${entry.blowout}"></span>
+                </div>
+                <small>1-Goal: ${entry.close} | 2-3 Goal: ${entry.mid} | Blowout (4+): ${entry.blowout}</small>
+              </div>
+            `;
+          })
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderScoringDepth(data, rows) {
+  const teamGoalRows = rows
+    .map((row) => {
+      const scorers = computePlayerStats(data, { stage: "regular" }).filter((player) => player.teamId === row.teamId && player.goals > 0);
+      const teamGoals = scorers.reduce((sum, player) => sum + player.goals, 0);
+      const topScorer = [...scorers].sort((a, b) => b.goals - a.goals)[0];
+      return { row, scorers, teamGoals, topScorer, reliance: teamGoals ? (topScorer.goals / teamGoals) * 100 : 0 };
+    })
+    .filter((entry) => entry.teamGoals > 0)
+    .sort((a, b) => b.reliance - a.reliance);
+  if (!teamGoalRows.length) return "";
+
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Scoring Balance</span>
+        <h3>One-Man Show vs Balanced Attack</h3>
+      </div>
+      <div class="advanced-stack-list">
+        ${teamGoalRows
+          .map(
+            (entry) => `
+              <div class="advanced-stack-row">
+                <strong>${escapeHTML(entry.row.team.name)}</strong>
+                <div class="advanced-stack-bar">
+                  <span class="${entry.reliance >= 50 ? "bad" : entry.reliance >= 30 ? "mid" : "elite"}" style="width:${pct(entry.reliance, 100)}%"></span>
+                </div>
+                <small>${entry.scorers.length} unique scorer${entry.scorers.length === 1 ? "" : "s"} | Top: ${escapeHTML(entry.topScorer.name)} (${entry.topScorer.goals}g, ${entry.reliance.toFixed(0)}% of team goals)</small>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+const TIER_STRENGTH_ORDER = ["elite", "mid", "bad"];
+
+function renderUpsetTracker(matches, rows) {
+  const rowsById = new Map(rows.map((row) => [row.teamId, row]));
+  const upsets = matches
+    .filter((match) => match.homeScore !== match.awayScore)
+    .map((match) => {
+      const winner = match.homeScore > match.awayScore ? match.homeTeamId : match.awayTeamId;
+      const loser = winner === match.homeTeamId ? match.awayTeamId : match.homeTeamId;
+      const winnerRow = rowsById.get(winner);
+      const loserRow = rowsById.get(loser);
+      if (!winnerRow || !loserRow) return null;
+      const winnerStrength = TIER_STRENGTH_ORDER.indexOf(winnerRow.tier);
+      const loserStrength = TIER_STRENGTH_ORDER.indexOf(loserRow.tier);
+      if (winnerStrength <= loserStrength) return null;
+      return {
+        match,
+        winnerRow,
+        loserRow,
+        winnerScore: Math.max(match.homeScore, match.awayScore),
+        loserScore: Math.min(match.homeScore, match.awayScore),
+        gap: winnerStrength - loserStrength,
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.gap - a.gap || Number(b.match.week) - Number(a.match.week))
+    .slice(0, 6);
+  if (!upsets.length) return "";
+
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Giant Killers</span>
+        <h3>Upset Tracker</h3>
+      </div>
+      <div class="table-wrap mobile-card-table-wrap">
+        <table class="data-table mobile-card-table advanced-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Upset Winner</th>
+              <th>Beaten Favorite</th>
+              <th class="num">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${upsets
+              .map(
+                (entry) => `
+                  <tr>
+                    <td data-label="Week">${escapeHTML(entry.match.week ?? "-")}</td>
+                    <td data-label="Upset Winner">${escapeHTML(entry.winnerRow.team.name)} <small>(${escapeHTML(TIERS.find((tier) => tier.key === entry.winnerRow.tier)?.label || entry.winnerRow.tier)})</small></td>
+                    <td data-label="Beaten Favorite">${escapeHTML(entry.loserRow.team.name)} <small>(${escapeHTML(TIERS.find((tier) => tier.key === entry.loserRow.tier)?.label || entry.loserRow.tier)})</small></td>
+                    <td class="num" data-label="Score">${entry.winnerScore}-${entry.loserScore}</td>
+                  </tr>
+                `
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+    </article>
+  `;
+}
+
+function renderAbsenceReport(data, matches) {
+  const players = new Map(computePlayerStats(data, { stage: "all" }).map((player) => [player.id, player]));
+  const tally = new Map();
+  matches.forEach((match) => {
+    (match.absences || []).forEach((playerId) => {
+      const player = players.get(playerId);
+      const existing = tally.get(playerId) || { id: playerId, name: player?.name || playerId, teamName: player?.teamName || "Team TBA", count: 0 };
+      existing.count += 1;
+      tally.set(playerId, existing);
+    });
+  });
+  const ranked = [...tally.values()].sort((a, b) => b.count - a.count).slice(0, 8);
+  if (!ranked.length) return "";
+  const max = Math.max(1, ...ranked.map((entry) => entry.count));
+
+  return `
+    <article class="advanced-chart-card wide">
+      <div class="advanced-chart-head">
+        <span>Availability</span>
+        <h3>Most Missed Games</h3>
+      </div>
+      <div class="advanced-stack-list">
+        ${ranked
+          .map(
+            (entry) => `
+              <div class="advanced-stack-row">
+                <strong><a class="team-name" href="./player.html?id=${escapeHTML(entry.id)}">${escapeHTML(entry.name)}</a></strong>
+                <div class="advanced-stack-bar">
+                  <span class="bad" style="width:${pct(entry.count, max)}%"></span>
+                </div>
+                <small>${entry.count} game${entry.count === 1 ? "" : "s"} missed | ${escapeHTML(entry.teamName)}</small>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
 function renderTeamTable(rows) {
   if (!rows.length) return statusMessage("empty", "Team analytics coming soon.");
   return `
@@ -831,6 +1141,13 @@ function render(data) {
         ${renderPointsRace(matches, rows)}
         ${renderBiggestWins(matches, new Map(rows.map((row) => [row.teamId, row.team])))}
         ${renderTopScorers(data)}
+        ${renderPlaymakers(data)}
+        ${renderStarLeaders(matches)}
+        ${renderPowerRankings(rows)}
+        ${renderMarginBuckets(matches, rows)}
+        ${renderScoringDepth(data, rows)}
+        ${renderUpsetTracker(matches, rows)}
+        ${renderAbsenceReport(data, matches)}
         ${renderCleanSheets(matches, rows)}
       </div>
     </section>
