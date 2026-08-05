@@ -1293,12 +1293,18 @@
           "teamId": "em-haulers-fc",
           "name": "Haroon Ahmadi",
           "goals": 1
+        },
+        {
+          "playerId": "muhammad-affan",
+          "teamId": "memon-mavericks",
+          "name": "M. Affan",
+          "goals": 1
         }
       ],
       "assists": [],
       "notes": [
         "EM Haulers FC tied Memon Mavericks 1-1 in Week 7.",
-        "Memon Mavericks scored first; the scorer was not specified.",
+        "M. Affan scored first for Memon Mavericks.",
         "Haroon Ahmadi tied the game for EM Haulers FC.",
         "Muzamil Kharooti did not play for EM Haulers FC in Week 7."
       ]
@@ -1325,6 +1331,24 @@
           "goals": 3
         },
         {
+          "playerId": "mubashir-kharooti",
+          "teamId": "rawaha-royals",
+          "name": "Mubashir Kharooti",
+          "goals": 1
+        },
+        {
+          "playerId": "tulha-ahmed",
+          "teamId": "rawaha-royals",
+          "name": "Tulha Ahmed",
+          "goals": 1
+        },
+        {
+          "playerId": "mohammed-ibrahim",
+          "teamId": "rawaha-royals",
+          "name": "Mohammad Ibrahim",
+          "goals": 1
+        },
+        {
           "playerId": "umar-manjra",
           "teamId": "gangat-warriors",
           "name": "Umar Manjra",
@@ -1334,6 +1358,12 @@
           "playerId": "yahya-adil-butt",
           "teamId": "gangat-warriors",
           "name": "Yahya Adill Butt",
+          "goals": 1
+        },
+        {
+          "playerId": "ahmad-ingar",
+          "teamId": "gangat-warriors",
+          "name": "Ahmad Ingar",
           "goals": 1
         }
       ],
@@ -1354,8 +1384,9 @@
       "notes": [
         "Rawaha Royals defeated Gangat Warriors 8-4 in Week 7.",
         "Uthman Manira scored three goals for Rawaha Royals.",
+        "Mubashir Kharooti, Tulha Ahmed, and Mohammad Ibrahim also scored for Rawaha Royals.",
         "Saad Khan, playing goalie, added an assist for Rawaha Royals.",
-        "Umar Manjra and Yahya Adill Butt scored for Gangat Warriors.",
+        "Umar Manjra, Yahya Adill Butt, and Ahmad Ingar scored for Gangat Warriors.",
         "Taaha Nakhuda added two assists for Gangat Warriors.",
         "Additional scorer details for the remaining goals are coming soon."
       ]
@@ -1373,11 +1404,19 @@
       "homeScore": 1,
       "awayScore": 1,
       "status": "Complete",
-      "scorers": [],
+      "scorers": [
+        {
+          "playerId": "adil-mubashir",
+          "teamId": "amax-visionaries",
+          "name": "Adil Mubashir",
+          "goals": 1
+        }
+      ],
       "assists": [],
       "notes": [
         "Amax Visionaries tied Sharp Strikers 1-1 in Week 7.",
-        "Scorer details are coming soon."
+        "Adil Mubashir scored for Amax Visionaries.",
+        "Sharp Strikers' scorer was not specified."
       ]
     },
     {

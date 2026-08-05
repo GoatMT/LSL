@@ -3,7 +3,7 @@ import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.0";
 import { computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
-import { controlSelect, escapeHTML, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
+import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 function playerHref(playerId = "") {
   return playerId ? `./player.html?id=${encodeURIComponent(playerId)}` : "./players.html";
@@ -482,20 +482,20 @@ function renderScoreTicker(data) {
 
   const todayIso = new Date().toISOString().slice(0, 10);
   let tickerMatches = matches.filter((match) => match.date === todayIso);
-  let tickerLabel = `Today \u2014 ${formatDateWithISO(todayIso)}`;
+  let tickerLabel = `Today \u2014 ${formatDate(todayIso)}`;
 
   if (!tickerMatches.length) {
     const upcomingDates = [...new Set(matches.filter((match) => !isCompletedMatch(match) && match.date >= todayIso).map((match) => match.date))].sort();
     const nextDate = upcomingDates[0];
     if (nextDate) {
       tickerMatches = matches.filter((match) => match.date === nextDate);
-      tickerLabel = `Next Matchday \u2014 ${formatDateWithISO(nextDate)}`;
+      tickerLabel = `Next Matchday \u2014 ${formatDate(nextDate)}`;
     } else {
       const pastDates = [...new Set(matches.filter((match) => isCompletedMatch(match)).map((match) => match.date))].sort();
       const lastDate = pastDates.at(-1);
       if (lastDate) {
         tickerMatches = matches.filter((match) => match.date === lastDate);
-        tickerLabel = `Final Results \u2014 ${formatDateWithISO(lastDate)}`;
+        tickerLabel = `Final Results \u2014 ${formatDate(lastDate)}`;
       }
     }
   }
@@ -669,7 +669,7 @@ function renderImportantNews(data, newsData = {}) {
       <div class="section-head compact-head">
         <div>
           <span class="eyebrow">Don't Miss This</span>
-          <h2>Extremely Important News</h2>
+          <h2>🚨 Extremely Important News</h2>
           <p>Live scores, playoff matchups, and the latest league news, all in one place.</p>
         </div>
         <a class="text-link" href="./matchday.html">Matchday hub</a>

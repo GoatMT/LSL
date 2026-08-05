@@ -118,7 +118,34 @@ function renderSearchResults(items, query) {
     .join("");
 }
 
+function initStickyHeaderFade() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  const FADE_DISTANCE = 140; // px of scroll over which the header fades from transparent to solid
+  let ticking = false;
+
+  const applyOpacity = () => {
+    const opacity = Math.max(0, Math.min(1, window.scrollY / FADE_DISTANCE));
+    header.style.setProperty("--nav-opacity", opacity.toFixed(3));
+    ticking = false;
+  };
+
+  applyOpacity();
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(applyOpacity);
+    },
+    { passive: true }
+  );
+}
+
 export function hydrateNavbar() {
+  initStickyHeaderFade();
+
   const toggle = document.querySelector(".nav-toggle");
   const links = document.querySelector(".nav-links");
   const moreButton = document.querySelector(".nav-dropdown-button");

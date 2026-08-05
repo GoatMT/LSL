@@ -276,7 +276,8 @@ function renderDraftBoard(config, save) {
   const isUserPick = pick && pick.teamId === save.userTeamId;
   const positions = ["All", "Forward", "Midfielder", "Defender", "Goalkeeper"];
 
-  if (!draftBoardTeamId) draftBoardTeamId = save.userTeamId;
+  const otherTeams = save.teams.filter((team) => team.id !== save.userTeamId);
+  if (!draftBoardTeamId || draftBoardTeamId === save.userTeamId) draftBoardTeamId = otherTeams[0]?.id || "";
   const yourPicks = save.draftLog.filter((entry) => entry.teamId === save.userTeamId);
   const viewedTeamPicks = save.draftLog.filter((entry) => entry.teamId === draftBoardTeamId);
   const viewedTeam = teamsById.get(draftBoardTeamId);
@@ -328,11 +329,8 @@ function renderDraftBoard(config, save) {
           <div class="control">
             <label for="draft-team-select">View another team's picks</label>
             <select id="draft-team-select">
-              ${save.teams
-                .map(
-                  (team) =>
-                    `<option value="${escapeHTML(team.id)}" ${team.id === draftBoardTeamId ? "selected" : ""}>${escapeHTML(team.name)}${team.id === save.userTeamId ? " (You)" : ""}</option>`
-                )
+              ${otherTeams
+                .map((team) => `<option value="${escapeHTML(team.id)}" ${team.id === draftBoardTeamId ? "selected" : ""}>${escapeHTML(team.name)}</option>`)
                 .join("")}
             </select>
           </div>
