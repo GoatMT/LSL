@@ -2,7 +2,7 @@ import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
 import { decorateCoachGrade } from "./coachRatings.js";
 import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.3";
-import { escapeHTML, formatPercent, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
+import { escapeHTML, formatPercent, setDocumentTitle, slugify, statusMessage, teamProfileHref, unique } from "./utils.js";
 import { setupLayout } from "./main.js";
 
 setupLayout("all-time.html");
@@ -19,10 +19,13 @@ const state = {
   week: "All",
   playersExpanded: false,
   coachesExpanded: false,
+  teamsExpanded: false,
   playerSort: "rank",
   playerDir: "asc",
   coachSort: "rank",
   coachDir: "asc",
+  teamSort: "rank",
+  teamDir: "asc",
 };
 
 const stageOptions = [
@@ -59,6 +62,20 @@ const coachColumns = [
   { key: "losses", label: "Losses", numeric: true },
   { key: "championships", label: "Championships", numeric: true },
   { key: "winPctValue", label: "Win %", numeric: true },
+];
+
+const teamColumns = [
+  { key: "rank", label: "Rank", sortable: false },
+  { key: "name", label: "Team", sortable: false },
+  { key: "seasons", label: "Seasons" },
+  { key: "games", label: "GP", numeric: true },
+  { key: "wins", label: "Wins", numeric: true },
+  { key: "ties", label: "Ties", numeric: true },
+  { key: "losses", label: "Losses", numeric: true },
+  { key: "points", label: "PTS", numeric: true },
+  { key: "gf", label: "GF", numeric: true },
+  { key: "ga", label: "GA", numeric: true },
+  { key: "gd", label: "GD", numeric: true },
 ];
 
 function canonicalKey(item, aliases = {}) {
@@ -111,17 +128,25 @@ function compareRows(a, b, key, direction) {
   return result;
 }
 
+function sortStateKeys(table) {
+  if (table === "players") return ["playerSort", "playerDir"];
+  if (table === "coaches") return ["coachSort", "coachDir"];
+  return ["teamSort", "teamDir"];
+}
+
 function prepareRows(rows, table) {
-  const sortKey = table === "players" ? state.playerSort : state.coachSort;
-  const sortDir = table === "players" ? state.playerDir : state.coachDir;
+  const [sortKeyName, dirKeyName] = sortStateKeys(table);
+  const sortKey = state[sortKeyName];
+  const sortDir = state[dirKeyName];
   return rows
     .map((row, index) => ({ ...row, defaultRank: index + 1 }))
     .sort((a, b) => compareRows(a, b, sortKey, sortDir));
 }
 
 function renderSortableHeaders(columns, table) {
-  const sortKey = table === "players" ? state.playerSort : state.coachSort;
-  const sortDir = table === "players" ? state.playerDir : state.coachDir;
+  const [sortKeyName, dirKeyName] = sortStateKeys(table);
+  const sortKey = state[sortKeyName];
+  const sortDir = state[dirKeyName];
   return columns
     .map((column) => {
       if (column.sortable === false) {
@@ -144,14 +169,13 @@ function renderSortableHeaders(columns, table) {
 }
 
 function updateSort(table, key) {
-  const keyName = table === "players" ? "playerSort" : "coachSort";
-  const dirName = table === "players" ? "playerDir" : "coachDir";
-  if (state[keyName] === key) {
-    state[dirName] = state[dirName] === "asc" ? "desc" : "asc";
+  const [sortKeyName, dirKeyName] = sortStateKeys(table);
+  if (state[sortKeyName] === key) {
+    state[dirKeyName] = state[dirKeyName] === "asc" ? "desc" : "asc";
     return;
   }
-  state[keyName] = key;
-  state[dirName] = defaultSortDirection(key);
+  state[sortKeyName] = key;
+  state[dirKeyName] = defaultSortDirection(key);
 }
 
 function stageLabel() {
@@ -374,6 +398,43 @@ function buildAllTimeCoaches(seasons, stage = "all") {
   );
 }
 
+function buildAllTimeTeams(seasons) {
+  const rows = new Map();
+
+  seasons.forEach((season) => {
+    (season.teams || []).filter(matchesDivision).forEach((team) => {
+      const record = calculateTeamRecord(season, team.id, { stage: state.stage }) || {};
+      const row = rows.get(team.id) || {
+        id: team.id,
+        name: team.name || "Unknown Team",
+        seasons: [],
+        games: 0,
+        wins: 0,
+        ties: 0,
+        losses: 0,
+        points: 0,
+        gf: 0,
+        ga: 0,
+      };
+
+      row.name = team.name || row.name;
+      row.seasons = unique([...row.seasons, season.year]).sort((a, b) => Number(a) - Number(b));
+      addNumber(row, "games", record.gp);
+      addNumber(row, "wins", record.w);
+      addNumber(row, "ties", record.d);
+      addNumber(row, "losses", record.l);
+      addNumber(row, "points", record.pts);
+      addNumber(row, "gf", record.gf);
+      addNumber(row, "ga", record.ga);
+      rows.set(team.id, row);
+    });
+  });
+
+  return [...rows.values()]
+    .map((row) => ({ ...row, gd: row.gf - row.ga }))
+    .sort((a, b) => b.points - a.points || b.wins - a.wins || b.gd - a.gd || a.name.localeCompare(b.name));
+}
+
 function summaryTile(label, value, note = "") {
   return `
     <div class="summary-tile">
@@ -408,7 +469,7 @@ function renderSummary(players, coaches) {
 
 function currentFilterPills() {
   const pills = [
-    { label: "View", value: state.view === "players" ? "Players" : "Coaches" },
+    { label: "View", value: state.view === "players" ? "Players" : state.view === "coaches" ? "Coaches" : "Teams" },
     { label: "Season", value: seasonLabel() },
     { label: "Type", value: stageLabel() },
     { label: "Division", value: divisionLabel() },
@@ -460,6 +521,7 @@ function renderToggle(allData) {
         <div class="all-time-toggle" role="group" aria-label="All time stats view">
           <button class="${state.view === "players" ? "active" : ""}" type="button" data-view="players">Players</button>
           <button class="${state.view === "coaches" ? "active" : ""}" type="button" data-view="coaches">Coaches</button>
+          <button class="${state.view === "teams" ? "active" : ""}" type="button" data-view="teams">Teams</button>
         </div>
       </div>
       <div>
@@ -544,6 +606,28 @@ function renderCoachRows(coaches) {
     .join("");
 }
 
+function renderTeamRows(teams) {
+  return teams
+    .map(
+      (team, index) => `
+        <tr>
+          <td data-label="Rank">${index + 1}</td>
+          <td data-label="Team"><a href="${escapeHTML(teamProfileHref(team.id, team.seasons?.at(-1) || ""))}">${escapeHTML(team.name)}</a></td>
+          <td data-label="Seasons">${escapeHTML(yearsLabel(team.seasons))}</td>
+          <td class="num" data-label="GP">${team.games}</td>
+          <td class="num" data-label="Wins">${team.wins}</td>
+          <td class="num" data-label="Ties">${team.ties}</td>
+          <td class="num" data-label="Losses">${team.losses}</td>
+          <td class="num" data-label="PTS">${team.points}</td>
+          <td class="num" data-label="GF">${team.gf}</td>
+          <td class="num" data-label="GA">${team.ga}</td>
+          <td class="num" data-label="GD">${team.gd > 0 ? "+" : ""}${team.gd}</td>
+        </tr>
+      `
+    )
+    .join("");
+}
+
 function renderPlayersSection(players) {
   const visible = state.playersExpanded ? players : players.slice(0, 10);
   const sortColumn = playerColumns.find((column) => column.key === state.playerSort)?.label || "Rank";
@@ -602,13 +686,44 @@ function renderCoachesSection(coaches) {
   `;
 }
 
+function renderTeamsSection(teams) {
+  const visible = state.teamsExpanded ? teams : teams.slice(0, 10);
+  const sortColumn = teamColumns.find((column) => column.key === state.teamSort)?.label || "Rank";
+  return `
+    <div class="all-time-section ${state.view === "teams" ? "" : "is-hidden"}" data-panel="teams">
+      <div class="all-time-leaderboard-head">
+        <div>
+          <span class="eyebrow">Teams</span>
+          <h2>Top 10 Teams</h2>
+        </div>
+        <p>Sorted by ${escapeHTML(sortColumn)} ${state.teamDir === "asc" ? "ascending" : "descending"}.</p>
+      </div>
+      <div class="table-wrap all-time-table-wrap">
+        <table class="data-table all-time-table all-time-team-table">
+          <thead>
+            <tr>
+              ${renderSortableHeaders(teamColumns, "teams")}
+            </tr>
+          </thead>
+          <tbody>${visible.length ? renderTeamRows(visible) : `<tr><td colspan="11">No team records found.</td></tr>`}</tbody>
+        </table>
+      </div>
+      <div class="all-time-actions">
+        <button class="button primary" type="button" data-expand="teams">${state.teamsExpanded ? "Show Less" : "View More"}</button>
+      </div>
+    </div>
+  `;
+}
+
 function render(allData, aliases) {
   normalizeScope(allData);
   const scopedData = scopedSeasonData(allData);
   const basePlayers = addPlayerOVR(buildAllTimePlayers(scopedData, aliases, state.stage));
   const baseCoaches = buildAllTimeCoaches(scopedData, state.stage).map((coach) => decorateCoachGrade(coach, coachRatings));
+  const baseTeams = buildAllTimeTeams(scopedData);
   const players = prepareRows(basePlayers, "players");
   const coaches = prepareRows(baseCoaches, "coaches");
+  const teams = prepareRows(baseTeams, "teams");
 
   root.innerHTML = `
     <section class="section-panel all-time-header-card">
@@ -616,7 +731,7 @@ function render(allData, aliases) {
         <div>
           <span class="eyebrow">ALL TIME</span>
           <h1>All Time Stats</h1>
-          <p>Career leaders by player, coach, season, division, and week.</p>
+          <p>Career leaders by player, coach, team, season, division, and week.</p>
         </div>
       </div>
     </section>
@@ -636,6 +751,7 @@ function render(allData, aliases) {
       ${renderSummary(basePlayers, baseCoaches)}
       ${renderPlayersSection(players)}
       ${renderCoachesSection(coaches)}
+      ${renderTeamsSection(teams)}
     </section>
   `;
 
@@ -681,6 +797,7 @@ function render(allData, aliases) {
       const target = button.dataset.expand;
       if (target === "players") state.playersExpanded = !state.playersExpanded;
       if (target === "coaches") state.coachesExpanded = !state.coachesExpanded;
+      if (target === "teams") state.teamsExpanded = !state.teamsExpanded;
       render(allData, aliases);
     });
   });
