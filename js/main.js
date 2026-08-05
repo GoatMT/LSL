@@ -2,7 +2,7 @@ import { renderFooter } from "../components/footer.js";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.0";
-import { computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch } from "./leagueEngine.js?v=3.3";
+import { computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { controlSelect, escapeHTML, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 function playerHref(playerId = "") {
@@ -407,6 +407,115 @@ function homeScoreText(match) {
   return "vs";
 }
 
+// ---------- Live score / upcoming game ticker ----------
+
+function parseClockToMinutes(clock) {
+  const parsed = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(String(clock || "").trim());
+  if (!parsed) return null;
+  let hours = Number(parsed[1]) % 12;
+  if (/PM/i.test(parsed[3])) hours += 12;
+  return hours * 60 + Number(parsed[2]);
+}
+
+function matchLiveWindow(match) {
+  if (!match.date || !match.time) return null;
+  const [startRaw, endRaw] = String(match.time).split("-").map((part) => part.trim());
+  const startMinutes = parseClockToMinutes(startRaw);
+  if (startMinutes === null) return null;
+  const endMinutes = endRaw ? parseClockToMinutes(endRaw) : null;
+  const start = new Date(`${match.date}T00:00:00`);
+  start.setMinutes(start.getMinutes() + startMinutes);
+  const end = new Date(`${match.date}T00:00:00`);
+  end.setMinutes(end.getMinutes() + (endMinutes !== null ? endMinutes : startMinutes + 45));
+  return { start, end };
+}
+
+function matchLiveStatus(match) {
+  if (isCompletedMatch(match)) return "final";
+  const window = matchLiveWindow(match);
+  if (!window) return "scheduled";
+  const now = new Date();
+  return now >= window.start && now <= window.end ? "live" : "scheduled";
+}
+
+function teamTickerAbbr(team, fallbackName) {
+  return team?.shortName || team?.abbr || initials(team?.name || fallbackName || "TBD");
+}
+
+function renderTickerItem(data, match) {
+  const teams = new Map((data.teams || []).map((team) => [team.id, team]));
+  const home = teams.get(match.homeTeamId);
+  const away = teams.get(match.awayTeamId);
+  const status = matchLiveStatus(match);
+  const statusText = status === "live" ? "LIVE" : status === "final" ? "FINAL" : escapeHTML(match.time || formatDateWithISO(match.date));
+
+  if (match.activityTitle) {
+    return `
+      <a class="score-ticker-item activity" href="./matchday.html">
+        <span class="score-ticker-status ${status}">${status === "live" ? `<span class="score-ticker-live-dot" aria-hidden="true"></span>LIVE` : statusText}</span>
+        <span class="score-ticker-activity-name">${escapeHTML(match.activityTitle)}</span>
+      </a>
+    `;
+  }
+
+  return `
+    <a class="score-ticker-item" href="${escapeHTML(teamProfileHref(match.homeTeamId, data.year))}">
+      <span class="score-ticker-status ${status}">${status === "live" ? `<span class="score-ticker-live-dot" aria-hidden="true"></span>LIVE` : statusText}</span>
+      <span class="score-ticker-matchup">
+        <span class="score-ticker-team">
+          <span class="score-ticker-abbr">${escapeHTML(teamTickerAbbr(home, match.homeTeamName))}</span>
+          <strong>${escapeHTML(Number.isFinite(match.homeScore) ? match.homeScore : "-")}</strong>
+        </span>
+        <span class="score-ticker-team">
+          <span class="score-ticker-abbr">${escapeHTML(teamTickerAbbr(away, match.awayTeamName))}</span>
+          <strong>${escapeHTML(Number.isFinite(match.awayScore) ? match.awayScore : "-")}</strong>
+        </span>
+      </span>
+      ${status !== "scheduled" ? `<span class="score-ticker-time">${escapeHTML(formatDateWithISO(match.date))}</span>` : ""}
+    </a>
+  `;
+}
+
+function renderScoreTicker(data) {
+  const matches = (data.matches || []).filter((match) => match.stage === "regular" || match.stage === "playoffs");
+  if (!matches.length) return "";
+
+  const todayIso = new Date().toISOString().slice(0, 10);
+  let tickerMatches = matches.filter((match) => match.date === todayIso);
+  let tickerLabel = `Today \u2014 ${formatDateWithISO(todayIso)}`;
+
+  if (!tickerMatches.length) {
+    const upcomingDates = [...new Set(matches.filter((match) => !isCompletedMatch(match) && match.date >= todayIso).map((match) => match.date))].sort();
+    const nextDate = upcomingDates[0];
+    if (nextDate) {
+      tickerMatches = matches.filter((match) => match.date === nextDate);
+      tickerLabel = `Next Matchday \u2014 ${formatDateWithISO(nextDate)}`;
+    } else {
+      const pastDates = [...new Set(matches.filter((match) => isCompletedMatch(match)).map((match) => match.date))].sort();
+      const lastDate = pastDates.at(-1);
+      if (lastDate) {
+        tickerMatches = matches.filter((match) => match.date === lastDate);
+        tickerLabel = `Final Results \u2014 ${formatDateWithISO(lastDate)}`;
+      }
+    }
+  }
+
+  if (!tickerMatches.length) return "";
+  const hasLive = tickerMatches.some((match) => matchLiveStatus(match) === "live");
+
+  return `
+    <section class="score-ticker-bar" aria-label="Live scores and upcoming games">
+      <div class="score-ticker-label">
+        ${hasLive ? `<span class="score-ticker-live-badge"><span class="score-ticker-live-dot" aria-hidden="true"></span>LIVE</span>` : `<span class="score-ticker-kicker">Scores</span>`}
+        <span>${escapeHTML(tickerLabel)}</span>
+      </div>
+      <div class="score-ticker-track">
+        ${tickerMatches.map((match) => renderTickerItem(data, match)).join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderHomeMatchCard(data, match) {
   const teams = new Map((data.teams || []).map((team) => [team.id, team]));
   const home = teams.get(match.homeTeamId);
@@ -447,12 +556,139 @@ function renderHomeMatchCard(data, match) {
   `;
 }
 
-function renderHomeContent(data, allData, teamOfWeek = {}, awardWatch = {}) {
+function playerNameById(data, playerId) {
+  return (data.players || []).find((player) => player.id === playerId)?.name || "";
+}
+
+function scorersSummary(data, match) {
+  return (match.scorers || [])
+    .map((scorer) => {
+      const name = playerNameById(data, scorer.playerId) || scorer.name || "";
+      const goals = Number(scorer.goals) || 1;
+      return name ? `${name}${goals > 1 ? ` (${goals})` : ""}` : "";
+    })
+    .filter(Boolean)
+    .join(", ");
+}
+
+function resolvePlayoffTeam(data, placeholderName, playoffMatches) {
+  const parsed = /^Winner (QF|SF)(\d)$/i.exec(String(placeholderName || "").trim());
+  if (!parsed) return null;
+  const roundLabel = parsed[1].toUpperCase() === "QF" ? "Quarterfinal" : "Semifinal";
+  const source = playoffMatches.find((match) => match.label === `${roundLabel} ${parsed[2]}`);
+  if (!source || !isCompletedMatch(source)) return null;
+  const winnerId = winnerTeamId(source);
+  if (!winnerId) return null;
+  return (data.teams || []).find((team) => team.id === winnerId) || null;
+}
+
+function resolvedMatchTeams(data, match, playoffMatches) {
+  const teams = new Map((data.teams || []).map((team) => [team.id, team]));
+  const home = match.homeTeamId ? teams.get(match.homeTeamId) : resolvePlayoffTeam(data, match.homeTeamName, playoffMatches);
+  const away = match.awayTeamId ? teams.get(match.awayTeamId) : resolvePlayoffTeam(data, match.awayTeamName, playoffMatches);
+  return {
+    homeName: home?.name || match.homeTeamName || "TBD",
+    awayName: away?.name || match.awayTeamName || "TBD",
+    homeId: home?.id || match.homeTeamId || "",
+    awayId: away?.id || match.awayTeamId || "",
+  };
+}
+
+function renderImportantNewsCard({ tag, tone, headline, detail, href }) {
+  return `
+    <a class="important-news-card ${escapeHTML(tone)}" href="${escapeHTML(href || "./matchday.html")}">
+      <span class="important-news-tag ${escapeHTML(tone)}">${tone === "live" ? `<span class="score-ticker-live-dot" aria-hidden="true"></span>` : ""}${escapeHTML(tag)}</span>
+      <strong>${escapeHTML(headline)}</strong>
+      <p>${escapeHTML(detail)}</p>
+    </a>
+  `;
+}
+
+function renderImportantNews(data, newsData = {}) {
+  const playoffMatches = (data.matches || []).filter((match) => match.stage === "playoffs" && !match.activityTitle);
+  const items = [];
+
+  if (playoffMatches.length) {
+    const resolved = playoffMatches.map((match) => ({ match, ...resolvedMatchTeams(data, match, playoffMatches) }));
+    const live = resolved.find(({ match }) => matchLiveStatus(match) === "live");
+    const completed = resolved.filter(({ match }) => isCompletedMatch(match));
+    const upcoming = resolved.filter(({ match }) => !isCompletedMatch(match) && matchLiveStatus(match) !== "live");
+
+    if (live) {
+      items.push({
+        tag: "LIVE NOW",
+        tone: "live",
+        headline: `${live.homeName} vs ${live.awayName}`,
+        detail: `${live.match.label} \u2014 ${live.match.time || "In progress"}`,
+        href: live.homeId ? teamProfileHref(live.homeId, data.year) : "./matchday.html",
+      });
+    }
+
+    const latestResult = completed.at(-1);
+    if (latestResult) {
+      const winnerId = winnerTeamId(latestResult.match);
+      const winnerName = winnerId === latestResult.match.homeTeamId ? latestResult.homeName : latestResult.awayName;
+      const scorers = scorersSummary(data, latestResult.match);
+      items.push({
+        tag: "FINAL",
+        tone: "final",
+        headline: winnerName ? `${winnerName} win ${latestResult.match.homeScore}-${latestResult.match.awayScore}` : `${latestResult.homeName} ${latestResult.match.homeScore}-${latestResult.match.awayScore} ${latestResult.awayName}`,
+        detail: `${latestResult.match.label}${scorers ? ` \u2014 Goals: ${scorers}` : ""}`,
+        href: winnerId ? teamProfileHref(winnerId, data.year) : "./matchday.html",
+      });
+    }
+
+    const nextMatch = upcoming[0];
+    if (nextMatch) {
+      items.push({
+        tag: live ? "UP NEXT" : "NEXT MATCHUP",
+        tone: "next",
+        headline: `${nextMatch.homeName} vs ${nextMatch.awayName}`,
+        detail: `${nextMatch.match.label} \u2014 ${nextMatch.match.time || "Time TBA"}`,
+        href: "./matchday.html",
+      });
+    }
+  }
+
+  const featured = (newsData.items || []).filter((item) => item.homeFeatured);
+  if (featured.length) {
+    const top = featured[0];
+    items.push({
+      tag: top.label || "League News",
+      tone: "news",
+      headline: top.label || "League News",
+      detail: top.message || "",
+      href: "./news.html",
+    });
+  }
+
+  if (!items.length) return "";
+
+  return `
+    <section class="section-panel important-news-panel">
+      <div class="section-head compact-head">
+        <div>
+          <span class="eyebrow">Don't Miss This</span>
+          <h2>Extremely Important News</h2>
+          <p>Live scores, playoff matchups, and the latest league news, all in one place.</p>
+        </div>
+        <a class="text-link" href="./matchday.html">Matchday hub</a>
+      </div>
+      <div class="important-news-grid">
+        ${items.map(renderImportantNewsCard).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderHomeContent(data, allData, teamOfWeek = {}, awardWatch = {}, newsData = {}) {
   const latest = getLatestCompletedMatches([data], 4).reverse();
   const upcoming = getUpcomingMatches([data], 4);
   const allChampions = getAwards(allData, { division: "Seniors" }).filter((award) => award.category === "Champion Team");
 
   return `
+    ${renderScoreTicker(data)}
+
     <section class="hero">
       <div class="hero-copy">
         <span class="hero-kicker">Lantern Soccer League</span>
@@ -472,6 +708,8 @@ function renderHomeContent(data, allData, teamOfWeek = {}, awardWatch = {}) {
     </section>
 
     ${renderHomeLeaders(allData)}
+
+    ${renderImportantNews(data, newsData)}
 
     ${renderTeamOfWeek(teamOfWeek)}
 
@@ -545,11 +783,12 @@ async function renderHome() {
   const allData = await loadAllSeasons();
   const teamOfWeekData = await loadJSON("./data/team-of-week.json", {});
   const awardWatchData = await loadJSON("./data/award-watch.json", {});
+  const newsData = await loadJSON("./data/news.json", { items: [] });
   let selectedSeason = SITE.defaultSeason;
 
   async function render() {
     const data = await loadSeasonData(selectedSeason);
-    root.innerHTML = renderHomeContent(data, allData, teamOfWeekData, awardWatchData);
+    root.innerHTML = renderHomeContent(data, allData, teamOfWeekData, awardWatchData, newsData);
     hydrateHomeLeaders(allData);
   }
 

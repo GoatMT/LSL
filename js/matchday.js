@@ -94,6 +94,35 @@ function hasFullScore(match) {
   return Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore);
 }
 
+function parseClockTime(baseDate, timeStr = "") {
+  const parts = timeStr.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!parts) return null;
+  const [, hourStr, minuteStr, meridiem] = parts;
+  let hour = Number(hourStr) % 12;
+  if (/PM/i.test(meridiem)) hour += 12;
+  const date = new Date(baseDate);
+  date.setHours(hour, Number(minuteStr), 0, 0);
+  return date;
+}
+
+function matchTimeWindow(match) {
+  if (!match.date || !match.time) return null;
+  const [startPart, endPart] = match.time.split(/\s+(?:-|to)\s+/i);
+  const base = new Date(`${match.date}T00:00:00`);
+  if (Number.isNaN(base.getTime())) return null;
+  const start = parseClockTime(base, startPart);
+  if (!start) return null;
+  const end = endPart ? parseClockTime(base, endPart) : null;
+  return { start, end: end && end > start ? end : new Date(start.getTime() + 45 * 60000) };
+}
+
+function isMatchLive(match) {
+  const window = matchTimeWindow(match);
+  if (!window) return false;
+  const now = new Date();
+  return now >= window.start && now <= window.end;
+}
+
 function resultTypeLabel(match) {
   return hasFullScore(match) ? "Final" : "Result";
 }
@@ -123,10 +152,19 @@ function renderMatchdayStatus(data, match) {
     `;
   }
 
+  if (isMatchLive(match)) {
+    return `
+      <div class="matchday-projection live">
+        <span>Live</span>
+        <strong>${escapeHTML(match.time || "In progress")}</strong>
+      </div>
+    `;
+  }
+
   return `
-    <div class="matchday-projection scheduled">
-      <span>${escapeHTML(match.status || "Scheduled")}</span>
-      <strong>Official Schedule</strong>
+    <div class="matchday-projection upcoming">
+      <span>Upcoming</span>
+      <strong>${escapeHTML(match.time || "Time TBA")}</strong>
     </div>
   `;
 }

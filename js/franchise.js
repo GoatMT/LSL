@@ -75,6 +75,7 @@ let freeAgencyPositionFilter = "All";
 let freeAgencyMessage = null;
 let nextSeasonMessage = null;
 let currentPage = "home";
+let draftBoardTeamId = "";
 
 const PAGES = [
   { id: "home", label: "Home" },
@@ -275,6 +276,11 @@ function renderDraftBoard(config, save) {
   const isUserPick = pick && pick.teamId === save.userTeamId;
   const positions = ["All", "Forward", "Midfielder", "Defender", "Goalkeeper"];
 
+  if (!draftBoardTeamId) draftBoardTeamId = save.userTeamId;
+  const yourPicks = save.draftLog.filter((entry) => entry.teamId === save.userTeamId);
+  const viewedTeamPicks = save.draftLog.filter((entry) => entry.teamId === draftBoardTeamId);
+  const viewedTeam = teamsById.get(draftBoardTeamId);
+
   const pool = availablePlayers(save, playerPool)
     .filter((player) => draftPositionFilter === "All" || player.position === draftPositionFilter)
     .sort((a, b) => b.rating - a.rating)
@@ -294,6 +300,61 @@ function renderDraftBoard(config, save) {
         <div class="rule-pill"><span>Round</span><strong>${escapeHTML(pick?.round ?? DRAFT_ROUNDS)} / ${escapeHTML(DRAFT_ROUNDS)}</strong></div>
         <div class="rule-pill"><span>Overall pick</span><strong>${escapeHTML(pick?.overall ?? totalPicks)} / ${escapeHTML(totalPicks)}</strong></div>
         <div class="rule-pill"><span>Players left</span><strong>${escapeHTML(save.freeAgents.length)}</strong></div>
+      </div>
+
+      <div class="franchise-draft-picks-columns">
+        <div class="franchise-draft-picks-panel">
+          <h3>Your Picks (${yourPicks.length})</h3>
+          ${
+            yourPicks.length
+              ? `<div class="franchise-draft-log no-border">
+                  ${yourPicks
+                    .map(
+                      (entry) => `
+                        <div class="franchise-draft-log-row you">
+                          <span>#${escapeHTML(entry.overall)}</span>
+                          <strong>Rd ${escapeHTML(entry.round)}</strong>
+                          <span>${escapeHTML(entry.playerName)}</span>
+                        </div>
+                      `
+                    )
+                    .join("")}
+                </div>`
+              : `<p class="franchise-note">You haven't made a pick yet.</p>`
+          }
+        </div>
+
+        <div class="franchise-draft-picks-panel">
+          <div class="control">
+            <label for="draft-team-select">View another team's picks</label>
+            <select id="draft-team-select">
+              ${save.teams
+                .map(
+                  (team) =>
+                    `<option value="${escapeHTML(team.id)}" ${team.id === draftBoardTeamId ? "selected" : ""}>${escapeHTML(team.name)}${team.id === save.userTeamId ? " (You)" : ""}</option>`
+                )
+                .join("")}
+            </select>
+          </div>
+          <h3>${escapeHTML(viewedTeam?.name || "Team")}'s Picks (${viewedTeamPicks.length})</h3>
+          ${
+            viewedTeamPicks.length
+              ? `<div class="franchise-draft-log no-border">
+                  ${viewedTeamPicks
+                    .map(
+                      (entry) => `
+                        <div class="franchise-draft-log-row${entry.teamId === save.userTeamId ? " you" : ""}">
+                          <span>#${escapeHTML(entry.overall)}</span>
+                          <strong>Rd ${escapeHTML(entry.round)}</strong>
+                          <span>${escapeHTML(entry.playerName)}</span>
+                        </div>
+                      `
+                    )
+                    .join("")}
+                </div>`
+              : `<p class="franchise-note">No picks yet.</p>`
+          }
+        </div>
       </div>
 
       ${
@@ -1166,6 +1227,7 @@ function attachHandlers(config) {
     freeAgencyPositionFilter = "All";
     freeAgencyMessage = null;
     nextSeasonMessage = null;
+    draftBoardTeamId = "";
     currentPage = "home";
     render(config);
   });
@@ -1185,6 +1247,11 @@ function attachHandlers(config) {
       draftPositionFilter = button.dataset.draftFilter;
       render(config);
     });
+  });
+
+  document.getElementById("draft-team-select")?.addEventListener("change", (event) => {
+    draftBoardTeamId = event.target.value;
+    render(config);
   });
 
   [...document.querySelectorAll("[data-draft-player]")].forEach((button) => {

@@ -13,7 +13,7 @@ const stageOptions = [
   { value: "regular", label: "Regular Season" },
   { value: "playoffs", label: "Playoffs" },
 ];
-let state = { stage: "all", vsStage: "all", vsYear: "all" };
+let state = { stage: "all", vsStage: "all", vsYear: "" };
 
 const vsStageOptions = [
   { value: "all", label: "All Games" },
@@ -387,7 +387,7 @@ function renderPlayerDetailSections(allData, playerId, profile) {
 function vsYearOptions(allData, playerId) {
   const allRows = computePlayerVsTeamStatsBySeason(allData, playerId, { stage: "all" });
   const years = unique(allRows.map((row) => row.year)).sort((a, b) => Number(b) - Number(a));
-  return [{ value: "all", label: "All Seasons" }, ...years.map((year) => ({ value: year, label: year }))];
+  return years.map((year) => ({ value: year, label: year }));
 }
 
 function meetingBadge(game) {
@@ -407,9 +407,8 @@ function renderVsOpponentSection(allData, playerId, viewState) {
 
   const yearOptions = vsYearOptions(allData, playerId);
   let seasonRows = computePlayerVsTeamStatsBySeason(allData, playerId, { stage: viewState.vsStage });
-  if (viewState.vsYear !== "all") {
-    seasonRows = seasonRows.filter((row) => row.year === viewState.vsYear);
-  }
+  const activeYear = viewState.vsYear || yearOptions[0]?.value || "";
+  seasonRows = seasonRows.filter((row) => row.year === activeYear);
 
   return `
     <section class="card vs-opponent-card">
@@ -419,14 +418,14 @@ function renderVsOpponentSection(allData, playerId, viewState) {
           <h2>Stats vs Opponent</h2>
           <p>Games played, record, goals, and assists against each opponent. Use the season and stats-type dropdowns to switch between individual years, regular season, playoffs, or all games. When this player faced the same team more than once in a season, each meeting shows as its own small W/D/L badge next to the games played total — hover a badge to see that game's date and stats.${
             wasTraded
-              ? " This player was traded during at least one season shown below — each season heading lists every team they suited up for, and opponent totals only count games actually played for that roster, so a former team will not show up as an opponent for games played while still on that team."
+              ? " This player was traded during at least one season shown below — the season played for lists every team they suited up for, and opponent totals only count games actually played for that roster, so a former team will not show up as an opponent for games played while still on that team."
               : ""
           }</p>
         </div>
       </div>
       <div class="official-filter-body vs-opponent-filter-body">
         <div class="official-filter-control">
-          ${controlSelect("vs-year", "Season", yearOptions, viewState.vsYear)}
+          ${controlSelect("vs-year", "Season", yearOptions, activeYear)}
         </div>
         <div class="official-filter-control">
           ${controlSelect("vs-stage", "Stats Type", vsStageOptions, viewState.vsStage)}
@@ -434,62 +433,54 @@ function renderVsOpponentSection(allData, playerId, viewState) {
       </div>
       ${
         seasonRows.length
-          ? `<div class="award-season-list">
-              ${seasonRows
-                .map(
-                  (season, index) => `
-                    <details class="award-season-section"${index === 0 ? " open" : ""}>
-                      <summary class="award-season-head">
-                        <div>
-                          <span class="eyebrow">Season</span>
-                          <h3>${escapeHTML(season.year)}</h3>
-                          <p class="source-note">${escapeHTML(careerByYear.get(season.year)?.team || "Team TBA")}</p>
-                        </div>
-                        <span class="history-season">${season.opponents.length} opponent${season.opponents.length === 1 ? "" : "s"}</span>
-                      </summary>
-                      <div class="table-wrap player-career-wrap">
-                        <table class="data-table player-career-table vs-opponent-table">
-                          <colgroup>
-                            <col class="vs-opponent-col-team">
-                            <col class="vs-opponent-col-stat">
-                            <col class="vs-opponent-col-stat">
-                            <col class="vs-opponent-col-stat">
-                            <col class="vs-opponent-col-stat">
-                          </colgroup>
-                          <thead>
-                            <tr>
-                              <th>Opponent</th>
-                              <th class="num">GP</th>
-                              <th class="num">W-D-L</th>
-                              <th class="num">Goals</th>
-                              <th class="num">Assists</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            ${season.opponents
-                              .map(
-                                (row) => `
-                                  <tr>
-                                    <td><a class="team-name" href="./team.html?id=${encodeURIComponent(row.teamId)}">${escapeHTML(row.teamName)}</a></td>
-                                    <td class="num">
-                                      <span class="vs-gp-value">${row.gp}</span>
-                                      ${row.gp > 1 ? `<span class="vs-meetings">${row.games.map((game) => meetingBadge(game)).join("")}</span>` : ""}
-                                    </td>
-                                    <td class="num">${row.wins}-${row.draws}-${row.losses}</td>
-                                    <td class="num">${row.goals}</td>
-                                    <td class="num">${row.assists}</td>
-                                  </tr>
-                                `
-                              )
-                              .join("")}
-                          </tbody>
-                        </table>
-                      </div>
-                    </details>
-                  `
-                )
-                .join("")}
-            </div>`
+          ? seasonRows
+              .map(
+                (season) => `
+                  <div class="vs-opponent-season-info">
+                    <span class="eyebrow">${escapeHTML(season.year)}</span>
+                    <p class="source-note">${escapeHTML(careerByYear.get(season.year)?.team || "Team TBA")} | ${season.opponents.length} opponent${season.opponents.length === 1 ? "" : "s"}</p>
+                  </div>
+                  <div class="table-wrap player-career-wrap">
+                    <table class="data-table player-career-table vs-opponent-table">
+                      <colgroup>
+                        <col class="vs-opponent-col-team">
+                        <col class="vs-opponent-col-stat">
+                        <col class="vs-opponent-col-stat">
+                        <col class="vs-opponent-col-stat">
+                        <col class="vs-opponent-col-stat">
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th>Opponent</th>
+                          <th class="num">GP</th>
+                          <th class="num">W-D-L</th>
+                          <th class="num">Goals</th>
+                          <th class="num">Assists</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${season.opponents
+                          .map(
+                            (row) => `
+                              <tr>
+                                <td><a class="team-name" href="./team.html?id=${encodeURIComponent(row.teamId)}">${escapeHTML(row.teamName)}</a></td>
+                                <td class="num">
+                                  <span class="vs-gp-value">${row.gp}</span>
+                                  ${row.gp > 1 ? `<span class="vs-meetings">${row.games.map((game) => meetingBadge(game)).join("")}</span>` : ""}
+                                </td>
+                                <td class="num">${row.wins}-${row.draws}-${row.losses}</td>
+                                <td class="num">${row.goals}</td>
+                                <td class="num">${row.assists}</td>
+                              </tr>
+                            `
+                          )
+                          .join("")}
+                      </tbody>
+                    </table>
+                  </div>
+                `
+              )
+              .join("")
           : statusMessage("empty", "No matchups found for the selected season and stats type.")
       }
     </section>

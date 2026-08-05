@@ -95,6 +95,20 @@
     grid-template-columns: 1fr;
   }
 
+  .score-ticker-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .score-ticker-label {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .score-ticker-item {
+    min-width: 132px;
+  }
+
   .home-split,
   .home-match-columns,
   .home-leader-view,
