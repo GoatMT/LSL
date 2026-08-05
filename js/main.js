@@ -4,6 +4,7 @@ import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.0";
 import { computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
+import { initPageAnimations } from "./animations.js";
 
 function playerHref(playerId = "") {
   return playerId ? `./player.html?id=${encodeURIComponent(playerId)}` : "./players.html";
@@ -13,6 +14,7 @@ export function setupLayout(activeHref) {
   document.getElementById("site-navbar").innerHTML = renderNavbar(activeHref);
   document.getElementById("site-footer").innerHTML = renderFooter();
   hydrateNavbar();
+  initPageAnimations();
 }
 
 function renderTeamOfWeek(teamOfWeek = {}) {

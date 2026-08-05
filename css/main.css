@@ -1299,3 +1299,162 @@ button {
 .imt-media-card.imt-media-khairul-ummah-team img {
   object-position: center 25%;
 }
+
+/* ================= Animations ================= */
+
+@keyframes lsl-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lsl-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes lsl-slide-down {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lsl-pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.55; }
+}
+
+@keyframes lsl-pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@keyframes lsl-shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+/* Page + nav entrance */
+#site-navbar.nav-enter .site-header {
+  animation: lsl-slide-down 0.5s ease both;
+}
+
+#page-root.page-enter {
+  animation: lsl-fade-up 0.45s ease both;
+}
+
+/* Scroll-reveal utility, applied by js/animations.js */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover polish, site-wide */
+.card,
+.section-panel,
+.franchise-bracket-round,
+.advanced-chart-card,
+.important-news-card,
+.history-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.card:hover,
+.important-news-card:hover,
+.history-card:hover,
+.advanced-chart-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0px) scale(0.97);
+}
+
+.pill {
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.pill:hover {
+  transform: translateY(-1px) scale(1.03);
+}
+
+.data-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+a {
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.nav-inner a {
+  position: relative;
+}
+
+.nav-inner a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.85;
+  transition: right 0.2s ease;
+}
+
+.nav-inner a:hover::after {
+  right: 0;
+}
+
+/* Live indicators */
+.score-ticker-live-dot {
+  animation: lsl-pulse-dot 1.2s ease-in-out infinite;
+}
+
+.important-news-tag.live .score-ticker-live-dot {
+  animation: lsl-pulse-dot 1s ease-in-out infinite;
+}
+
+/* Loading state */
+.loading-state {
+  animation: lsl-pulse-soft 1.4s ease-in-out infinite;
+}
+
+/* Franchise team card badge, subtle entrance already covered by .reveal-on-scroll via .card */
+.franchise-team-badge {
+  transition: transform 0.15s ease;
+}
+
+.franchise-team-card:hover .franchise-team-badge {
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -559,45 +559,6 @@ function renderTopScorers(data) {
   `;
 }
 
-function renderHomeAwaySplit(matches, rows) {
-  const splits = new Map(rows.map((row) => [row.teamId, { home: blankRecord(), away: blankRecord() }]));
-  matches.forEach((match) => {
-    const winner = winnerTeamId(match);
-    const home = splits.get(match.homeTeamId);
-    const away = splits.get(match.awayTeamId);
-    if (home) addMatch(home.home, match.homeScore, match.awayScore, winner, match.homeTeamId);
-    if (away) addMatch(away.away, match.awayScore, match.homeScore, winner, match.awayTeamId);
-  });
-  const ranked = rows.filter((row) => splits.get(row.teamId).home.gp + splits.get(row.teamId).away.gp > 0);
-  if (!ranked.length) return "";
-  return `
-    <article class="advanced-chart-card wide">
-      <div class="advanced-chart-head">
-        <span>Venue Split</span>
-        <h3>Home vs Away Performance</h3>
-      </div>
-      <div class="advanced-tug-list">
-        ${ranked
-          .map((row) => {
-            const split = splits.get(row.teamId);
-            const max = Math.max(1, split.home.pts, split.away.pts);
-            return `
-              <div class="advanced-tug-row">
-                <strong>${escapeHTML(row.team.name)}</strong>
-                <div class="advanced-tug-bar">
-                  <span class="against" style="width:${pct(split.away.pts, max)}%">Away ${escapeHTML(recordLabel(split.away))}</span>
-                  <i></i>
-                  <span class="for" style="width:${pct(split.home.pts, max)}%">Home ${escapeHTML(recordLabel(split.home))}</span>
-                </div>
-              </div>
-            `;
-          })
-          .join("")}
-      </div>
-    </article>
-  `;
-}
-
 function computeShutoutCounts(matches, rows) {
   const counts = new Map(rows.map((row) => [row.teamId, 0]));
   matches.forEach((match) => {
@@ -743,86 +704,6 @@ function renderBiggestWins(matches, teamsById) {
   `;
 }
 
-function renderPlaymakers(data) {
-  const players = computePlayerStats(data, { stage: "regular" })
-    .filter((player) => player.division === state.division)
-    .filter((player) => player.assists > 0)
-    .sort((a, b) => b.assists - a.assists || b.goals - a.goals)
-    .slice(0, 8);
-  if (!players.length) return "";
-  const max = Math.max(1, ...players.map((player) => player.assists));
-  return `
-    <article class="advanced-chart-card wide">
-      <div class="advanced-chart-head">
-        <span>Individual Leaders</span>
-        <h3>Playmakers</h3>
-      </div>
-      <div class="advanced-stack-list">
-        ${players
-          .map(
-            (player) => `
-              <div class="advanced-stack-row">
-                <strong><a class="team-name" href="./player.html?id=${escapeHTML(player.id)}">${escapeHTML(player.name)}</a></strong>
-                <div class="advanced-stack-bar">
-                  <span class="mid" style="width:${pct(player.assists, max)}%"></span>
-                </div>
-                <small>${player.assists} assists | ${player.goals} goals | ${escapeHTML(player.teamName || "Team TBA")}</small>
-              </div>
-            `
-          )
-          .join("")}
-      </div>
-    </article>
-  `;
-}
-
-function computeStarLeaders(matches) {
-  const tally = new Map();
-  matches.forEach((match) => {
-    (match.stars || []).forEach((star) => {
-      if (!star || (!star.playerId && !star.name)) return;
-      const key = star.playerId || star.name;
-      const existing = tally.get(key) || { id: "", name: star.name || "Player TBA", teamName: star.teamName || "", momCount: 0, nodCount: 0 };
-      existing.nodCount += 1;
-      if (Number(star.rank) === 1) existing.momCount += 1;
-      existing.name = star.name || existing.name;
-      existing.teamName = star.teamName || existing.teamName;
-      if (star.playerId) existing.id = star.playerId;
-      tally.set(key, existing);
-    });
-  });
-  return [...tally.values()].sort((a, b) => b.momCount - a.momCount || b.nodCount - a.nodCount).slice(0, 8);
-}
-
-function renderStarLeaders(matches) {
-  const leaders = computeStarLeaders(matches);
-  if (!leaders.length) return "";
-  const max = Math.max(1, ...leaders.map((entry) => entry.momCount || entry.nodCount));
-  return `
-    <article class="advanced-chart-card wide">
-      <div class="advanced-chart-head">
-        <span>Weekly Standouts</span>
-        <h3>Star Of The Match Leaders</h3>
-      </div>
-      <div class="advanced-stack-list">
-        ${leaders
-          .map(
-            (entry) => `
-              <div class="advanced-stack-row">
-                <strong>${entry.id ? `<a class="team-name" href="./player.html?id=${escapeHTML(entry.id)}">${escapeHTML(entry.name)}</a>` : escapeHTML(entry.name)}</strong>
-                <div class="advanced-stack-bar">
-                  <span class="elite" style="width:${pct(entry.momCount || entry.nodCount, max)}%"></span>
-                </div>
-                <small>${entry.momCount} Man of the Match | ${entry.nodCount} total star nod${entry.nodCount === 1 ? "" : "s"} | ${escapeHTML(entry.teamName || "Team TBA")}</small>
-              </div>
-            `
-          )
-          .join("")}
-      </div>
-    </article>
-  `;
-}
-
 function renderPowerRankings(rows) {
   if (rows.length < 2) return "";
   const scored = rows.map((row) => ({
@@ -852,59 +733,6 @@ function renderPowerRankings(rows) {
               </div>
             `
           )
-          .join("")}
-      </div>
-    </article>
-  `;
-}
-
-function marginBucket(margin) {
-  if (margin <= 1) return "close";
-  if (margin <= 3) return "mid";
-  return "blowout";
-}
-
-function renderMarginBuckets(matches, rows) {
-  const decided = matches.filter((match) => match.homeScore !== match.awayScore);
-  if (!decided.length) return "";
-  const counts = new Map(rows.map((row) => [row.teamId, { close: 0, mid: 0, blowout: 0 }]));
-  decided.forEach((match) => {
-    const margin = Math.abs(match.homeScore - match.awayScore);
-    const bucket = marginBucket(margin);
-    [match.homeTeamId, match.awayTeamId].forEach((teamId) => {
-      const entry = counts.get(teamId);
-      if (entry) entry[bucket] += 1;
-    });
-  });
-  const ranked = rows.filter((row) => {
-    const entry = counts.get(row.teamId);
-    return entry && entry.close + entry.mid + entry.blowout > 0;
-  });
-  if (!ranked.length) return "";
-
-  return `
-    <article class="advanced-chart-card wide">
-      <div class="advanced-chart-head">
-        <span>Game Scripts</span>
-        <h3>Nail-Biters vs Blowouts</h3>
-      </div>
-      <div class="advanced-stack-list">
-        ${ranked
-          .map((row) => {
-            const entry = counts.get(row.teamId);
-            const total = Math.max(1, entry.close + entry.mid + entry.blowout);
-            return `
-              <div class="advanced-stack-row">
-                <strong>${escapeHTML(row.team.name)}</strong>
-                <div class="advanced-stack-bar">
-                  <span class="elite" style="width:${pct(entry.close, total)}%" title="1-goal games: ${entry.close}"></span>
-                  <span class="mid" style="width:${pct(entry.mid, total)}%" title="2-3 goal games: ${entry.mid}"></span>
-                  <span class="bad" style="width:${pct(entry.blowout, total)}%" title="4+ goal games: ${entry.blowout}"></span>
-                </div>
-                <small>1-Goal: ${entry.close} | 2-3 Goal: ${entry.mid} | Blowout (4+): ${entry.blowout}</small>
-              </div>
-            `;
-          })
           .join("")}
       </div>
     </article>
@@ -1013,46 +841,6 @@ function renderUpsetTracker(matches, rows) {
   `;
 }
 
-function renderAbsenceReport(data, matches) {
-  const players = new Map(computePlayerStats(data, { stage: "all" }).map((player) => [player.id, player]));
-  const tally = new Map();
-  matches.forEach((match) => {
-    (match.absences || []).forEach((playerId) => {
-      const player = players.get(playerId);
-      const existing = tally.get(playerId) || { id: playerId, name: player?.name || playerId, teamName: player?.teamName || "Team TBA", count: 0 };
-      existing.count += 1;
-      tally.set(playerId, existing);
-    });
-  });
-  const ranked = [...tally.values()].sort((a, b) => b.count - a.count).slice(0, 8);
-  if (!ranked.length) return "";
-  const max = Math.max(1, ...ranked.map((entry) => entry.count));
-
-  return `
-    <article class="advanced-chart-card wide">
-      <div class="advanced-chart-head">
-        <span>Availability</span>
-        <h3>Most Missed Games</h3>
-      </div>
-      <div class="advanced-stack-list">
-        ${ranked
-          .map(
-            (entry) => `
-              <div class="advanced-stack-row">
-                <strong><a class="team-name" href="./player.html?id=${escapeHTML(entry.id)}">${escapeHTML(entry.name)}</a></strong>
-                <div class="advanced-stack-bar">
-                  <span class="bad" style="width:${pct(entry.count, max)}%"></span>
-                </div>
-                <small>${entry.count} game${entry.count === 1 ? "" : "s"} missed | ${escapeHTML(entry.teamName)}</small>
-              </div>
-            `
-          )
-          .join("")}
-      </div>
-    </article>
-  `;
-}
-
 function renderTeamTable(rows) {
   if (!rows.length) return statusMessage("empty", "Team analytics coming soon.");
   return `
@@ -1135,19 +923,14 @@ function render(data) {
         ${renderPpgHeatmap(rows)}
         ${renderTugOfWar(rows)}
         ${renderScoringRates(rows, matches)}
-        ${renderHomeAwaySplit(matches, rows)}
         ${renderElasticity(rows)}
         ${renderGoalMarginHeatmap(rows)}
         ${renderPointsRace(matches, rows)}
         ${renderBiggestWins(matches, new Map(rows.map((row) => [row.teamId, row.team])))}
         ${renderTopScorers(data)}
-        ${renderPlaymakers(data)}
-        ${renderStarLeaders(matches)}
         ${renderPowerRankings(rows)}
-        ${renderMarginBuckets(matches, rows)}
         ${renderScoringDepth(data, rows)}
         ${renderUpsetTracker(matches, rows)}
-        ${renderAbsenceReport(data, matches)}
         ${renderCleanSheets(matches, rows)}
       </div>
     </section>
