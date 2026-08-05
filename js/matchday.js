@@ -177,18 +177,20 @@ function renderScheduleList(data, matches) {
         .map((match) => {
           const { home, away } = getMatchTeams(data, match);
           const label = match.activityTitle || `${home?.name || match.homeTeamName || "Home team"} vs ${away?.name || match.awayTeamName || "Away team"}`;
+          const tag = match.activityTitle ? "article" : "a";
+          const href = match.activityTitle ? "" : ` href="./game.html?id=${encodeURIComponent(match.id || "")}&season=${encodeURIComponent(data.year || "")}"`;
           return `
-            <article class="matchday-row">
+            <${tag} class="matchday-row${match.activityTitle ? "" : " clickable"}"${href}>
               <div class="matchday-row-time">
                 <span>${escapeHTML(match.label || `Game ${match.week}`)}</span>
                 <strong>${escapeHTML(match.time || "Time TBA")}</strong>
               </div>
               <div class="matchday-row-main">
-                <h3>${match.activityTitle ? escapeHTML(label) : `<a href="${escapeHTML(teamProfileHref(match.homeTeamId, data.year))}">${escapeHTML(home?.name || match.homeTeamName || "Home team")}</a> <span>vs</span> <a href="${escapeHTML(teamProfileHref(match.awayTeamId, data.year))}">${escapeHTML(away?.name || match.awayTeamName || "Away team")}</a>`}</h3>
+                <h3>${match.activityTitle ? escapeHTML(label) : `<span>${escapeHTML(home?.name || match.homeTeamName || "Home team")}</span> <span>vs</span> <span>${escapeHTML(away?.name || match.awayTeamName || "Away team")}</span>`}</h3>
                 <p>${escapeHTML(match.division || "LSL")} | ${escapeHTML(formatDateWithISO(match.date))}</p>
               </div>
               ${renderMatchdayStatus(data, match)}
-            </article>
+            </${tag}>
           `;
         })
         .join("")}

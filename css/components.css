@@ -2,14 +2,10 @@
   position: sticky;
   top: 0;
   z-index: 60;
-  --nav-opacity: 0;
-  background: rgba(17, 60, 31, var(--nav-opacity));
+  background: var(--green);
   color: #ffffff;
-  border-bottom: 1px solid rgba(255, 255, 255, calc(var(--nav-opacity) * 0.18));
-  box-shadow: 0 8px 24px rgba(0, 0, 0, calc(var(--nav-opacity) * 0.28));
-  backdrop-filter: blur(calc(var(--nav-opacity) * 10px));
-  -webkit-backdrop-filter: blur(calc(var(--nav-opacity) * 10px));
-  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  border-bottom: 1px solid var(--line-dark);
+  box-shadow: var(--shadow);
 }
 
 .nav-inner {
@@ -3123,6 +3119,8 @@ details.clean-details summary {
 
 .score-ticker-track {
   display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
   gap: 10px;
   overflow-x: auto;
   padding-bottom: 2px;
@@ -12080,4 +12078,173 @@ details.clean-details summary {
   gap: 10px;
   margin-top: 14px;
 }
+
+/* Matchday row click-through animation */
+
+.matchday-row {
+  text-decoration: none;
+  color: inherit;
+}
+
+.matchday-row.clickable {
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.matchday-row.clickable:hover {
+  transform: translateY(-2px) scale(1.01);
+  border-color: var(--gold);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  background: var(--soft);
+}
+
+.matchday-row.clickable:active {
+  transform: translateY(0) scale(0.995);
+  box-shadow: none;
+}
+
+/* Game detail page */
+
+.game-scoreboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  margin: 8px 0 18px;
+}
+
+.game-scoreboard-team {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 18px;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: border-color 0.16s ease, transform 0.16s ease;
+}
+
+.game-scoreboard-team:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+}
+
+.game-scoreboard-team.winner {
+  border-color: var(--gold);
+  box-shadow: inset 4px 0 0 var(--gold);
+}
+
+.game-scoreboard-team strong {
+  font-size: 1.15rem;
+}
+
+.game-score-big {
+  font-size: 2.4rem;
+  font-weight: 950;
+  color: var(--gold);
+}
+
+.game-scoreboard-vs {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.game-scoreboard-vs span {
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.game-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.game-team-card {
+  min-width: 0;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.game-team-card.winner {
+  box-shadow: inset 4px 0 0 var(--gold);
+}
+
+.game-team-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.game-team-card-head a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.game-team-score {
+  font-size: 1.4rem;
+  font-weight: 950;
+  color: var(--gold);
+}
+
+.game-team-stat-block span.eyebrow {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.game-stat-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.game-stat-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.game-stat-list a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.game-stat-list b {
+  color: var(--gold);
+}
+
+.game-notes-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.game-notes-list li {
+  padding: 10px 14px;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
 

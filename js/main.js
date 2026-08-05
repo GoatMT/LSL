@@ -459,7 +459,7 @@ function renderTickerItem(data, match) {
   }
 
   return `
-    <a class="score-ticker-item" href="${escapeHTML(teamProfileHref(match.homeTeamId, data.year))}">
+    <a class="score-ticker-item" href="./game.html?id=${encodeURIComponent(match.id || "")}&season=${encodeURIComponent(data.year || "")}">
       <span class="score-ticker-status ${status}">${status === "live" ? `<span class="score-ticker-live-dot" aria-hidden="true"></span>LIVE` : statusText}</span>
       <span class="score-ticker-matchup">
         <span class="score-ticker-team">
@@ -482,20 +482,20 @@ function renderScoreTicker(data) {
 
   const todayIso = new Date().toISOString().slice(0, 10);
   let tickerMatches = matches.filter((match) => match.date === todayIso);
-  let tickerLabel = `Today \u2014 ${formatDate(todayIso)}`;
+  let tickerLabel = formatDate(todayIso);
 
   if (!tickerMatches.length) {
     const upcomingDates = [...new Set(matches.filter((match) => !isCompletedMatch(match) && match.date >= todayIso).map((match) => match.date))].sort();
     const nextDate = upcomingDates[0];
     if (nextDate) {
       tickerMatches = matches.filter((match) => match.date === nextDate);
-      tickerLabel = `Next Matchday \u2014 ${formatDate(nextDate)}`;
+      tickerLabel = formatDate(nextDate);
     } else {
       const pastDates = [...new Set(matches.filter((match) => isCompletedMatch(match)).map((match) => match.date))].sort();
       const lastDate = pastDates.at(-1);
       if (lastDate) {
         tickerMatches = matches.filter((match) => match.date === lastDate);
-        tickerLabel = `Final Results \u2014 ${formatDate(lastDate)}`;
+        tickerLabel = formatDate(lastDate);
       }
     }
   }
