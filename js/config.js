@@ -28,6 +28,7 @@ export const NAV_LINKS = [
   { label: "Projected", href: "projected.html", group: "League" },
   { label: "Coaches", href: "coaches.html", group: "People" },
   { label: "Awards", href: "awards.html", group: "League" },
+  { label: "Voting", href: "voting.html", group: "League" },
   { label: "Advanced Stats", href: "advanced-stats.html", group: "League" },
   { label: "Trades", href: "transactions.html", group: "League" },
   { label: "Team vs Team", href: "team-vs-team.html", group: "League" },

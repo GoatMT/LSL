@@ -11780,6 +11780,45 @@ a.fan-vote-row {
   font-size: 0.86rem;
 }
 
+.fan-vote-name-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 4px 0 14px;
+  padding: 10px 12px;
+  background: var(--surface-alt, rgba(0, 0, 0, 0.03));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.fan-vote-name-current {
+  font-size: 0.88rem;
+}
+
+.fan-vote-name-bar.needs-name {
+  border-color: var(--gold);
+}
+
+.fan-vote-name-bar .fan-vote-name-control {
+  flex: 1;
+  min-width: 160px;
+  margin: 0;
+}
+
+.fan-vote-name-bar.shake {
+  animation: lsl-name-bar-shake 0.4s ease;
+}
+
+@keyframes lsl-name-bar-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
 .game-hero-team {
   min-width: 0;
   display: grid;

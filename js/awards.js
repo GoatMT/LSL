@@ -1,6 +1,5 @@
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
-import { renderFanVoteCard, hydrateFanVote } from "./fanVote.js";
 import { getAwards } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
@@ -22,26 +21,6 @@ const awardTabs = ["All", "Champions", "Player Awards", "Team Awards"];
 let state = { season: "All", division: "Seniors", tab: "All", search: "" };
 let cupEngravings = [];
 let awardWatchData = {};
-
-function renderFanVoteSection() {
-  const hasCandidates = (awardWatchData.categories || []).some((category) => (category.leaders || []).some((leader) => leader.playerId));
-  if (!hasCandidates) return "";
-  return `
-    <section class="section-panel awards-fan-vote-panel">
-      <div class="section-head compact-head">
-        <div>
-          <span class="eyebrow">Fan Vote</span>
-          <h2>Fan MVP &amp; Golden Boot</h2>
-          <p>Cast your own pick alongside the official award race. One vote per browser, changeable anytime this week.</p>
-        </div>
-      </div>
-      <div class="fan-vote-grid">
-        ${renderFanVoteCard(awardWatchData, "mvp", { interactive: true })}
-        ${renderFanVoteCard(awardWatchData, "goldenBoot", { interactive: true })}
-      </div>
-    </section>
-  `;
-}
 
 function isTeamAward(award) {
   return /team/i.test(award.category || "");
@@ -421,6 +400,9 @@ function render(allData, focusSearch = false) {
             <span class="eyebrow">Awards + Champions</span>
             <h1>LSL Awards</h1>
             <p>Champions, MVPs, Golden Boots, finalists, and season honors.</p>
+            <div class="button-row">
+              <a class="button primary" href="./voting.html">🗳️ Fan Vote: MVP &amp; Golden Boot</a>
+            </div>
           </div>
         </div>
         ${renderLatestSeason(allData)}
@@ -428,8 +410,6 @@ function render(allData, focusSearch = false) {
     </section>
 
     ${renderCupEngravings()}
-
-    ${renderFanVoteSection()}
 
     <section class="section-panel awards-filter-panel">
       <div class="section-head compact-head">
@@ -494,8 +474,6 @@ function render(allData, focusSearch = false) {
     searchInput.focus();
     searchInput.setSelectionRange(state.search.length, state.search.length);
   }
-
-  hydrateFanVote(root, awardWatchData);
 }
 
 async function init() {

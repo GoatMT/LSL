@@ -2,7 +2,6 @@ import { renderFooter } from "../components/footer.js";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.0";
-import { renderFanVoteCard } from "./fanVote.js";
 import { computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 import { initPageAnimations } from "./animations.js";
@@ -65,27 +64,6 @@ function awardWatchHref(item = {}, season = SITE.defaultSeason) {
   if (item.playerId) return playerHref(item.playerId);
   if (item.teamId) return teamProfileHref(item.teamId, season);
   return "./awards.html";
-}
-
-function renderFanVoteWidget(awardWatch = {}) {
-  const hasCandidates = (awardWatch.categories || []).some((category) => (category.leaders || []).some((leader) => leader.playerId));
-  if (!hasCandidates) return "";
-  return `
-    <section class="section-panel home-fan-vote-panel">
-      <div class="section-head compact-head">
-        <div>
-          <span class="eyebrow">Fan Vote${awardWatch.week ? ` &middot; ${escapeHTML(awardWatch.week)}` : ""}</span>
-          <h2>Who's Winning The Fan Vote?</h2>
-          <p>Live tallies from the community MVP and Golden Boot poll.</p>
-        </div>
-        <a class="text-link" href="./awards.html">Cast your vote</a>
-      </div>
-      <div class="fan-vote-grid">
-        ${renderFanVoteCard(awardWatch, "mvp", { interactive: false })}
-        ${renderFanVoteCard(awardWatch, "goldenBoot", { interactive: false })}
-      </div>
-    </section>
-  `;
 }
 
 function renderAwardWatch(awardWatch = {}) {
@@ -738,8 +716,6 @@ function renderHomeContent(data, allData, teamOfWeek = {}, awardWatch = {}, news
     ${renderTeamOfWeek(teamOfWeek)}
 
     ${renderAwardWatch(awardWatch)}
-
-    ${renderFanVoteWidget(awardWatch)}
 
     <section class="section-panel match-center-panel">
       <div class="section-head">

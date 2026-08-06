@@ -11,9 +11,13 @@ import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/f
 // Votes are stored in Cloud Firestore (project "lsl-fan-vote"), so the tally
 // is shared live across every visitor, not just the local browser. Each
 // visitor gets a random anonymous voter id saved in localStorage so they can
-// change their vote later; there is no login. Firestore document layout:
+// change their vote later; there is no login, but a display name is required
+// before a vote is accepted (also saved in localStorage so it's remembered).
+// Firestore document layout:
 //   fanVotePolls/{pollKey}__{categoryKey}
-//     { votes: { [voterId]: playerId, ... } }
+//     { votes: { [voterId]: { playerId, name }, ... } }
+// (Older documents may still have a plain playerId string instead of an
+// object for a given voterId - readers here handle both shapes.)
 // Tallies are derived client-side by counting the values in that map, so a
 // vote change is a single-field write and there is nothing to keep in sync.
 //
@@ -22,6 +26,7 @@ import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/f
 // page still works, just without the shared count.
 
 const VOTER_ID_KEY = "lsl-fan-vote-voter-id";
+const VOTER_NAME_KEY = "lsl-fan-vote-voter-name";
 const LOCAL_FALLBACK_KEY = "lsl-fan-vote-local-fallback";
 
 const firebaseConfig = {
@@ -48,8 +53,8 @@ try {
   console.error("Fan vote: Firebase failed to initialize, falling back to local-only voting.", error);
 }
 
-// docId -> { votes: {voterId: playerId} } - last snapshot seen, used so
-// re-renders (e.g. awards.js re-rendering on a filter change) can paint
+// docId -> { votes: {voterId: {playerId, name}} } - last snapshot seen, used
+// so re-renders (e.g. awards.js re-rendering on a filter change) can paint
 // instantly instead of flashing back to zero while a new listener connects.
 const pollCache = new Map();
 // docId -> Set of DOM list elements currently subscribed via onSnapshot.
@@ -66,6 +71,25 @@ function getVoterId() {
   } catch {
     return `voter-${Date.now()}-${Math.random().toString(16).slice(2)}`;
   }
+}
+
+function getVoterName() {
+  try {
+    return (localStorage.getItem(VOTER_NAME_KEY) || "").trim();
+  } catch {
+    return "";
+  }
+}
+
+function setVoterName(name) {
+  const trimmed = String(name || "").trim().slice(0, 40);
+  try {
+    if (trimmed) localStorage.setItem(VOTER_NAME_KEY, trimmed);
+  } catch {
+    // Storage can fail (private browsing, quota, disabled); the name just
+    // won't be remembered next visit, but voting still works this session.
+  }
+  return trimmed;
 }
 
 function sanitizeDocId(text) {
@@ -94,9 +118,22 @@ function writeLocalFallback(data) {
   }
 }
 
+// A vote entry can be a plain playerId string (older documents) or
+// { playerId, name } (current format). These two helpers normalize that.
+function playerIdFromVoteEntry(entry) {
+  if (!entry) return "";
+  return typeof entry === "string" ? entry : entry.playerId || "";
+}
+
+function nameFromVoteEntry(entry) {
+  if (!entry || typeof entry === "string") return "";
+  return entry.name || "";
+}
+
 function tallyFromVotes(votes = {}) {
   const tallies = {};
-  Object.values(votes).forEach((playerId) => {
+  Object.values(votes).forEach((entry) => {
+    const playerId = playerIdFromVoteEntry(entry);
     if (!playerId) return;
     tallies[playerId] = (tallies[playerId] || 0) + 1;
   });
@@ -115,13 +152,17 @@ export function getCandidates(awardWatch = {}, categoryKey) {
 
 export async function castVote(key, categoryKey, playerId) {
   const voterId = getVoterId();
+  const name = getVoterName();
+  if (!name) return false; // Name is required before a vote is accepted.
+
   const docId = docIdFor(key, categoryKey);
+  const entry = { playerId, name };
 
   if (firebaseReady && db) {
     try {
       const ref = doc(db, "fanVotePolls", docId);
-      await setDoc(ref, { votes: { [voterId]: playerId } }, { merge: true });
-      return;
+      await setDoc(ref, { votes: { [voterId]: entry } }, { merge: true });
+      return true;
     } catch (error) {
       console.error("Fan vote: could not write to Firestore, falling back to local vote.", error);
     }
@@ -130,20 +171,20 @@ export async function castVote(key, categoryKey, playerId) {
   // Local fallback (Firebase unavailable).
   const all = readLocalFallback();
   if (!all[docId]) all[docId] = { votes: {} };
-  all[docId].votes[voterId] = playerId;
+  all[docId].votes[voterId] = entry;
   writeLocalFallback(all);
   pollCache.set(docId, all[docId]);
+  return true;
 }
 
 function renderCandidateRows(awardWatch, categoryKey, interactive, votesState) {
-  const key = pollKey(awardWatch);
   const candidates = getCandidates(awardWatch, categoryKey);
   if (!candidates.length) return `<p class="fan-vote-empty">Candidates for this week's watch list aren't published yet.</p>`;
 
   const voterId = getVoterId();
   const votes = votesState?.votes || {};
   const tallies = tallyFromVotes(votes);
-  const myVote = votes[voterId] || "";
+  const myVote = playerIdFromVoteEntry(votes[voterId]);
   const total = Object.values(tallies).reduce((sum, count) => sum + count, 0);
   const leaderCount = Math.max(0, ...candidates.map((candidate) => tallies[candidate.playerId] || 0));
 
@@ -172,6 +213,27 @@ function renderCandidateRows(awardWatch, categoryKey, interactive, votesState) {
     .join("");
 }
 
+function renderNameBar(editing = false) {
+  const name = getVoterName();
+  if (name && !editing) {
+    return `
+      <div class="fan-vote-name-bar" data-fan-vote-name-bar>
+        <span class="fan-vote-name-current">Voting as <strong>${escapeHTML(name)}</strong></span>
+        <button type="button" class="text-link" data-fan-vote-change-name>Change</button>
+      </div>
+    `;
+  }
+  return `
+    <div class="fan-vote-name-bar needs-name" data-fan-vote-name-bar>
+      <label class="control fan-vote-name-control">
+        <span>Enter your name to vote</span>
+        <input type="text" maxlength="40" placeholder="Your name" value="${escapeHTML(name)}" data-fan-vote-name-input>
+      </label>
+      <button type="button" class="button" data-fan-vote-save-name>Save name</button>
+    </div>
+  `;
+}
+
 export function renderFanVoteCard(awardWatch = {}, categoryKey, { interactive = true } = {}) {
   const meta = CATEGORY_META[categoryKey];
   if (!meta) return "";
@@ -187,13 +249,14 @@ export function renderFanVoteCard(awardWatch = {}, categoryKey, { interactive = 
         <div>
           <span class="eyebrow">Fan Vote${awardWatch.week ? ` &middot; ${escapeHTML(awardWatch.week)}` : ""}</span>
           <h3>${escapeHTML(meta.title)}</h3>
-          <p>${interactive ? "Tap a name to vote. Change your vote anytime this week." : meta.blurb}</p>
+          <p>${interactive ? "Enter your name, then tap a candidate to vote. Change your vote anytime this week." : meta.blurb}</p>
         </div>
       </div>
+      ${interactive ? renderNameBar() : ""}
       <div class="fan-vote-list" data-fan-vote-list data-fan-vote-key="${escapeHTML(key)}" data-fan-vote-category="${categoryKey}" data-fan-vote-interactive="${interactive}">
         ${rowsMarkup}
       </div>
-      <small class="fan-vote-note">${firebaseReady ? "Live vote count, shared across every visitor." : "Votes counted on this device this week."} ${interactive ? "" : `<a href="./awards.html">Cast your vote &rarr;</a>`}</small>
+      <small class="fan-vote-note">${firebaseReady ? "Live vote count, shared across every visitor." : "Votes counted on this device this week."} ${interactive ? "" : `<a href="./voting.html">Cast your vote &rarr;</a>`}</small>
     </article>
   `;
 }
@@ -228,6 +291,47 @@ function subscribeList(list, awardWatch, categoryKey) {
   activeSubscriptions.get(docId).add(list);
 }
 
+function flashNeedsName(nameBar) {
+  const input = nameBar.querySelector("[data-fan-vote-name-input]");
+  nameBar.classList.add("needs-name", "shake");
+  input?.focus();
+  window.setTimeout(() => nameBar.classList.remove("shake"), 400);
+}
+
+function hydrateNameBar(card, awardWatch, categoryKey) {
+  const nameBar = card.querySelector("[data-fan-vote-name-bar]");
+  if (!nameBar) return;
+
+  const saveButton = nameBar.querySelector("[data-fan-vote-save-name]");
+  const input = nameBar.querySelector("[data-fan-vote-name-input]");
+  const changeButton = nameBar.querySelector("[data-fan-vote-change-name]");
+
+  const save = () => {
+    const value = input?.value || "";
+    if (!value.trim()) {
+      flashNeedsName(nameBar);
+      return;
+    }
+    setVoterName(value);
+    nameBar.outerHTML = renderNameBar();
+    hydrateNameBar(card, awardWatch, categoryKey);
+  };
+
+  saveButton?.addEventListener("click", save);
+  input?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      save();
+    }
+  });
+
+  changeButton?.addEventListener("click", () => {
+    nameBar.outerHTML = renderNameBar(true);
+    hydrateNameBar(card, awardWatch, categoryKey);
+    card.querySelector("[data-fan-vote-name-input]")?.focus();
+  });
+}
+
 export function hydrateFanVote(root, awardWatch = {}) {
   root.querySelectorAll("[data-fan-vote-list]").forEach((list) => {
     const categoryKey = list.dataset.fanVoteCategory;
@@ -235,12 +339,23 @@ export function hydrateFanVote(root, awardWatch = {}) {
     subscribeList(list, awardWatch, categoryKey);
 
     if (list.dataset.fanVoteInteractive !== "true") return;
+
+    const card = list.closest(".fan-vote-card");
+    if (card) hydrateNameBar(card, awardWatch, categoryKey);
+
     if (list.dataset.fanVoteHydrated === "true") return;
     list.dataset.fanVoteHydrated = "true";
 
     list.addEventListener("click", async (event) => {
       const button = event.target.closest("[data-fan-vote-player]");
       if (!button || !list.contains(button)) return;
+
+      if (!getVoterName()) {
+        const nameBar = card?.querySelector("[data-fan-vote-name-bar]");
+        if (nameBar) flashNeedsName(nameBar);
+        return;
+      }
+
       button.disabled = true;
       await castVote(list.dataset.fanVoteKey, categoryKey, button.dataset.fanVotePlayer);
       button.disabled = false;
