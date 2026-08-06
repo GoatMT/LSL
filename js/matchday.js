@@ -1,4 +1,5 @@
 import { SITE } from "./config.js";
+import { matchToCalendarEvent, renderCalendarDownloadButton } from "./calendarLinks.js";
 import { loadSeasonData } from "./dataLoader.js?v=1.0";
 import { filterMatches, getMatchTeams, isCompletedMatch, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
@@ -258,6 +259,16 @@ function renderFinalScoreList(data, matches) {
   `;
 }
 
+function matchdayCalendarEvents(data, matches) {
+  return matches
+    .filter((match) => !isCompletedMatch(match))
+    .map((match) => {
+      const { home, away } = getMatchTeams(data, match);
+      return matchToCalendarEvent(match, data, { home: home?.name || match.homeTeamName, away: away?.name || match.awayTeamName });
+    })
+    .filter(Boolean);
+}
+
 async function render(data) {
   const divisions = availableDivisionOptions(data);
   if (!divisions.some((option) => option.value === state.division)) state.division = "All";
@@ -270,6 +281,8 @@ async function render(data) {
   const completedCount = dayMatches.filter(isCompletedMatch).length;
   const seniorGames = dayMatches.filter((match) => match.division === "Seniors" && !match.activityTitle).length;
   const juniorActivities = dayMatches.filter((match) => match.division === "Juniors" || match.activityTitle).length;
+  const calendarEvents = matchdayCalendarEvents(data, dayMatches);
+  const calendarFilename = `lsl-matchday-${first.date || "schedule"}.ics`;
 
   root.innerHTML = `
     <section class="section-panel matchday-hub-hero">
@@ -279,7 +292,10 @@ async function render(data) {
           <h1>${escapeHTML(formatDateWithISO(first.date || data.event?.firstDay))}</h1>
           <p>${escapeHTML(data.event?.venue || SITE.venue)} | ${escapeHTML(timeRange(dayMatches))}</p>
         </div>
-        <a class="text-link" href="./matches.html">All matches</a>
+        <div class="matchday-hero-actions">
+          ${renderCalendarDownloadButton(calendarEvents, calendarFilename, "Add Matchday To Calendar")}
+          <a class="text-link" href="./matches.html">All matches</a>
+        </div>
       </div>
       <div class="controls">
         ${controlSelect("season", "Season", SITE.seasons, state.season)}

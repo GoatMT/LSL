@@ -1,13 +1,13 @@
-import { loadJSON } from "./dataLoader.js?v=1.0";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
 import { setupLayout } from "./main.js";
+import { initShareButtons, renderShareButtons } from "./shareLinks.js";
 import { escapeHTML, getQueryParam, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("news.html");
 setDocumentTitle("News");
 
 const root = document.getElementById("page-root");
-let state = { articleId: getQueryParam("id") || "", category: "All", search: "", storiesExpanded: false };
-const categoryOptions = ["All", "Game Recaps", "Trades", "Player Milestones", "Tournament", "Postgame", "League Updates"];
+let state = { articleId: getQueryParam("id") || "", storiesExpanded: false };
 
 function articleHref(article) {
   return `./news.html?id=${encodeURIComponent(article.id)}`;
@@ -97,31 +97,6 @@ function articleCategoryGroup(article) {
   return "League Updates";
 }
 
-function filterArticles(articles) {
-  const categoryFiltered = state.category === "All" ? articles : articles.filter((article) => articleCategoryGroup(article) === state.category);
-  const query = state.search.trim().toLowerCase();
-  if (!query) return categoryFiltered;
-  return categoryFiltered.filter((article) => articleMatchesSearch(article, query));
-}
-
-function articleMatchesSearch(article, query) {
-  const searchable = [
-    article.headline,
-    article.subtitle,
-    article.category,
-    article.storyLabel,
-    article.reportStatus,
-    article.author,
-    article.caption,
-    ...(article.tags || []),
-    ...(article.body || []),
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-  return searchable.includes(query);
-}
-
 function articleDateValue(article) {
   const value = Date.parse(`${article.date || ""} 12:00:00`);
   return Number.isFinite(value) ? value : 0;
@@ -133,43 +108,62 @@ function isPriorityArticle(article) {
   return PRIORITY_HEADLINE_PREFIXES.some((prefix) => (article.headline || "").startsWith(prefix));
 }
 
-function renderCategoryFilters(articles) {
-  return `
-    <div class="news-category-filter" aria-label="News category filters">
-      ${categoryOptions
-        .map((category) => {
-          const count = category === "All" ? articles.length : articles.filter((article) => articleCategoryGroup(article) === category).length;
-          return `
-            <button class="${state.category === category ? "active" : ""}" type="button" data-news-category="${escapeHTML(category)}">
-              <span>${escapeHTML(category)}</span>
-              <small>${count}</small>
-            </button>
-          `;
-        })
-        .join("")}
-    </div>
-  `;
+function monthDayKey(dateStr = "") {
+  const parts = String(dateStr).split("-");
+  return parts.length === 3 ? `${parts[1]}-${parts[2]}` : "";
 }
 
-function renderNewsSearch(totalCount, visibleCount) {
-  const query = state.search.trim();
+function findOnThisDay(allSeasons) {
+  const today = new Date();
+  const todayKey = `${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+  const hits = [];
+  (allSeasons || []).forEach((data) => {
+    const teamsById = new Map((data.teams || []).map((team) => [team.id, team]));
+    (data.matches || [])
+      .filter((match) => Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore))
+      .filter((match) => monthDayKey(match.date) === todayKey)
+      .filter((match) => new Date(`${match.date} 12:00:00`) < today)
+      .forEach((match) => {
+        hits.push({
+          match,
+          year: data.year,
+          home: teamsById.get(match.homeTeamId),
+          away: teamsById.get(match.awayTeamId),
+        });
+      });
+  });
+
+  return hits
+    .sort((a, b) => Number(b.year) - Number(a.year) || b.match.homeScore + b.match.awayScore - (a.match.homeScore + a.match.awayScore))
+    .slice(0, 2);
+}
+
+function renderOnThisDay(hits) {
+  if (!hits.length) return "";
   return `
-    <div class="news-search-panel">
-      <label for="news-search">
-        <span class="eyebrow">Search News</span>
-        <strong>Find articles</strong>
-      </label>
-      <input
-        id="news-search"
-        class="news-search-input"
-        type="search"
-        value="${escapeHTML(state.search)}"
-        placeholder="Search titles, tags, players, teams, or story text..."
-        autocomplete="off"
-        data-news-search
-      >
-      <small>${escapeHTML(query ? `${visibleCount} of ${totalCount} articles match` : `${totalCount} articles available`)}</small>
-    </div>
+    <aside class="news-on-this-day" aria-label="On this day in LSL history">
+      <span class="eyebrow">On This Day</span>
+      <div class="news-on-this-day-list">
+        ${hits
+          .map(({ match, year, home, away }) => {
+            const homeName = home?.name || "Home";
+            const awayName = away?.name || "Away";
+            const summary =
+              match.homeScore === match.awayScore
+                ? `${homeName} and ${awayName} drew ${match.homeScore}-${match.awayScore}`
+                : `${match.homeScore > match.awayScore ? homeName : awayName} beat ${match.homeScore > match.awayScore ? awayName : homeName} ${Math.max(match.homeScore, match.awayScore)}-${Math.min(match.homeScore, match.awayScore)}`;
+            return `
+              <a class="news-on-this-day-card" href="./game.html?id=${encodeURIComponent(match.id)}&season=${encodeURIComponent(year)}">
+                <span class="news-on-this-day-year">${escapeHTML(year)}</span>
+                <strong>${escapeHTML(homeName)} vs ${escapeHTML(awayName)}</strong>
+                <span>${escapeHTML(summary)}</span>
+              </a>
+            `;
+          })
+          .join("")}
+      </div>
+    </aside>
   `;
 }
 
@@ -283,6 +277,7 @@ function renderArticle(article, articles) {
         <span>${escapeHTML(articleTime(article))}</span>
       </div>
       ${renderArticleActions(article)}
+      ${renderShareButtons(articleHref(article), article.headline || "LSL News", { label: "Share This Story" })}
       ${renderTradeStats(article)}
       <div class="news-article-body">
         ${(article.body || []).map((paragraph) => `<p>${escapeHTML(paragraph)}</p>`).join("") || "<p>Article details coming soon.</p>"}
@@ -291,9 +286,8 @@ function renderArticle(article, articles) {
   `;
 }
 
-function render(articles) {
-  const visibleArticles = filterArticles(articles);
-  const selected = selectArticle(visibleArticles, state.articleId);
+function render(articles, onThisDay = []) {
+  const selected = selectArticle(articles, state.articleId);
   if (!selected) {
     root.innerHTML = `
       <section class="section-panel news-page-shell">
@@ -304,8 +298,7 @@ function render(articles) {
             <p>League updates, match results, roster notes, and announcements in one clean article view.</p>
           </div>
         </div>
-        ${renderNewsSearch(articles.length, visibleArticles.length)}
-        ${renderCategoryFilters(articles)}
+        ${renderOnThisDay(onThisDay)}
         <div class="news-layout">
           <aside class="news-sidebar" aria-label="News stories">
             <div class="news-sidebar-head">
@@ -322,31 +315,15 @@ function render(articles) {
         </div>
       </section>
     `;
-    root.querySelector("[data-news-search]")?.addEventListener("input", (event) => {
-      state.search = event.target.value;
-      state.articleId = "";
-      state.storiesExpanded = false;
-      render(articles);
-      root.querySelector("[data-news-search]")?.focus();
-    });
-    root.querySelectorAll("[data-news-category]").forEach((button) => {
-      button.addEventListener("click", () => {
-        state.category = button.dataset.newsCategory;
-        state.articleId = "";
-        state.storiesExpanded = false;
-        history.pushState(null, "", "./news.html");
-        render(articles);
-      });
-    });
     return;
   }
 
   state.articleId = selected.id;
   setDocumentTitle(`${selected.headline} | News`);
-  const priorityArticles = visibleArticles.filter(isPriorityArticle);
-  const collapsedArticles = priorityArticles.length ? priorityArticles : visibleArticles.slice(0, 10);
-  const listedArticles = state.storiesExpanded ? visibleArticles : collapsedArticles;
-  const hasOlderStories = visibleArticles.length > collapsedArticles.length;
+  const priorityArticles = articles.filter(isPriorityArticle);
+  const collapsedArticles = priorityArticles.length ? priorityArticles : articles.slice(0, 10);
+  const listedArticles = state.storiesExpanded ? articles : collapsedArticles;
+  const hasOlderStories = articles.length > collapsedArticles.length;
 
   root.innerHTML = `
     <section class="section-panel news-page-shell">
@@ -357,8 +334,7 @@ function render(articles) {
           <p>League updates, match results, roster notes, and announcements in one clean article view.</p>
         </div>
       </div>
-      ${renderNewsSearch(articles.length, visibleArticles.length)}
-      ${renderCategoryFilters(articles)}
+      ${renderOnThisDay(onThisDay)}
       <div class="news-layout">
         <aside class="news-sidebar" aria-label="News stories">
           <div class="news-sidebar-head">
@@ -389,50 +365,34 @@ function render(articles) {
     link.addEventListener("click", (event) => {
       event.preventDefault();
       state.articleId = link.dataset.newsId;
-      const target = articles.find((article) => article.id === state.articleId);
-      if (target && state.category !== "All" && articleCategoryGroup(target) !== state.category) state.category = "All";
       history.pushState(null, "", articleHref({ id: state.articleId }));
-      render(articles);
-    });
-  });
-
-  root.querySelectorAll("[data-news-category]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.category = button.dataset.newsCategory;
-      state.articleId = "";
-      state.storiesExpanded = false;
-      history.pushState(null, "", "./news.html");
-      render(articles);
+      render(articles, onThisDay);
     });
   });
 
   root.querySelector("[data-news-expand]")?.addEventListener("click", () => {
     state.storiesExpanded = !state.storiesExpanded;
-    render(articles);
+    render(articles, onThisDay);
   });
 
-  root.querySelector("[data-news-search]")?.addEventListener("input", (event) => {
-    state.search = event.target.value;
-    state.articleId = "";
-    state.storiesExpanded = false;
-    history.replaceState(null, "", "./news.html");
-    render(articles);
-    root.querySelector("[data-news-search]")?.focus();
-  });
+  initShareButtons(root);
 }
 
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading news...");
-  const data = await loadJSON("./data/news-articles.json", { articles: [] });
+  const [data, allSeasons] = await Promise.all([
+    loadJSON("./data/news-articles.json", { articles: [] }),
+    loadAllSeasons().catch(() => []),
+  ]);
   const articles = [...(data.articles || [])].sort(
     (a, b) => articleDateValue(b) - articleDateValue(a) || Number(b.isLatest === true) - Number(a.isLatest === true)
   );
-  render(articles);
+  const onThisDay = findOnThisDay(allSeasons);
+  render(articles, onThisDay);
   window.addEventListener("popstate", () => {
     state.articleId = getQueryParam("id") || "";
-    state.search = "";
     state.storiesExpanded = false;
-    render(articles);
+    render(articles, onThisDay);
   });
 }
 

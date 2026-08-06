@@ -1,4 +1,4 @@
-import { renderMatchCard } from "../components/matchCard.js?v=3.1";
+import { renderMatchCard } from "../components/matchCard.js?v=3.2";
 import { SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=1.0";
 import { filterMatches, getWeeks } from "./leagueEngine.js?v=3.3";

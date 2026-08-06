@@ -1,4 +1,5 @@
-import { playerMap, scoreText, teamMap, winnerTeamId } from "../js/leagueEngine.js";
+import { isCompletedMatch, playerMap, scoreText, teamMap, winnerTeamId } from "../js/leagueEngine.js";
+import { matchToCalendarEvent, renderCalendarButtons } from "../js/calendarLinks.js";
 import { escapeHTML, formatDateWithISO, joinNames, teamProfileHref } from "../js/utils.js";
 
 function playerHref(playerId = "") {
@@ -103,6 +104,13 @@ function visibleStatusPill(match, hasScore) {
   return `<span class="pill">${escapeHTML(status)}</span>`;
 }
 
+function isMatchUpcoming(match) {
+  if (isCompletedMatch(match)) return false;
+  if (!match.date) return true;
+  const matchDate = new Date(`${match.date}T23:59:59`);
+  return Number.isFinite(matchDate.getTime()) ? matchDate >= new Date() : true;
+}
+
 export function renderMatchCard(data, match) {
   const teams = teamMap(data);
   const players = playerMap(data);
@@ -139,6 +147,7 @@ export function renderMatchCard(data, match) {
           <h3>${escapeHTML(match.activityTitle)}</h3>
           <p>${escapeHTML(match.time || "Time TBA")}</p>
         </div>
+        ${isMatchUpcoming(match) ? renderCalendarButtons(matchToCalendarEvent(match, data, {}), { compact: true }) : ""}
         <details class="clean-details"${match.detailsOpen ? " open" : ""}>
           <summary>Activity details</summary>
           <ul class="detail-list compact">
@@ -175,6 +184,7 @@ export function renderMatchCard(data, match) {
           ${winner === match.awayTeamId ? `<span class="source-note">Winner</span>` : ""}
         </div>
       </div>
+      ${isMatchUpcoming(match) ? renderCalendarButtons(matchToCalendarEvent(match, data, { home: home?.name || match.homeTeamName, away: away?.name || match.awayTeamName }), { compact: true }) : ""}
       <details class="clean-details"${match.detailsOpen ? " open" : ""}>
         <summary>Match details</summary>
         ${

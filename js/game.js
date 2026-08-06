@@ -1,9 +1,10 @@
 import { renderFormStrip } from "../components/formStrip.js";
-import { renderMatchCard } from "../components/matchCard.js";
+import { renderMatchCard } from "../components/matchCard.js?v=3.2";
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
 import { calculateTeamForm, calculateTeamRecord, computePlayerStats, getMatchTeams, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
+import { initShareButtons, renderShareButtons } from "./shareLinks.js";
 import { escapeHTML, formatDateWithISO, getQueryParam, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("matches.html");
@@ -241,6 +242,7 @@ async function init() {
       </div>
       ${renderWinProbability(homeName, awayName, homeRecord, awayRecord, homeForm, awayForm)}
       ${renderStartingGoalies(data, home, away)}
+      ${renderShareButtons(window.location.href, `${homeName} vs ${awayName}`, { label: "Share This Game" })}
     </section>
 
     <section class="section-panel">
@@ -261,6 +263,8 @@ async function init() {
       </div>
     </section>
   `;
+
+  initShareButtons(root);
 }
 
 init();
