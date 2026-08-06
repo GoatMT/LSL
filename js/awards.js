@@ -1,5 +1,6 @@
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
+import { renderFanVoteCard, hydrateFanVote } from "./fanVote.js";
 import { getAwards } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
@@ -146,6 +147,25 @@ function renderLatestSeason(allData) {
         }
       </div>
     </div>
+  `;
+}
+
+function renderFanVoteTeaser() {
+  const hasCandidates = (awardWatchData.categories || []).some((category) => (category.leaders || []).some((leader) => leader.playerId));
+  if (!hasCandidates) return "";
+  return `
+    <section class="section-panel awards-vote-panel">
+      <div class="section-head compact-head">
+        <div>
+          <span class="eyebrow">Fan Vote${awardWatchData.week ? ` &middot; ${escapeHTML(awardWatchData.week)}` : ""}</span>
+          <h2>This Week's Fan MVP Race</h2>
+          <p>Live results from every visitor. Tap through to cast or change your pick.</p>
+        </div>
+      </div>
+      <div class="fan-vote-grid">
+        ${renderFanVoteCard(awardWatchData, "mvp", { interactive: false })}
+      </div>
+    </section>
   `;
 }
 
@@ -401,13 +421,15 @@ function render(allData, focusSearch = false) {
             <h1>LSL Awards</h1>
             <p>Champions, MVPs, Golden Boots, finalists, and season honors.</p>
             <div class="button-row">
-              <a class="button primary" href="./voting.html">🗳️ Fan Vote: MVP &amp; Golden Boot</a>
+              <a class="button primary" href="./voting.html">🗳️ Cast Your Fan MVP Vote</a>
             </div>
           </div>
         </div>
         ${renderLatestSeason(allData)}
       </div>
     </section>
+
+    ${renderFanVoteTeaser()}
 
     ${renderCupEngravings()}
 
@@ -450,6 +472,8 @@ function render(allData, focusSearch = false) {
         : `<section class="section-panel awards-empty-panel">${statusMessage("empty", "No awards match these filters.")}</section>`
     }
   `;
+
+  hydrateFanVote(root, awardWatchData);
 
   ["season", "division"].forEach((id) => {
     document.getElementById(id)?.addEventListener("change", (event) => {

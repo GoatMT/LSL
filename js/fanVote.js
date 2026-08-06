@@ -39,8 +39,7 @@ const firebaseConfig = {
 };
 
 const CATEGORY_META = {
-  mvp: { label: "MVP Watch", title: "Fan MVP", icon: "⭐", blurb: "Vote for this week's MVP." },
-  goldenBoot: { label: "Golden Boot Watch", title: "Fan Golden Boot", icon: "⚽", blurb: "Vote for this week's Golden Boot leader." },
+  mvp: { label: "MVP Watch", title: "Fan MVP", icon: "⭐", blurb: "Vote for this week's Fan MVP." },
 };
 
 let db = null;
@@ -144,10 +143,53 @@ export function pollKey(awardWatch = {}) {
   return `${awardWatch.season || "season"}-${awardWatch.week || "week"}`;
 }
 
+// Pulls the leading number out of a stat string like "16 goals" or "9.5 pts".
+function statValue(leader) {
+  const match = /(\d+(?:\.\d+)?)/.exec(String(leader?.stat || ""));
+  return match ? Number(match[1]) : null;
+}
+
+// "Close" enough that both teammates deserve a ballot spot: within 2 of each
+// other, or within roughly 15% of the larger value (covers both low- and
+// high-count stat lines).
+function isCloseRace(a, b) {
+  if (a == null || b == null) return false;
+  const diff = Math.abs(a - b);
+  return diff <= 2 || diff <= Math.max(a, b) * 0.15;
+}
+
+// Normally only the best-ranked player from each team makes the ballot, so
+// one team can't crowd out the rest of the league. Exception: if a team's
+// top two players are in a close race with each other, both get a spot.
+function limitToOnePerTeam(leaders) {
+  const result = [];
+  const countByTeam = new Map();
+  const topStatByTeam = new Map();
+
+  leaders.forEach((leader) => {
+    const teamKey = leader.teamName || leader.teamId || leader.name;
+    const already = countByTeam.get(teamKey) || 0;
+    if (already === 0) {
+      result.push(leader);
+      countByTeam.set(teamKey, 1);
+      topStatByTeam.set(teamKey, statValue(leader));
+      return;
+    }
+    if (already === 1 && isCloseRace(topStatByTeam.get(teamKey), statValue(leader))) {
+      result.push(leader);
+      countByTeam.set(teamKey, 2);
+    }
+    // A team's 3rd+ leader never makes the ballot, close race or not.
+  });
+
+  return result;
+}
+
 export function getCandidates(awardWatch = {}, categoryKey) {
   const label = CATEGORY_META[categoryKey]?.label;
   const category = (awardWatch.categories || []).find((item) => item.label === label);
-  return (category?.leaders || []).filter((leader) => leader.playerId).slice(0, 5);
+  const ranked = (category?.leaders || []).filter((leader) => leader.playerId).sort((a, b) => (a.rank || 99) - (b.rank || 99));
+  return limitToOnePerTeam(ranked).slice(0, 5);
 }
 
 export async function castVote(key, categoryKey, playerId) {

@@ -20,7 +20,7 @@ function render() {
         <div class="hero-copy">
           <span class="hero-kicker">Fan Vote</span>
           <h1>Voting</h1>
-          <p>Cast your pick for this week's MVP and Golden Boot race.</p>
+          <p>Cast your pick for this week's Fan MVP.</p>
         </div>
       </section>
       <section class="section-panel">
@@ -35,7 +35,7 @@ function render() {
       <div class="hero-copy">
         <span class="hero-kicker">Fan Vote${awardWatchData.week ? ` &middot; ${awardWatchData.week}` : ""}</span>
         <h1>Cast Your Vote</h1>
-        <p>Pick this week's MVP and Golden Boot leader. Votes are live and shared across every visitor to the site &mdash; change your pick anytime before the week wraps up.</p>
+        <p>Pick this week's Fan MVP. Votes are live and shared across every visitor to the site &mdash; change your pick anytime before the week wraps up.</p>
         <div class="button-row hero-actions">
           <a class="button" href="./awards.html">&larr; Back to Awards</a>
         </div>
@@ -46,13 +46,12 @@ function render() {
       <div class="section-head compact-head">
         <div>
           <span class="eyebrow">Fan Vote</span>
-          <h2>Fan MVP &amp; Golden Boot</h2>
+          <h2>Fan MVP</h2>
           <p>Tap a name to vote. One vote per browser, changeable anytime this week.</p>
         </div>
       </div>
       <div class="fan-vote-grid">
         ${renderFanVoteCard(awardWatchData, "mvp", { interactive: true })}
-        ${renderFanVoteCard(awardWatchData, "goldenBoot", { interactive: true })}
       </div>
     </section>
   `;

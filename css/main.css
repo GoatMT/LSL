@@ -409,7 +409,7 @@ button {
 
 .home-leader-controls {
   grid-template-columns: repeat(3, minmax(170px, 1fr));
-  margin-top: 12px;
+  margin-top: 22px;
   margin-bottom: 14px;
   padding: 14px;
   background: rgba(255, 255, 255, 0.025);
