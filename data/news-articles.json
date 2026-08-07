@@ -1,6 +1,67 @@
 {
   "articles": [
     {
+      "id": "who-leads-playoffs-in-goals",
+      "category": "League Analysis",
+      "storyLabel": "Golden Boot Watch",
+      "isDeveloping": false,
+      "reportStatus": "Not Official",
+      "isLatest": true,
+      "headline": "Who Leads The Playoffs In Goals? The Case For Mudassir, And Who Could Catch Him",
+      "subtitle": "The league's regular-season scoring leader draws the round's most favorable matchup, but a crowded chase pack has a path to catch him if Leeward's run ends early.",
+      "date": "August 4, 2026",
+      "time": "Golden Boot watch",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Leeward Lions.jpg",
+      "heroImage": "./Logos/2026 Teams/Leeward Lions.jpg",
+      "tags": [
+        "Playoffs",
+        "Golden Boot",
+        "Mudassir",
+        "Haroon Ahmadi",
+        "Mohammad Ibrahim",
+        "M Yahya",
+        "Leeward Lions",
+        "EM Haulers FC",
+        "Advanced Stats"
+      ],
+      "playerProfiles": [
+        { "id": "mudassir", "label": "View Mudassir Profile" },
+        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
+        { "id": "mohammed-ibrahim", "label": "View Ibrahim Profile" },
+        { "id": "m-yahya", "label": "View M Yahya Profile" }
+      ],
+      "caption": "Mudassir led the 2026 regular season with 16 goals in 7 games, the best scoring rate of any player in the league.",
+      "related": [
+        {
+          "label": "Week 7 Recap",
+          "articleId": "week-7-recap-regular-season-finale",
+          "title": "Week 7 Recap: Regular Season Closes as Leeward and Rawaha Post Wins, Two Matches End Level"
+        },
+        {
+          "label": "QF1 Preview",
+          "articleId": "playoff-preview-leeward-lions-vs-memon-mavericks",
+          "title": "Quarterfinal Preview: #1 Leeward Lions vs #8 Memon Mavericks"
+        },
+        {
+          "label": "Numbers Watch",
+          "articleId": "playoff-predictions-what-the-numbers-say",
+          "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats"
+        }
+      ],
+      "body": [
+        "With the eight-team quarterfinal bracket set for Saturday, August 8, one of the more interesting side races is which player finishes the playoffs with the most goals. Based on regular-season form, matchup difficulty, and how far each scorer's team is projected to advance, Mudassir is the pick to lead the field.",
+        "The case starts with volume and rate. Mudassir led every player in the league with 16 regular-season goals, doing it in only 7 games for a 2.29 goals-per-game clip that no other regular scorer approached. Haroon Ahmadi was next closest among team-leading scorers with 13 for EM Haulers FC, followed by Mohammad Ibrahim and M Yahya at 8 apiece for Rawaha Royals and Sharp Strikers.",
+        "The matchup makes the case stronger. Leeward Lions open the bracket as the #1 seed against #8 Memon Mavericks, the league's lowest-scoring and most goal-shy defense at 23 goals allowed and a -16 goal difference. The two teams already met once this year, an 8-2 Leeward win in Week 4 in which Mudassir personally scored five goals. If Leeward advances as expected, Mudassir gets a first-round matchup practically built for a big scoring day.",
+        "Path matters too. Leeward finished the regular season with the league's best goal difference at +18 and the Elite tier's best defensive rate, which sets up as the safest route through the bracket among the four quarterfinal favorites. A player only piles up playoff goals if his team keeps playing, and Leeward is projected to play three games, quarterfinal, semifinal, and the final, more than a lower seed that could be eliminated after one.",
+        "The clearest challenger is Haroon Ahmadi. His 13 goals rank second in the league, and his own quarterfinal matchup, #7 seed Gangat Warriors, has the single worst defense in the division at a -18 goal difference, an even softer target on paper than Memon Mavericks. The complication is his supporting cast: Muzamil Kharooti, EM's third-leading scorer with 7 goals, has not played in either of the team's last two matches, so if he remains unavailable for the playoffs, Haroon becomes an even more obvious focal point for opposing defenses to key on.",
+        "Mohammad Ibrahim and Uthman Manira give Rawaha Royals a two-man scoring combination heading into their #4 vs #5 matchup with Refuel Rovers, and both were involved in Rawaha's 8-4 finale over Gangat Warriors in Week 7. The problem for either of them individually is that the goals are split between two players rather than concentrated in one, and Refuel Rovers, tied for the league's most clean sheets, is a tougher defensive draw than either team on the top half of the bracket faces.",
+        "M Yahya is the round's wild card. His 8 goals for Sharp Strikers include a four-goal game in Week 3, showing he has the ceiling for a big single match. But his quarterfinal opponent, Amax Visionaries, is the only team in the bracket Sharp has already played this season, a Week 7 draw, the tightest and most recent result of any quarterfinal pairing, which makes a repeat big scoring day less certain than it looks on paper.",
+        "Putting it together: rate, matchup, and the likely length of his team's playoff run all point to Mudassir as the favorite to lead the playoffs in goals, with Haroon Ahmadi as the most credible challenger if Muzamil Kharooti returns to share the scoring load, and Mohammad Ibrahim, Uthman Manira, or M Yahya as longer-shot candidates who would likely need a multi-goal breakout game to catch up.",
+        "This is an analytical projection based on regular-season numbers and scheduling, not an official prediction. Playoff soccer does not always follow the script, and a single big performance from any of the other seven quarterfinal starters could change the picture by the end of the opening round."
+      ]
+    },
+    {
       "id": "week-7-recap-regular-season-finale",
       "category": "Results",
       "storyLabel": "Week 7 Recap",
