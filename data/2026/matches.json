@@ -1426,7 +1426,7 @@
       "division": "Seniors",
       "label": "Quarterfinal 1",
       "date": "2026-08-08",
-      "time": "9:15 AM - 10:00 AM",
+      "time": "10:30 AM - 11:05 AM",
       "homeTeamId": "leeward-lions",
       "awayTeamId": "memon-mavericks",
       "homeScore": null,
@@ -1446,7 +1446,7 @@
       "division": "Seniors",
       "label": "Quarterfinal 2",
       "date": "2026-08-08",
-      "time": "10:00 AM - 10:45 AM",
+      "time": "9:10 AM - 9:45 AM",
       "homeTeamId": "em-haulers-fc",
       "awayTeamId": "gangat-warriors",
       "homeScore": null,
@@ -1466,7 +1466,7 @@
       "division": "Seniors",
       "label": "Quarterfinal 3",
       "date": "2026-08-08",
-      "time": "10:45 AM - 11:30 AM",
+      "time": "8:30 AM - 9:05 AM",
       "homeTeamId": "sharp-strikers",
       "awayTeamId": "amax-visionaries",
       "homeScore": null,
@@ -1486,7 +1486,7 @@
       "division": "Seniors",
       "label": "Quarterfinal 4",
       "date": "2026-08-08",
-      "time": "11:30 AM - 12:15 PM",
+      "time": "9:50 AM - 10:25 AM",
       "homeTeamId": "rawaha-royals",
       "awayTeamId": "refuel-rovers",
       "homeScore": null,
@@ -1506,29 +1506,7 @@
       "division": "Seniors",
       "label": "Semifinal 1",
       "date": "2026-08-08",
-      "time": "12:15 PM - 1:00 PM",
-      "homeTeamId": null,
-      "awayTeamId": null,
-      "homeTeamName": "Winner QF1",
-      "awayTeamName": "Winner QF4",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "Scheduled",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Semifinal 1: Winner of Quarterfinal 1 vs winner of Quarterfinal 4.",
-        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
-      ]
-    },
-    {
-      "id": "2026-seniors-playoffs-sf2",
-      "week": 8,
-      "stage": "playoffs",
-      "division": "Seniors",
-      "label": "Semifinal 2",
-      "date": "2026-08-08",
-      "time": "1:00 PM - 1:45 PM",
+      "time": "11:05 AM - 11:40 AM",
       "homeTeamId": null,
       "awayTeamId": null,
       "homeTeamName": "Winner QF2",
@@ -1539,8 +1517,100 @@
       "scorers": [],
       "assists": [],
       "notes": [
-        "Semifinal 2: Winner of Quarterfinal 2 vs winner of Quarterfinal 3.",
-        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
+        "Semifinal 1: Winner of Quarterfinal 2 vs winner of Quarterfinal 3.",
+        "Official Finals Day schedule posted for Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-seniors-playoffs-sf2",
+      "week": 8,
+      "stage": "playoffs",
+      "division": "Seniors",
+      "label": "Semifinal 2",
+      "date": "2026-08-08",
+      "time": "11:45 AM - 12:20 PM",
+      "homeTeamId": null,
+      "awayTeamId": null,
+      "homeTeamName": "Winner QF1",
+      "awayTeamName": "Winner QF4",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "Scheduled",
+      "scorers": [],
+      "assists": [],
+      "notes": [
+        "Semifinal 2: Winner of Quarterfinal 1 vs winner of Quarterfinal 4.",
+        "Official Finals Day schedule posted for Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-coaches-volunteers-match",
+      "week": 8,
+      "stage": "exhibition",
+      "division": "Seniors",
+      "label": "Coaches & Volunteers Match",
+      "date": "2026-08-08",
+      "time": "12:25 PM - 12:45 PM",
+      "activityTitle": "Coaches & Volunteers Match",
+      "status": "Scheduled",
+      "notes": [
+        "A friendly match for LSL coaches and volunteers between the semifinals and the Juniors games on Finals Day, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-juniors-finals-day-game-1",
+      "week": 8,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors Game 1",
+      "date": "2026-08-08",
+      "time": "12:45 PM - 1:05 PM",
+      "activityTitle": "Juniors Game 1",
+      "status": "Scheduled",
+      "notes": [
+        "Juniors Game 1 on Finals Day, Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-juniors-finals-day-game-2",
+      "week": 8,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors Game 2",
+      "date": "2026-08-08",
+      "time": "1:05 PM - 1:25 PM",
+      "activityTitle": "Juniors Game 2",
+      "status": "Scheduled",
+      "notes": [
+        "Juniors Game 2 on Finals Day, Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-juniors-finals-day-final",
+      "week": 8,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Junior Final",
+      "date": "2026-08-08",
+      "time": "1:25 PM - 1:45 PM",
+      "activityTitle": "Junior Final",
+      "status": "Scheduled",
+      "notes": [
+        "Junior Final on Finals Day, Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-finals-day-dhuhr-break",
+      "week": 8,
+      "stage": "exhibition",
+      "division": "Seniors",
+      "label": "Dhuhr Break",
+      "date": "2026-08-08",
+      "time": "1:45 PM - 2:00 PM",
+      "activityTitle": "Dhuhr Break",
+      "status": "Scheduled",
+      "notes": [
+        "Dhuhr Break before the LSL Championship Final on Finals Day, Saturday, August 8, 2026."
       ]
     },
     {
@@ -1548,9 +1618,9 @@
       "week": 8,
       "stage": "playoffs",
       "division": "Seniors",
-      "label": "Championship",
+      "label": "LSL Championship Final",
       "date": "2026-08-08",
-      "time": "1:45 PM - 2:30 PM",
+      "time": "2:00 PM - 2:45 PM",
       "homeTeamId": null,
       "awayTeamId": null,
       "homeTeamName": "Winner SF1",
@@ -1561,8 +1631,23 @@
       "scorers": [],
       "assists": [],
       "notes": [
-        "Championship: Winner of Semifinal 1 vs winner of Semifinal 2.",
-        "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
+        "LSL Championship Final: Winner of Semifinal 1 vs winner of Semifinal 2.",
+        "45 minutes including a 5-minute halftime.",
+        "Official Finals Day schedule posted for Saturday, August 8, 2026."
+      ]
+    },
+    {
+      "id": "2026-finals-day-presentation-ceremony",
+      "week": 8,
+      "stage": "exhibition",
+      "division": "Seniors",
+      "label": "Presentation Ceremony",
+      "date": "2026-08-08",
+      "time": "2:45 PM onwards",
+      "activityTitle": "Presentation Ceremony",
+      "status": "Scheduled",
+      "notes": [
+        "Trophy and award presentation ceremony following the LSL Championship Final on Saturday, August 8, 2026."
       ]
     }
   ]
