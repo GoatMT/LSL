@@ -11759,6 +11759,110 @@ a.fan-vote-row {
   font-size: 0.86rem;
 }
 
+.playoff-central-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.playoff-central-countdown {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  padding: 18px;
+  background: var(--card-2);
+  border: 1px solid rgba(199, 163, 103, 0.32);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.playoff-central-countdown-label {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.playoff-central-countdown-clock {
+  display: flex;
+  gap: 14px;
+}
+
+.playoff-central-countdown-clock > div {
+  display: grid;
+  justify-items: center;
+  min-width: 56px;
+}
+
+.playoff-central-countdown-clock strong {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.playoff-central-countdown-clock small {
+  color: var(--muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.playoff-central-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.qf-central-card {
+  display: grid;
+  gap: 10px;
+}
+
+.qf-central-card.decided {
+  opacity: 0.75;
+}
+
+.qf-central-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.qf-central-time {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.qf-central-matchup {
+  display: grid;
+  gap: 2px;
+  justify-items: start;
+}
+
+.qf-central-matchup a {
+  color: #ffffff;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.qf-central-matchup span {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.qf-central-countdown strong {
+  color: var(--gold);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.qf-central-result {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
 .fan-vote-name-bar {
   display: flex;
   align-items: center;

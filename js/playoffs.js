@@ -1,10 +1,11 @@
 import { renderPlayoffBracket } from "../components/playoffBracket.js";
 import { renderStandingsTable } from "../components/standingsTable.js?v=3.1";
+import { matchToCalendarEvent, renderCalendarButtons, renderCalendarDownloadButton } from "./calendarLinks.js";
 import { playoffRulesFor, SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=1.0";
 import { calculateStandings } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
-import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
+import { controlSelect, escapeHTML, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("playoffs.html");
 setDocumentTitle("Playoffs");
@@ -160,6 +161,126 @@ function buildCurrentBracket(data, rows, division) {
   };
 }
 
+function firstStartClock24(match) {
+  const startRaw = String(match.time || "").split(/\s+(?:-|to)\s+/i)[0] || "";
+  const parsed = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(startRaw.trim());
+  if (!parsed) return "09:00:00";
+  let hours = Number(parsed[1]) % 12;
+  if (/PM/i.test(parsed[3])) hours += 12;
+  return `${String(hours).padStart(2, "0")}:${parsed[2]}:00`;
+}
+
+function renderQfCentralCard(data, teams, match) {
+  const home = teams.get(match.homeTeamId);
+  const away = teams.get(match.awayTeamId);
+  const decided = Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore);
+  const event = matchToCalendarEvent(match, data, { home: home?.name || match.homeTeamName, away: away?.name || match.awayTeamName });
+  const targetIso = `${match.date}T${firstStartClock24(match)}`;
+
+  return `
+    <article class="card qf-central-card${decided ? " decided" : ""}">
+      <div class="qf-central-head">
+        <span class="pill green">${escapeHTML(match.label || "Quarterfinal")}</span>
+        <span class="qf-central-time">${escapeHTML(match.time || "Time TBA")}</span>
+      </div>
+      <div class="qf-central-matchup">
+        <a href="${escapeHTML(teamProfileHref(match.homeTeamId, data.year))}">${escapeHTML(home?.name || match.homeTeamName || "Home team")}</a>
+        <span>vs</span>
+        <a href="${escapeHTML(teamProfileHref(match.awayTeamId, data.year))}">${escapeHTML(away?.name || match.awayTeamName || "Away team")}</a>
+      </div>
+      ${
+        decided
+          ? `<div class="qf-central-result">Final: ${match.homeScore}-${match.awayScore}</div>`
+          : `<div class="qf-central-countdown" data-countdown-target="${escapeHTML(targetIso)}">
+              <strong data-countdown-compact>Calculating...</strong>
+            </div>`
+      }
+      ${event ? renderCalendarButtons(event, { compact: true }) : ""}
+    </article>
+  `;
+}
+
+function renderPlayoffCentral(data) {
+  if (data.year !== SITE.defaultSeason) return "";
+  const qfMatches = (data.matches || [])
+    .filter((match) => match.stage === "playoffs" && /^Quarterfinal \d$/.test(match.label || ""))
+    .sort((a, b) => (a.label || "").localeCompare(b.label || "", undefined, { numeric: true }));
+  if (!qfMatches.length) return "";
+
+  const allDecided = qfMatches.every((match) => Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore));
+  if (allDecided) return "";
+
+  const teams = new Map((data.teams || []).map((team) => [team.id, team]));
+  const earliest = [...qfMatches].sort((a, b) => firstStartClock24(a).localeCompare(firstStartClock24(b)))[0];
+  const heroTarget = `${earliest.date}T${firstStartClock24(earliest)}`;
+  const calendarEvents = qfMatches
+    .map((match) => matchToCalendarEvent(match, data, { home: teams.get(match.homeTeamId)?.name || match.homeTeamName, away: teams.get(match.awayTeamId)?.name || match.awayTeamName }))
+    .filter(Boolean);
+
+  return `
+    <section class="section-panel playoff-central-panel">
+      <div class="section-head compact-head">
+        <div>
+          <span class="eyebrow">Playoff Central</span>
+          <h2>Finals Day &mdash; ${escapeHTML(formatDateWithISO(earliest.date))}</h2>
+          <p>All four quarterfinals, both semifinals, and the championship are played the same day. Every QF kickoff and a calendar reminder, all in one place.</p>
+        </div>
+        ${renderCalendarDownloadButton(calendarEvents, `lsl-quarterfinals-${earliest.date}.ics`, "Add All QFs To Calendar")}
+      </div>
+      <div class="playoff-central-countdown" data-countdown-target="${escapeHTML(heroTarget)}">
+        <span class="playoff-central-countdown-label">First Kickoff In</span>
+        <div class="playoff-central-countdown-clock" aria-live="polite">
+          <div><strong data-countdown-days>--</strong><small>Days</small></div>
+          <div><strong data-countdown-hours>--</strong><small>Hrs</small></div>
+          <div><strong data-countdown-minutes>--</strong><small>Min</small></div>
+          <div><strong data-countdown-seconds>--</strong><small>Sec</small></div>
+        </div>
+      </div>
+      <div class="playoff-central-grid">
+        ${qfMatches.map((match) => renderQfCentralCard(data, teams, match)).join("")}
+      </div>
+    </section>
+  `;
+}
+
+let countdownInterval = null;
+
+function updateCountdowns() {
+  document.querySelectorAll("[data-countdown-target]").forEach((el) => {
+    const target = new Date(el.dataset.countdownTarget);
+    if (Number.isNaN(target.getTime())) return;
+    const diffMs = target.getTime() - Date.now();
+    const clamped = Math.max(0, diffMs);
+    const totalSeconds = Math.floor(clamped / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    const daysEl = el.querySelector("[data-countdown-days]");
+    if (daysEl) {
+      daysEl.textContent = days;
+      el.querySelector("[data-countdown-hours]").textContent = String(hours).padStart(2, "0");
+      el.querySelector("[data-countdown-minutes]").textContent = String(minutes).padStart(2, "0");
+      el.querySelector("[data-countdown-seconds]").textContent = String(seconds).padStart(2, "0");
+      return;
+    }
+
+    const compactEl = el.querySelector("[data-countdown-compact]");
+    if (compactEl) {
+      compactEl.textContent =
+        diffMs <= 0 ? "Starting now" : days > 0 ? `Kicks off in ${days}d ${hours}h` : hours > 0 ? `Kicks off in ${hours}h ${minutes}m` : `Kicks off in ${minutes}m ${seconds}s`;
+    }
+  });
+}
+
+function startCountdownTicker() {
+  if (countdownInterval) clearInterval(countdownInterval);
+  if (!document.querySelector("[data-countdown-target]")) return;
+  updateCountdowns();
+  countdownInterval = setInterval(updateCountdowns, 1000);
+}
+
 function bracketNotice(playoffData, seasonComplete) {
   if (!playoffData?.isCurrentProjection) return "";
   if (seasonComplete) {
@@ -214,6 +335,9 @@ function render(data) {
       ${bracketNotice(playoffData, regularSeasonComplete(data, state.division))}
       ${renderPlayoffBracket(playoffData)}
     </section>
+
+    ${renderPlayoffCentral(data)}
+
     <section class="section-panel">
       <div class="section-head">
         <div>
@@ -224,6 +348,8 @@ function render(data) {
       ${rows.length ? renderStandingsTable(rows, data.year) : statusMessage("empty", "No seeding table is available yet.")}
     </section>
   `;
+
+  startCountdownTicker();
 
   ["season", "division"].forEach((id) => {
     document.getElementById(id).addEventListener("change", async (event) => {
