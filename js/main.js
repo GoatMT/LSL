@@ -440,6 +440,14 @@ function matchLiveStatus(match) {
   return now >= window.start && now <= window.end ? "live" : "scheduled";
 }
 
+function tickerSortMinutes(match) {
+  const found = /(\d{1,2}):(\d{2})\s*(AM|PM)/i.exec(String(match.time || ""));
+  if (!found) return Number.POSITIVE_INFINITY;
+  let hours = Number(found[1]) % 12;
+  if (/PM/i.test(found[3])) hours += 12;
+  return hours * 60 + Number(found[2]);
+}
+
 function teamTickerAbbr(team, fallbackName) {
   return team?.shortName || team?.abbr || initials(team?.name || fallbackName || "TBD");
 }
@@ -503,6 +511,7 @@ function renderScoreTicker(data) {
   }
 
   if (!tickerMatches.length) return "";
+  tickerMatches = [...tickerMatches].sort((a, b) => tickerSortMinutes(a) - tickerSortMinutes(b));
   const hasLive = tickerMatches.some((match) => matchLiveStatus(match) === "live");
 
   return `

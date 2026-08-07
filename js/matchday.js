@@ -57,9 +57,21 @@ function matchdayAnchor(matches = []) {
   return upcoming[0] || matches.at(-1) || null;
 }
 
+function matchStartMinutes(match) {
+  const found = /(\d{1,2}):(\d{2})\s*(AM|PM)/i.exec(String(match.time || ""));
+  if (!found) return Number.POSITIVE_INFINITY;
+  let hours = Number(found[1]) % 12;
+  if (/PM/i.test(found[3])) hours += 12;
+  return hours * 60 + Number(found[2]);
+}
+
+function sortByStartTime(matches = []) {
+  return [...matches].sort((a, b) => matchStartMinutes(a) - matchStartMinutes(b));
+}
+
 function sameMatchdayMatches(matches = [], anchor = null) {
   if (!anchor) return [];
-  return matches.filter((match) => matchdayKey(match) === matchdayKey(anchor));
+  return sortByStartTime(matches.filter((match) => matchdayKey(match) === matchdayKey(anchor)));
 }
 
 function currentMatchday(matches = []) {
