@@ -442,30 +442,32 @@ function seasonTeamResults(season) {
   return { teamsById, results };
 }
 
-function currentStreaks(allData) {
-  const latest = allData[allData.length - 1];
-  if (!latest) return [];
-  const { teamsById, results } = seasonTeamResults(latest);
-  const rows = [];
-  results.forEach((games, teamId) => {
-    if (!games.length) return;
-    const type = games[games.length - 1].result;
-    let length = 0;
-    for (let i = games.length - 1; i >= 0; i--) {
-      if (games[i].result === type) length += 1;
-      else break;
-    }
-    const team = teamsById.get(teamId);
-    if (!team) return;
-    rows.push({ teamId, teamName: team.name, season: latest.year, type, length });
+function longestResultStreaks(allData) {
+  const winStreaks = [];
+  const lossStreaks = [];
+  allData.forEach((season) => {
+    const { teamsById, results } = seasonTeamResults(season);
+    results.forEach((games, teamId) => {
+      const team = teamsById.get(teamId);
+      if (!team) return;
+      let winRun = 0;
+      let bestWin = 0;
+      let lossRun = 0;
+      let bestLoss = 0;
+      games.forEach((game) => {
+        winRun = game.result === "W" ? winRun + 1 : 0;
+        bestWin = Math.max(bestWin, winRun);
+        lossRun = game.result === "L" ? lossRun + 1 : 0;
+        bestLoss = Math.max(bestLoss, lossRun);
+      });
+      if (bestWin > 0) winStreaks.push({ teamId, teamName: team.name, season: season.year, length: bestWin });
+      if (bestLoss > 0) lossStreaks.push({ teamId, teamName: team.name, season: season.year, length: bestLoss });
+    });
   });
-  const rank = (type) => (type === "W" ? 2 : type === "D" ? 1 : 0);
-  return rows.sort((a, b) => rank(b.type) - rank(a.type) || b.length - a.length || a.teamName.localeCompare(b.teamName));
-}
-
-function streakLabel(row) {
-  const word = row.type === "W" ? "Win" : row.type === "L" ? "Loss" : "Draw";
-  return `${row.length} straight ${word.toLowerCase()}${row.length === 1 ? "" : "s"}`;
+  return {
+    win: winStreaks.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 5),
+    loss: lossStreaks.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 5),
+  };
 }
 
 function biggestScoringStreaks(allData) {
@@ -707,16 +709,21 @@ function render(allData) {
           <section class="section-panel records-grid-panel">
             <div class="section-head compact-head">
               <div>
-                <span class="eyebrow">Right Now</span>
+                <span class="eyebrow">On Record</span>
                 <h2>Streaks &amp; Trends</h2>
-                <p>Current win/loss streaks this season, plus the biggest hot and cold scoring runs on record.</p>
+                <p>Longest win and loss streaks on record, plus the biggest hot and cold scoring runs.</p>
               </div>
             </div>
             <div class="records-grid">
-              ${recordTable(`Current Streaks (${SITE.seasons[SITE.seasons.length - 1]})`, "Each team's active run heading into the next game, longest win streaks first.", currentStreaks(allData), [
+              ${recordTable("Most Consecutive Wins", "Longest winning streak by one team in one season, all seasons.", longestResultStreaks(allData).win, [
                 { label: "Team", render: (row) => teamLink(row, row.season) },
-                { label: "Streak", render: (row) => `${row.type}${row.length}` },
-                { label: "Detail", render: (row) => escapeHTML(streakLabel(row)) },
+                { label: "Season", render: (row) => escapeHTML(row.season) },
+                { label: "Streak", num: true, render: (row) => `${row.length} games` },
+              ])}
+              ${recordTable("Most Consecutive Losses", "Longest losing streak by one team in one season, all seasons.", longestResultStreaks(allData).loss, [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => escapeHTML(row.season) },
+                { label: "Streak", num: true, render: (row) => `${row.length} games` },
               ])}
               ${recordTable("Hottest Scoring Streaks", "Most consecutive games scoring 2+ goals, all seasons.", biggestScoringStreaks(allData).hot, [
                 { label: "Team", render: (row) => teamLink(row, row.season) },
