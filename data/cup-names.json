@@ -21,6 +21,27 @@
         "Ali Shadab Seikh",
         "Hammad Hatia"
       ]
+    },
+    {
+      "season": "2025",
+      "champion": "Umer Memon F.C.",
+      "image": "./Logos/lsl-logo.png",
+      "caption": "The 2025 championship cup, engraved with the Umer Memon F.C. roster.",
+      "names": [
+        "Coach Abdul Hakeem \"Ya Salaam\"",
+        "Saad Khan",
+        "Muzamil Kharooti",
+        "Yousaf Hosseinzada",
+        "Azizullah",
+        "Muhummud Teli",
+        "Ishaaq Ali",
+        "Adil Mubashir",
+        "Mohammed Hanzala Hasan",
+        "Yusuf Ahmed Baharustani",
+        "Uwais Bemat",
+        "Hasan Hatia",
+        "Abdul Ahad Muabir"
+      ]
     }
   ]
 }
