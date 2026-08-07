@@ -2752,6 +2752,10 @@ details.clean-details summary {
   gap: 9px;
 }
 
+.all-time-filter-bar > .all-time-filter-full {
+  grid-column: 1 / -1;
+}
+
 .all-time-toggle {
   display: inline-grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

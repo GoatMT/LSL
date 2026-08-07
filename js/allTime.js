@@ -516,7 +516,7 @@ function renderWeekSelect(allData) {
 function renderToggle(allData) {
   return `
     <div class="all-time-filter-bar">
-      <div>
+      <div class="all-time-filter-full">
         <span class="eyebrow">View</span>
         <div class="all-time-toggle" role="group" aria-label="All time stats view">
           <button class="${state.view === "players" ? "active" : ""}" type="button" data-view="players">Players</button>
@@ -524,24 +524,13 @@ function renderToggle(allData) {
           <button class="${state.view === "teams" ? "active" : ""}" type="button" data-view="teams">Teams</button>
         </div>
       </div>
-      <div>
+      <div class="all-time-filter-full">
         <span class="eyebrow">Season</span>
         <div class="all-time-toggle season" role="group" aria-label="All time season filter">
           ${[{ value: "All", label: "All" }, ...SITE.seasons.map((season) => ({ value: season, label: season }))]
             .map(
               (option) =>
                 `<button class="${state.season === option.value ? "active" : ""}" type="button" data-season="${escapeHTML(option.value)}">${escapeHTML(option.label)}</button>`
-            )
-            .join("")}
-        </div>
-      </div>
-      <div>
-        <span class="eyebrow">Stats Type</span>
-        <div class="all-time-toggle wide" role="group" aria-label="All time stats type">
-          ${stageOptions
-            .map(
-              (option) =>
-                `<button class="${state.stage === option.value ? "active" : ""}" type="button" data-stage="${escapeHTML(option.value)}">${escapeHTML(option.label)}</button>`
             )
             .join("")}
         </div>
@@ -557,7 +546,18 @@ function renderToggle(allData) {
             .join("")}
         </div>
       </div>
-      ${state.stage === "playoffs" ? "" : `<div>
+      <div>
+        <span class="eyebrow">Stats Type</span>
+        <div class="all-time-toggle wide" role="group" aria-label="All time stats type">
+          ${stageOptions
+            .map(
+              (option) =>
+                `<button class="${state.stage === option.value ? "active" : ""}" type="button" data-stage="${escapeHTML(option.value)}">${escapeHTML(option.label)}</button>`
+            )
+            .join("")}
+        </div>
+      </div>
+      ${state.stage === "playoffs" ? "" : `<div class="all-time-filter-full">
         <span class="eyebrow">Week</span>
         ${renderWeekSelect(allData)}
       </div>`}

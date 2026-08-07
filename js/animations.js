@@ -21,11 +21,13 @@ function ensureRevealObserver() {
 
 function observeRevealCandidates(root) {
   if (prefersReducedMotion) return;
+  if (root.tagName === "SELECT" || root.tagName === "OPTION" || root.tagName === "OPTGROUP") return;
   const observer = ensureRevealObserver();
   const candidates = root.matches?.(REVEAL_SELECTOR) ? [root, ...root.querySelectorAll(REVEAL_SELECTOR)] : [...root.querySelectorAll(REVEAL_SELECTOR)];
 
   candidates.forEach((node, index) => {
     if (observedNodes.has(node)) return;
+    if (node.tagName === "SELECT" || node.closest("select, option, optgroup")) return; // dropdowns never animate
     observedNodes.add(node);
     node.classList.add("reveal-on-scroll");
     node.style.setProperty("--reveal-delay", `${Math.min(index % 8, 8) * 45}ms`);
@@ -34,6 +36,20 @@ function observeRevealCandidates(root) {
 }
 
 // ---------- Count-up numbers ----------
+
+// Some pages opt out of the count-up effect entirely via <body data-disable-count-up>
+// (e.g. the All-Time Stats page, where dense tables of historical numbers
+// shouldn't animate). Checked once per scan rather than baked into the
+// selector so it's a single obvious toggle per page.
+function countUpDisabledForPage() {
+  return document.body?.hasAttribute("data-disable-count-up") ?? false;
+}
+
+// Elements whose text should never be treated as an animatable number, even
+// if it happens to be a leaf node with numeric-looking text: dropdown
+// options are the big one (they don't reliably fire IntersectionObserver
+// while their <select> is closed, so they'd get stuck showing "0").
+const SKIP_COUNT_TAGS = new Set(["OPTION", "OPTGROUP", "SELECT", "INPUT", "TEXTAREA", "SCRIPT", "STYLE"]);
 
 // Matches isolated numeric text: 27 | 1,234 | -16 | +18 | 2.29 | 45.2% | $14.4M
 const COUNT_REGEX = /^([+-]?)(\$?)(\d{1,3}(?:,\d{3})*|\d+)(\.\d+)?(%|M|K)?$/;
@@ -113,6 +129,7 @@ function ensureCountObserver() {
 
 function observeCountCandidates(root) {
   if (prefersReducedMotion) return;
+  if (countUpDisabledForPage()) return;
   const scope = root.nodeType === Node.ELEMENT_NODE ? root : null;
   if (!scope) return;
   const elements = scope.matches?.("*") ? [scope, ...scope.querySelectorAll("*")] : [...scope.querySelectorAll("*")];
@@ -121,6 +138,8 @@ function observeCountCandidates(root) {
   elements.forEach((el) => {
     if (countedNodes.has(el)) return;
     if (el.children.length > 0) return; // leaf nodes only
+    if (SKIP_COUNT_TAGS.has(el.tagName)) return; // dropdown options, form controls, etc.
+    if (el.closest("select, option, optgroup")) return; // never touch text inside a <select>
     const meta = parseCountable(el.textContent || "");
     if (!meta) return;
 

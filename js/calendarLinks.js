@@ -101,21 +101,37 @@ function icsDataHref(events) {
   return `data:text/calendar;charset=utf-8,${encodeURIComponent(content)}`;
 }
 
+// Detects whether the visitor is on an Apple device (iOS/iPadOS/macOS),
+// where downloading an .ics file is treated as "add to Calendar" natively.
+// Everyone else gets the Google Calendar web link instead. Either way, only
+// one "Add to Calendar" action is ever shown - never both.
+function isApplePlatform() {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent || "";
+  const platform = navigator.platform || "";
+  const isIOS = /iPad|iPhone|iPod/.test(ua);
+  const isIPadOS = platform === "MacIntel" && navigator.maxTouchPoints > 1;
+  const isMac = /Macintosh/.test(ua);
+  return isIOS || isIPadOS || isMac;
+}
+
 /**
- * Small "Add to Calendar" link pair for a single event: Google Calendar
- * (opens a prefilled event on calendar.google.com) and an .ics download,
- * which iOS/macOS/Outlook all treat as "Add to Apple/Outlook Calendar".
+ * Single "Add to Calendar" link for one event. Detects whether the visitor
+ * is on an Apple device: Apple devices get an .ics download (opens directly
+ * in Apple Calendar), everyone else gets a Google Calendar link. Only one
+ * link is ever rendered, never both.
  */
 export function renderCalendarButtons(event, { compact = false } = {}) {
   if (!event) return "";
   const filename = `${event.title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}.ics`;
+  const apple = isApplePlatform();
+  const label = apple ? "Add to Apple Calendar" : "Add to Google Calendar";
+  const extraAttrs = apple ? `download="${escapeHTML(filename)}"` : `target="_blank" rel="noopener"`;
+  const href = apple ? icsDataHref([event]) : googleCalendarUrl(event);
   return `
     <div class="calendar-add-row${compact ? " compact" : ""}">
-      <a class="calendar-add-link google" href="${escapeHTML(googleCalendarUrl(event))}" target="_blank" rel="noopener" title="Add to Google Calendar">
-        <span>Google Calendar</span>
-      </a>
-      <a class="calendar-add-link apple" href="${escapeHTML(icsDataHref([event]))}" download="${escapeHTML(filename)}" title="Add to Apple Calendar (.ics)">
-        <span>Apple Calendar</span>
+      <a class="calendar-add-link ${apple ? "apple" : "google"}" href="${escapeHTML(href)}" ${extraAttrs} title="${escapeHTML(label)}">
+        <span>${escapeHTML(label)}</span>
       </a>
     </div>
   `;
