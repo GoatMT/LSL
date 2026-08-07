@@ -2,7 +2,7 @@ import { renderFooter } from "../components/footer.js";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.0";
-import { computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
+import { computeCombinedPlayerStats, computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js";
 
@@ -605,6 +605,85 @@ function resolvedMatchTeams(data, match, playoffMatches) {
   };
 }
 
+function firstSentence(text = "") {
+  const trimmed = String(text).trim();
+  const match = /^.*?[.!?](?=\s|$)/.exec(trimmed);
+  return match ? match[0] : trimmed;
+}
+
+function seniorsCombinedStats(allData, options = {}) {
+  const scopedSeasons = allData.map((season) => ({
+    ...season,
+    players: (season.players || []).filter((player) => player.division === "Seniors"),
+  }));
+  return computeCombinedPlayerStats(scopedSeasons, options);
+}
+
+function biggestWinForTeams(allData, teamIds) {
+  return allData
+    .flatMap((season) => {
+      const teams = new Map((season.teams || []).map((team) => [team.id, team]));
+      return (season.matches || [])
+        .filter((match) => Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore))
+        .filter((match) => teamIds.includes(match.homeTeamId) || teamIds.includes(match.awayTeamId))
+        .map((match) => {
+          const homeWon = match.homeScore >= match.awayScore;
+          return {
+            season: season.year,
+            margin: Math.abs(match.homeScore - match.awayScore),
+            score: `${match.homeScore}-${match.awayScore}`,
+            winner: homeWon ? teams.get(match.homeTeamId) : teams.get(match.awayTeamId),
+          };
+        });
+    })
+    .filter((row) => row.margin > 0)
+    .sort((a, b) => b.margin - a.margin)[0];
+}
+
+// Picks the single most notable record tied to either team in a matchup: an outright
+// all-time record beats a lopsided head-to-head blowout, which beats a plain scoring lead.
+function matchupRecordHighlight(allData, teamIds = []) {
+  if (!teamIds.length) return null;
+  const combined = seniorsCombinedStats(allData, { stage: "regular" }).filter((player) => player.goals > 0);
+  if (!combined.length) return null;
+  const byGoals = [...combined].sort((a, b) => b.goals - a.goals);
+  const overallLeader = byGoals[0];
+  const topScorer = byGoals.find((player) => teamIds.includes(player.teamId));
+  const bigWin = biggestWinForTeams(allData, teamIds);
+
+  if (topScorer && overallLeader && topScorer.id === overallLeader.id) {
+    return {
+      tag: "RECORD WATCH",
+      tone: "news",
+      headline: `${topScorer.name} owns the all-time LSL goals record`,
+      detail: `${topScorer.goals} career regular-season goals for ${topScorer.teamName || "their team"}.`,
+      href: playerHref(topScorer.id),
+    };
+  }
+
+  if (bigWin && bigWin.margin >= 6) {
+    return {
+      tag: "RECORD WATCH",
+      tone: "news",
+      headline: `${bigWin.winner?.name || "One side"} own the biggest win between these two teams`,
+      detail: `${bigWin.score} in ${bigWin.season}, a ${bigWin.margin}-goal margin.`,
+      href: bigWin.winner ? teamProfileHref(bigWin.winner.id, bigWin.season) : "./records.html",
+    };
+  }
+
+  if (topScorer) {
+    return {
+      tag: "RECORD WATCH",
+      tone: "news",
+      headline: `${topScorer.name} leads all scorers between these two teams`,
+      detail: `${topScorer.goals} career regular-season goals for ${topScorer.teamName || "their team"}.`,
+      href: playerHref(topScorer.id),
+    };
+  }
+
+  return null;
+}
+
 function renderImportantNewsCard({ tag, tone, headline, detail, href }) {
   return `
     <a class="important-news-card ${escapeHTML(tone)}" href="${escapeHTML(href || "./matchday.html")}">
@@ -615,17 +694,21 @@ function renderImportantNewsCard({ tag, tone, headline, detail, href }) {
   `;
 }
 
-function renderImportantNews(data, newsData = {}) {
+function renderImportantNews(data, allData, newsData = {}) {
   const playoffMatches = (data.matches || []).filter((match) => match.stage === "playoffs" && !match.activityTitle);
   const items = [];
+  let featuredTeamIds = [];
 
   if (playoffMatches.length) {
-    const resolved = playoffMatches.map((match) => ({ match, ...resolvedMatchTeams(data, match, playoffMatches) }));
+    const resolved = playoffMatches
+      .map((match) => ({ match, ...resolvedMatchTeams(data, match, playoffMatches) }))
+      .sort((a, b) => tickerSortMinutes(a.match) - tickerSortMinutes(b.match));
     const live = resolved.find(({ match }) => matchLiveStatus(match) === "live");
     const completed = resolved.filter(({ match }) => isCompletedMatch(match));
     const upcoming = resolved.filter(({ match }) => !isCompletedMatch(match) && matchLiveStatus(match) !== "live");
 
     if (live) {
+      featuredTeamIds = [live.homeId, live.awayId].filter(Boolean);
       items.push({
         tag: "LIVE NOW",
         tone: "live",
@@ -651,6 +734,7 @@ function renderImportantNews(data, newsData = {}) {
 
     const nextMatch = upcoming[0];
     if (nextMatch) {
+      if (!featuredTeamIds.length) featuredTeamIds = [nextMatch.homeId, nextMatch.awayId].filter(Boolean);
       items.push({
         tag: live ? "UP NEXT" : "NEXT MATCHUP",
         tone: "next",
@@ -661,14 +745,18 @@ function renderImportantNews(data, newsData = {}) {
     }
   }
 
-  const featured = (newsData.items || []).filter((item) => item.homeFeatured);
-  if (featured.length) {
-    const top = featured[0];
+  const recordHighlight = matchupRecordHighlight(allData, featuredTeamIds);
+  if (recordHighlight) items.push(recordHighlight);
+
+  const featuredItems = (newsData.items || []).filter((item) => item.homeFeatured);
+  const recordItem = featuredItems.find((item) => /record/i.test(item.label || ""));
+  const spotlight = recordItem || featuredItems[0];
+  if (spotlight) {
     items.push({
-      tag: top.label || "League News",
+      tag: spotlight.label || "League News",
       tone: "news",
-      headline: top.label || "League News",
-      detail: top.message || "",
+      headline: firstSentence(spotlight.message),
+      detail: spotlight.date || "",
       href: "./news.html",
     });
   }
@@ -720,7 +808,7 @@ function renderHomeContent(data, allData, teamOfWeek = {}, awardWatch = {}, news
 
     ${renderHomeLeaders(allData)}
 
-    ${renderImportantNews(data, newsData)}
+    ${renderImportantNews(data, allData, newsData)}
 
     ${renderTeamOfWeek(teamOfWeek)}
 

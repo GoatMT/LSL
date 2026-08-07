@@ -161,6 +161,61 @@ function buildCurrentBracket(data, rows, division) {
   };
 }
 
+function qfSortKey(label = "") {
+  const match = /Quarterfinal (\d+)/.exec(label);
+  return match ? Number(match[1]) : 99;
+}
+
+function sfSortKey(label = "") {
+  const match = /Semifinal (\d+)/.exec(label);
+  return match ? Number(match[1]) : 99;
+}
+
+function buildOfficialBracket(data, division) {
+  const playoffMatches = (data.matches || []).filter((match) => match.stage === "playoffs" && match.division === division);
+  if (!playoffMatches.length) return null;
+
+  const teams = new Map((data.teams || []).map((team) => [team.id, team]));
+  const toMatch = (match) => {
+    const home = teams.get(match.homeTeamId);
+    const away = teams.get(match.awayTeamId);
+    const winnerId =
+      match.winnerId || (Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore) && match.homeScore !== match.awayScore ? (match.homeScore > match.awayScore ? match.homeTeamId : match.awayTeamId) : "");
+    return {
+      label: match.label,
+      homeTeamId: match.homeTeamId,
+      homeTeamName: home?.name || match.homeTeamName || "TBA",
+      homeScore: match.homeScore,
+      awayTeamId: match.awayTeamId,
+      awayTeamName: away?.name || match.awayTeamName || "TBA",
+      awayScore: match.awayScore,
+      winnerId,
+      note: match.time ? `${match.time}${match.status && match.status !== "Complete" ? ` \u2022 ${match.status}` : ""}` : match.status || "",
+    };
+  };
+
+  const qfMatches = playoffMatches.filter((match) => /^Quarterfinal \d+$/.test(match.label || "")).sort((a, b) => qfSortKey(a.label) - qfSortKey(b.label));
+  const sfMatches = playoffMatches.filter((match) => /^Semifinal \d+$/.test(match.label || "")).sort((a, b) => sfSortKey(a.label) - sfSortKey(b.label));
+  const finalMatch = playoffMatches.find((match) => /championship final/i.test(match.label || ""));
+
+  const rounds = [];
+  if (qfMatches.length) rounds.push({ name: "Quarterfinals", matches: qfMatches.map(toMatch) });
+  if (sfMatches.length) rounds.push({ name: "Semifinals", matches: sfMatches.map(toMatch) });
+  if (finalMatch) rounds.push({ name: "Final", matches: [toMatch(finalMatch)] });
+  if (!rounds.length) return null;
+
+  const champion = finalMatch && Number.isFinite(finalMatch.homeScore) && Number.isFinite(finalMatch.awayScore) ? teams.get(finalMatch.winnerId)?.name || "" : "";
+
+  return {
+    season: data.year,
+    division,
+    layout: "wide",
+    champion,
+    format: "Eight-team single-day bracket. Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026.",
+    rounds,
+  };
+}
+
 function firstStartClock24(match) {
   const startRaw = String(match.time || "").split(/\s+(?:-|to)\s+/i)[0] || "";
   const parsed = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(startRaw.trim());
@@ -317,7 +372,7 @@ function render(data) {
   const rule = playoffRulesFor(state.season, state.division);
   const rows = calculateStandings(data, { division: state.division });
   const publishedPlayoffData = playoffDataForDivision(data.playoffs, state.division);
-  const playoffData = (publishedPlayoffData.rounds || []).length ? publishedPlayoffData : buildCurrentBracket(data, rows, state.division) || publishedPlayoffData;
+  const playoffData = (publishedPlayoffData.rounds || []).length ? publishedPlayoffData : buildOfficialBracket(data, state.division) || buildCurrentBracket(data, rows, state.division) || publishedPlayoffData;
 
   root.innerHTML = `
     <section class="section-panel">

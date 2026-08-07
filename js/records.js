@@ -8,7 +8,14 @@ setupLayout("records.html");
 setDocumentTitle("Records");
 
 const root = document.getElementById("page-root");
-let state = { division: "Seniors" };
+let state = { division: "Seniors", category: "player" };
+
+const categoryOptions = [
+  { value: "player", label: "Player Records" },
+  { value: "team", label: "Team Records" },
+  { value: "coach", label: "Coach Records" },
+  { value: "cup", label: "LSL Cup" },
+];
 
 const divisionOptions = [
   { value: "Seniors", label: "Seniors" },
@@ -136,6 +143,103 @@ function bestTeams(allData) {
     .slice(0, 5);
 }
 
+function teamSeasonRows(allData) {
+  const divisions = state.division === "All" ? SITE.divisions : [state.division];
+  return allData.flatMap((season) =>
+    divisions.flatMap((division) =>
+      calculateStandings(season, { division })
+        .filter((row) => row.gp > 0)
+        .map((row) => ({
+          ...row,
+          season: season.year,
+          division,
+          teamId: row.teamId,
+          teamName: row.team.name,
+        }))
+    )
+  );
+}
+
+function bestGoalsFor(allData) {
+  return teamSeasonRows(allData)
+    .sort((a, b) => b.gf - a.gf || a.teamName.localeCompare(b.teamName))
+    .slice(0, 5);
+}
+
+function leastGoalsAgainst(allData) {
+  return teamSeasonRows(allData)
+    .sort((a, b) => a.ga - b.ga || a.teamName.localeCompare(b.teamName))
+    .slice(0, 5);
+}
+
+function bestGoalDifferential(allData) {
+  return teamSeasonRows(allData)
+    .sort((a, b) => b.gd - a.gd || a.teamName.localeCompare(b.teamName))
+    .slice(0, 5);
+}
+
+function coachChampionships(allData) {
+  return computeCoachSummary(allData)
+    .filter(matchesDivision)
+    .filter((coach) => coach.championships > 0)
+    .sort((a, b) => b.championships - a.championships || b.wins - a.wins || a.name.localeCompare(b.name))
+    .slice(0, 5);
+}
+
+function cupChampions(allData) {
+  const rows = [];
+  allData.forEach((season) => {
+    const playoffs = season.playoffs;
+    if (!playoffs) return;
+    const divisionEntries = Array.isArray(playoffs.divisions) ? playoffs.divisions : [playoffs];
+    divisionEntries.forEach((entry) => {
+      if (!entry.champion) return;
+      if (state.division !== "All" && entry.division !== state.division) return;
+      const finalRound = (entry.rounds || []).find((round) => /final/i.test(round.name)) || {};
+      const finalMatch = (finalRound.matches || []).find((match) => !/3rd/i.test(match.label || "")) || {};
+      const runnerUpId = finalMatch.winnerId === finalMatch.homeTeamId ? finalMatch.awayTeamId : finalMatch.homeTeamId;
+      const runnerUpName = finalMatch.winnerId === finalMatch.homeTeamId ? finalMatch.awayTeamName : finalMatch.homeTeamName;
+      const championTeam = (season.teams || []).find((team) => team.name === entry.champion);
+      rows.push({
+        season: season.year,
+        division: entry.division || season.division || "Seniors",
+        champion: entry.champion,
+        championId: championTeam?.id || finalMatch.winnerId || "",
+        runnerUp: runnerUpName || "",
+        roster: championTeam?.roster || [],
+      });
+    });
+  });
+  return rows.sort((a, b) => a.season.localeCompare(b.season) || a.division.localeCompare(b.division));
+}
+
+function cupRepeatWinners(champions) {
+  const byPlayer = new Map();
+  champions.forEach((row) => {
+    (row.roster || []).forEach((player) => {
+      if (!byPlayer.has(player.id)) byPlayer.set(player.id, []);
+      byPlayer.get(player.id).push({ name: player.name, season: row.season, division: row.division, team: row.champion });
+    });
+  });
+  const multi = [];
+  const backToBack = [];
+  byPlayer.forEach((wins, playerId) => {
+    if (wins.length < 2) return;
+    multi.push({ id: playerId, name: wins[0].name, count: wins.length, seasons: wins.map((w) => w.season).join(", ") });
+    const sortedYears = wins.map((w) => Number(w.season)).sort((a, b) => a - b);
+    for (let i = 1; i < sortedYears.length; i++) {
+      if (sortedYears[i] === sortedYears[i - 1] + 1) {
+        backToBack.push({ id: playerId, name: wins[0].name, seasons: `${sortedYears[i - 1]}-${sortedYears[i]}` });
+        break;
+      }
+    }
+  });
+  return {
+    multi: multi.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name)),
+    backToBack: backToBack.sort((a, b) => a.name.localeCompare(b.name)),
+  };
+}
+
 function matchDateValue(match) {
   const value = Date.parse(`${match.date || ""} 12:00:00`);
   return Number.isFinite(value) ? value : 0;
@@ -224,6 +328,17 @@ function renderFilters() {
   return `
     <div class="all-time-filter-bar records-filter-bar">
       <div>
+        <span class="eyebrow">Category</span>
+        <div class="all-time-toggle wide" role="group" aria-label="Records category filter">
+          ${categoryOptions
+            .map(
+              (option) =>
+                `<button class="${state.category === option.value ? "active" : ""}" type="button" data-category="${escapeHTML(option.value)}">${escapeHTML(option.label)}</button>`
+            )
+            .join("")}
+        </div>
+      </div>
+      <div>
         <span class="eyebrow">Division</span>
         <div class="all-time-toggle wide" role="group" aria-label="Records division filter">
           ${divisionOptions
@@ -235,6 +350,33 @@ function renderFilters() {
         </div>
       </div>
     </div>
+  `;
+}
+
+function renderCupSection(allData) {
+  const champions = cupChampions(allData);
+  const { multi, backToBack } = cupRepeatWinners(champions);
+  return `
+    <section class="section-panel records-grid-panel">
+      <div class="records-grid">
+        ${recordTable("LSL Cup Champions", "Playoff champion by season and division.", champions, [
+          { label: "Season", render: (row) => escapeHTML(row.season) },
+          { label: "Division", render: (row) => escapeHTML(row.division) },
+          { label: "Champion", render: (row) => (row.championId ? teamLink({ teamId: row.championId, teamName: row.champion }, row.season) : escapeHTML(row.champion)) },
+          { label: "Runner-Up", render: (row) => escapeHTML(row.runnerUp || "TBA") },
+        ])}
+        ${recordTable("Multiple-Time Champions", "Players who were on 2 or more LSL Cup-winning rosters.", multi, [
+          { label: "Player", render: (row) => playerLink({ id: row.id, name: row.name }) },
+          { label: "Titles", num: true, render: (row) => row.count },
+          { label: "Seasons", render: (row) => escapeHTML(row.seasons) },
+        ])}
+        ${recordTable("Back-To-Back Champions", "Players on a title-winning roster in consecutive seasons.", backToBack, [
+          { label: "Player", render: (row) => playerLink({ id: row.id, name: row.name }) },
+          { label: "Seasons", render: (row) => escapeHTML(row.seasons) },
+        ])}
+      </div>
+      ${!multi.length ? `<p class="franchise-note">No player has won the LSL Cup more than once yet \u2014 each completed championship so far has gone to a different roster.</p>` : ""}
+    </section>
   `;
 }
 
@@ -274,78 +416,136 @@ function render(allData) {
       </div>
     </section>
 
-    <section class="section-panel records-grid-panel">
-      <div class="records-grid">
-        ${recordTable("Most Goals In A Season", "Regular-season goals by one player in one season.", singleSeasonGoals, [
-          { label: "Player", render: playerLink },
-          { label: "Season", render: (row) => escapeHTML(row.season) },
-          { label: "Team", render: (row) => teamLink(row, row.season) },
-          { label: "Goals", num: true, render: (row) => row.goals },
-        ])}
-        ${recordTable("Career Goals", "Regular-season goals only, combined across all listed seasons in the selected division.", careerGoals, [
-          { label: "Player", render: playerLink },
-          { label: "Teams", render: (row) => escapeHTML(row.teamName || "Team TBA") },
-          { label: "Goals", num: true, render: (row) => row.goals },
-          { label: "Games Played", num: true, render: (row) => row.gamesPlayed },
-        ])}
-        ${recordTable("Playoff Goals", "Only playoff scoring records.", playoffGoals, [
-          { label: "Player", render: playerLink },
-          { label: "Team", render: (row) => escapeHTML(row.teamName || "Team TBA") },
-          { label: "Goals", num: true, render: (row) => row.goals },
-          { label: "Games", num: true, render: (row) => row.gamesPlayed },
-        ])}
-        ${recordTable("Coach Wins", "Regular-season coaching wins from listed team records.", coachWins, [
-          { label: "Coach", render: coachLink },
-          { label: "Teams", render: (row) => escapeHTML((row.pastTeams || []).join(" / ") || row.teamName || "Team TBA") },
-          { label: "Wins", num: true, render: (row) => row.wins },
-          { label: "Titles", num: true, render: (row) => row.championships },
-        ])}
-        ${recordTable("Biggest Wins", "Largest listed score margins.", biggestWins(allData), [
-          { label: "Winner", render: (row) => teamLink(row.winner || { name: "Team TBA" }, row.season) },
-          { label: "Opponent", render: (row) => escapeHTML(row.loser?.name || "Team TBA") },
-          { label: "Score", render: (row) => escapeHTML(row.score) },
-          { label: "Margin", num: true, render: (row) => row.margin },
-        ])}
-        ${recordTable("Best Regular Season", "Top team point totals by season and division.", bestTeams(allData), [
-          { label: "Team", render: (row) => teamLink(row, row.season) },
-          { label: "Season", render: (row) => `${escapeHTML(row.season)} ${escapeHTML(row.division)}` },
-          { label: "Points", num: true, render: (row) => row.pts },
-          { label: "Record", render: (row) => `${row.w}-${row.d}-${row.l}` },
-        ])}
-      </div>
-    </section>
+    ${
+      state.category === "player"
+        ? `
+          <section class="section-panel records-grid-panel">
+            <div class="records-grid">
+              ${recordTable("Most Goals In A Season", "Regular-season goals by one player in one season.", singleSeasonGoals, [
+                { label: "Player", render: playerLink },
+                { label: "Season", render: (row) => escapeHTML(row.season) },
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Goals", num: true, render: (row) => row.goals },
+              ])}
+              ${recordTable("Career Goals", "Regular-season goals only, combined across all listed seasons in the selected division.", careerGoals, [
+                { label: "Player", render: playerLink },
+                { label: "Teams", render: (row) => escapeHTML(row.teamName || "Team TBA") },
+                { label: "Goals", num: true, render: (row) => row.goals },
+                { label: "Games Played", num: true, render: (row) => row.gamesPlayed },
+              ])}
+              ${recordTable("Playoff Goals", "Only playoff scoring records.", playoffGoals, [
+                { label: "Player", render: playerLink },
+                { label: "Team", render: (row) => escapeHTML(row.teamName || "Team TBA") },
+                { label: "Goals", num: true, render: (row) => row.goals },
+                { label: "Games", num: true, render: (row) => row.gamesPlayed },
+              ])}
+            </div>
+          </section>
+        `
+        : ""
+    }
 
-    <section class="section-panel records-grid-panel">
-      <div class="section-head compact-head">
-        <div>
-          <span class="eyebrow">Right Now</span>
-          <h2>Streaks &amp; Trends</h2>
-          <p>Current win/loss streaks this season, plus the biggest hot and cold scoring runs on record.</p>
-        </div>
-      </div>
-      <div class="records-grid">
-        ${recordTable(`Current Streaks (${SITE.seasons[SITE.seasons.length - 1]})`, "Each team's active run heading into the next game, longest win streaks first.", currentStreaks(allData), [
-          { label: "Team", render: (row) => teamLink(row, row.season) },
-          { label: "Streak", render: (row) => `${row.type}${row.length}` },
-          { label: "Detail", render: (row) => escapeHTML(streakLabel(row)) },
-        ])}
-        ${recordTable("Hottest Scoring Streaks", "Most consecutive games scoring 2+ goals, all seasons.", biggestScoringStreaks(allData).hot, [
-          { label: "Team", render: (row) => teamLink(row, row.season) },
-          { label: "Season", render: (row) => escapeHTML(row.season) },
-          { label: "Streak", num: true, render: (row) => `${row.length} games` },
-        ])}
-        ${recordTable("Coldest Scoring Streaks", "Most consecutive games held to 1 goal or fewer, all seasons.", biggestScoringStreaks(allData).cold, [
-          { label: "Team", render: (row) => teamLink(row, row.season) },
-          { label: "Season", render: (row) => escapeHTML(row.season) },
-          { label: "Streak", num: true, render: (row) => `${row.length} games` },
-        ])}
-      </div>
-    </section>
+    ${
+      state.category === "team"
+        ? `
+          <section class="section-panel records-grid-panel">
+            <div class="records-grid">
+              ${recordTable("Best Regular Season", "Top team point totals by season and division.", bestTeams(allData), [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => `${escapeHTML(row.season)} ${escapeHTML(row.division)}` },
+                { label: "Points", num: true, render: (row) => row.pts },
+                { label: "Record", render: (row) => `${row.w}-${row.d}-${row.l}` },
+              ])}
+              ${recordTable("Best Goals For", "Most goals scored by one team in one season.", bestGoalsFor(allData), [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => `${escapeHTML(row.season)} ${escapeHTML(row.division)}` },
+                { label: "GF", num: true, render: (row) => row.gf },
+              ])}
+              ${recordTable("Least Goals Against", "Fewest goals conceded by one team in one season.", leastGoalsAgainst(allData), [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => `${escapeHTML(row.season)} ${escapeHTML(row.division)}` },
+                { label: "GA", num: true, render: (row) => row.ga },
+              ])}
+              ${recordTable("Best Goal Differential", "Best goal difference by one team in one season.", bestGoalDifferential(allData), [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => `${escapeHTML(row.season)} ${escapeHTML(row.division)}` },
+                { label: "GD", num: true, render: (row) => (row.gd > 0 ? `+${row.gd}` : row.gd) },
+              ])}
+              ${recordTable("Biggest Wins", "Largest listed score margins.", biggestWins(allData), [
+                { label: "Winner", render: (row) => teamLink(row.winner || { name: "Team TBA" }, row.season) },
+                { label: "Opponent", render: (row) => escapeHTML(row.loser?.name || "Team TBA") },
+                { label: "Score", render: (row) => escapeHTML(row.score) },
+                { label: "Margin", num: true, render: (row) => row.margin },
+              ])}
+            </div>
+          </section>
+
+          <section class="section-panel records-grid-panel">
+            <div class="section-head compact-head">
+              <div>
+                <span class="eyebrow">Right Now</span>
+                <h2>Streaks &amp; Trends</h2>
+                <p>Current win/loss streaks this season, plus the biggest hot and cold scoring runs on record.</p>
+              </div>
+            </div>
+            <div class="records-grid">
+              ${recordTable(`Current Streaks (${SITE.seasons[SITE.seasons.length - 1]})`, "Each team's active run heading into the next game, longest win streaks first.", currentStreaks(allData), [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Streak", render: (row) => `${row.type}${row.length}` },
+                { label: "Detail", render: (row) => escapeHTML(streakLabel(row)) },
+              ])}
+              ${recordTable("Hottest Scoring Streaks", "Most consecutive games scoring 2+ goals, all seasons.", biggestScoringStreaks(allData).hot, [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => escapeHTML(row.season) },
+                { label: "Streak", num: true, render: (row) => `${row.length} games` },
+              ])}
+              ${recordTable("Coldest Scoring Streaks", "Most consecutive games held to 1 goal or fewer, all seasons.", biggestScoringStreaks(allData).cold, [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => escapeHTML(row.season) },
+                { label: "Streak", num: true, render: (row) => `${row.length} games` },
+              ])}
+            </div>
+          </section>
+        `
+        : ""
+    }
+
+    ${
+      state.category === "coach"
+        ? `
+          <section class="section-panel records-grid-panel">
+            <div class="records-grid">
+              ${recordTable("Coach Wins", "Regular-season coaching wins from listed team records.", coachWins, [
+                { label: "Coach", render: coachLink },
+                { label: "Teams", render: (row) => escapeHTML((row.pastTeams || []).join(" / ") || row.teamName || "Team TBA") },
+                { label: "Wins", num: true, render: (row) => row.wins },
+                { label: "Titles", num: true, render: (row) => row.championships },
+              ])}
+              ${recordTable("Coach Championships", "Coaches with 1 or more LSL Cup titles on record.", coachChampionships(allData), [
+                { label: "Coach", render: coachLink },
+                { label: "Teams", render: (row) => escapeHTML((row.pastTeams || []).join(" / ") || row.teamName || "Team TBA") },
+                { label: "Titles", num: true, render: (row) => row.championships },
+                { label: "Wins", num: true, render: (row) => row.wins },
+              ])}
+            </div>
+          </section>
+        `
+        : ""
+    }
+
+    ${state.category === "cup" ? renderCupSection(allData) : ""}
   `;
 
   root.querySelectorAll("[data-division]").forEach((button) => {
     button.addEventListener("click", () => {
       state.division = button.dataset.division;
+      render(allData);
+    });
+  });
+
+  root.querySelectorAll("[data-category]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.category = button.dataset.category;
       render(allData);
     });
   });
