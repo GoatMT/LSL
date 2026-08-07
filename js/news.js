@@ -165,15 +165,6 @@ function isDevelopingArticle(article) {
   return article?.isDeveloping === true && Boolean(article.storyline);
 }
 
-function reportStatus(article) {
-  if (article.reportStatus) return article.reportStatus;
-  if (isDevelopingArticle(article)) return "Developing";
-  const category = String(article.category || "").toLowerCase();
-  if (["final", "results", "postgame"].some((item) => category.includes(item))) return "Reported Result";
-  if (category.includes("league notes") || category.includes("league update")) return "League Update";
-  return "Feature";
-}
-
 function renderDevelopingStoryBlock(article, articles) {
   if (!isDevelopingArticle(article)) return "";
 
@@ -253,7 +244,6 @@ function renderArticle(article, articles) {
     <article class="news-article-card">
       <div class="news-article-kicker">
         <span class="pill green">${escapeHTML(articleCategoryGroup(article))}</span>
-        <span class="news-report-status${reportStatus(article) === "Official" ? " official" : ""}">${escapeHTML(reportStatus(article))}</span>
         ${article.storyLabel && !isDevelopingArticle(article) ? `<span class="news-story-label">${escapeHTML(article.storyLabel)}</span>` : ""}
         <time>${escapeHTML(articleTime(article))}</time>
       </div>

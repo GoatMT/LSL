@@ -7100,12 +7100,6 @@ details.clean-details summary {
   border: 1px solid rgba(199, 163, 103, 0.45);
 }
 
-.news-story-status {
-  color: var(--gold);
-  background: rgba(199, 163, 103, 0.12);
-  border: 1px solid rgba(199, 163, 103, 0.28);
-}
-
 .news-story-card strong {
   min-width: 0;
   color: #ffffff;
@@ -8080,25 +8074,6 @@ details.clean-details summary {
 .owner-row a:focus-visible {
   color: var(--gold);
   text-decoration: underline;
-}
-
-.news-report-status {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  padding: 5px 10px;
-  color: #ffffff;
-  background: #3b3323;
-  border: 1px solid rgba(199, 163, 103, 0.55);
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 900;
-}
-
-.news-report-status.official {
-  color: #ffffff;
-  background: #125929;
-  border-color: rgba(116, 226, 145, 0.6);
 }
 
 .news-trade-stats {
