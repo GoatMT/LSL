@@ -102,12 +102,6 @@ function articleDateValue(article) {
   return Number.isFinite(value) ? value : 0;
 }
 
-const PRIORITY_HEADLINE_PREFIXES = ["Week 7 Recap:", "Quarterfinal Preview:", "What The Numbers Say:"];
-
-function isPriorityArticle(article) {
-  return PRIORITY_HEADLINE_PREFIXES.some((prefix) => (article.headline || "").startsWith(prefix));
-}
-
 function monthDayKey(dateStr = "") {
   const parts = String(dateStr).split("-");
   return parts.length === 3 ? `${parts[1]}-${parts[2]}` : "";
@@ -240,14 +234,12 @@ function renderTradeStats(article) {
 
 function renderStoryCard(article, activeId) {
   const group = articleCategoryGroup(article);
-  const status = reportStatus(article);
   return `
     <a class="news-story-card${article.id === activeId ? " active" : ""}" href="${escapeHTML(articleHref(article))}" data-news-id="${escapeHTML(article.id)}">
       ${storyThumbnailMarkup(article)}
       <div class="news-story-card-body">
         <div class="news-story-tags">
           <span class="news-story-type">${escapeHTML(group)}</span>
-          <span class="news-story-status">${escapeHTML(status)}</span>
         </div>
         <strong>${escapeHTML(article.headline)}</strong>
         <time>${escapeHTML(articleTime(article))}</time>
@@ -320,8 +312,7 @@ function render(articles, onThisDay = []) {
 
   state.articleId = selected.id;
   setDocumentTitle(`${selected.headline} | News`);
-  const priorityArticles = articles.filter(isPriorityArticle);
-  const collapsedArticles = priorityArticles.length ? priorityArticles : articles.slice(0, 10);
+  const collapsedArticles = articles.slice(0, 10);
   const listedArticles = state.storiesExpanded ? articles : collapsedArticles;
   const hasOlderStories = articles.length > collapsedArticles.length;
 
