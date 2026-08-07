@@ -479,7 +479,7 @@ function renderTickerItem(data, match) {
 }
 
 function renderScoreTicker(data) {
-  const matches = (data.matches || []).filter((match) => match.stage === "regular" || match.stage === "playoffs");
+  const matches = (data.matches || []).filter((match) => match.stage === "regular" || match.stage === "playoffs" || match.stage === "exhibition");
   if (!matches.length) return "";
 
   const todayIso = new Date().toISOString().slice(0, 10);
