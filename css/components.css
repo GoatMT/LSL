@@ -2742,6 +2742,10 @@ details.clean-details summary {
   align-items: end;
 }
 
+.records-filter-bar {
+  margin-bottom: 24px;
+}
+
 .all-time-filter-bar > div {
   min-width: 0;
   display: grid;

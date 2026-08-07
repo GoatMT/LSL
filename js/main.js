@@ -3,7 +3,7 @@ import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.0";
 import { computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
-import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
+import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js";
 
 function playerHref(playerId = "") {

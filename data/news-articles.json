@@ -1,12 +1,54 @@
 {
   "articles": [
     {
+      "id": "leeward-lions-2026-records-broken",
+      "category": "League Analysis",
+      "storyLabel": "Record Book",
+      "isDeveloping": false,
+      "reportStatus": "Not Official",
+      "isLatest": true,
+      "headline": "Every Record Leeward Lions Broke (Or Tied) In The 2026 Regular Season",
+      "subtitle": "A point-by-point look at where the #1 seed's regular season stacks up against three years of LSL history.",
+      "date": "August 4, 2026",
+      "time": "Record book",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Leeward Lions.jpg",
+      "heroImage": "./Logos/2026 Teams/Leeward Lions.jpg",
+      "tags": ["Leeward Lions", "Mudassir", "Ajmal Chakkari", "Records", "Advanced Stats"],
+      "playerProfiles": [
+        { "id": "mudassir", "label": "View Mudassir Profile" },
+        { "id": "ajmal-shakkari", "label": "View Ajmal Profile" }
+      ],
+      "caption": "Leeward Lions finished the 2026 regular season with a league-record 16 points.",
+      "related": [
+        { "label": "Numbers Watch", "articleId": "playoff-predictions-what-the-numbers-say", "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats" }
+      ],
+      "body": [
+        "Leeward Lions locked up the #1 seed with the best regular season the LSL Seniors have recorded in three years. Here's every mark they broke or matched, team and player, with the old benchmark next to each one.",
+        "TEAM RECORDS",
+        "\u2022 Most regular-season points on record: 16 (5-1-1). Passes Refuel Juicery Kickers' 13 points in 2024 and Asif Gangat United's 12 points in 2025, the two previous Best Regular Season Team winners.",
+        "\u2022 Best goal difference in the 2026 Seniors season: +18 (27 scored, 9 allowed), the top mark of any team this year.",
+        "\u2022 League's top-scoring team in 2026: 27 goals in 7 games, ahead of EM Haulers FC's 25 and Sharp Strikers' 24.",
+        "\u2022 Longest active run of the season: 4 straight wins (Weeks 2 through 5).",
+        "\u2022 Only one loss all regular season, a 5-4 shootout against Sharp Strikers in Week 6.",
+        "PLAYER RECORDS",
+        "\u2022 Mudassir: 16 regular-season goals. New Seniors single-season scoring record, more than double the old mark of 8, shared by Muzamil Kharooti (2024, Refuel Juicery Kickers) and Hafizullah (2025, Asif Gangat United).",
+        "\u2022 Ajmal Chakkari: 8 regular-season goals. Matches that old Seniors single-season record on his own, meaning Leeward had two players at or above the previous league benchmark in the same season.",
+        "\u2022 Mudassir and Ajmal Chakkari both finish 2026 among the top individual scoring seasons in Seniors history, at #1 and tied for the old #1 mark respectively.",
+        "\u2022 Mudassir also picked up 2 assists and Ajmal Chakkari 1, meaning Leeward's top two scorers combined directly in 19 of the team's 27 goals this season.",
+        "\u2022 Mudassir's 5-goal game against Memon Mavericks in Week 4 is a new Seniors single-game scoring record. The old mark was 3, shared by several players across 2024 and 2025 (Hafizullah, Marwan Ahmed, and Muzamil Kharooti among them).",
+        "RECORDS CONFIRMED AFTER CHECKING 2024 AND 2025 MATCH BY MATCH",
+        "\u2022 Leeward's two 6-goal win margins this season (8-2 over Memon Mavericks in Week 4, 6-0 over Gangat Warriors in Week 2) are now confirmed as the largest single-game victory margins in Seniors history. The previous high was 5 (IM Construction SC 5-0 over Amax Optical Kickers, 2025 Week 1); 2024's largest was 4.",
+        "All of this is regular-season only. The quarterfinal round starts August 8, where Leeward can add a deeper playoff run on top of it."
+      ]
+    },
+    {
       "id": "who-leads-playoffs-in-goals",
       "category": "League Analysis",
       "storyLabel": "Golden Boot Watch",
       "isDeveloping": false,
       "reportStatus": "Not Official",
-      "isLatest": true,
+      "isLatest": false,
       "headline": "Who Leads The Playoffs In Goals? The Case For Mudassir, And Who Could Catch Him",
       "subtitle": "The league's regular-season scoring leader draws the round's most favorable matchup, but a crowded chase pack has a path to catch him if Leeward's run ends early.",
       "date": "August 4, 2026",

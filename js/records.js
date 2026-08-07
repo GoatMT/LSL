@@ -8,16 +8,26 @@ setupLayout("records.html");
 setDocumentTitle("Records");
 
 const root = document.getElementById("page-root");
-let state = { division: "All" };
+let state = { division: "Seniors" };
 
 const divisionOptions = [
-  { value: "All", label: "Both" },
   { value: "Seniors", label: "Seniors" },
   { value: "Juniors", label: "Juniors" },
 ];
 
 function matchesDivision(item) {
   return state.division === "All" || item.division === state.division || String(item.division || "").includes(state.division);
+}
+
+// Combines a player's stats only across the seasons where they actually played in the
+// currently selected division, so e.g. a player's Juniors-era goals never get folded into
+// their Seniors career total just because they moved up divisions in a later season.
+function combinedPlayerStatsForDivision(allData, options = {}) {
+  const scopedSeasons = allData.map((season) => ({
+    ...season,
+    players: (season.players || []).filter((player) => player.division === state.division),
+  }));
+  return computeCombinedPlayerStats(scopedSeasons, options);
 }
 
 function playerLink(player) {
@@ -233,13 +243,11 @@ function render(allData) {
     .filter((player) => player.goals > 0)
     .sort((a, b) => b.goals - a.goals || b.points - a.points || a.name.localeCompare(b.name))
     .slice(0, 5);
-  const careerGoals = computeCombinedPlayerStats(allData, { stage: "regular" })
-    .filter(matchesDivision)
+  const careerGoals = combinedPlayerStatsForDivision(allData, { stage: "regular" })
     .filter((player) => player.goals > 0)
-    .sort((a, b) => b.goals - a.goals || b.points - a.points || a.name.localeCompare(b.name))
+    .sort((a, b) => b.goals - a.goals || b.gamesPlayed - a.gamesPlayed || a.name.localeCompare(b.name))
     .slice(0, 5);
-  const playoffGoals = computeCombinedPlayerStats(allData, { stage: "playoffs" })
-    .filter(matchesDivision)
+  const playoffGoals = combinedPlayerStatsForDivision(allData, { stage: "playoffs" })
     .filter((player) => player.goals > 0)
     .sort((a, b) => b.goals - a.goals || b.points - a.points || a.name.localeCompare(b.name))
     .slice(0, 5);
@@ -274,11 +282,11 @@ function render(allData) {
           { label: "Team", render: (row) => teamLink(row, row.season) },
           { label: "Goals", num: true, render: (row) => row.goals },
         ])}
-        ${recordTable("Career Goals", "Regular-season goals only, combined across all listed seasons.", careerGoals, [
+        ${recordTable("Career Goals", "Regular-season goals only, combined across all listed seasons in the selected division.", careerGoals, [
           { label: "Player", render: playerLink },
           { label: "Teams", render: (row) => escapeHTML(row.teamName || "Team TBA") },
           { label: "Goals", num: true, render: (row) => row.goals },
-          { label: "Points", num: true, render: (row) => row.points },
+          { label: "Games Played", num: true, render: (row) => row.gamesPlayed },
         ])}
         ${recordTable("Playoff Goals", "Only playoff scoring records.", playoffGoals, [
           { label: "Player", render: playerLink },
