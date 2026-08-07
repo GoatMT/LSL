@@ -1424,7 +1424,7 @@
       "week": 8,
       "stage": "playoffs",
       "division": "Seniors",
-      "label": "Quarterfinal 1",
+      "label": "Quarterfinal 4",
       "date": "2026-08-08",
       "time": "10:30 AM - 11:05 AM",
       "homeTeamId": "leeward-lions",
@@ -1435,7 +1435,7 @@
       "scorers": [],
       "assists": [],
       "notes": [
-        "Quarterfinal 1: #1 seed Leeward Lions vs #8 seed Memon Mavericks.",
+        "Quarterfinal 4: #1 seed Leeward Lions vs #8 seed Memon Mavericks.",
         "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
       ]
     },
@@ -1464,7 +1464,7 @@
       "week": 8,
       "stage": "playoffs",
       "division": "Seniors",
-      "label": "Quarterfinal 3",
+      "label": "Quarterfinal 1",
       "date": "2026-08-08",
       "time": "8:30 AM - 9:05 AM",
       "homeTeamId": "sharp-strikers",
@@ -1475,7 +1475,7 @@
       "scorers": [],
       "assists": [],
       "notes": [
-        "Quarterfinal 3: #3 seed Sharp Strikers vs #6 seed Amax Visionaries.",
+        "Quarterfinal 1: #3 seed Sharp Strikers vs #6 seed Amax Visionaries.",
         "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
       ]
     },
@@ -1484,7 +1484,7 @@
       "week": 8,
       "stage": "playoffs",
       "division": "Seniors",
-      "label": "Quarterfinal 4",
+      "label": "Quarterfinal 3",
       "date": "2026-08-08",
       "time": "9:50 AM - 10:25 AM",
       "homeTeamId": "rawaha-royals",
@@ -1495,7 +1495,7 @@
       "scorers": [],
       "assists": [],
       "notes": [
-        "Quarterfinal 4: #4 seed Rawaha Royals vs #5 seed Refuel Rovers.",
+        "Quarterfinal 3: #4 seed Rawaha Royals vs #5 seed Refuel Rovers.",
         "Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026."
       ]
     },
@@ -1509,15 +1509,15 @@
       "time": "11:05 AM - 11:40 AM",
       "homeTeamId": null,
       "awayTeamId": null,
-      "homeTeamName": "Winner QF2",
-      "awayTeamName": "Winner QF3",
+      "homeTeamName": "Winner QF1",
+      "awayTeamName": "Winner QF2",
       "homeScore": null,
       "awayScore": null,
       "status": "Scheduled",
       "scorers": [],
       "assists": [],
       "notes": [
-        "Semifinal 1: Winner of Quarterfinal 2 vs winner of Quarterfinal 3.",
+        "Semifinal 1: Winner of Quarterfinal 1 vs winner of Quarterfinal 2.",
         "Official Finals Day schedule posted for Saturday, August 8, 2026."
       ]
     },
@@ -1531,7 +1531,7 @@
       "time": "11:45 AM - 12:20 PM",
       "homeTeamId": null,
       "awayTeamId": null,
-      "homeTeamName": "Winner QF1",
+      "homeTeamName": "Winner QF3",
       "awayTeamName": "Winner QF4",
       "homeScore": null,
       "awayScore": null,
@@ -1539,7 +1539,7 @@
       "scorers": [],
       "assists": [],
       "notes": [
-        "Semifinal 2: Winner of Quarterfinal 1 vs winner of Quarterfinal 4.",
+        "Semifinal 2: Winner of Quarterfinal 3 vs winner of Quarterfinal 4.",
         "Official Finals Day schedule posted for Saturday, August 8, 2026."
       ]
     },

@@ -1,7 +1,8 @@
 import { renderMatchCard } from "../components/matchCard.js?v=3.2";
+import { matchToCalendarEvent, renderCalendarDownloadButton } from "./calendarLinks.js";
 import { SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=1.0";
-import { filterMatches, getWeeks } from "./leagueEngine.js?v=3.3";
+import { filterMatches, getWeeks, isCompletedMatch, teamMap } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
@@ -87,11 +88,32 @@ function renderMatchGroups(data, matches) {
   `;
 }
 
+function isMatchUpcoming(match) {
+  if (isCompletedMatch(match)) return false;
+  if (!match.date) return true;
+  const matchDate = new Date(`${match.date}T23:59:59`);
+  return Number.isFinite(matchDate.getTime()) ? matchDate >= new Date() : true;
+}
+
+function upcomingCalendarEvents(data, matches) {
+  const teams = teamMap(data);
+  return matches
+    .filter(isMatchUpcoming)
+    .map((match) => {
+      const home = teams.get(match.homeTeamId);
+      const away = teams.get(match.awayTeamId);
+      return matchToCalendarEvent(match, data, { home: home?.name || match.homeTeamName, away: away?.name || match.awayTeamName });
+    })
+    .filter(Boolean);
+}
+
 function render(data) {
   const weeks = allWeeks(data);
   if (!weeks.some((item) => String(item.value) === String(state.week))) state.week = "all";
   const matches = filterMatches(data.matches, { division: state.division, stage: state.stage, week: state.week });
   const emptyMessage = state.season === SITE.defaultSeason ? "Not started yet" : "No matches are published for this selection yet.";
+  const calendarEvents = upcomingCalendarEvents(data, matches);
+  const calendarFilename = `lsl-${String(state.division).toLowerCase()}-${String(state.stage).toLowerCase()}-matches.ics`;
 
   root.innerHTML = `
     <section class="section-panel">
@@ -101,6 +123,7 @@ function render(data) {
           <h1>Schedules and Results</h1>
           <p>Match cards include teams, scores, date, time, goals, assists, shots, player of the match, and match notes.</p>
         </div>
+        ${calendarEvents.length ? `<div class="button-row">${renderCalendarDownloadButton(calendarEvents, calendarFilename, `📅 Add All ${calendarEvents.length} Upcoming To Calendar`)}</div>` : ""}
       </div>
       <div class="controls">
         ${controlSelect("season", "Season", SITE.seasons, state.season)}

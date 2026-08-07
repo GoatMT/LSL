@@ -1,6 +1,72 @@
 {
   "articles": [
     {
+      "id": "finals-day-official-schedule-august-8",
+      "category": "League Notes",
+      "storyLabel": "Schedule",
+      "isDeveloping": false,
+      "reportStatus": "Official Schedule",
+      "isLatest": true,
+      "headline": "Lantern Soccer League Finals Day: Official Schedule for Saturday, August 8",
+      "subtitle": "Quarterfinals open at 8:30 AM and the day builds through the semifinals, a Coaches & Volunteers match, the Juniors games, and the 2:00 PM Championship Final.",
+      "date": "August 5, 2026",
+      "time": "Official schedule",
+      "author": "LSL Admin Update",
+      "thumbnail": "./Logos/lsl-logo.png",
+      "heroImage": "./Logos/lsl-logo.png",
+      "tags": [
+        "Finals Day",
+        "Playoffs",
+        "Schedule",
+        "Leeward Lions",
+        "Championship",
+        "Juniors"
+      ],
+      "caption": "All eight LSL Seniors teams return to Grenoble P.S. Field on Saturday, August 8 for Finals Day.",
+      "related": [
+        {
+          "label": "Week 7 Recap",
+          "articleId": "week-7-recap-regular-season-finale",
+          "title": "Week 7 Recap: Regular Season Closes as Leeward and Rawaha Post Wins, Two Matches End Level"
+        },
+        {
+          "label": "Numbers Watch",
+          "articleId": "playoff-predictions-what-the-numbers-say",
+          "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats"
+        },
+        {
+          "label": "Golden Boot Watch",
+          "articleId": "who-leads-playoffs-in-goals",
+          "title": "Who Will Lead The Playoffs In Goals?"
+        }
+      ],
+      "body": [
+        "After seven weeks of league play, it all comes down to one final day. LSL's eight Seniors teams battle through the playoffs on Saturday, August 8 to determine the 2026 Lantern Soccer League Playoff Champions.",
+        "QUARTERFINALS (35 minutes, including a 5-minute halftime)",
+        "\u2022 8:30 AM \u2013 9:05 AM | QF1: Sharp Strikers vs Amax Visionaries",
+        "\u2022 9:10 AM \u2013 9:45 AM | QF2: EM Haulers FC vs Gangat Warriors",
+        "\u2022 9:50 AM \u2013 10:25 AM | QF3: Rawaha Royals vs Refuel Rovers",
+        "\u2022 10:30 AM \u2013 11:05 AM | QF4: Leeward Lions vs Memon Mavericks",
+        "SEMIFINALS (35 minutes, including a 5-minute halftime)",
+        "\u2022 11:05 AM \u2013 11:40 AM | SF1: Winner QF1 vs Winner QF2",
+        "\u2022 11:45 AM \u2013 12:20 PM | SF2: Winner QF3 vs Winner QF4",
+        "COACHES & VOLUNTEERS MATCH",
+        "\u2022 12:25 PM \u2013 12:45 PM",
+        "JUNIORS",
+        "\u2022 12:45 PM \u2013 1:05 PM | Game 1",
+        "\u2022 1:05 PM \u2013 1:25 PM | Game 2",
+        "\u2022 1:25 PM \u2013 1:45 PM | Junior Final",
+        "DHUHR BREAK",
+        "\u2022 1:45 PM \u2013 2:00 PM",
+        "LSL CHAMPIONSHIP FINAL (45 minutes, including a 5-minute halftime)",
+        "\u2022 2:00 PM \u2013 2:45 PM",
+        "PRESENTATION CEREMONY",
+        "\u2022 2:45 PM onwards",
+        "Come out with family and friends to support the players and enjoy a day of exciting football. Congratulations again to the Leeward Lions, LSL's 2026 Regular Season Champions. Now every team has one final opportunity to lift the 2026 LSL Playoff Championship.",
+        "May Allah grant everyone a safe, enjoyable, and successful Finals Day. The league looks forward to seeing everyone there, In sha'Allah."
+      ]
+    },
+    {
       "id": "leeward-lions-2026-records-broken",
       "category": "League Analysis",
       "storyLabel": "Record Book",

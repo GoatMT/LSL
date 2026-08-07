@@ -1,6 +1,13 @@
 {
   "items": [
     {
+      "label": "Finals Day Schedule",
+      "homeFeatured": true,
+      "message": "The official 2026 LSL Finals Day schedule is set for Saturday, August 8 at Grenoble P.S. Field. Quarterfinals run 8:30 AM to 11:05 AM (QF3: Sharp Strikers vs Amax Visionaries at 8:30, QF2: EM Haulers FC vs Gangat Warriors at 9:10, QF4: Rawaha Royals vs Refuel Rovers at 9:50, QF1: Leeward Lions vs Memon Mavericks at 10:30), followed immediately by the semifinals, a Coaches & Volunteers match at 12:25 PM, three Juniors games starting at 12:45 PM, a Dhuhr break at 1:45 PM, and the 45-minute LSL Championship Final at 2:00 PM. The presentation ceremony follows at 2:45 PM. Congratulations again to Leeward Lions on winning the 2026 regular season title \u2014 now every team has one final shot at the 2026 LSL Playoff Championship.",
+      "source": "Official LSL Finals Day Schedule",
+      "date": "August 5, 2026"
+    },
+    {
       "label": "Record Watch",
       "homeFeatured": true,
       "message": "Mudassir has broken the all-time LSL regular-season goal record. His Week 6 hat trick in a 5-4 loss to Sharp Strikers pushed his career regular-season total to 19 goals in 11 games, passing Muzamil Kharooti's 18 and the retired Hafizullah's 13.",
