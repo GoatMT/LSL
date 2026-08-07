@@ -5179,6 +5179,24 @@ details.clean-details summary {
   gap: 16px;
 }
 
+.record-card--good {
+  border-color: rgba(90, 200, 120, 0.4);
+  box-shadow: 0 0 0 1px rgba(90, 200, 120, 0.28), 0 0 20px rgba(90, 200, 120, 0.22);
+}
+
+.record-card--good .record-card-head h3 {
+  color: #8fe8a8;
+}
+
+.record-card--bad {
+  border-color: rgba(224, 92, 92, 0.45);
+  box-shadow: 0 0 0 1px rgba(224, 92, 92, 0.3), 0 0 20px rgba(224, 92, 92, 0.24);
+}
+
+.record-card--bad .record-card-head h3 {
+  color: #f19a9a;
+}
+
 .team-vs-header-panel,
 .team-vs-filter-panel,
 .team-vs-main-panel,

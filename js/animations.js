@@ -20,7 +20,7 @@ function ensureRevealObserver() {
 }
 
 function observeRevealCandidates(root) {
-  if (prefersReducedMotion) return;
+  if (prefersReducedMotion || animationsDisabledForPage()) return;
   if (root.tagName === "SELECT" || root.tagName === "OPTION" || root.tagName === "OPTGROUP") return;
   const observer = ensureRevealObserver();
   const candidates = root.matches?.(REVEAL_SELECTOR) ? [root, ...root.querySelectorAll(REVEAL_SELECTOR)] : [...root.querySelectorAll(REVEAL_SELECTOR)];
@@ -43,6 +43,14 @@ function observeRevealCandidates(root) {
 // selector so it's a single obvious toggle per page.
 function countUpDisabledForPage() {
   return document.body?.hasAttribute("data-disable-count-up") ?? false;
+}
+
+// A page can opt out of every animation on this page - scroll reveal fade-ins,
+// the page-enter slide, and count-up numbers - via <body data-disable-animations>.
+// Used for pages like Records where the dense stacks of record cards should
+// just be there, not fade/slide in.
+function animationsDisabledForPage() {
+  return document.body?.hasAttribute("data-disable-animations") ?? false;
 }
 
 // Elements whose text should never be treated as an animatable number, even
@@ -128,7 +136,7 @@ function ensureCountObserver() {
 }
 
 function observeCountCandidates(root) {
-  if (prefersReducedMotion) return;
+  if (prefersReducedMotion || animationsDisabledForPage()) return;
   if (countUpDisabledForPage()) return;
   const scope = root.nodeType === Node.ELEMENT_NODE ? root : null;
   if (!scope) return;
@@ -171,7 +179,7 @@ function watchForNewContent() {
 }
 
 function animatePageEnter() {
-  if (prefersReducedMotion) return;
+  if (prefersReducedMotion || animationsDisabledForPage()) return;
   document.getElementById("site-navbar")?.classList.add("nav-enter");
   document.getElementById("page-root")?.classList.add("page-enter");
 }

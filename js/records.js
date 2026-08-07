@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { calculateStandings, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.4";
+import { calculateStandings, calculateTeamRecord, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.4";
 import { setupLayout } from "./main.js";
 import { escapeHTML, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
@@ -62,9 +62,9 @@ function recordRows(items, columns) {
     .join("");
 }
 
-function recordTable(title, note, items, columns) {
+function recordTable(title, note, items, columns, tone = "good") {
   return `
-    <article class="card record-card">
+    <article class="card record-card record-card--${escapeHTML(tone)}">
       <div class="record-card-head">
         <div>
           <span class="eyebrow">Record</span>
@@ -257,6 +257,97 @@ function bestGoalDifferential(allData) {
   return teamSeasonRows(allData)
     .sort((a, b) => b.gd - a.gd || a.teamName.localeCompare(b.teamName))
     .slice(0, 5);
+}
+
+const MIN_TEAM_GAMES_FOR_RATE = 5;
+
+function bestTeamPointsPerGame(allData) {
+  return teamSeasonRows(allData)
+    .filter((row) => row.gp >= MIN_TEAM_GAMES_FOR_RATE)
+    .map((row) => ({ ...row, ppg: row.pts / row.gp }))
+    .sort((a, b) => b.ppg - a.ppg || b.pts - a.pts || a.teamName.localeCompare(b.teamName))
+    .slice(0, 5);
+}
+
+function mostCleanSheetsInSeason(allData) {
+  const rows = new Map();
+  allData.forEach((season) => {
+    const teamsById = new Map((season.teams || []).map((team) => [team.id, team]));
+    (season.matches || [])
+      .filter((match) => Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore))
+      .filter(matchesDivision)
+      .forEach((match) => {
+        const addCleanSheet = (teamId) => {
+          const team = teamsById.get(teamId);
+          if (!team) return;
+          const key = `${season.year}:${teamId}`;
+          const existing = rows.get(key) || { teamId, teamName: team.name, season: season.year, count: 0 };
+          existing.count += 1;
+          rows.set(key, existing);
+        };
+        if (match.awayScore === 0) addCleanSheet(match.homeTeamId);
+        if (match.homeScore === 0) addCleanSheet(match.awayTeamId);
+      });
+  });
+  return [...rows.values()].sort((a, b) => b.count - a.count || a.teamName.localeCompare(b.teamName)).slice(0, 5);
+}
+
+function worstSingleGameDefense(allData) {
+  const rows = [];
+  allData.forEach((season) => {
+    const teamsById = new Map((season.teams || []).map((team) => [team.id, team]));
+    (season.matches || [])
+      .filter((match) => Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore))
+      .filter(matchesDivision)
+      .forEach((match) => {
+        const home = teamsById.get(match.homeTeamId);
+        const away = teamsById.get(match.awayTeamId);
+        if (home) {
+          rows.push({ teamId: match.homeTeamId, teamName: home.name, opponent: away?.name || "Team TBA", season: season.year, conceded: match.awayScore, label: match.label || `Week ${match.week}` });
+        }
+        if (away) {
+          rows.push({ teamId: match.awayTeamId, teamName: away.name, opponent: home?.name || "Team TBA", season: season.year, conceded: match.homeScore, label: match.label || `Week ${match.week}` });
+        }
+      });
+  });
+  return rows
+    .filter((row) => row.conceded > 0)
+    .sort((a, b) => b.conceded - a.conceded || a.teamName.localeCompare(b.teamName))
+    .slice(0, 5);
+}
+
+const MIN_COACH_GAMES_FOR_RATE = 5;
+
+function bestCoachWinPct(allData) {
+  return computeCoachSummary(allData)
+    .filter(matchesDivision)
+    .filter((coach) => coach.gamesPlayed >= MIN_COACH_GAMES_FOR_RATE)
+    .map((coach) => ({ ...coach, pct: coach.gamesPlayed ? coach.wins / coach.gamesPlayed : 0 }))
+    .sort((a, b) => b.pct - a.pct || b.wins - a.wins || a.name.localeCompare(b.name))
+    .slice(0, 5);
+}
+
+function mostFinalsAppearances(allData) {
+  return computeCoachSummary(allData)
+    .filter(matchesDivision)
+    .filter((coach) => coach.finals > 0)
+    .sort((a, b) => b.finals - a.finals || b.championships - a.championships || a.name.localeCompare(b.name))
+    .slice(0, 5);
+}
+
+function mostPostseasonGoals(allData) {
+  const rows = [];
+  allData.forEach((season) => {
+    (season.teams || [])
+      .filter(matchesDivision)
+      .forEach((team) => {
+        const record = calculateTeamRecord(season, team.id, { stage: "playoffs" });
+        if (record && record.gp > 0 && record.gf > 0) {
+          rows.push({ teamId: team.id, teamName: team.name, season: season.year, goals: record.gf, gp: record.gp });
+        }
+      });
+  });
+  return rows.sort((a, b) => b.goals - a.goals || a.teamName.localeCompare(b.teamName)).slice(0, 5);
 }
 
 function coachChampionships(allData) {
@@ -455,6 +546,12 @@ function renderCupSection(allData) {
           { label: "Player", render: (row) => playerLink({ id: row.id, name: row.name }) },
           { label: "Seasons", render: (row) => escapeHTML(row.seasons) },
         ])}
+        ${recordTable("Most Goals In A Single Postseason Run", "Most combined playoff goals scored by one team in one season.", mostPostseasonGoals(allData), [
+          { label: "Team", render: (row) => teamLink(row, row.season) },
+          { label: "Season", render: (row) => escapeHTML(row.season) },
+          { label: "Games", num: true, render: (row) => row.gp },
+          { label: "Goals", num: true, render: (row) => row.goals },
+        ])}
       </div>
       ${!multi.length ? `<p class="franchise-note">No player has won the LSL Cup more than once yet \u2014 each completed championship so far has gone to a different roster.</p>` : ""}
     </section>
@@ -571,15 +668,26 @@ function render(allData) {
                 { label: "Season", render: (row) => `${escapeHTML(row.season)} ${escapeHTML(row.division)}` },
                 { label: "GF", num: true, render: (row) => row.gf },
               ])}
+              ${recordTable("Best Goal Differential", "Best goal difference by one team in one season.", bestGoalDifferential(allData), [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => `${escapeHTML(row.season)} ${escapeHTML(row.division)}` },
+                { label: "GD", num: true, render: (row) => (row.gd > 0 ? `+${row.gd}` : row.gd) },
+              ])}
               ${recordTable("Least Goals Against", "Fewest goals conceded by one team in one season.", leastGoalsAgainst(allData), [
                 { label: "Team", render: (row) => teamLink(row, row.season) },
                 { label: "Season", render: (row) => `${escapeHTML(row.season)} ${escapeHTML(row.division)}` },
                 { label: "GA", num: true, render: (row) => row.ga },
               ])}
-              ${recordTable("Best Goal Differential", "Best goal difference by one team in one season.", bestGoalDifferential(allData), [
+              ${recordTable("Most Clean Sheets In A Season", "Most games in one season with the opponent held scoreless.", mostCleanSheetsInSeason(allData), [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => escapeHTML(row.season) },
+                { label: "Clean Sheets", num: true, render: (row) => row.count },
+              ])}
+              ${recordTable("Best Points-Per-Game Rate", `Regular-season points per game, minimum ${MIN_TEAM_GAMES_FOR_RATE} games played.`, bestTeamPointsPerGame(allData), [
                 { label: "Team", render: (row) => teamLink(row, row.season) },
                 { label: "Season", render: (row) => `${escapeHTML(row.season)} ${escapeHTML(row.division)}` },
-                { label: "GD", num: true, render: (row) => (row.gd > 0 ? `+${row.gd}` : row.gd) },
+                { label: "PPG", num: true, render: (row) => row.ppg.toFixed(2) },
+                { label: "Points", num: true, render: (row) => row.pts },
               ])}
               ${recordTable("Biggest Wins", "Largest listed score margins.", biggestWins(allData), [
                 { label: "Winner", render: (row) => teamLink(row.winner || { name: "Team TBA" }, row.season) },
@@ -587,6 +695,12 @@ function render(allData) {
                 { label: "Score", render: (row) => escapeHTML(row.score) },
                 { label: "Margin", num: true, render: (row) => row.margin },
               ])}
+              ${recordTable("Worst Single-Game Defensive Performance", "Most goals conceded by one team in a single game.", worstSingleGameDefense(allData), [
+                { label: "Team", render: (row) => teamLink(row, row.season) },
+                { label: "Season", render: (row) => escapeHTML(row.season) },
+                { label: "vs", render: (row) => escapeHTML(row.opponent) },
+                { label: "Goals Conceded", num: true, render: (row) => row.conceded },
+              ], "bad")}
             </div>
           </section>
 
@@ -631,11 +745,23 @@ function render(allData) {
                 { label: "Wins", num: true, render: (row) => row.wins },
                 { label: "Titles", num: true, render: (row) => row.championships },
               ])}
+              ${recordTable("Best Win Percentage", `Regular-season win percentage, minimum ${MIN_COACH_GAMES_FOR_RATE} games coached.`, bestCoachWinPct(allData), [
+                { label: "Coach", render: coachLink },
+                { label: "Teams", render: (row) => escapeHTML((row.pastTeams || []).join(" / ") || row.teamName || "Team TBA") },
+                { label: "Win %", num: true, render: (row) => `${(row.pct * 100).toFixed(1)}%` },
+                { label: "Record", render: (row) => `${row.wins}-${row.ties}-${row.losses}` },
+              ])}
               ${recordTable("Coach Championships", "Coaches with 1 or more LSL Cup titles on record.", coachChampionships(allData), [
                 { label: "Coach", render: coachLink },
                 { label: "Teams", render: (row) => escapeHTML((row.pastTeams || []).join(" / ") || row.teamName || "Team TBA") },
                 { label: "Titles", num: true, render: (row) => row.championships },
                 { label: "Wins", num: true, render: (row) => row.wins },
+              ])}
+              ${recordTable("Most Finals Appearances", "Most LSL Cup Final appearances by one coach.", mostFinalsAppearances(allData), [
+                { label: "Coach", render: coachLink },
+                { label: "Teams", render: (row) => escapeHTML((row.pastTeams || []).join(" / ") || row.teamName || "Team TBA") },
+                { label: "Finals", num: true, render: (row) => row.finals },
+                { label: "Titles", num: true, render: (row) => row.championships },
               ])}
             </div>
           </section>
