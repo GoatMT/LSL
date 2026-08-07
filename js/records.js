@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { calculateStandings, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.3";
+import { calculateStandings, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.4";
 import { setupLayout } from "./main.js";
 import { escapeHTML, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
@@ -23,7 +23,7 @@ const divisionOptions = [
 ];
 
 function matchesDivision(item) {
-  return state.division === "All" || item.division === state.division || String(item.division || "").includes(state.division);
+  return state.division === "All" || item.division === state.division;
 }
 
 // Combines a player's stats only across the seasons where they actually played in the
@@ -96,6 +96,87 @@ function playerSeasonRows(allData, stage = "all") {
         season: season.year,
       }))
   );
+}
+
+const MIN_GAMES_FOR_RATE = 5;
+
+function resolveScorerTeamId(season, match, scorer) {
+  if (scorer.teamId) return scorer.teamId;
+  const player = (season.players || []).find((item) => item.id === scorer.playerId);
+  return player?.teamId || match.homeTeamId;
+}
+
+function teamNameFor(season, teamId) {
+  return (season.teams || []).find((team) => team.id === teamId)?.name || "Team TBA";
+}
+
+function biggestSingleGameGoals(allData) {
+  return allData
+    .flatMap((season) =>
+      (season.matches || [])
+        .filter(matchesDivision)
+        .flatMap((match) =>
+          (match.scorers || [])
+            .filter((scorer) => scorer.playerId && Number(scorer.goals) > 0)
+            .map((scorer) => {
+              const teamId = resolveScorerTeamId(season, match, scorer);
+              const opponentId = teamId === match.homeTeamId ? match.awayTeamId : match.homeTeamId;
+              return {
+                id: scorer.playerId,
+                name: scorer.name,
+                season: season.year,
+                teamId,
+                teamName: teamNameFor(season, teamId),
+                opponent: teamNameFor(season, opponentId),
+                goals: Number(scorer.goals) || 0,
+                label: match.label || `Week ${match.week}`,
+              };
+            })
+        )
+    )
+    .sort((a, b) => b.goals - a.goals || a.season.localeCompare(b.season) || a.name.localeCompare(b.name))
+    .slice(0, 5);
+}
+
+function multiGoalGameCounts(allData) {
+  const rows = new Map();
+  allData.forEach((season) => {
+    (season.matches || []).filter(matchesDivision).forEach((match) => {
+      (match.scorers || []).forEach((scorer) => {
+        if (!scorer.playerId || Number(scorer.goals) < 2) return;
+        const key = `${season.year}:${scorer.playerId}`;
+        const teamId = resolveScorerTeamId(season, match, scorer);
+        const existing = rows.get(key) || {
+          id: scorer.playerId,
+          name: scorer.name,
+          season: season.year,
+          teamId,
+          teamName: teamNameFor(season, teamId),
+          count: 0,
+        };
+        existing.count += 1;
+        rows.set(key, existing);
+      });
+    });
+  });
+  return [...rows.values()]
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+    .slice(0, 5);
+}
+
+function mostCareerGamesPlayed(allData) {
+  return combinedPlayerStatsForDivision(allData, { stage: "all" })
+    .filter((player) => player.gamesPlayed > 0)
+    .sort((a, b) => b.gamesPlayed - a.gamesPlayed || a.name.localeCompare(b.name))
+    .slice(0, 5);
+}
+
+function bestGoalsPerGameRate(allData) {
+  return combinedPlayerStatsForDivision(allData, { stage: "regular" })
+    .filter((player) => player.gamesPlayed >= MIN_GAMES_FOR_RATE)
+    .map((player) => ({ ...player, rate: player.goals / player.gamesPlayed }))
+    .sort((a, b) => b.rate - a.rate || b.goals - a.goals || a.name.localeCompare(b.name))
+    .slice(0, 5);
 }
 
 function biggestWins(allData) {
@@ -329,7 +410,7 @@ function renderFilters() {
     <div class="all-time-filter-bar records-filter-bar">
       <div>
         <span class="eyebrow">Category</span>
-        <div class="all-time-toggle wide" role="group" aria-label="Records category filter">
+        <div class="all-time-toggle four" role="group" aria-label="Records category filter">
           ${categoryOptions
             .map(
               (option) =>
@@ -340,7 +421,7 @@ function renderFilters() {
       </div>
       <div>
         <span class="eyebrow">Division</span>
-        <div class="all-time-toggle wide" role="group" aria-label="Records division filter">
+        <div class="all-time-toggle" role="group" aria-label="Records division filter">
           ${divisionOptions
             .map(
               (option) =>
@@ -393,6 +474,10 @@ function render(allData) {
     .filter((player) => player.goals > 0)
     .sort((a, b) => b.goals - a.goals || b.points - a.points || a.name.localeCompare(b.name))
     .slice(0, 5);
+  const singleGameGoals = biggestSingleGameGoals(allData);
+  const multiGoalGames = multiGoalGameCounts(allData);
+  const careerGamesPlayed = mostCareerGamesPlayed(allData);
+  const goalsPerGameRate = bestGoalsPerGameRate(allData);
   const coachWins = computeCoachSummary(allData)
     .filter(matchesDivision)
     .filter((coach) => coach.wins > 0)
@@ -436,6 +521,31 @@ function render(allData) {
               ${recordTable("Playoff Goals", "Only playoff scoring records.", playoffGoals, [
                 { label: "Player", render: playerLink },
                 { label: "Team", render: (row) => escapeHTML(row.teamName || "Team TBA") },
+                { label: "Goals", num: true, render: (row) => row.goals },
+                { label: "Games", num: true, render: (row) => row.gamesPlayed },
+              ])}
+              ${recordTable("Most Goals In A Single Game", "Most goals by one player in one game, regular season and playoffs.", singleGameGoals, [
+                { label: "Player", render: (row) => playerLink(row) },
+                { label: "Season", render: (row) => escapeHTML(row.season) },
+                { label: "Team", render: (row) => escapeHTML(row.teamName) },
+                { label: "vs", render: (row) => escapeHTML(row.opponent) },
+                { label: "Goals", num: true, render: (row) => row.goals },
+              ])}
+              ${recordTable("Most Multi-Goal Games In A Season", "Games with 2 or more goals by the same player, in one season.", multiGoalGames, [
+                { label: "Player", render: (row) => playerLink(row) },
+                { label: "Season", render: (row) => escapeHTML(row.season) },
+                { label: "Team", render: (row) => escapeHTML(row.teamName) },
+                { label: "Multi-Goal Games", num: true, render: (row) => row.count },
+              ])}
+              ${recordTable("Most Career Games Played", "Regular season and playoff games combined, across all listed seasons in the selected division.", careerGamesPlayed, [
+                { label: "Player", render: playerLink },
+                { label: "Teams", render: (row) => escapeHTML(row.teamName || "Team TBA") },
+                { label: "Games Played", num: true, render: (row) => row.gamesPlayed },
+              ])}
+              ${recordTable("Best Goals-Per-Game Rate", `Regular-season goals per game, minimum ${MIN_GAMES_FOR_RATE} games played.`, goalsPerGameRate, [
+                { label: "Player", render: playerLink },
+                { label: "Team", render: (row) => escapeHTML(row.teamName || "Team TBA") },
+                { label: "Rate", num: true, render: (row) => row.rate.toFixed(2) },
                 { label: "Goals", num: true, render: (row) => row.goals },
                 { label: "Games", num: true, render: (row) => row.gamesPlayed },
               ])}

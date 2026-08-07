@@ -2,7 +2,7 @@ import { renderCoachCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
 import { COACH_GRADE_SCALE, decorateCoachGrade } from "./coachRatings.js";
-import { buildCoachCareer, calculateCoachForm, computeCoachSummary, getCurrentCoach, getNextTeamMatch } from "./leagueEngine.js?v=3.3";
+import { buildCoachCareer, calculateCoachForm, computeCoachSummary, getCurrentCoach, getNextTeamMatch } from "./leagueEngine.js?v=3.4";
 import { setupLayout } from "./main.js";
 import { escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, statusMessage, unique } from "./utils.js";
 
@@ -56,12 +56,36 @@ function renderCoachNextMatch(allData, coach) {
   `;
 }
 
+// This page shows one person's whole coaching career, which can span both
+// divisions if they coached Seniors and Juniors in different seasons.
+// computeCoachSummary() keeps those as separate rows (so leaderboards never
+// mix the two), so combine them back into one career total here, purely for
+// display on this profile.
+function combinedCoachCareer(allData, id) {
+  const rows = computeCoachSummary(allData).filter((coach) => coach.id === id);
+  if (!rows.length) return null;
+  if (rows.length === 1) return rows[0];
+  return rows.reduce((acc, row) => ({
+    ...row,
+    divisions: unique([...(acc.divisions || []), ...(row.divisions || [])]),
+    division: unique([...(acc.divisions || []), ...(row.divisions || [])]).join(" / "),
+    pastTeams: unique([...(acc.pastTeams || []), ...(row.pastTeams || [])]),
+    seasons: (acc.seasons || 0) + (row.seasons || 0),
+    gamesPlayed: (acc.gamesPlayed || 0) + (row.gamesPlayed || 0),
+    wins: (acc.wins || 0) + (row.wins || 0),
+    ties: (acc.ties || 0) + (row.ties || 0),
+    losses: (acc.losses || 0) + (row.losses || 0),
+    championships: (acc.championships || 0) + (row.championships || 0),
+    finals: (acc.finals || 0) + (row.finals || 0),
+  }), {});
+}
+
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading coach profile...");
   const id = getQueryParam("id");
   const [allData, ratings] = await Promise.all([loadAllSeasons(), loadJSON("./data/coach-ratings.json", { coaches: {} })]);
   const current = decorateCoachGrade(getCurrentCoach(allData, id) || {}, ratings);
-  const summaryBase = computeCoachSummary(allData).find((coach) => coach.id === id);
+  const summaryBase = combinedCoachCareer(allData, id);
   const career = buildCoachCareer(allData, id);
   const form = calculateCoachForm(allData, id);
 

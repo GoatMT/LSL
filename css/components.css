@@ -2773,6 +2773,10 @@ details.clean-details summary {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.all-time-toggle.four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .all-time-toggle.season {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }

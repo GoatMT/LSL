@@ -537,7 +537,7 @@ function renderToggle(allData) {
       </div>
       <div>
         <span class="eyebrow">Division</span>
-        <div class="all-time-toggle wide" role="group" aria-label="All time division filter">
+        <div class="all-time-toggle" role="group" aria-label="All time division filter">
           ${divisionOptions
             .map(
               (option) =>

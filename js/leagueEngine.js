@@ -753,15 +753,21 @@ export function buildCoachCareer(seasons, coachId) {
     .sort((a, b) => Number(b.year) - Number(a.year));
 }
 
+// Coach summaries are keyed by (coach id + division) - never merged across
+// divisions. A person who coached both Seniors and Juniors gets two fully
+// separate rows here, each with only that division's wins/losses/
+// championships, so a Juniors coach's record can never leak into a Seniors
+// leaderboard (or vice versa) just because the same person coaches both.
 export function computeCoachSummary(seasons, { stage = "regular" } = {}) {
   const map = new Map();
   seasons.forEach((data) => {
     (data.coaches || []).forEach((coach) => {
       const teamStats = calculateTeamRecord(data, coach.teamId, { stage }) || {};
-      const existing = map.get(coach.id) || {
+      const key = `${coach.id}::${coach.division || ""}`;
+      const existing = map.get(key) || {
         ...coach,
         pastTeams: [],
-        divisions: [],
+        divisions: [coach.division].filter(Boolean),
         seasons: 0,
         gamesPlayed: 0,
         wins: 0,
@@ -773,8 +779,7 @@ export function computeCoachSummary(seasons, { stage = "regular" } = {}) {
       existing.name = coach.name;
       existing.teamId = coach.teamId;
       existing.teamName = coach.teamName;
-      existing.divisions = unique([...(existing.divisions || []), coach.division]);
-      existing.division = existing.divisions.join(" / ");
+      existing.division = coach.division || existing.division;
       existing.notes = coach.notes || existing.notes || "";
       existing.seasons += 1;
       existing.gamesPlayed += teamStats.gp || 0;
@@ -784,13 +789,12 @@ export function computeCoachSummary(seasons, { stage = "regular" } = {}) {
       existing.championships += coach.championships || 0;
       existing.finals += coach.finals || 0;
       existing.pastTeams = unique([...existing.pastTeams, coach.teamName]);
-      map.set(coach.id, existing);
+      map.set(key, existing);
     });
   });
 
   return [...map.values()].map((coach) => ({
     ...coach,
-    division: (coach.divisions || [coach.division]).join(" / "),
     winPct: formatPercent(coach.gamesPlayed ? (coach.wins / coach.gamesPlayed) * 100 : 0),
   }));
 }
