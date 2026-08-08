@@ -51,7 +51,7 @@
       "coachName": "Aadil",
       "history": "2026 senior team coached by Aadil, a championship winner with a debut-season finals appearance.",
       "roster": [
-        { "id": "uthman", "name": "Uthman Manira", "position": "Striker", "leadershipRole": "assistant" },
+        { "id": "uthman", "name": "Uthman Manjra", "position": "Striker", "leadershipRole": "assistant" },
         { "id": "saad-khan", "name": "Saad Khan", "photo": "./Logos/Player Pics/Saad Khan.png", "position": "Goalie", "leadershipRole": "assistant" },
         { "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "photo": "./Logos/Player Pics/Mubashir Kharooti.png", "position": "Midfielder" },
         { "id": "umair-saiyad", "name": "Umair Saiyad", "position": "Defender" },

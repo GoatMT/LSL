@@ -2769,6 +2769,10 @@ details.clean-details summary {
   min-width: 0;
 }
 
+.match-center-panel .all-time-toggle {
+  margin-bottom: 18px;
+}
+
 .all-time-toggle.wide {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -3943,6 +3947,25 @@ details.clean-details summary {
 .award-card.goalkeeper {
   border-color: rgba(94, 158, 214, 0.4);
   box-shadow: inset 4px 0 0 rgba(94, 158, 214, 0.55);
+}
+
+.award-card.team-mvp {
+  border-color: rgba(122, 224, 147, 0.4);
+  box-shadow: inset 4px 0 0 rgba(122, 224, 147, 0.55);
+}
+
+.team-mvp-card {
+  border-color: rgba(122, 224, 147, 0.35);
+}
+
+.team-mvp-winner {
+  margin: 4px 0 0;
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.team-mvp-winner a {
+  color: #7ae093;
 }
 
 .award-title {

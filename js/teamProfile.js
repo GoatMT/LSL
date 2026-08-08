@@ -1,7 +1,7 @@
 import { renderFormStrip } from "../components/formStrip.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getNextTeamMatch, isCompletedMatch, playersWithOVR, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.3";
+import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getAwards, getNextTeamMatch, isCompletedMatch, playersWithOVR, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, formatDateWithISO, getQueryParam, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage } from "./utils.js";
 
@@ -78,6 +78,24 @@ function teamPlayers(data, teamId) {
     });
 
   return [...rows.values()].sort((a, b) => b.points - a.points || b.goals - a.goals || a.name.localeCompare(b.name));
+}
+
+function renderTeamMvpCard(allData, data, team) {
+  const mvpAward = getAwards(allData, { season: data.year, division: team.division }).find(
+    (award) => award.category === "Team MVP" && award.teamId === team.id
+  );
+  if (!mvpAward) return "";
+  return `
+    <article class="card team-overview-card team-mvp-card">
+      <span class="eyebrow">${escapeHTML(data.year)} Honor</span>
+      <h3>Team MVP</h3>
+      <p class="team-mvp-winner">${
+        mvpAward.playerId
+          ? `<a href="./player.html?id=${escapeHTML(mvpAward.playerId)}">${escapeHTML(mvpAward.winner)}</a>`
+          : escapeHTML(mvpAward.winner)
+      }</p>
+    </article>
+  `;
 }
 
 function coachLink(coach) {
@@ -558,6 +576,7 @@ function render(allData) {
           <p>${escapeHTML(team.division)} | ${escapeHTML(data.year)} season</p>
         </article>
         ${renderClubSnapshot(team, players, ratings)}
+        ${renderTeamMvpCard(allData, data, team)}
         ${renderRosterMoves(team)}
       </div>
       ${renderTeamStatusGrid(data, team, form, standingRow, nextMatch)}

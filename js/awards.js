@@ -18,22 +18,27 @@ setDocumentTitle("Awards");
 // awards.json instead of forcing a single winner.
 
 const root = document.getElementById("page-root");
-const awardTabs = ["All", "Champions", "Player Awards", "Team Awards"];
+const awardTabs = ["All", "Champions", "Player Awards", "Team MVPs", "Team Awards"];
 let state = { season: "All", division: "Seniors", tab: "All", search: "" };
 let cupEngravings = [];
 let awardWatchData = {};
 
 function isTeamAward(award) {
-  return /team/i.test(award.category || "");
+  return /team/i.test(award.category || "") && award.category !== "Team MVP";
 }
 
 function isPlayerAward(award) {
   return !isTeamAward(award);
 }
 
+function isTeamMvp(award) {
+  return award.category === "Team MVP";
+}
+
 function awardType(award) {
   if (award.category === "Champion Team") return "champion";
   if (award.category === "MVP") return "mvp";
+  if (award.category === "Team MVP") return "team-mvp";
   if (award.category === "Golden Boot") return "golden-boot";
   if (award.category === "Best Goalkeeper") return "goalkeeper";
   if (["2nd Place Team", "3rd Place Team"].includes(award.category)) return "podium";
@@ -44,6 +49,7 @@ function awardIcon(award) {
   return {
     champion: "🏆",
     mvp: "⭐",
+    "team-mvp": "🎖️",
     "golden-boot": "⚽",
     goalkeeper: "🧤",
     podium: "🥉",
@@ -54,7 +60,8 @@ function awardIcon(award) {
 
 function awardMatchesTab(award) {
   if (state.tab === "Champions") return award.category === "Champion Team";
-  if (state.tab === "Player Awards") return isPlayerAward(award);
+  if (state.tab === "Player Awards") return isPlayerAward(award) && !isTeamMvp(award);
+  if (state.tab === "Team MVPs") return isTeamMvp(award);
   if (state.tab === "Team Awards") return isTeamAward(award);
   return true;
 }
@@ -222,7 +229,8 @@ function renderTabs(awards) {
         .map((tab) => {
           const count = awards.filter((award) => {
             if (tab === "Champions") return award.category === "Champion Team";
-            if (tab === "Player Awards") return isPlayerAward(award);
+            if (tab === "Player Awards") return isPlayerAward(award) && !isTeamMvp(award);
+            if (tab === "Team MVPs") return isTeamMvp(award);
             if (tab === "Team Awards") return isTeamAward(award);
             return true;
           }).length;
@@ -265,6 +273,7 @@ function categoryRank(category) {
     MVP: 5,
     "Golden Boot": 6,
     "Best Goalkeeper": 7,
+    "Team MVP": 8,
   }[category] || 99;
 }
 
@@ -376,7 +385,8 @@ function renderAwardHistory(awards) {
   const mvps = awards.filter((award) => award.category === "MVP");
   const goldenBoots = awards.filter((award) => award.category === "Golden Boot");
   const bestGoalkeepers = awards.filter((award) => award.category === "Best Goalkeeper");
-  if (!champions.length && !mvps.length && !goldenBoots.length && !bestGoalkeepers.length) return "";
+  const teamMvps = awards.filter(isTeamMvp);
+  if (!champions.length && !mvps.length && !goldenBoots.length && !bestGoalkeepers.length && !teamMvps.length) return "";
 
   return `
     <section class="section-panel awards-history-panel">
@@ -384,7 +394,7 @@ function renderAwardHistory(awards) {
         <div>
           <span class="eyebrow">History</span>
           <h2>Award History</h2>
-          <p>Champions, MVPs, Golden Boots, and Best Goalkeepers organized by season and division.</p>
+          <p>Champions, MVPs, Golden Boots, Best Goalkeepers, and Team MVPs organized by season and division.</p>
         </div>
       </div>
       <div class="award-history-groups">
@@ -392,6 +402,7 @@ function renderAwardHistory(awards) {
         ${renderHistoryGroup("MVPs by Year", "⭐", mvps)}
         ${renderHistoryGroup("Golden Boots by Year", "⚽", goldenBoots)}
         ${renderHistoryGroup("Best Goalkeepers by Year", "🧤", bestGoalkeepers)}
+        ${renderHistoryGroup("Team MVPs by Year", "🎖️", teamMvps)}
       </div>
     </section>
   `;

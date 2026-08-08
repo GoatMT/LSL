@@ -780,9 +780,72 @@ function renderImportantNews(data, allData, newsData = {}) {
   `;
 }
 
+let homeMatchStage = "regular";
+
+function homeLatestForStage(data, stage, limit = 4) {
+  return getLatestCompletedMatches([data], 200)
+    .filter((match) => match.stage === stage)
+    .slice(0, limit);
+}
+
+function homeUpcomingForStage(data, stage, limit = 4) {
+  return getUpcomingMatches([data], 200)
+    .filter((match) => match.stage === stage)
+    .slice(0, limit);
+}
+
+function renderMatchCenter(data) {
+  const upcoming = homeUpcomingForStage(data, homeMatchStage);
+  const latest = homeLatestForStage(data, homeMatchStage).reverse();
+  const stageLabel = homeMatchStage === "playoffs" ? "playoff" : "regular-season";
+
+  return `
+    <section class="section-panel match-center-panel" data-home-match-center>
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Matches</span>
+          <h2>Match Center</h2>
+          <p>Check the next schedule first, then review recent completed matches.</p>
+        </div>
+        <a class="text-link" href="./matches.html">All matches</a>
+      </div>
+      <div class="all-time-toggle" role="group" aria-label="Match Center stage filter">
+        <button type="button" class="${homeMatchStage === "regular" ? "active" : ""}" data-home-match-stage="regular">Regular Season</button>
+        <button type="button" class="${homeMatchStage === "playoffs" ? "active" : ""}" data-home-match-stage="playoffs">Playoffs</button>
+      </div>
+      <div class="home-match-columns">
+        <div class="home-match-column">
+          <h3>Upcoming Matches</h3>
+          <p>Scheduled items will appear here once the next schedule is published.</p>
+          <div class="grid match-stack">
+            ${upcoming.length ? upcoming.map((match) => renderHomeMatchCard(match.data, match)).join("") : statusMessage("empty", `No upcoming ${stageLabel} matches right now.`)}
+          </div>
+        </div>
+        <div class="home-match-column secondary">
+          <h3>Latest Matches</h3>
+          <p>Recent completed matches from the selected season.</p>
+          <div class="grid match-stack">
+            ${latest.length ? latest.map((match) => renderHomeMatchCard(match.data, match)).join("") : statusMessage("empty", `No completed ${stageLabel} matches are published yet.`)}
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function hydrateMatchCenter(data) {
+  const panel = document.querySelector("[data-home-match-center]");
+  if (!panel) return;
+  panel.querySelectorAll("[data-home-match-stage]").forEach((button) => {
+    button.addEventListener("click", () => {
+      homeMatchStage = button.dataset.homeMatchStage;
+      panel.outerHTML = renderMatchCenter(data);
+      hydrateMatchCenter(data);
+    });
+  });
+}
+
 function renderHomeContent(data, allData, teamOfWeek = {}, awardWatch = {}, newsData = {}) {
-  const latest = getLatestCompletedMatches([data], 4).reverse();
-  const upcoming = getUpcomingMatches([data], 4);
   const allChampions = getAwards(allData, { division: "Seniors" }).filter((award) => award.category === "Champion Team");
 
   return `
@@ -814,32 +877,7 @@ function renderHomeContent(data, allData, teamOfWeek = {}, awardWatch = {}, news
 
     ${renderAwardWatch(awardWatch)}
 
-    <section class="section-panel match-center-panel">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Matches</span>
-          <h2>Match Center</h2>
-          <p>Check the next schedule first, then review recent completed matches.</p>
-        </div>
-        <a class="text-link" href="./matches.html">All matches</a>
-      </div>
-      <div class="home-match-columns">
-        <div class="home-match-column">
-          <h3>Upcoming Matches</h3>
-          <p>Scheduled items will appear here once the next schedule is published.</p>
-          <div class="grid match-stack">
-            ${upcoming.length ? upcoming.map((match) => renderHomeMatchCard(match.data, match)).join("") : statusMessage("empty", "Next schedule coming soon.")}
-          </div>
-        </div>
-        <div class="home-match-column secondary">
-          <h3>Latest Matches</h3>
-          <p>Recent completed matches from the selected season.</p>
-          <div class="grid match-stack">
-            ${latest.length ? latest.map((match) => renderHomeMatchCard(match.data, match)).join("") : statusMessage("empty", "No completed matches are published for this season yet.")}
-          </div>
-        </div>
-      </div>
-    </section>
+    ${renderMatchCenter(data)}
 
     <section id="history" class="section-panel home-low-priority history-panel">
       <div class="section-head">
@@ -889,6 +927,7 @@ async function renderHome() {
     const data = await loadSeasonData(selectedSeason);
     root.innerHTML = renderHomeContent(data, allData, teamOfWeekData, awardWatchData, newsData);
     hydrateHomeLeaders(allData);
+    hydrateMatchCenter(data);
   }
 
   render();
