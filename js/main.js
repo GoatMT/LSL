@@ -2,7 +2,7 @@ import { renderFooter } from "../components/footer.js";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.0";
-import { computeCombinedPlayerStats, computePlayerStats, getAwards, getLatestCompletedMatches, getUpcomingMatches, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
+import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js";
 
@@ -60,62 +60,6 @@ function renderTeamOfWeek(teamOfWeek = {}) {
   `;
 }
 
-function awardWatchHref(item = {}, season = SITE.defaultSeason) {
-  if (item.playerId) return playerHref(item.playerId);
-  if (item.teamId) return teamProfileHref(item.teamId, season);
-  return "./awards.html";
-}
-
-function renderAwardWatch(awardWatch = {}) {
-  const categories = awardWatch.categories || [];
-  if (!categories.length) return "";
-  const meta = [awardWatch.season, awardWatch.week].filter(Boolean).join(" | ");
-
-  return `
-    <section class="section-panel home-award-watch-panel">
-      <div class="section-head compact-head">
-        <div>
-          <span class="eyebrow">${escapeHTML(meta || "Awards")}</span>
-          <h2>${escapeHTML(awardWatch.title || "Award Watch")}</h2>
-          <p>${escapeHTML(awardWatch.subtitle || "Early leaders for major LSL season honors.")}</p>
-        </div>
-        <a class="text-link" href="./awards.html">Awards page</a>
-      </div>
-      <div class="home-award-watch-grid">
-        ${categories
-          .map(
-            (category) => `
-              <article class="home-award-watch-card">
-                <div class="home-award-watch-head">
-                  <span class="pill green">${escapeHTML(category.label || "Award")}</span>
-                  <p>${escapeHTML(category.note || "Current watch list.")}</p>
-                </div>
-                <div class="home-award-watch-list">
-                  ${(category.leaders || [])
-                    .map(
-                      (leader) => `
-                        <a class="home-award-watch-row" href="${escapeHTML(awardWatchHref(leader, awardWatch.season))}">
-                          <span class="home-award-watch-rank">#${escapeHTML(leader.rank || "")}</span>
-                          <div>
-                            <strong>${escapeHTML(leader.name || "Name TBA")}</strong>
-                            <small>${escapeHTML(leader.teamName || leader.stat || "LSL")}</small>
-                          </div>
-                          <span class="home-award-watch-stat">${escapeHTML(leader.stat || "Watch")}</span>
-                          <p>${escapeHTML(leader.reason || "Award watch note coming soon.")}</p>
-                        </a>
-                      `
-                    )
-                    .join("")}
-                </div>
-              </article>
-            `
-          )
-          .join("")}
-      </div>
-    </section>
-  `;
-}
-
 const HOME_LEADER_TYPES = [
   { key: "goals", label: "Goals" },
   { key: "assists", label: "Assists" },
@@ -125,6 +69,7 @@ const homeLeaderState = {
   year: SITE.defaultSeason,
   division: "Seniors",
   teamId: "All",
+  stage: "regular",
   stat: "goals",
 };
 
@@ -156,8 +101,8 @@ function renderHomeLeaderFeature(data, type, player, active = false) {
   `;
 }
 
-function teamContributionRows(data, teamId) {
-  const players = new Map(computePlayerStats(data, { stage: "regular" }).map((player) => [player.id, player]));
+function teamContributionRows(data, teamId, stage = "regular") {
+  const players = new Map(computePlayerStats(data, { stage }).map((player) => [player.id, player]));
   const teams = new Map((data.teams || []).map((team) => [team.id, team]));
   const rows = new Map();
   const entryTeamId = (entry = {}) => entry.teamId || players.get(entry.playerId)?.teamId || "";
@@ -181,7 +126,8 @@ function teamContributionRows(data, teamId) {
   };
 
   (data.matches || [])
-    .filter((match) => match.stage === "regular" && isCompletedMatch(match))
+    .filter((match) => (stage === "all" ? match.stage === "regular" || match.stage === "playoffs" : match.stage === stage))
+    .filter((match) => isCompletedMatch(match))
     .forEach((match) => {
       (match.scorers || [])
         .filter((scorer) => entryTeamId(scorer) === teamId)
@@ -207,10 +153,11 @@ function teamContributionRows(data, teamId) {
 function homeLeaderRows(data, type) {
   const selectedTeamId = homeLeaderState.teamId;
   const selectedDivision = homeLeaderState.division;
+  const selectedStage = homeLeaderState.stage;
   const rows =
     selectedTeamId === "All"
-      ? computePlayerStats(data, { stage: "regular" }).filter((player) => player.gamesPlayed > 0)
-      : teamContributionRows(data, selectedTeamId);
+      ? computePlayerStats(data, { stage: selectedStage }).filter((player) => player.gamesPlayed > 0)
+      : teamContributionRows(data, selectedTeamId, selectedStage);
 
   return rows
     .filter((player) => selectedDivision === "All" || player.division === selectedDivision)
@@ -275,6 +222,9 @@ function normalizeHomeLeaderState(allData = []) {
   if (!HOME_LEADER_TYPES.some((type) => type.key === homeLeaderState.stat)) {
     homeLeaderState.stat = HOME_LEADER_TYPES[0].key;
   }
+  if (!["regular", "playoffs", "all"].includes(homeLeaderState.stage)) {
+    homeLeaderState.stage = "regular";
+  }
   const data = allData.find((season) => season.year === homeLeaderState.year) || allData.at(-1) || {};
   const divisions = [...new Set((data.teams || []).map((team) => team.division).filter(Boolean))];
   if (homeLeaderState.division !== "All" && !divisions.includes(homeLeaderState.division)) {
@@ -294,6 +244,7 @@ function renderHomeLeaders(allData = []) {
   const selectedTeam = teams.find((team) => team.id === homeLeaderState.teamId);
   const selectedDivision = homeLeaderState.division === "All" ? "All divisions" : homeLeaderState.division;
   const scopeLabel = selectedTeam?.name || (homeLeaderState.division === "All" ? "all teams" : `all ${selectedDivision.toLowerCase()} teams`);
+  const stageLabel = homeLeaderState.stage === "playoffs" ? "Playoff" : homeLeaderState.stage === "all" ? "Regular-season and playoff" : "Regular-season";
   const divisionOptions = [
     { value: "All", label: "All divisions" },
     ...divisions.map((division) => ({ value: division, label: division })),
@@ -302,6 +253,11 @@ function renderHomeLeaders(allData = []) {
     { value: "All", label: "All teams" },
     ...teams.map((team) => ({ value: team.id, label: team.name })),
   ];
+  const stageOptions = [
+    { value: "regular", label: "Regular Season" },
+    { value: "playoffs", label: "Playoffs" },
+    { value: "all", label: "Both" },
+  ];
 
   return `
     <section class="section-panel home-leaders-panel" data-home-leaders-panel>
@@ -309,7 +265,7 @@ function renderHomeLeaders(allData = []) {
         <div>
           <span class="eyebrow">League Leaders</span>
           <h2>${escapeHTML(data.year)} Leaders</h2>
-          <p>Regular-season ${escapeHTML(selectedDivision.toLowerCase())} leaders for ${escapeHTML(scopeLabel)}.</p>
+          <p>${escapeHTML(stageLabel)} ${escapeHTML(selectedDivision.toLowerCase())} leaders for ${escapeHTML(scopeLabel)}.</p>
         </div>
         <a class="text-link" href="./players.html">All player stats</a>
       </div>
@@ -317,6 +273,7 @@ function renderHomeLeaders(allData = []) {
         ${controlSelect("home-leader-year", "Year", allData.map((season) => ({ value: season.year, label: season.year })), data.year)}
         ${controlSelect("home-leader-division", "Division", divisionOptions, homeLeaderState.division)}
         ${controlSelect("home-leader-team", "Team", teamOptions, homeLeaderState.teamId)}
+        ${controlSelect("home-leader-stage", "Stage", stageOptions, homeLeaderState.stage)}
       </div>
       <div class="home-leader-tabs" role="tablist" aria-label="Leader stat">
         ${HOME_LEADER_TYPES.map(
@@ -342,6 +299,7 @@ function hydrateHomeLeaders(allData = []) {
   const yearSelect = document.getElementById("home-leader-year");
   const divisionSelect = document.getElementById("home-leader-division");
   const teamSelect = document.getElementById("home-leader-team");
+  const stageSelect = document.getElementById("home-leader-stage");
 
   yearSelect?.addEventListener("change", (event) => {
     homeLeaderState.year = event.target.value;
@@ -357,6 +315,11 @@ function hydrateHomeLeaders(allData = []) {
 
   teamSelect?.addEventListener("change", (event) => {
     homeLeaderState.teamId = event.target.value;
+    refreshLeaders();
+  });
+
+  stageSelect?.addEventListener("change", (event) => {
+    homeLeaderState.stage = event.target.value;
     refreshLeaders();
   });
 
@@ -399,14 +362,6 @@ function hydrateHomeLeaders(allData = []) {
       });
     });
   });
-}
-
-function homeScoreText(match) {
-  if (Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore)) {
-    return `${match.homeScore} - ${match.awayScore}`;
-  }
-  if (match.winnerId) return "Result posted";
-  return "vs";
 }
 
 // ---------- Live score / upcoming game ticker ----------
@@ -527,43 +482,20 @@ function renderScoreTicker(data) {
   `;
 }
 
-function renderHomeMatchCard(data, match) {
-  const teams = new Map((data.teams || []).map((team) => [team.id, team]));
-  const home = teams.get(match.homeTeamId);
-  const away = teams.get(match.awayTeamId);
-  const meta = `${escapeHTML(match.division || "LSL")} | ${escapeHTML(formatDateWithISO(match.date))}`;
-  const timePill = match.time ? `<span class="home-match-time">${escapeHTML(match.time)}</span>` : "";
-
-  if (match.activityTitle) {
-    return `
-      <article class="home-match-card activity">
-        <div class="home-match-top">
-          <span class="pill green">${escapeHTML(match.label || `Week ${match.week}`)}</span>
-        </div>
-        <h3>${escapeHTML(match.activityTitle)}</h3>
-        <div class="home-match-meta">
-          <p>${meta}</p>
-          ${timePill}
-        </div>
-      </article>
-    `;
-  }
+function renderChampionBanner(data) {
+  const team = (data.teams || []).find((item) => item.id === "em-haulers-fc");
+  if (!team) return "";
+  const logoStyle = team.logoBg ? ` style="--logo-bg: ${escapeHTML(team.logoBg)}"` : "";
 
   return `
-    <article class="home-match-card">
-      <div class="home-match-top">
-        <span class="pill green">${escapeHTML(match.label || `Week ${match.week}`)}</span>
+    <section class="champion-banner" aria-label="2026 LSL champions">
+      <img class="champion-banner-logo" src="${escapeHTML(team.logo)}" alt="${escapeHTML(team.name)} logo"${logoStyle}>
+      <div class="champion-banner-copy">
+        <span class="champion-banner-kicker">🏆 2026 LSL Champions</span>
+        <h2><a href="${escapeHTML(teamProfileHref(team.id, data.year))}">Congratulations, EM Haulers FC!</a></h2>
+        <p>Captain <a href="${escapeHTML(playerHref("haroon-ahmadi"))}">Haroon Ahmadi</a> and <a href="${escapeHTML(playerHref("muzamil-kharooti"))}">Muzamil Kharooti</a> lead the club to the title.</p>
       </div>
-      <div class="home-match-meta">
-        <p>${meta}</p>
-        ${timePill}
-      </div>
-      <div class="home-match-line">
-        <a href="${escapeHTML(teamProfileHref(match.homeTeamId, data.year))}">${escapeHTML(home?.name || match.homeTeamName || "Home team")}</a>
-        <strong>${escapeHTML(homeScoreText(match))}</strong>
-        <a href="${escapeHTML(teamProfileHref(match.awayTeamId, data.year))}">${escapeHTML(away?.name || match.awayTeamName || "Away team")}</a>
-      </div>
-    </article>
+    </section>
   `;
 }
 
@@ -780,76 +712,11 @@ function renderImportantNews(data, allData, newsData = {}) {
   `;
 }
 
-let homeMatchStage = "regular";
-
-function homeLatestForStage(data, stage, limit = 4) {
-  return getLatestCompletedMatches([data], 200)
-    .filter((match) => match.stage === stage)
-    .slice(0, limit);
-}
-
-function homeUpcomingForStage(data, stage, limit = 4) {
-  return getUpcomingMatches([data], 200)
-    .filter((match) => match.stage === stage)
-    .slice(0, limit);
-}
-
-function renderMatchCenter(data) {
-  const upcoming = homeUpcomingForStage(data, homeMatchStage);
-  const latest = homeLatestForStage(data, homeMatchStage).reverse();
-  const stageLabel = homeMatchStage === "playoffs" ? "playoff" : "regular-season";
-
-  return `
-    <section class="section-panel match-center-panel" data-home-match-center>
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Matches</span>
-          <h2>Match Center</h2>
-          <p>Check the next schedule first, then review recent completed matches.</p>
-        </div>
-        <a class="text-link" href="./matches.html">All matches</a>
-      </div>
-      <div class="all-time-toggle" role="group" aria-label="Match Center stage filter">
-        <button type="button" class="${homeMatchStage === "regular" ? "active" : ""}" data-home-match-stage="regular">Regular Season</button>
-        <button type="button" class="${homeMatchStage === "playoffs" ? "active" : ""}" data-home-match-stage="playoffs">Playoffs</button>
-      </div>
-      <div class="home-match-columns">
-        <div class="home-match-column">
-          <h3>Upcoming Matches</h3>
-          <p>Scheduled items will appear here once the next schedule is published.</p>
-          <div class="grid match-stack">
-            ${upcoming.length ? upcoming.map((match) => renderHomeMatchCard(match.data, match)).join("") : statusMessage("empty", `No upcoming ${stageLabel} matches right now.`)}
-          </div>
-        </div>
-        <div class="home-match-column secondary">
-          <h3>Latest Matches</h3>
-          <p>Recent completed matches from the selected season.</p>
-          <div class="grid match-stack">
-            ${latest.length ? latest.map((match) => renderHomeMatchCard(match.data, match)).join("") : statusMessage("empty", `No completed ${stageLabel} matches are published yet.`)}
-          </div>
-        </div>
-      </div>
-    </section>
-  `;
-}
-
-function hydrateMatchCenter(data) {
-  const panel = document.querySelector("[data-home-match-center]");
-  if (!panel) return;
-  panel.querySelectorAll("[data-home-match-stage]").forEach((button) => {
-    button.addEventListener("click", () => {
-      homeMatchStage = button.dataset.homeMatchStage;
-      panel.outerHTML = renderMatchCenter(data);
-      hydrateMatchCenter(data);
-    });
-  });
-}
-
-function renderHomeContent(data, allData, teamOfWeek = {}, awardWatch = {}, newsData = {}) {
+function renderHomeContent(data, allData, teamOfWeek = {}, newsData = {}) {
   const allChampions = getAwards(allData, { division: "Seniors" }).filter((award) => award.category === "Champion Team");
 
   return `
-    ${renderScoreTicker(data)}
+    ${renderChampionBanner(data)}
 
     <section class="hero">
       <div class="hero-copy">
@@ -874,10 +741,6 @@ function renderHomeContent(data, allData, teamOfWeek = {}, awardWatch = {}, news
     ${renderImportantNews(data, allData, newsData)}
 
     ${renderTeamOfWeek(teamOfWeek)}
-
-    ${renderAwardWatch(awardWatch)}
-
-    ${renderMatchCenter(data)}
 
     <section id="history" class="section-panel home-low-priority history-panel">
       <div class="section-head">
@@ -919,15 +782,13 @@ async function renderHome() {
 
   const allData = await loadAllSeasons();
   const teamOfWeekData = await loadJSON("./data/team-of-week.json", {});
-  const awardWatchData = await loadJSON("./data/award-watch.json", {});
   const newsData = await loadJSON("./data/news.json", { items: [] });
   let selectedSeason = SITE.defaultSeason;
 
   async function render() {
     const data = await loadSeasonData(selectedSeason);
-    root.innerHTML = renderHomeContent(data, allData, teamOfWeekData, awardWatchData, newsData);
+    root.innerHTML = renderHomeContent(data, allData, teamOfWeekData, newsData);
     hydrateHomeLeaders(allData);
-    hydrateMatchCenter(data);
   }
 
   render();

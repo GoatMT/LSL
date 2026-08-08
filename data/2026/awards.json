@@ -5,13 +5,17 @@
     { "division": "Seniors", "category": "2nd Place Team", "winner": "Leeward Lions", "teamId": "leeward-lions", "sourceNote": "Lost the 2026 LSL Championship Final to EM Haulers FC, 2-1." },
     { "division": "Seniors", "category": "3rd Place Team", "winner": "To be announced", "sourceNote": "No third-place match was listed on the 2026 Finals Day schedule." },
     { "division": "Seniors", "category": "Best Regular Season Team", "winner": "Leeward Lions", "teamId": "leeward-lions", "sourceNote": "Finished first in the 2026 Seniors regular season." },
-    { "division": "Seniors", "category": "MVP", "winner": "To be announced", "sourceNote": "2026 MVP has not been published yet." },
-    { "division": "Seniors", "category": "Golden Boot", "winner": "To be announced", "sourceNote": "2026 Golden Boot has not been published yet." },
+    { "division": "Seniors", "category": "MVP", "winner": "Haroon Ahmadi", "playerId": "haroon-ahmadi", "teamId": "em-haulers-fc", "sourceNote": "Claude's pick: EM Haulers FC's captain scored in every round of the playoffs, including the Championship Final winner, and led the club to the 2026 title." },
+    { "division": "Seniors", "category": "Golden Boot", "winner": "Mudassir", "playerId": "mudassir", "teamId": "leeward-lions", "sourceNote": "Led the league with 16 regular-season goals, a new single-season Seniors record, and added 4 more in the playoffs." },
     { "division": "Seniors", "category": "Best Goalkeeper", "winner": "Saad Khan", "playerId": "saad-khan", "sourceNote": "Recognized as the league's top goalkeeper this season." },
+    { "division": "Seniors", "category": "Coach of the Year", "winner": "Tanveer", "coachId": "coach-tanveer", "teamId": "leeward-lions", "sourceNote": "Led Leeward Lions to the No. 1 regular-season seed and a runner-up finish in the 2026 Championship Final." },
     { "division": "Seniors", "category": "Team MVP", "winner": "Haroon Ahmadi", "playerId": "haroon-ahmadi", "teamId": "em-haulers-fc", "sourceNote": "Named EM Haulers FC's 2026 Team MVP." },
     { "division": "Seniors", "category": "Team MVP", "winner": "Mudassir", "playerId": "mudassir", "teamId": "leeward-lions", "sourceNote": "Named Leeward Lions' 2026 Team MVP." },
     { "division": "Seniors", "category": "Team MVP", "winner": "Mosa Fazli", "playerId": "mosa-fazli", "teamId": "refuel-rovers", "sourceNote": "Named Refuel Rovers' 2026 Team MVP." },
     { "division": "Seniors", "category": "Team MVP", "winner": "Uthman Manjra", "playerId": "uthman", "teamId": "rawaha-royals", "sourceNote": "Named Rawaha Royals' 2026 Team MVP." },
-    { "division": "Seniors", "category": "Team MVP", "winner": "Umar Manjra", "playerId": "umar-manjra", "teamId": "gangat-warriors", "sourceNote": "Named Gangat Warriors' 2026 Team MVP." }
+    { "division": "Seniors", "category": "Team MVP", "winner": "Umar Manjra", "playerId": "umar-manjra", "teamId": "gangat-warriors", "sourceNote": "Named Gangat Warriors' 2026 Team MVP." },
+    { "division": "Seniors", "category": "Team MVP", "winner": "M Yahya", "playerId": "m-yahya", "teamId": "sharp-strikers", "sourceNote": "Named Sharp Strikers' 2026 Team MVP." },
+    { "division": "Seniors", "category": "Team MVP", "winner": "Adil Mubashir", "playerId": "adil-mubashir", "teamId": "amax-visionaries", "sourceNote": "Named Amax Visionaries' 2026 Team MVP." },
+    { "division": "Seniors", "category": "Team MVP", "winner": "Nasibullah Barak", "playerId": "nasibullah", "teamId": "memon-mavericks", "sourceNote": "Named Memon Mavericks' 2026 Team MVP." }
   ]
 }

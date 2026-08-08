@@ -54,6 +54,15 @@ function weekTitle(match) {
   return `Week ${match.week} | ${label}`;
 }
 
+function matchStartMinutes(match) {
+  const [startRaw] = String(match.time || "").split(/\s+(?:-|to|\u2013)\s+/i);
+  const parsed = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(String(startRaw || "").trim());
+  if (!parsed) return Number.POSITIVE_INFINITY;
+  let hours = Number(parsed[1]) % 12;
+  if (/PM/i.test(parsed[3])) hours += 12;
+  return hours * 60 + Number(parsed[2]);
+}
+
 function renderMatchGroups(data, matches) {
   if (!matches.length) return "";
   const groups = matches.reduce((map, match) => {
@@ -67,7 +76,8 @@ function renderMatchGroups(data, matches) {
     <div class="match-week-list">
       ${[...groups.values()]
         .map((group) => {
-          const first = group[0];
+          const sortedGroup = [...group].sort((a, b) => matchStartMinutes(a) - matchStartMinutes(b));
+          const first = sortedGroup[0];
           return `
             <details class="match-week-section">
               <summary class="match-week-head">
@@ -75,10 +85,10 @@ function renderMatchGroups(data, matches) {
                   <span class="eyebrow">${escapeHTML(first.division)}</span>
                   <h2>${escapeHTML(weekTitle(first))}</h2>
                 </div>
-                <span class="match-week-count">${group.length} ${group.length === 1 ? "match" : "matches"}</span>
+                <span class="match-week-count">${sortedGroup.length} ${sortedGroup.length === 1 ? "match" : "matches"}</span>
               </summary>
               <div class="match-week-grid">
-                ${group.map((match) => renderMatchCard(data, match)).join("")}
+                ${sortedGroup.map((match) => renderMatchCard(data, match)).join("")}
               </div>
             </details>
           `;

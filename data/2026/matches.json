@@ -1445,7 +1445,7 @@
       "notes": [
         "Quarterfinal 4: #1 seed Leeward Lions vs #8 seed Memon Mavericks.",
         "Leeward Lions defeated Memon Mavericks 1-0 to advance to the semifinals.",
-        "Mudassir scored the only goal."
+        "Mudassir scored the only goal on a penalty kick."
       ]
     },
     {
@@ -1575,11 +1575,11 @@
       "label": "Semifinal 2",
       "date": "2026-08-08",
       "time": "11:45 AM - 12:20 PM",
-      "homeTeamId": null,
-      "awayTeamId": null,
+      "homeTeamId": "refuel-rovers",
+      "awayTeamId": "leeward-lions",
       "homeTeamName": "Refuel Rovers",
       "awayTeamName": "Leeward Lions",
-      "homeScore": 2,
+      "homeScore": 1,
       "awayScore": 4,
       "winnerId": "leeward-lions",
       "status": "Complete",
@@ -1597,13 +1597,21 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": [
+        {
+          "playerId": "abdul-ghiyas-solyman",
+          "teamId": "refuel-rovers",
+          "name": "Abdul Ghiyas Solyman",
+          "assists": 1
+        }
+      ],
       "notes": [
         "Semifinal 2: Winner of Quarterfinal 3 vs winner of Quarterfinal 4.",
         "Refuel Rovers advanced from Quarterfinal 3, beating Rawaha Royals 1-0.",
         "Leeward Lions advanced from Quarterfinal 4, beating Memon Mavericks 1-0.",
-        "Leeward Lions defeated Refuel Rovers 4-2 to reach the Championship Final.",
-        "Mudassir scored three goals and Ajmal Chakkari scored once for Leeward Lions."
+        "Leeward Lions defeated Refuel Rovers 4-1 to reach the Championship Final.",
+        "Mudassir scored three goals and Ajmal Chakkari scored once for Leeward Lions.",
+        "Abdul Ghiyas Solyman assisted Refuel Rovers' goal; the scorer was not specified."
       ]
     },
     {
@@ -1717,7 +1725,7 @@
         "LSL Championship Final: Winner of Semifinal 1 vs winner of Semifinal 2.",
         "45 minutes including a 5-minute halftime.",
         "EM Haulers FC advanced from Semifinal 1, beating Sharp Strikers 2-1.",
-        "Leeward Lions advanced from Semifinal 2, beating Refuel Rovers 4-2.",
+        "Leeward Lions advanced from Semifinal 2, beating Refuel Rovers 4-1.",
         "Muzamil Kharooti opened the scoring for EM Haulers FC.",
         "Mudassir equalized for Leeward Lions on a penalty kick.",
         "Haroon Ahmadi scored the winning goal for EM Haulers FC.",

@@ -3,7 +3,7 @@ import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
 import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getAwards, getNextTeamMatch, isCompletedMatch, playersWithOVR, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
-import { controlSelect, escapeHTML, formatDateWithISO, getQueryParam, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage } from "./utils.js";
+import { escapeHTML, formatDateWithISO, getQueryParam, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("teams.html");
 
@@ -544,7 +544,6 @@ function render(allData) {
   const ratings = playerRatingMap(allData);
   const players = teamPlayers(data, team.id).map((player) => ({ ...player, ovr: ratings.get(player.id) || 60 }));
   const matches = teamMatches(data, team.id);
-  const seasonOptions = SITE.seasons.map((season) => ({ value: season, label: season }));
 
   setDocumentTitle(team.name);
   root.innerHTML = `
@@ -559,9 +558,6 @@ function render(allData) {
             <a class="text-link" href="./teams.html">Back to teams</a>
           </div>
         </div>
-      </div>
-      <div class="controls team-profile-controls">
-        ${controlSelect("season", "Season", seasonOptions, state.season)}
       </div>
       ${renderProfileNav()}
       <div class="team-overview-grid" id="overview" data-team-panel="overview">
@@ -635,10 +631,6 @@ function render(allData) {
     </section>
   `;
 
-  document.getElementById("season").addEventListener("change", (event) => {
-    state.season = event.target.value;
-    render(allData);
-  });
   setupProfilePanels();
 }
 

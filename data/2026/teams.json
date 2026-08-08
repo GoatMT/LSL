@@ -74,7 +74,7 @@
       "coachName": "Asim",
       "history": "2026 senior team coached by Asim, listed as the youngest coach.",
       "roster": [
-        { "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "photo": "./Logos/Player Pics/Muzamil Kharooti.png", "position": "Striker", "leadershipRole": "captain" },
+        { "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "photo": "./Logos/Player Pics/Muzamil Kharooti.png", "position": "Striker", "leadershipRole": "assistant" },
         { "id": "ammar-kazi", "name": "Ammar Kazi", "position": "Defender" },
         { "id": "mohammed-wahedi", "name": "Mohammed Wahedi", "position": "Goalie", "previousTeamId": "refuel-rovers", "previousTeamName": "Refuel Rovers", "tradeEffectiveDate": "2026-06-12", "tradeNote": "Officially traded to EM Haulers FC for Abdul Ghiyas Solyman." },
         { "id": "maaz-andurrahman", "name": "Maaz Abdurrahman", "position": "Defender" },
@@ -82,7 +82,7 @@
         { "id": "azeez-ur-rehman", "name": "Azeez ur Rehman", "position": "Defender" },
         { "id": "ahmed-adeeb-kamga", "name": "Ahmed Adeeb Kamga", "position": "Defender" },
         { "id": "uwais-bemat", "name": "Uwais Bemat", "position": "Attacking Midfielder", "leadershipRole": "assistant" },
-        { "id": "haroon-ahmadi", "name": "Haroon Ahmadi", "position": "Striker", "leadershipRole": "assistant" },
+        { "id": "haroon-ahmadi", "name": "Haroon Ahmadi", "position": "Striker", "leadershipRole": "captain" },
         { "id": "tayyib-mohammed", "name": "Tayyib Mohammed", "position": "Attacking Midfielder" }
       ]
     },

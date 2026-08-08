@@ -2769,10 +2769,6 @@ details.clean-details summary {
   min-width: 0;
 }
 
-.match-center-panel .all-time-toggle {
-  margin-bottom: 18px;
-}
-
 .all-time-toggle.wide {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -7003,6 +6999,66 @@ details.clean-details summary {
 .news-on-this-day-card span:last-child {
   color: var(--muted);
   font-size: 0.86rem;
+}
+
+.champion-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+  padding: 18px 22px;
+  background: linear-gradient(120deg, #123f21, #1c2e14);
+  border: 1px solid rgba(199, 163, 103, 0.55);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 0 1px rgba(199, 163, 103, 0.2), 0 0 26px rgba(199, 163, 103, 0.22);
+}
+
+.champion-banner-logo {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  padding: 6px;
+  background: var(--logo-bg, #ffffff);
+  border-radius: 50%;
+  border: 2px solid rgba(199, 163, 103, 0.6);
+}
+
+.champion-banner-copy {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.champion-banner-kicker {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.champion-banner-copy h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.15;
+}
+
+.champion-banner-copy h2 a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.champion-banner-copy p {
+  margin: 2px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.92rem;
+}
+
+.champion-banner-copy p a {
+  color: var(--gold);
+  font-weight: 800;
+  text-decoration: none;
 }
 
 .news-layout {

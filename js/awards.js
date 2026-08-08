@@ -41,6 +41,7 @@ function awardType(award) {
   if (award.category === "Team MVP") return "team-mvp";
   if (award.category === "Golden Boot") return "golden-boot";
   if (award.category === "Best Goalkeeper") return "goalkeeper";
+  if (award.category === "Coach of the Year") return "coach";
   if (["2nd Place Team", "3rd Place Team"].includes(award.category)) return "podium";
   return isTeamAward(award) ? "team" : "player";
 }
@@ -52,6 +53,7 @@ function awardIcon(award) {
     "team-mvp": "🎖️",
     "golden-boot": "⚽",
     goalkeeper: "🧤",
+    coach: "📋",
     podium: "🥉",
     team: "🏅",
     player: "⭐",
@@ -77,6 +79,7 @@ function awardMatchesSearch(award) {
 function winnerMarkup(award, className = "") {
   const label = escapeHTML(award.winner || "Not announced");
   if (award.playerId) return `<a class="${className}" href="./player.html?id=${encodeURIComponent(award.playerId)}">${label}</a>`;
+  if (award.coachId) return `<a class="${className}" href="./coach.html?id=${encodeURIComponent(award.coachId)}">${label}</a>`;
   if (award.teamId) return `<a class="${className}" href="./team.html?id=${encodeURIComponent(award.teamId)}">${label}</a>`;
   return `<span class="${className}">${label}</span>`;
 }
@@ -273,7 +276,8 @@ function categoryRank(category) {
     MVP: 5,
     "Golden Boot": 6,
     "Best Goalkeeper": 7,
-    "Team MVP": 8,
+    "Coach of the Year": 8,
+    "Team MVP": 9,
   }[category] || 99;
 }
 

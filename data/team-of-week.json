@@ -1,56 +1,56 @@
 {
   "season": "2026",
-  "week": "Week 7",
-  "date": "August 1, 2026",
+  "week": "Finals Day",
+  "date": "August 8, 2026",
   "division": "Seniors",
   "playerOfTheWeek": {
-    "playerId": "uthman",
-    "name": "Uthman Manira",
-    "teamId": "rawaha-royals",
-    "teamName": "Rawaha Royals",
-    "summary": "Scored three goals in Rawaha Royals' 8-4 Week 7 win over Gangat Warriors.",
+    "playerId": "haroon-ahmadi",
+    "name": "Haroon Ahmadi",
+    "teamId": "em-haulers-fc",
+    "teamName": "EM Haulers FC",
+    "summary": "Scored the championship-winning goal in the Final and finished Finals Day with 3 goals as EM Haulers FC won the 2026 LSL Championship.",
     "tag": "Player of the Week"
   },
   "topPlayers": [
     {
       "rank": 1,
-      "playerId": "uthman",
-      "name": "Uthman Manira",
-      "teamId": "rawaha-royals",
-      "teamName": "Rawaha Royals",
-      "summary": "Three goals in Rawaha Royals' 8-4 win"
-    },
-    {
-      "rank": 2,
-      "playerId": "taha-nakhuda",
-      "name": "Taaha Nakhuda",
-      "teamId": "gangat-warriors",
-      "teamName": "Gangat Warriors",
-      "summary": "Two assists for Gangat Warriors in the 8-4 loss"
-    },
-    {
-      "rank": 3,
-      "playerId": "saad-khan",
-      "name": "Saad Khan",
-      "teamId": "rawaha-royals",
-      "teamName": "Rawaha Royals",
-      "summary": "Added an assist from goalie for Rawaha Royals"
-    },
-    {
-      "rank": 4,
-      "playerId": "ajmal-shakkari",
-      "name": "Ajmal Chakkari",
-      "teamId": "leeward-lions",
-      "teamName": "Leeward Lions",
-      "summary": "Scored the only goal in a 1-0 win over Refuel Rovers"
-    },
-    {
-      "rank": 5,
       "playerId": "haroon-ahmadi",
       "name": "Haroon Ahmadi",
       "teamId": "em-haulers-fc",
       "teamName": "EM Haulers FC",
-      "summary": "Tied the game for EM Haulers FC in a 1-1 draw with Memon Mavericks"
+      "summary": "Scored the championship-winning goal in the 2-1 Final win"
+    },
+    {
+      "rank": 2,
+      "playerId": "mudassir",
+      "name": "Mudassir",
+      "teamId": "leeward-lions",
+      "teamName": "Leeward Lions",
+      "summary": "5 goals across three Finals Day games, including a penalty equalizer in the Final"
+    },
+    {
+      "rank": 3,
+      "playerId": "muzamil-kharooti",
+      "name": "Muzamil Kharooti",
+      "teamId": "em-haulers-fc",
+      "teamName": "EM Haulers FC",
+      "summary": "Opened the scoring in the Final after a two-goal quarterfinal"
+    },
+    {
+      "rank": 4,
+      "playerId": "abdul-ghiyas-solyman",
+      "name": "Abdul Ghiyas Solyman",
+      "teamId": "refuel-rovers",
+      "teamName": "Refuel Rovers",
+      "summary": "Scored the only goal in a quarterfinal upset over Rawaha Royals"
+    },
+    {
+      "rank": 5,
+      "playerId": "ajmal-shakkari",
+      "name": "Ajmal Chakkari",
+      "teamId": "leeward-lions",
+      "teamName": "Leeward Lions",
+      "summary": "Scored in the semifinal win over Refuel Rovers to reach the Final"
     }
   ]
 }
