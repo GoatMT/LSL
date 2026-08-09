@@ -3,6 +3,7 @@
   "division": "Seniors",
   "format": "Eight-team senior playoff field, no byes. Quarterfinal 1 is #3 Sharp Strikers vs #6 Amax Visionaries, Quarterfinal 2 is #2 EM Haulers FC vs #7 Gangat Warriors, Quarterfinal 3 is #4 Rawaha Royals vs #5 Refuel Rovers, and Quarterfinal 4 is #1 Leeward Lions vs #8 Memon Mavericks, each 35 minutes with a 5-minute halftime, played in that order starting at 8:30 AM. Semifinal 1 is the QF1/QF2 winners and Semifinal 2 is the QF3/QF4 winners, also 35 minutes with a 5-minute halftime. Finals Day runs the quarterfinals, semifinals, a Coaches & Volunteers match, Juniors games, a Dhuhr break, and the 45-minute LSL Championship Final at 2:00 PM, all on Saturday, August 8, 2026.",
   "champion": "EM Haulers FC",
+  "layout": "wide",
   "rounds": [
     {
       "name": "Quarterfinals",
@@ -11,13 +12,10 @@
           "label": "Q1",
           "homeTeamId": "sharp-strikers",
           "homeTeamName": "Sharp Strikers",
-          "homeSeed": 3,
           "awayTeamId": "amax-visionaries",
           "awayTeamName": "Amax Visionaries",
-          "awaySeed": 6,
           "homeScore": 1,
           "awayScore": 1,
-          "penalties": { "homeScore": 3, "awayScore": 2 },
           "winnerId": "sharp-strikers",
           "note": "Sharp Strikers won 3-2 on penalties after a 1-1 draw."
         },
@@ -25,40 +23,34 @@
           "label": "Q2",
           "homeTeamId": "em-haulers-fc",
           "homeTeamName": "EM Haulers FC",
-          "homeSeed": 2,
           "awayTeamId": "gangat-warriors",
           "awayTeamName": "Gangat Warriors",
-          "awaySeed": 7,
           "homeScore": 4,
           "awayScore": 1,
           "winnerId": "em-haulers-fc",
-          "note": "EM Haulers FC advanced 4-1."
+          "note": "Muzamil Kharooti and Haroon Ahmadi each scored twice for EM Haulers FC."
         },
         {
           "label": "Q3",
           "homeTeamId": "rawaha-royals",
           "homeTeamName": "Rawaha Royals",
-          "homeSeed": 4,
           "awayTeamId": "refuel-rovers",
           "awayTeamName": "Refuel Rovers",
-          "awaySeed": 5,
           "homeScore": 0,
           "awayScore": 1,
           "winnerId": "refuel-rovers",
-          "note": "Refuel Rovers advanced 1-0."
+          "note": "Abdul Ghiyas Solyman scored the only goal for Refuel Rovers."
         },
         {
           "label": "Q4",
           "homeTeamId": "leeward-lions",
           "homeTeamName": "Leeward Lions",
-          "homeSeed": 1,
           "awayTeamId": "memon-mavericks",
           "awayTeamName": "Memon Mavericks",
-          "awaySeed": 8,
           "homeScore": 1,
           "awayScore": 0,
           "winnerId": "leeward-lions",
-          "note": "Leeward Lions advanced 1-0."
+          "note": "Mudassir scored the only goal on a penalty kick."
         }
       ]
     },
@@ -74,7 +66,7 @@
           "homeScore": 1,
           "awayScore": 2,
           "winnerId": "em-haulers-fc",
-          "note": "Winner of Q1 (Sharp Strikers) vs winner of Q2 (EM Haulers FC). EM Haulers FC advanced 2-1."
+          "note": "Haroon Ahmadi and Muzamil Kharooti each scored once for EM Haulers FC."
         },
         {
           "label": "S2",
@@ -85,15 +77,15 @@
           "homeScore": 1,
           "awayScore": 4,
           "winnerId": "leeward-lions",
-          "note": "Winner of Q3 (Refuel Rovers) vs winner of Q4 (Leeward Lions). Leeward Lions advanced 4-1."
+          "note": "Mudassir scored twice, and Ajmal Chakkari and Muhummud Teli each added a goal for Leeward Lions. Mosa Fazli scored for Refuel Rovers, assisted by Abdul Ghiyas Solyman."
         }
       ]
     },
     {
-      "name": "Final",
+      "name": "Finals",
       "matches": [
         {
-          "label": "Final",
+          "label": "Finals",
           "homeTeamId": "em-haulers-fc",
           "homeTeamName": "EM Haulers FC",
           "awayTeamId": "leeward-lions",
@@ -101,7 +93,7 @@
           "homeScore": 2,
           "awayScore": 1,
           "winnerId": "em-haulers-fc",
-          "note": "EM Haulers FC defeated Leeward Lions 2-1 to win the 2026 LSL Championship."
+          "note": "Muzamil Kharooti and Haroon Ahmadi scored for EM Haulers FC; Mudassir scored on a penalty for Leeward Lions. EM Haulers FC won the 2026 LSL Championship."
         }
       ]
     }

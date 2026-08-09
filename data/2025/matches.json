@@ -575,7 +575,7 @@
           "teamId": "refuel-juicery-athletic",
           "name": "Marwan Ahmed",
           "jersey": 2,
-          "goals": 3
+          "goals": 2
         },
         {
           "playerId": "mohammed-ibrahim",
@@ -595,6 +595,13 @@
           "teamId": "refuel-juicery-athletic",
           "name": "Ahmad",
           "jersey": 1,
+          "goals": 1
+        },
+        {
+          "playerId": "ziyad-adam",
+          "teamId": "refuel-juicery-athletic",
+          "name": "Ziyad Adam",
+          "jersey": 5,
           "goals": 1
         },
         {
@@ -623,7 +630,7 @@
       "notes": [
         "Updated result: Refuel Juicery Athletic defeated IM Construction SC 7-5 in regulation (not on penalties as previously listed).",
         "Match started at 12:25 PM.",
-        "Marwan Ahmed scored three goals and Mohammed Ibrahim scored two goals for Refuel Juicery Athletic. M Yahya and a player identified as Ahmad (#1) each scored once.",
+        "Marwan Ahmed scored two goals and Mohammed Ibrahim scored two goals for Refuel Juicery Athletic. M Yahya, Ziyad Adam, and a player identified as Ahmad (#1) each scored once.",
         "Amadu and Omar Ajmal each scored twice for IM Construction SC, and Rehaan Adam scored once."
       ]
     },

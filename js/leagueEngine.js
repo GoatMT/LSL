@@ -809,6 +809,24 @@ export function getCurrentCoach(seasons, coachId) {
 export function getAwards(seasons, { season = "All", division = "All" } = {}) {
   return seasons
     .filter((data) => season === "All" || data.year === String(season))
-    .flatMap((data) => (data.awards?.awards || []).map((award) => ({ ...award, season: data.year })))
+    .flatMap((data) => {
+      const teams = teamMap(data);
+      const players = playerMap(data);
+      return (data.awards?.awards || []).map((award) => {
+        let teamId = award.teamId || "";
+        let teamName = award.teamName || "";
+        if (!teamName && award.playerId) {
+          const player = players.get(award.playerId);
+          if (player) {
+            teamId = teamId || player.teamId || "";
+            teamName = teams.get(player.teamId)?.name || player.teamName || "";
+          }
+        }
+        if (!teamName && teamId) {
+          teamName = teams.get(teamId)?.name || "";
+        }
+        return { ...award, season: data.year, teamId, teamName };
+      });
+    })
     .filter((award) => division === "All" || award.division === division);
 }

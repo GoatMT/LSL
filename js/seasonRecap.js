@@ -54,7 +54,7 @@ function leaderRows(players) {
 }
 
 function renderDivisionRecap(data, division) {
-  const isCurrentSeason = String(data.year) === String(SITE.defaultSeason);
+  const isCurrentSeason = String(data.year) === String(SITE.defaultSeason) && !data.playoffs?.champion;
   const awards = (data.awards?.awards || []).filter((award) => award.division === division);
   const awardByCategory = new Map(awards.map((award) => [award.category, award]));
   const rows = calculateStandings(data, { division });
@@ -116,7 +116,7 @@ function renderDivisionRecap(data, division) {
 }
 
 function render(data) {
-  const isCurrentSeason = String(data.year) === String(SITE.defaultSeason);
+  const isCurrentSeason = String(data.year) === String(SITE.defaultSeason) && !data.playoffs?.champion;
   const divisions = [...new Set((data.teams || []).map((team) => team.division))];
   root.innerHTML = `
     <section class="section-panel people-panel people-hero-panel">

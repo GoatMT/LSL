@@ -1,6 +1,5 @@
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
-import { renderFanVoteCard, hydrateFanVote } from "./fanVote.js";
 import { getAwards } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
@@ -157,25 +156,6 @@ function renderLatestSeason(allData) {
         }
       </div>
     </div>
-  `;
-}
-
-function renderFanVoteTeaser() {
-  const hasCandidates = (awardWatchData.categories || []).some((category) => (category.leaders || []).some((leader) => leader.playerId));
-  if (!hasCandidates) return "";
-  return `
-    <section class="section-panel awards-vote-panel">
-      <div class="section-head compact-head">
-        <div>
-          <span class="eyebrow">Fan Vote${awardWatchData.week ? ` &middot; ${escapeHTML(awardWatchData.week)}` : ""}</span>
-          <h2>This Week's Fan MVP Race</h2>
-          <p>Live results from every visitor. Tap through to cast or change your pick.</p>
-        </div>
-      </div>
-      <div class="fan-vote-grid">
-        ${renderFanVoteCard(awardWatchData, "mvp", { interactive: false })}
-      </div>
-    </section>
   `;
 }
 
@@ -363,7 +343,7 @@ function renderHistoryGroup(title, icon, awards) {
       </div>
       <div class="award-history-table">
         <div class="award-history-table-head" aria-hidden="true">
-          <span>Season</span><span>Division</span><span>Winner</span><span>Category</span>
+          <span>Season</span><span>Division</span><span>Winner</span><span>Team</span><span>Category</span>
         </div>
         <div class="award-history-list">
           ${rows
@@ -373,6 +353,7 @@ function renderHistoryGroup(title, icon, awards) {
                   <span data-label="Season">${escapeHTML(award.season)}</span>
                   <span data-label="Division">${escapeHTML(award.division || "All Divisions")}</span>
                   <strong data-label="Winner">${winnerMarkup(award, "award-winner-link")}</strong>
+                  <span data-label="Team">${award.teamId ? `<a href="./team.html?id=${encodeURIComponent(award.teamId)}">${escapeHTML(award.teamName || "Team TBA")}</a>` : escapeHTML(award.teamName || "\u2014")}</span>
                   <span data-label="Category">${escapeHTML(award.category)}</span>
                 </div>
               `
@@ -388,9 +369,8 @@ function renderAwardHistory(awards) {
   const champions = awards.filter((award) => award.category === "Champion Team");
   const mvps = awards.filter((award) => award.category === "MVP");
   const goldenBoots = awards.filter((award) => award.category === "Golden Boot");
-  const bestGoalkeepers = awards.filter((award) => award.category === "Best Goalkeeper");
   const teamMvps = awards.filter(isTeamMvp);
-  if (!champions.length && !mvps.length && !goldenBoots.length && !bestGoalkeepers.length && !teamMvps.length) return "";
+  if (!champions.length && !mvps.length && !goldenBoots.length && !teamMvps.length) return "";
 
   return `
     <section class="section-panel awards-history-panel">
@@ -398,14 +378,13 @@ function renderAwardHistory(awards) {
         <div>
           <span class="eyebrow">History</span>
           <h2>Award History</h2>
-          <p>Champions, MVPs, Golden Boots, Best Goalkeepers, and Team MVPs organized by season and division.</p>
+          <p>Champions, MVPs, Golden Boots, and Team MVPs organized by season and division.</p>
         </div>
       </div>
       <div class="award-history-groups">
         ${renderHistoryGroup("Champions by Year", "🏆", champions)}
         ${renderHistoryGroup("MVPs by Year", "⭐", mvps)}
         ${renderHistoryGroup("Golden Boots by Year", "⚽", goldenBoots)}
-        ${renderHistoryGroup("Best Goalkeepers by Year", "🧤", bestGoalkeepers)}
         ${renderHistoryGroup("Team MVPs by Year", "🎖️", teamMvps)}
       </div>
     </section>
@@ -435,16 +414,11 @@ function render(allData, focusSearch = false) {
             <span class="eyebrow">Awards + Champions</span>
             <h1>LSL Awards</h1>
             <p>Champions, MVPs, Golden Boots, finalists, and season honors.</p>
-            <div class="button-row">
-              <a class="button primary" href="./voting.html">🗳️ Cast Your Fan MVP Vote</a>
-            </div>
           </div>
         </div>
         ${renderLatestSeason(allData)}
       </div>
     </section>
-
-    ${renderFanVoteTeaser()}
 
     ${renderCupEngravings()}
 
@@ -487,8 +461,6 @@ function render(allData, focusSearch = false) {
         : `<section class="section-panel awards-empty-panel">${statusMessage("empty", "No awards match these filters.")}</section>`
     }
   `;
-
-  hydrateFanVote(root, awardWatchData);
 
   ["season", "division"].forEach((id) => {
     document.getElementById(id)?.addEventListener("change", (event) => {

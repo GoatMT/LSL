@@ -1,6 +1,189 @@
 {
   "articles": [
     {
+      "id": "championship-final-recap-august-8",
+      "category": "Game Recaps",
+      "storyLabel": "Championship Recap",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": true,
+      "headline": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1",
+      "subtitle": "Muzamil Kharooti opened the scoring, Mudassir equalized on a penalty for Leeward Lions, and captain Haroon Ahmadi scored the winner to lift EM Haulers FC to the title.",
+      "date": "August 8, 2026",
+      "time": "Championship recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/EM Haulers FC.jpg",
+      "heroImage": "./Logos/2026 Teams/EM Haulers FC.jpg",
+      "tags": [
+        "Playoffs",
+        "Championship Final",
+        "EM Haulers FC",
+        "Leeward Lions",
+        "Haroon Ahmadi",
+        "Muzamil Kharooti",
+        "Mudassir",
+        "2026 Champions"
+      ],
+      "playerProfiles": [
+        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
+        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" },
+        { "id": "mudassir", "label": "View Mudassir Profile" }
+      ],
+      "caption": "EM Haulers FC are the 2026 Lantern Soccer League Champions, defeating Leeward Lions 2-1 in the Final.",
+      "related": [
+        { "label": "Semifinal 1 Recap", "articleId": "semifinal-1-recap-august-8", "title": "Semifinal 1 Recap: EM Haulers FC Hold Off Sharp Strikers 2-1 To Reach The Final" },
+        { "label": "Semifinal 2 Recap", "articleId": "semifinal-2-recap-august-8", "title": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final" },
+        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" },
+        { "label": "Repeat Champions Watch", "articleId": "back-to-back-cup-watch-quarterfinals", "title": "Every Team's Path To A Repeat Champion: Who Would Win The Cup Twice On August 8" }
+      ],
+      "body": [
+        "EM Haulers FC are the 2026 Lantern Soccer League Champions.",
+        "The #2 seed defeated #1 seed Leeward Lions 2-1 in the Championship Final to close out Finals Day, capping a run that saw them get past Gangat Warriors in the quarterfinal and Sharp Strikers in the semifinal without dropping a game.",
+        "Muzamil Kharooti opened the scoring for EM Haulers FC, giving them an early lead in the 45-minute final. Mudassir, the league's Golden Boot winner off a record-setting regular season, answered for Leeward Lions with a penalty kick to level the match.",
+        "The winner came from captain Haroon Ahmadi, who scored what proved to be the championship-clinching goal for EM Haulers FC.",
+        "It's the second straight trip to the Final for a team built around Haroon and Muzamil, both of whom entered the day among the league's most dangerous scorers, and it caps a playoff run in which EM Haulers FC didn't allow more than a single goal against Sharp Strikers in either the semifinal or the final.",
+        "For Leeward Lions, it's a runner-up finish after the best regular season in franchise history, a 5-1-1 record with a league-best +18 goal difference, and a Mudassir-led attack that set new single-season and single-game scoring records along the way. The Championship Final is as far as that run went.",
+        "EM Haulers FC's title also completes the 2026 season across the board: the regular-season champion (Leeward Lions), the playoff champion (EM Haulers FC), and every game on Finals Day are now final."
+      ]
+    },
+    {
+      "id": "semifinal-2-recap-august-8",
+      "category": "Game Recaps",
+      "storyLabel": "Playoff Recap",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": true,
+      "headline": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final",
+      "subtitle": "Mudassir scored twice and Ajmal Chakkari and Muhummud Teli each added a goal as Leeward booked their spot in the Championship Final.",
+      "date": "August 8, 2026",
+      "time": "Playoff recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Playoff Designs/Rawaha Royals vs Refuel Rovers.png",
+      "heroImage": "./Playoff Designs/Rawaha Royals vs Refuel Rovers.png",
+      "mediaFit": "cover",
+      "tags": [
+        "Playoffs",
+        "Semifinals",
+        "Leeward Lions",
+        "Refuel Rovers",
+        "Mudassir",
+        "Ajmal Chakkari",
+        "Muhummud Teli",
+        "Abdul Ghiyas Solyman",
+        "Mosa Fazli"
+      ],
+      "playerProfiles": [
+        { "id": "mudassir", "label": "View Mudassir Profile" },
+        { "id": "ajmal-shakkari", "label": "View Ajmal Profile" },
+        { "id": "abdul-ghiyas-solyman", "label": "View Abdul Profile" },
+        { "id": "mosa-fazli", "label": "View Mosa Profile" }
+      ],
+      "caption": "Leeward Lions defeated Refuel Rovers 4-1 to reach the 2026 LSL Championship Final.",
+      "related": [
+        { "label": "Semifinal 1 Recap", "articleId": "semifinal-1-recap-august-8", "title": "Semifinal 1 Recap: EM Haulers FC Hold Off Sharp Strikers 2-1 To Reach The Final" },
+        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+      ],
+      "body": [
+        "Semifinal 2 was the more lopsided of the day's two semifinals. #1 seed Leeward Lions, coming off a 1-0 quarterfinal win over Memon Mavericks, took control early against #5 seed Refuel Rovers and never let go.",
+        "Mudassir, the league's Golden Boot winner off a record-setting regular season, scored twice to lead the way. Ajmal Chakkari and Muhummud Teli each added a goal as Leeward built a comfortable cushion.",
+        "Refuel Rovers, fresh off their own 1-0 quarterfinal win over Rawaha Royals, got on the board through Mosa Fazli, assisted by Abdul Ghiyas Solyman, but it was only enough to make the final score respectable rather than threaten a comeback.",
+        "Leeward Lions' 4-1 win sends them to the 2026 LSL Championship Final, their first appearance in the title game this season, where they'll face the winner of Semifinal 1."
+      ]
+    },
+    {
+      "id": "semifinal-1-recap-august-8",
+      "category": "Game Recaps",
+      "storyLabel": "Playoff Recap",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": true,
+      "headline": "Semifinal 1 Recap: EM Haulers FC Hold Off Sharp Strikers 2-1 To Reach The Final",
+      "subtitle": "Haroon Ahmadi and Muzamil Kharooti each scored once as EM Haulers FC survived a Sharp Strikers side that had just come through a penalty shootout.",
+      "date": "August 8, 2026",
+      "time": "Playoff recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Playoff Designs/EM Haulers FC vs Gangat Warriors.png",
+      "heroImage": "./Playoff Designs/EM Haulers FC vs Gangat Warriors.png",
+      "mediaFit": "cover",
+      "tags": [
+        "Playoffs",
+        "Semifinals",
+        "EM Haulers FC",
+        "Sharp Strikers",
+        "Haroon Ahmadi",
+        "Muzamil Kharooti"
+      ],
+      "playerProfiles": [
+        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
+        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" }
+      ],
+      "caption": "EM Haulers FC defeated Sharp Strikers 2-1 to reach the 2026 LSL Championship Final.",
+      "related": [
+        { "label": "Semifinal 2 Recap", "articleId": "semifinal-2-recap-august-8", "title": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final" },
+        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+      ],
+      "body": [
+        "Semifinal 1 brought together #3 seed Sharp Strikers, who had just survived a penalty shootout to get past Amax Visionaries in the quarterfinal, and #2 seed EM Haulers FC, who cruised past Gangat Warriors 4-1 to get here.",
+        "EM Haulers FC's two most reliable scorers did the job again. Haroon Ahmadi and Muzamil Kharooti each found the net once, giving EM enough of a cushion to hold on.",
+        "Sharp Strikers answered with a goal of their own, though the scorer wasn't specified on the match sheet, and pushed for an equalizer that never came. Coming off the emotional high of a shootout win just to reach this point, Sharp couldn't find the extra goal to force another one.",
+        "EM Haulers FC's 2-1 win sends them to the 2026 LSL Championship Final, where they'll face the winner of Semifinal 2."
+      ]
+    },
+    {
+      "id": "quarterfinals-recap-august-8",
+      "category": "Game Recaps",
+      "storyLabel": "Playoff Recap",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": true,
+      "headline": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters",
+      "subtitle": "All four quarterfinals played out Saturday morning to set the Finals Day semifinal field.",
+      "date": "August 8, 2026",
+      "time": "Playoff recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/lsl-logo.png",
+      "heroImage": "./Logos/lsl-logo.png",
+      "tags": [
+        "Playoffs",
+        "Quarterfinals",
+        "Sharp Strikers",
+        "Amax Visionaries",
+        "EM Haulers FC",
+        "Gangat Warriors",
+        "Rawaha Royals",
+        "Refuel Rovers",
+        "Leeward Lions",
+        "Memon Mavericks",
+        "Muzamil Kharooti",
+        "Haroon Ahmadi",
+        "Abdul Ghiyas Solyman",
+        "Mudassir"
+      ],
+      "playerProfiles": [
+        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
+        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" },
+        { "id": "abdul-ghiyas-solyman", "label": "View Abdul Profile" },
+        { "id": "mudassir", "label": "View Mudassir Profile" }
+      ],
+      "caption": "A penalty shootout, two lopsided scorelines, and two 1-0 grinders set the Finals Day semifinal matchups.",
+      "related": [
+        { "label": "Numbers Watch", "articleId": "playoff-predictions-what-the-numbers-say", "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats" },
+        { "label": "Finals Day Schedule", "articleId": "finals-day-official-schedule-august-8", "title": "Lantern Soccer League Finals Day: Official Schedule for Saturday, August 8" }
+      ],
+      "body": [
+        "Finals Day opened with four quarterfinals back to back to back to back starting at 8:30 AM, and by 11:05 AM the semifinal matchups were set. Two games went to form, one delivered the morning's biggest scare for a top seed, and one needed penalties to settle it.",
+        "QUARTERFINAL 1: SHARP STRIKERS 1 (3), AMAX VISIONARIES 1 (2) \u2014 PENALTIES",
+        "The #3 seed and #6 seed played to a 1-1 draw through regulation, sending the day's first game to a penalty shootout. Sharp Strikers held on 3-2 from the spot to advance, a tense finish for a team that spent the regular season trading results with the middle of the table.",
+        "QUARTERFINAL 2: EM HAULERS FC 4, GANGAT WARRIORS 1",
+        "EM Haulers FC's top two scorers did the work early: Muzamil Kharooti and Haroon Ahmadi each scored twice as the #2 seed pulled away from #7 seed Gangat Warriors. Umar Manjra got Gangat on the board, but Gangat were already playing without Taaha Nakhuda, who was traveling in India during the playoffs and missed the match with his team.",
+        "QUARTERFINAL 3: RAWAHA ROYALS 0, REFUEL ROVERS 1",
+        "The #4 vs #5 matchup stayed level for most of the game before Abdul Ghiyas Solyman scored the only goal, sending #5 seed Refuel Rovers through at the expense of the #4 seed. It was a quiet, low-event game compared to the rest of the morning, decided by a single moment.",
+        "QUARTERFINAL 4: LEEWARD LIONS 1, MEMON MAVERICKS 0",
+        "The #1 seed's win came the hard way. Mudassir, the league's Golden Boot winner with a record-setting regular season, needed a penalty kick to break through against #8 seed Memon Mavericks, and Leeward Lions closed it out 1-0 without much breathing room.",
+        "With all four results in, the semifinal field was set: Sharp Strikers would face EM Haulers FC, and Refuel Rovers would face Leeward Lions, both games later that same morning."
+      ]
+    },
+    {
       "id": "back-to-back-cup-watch-quarterfinals",
       "category": "League Analysis",
       "storyLabel": "Repeat Champions Watch",

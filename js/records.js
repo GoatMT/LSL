@@ -371,7 +371,15 @@ function cupChampions(allData) {
       const finalMatch = (finalRound.matches || []).find((match) => !/3rd/i.test(match.label || "")) || {};
       const runnerUpId = finalMatch.winnerId === finalMatch.homeTeamId ? finalMatch.awayTeamId : finalMatch.homeTeamId;
       const runnerUpName = finalMatch.winnerId === finalMatch.homeTeamId ? finalMatch.awayTeamName : finalMatch.homeTeamName;
-      const championTeam = (season.teams || []).find((team) => team.name === entry.champion);
+      // Match the champion team by id from the bracket first (reliable), and
+      // only fall back to a name-string match if the bracket didn't record a
+      // winnerId. Some seasons' playoffs.json spells the champion's name
+      // slightly differently from teams.json (e.g. "Umer Memon F.C." vs
+      // "Umer Memon FC"), which would otherwise silently return an empty
+      // roster and drop that whole championship out of the repeat-winner count.
+      const championTeam =
+        (season.teams || []).find((team) => team.id === finalMatch.winnerId) ||
+        (season.teams || []).find((team) => team.name === entry.champion);
       rows.push({
         season: season.year,
         division: entry.division || season.division || "Seniors",

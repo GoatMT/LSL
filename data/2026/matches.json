@@ -1462,6 +1462,7 @@
       "awayScore": 1,
       "winnerId": "em-haulers-fc",
       "status": "Complete",
+      "absences": ["taha-nakhuda"],
       "scorers": [
         {
           "playerId": "muzamil-kharooti",
@@ -1487,7 +1488,8 @@
         "Quarterfinal 2: #2 seed EM Haulers FC vs #7 seed Gangat Warriors.",
         "EM Haulers FC defeated Gangat Warriors 4-1 to advance to the semifinals.",
         "Muzamil Kharooti scored two goals and Haroon Ahmadi scored two goals for EM Haulers FC.",
-        "Umar Manjra scored the Gangat Warriors goal."
+        "Umar Manjra scored the Gangat Warriors goal.",
+        "Taaha Nakhuda did not play for Gangat Warriors; he was on a trip to India during the playoffs."
       ]
     },
     {
@@ -1558,13 +1560,27 @@
       "awayScore": 2,
       "winnerId": "em-haulers-fc",
       "status": "Complete",
-      "scorers": [],
+      "scorers": [
+        {
+          "playerId": "haroon-ahmadi",
+          "teamId": "em-haulers-fc",
+          "name": "Haroon Ahmadi",
+          "goals": 1
+        },
+        {
+          "playerId": "muzamil-kharooti",
+          "teamId": "em-haulers-fc",
+          "name": "Muzamil Kharooti",
+          "goals": 1
+        }
+      ],
       "assists": [],
       "notes": [
         "Semifinal 1: Winner of Quarterfinal 1 vs winner of Quarterfinal 2.",
         "Sharp Strikers advanced from Quarterfinal 1, beating Amax Visionaries 3-2 on penalties after a 1-1 draw.",
         "EM Haulers FC advanced from Quarterfinal 2, beating Gangat Warriors 4-1.",
-        "EM Haulers FC defeated Sharp Strikers 2-1 to reach the Championship Final."
+        "EM Haulers FC defeated Sharp Strikers 2-1 to reach the Championship Final.",
+        "Haroon Ahmadi and Muzamil Kharooti each scored once for EM Haulers FC; Sharp Strikers' scorer was not specified."
       ]
     },
     {
@@ -1588,12 +1604,24 @@
           "playerId": "mudassir",
           "teamId": "leeward-lions",
           "name": "Mudassir",
-          "goals": 3
+          "goals": 2
         },
         {
           "playerId": "ajmal-shakkari",
           "teamId": "leeward-lions",
           "name": "Ajmal Chakkari",
+          "goals": 1
+        },
+        {
+          "playerId": "muhammad-teli",
+          "teamId": "leeward-lions",
+          "name": "Muhummud Teli",
+          "goals": 1
+        },
+        {
+          "playerId": "mosa-fazli",
+          "teamId": "refuel-rovers",
+          "name": "Mosa Fazli",
           "goals": 1
         }
       ],
@@ -1610,8 +1638,8 @@
         "Refuel Rovers advanced from Quarterfinal 3, beating Rawaha Royals 1-0.",
         "Leeward Lions advanced from Quarterfinal 4, beating Memon Mavericks 1-0.",
         "Leeward Lions defeated Refuel Rovers 4-1 to reach the Championship Final.",
-        "Mudassir scored three goals and Ajmal Chakkari scored once for Leeward Lions.",
-        "Abdul Ghiyas Solyman assisted Refuel Rovers' goal; the scorer was not specified."
+        "Mudassir scored two goals, and Ajmal Chakkari and Muhummud Teli each scored once for Leeward Lions.",
+        "Mosa Fazli scored for Refuel Rovers, assisted by Abdul Ghiyas Solyman."
       ]
     },
     {
