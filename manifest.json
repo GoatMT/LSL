@@ -1,0 +1,17 @@
+{
+  "name": "Lantern Soccer League",
+  "short_name": "LSL",
+  "description": "Follow LSL seasons, playoff brackets, player stats, coaching records, awards, and the Inter-Madrasah Tournament.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#113c1f",
+  "theme_color": "#113c1f",
+  "icons": [
+    { "src": "./Logos/lsl-logo.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./Logos/lsl-logo.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "./Logos/lsl-logo.png", "sizes": "1254x1254", "type": "image/png", "purpose": "any" },
+    { "src": "./Logos/lsl-logo.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

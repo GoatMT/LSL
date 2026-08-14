@@ -1,12 +1,107 @@
 {
   "articles": [
     {
+      "id": "greatest-player-in-lsl-history-debate",
+      "category": "League Analysis",
+      "storyLabel": "Offseason Debate",
+      "isDeveloping": false,
+      "reportStatus": "Not Official",
+      "isLatest": true,
+      "headline": "Who Is The Greatest Player In LSL History? The Full Case, Stat By Stat",
+      "subtitle": "Three seasons of official records are in the books. Here's every argument, every teammate who made it possible, and a ranked top 10.",
+      "date": "August 10, 2026",
+      "time": "Offseason debate",
+      "author": "LSL News Desk",
+      "thumbnail": "./News Designs/Top 10 Goats.png",
+      "heroImage": "./News Designs/Top 10 Goats.png",
+      "tags": [
+        "Offseason",
+        "Greatest Of All Time",
+        "Muzamil Kharooti",
+        "Ajmal Chakkari",
+        "Haroon Ahmadi",
+        "Hafizullah",
+        "Mudassir",
+        "Awards",
+        "Records"
+      ],
+      "playerProfiles": [
+        {
+          "id": "ajmal-shakkari",
+          "label": "View Ajmal Profile"
+        },
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Profile"
+        },
+        {
+          "id": "haroon-ahmadi",
+          "label": "View Haroon Profile"
+        },
+        {
+          "id": "hafizullah",
+          "label": "View Hafizullah Profile"
+        },
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        }
+      ],
+      "caption": "Three seasons, six MVP or Golden Boot winners, and one debate that doesn't have a clean answer.",
+      "related": [
+        {
+          "label": "Records",
+          "articleId": "leeward-lions-2026-records-broken",
+          "title": "Every Record Leeward Lions Broke (Or Tied) In The 2026 Regular Season"
+        },
+        {
+          "label": "Cup History",
+          "articleId": "back-to-back-cup-watch-quarterfinals",
+          "title": "Every Team's Path To A Repeat Champion: Who Would Win The Cup Twice On August 8"
+        }
+      ],
+      "body": [
+        "LSL's official record book only goes back to 2024, so this isn't a debate about anyone who played before records were kept, this is a debate about the three tracked seasons: 2024, 2025, and 2026. It's also worth being upfront about one thing: Seniors and Juniors are different divisions, not two tiers of the same competition, so a Juniors MVP or Golden Boot is not treated as equal to a Seniors one here. This debate is built around the Seniors Cup, the league's top division, with any Juniors achievements noted separately as context rather than counted as matching hardware.",
+        "THE CASE FOR MUZAMIL KHAROOTI",
+        "No one has been on more winning Seniors rosters. Muzamil Kharooti won the 2024 Seniors MVP and Golden Boot outright, 8 goals for Refuel Juicery Kickers, a team that reached the final and lost, so his rookie-tracked season was individual brilliance without the trophy. Then he found the trophy twice in a row: Umer Memon F.C. in 2025, and EM Haulers FC in 2026, both Seniors champions, making him the only confirmed back-to-back Seniors champion in league history alongside teammate Uwais Bemat.",
+        "The individual numbers stayed strong the whole way, 8 goals in 2024, then 7 more in the 2026 regular season for EM Haulers FC despite missing the final two regular-season weeks. What makes the 2026 title different from the others is the roster around him. Haroon Ahmadi's 13 goals, the second-highest single-season total on record, meant defenses could never focus only on Muzamil, and a midfield built around Uwais Bemat and Tayyib Mohammed kept EM's attack balanced enough that no single injury or absence broke it, which is exactly what got tested when Muzamil missed those two weeks and the team didn't collapse without him. Across three Seniors seasons: one individual MVP-Golden Boot double, and two championships with two different teams.",
+        "THE CASE FOR HAROON AHMADI",
+        "Haroon Ahmadi has the cleanest Seniors r\u00e9sum\u00e9 on this list: 2026 Seniors MVP and Seniors champion, in the same season, with the second-most goals ever recorded in one Seniors season. He scored four goals in a single game against Amax Visionaries in Week 1, three more against Sharp Strikers in Week 6, and closed the year averaging just under two goals per game across EM Haulers FC's title run.",
+        "He did not do it with a Golden Boot, Mudassir's 16 goals were simply a different level, and he does not have the multi-season track record Muzamil Kharooti has. But no player on this list combined individual award, team trophy, and a top-two all-time single-season scoring mark in the same year. His supporting cast mattered directly: Muzamil Kharooti and Uwais Bemat gave EM Haulers FC enough secondary scoring that Haroon rarely faced a defense that could sell out entirely on stopping him.",
+        "THE CASE FOR HAFIZULLAH",
+        "Hafizullah is the best player never to win a Seniors championship in LSL's tracked history. He won the 2025 Seniors MVP and Golden Boot with 8 goals for Asif Gangat United, the team that finished with the best regular-season record in the league that year, only to fall short of the final. That is the whole case in one sentence: the individual numbers say he was the best player in the Seniors division that season, and the team results say it wasn't enough.",
+        "There isn't a deep record of who else was on that Asif Gangat United roster carrying the offense alongside him, which is itself part of the case against him finishing higher: an MVP and Golden Boot on a team that had the league's best regular season but couldn't close is a resume with a real gap in it, however good the individual numbers were.",
+        "THE CASE FOR MUDASSIR",
+        "Strip away everything except the number, and Mudassir has the best Seniors season anyone has ever had in LSL. His 16 goals in the 2026 regular season more than doubled the old Seniors single-season record of 8, shared by Muzamil Kharooti and Hafizullah, and his 5-goal game against Memon Mavericks in Week 4 is also a new single-game record, beating the old mark of 3. He scored in 6 of Leeward's 7 regular-season games, then added 4 more goals across the quarterfinal and semifinal round, a 3-goal semifinal performance against Refuel Rovers among them.",
+        "What he doesn't have is an MVP or a championship. Haroon Ahmadi won the 2026 MVP over him, and Leeward Lions lost the Championship Final to EM Haulers FC 2-1 after Mudassir's own team carried the league's best goal difference into the postseason. His teammates gave him every chance to add the trophy: Ajmal Chakkari and Muhummud Teli scoring alongside him, and a defense built around Sayem Mohamed Saad, Subhanallah Sharzah, and Zaid Badin that allowed the fewest goals in the league. The pieces were there. The result wasn't.",
+        "THE CASE FOR AJMAL CHAKKARI",
+        "Ajmal Chakkari's Seniors case is real but smaller than the others: 8 goals for Leeward Lions in 2026, tied for the old Seniors single-season record before Mudassir broke it, plus a goal to close the regular season and another in the Semifinal 2 win over Refuel Rovers that helped push Leeward into the Championship Final. No Seniors MVP, no Seniors Golden Boot, no Seniors ring; Leeward lost the final 2-1.",
+        "What sets him apart is what he did one division down, and it belongs in this conversation even if it isn't counted as Seniors hardware: in 2025 Juniors, playing under the name Ajmal Shakkari, he won the MVP, the Golden Boot, and the championship in the same season for Dhahabiya Strikers, 10 regular-season goals, still the highest single-season total on record in either division, and a 2-1 win over Rafik Enterprise FC in the final. That's the best individual season anyone has produced in Juniors, and it's part of why he was already a proven winner before he ever touched the Seniors division. It just isn't the same competition as the Seniors Cup, so it moves him down this particular list rather than up it.",
+        "THE VERDICT",
+        "Weighing this by Seniors achievement only, since that's the league's top division and the one this debate is really about, it comes down to who has the most complete set of individual award and team success. Muzamil Kharooti is the only player with a Seniors MVP-Golden Boot season and multiple Seniors championships, back-to-back, with two different teams. Haroon Ahmadi has the cleaner single season, MVP and champion together, but only the one year. Hafizullah and Mudassir both have a case for the best individual season on the stat sheet, and both are missing the ring that would settle it. That combination of longevity, individual peak, and two championships is what puts Muzamil Kharooti at the top of the Seniors list, with Haroon Ahmadi close behind and every reason to think he adds to his case in 2027.",
+        "A separate note on Ajmal Chakkari: judged purely on Juniors achievement, his 2025 season, MVP, Golden Boot, and championship together, is the single best season anyone has had in either division. If Juniors and Seniors are ever compared as one combined history instead of two separate divisions, that argument gets a lot stronger. For now, this list keeps them apart.",
+        "TOP 10 SENIORS PLAYERS IN LSL HISTORY (THROUGH 2026)",
+        "1. Muzamil Kharooti (Refuel Juicery Kickers 2024, Umer Memon F.C. 2025, EM Haulers FC 2026) - 2024 MVP and Golden Boot, then back-to-back Seniors champion with two different teams.",
+        "2. Haroon Ahmadi (EM Haulers FC 2026) - 2026 MVP and Seniors champion in the same season, with the second-most goals ever scored in one Seniors season.",
+        "3. Hafizullah (Asif Gangat United 2025) - 2025 MVP and Golden Boot on the league's best regular-season team, undone only by a playoff exit.",
+        "4. Mudassir (Leeward Lions 2026) - the all-time Seniors single-season and single-game scoring records, without the MVP or the ring to go with them yet.",
+        "5. Uwais Bemat (Umer Memon F.C. 2025, EM Haulers FC 2026) - the other confirmed back-to-back Seniors champion, without the individual scoring numbers of the players above him.",
+        "6. Ajmal Chakkari (Leeward Lions 2026) - tied the old Seniors single-season scoring record and scored in the Championship Final run, on Seniors performance alone.",
+        "7. Mohammad Ibrahim (Rawaha Royals 2026) - captain and the third-highest single-season Seniors scorer on record, without a championship or major individual award yet.",
+        "8. Adil Mubashir (Sharp Strikers, Amax Visionaries 2026) - a captain and consistent Seniors scorer across a trade, without a title or Golden Boot-level peak.",
+        "9. Taaha Nakhuda (Shifa Pharmacy F.C. 2024, Gangat Warriors 2026) - a 2024 Seniors champion as a young player who then became the lone consistent scoring threat on a struggling Gangat Warriors roster.",
+        "10. Muhummud Teli (Umer Memon F.C. 2025, Leeward Lions 2026) - a 2025 Seniors champion who kept producing in the 2026 playoffs for a Championship Final team.",
+        "Best Juniors season on record, for the sake of not leaving it out: Ajmal Chakkari (Shakkari), 2025, Dhahabiya Strikers - MVP, Golden Boot, and champion in the same year, with the highest single-season goal total in either division.",
+        "This list will be wrong again in a year. That's the point of playing the games."
+      ]
+    },
+    {
       "id": "championship-final-recap-august-8",
       "category": "Game Recaps",
       "storyLabel": "Championship Recap",
       "isDeveloping": false,
       "reportStatus": "Official",
-      "isLatest": true,
+      "isLatest": false,
       "headline": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1",
       "subtitle": "Muzamil Kharooti opened the scoring, Mudassir equalized on a penalty for Leeward Lions, and captain Haroon Ahmadi scored the winner to lift EM Haulers FC to the title.",
       "date": "August 8, 2026",
@@ -504,8 +599,8 @@
       "date": "August 2, 2026",
       "time": "Quarterfinal preview",
       "author": "LSL News Desk",
-      "thumbnail": "./Playoff Designs/Leeward Lions vs Memon Mavericks.png",
-      "heroImage": "./Playoff Designs/Leeward Lions vs Memon Mavericks.png",
+      "thumbnail": "./News Designs/Leeward Lions vs Memon Mavericks.png",
+      "heroImage": "./News Designs/Leeward Lions vs Memon Mavericks.png",
       "mediaFit": "cover",
       "tags": [
         "Playoffs",
@@ -566,8 +661,8 @@
       "date": "August 2, 2026",
       "time": "Quarterfinal preview",
       "author": "LSL News Desk",
-      "thumbnail": "./Playoff Designs/EM Haulers FC vs Gangat Warriors.png",
-      "heroImage": "./Playoff Designs/EM Haulers FC vs Gangat Warriors.png",
+      "thumbnail": "./News Designs/EM Haulers FC vs Gangat Warriors.png",
+      "heroImage": "./News Designs/EM Haulers FC vs Gangat Warriors.png",
       "mediaFit": "cover",
       "tags": [
         "Playoffs",
@@ -630,8 +725,8 @@
       "date": "August 2, 2026",
       "time": "Quarterfinal preview",
       "author": "LSL News Desk",
-      "thumbnail": "./Playoff Designs/Sharp Strikers vs Amax Visionaries.png",
-      "heroImage": "./Playoff Designs/Sharp Strikers vs Amax Visionaries.png",
+      "thumbnail": "./News Designs/Sharp Strikers vs Amax Visionaries.png",
+      "heroImage": "./News Designs/Sharp Strikers vs Amax Visionaries.png",
       "mediaFit": "cover",
       "tags": [
         "Playoffs",
@@ -688,8 +783,8 @@
       "date": "August 2, 2026",
       "time": "Quarterfinal preview",
       "author": "LSL News Desk",
-      "thumbnail": "./Playoff Designs/Rawaha Royals vs Refuel Rovers.png",
-      "heroImage": "./Playoff Designs/Rawaha Royals vs Refuel Rovers.png",
+      "thumbnail": "./News Designs/Rawaha Royals vs Refuel Rovers.png",
+      "heroImage": "./News Designs/Rawaha Royals vs Refuel Rovers.png",
       "mediaFit": "cover",
       "tags": [
         "Playoffs",

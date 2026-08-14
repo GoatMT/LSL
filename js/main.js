@@ -2,12 +2,35 @@ import { renderFooter } from "../components/footer.js";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.0";
-import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
+import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js";
+import { findOnThisDayHighlight } from "./onThisDay.js";
 
 function playerHref(playerId = "") {
   return playerId ? `./player.html?id=${encodeURIComponent(playerId)}` : "./players.html";
+}
+
+function registerPWA() {
+  if (!document.querySelector('link[rel="manifest"]')) {
+    const link = document.createElement("link");
+    link.rel = "manifest";
+    link.href = "./manifest.json";
+    document.head.appendChild(link);
+  }
+  if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+    const appleIcon = document.createElement("link");
+    appleIcon.rel = "apple-touch-icon";
+    appleIcon.href = "./Logos/lsl-logo.png";
+    document.head.appendChild(appleIcon);
+  }
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js").catch((error) => {
+        console.error("Service worker registration failed", error);
+      });
+    });
+  }
 }
 
 export function setupLayout(activeHref) {
@@ -15,6 +38,7 @@ export function setupLayout(activeHref) {
   document.getElementById("site-footer").innerHTML = renderFooter();
   hydrateNavbar();
   initPageAnimations();
+  registerPWA();
 }
 
 function renderTeamOfWeek(teamOfWeek = {}) {
@@ -616,6 +640,29 @@ function matchupRecordHighlight(allData, teamIds = []) {
   return null;
 }
 
+function onThisDayNewsItem(allData) {
+  const highlight = findOnThisDayHighlight(allData);
+  if (!highlight) return null;
+  const teams = teamMap(highlight.data || {});
+  const home = teams.get(highlight.homeTeamId);
+  const away = teams.get(highlight.awayTeamId);
+  const homeName = home?.name || highlight.homeTeamName || "Home team";
+  const awayName = away?.name || highlight.awayTeamName || "Away team";
+  const winnerId = winnerTeamId(highlight);
+  const winnerName = winnerId === highlight.homeTeamId ? homeName : winnerId === highlight.awayTeamId ? awayName : null;
+  const topScorer = [...(highlight.scorers || [])].sort((a, b) => (Number(b.goals) || 0) - (Number(a.goals) || 0))[0];
+  const scorerNote = topScorer ? ` ${topScorer.name || "A player"} scored ${Number(topScorer.goals) > 1 ? `${topScorer.goals} goals` : "a goal"}.` : "";
+  const gameHref = `./game.html?id=${encodeURIComponent(highlight.id || "")}&season=${encodeURIComponent(highlight.season || "")}`;
+
+  return {
+    tag: "💡 DID YOU KNOW?",
+    tone: "trivia",
+    headline: `On this day in ${highlight.season}: ${homeName} ${highlight.homeScore}-${highlight.awayScore} ${awayName}`,
+    detail: `${winnerName ? `${winnerName} won.` : ""}${scorerNote}`.trim() || (highlight.label || "A league match happened on this date."),
+    href: gameHref,
+  };
+}
+
 function renderImportantNewsCard({ tag, tone, headline, detail, href }) {
   return `
     <a class="important-news-card ${escapeHTML(tone)}" href="${escapeHTML(href || "./matchday.html")}">
@@ -679,6 +726,9 @@ function renderImportantNews(data, allData, newsData = {}) {
 
   const recordHighlight = matchupRecordHighlight(allData, featuredTeamIds);
   if (recordHighlight) items.push(recordHighlight);
+
+  const trivia = onThisDayNewsItem(allData);
+  if (trivia) items.push(trivia);
 
   const featuredItems = (newsData.items || []).filter((item) => item.homeFeatured);
   const recordItem = featuredItems.find((item) => /record/i.test(item.label || ""));
