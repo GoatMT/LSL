@@ -6,7 +6,7 @@
 // busting). Cross-origin requests (Firebase/Firestore, CDN'd Firebase SDK)
 // are left completely alone - this worker never touches them.
 
-const CACHE_NAME = "lsl-cache-v2";
+const CACHE_NAME = "lsl-cache-v5";
 
 const APP_SHELL = [
   "./",

@@ -36,6 +36,8 @@
       }
 
       .pulse-name-row,
+      .pulse-account-top,
+      .pulse-account-form,
       .pulse-composer-actions,
       .pulse-post-actions,
       .pulse-reply-form {
@@ -45,6 +47,7 @@
       }
 
       .pulse-name-row input,
+      .pulse-account-form input,
       .pulse-composer textarea,
       .pulse-reply-form input {
         width: 100%;
@@ -54,6 +57,52 @@
         border-radius: 14px;
         padding: 14px 16px;
         font: inherit;
+      }
+
+      .pulse-account-panel {
+        display: grid;
+        gap: 16px;
+      }
+
+      .pulse-account-top {
+        justify-content: space-between;
+      }
+
+      .pulse-account-button {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        border: 1px solid #c7a367;
+        background: #113c1f;
+        color: #fff;
+        border-radius: 18px;
+        font: inherit;
+        font-weight: 950;
+        cursor: pointer;
+      }
+
+      .pulse-account-top h2,
+      .pulse-account-top p {
+        margin: 0;
+      }
+
+      .pulse-account-top > div {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .pulse-account-form {
+        padding: 14px;
+        border: 1px solid rgba(199, 163, 103, 0.22);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+      }
+
+      .pulse-account-form small {
+        color: rgba(255, 255, 255, 0.72);
+        min-width: 180px;
       }
 
       .pulse-composer textarea {
@@ -119,6 +168,12 @@
         cursor: not-allowed;
       }
 
+      .pulse-post-actions button.liked {
+        background: #113c1f;
+        border-color: #c7a367;
+        color: #fff;
+      }
+
       .pulse-replies {
         display: grid;
         gap: 10px;
@@ -139,19 +194,25 @@
       @media (max-width: 720px) {
         .pulse-tabs,
         .pulse-name-row,
+        .pulse-account-top,
+        .pulse-account-form,
         .pulse-composer-actions,
         .pulse-reply-form {
           grid-template-columns: 1fr;
           flex-direction: column;
           align-items: stretch;
         }
+
+        .pulse-account-button {
+          width: 100%;
+        }
       }
     </style>
   </head>
-  <body>
+  <body data-disable-animations>
     <div id="site-navbar"></div>
     <main id="page-root" class="page-shell"></main>
     <div id="site-footer"></div>
-    <script type="module" src="./js/lslPulse.js?v=1.0"></script>
+    <script type="module" src="./js/lslPulse.js?v=1.1"></script>
   </body>
 </html>

@@ -136,6 +136,7 @@ function ensureCountObserver() {
 }
 
 function observeCountCandidates(root) {
+  return;
   if (prefersReducedMotion || animationsDisabledForPage()) return;
   if (countUpDisabledForPage()) return;
   const scope = root.nodeType === Node.ELEMENT_NODE ? root : null;
