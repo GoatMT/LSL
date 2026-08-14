@@ -22,6 +22,7 @@ function sanitizePost(docSnap) {
     date: data.date || "Date TBA",
     title: data.title || "",
     body: data.body || "",
+    accountId: data.accountId || "",
     likesBy: Array.isArray(data.likesBy) ? data.likesBy : [],
     replies: Array.isArray(data.replies) ? data.replies : [],
     createdAtMs: Number(data.createdAtMs) || 0,
@@ -123,10 +124,27 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
           { merge: true }
         );
       },
+      async unlikeUserPost(postId, accountId) {
+        await firestore.setDoc(
+          firestore.doc(userPostsCol, postId),
+          { likesBy: firestore.arrayRemove(accountId) },
+          { merge: true }
+        );
+      },
       async replyUserPost(postId, reply) {
         await firestore.setDoc(
           firestore.doc(userPostsCol, postId),
           { replies: firestore.arrayUnion(reply) },
+          { merge: true }
+        );
+      },
+      async deleteUserPost(postId) {
+        await firestore.deleteDoc(firestore.doc(userPostsCol, postId));
+      },
+      async deleteUserReply(postId, reply) {
+        await firestore.setDoc(
+          firestore.doc(userPostsCol, postId),
+          { replies: firestore.arrayRemove(reply) },
           { merge: true }
         );
       },
@@ -137,10 +155,24 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
           { merge: true }
         );
       },
+      async unlikeOfficialPost(postId, accountId) {
+        await firestore.setDoc(
+          firestore.doc(officialInteractionsCol, postId),
+          { likesBy: firestore.arrayRemove(accountId) },
+          { merge: true }
+        );
+      },
       async replyOfficialPost(postId, reply) {
         await firestore.setDoc(
           firestore.doc(officialInteractionsCol, postId),
           { replies: firestore.arrayUnion(reply) },
+          { merge: true }
+        );
+      },
+      async deleteOfficialReply(postId, reply) {
+        await firestore.setDoc(
+          firestore.doc(officialInteractionsCol, postId),
+          { replies: firestore.arrayRemove(reply) },
           { merge: true }
         );
       },

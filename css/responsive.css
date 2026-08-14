@@ -946,6 +946,24 @@
     grid-template-columns: 1fr;
   }
 
+  .bracket-wide .bracket-round {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .bracket-wide .bracket-round h3 {
+    margin: 0 0 12px;
+  }
+
+  .bracket-wide .bracket-match {
+    grid-row: auto !important;
+  }
+
+  .bracket-wide .bracket-match + .bracket-match {
+    margin-top: 18px;
+  }
+
   .bracket-wide .bracket-round .bracket-match::after {
     display: none;
   }

@@ -73,6 +73,7 @@ function normalizePost(post) {
     date: post.date || "Date TBA",
     title: post.title || "",
     body: post.body || "",
+    accountId: post.accountId || "",
     likesBy: likes,
     replies: Array.isArray(post.replies) ? post.replies : [],
   };
@@ -177,18 +178,18 @@ function persistPost(post) {
 
 async function likePost(post, account) {
   post.likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
-  if (post.likesBy.includes(account.id)) return;
+  const liked = post.likesBy.includes(account.id);
 
   if (cloudStore) {
     if (post.type === "league") {
-      await cloudStore.likeOfficialPost(post.id, account.id);
+      await (liked ? cloudStore.unlikeOfficialPost(post.id, account.id) : cloudStore.likeOfficialPost(post.id, account.id));
     } else {
-      await cloudStore.likeUserPost(post.id, account.id);
+      await (liked ? cloudStore.unlikeUserPost(post.id, account.id) : cloudStore.likeUserPost(post.id, account.id));
     }
     return;
   }
 
-  post.likesBy.push(account.id);
+  post.likesBy = liked ? post.likesBy.filter((id) => id !== account.id) : [...post.likesBy, account.id];
   persistPost(post);
 }
 
@@ -204,6 +205,33 @@ async function replyToPost(post, reply) {
 
   post.replies = post.replies || [];
   post.replies.push(reply);
+  persistPost(post);
+}
+
+async function deletePost(post) {
+  if (post.type !== "user") return;
+  if (cloudStore) {
+    await cloudStore.deleteUserPost(post.id);
+    return;
+  }
+  state.posts = state.posts.filter((item) => item.id !== post.id);
+  savePosts();
+}
+
+async function deleteReply(post, replyIndex) {
+  const reply = (post.replies || [])[replyIndex];
+  if (!reply) return;
+
+  if (cloudStore) {
+    if (post.type === "league") {
+      await cloudStore.deleteOfficialReply(post.id, reply);
+    } else {
+      await cloudStore.deleteUserReply(post.id, reply);
+    }
+    return;
+  }
+
+  post.replies = (post.replies || []).filter((_, index) => index !== replyIndex);
   persistPost(post);
 }
 
@@ -246,7 +274,7 @@ function renderHero() {
 function renderAccountCard() {
   const account = state.account;
   return `
-    <section class="section-panel pulse-account-panel">
+    <section class="section-panel pulse-account-panel${state.accountPanelOpen || !account ? " open" : ""}">
       <div class="pulse-account-top">
         <button type="button" class="pulse-account-button" data-pulse-account-toggle aria-label="Open account panel">
           <span>${account ? escapeHTML(account.username.slice(0, 2).toUpperCase()) : "👤"}</span>
@@ -269,6 +297,15 @@ function renderAccountCard() {
           : ""
       }
     </section>
+  `;
+}
+
+function renderFloatingAccountButton() {
+  const account = state.account;
+  return `
+    <button type="button" class="pulse-floating-account" data-pulse-account-toggle aria-label="Open account panel">
+      <span>${account ? escapeHTML(account.username.slice(0, 2).toUpperCase()) : "ID"}</span>
+    </button>
   `;
 }
 
@@ -312,7 +349,7 @@ function renderReplyForm(post) {
   return `
     <form class="pulse-reply-form" data-pulse-reply-form="${escapeHTML(post.id)}">
       <input type="text" maxlength="180" placeholder="${state.account ? "Write a reply" : "Log in to reply"}">
-      <button type="submit" class="button secondary small">Reply</button>
+      <button type="submit" class="button secondary small">Send</button>
     </form>
   `;
 }
@@ -321,6 +358,7 @@ function renderPost(post) {
   const replies = post.replies || [];
   const likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
   const liked = state.account?.id ? likesBy.includes(state.account.id) : false;
+  const canDeletePost = post.type === "user" && state.account?.id && post.accountId === state.account.id;
   const meta = [post.badge, post.date, post.reporter].filter(Boolean).join(" | ");
 
   return `
@@ -331,13 +369,15 @@ function renderPost(post) {
           <strong>${escapeHTML(post.author)}</strong>
           <p>${escapeHTML(meta)}</p>
         </div>
+        ${canDeletePost ? `<button type="button" class="pulse-delete-button" data-pulse-delete-post="${escapeHTML(post.id)}">Remove</button>` : ""}
       </div>
       ${post.title ? `<h3>${escapeHTML(post.title)}</h3>` : ""}
       <p class="pulse-post-body">${escapeHTML(post.body)}</p>
       ${post.source ? `<small class="pulse-source">${escapeHTML(post.source)}</small>` : ""}
       <div class="pulse-post-actions">
-        <button type="button" class="${liked ? "liked" : ""}" data-pulse-like="${escapeHTML(post.id)}">
-          ${liked ? "Liked" : "Like"} <span>${likesBy.length}</span>
+        <button type="button" class="pulse-heart-button${liked ? " liked" : ""}" data-pulse-like="${escapeHTML(post.id)}" aria-label="${liked ? "Unlike post" : "Like post"}">
+          <span class="pulse-heart-icon">♥</span>
+          <span>${likesBy.length}</span>
         </button>
         <span>${replies.length} repl${replies.length === 1 ? "y" : "ies"}</span>
       </div>
@@ -346,11 +386,14 @@ function renderPost(post) {
           ? `<div class="pulse-replies">
               ${replies
                 .map(
-                  (reply) => `
+                  (reply, index) => `
                     <div class="pulse-reply">
-                      <strong>${escapeHTML(reply.author)}</strong>
-                      <p>${escapeHTML(reply.body)}</p>
+                      <div>
+                        <strong>${escapeHTML(reply.author)}</strong>
+                        <p>${escapeHTML(reply.body)}</p>
+                      </div>
                       <small>${escapeHTML(reply.date)}</small>
+                      ${state.account?.id && reply.accountId === state.account.id ? `<button type="button" class="pulse-delete-button small" data-pulse-delete-reply="${escapeHTML(post.id)}" data-reply-index="${index}">Remove</button>` : ""}
                     </div>
                   `
                 )
@@ -383,10 +426,17 @@ function renderFeed() {
 
 function render() {
   root.innerHTML = `
-    ${renderHero()}
-    ${renderAccountCard()}
-    ${renderComposer()}
-    ${renderFeed()}
+    ${renderFloatingAccountButton()}
+    <div class="pulse-page-layout">
+      <aside class="pulse-side-column">
+        ${renderAccountCard()}
+      </aside>
+      <div class="pulse-main-column">
+        ${renderHero()}
+        ${renderComposer()}
+        ${renderFeed()}
+      </div>
+    </div>
   `;
   bindEvents();
 }
@@ -400,9 +450,11 @@ function bindEvents() {
     });
   });
 
-  root.querySelector("[data-pulse-account-toggle]")?.addEventListener("click", () => {
-    state.accountPanelOpen = !state.accountPanelOpen;
-    render();
+  root.querySelectorAll("[data-pulse-account-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.accountPanelOpen = !state.accountPanelOpen;
+      render();
+    });
   });
 
   root.querySelector("[data-pulse-logout]")?.addEventListener("click", () => {
@@ -472,6 +524,7 @@ function bindEvents() {
       id: postId(),
       type: "user",
       author: account.username,
+      accountId: account.id,
       badge: "User Pulse",
       date: nowLabel(),
       title: "",
@@ -499,6 +552,17 @@ function bindEvents() {
     });
   });
 
+  root.querySelectorAll("[data-pulse-delete-post]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const account = requireAccount();
+      if (!account) return;
+      const post = findPost(button.dataset.pulseDeletePost);
+      if (!post || post.accountId !== account.id) return;
+      await deletePost(post);
+      render();
+    });
+  });
+
   root.querySelectorAll("[data-pulse-reply-form]").forEach((form) => {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -513,6 +577,19 @@ function bindEvents() {
       const post = findPost(form.dataset.pulseReplyForm);
       if (!post) return;
       await replyToPost(post, { author: account.username, accountId: account.id, body, date: nowLabel() });
+      render();
+    });
+  });
+
+  root.querySelectorAll("[data-pulse-delete-reply]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const account = requireAccount();
+      if (!account) return;
+      const post = findPost(button.dataset.pulseDeleteReply);
+      const replyIndex = Number(button.dataset.replyIndex);
+      const reply = post?.replies?.[replyIndex];
+      if (!post || !reply || reply.accountId !== account.id) return;
+      await deleteReply(post, replyIndex);
       render();
     });
   });

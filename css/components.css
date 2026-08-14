@@ -3349,7 +3349,8 @@ details.clean-details summary {
 
 .bracket-wide {
   grid-template-columns: minmax(260px, 0.95fr) minmax(290px, 1.05fr) minmax(260px, 0.95fr);
-  gap: 32px;
+  gap: 18px 36px;
+  align-items: stretch;
 }
 
 .bracket-round {
@@ -3376,12 +3377,100 @@ details.clean-details summary {
   margin-top: 28px;
 }
 
+.bracket-wide .bracket-round {
+  display: grid;
+  grid-template-rows: auto repeat(4, minmax(124px, auto));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.bracket-wide.bracket-two-quarterfinals .bracket-round {
+  grid-template-rows: auto repeat(2, minmax(132px, auto));
+}
+
+.bracket-wide .bracket-round h3 {
+  margin: 0;
+  padding: 0 2px;
+}
+
+.bracket-wide .bracket-match + .bracket-match {
+  margin-top: 0;
+}
+
 .bracket-wide .bracket-match {
   position: relative;
   overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: #222a23;
   color: var(--ink);
   border-color: rgba(199, 163, 103, 0.32);
+}
+
+.bracket-wide .bracket-round-quarterfinals .bracket-match-q1,
+.bracket-wide .bracket-round-quarter-finals .bracket-match-q1 {
+  grid-row: 2;
+}
+
+.bracket-wide .bracket-round-quarterfinals .bracket-match-q2,
+.bracket-wide .bracket-round-quarter-finals .bracket-match-q2 {
+  grid-row: 3;
+}
+
+.bracket-wide .bracket-round-quarterfinals .bracket-match-q3,
+.bracket-wide .bracket-round-quarter-finals .bracket-match-q3 {
+  grid-row: 4;
+}
+
+.bracket-wide .bracket-round-quarterfinals .bracket-match-q4,
+.bracket-wide .bracket-round-quarter-finals .bracket-match-q4 {
+  grid-row: 5;
+}
+
+.bracket-wide .bracket-round-semifinals .bracket-match-s1,
+.bracket-wide .bracket-round-semi-finals .bracket-match-s1 {
+  grid-row: 2 / span 2;
+  align-self: center;
+}
+
+.bracket-wide .bracket-round-semifinals .bracket-match-s2,
+.bracket-wide .bracket-round-semi-finals .bracket-match-s2 {
+  grid-row: 4 / span 2;
+  align-self: center;
+}
+
+.bracket-wide .bracket-round-final .bracket-match-final,
+.bracket-wide .bracket-round-finals .bracket-match-final,
+.bracket-wide .bracket-round-finals .bracket-match-finals {
+  grid-row: 3 / span 2;
+  align-self: center;
+}
+
+.bracket-wide.bracket-two-quarterfinals .bracket-round-quarterfinals .bracket-match-q1,
+.bracket-wide.bracket-two-quarterfinals .bracket-round-quarter-finals .bracket-match-q1 {
+  grid-row: 2;
+}
+
+.bracket-wide.bracket-two-quarterfinals .bracket-round-quarterfinals .bracket-match-q2,
+.bracket-wide.bracket-two-quarterfinals .bracket-round-quarter-finals .bracket-match-q2 {
+  grid-row: 3;
+}
+
+.bracket-wide.bracket-two-quarterfinals .bracket-round-semifinals .bracket-match-s1,
+.bracket-wide.bracket-two-quarterfinals .bracket-round-semi-finals .bracket-match-s1 {
+  grid-row: 2;
+}
+
+.bracket-wide.bracket-two-quarterfinals .bracket-round-semifinals .bracket-match-s2,
+.bracket-wide.bracket-two-quarterfinals .bracket-round-semi-finals .bracket-match-s2 {
+  grid-row: 3;
+}
+
+.bracket-wide.bracket-two-quarterfinals .bracket-round-final .bracket-match-final,
+.bracket-wide.bracket-two-quarterfinals .bracket-round-finals .bracket-match-final,
+.bracket-wide.bracket-two-quarterfinals .bracket-round-finals .bracket-match-finals {
+  grid-row: 2 / span 2;
 }
 
 .bracket-wide .bracket-round:not(:last-child) .bracket-match::after {
@@ -13129,5 +13218,3 @@ a.fan-vote-row {
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
 }
-
-
