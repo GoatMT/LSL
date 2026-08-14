@@ -1003,130 +1003,130 @@
 
   .standings-table tbody {
     display: grid;
-    gap: 12px;
-    padding: 12px;
+    gap: 8px;
+    padding: 4px 0;
   }
 
   .standings-table tbody tr {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 12px;
-    padding: 14px;
+    grid-template-columns: 24px minmax(0, 1fr) auto auto auto auto auto;
+    align-items: center;
+    gap: 4px 8px;
+    min-height: 46px;
+    padding: 6px 10px;
     border: 1px solid var(--line);
-    border-radius: 16px;
+    border-left: 4px solid transparent;
+    border-radius: 12px;
   }
 
-  .standings-table tbody tr:last-child td {
-    border-bottom: 0;
+  .standings-table tbody tr.playoff {
+    border-left-color: var(--green);
+  }
+
+  .standings-table tbody tr.bye {
+    border-left-color: var(--gold);
+  }
+
+  .standings-table tbody tr.outside {
+    border-left-color: rgba(224, 92, 92, 0.7);
   }
 
   .standings-table td,
   .standings-table .num {
-    display: grid;
-    grid-template-columns: minmax(90px, 0.7fr) minmax(0, 1fr);
-    gap: 12px;
-    align-items: center;
-    padding: 8px 0;
+    padding: 0;
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    white-space: normal;
+    border-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .standings-table td::before {
+    content: none;
   }
 
   .standings-table .standings-rank-cell {
-    grid-row: span 2;
-    width: 46px;
-    height: 46px;
-    display: grid;
-    grid-template-columns: 1fr;
-    place-items: center;
-    align-self: start;
+    grid-column: 1;
+    width: auto;
+    height: auto;
+    display: block;
+    place-items: unset;
     padding: 0;
     color: #ffffff;
-    background: var(--green);
-    border: 1px solid rgba(199, 163, 103, 0.45);
-    border-radius: 14px;
-    font-size: 1.15rem;
-    font-weight: 950;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    font-size: 0.92rem;
+    font-weight: 900;
   }
 
   .standings-table .standings-rank-cell::before {
-    content: "#";
-    color: var(--gold);
-    font-size: 0.72rem;
-    line-height: 1;
+    content: none;
   }
 
   .standings-table .standings-team-cell {
     grid-column: 2;
-    display: block;
-    padding: 0;
-    border-bottom: 0;
+    min-width: 0;
+    overflow: hidden;
   }
 
-  .standings-table .standings-team-cell::before {
+  .standings-table .team-cell {
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 6px;
+    align-items: center;
+  }
+
+  .standings-table .team-cell .team-logo,
+  .standings-table .team-cell .team-mark {
+    width: 20px;
+    height: 20px;
+  }
+
+  .standings-table .team-cell .team-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.86rem;
+  }
+
+  .standings-table .standings-status-cell,
+  .standings-table .standings-move-cell {
     display: none;
   }
 
-  .standings-table .standings-status-cell {
-    grid-column: 2;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    padding: 0 0 2px;
-    border-bottom: 0;
-  }
-
-  .standings-table .standings-status-cell::before {
-    content: none;
-  }
-
-  .standings-table .standings-move-cell {
-    grid-column: 1 / -1;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 10px 0 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 0;
-  }
-
   .standings-table .standings-stat-cell {
-    grid-template-columns: 1fr;
-    gap: 4px;
-    min-height: 64px;
-    justify-items: center;
-    padding: 10px 8px;
-    text-align: center;
-    background: var(--card-2);
-    border: 1px solid var(--line);
-    border-radius: 14px;
+    display: none;
   }
 
-  .standings-table .standings-stat-cell::before {
-    color: var(--gold);
-  }
-
-  .standings-table .standings-points-cell {
-    background: rgba(199, 163, 103, 0.14);
-    border-color: rgba(199, 163, 103, 0.42);
-  }
-
-  .standings-table tbody tr td:last-child {
-    border-bottom: 0;
-  }
-
-  .standings-table td::before {
-    content: attr(data-label);
+  .standings-table td[data-label="W"],
+  .standings-table td[data-label="D"],
+  .standings-table td[data-label="L"],
+  .standings-table td[data-label="PTS"],
+  .standings-table td[data-label="GD"] {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 850;
     color: var(--muted);
-    font-size: 0.72rem;
+  }
+
+  .standings-table td[data-label="W"]::after,
+  .standings-table td[data-label="D"]::after {
+    content: "-";
+    margin-left: 1px;
+    color: var(--muted);
+  }
+
+  .standings-table td[data-label="PTS"] {
+    margin-left: 4px;
+    color: #ffffff;
     font-weight: 950;
-    text-transform: uppercase;
+  }
+
+  .standings-table td[data-label="GD"] {
+    color: var(--gold);
+    font-weight: 900;
   }
 
   .standings-table .team-cell {
     min-width: 0;
-    grid-template-columns: 38px minmax(0, 1fr);
   }
 
   .player-career-wrap {

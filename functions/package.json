@@ -1,0 +1,13 @@
+{
+  "name": "lsl-pulse-functions",
+  "description": "Cloud Functions that send push notifications for new LSL Pulse posts and League News articles.",
+  "private": true,
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^5.1.1"
+  }
+}

@@ -1,0 +1,63 @@
+rules_version = '2';
+
+// IMPORTANT: this file reflects what the LSL Pulse app code actually does
+// (see js/pulseFirebase.js, js/pulseNotifications.js, js/newsMirror.js).
+// There is no real server-verified auth here (accounts are just a
+// username + 4-digit PIN, checked client-side), so these rules are
+// necessarily permissive on writes - they mainly guard against writes with
+// the wrong shape, not against one user editing another's data. If you've
+// already customized rules in the Firebase Console, compare before
+// deploying this - `firebase deploy --only firestore:rules` REPLACES
+// whatever is currently live.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /lslPulse/{pulseId} {
+      allow read: if true;
+      allow write: if false;
+
+      // Username + PIN-hash accounts (js/pulseFirebase.js: login()).
+      match /accounts/{accountId} {
+        allow read: if true;
+        allow create: if request.resource.data.keys().hasAll(["username", "usernameKey", "pinHash", "createdAtMs"]);
+        allow update: if false;
+        allow delete: if false;
+      }
+
+      // User Pulse posts.
+      match /userPosts/{postId} {
+        allow read: if true;
+        allow create: if request.resource.data.keys().hasAll(["author", "body"]);
+        allow update: if request.resource.data.diff(resource.data).affectedKeys()
+                        .hasOnly(["likesBy", "dislikesBy", "replies"]);
+        allow delete: if true;
+      }
+
+      // Likes/dislikes/replies on the fixed official League News post shown
+      // in the Pulse "League News" tab.
+      match /officialInteractions/{postId} {
+        allow read: if true;
+        allow write: if true;
+      }
+
+      // Written by js/newsMirror.js so a Cloud Function can detect "new
+      // article" and send a push (News itself lives in a static JSON file,
+      // not Firestore, so there's nothing else to trigger off of).
+      match /newsMirror/{articleId} {
+        allow read: if true;
+        allow create, update: if request.resource.data.keys().hasAll(["headline", "url"]);
+        allow delete: if false;
+      }
+    }
+
+    // FCM device tokens, written by js/pulseNotifications.js when someone
+    // enables notifications. Never readable by clients - only Cloud
+    // Functions (Admin SDK) read this, and Admin SDK access bypasses rules
+    // entirely.
+    match /pushTokens/{token} {
+      allow read: if false;
+      allow create, update: if request.resource.data.keys().hasAll(["token", "platform"]);
+      allow delete: if false;
+    }
+  }
+}

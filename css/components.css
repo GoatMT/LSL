@@ -12254,6 +12254,19 @@ a.fan-vote-row {
   gap: 12px;
 }
 
+.pulse-notify-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.pulse-notify-row small {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
 .share-buttons {
   display: flex;
   flex-wrap: wrap;

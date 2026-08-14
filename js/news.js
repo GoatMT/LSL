@@ -1,5 +1,7 @@
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
 import { setupLayout } from "./main.js";
+import { mirrorLatestNewsArticles } from "./newsMirror.js";
+import { initNotificationButton, renderNotificationButton } from "./pulseNotifications.js";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";
 import { escapeHTML, getQueryParam, setDocumentTitle, statusMessage } from "./utils.js";
 
@@ -275,28 +277,30 @@ function render(articles, onThisDay = []) {
       <section class="section-panel news-page-shell">
         <div class="section-head">
           <div>
-            <span class="eyebrow">LSL News</span>
-            <h1>News</h1>
-            <p>League updates, match results, roster notes, and announcements in one clean article view.</p>
+          <span class="eyebrow">LSL News</span>
+          <h1>News</h1>
+          <p>League updates, match results, roster notes, and announcements in one clean article view.</p>
           </div>
-        </div>
-        ${renderOnThisDay(onThisDay)}
-        <div class="news-layout">
+          </div>
+          ${renderNotificationButton()}
+          ${renderOnThisDay(onThisDay)}
+          <div class="news-layout">
           <aside class="news-sidebar" aria-label="News stories">
-            <div class="news-sidebar-head">
-              <span class="eyebrow">Latest Stories</span>
-              <strong>0</strong>
-            </div>
+          <div class="news-sidebar-head">
+          <span class="eyebrow">Latest Stories</span>
+            <strong>0</strong>
+          </div>
             <div class="news-empty-state">No news articles found.</div>
           </aside>
           <div class="news-article-wrap">
-            <article class="news-article-card">
-              ${statusMessage("empty", "No news articles found.")}
+          <article class="news-article-card">
+            ${statusMessage("empty", "No news articles found.")}
             </article>
-          </div>
-        </div>
-      </section>
-    `;
+            </div>
+            </div>
+            </section>
+          `;
+            initNotificationButton(root);
     return;
   }
 
@@ -315,6 +319,7 @@ function render(articles, onThisDay = []) {
           <p>League updates, match results, roster notes, and announcements in one clean article view.</p>
         </div>
       </div>
+      ${renderNotificationButton()}
       ${renderOnThisDay(onThisDay)}
       <div class="news-layout">
         <aside class="news-sidebar" aria-label="News stories">
@@ -357,6 +362,7 @@ function render(articles, onThisDay = []) {
   });
 
   initShareButtons(root);
+  initNotificationButton(root);
 }
 
 async function init() {
@@ -370,6 +376,7 @@ async function init() {
   );
   const onThisDay = findOnThisDay(allSeasons);
   render(articles, onThisDay);
+  mirrorLatestNewsArticles(articles).catch((error) => console.error("Could not mirror news for notifications", error));
   window.addEventListener("popstate", () => {
     state.articleId = getQueryParam("id") || "";
     state.storiesExpanded = false;

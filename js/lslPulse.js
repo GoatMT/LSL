@@ -1,5 +1,6 @@
 import { setupLayout } from "./main.js";
 import { createPulseCloudStore } from "./pulseFirebase.js";
+import { initNotificationButton, renderNotificationButton } from "./pulseNotifications.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 
 setupLayout("lsl-pulse.html");
@@ -64,6 +65,7 @@ function normalizePost(post) {
   const likes = Array.isArray(post.likesBy)
     ? post.likesBy
     : Array.from({ length: Number(post.likes) || 0 }, (_, index) => `old-like-${index}`);
+  const dislikes = Array.isArray(post.dislikesBy) ? post.dislikesBy : [];
 
   return {
     id: post.id || postId(),
@@ -75,6 +77,7 @@ function normalizePost(post) {
     body: post.body || "",
     accountId: post.accountId || "",
     likesBy: likes,
+    dislikesBy: dislikes,
     replies: Array.isArray(post.replies) ? post.replies : [],
   };
 }
@@ -125,7 +128,7 @@ function saveOfficialInteractions() {
 
 function interactionFor(postIdValue) {
   if (!state.officialInteractions[postIdValue]) {
-    state.officialInteractions[postIdValue] = { likesBy: [], replies: [] };
+    state.officialInteractions[postIdValue] = { likesBy: [], dislikesBy: [], replies: [] };
   }
   return state.officialInteractions[postIdValue];
 }
@@ -151,6 +154,7 @@ function officialFeedItems() {
     return {
       ...post,
       likesBy: Array.isArray(saved.likesBy) ? saved.likesBy : [],
+      dislikesBy: Array.isArray(saved.dislikesBy) ? saved.dislikesBy : [],
       replies: Array.isArray(saved.replies) ? saved.replies : [],
     };
   });
@@ -168,6 +172,7 @@ function persistPost(post) {
   if (post.type === "league") {
     state.officialInteractions[post.id] = {
       likesBy: post.likesBy || [],
+      dislikesBy: post.dislikesBy || [],
       replies: post.replies || [],
     };
     saveOfficialInteractions();
@@ -178,6 +183,7 @@ function persistPost(post) {
 
 async function likePost(post, account) {
   post.likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
+  post.dislikesBy = Array.isArray(post.dislikesBy) ? post.dislikesBy : [];
   const liked = post.likesBy.includes(account.id);
 
   if (cloudStore) {
@@ -190,6 +196,26 @@ async function likePost(post, account) {
   }
 
   post.likesBy = liked ? post.likesBy.filter((id) => id !== account.id) : [...post.likesBy, account.id];
+  if (!liked) post.dislikesBy = post.dislikesBy.filter((id) => id !== account.id);
+  persistPost(post);
+}
+
+async function dislikePost(post, account) {
+  post.likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
+  post.dislikesBy = Array.isArray(post.dislikesBy) ? post.dislikesBy : [];
+  const disliked = post.dislikesBy.includes(account.id);
+
+  if (cloudStore) {
+    if (post.type === "league") {
+      await (disliked ? cloudStore.undislikeOfficialPost(post.id, account.id) : cloudStore.dislikeOfficialPost(post.id, account.id));
+    } else {
+      await (disliked ? cloudStore.undislikeUserPost(post.id, account.id) : cloudStore.dislikeUserPost(post.id, account.id));
+    }
+    return;
+  }
+
+  post.dislikesBy = disliked ? post.dislikesBy.filter((id) => id !== account.id) : [...post.dislikesBy, account.id];
+  if (!disliked) post.likesBy = post.likesBy.filter((id) => id !== account.id);
   persistPost(post);
 }
 
@@ -267,6 +293,7 @@ function renderHero() {
         </div>
       </div>
       ${renderTabs()}
+      ${renderNotificationButton()}
     </section>
   `;
 }
@@ -348,7 +375,9 @@ function renderReplyForm(post) {
 function renderPost(post) {
   const replies = post.replies || [];
   const likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
+  const dislikesBy = Array.isArray(post.dislikesBy) ? post.dislikesBy : [];
   const liked = state.account?.id ? likesBy.includes(state.account.id) : false;
+  const disliked = state.account?.id ? dislikesBy.includes(state.account.id) : false;
   const canDeletePost = post.type === "user" && state.account?.id && post.accountId === state.account.id;
   const meta = [post.badge, post.date, post.reporter].filter(Boolean).join(" | ");
 
@@ -369,6 +398,10 @@ function renderPost(post) {
         <button type="button" class="pulse-heart-button${liked ? " liked" : ""}" data-pulse-like="${escapeHTML(post.id)}" aria-label="${liked ? "Unlike post" : "Like post"}">
           <span class="pulse-heart-icon">♥</span>
           <span>${likesBy.length}</span>
+        </button>
+        <button type="button" class="pulse-dislike-button${disliked ? " disliked" : ""}" data-pulse-dislike="${escapeHTML(post.id)}" aria-label="${disliked ? "Remove dislike" : "Dislike post"}">
+          <span class="pulse-dislike-icon">👎</span>
+          <span>${dislikesBy.length}</span>
         </button>
         <span>${replies.length} repl${replies.length === 1 ? "y" : "ies"}</span>
       </div>
@@ -427,6 +460,7 @@ function render() {
     </div>
   `;
   bindEvents();
+  initNotificationButton(root);
 }
 
 function bindEvents() {
@@ -536,6 +570,17 @@ function bindEvents() {
       const post = findPost(button.dataset.pulseLike);
       if (!post) return;
       await likePost(post, account);
+      render();
+    });
+  });
+
+  root.querySelectorAll("[data-pulse-dislike]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const account = requireAccount();
+      if (!account) return;
+      const post = findPost(button.dataset.pulseDislike);
+      if (!post) return;
+      await dislikePost(post, account);
       render();
     });
   });

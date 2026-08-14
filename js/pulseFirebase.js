@@ -24,6 +24,7 @@ function sanitizePost(docSnap) {
     body: data.body || "",
     accountId: data.accountId || "",
     likesBy: Array.isArray(data.likesBy) ? data.likesBy : [],
+    dislikesBy: Array.isArray(data.dislikesBy) ? data.dislikesBy : [],
     replies: Array.isArray(data.replies) ? data.replies : [],
     createdAtMs: Number(data.createdAtMs) || 0,
   };
@@ -34,6 +35,7 @@ function sanitizeInteraction(docSnap) {
   return {
     id: docSnap.id,
     likesBy: Array.isArray(data.likesBy) ? data.likesBy : [],
+    dislikesBy: Array.isArray(data.dislikesBy) ? data.dislikesBy : [],
     replies: Array.isArray(data.replies) ? data.replies : [],
   };
 }
@@ -76,7 +78,7 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
         const interactions = {};
         snapshot.docs.forEach((docSnap) => {
           const item = sanitizeInteraction(docSnap);
-          interactions[item.id] = { likesBy: item.likesBy, replies: item.replies };
+          interactions[item.id] = { likesBy: item.likesBy, dislikesBy: item.dislikesBy, replies: item.replies };
         });
         onOfficialInteractions?.(interactions);
       },
@@ -113,6 +115,7 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
         await firestore.setDoc(postRef, {
           ...post,
           likesBy: [],
+          dislikesBy: [],
           replies: [],
           createdAtMs: Date.now(),
         });
@@ -120,7 +123,7 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
       async likeUserPost(postId, accountId) {
         await firestore.setDoc(
           firestore.doc(userPostsCol, postId),
-          { likesBy: firestore.arrayUnion(accountId) },
+          { likesBy: firestore.arrayUnion(accountId), dislikesBy: firestore.arrayRemove(accountId) },
           { merge: true }
         );
       },
@@ -128,6 +131,20 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
         await firestore.setDoc(
           firestore.doc(userPostsCol, postId),
           { likesBy: firestore.arrayRemove(accountId) },
+          { merge: true }
+        );
+      },
+      async dislikeUserPost(postId, accountId) {
+        await firestore.setDoc(
+          firestore.doc(userPostsCol, postId),
+          { dislikesBy: firestore.arrayUnion(accountId), likesBy: firestore.arrayRemove(accountId) },
+          { merge: true }
+        );
+      },
+      async undislikeUserPost(postId, accountId) {
+        await firestore.setDoc(
+          firestore.doc(userPostsCol, postId),
+          { dislikesBy: firestore.arrayRemove(accountId) },
           { merge: true }
         );
       },
@@ -151,7 +168,7 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
       async likeOfficialPost(postId, accountId) {
         await firestore.setDoc(
           firestore.doc(officialInteractionsCol, postId),
-          { likesBy: firestore.arrayUnion(accountId) },
+          { likesBy: firestore.arrayUnion(accountId), dislikesBy: firestore.arrayRemove(accountId) },
           { merge: true }
         );
       },
@@ -159,6 +176,20 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
         await firestore.setDoc(
           firestore.doc(officialInteractionsCol, postId),
           { likesBy: firestore.arrayRemove(accountId) },
+          { merge: true }
+        );
+      },
+      async dislikeOfficialPost(postId, accountId) {
+        await firestore.setDoc(
+          firestore.doc(officialInteractionsCol, postId),
+          { dislikesBy: firestore.arrayUnion(accountId), likesBy: firestore.arrayRemove(accountId) },
+          { merge: true }
+        );
+      },
+      async undislikeOfficialPost(postId, accountId) {
+        await firestore.setDoc(
+          firestore.doc(officialInteractionsCol, postId),
+          { dislikesBy: firestore.arrayRemove(accountId) },
           { merge: true }
         );
       },
