@@ -6,7 +6,7 @@
 // busting). Cross-origin requests (Firebase/Firestore, CDN'd Firebase SDK)
 // are left completely alone - this worker never touches them.
 
-const CACHE_NAME = "lsl-cache-v5";
+const CACHE_NAME = "lsl-cache-v6";
 
 const APP_SHELL = [
   "./",
@@ -18,6 +18,7 @@ const APP_SHELL = [
   "./css/responsive.css",
   "./js/main.js",
   "./js/lslPulse.js",
+  "./js/pulseFirebase.js",
   "./js/config.js",
   "./js/utils.js",
   "./js/dataLoader.js",
@@ -51,6 +52,10 @@ function isDataRequest(url) {
   return url.pathname.includes("/data/");
 }
 
+function isFreshConfigRequest(url) {
+  return url.pathname.endsWith("/js/firebaseConfig.js");
+}
+
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
@@ -58,7 +63,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // never intercept cross-origin (Firebase, CDNs)
 
-  if (isDataRequest(url)) {
+  if (isDataRequest(url) || isFreshConfigRequest(url)) {
     event.respondWith(
       fetch(request)
         .then((response) => {

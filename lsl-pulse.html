@@ -18,6 +18,13 @@
         margin-top: 18px;
       }
 
+      .pulse-hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+
       .pulse-tabs button,
       .pulse-post-actions button {
         border: 1px solid rgba(199, 163, 103, 0.45);
@@ -206,6 +213,10 @@
         .pulse-account-button {
           width: 100%;
         }
+
+        .pulse-hero-badges {
+          justify-content: flex-start;
+        }
       }
     </style>
   </head>
@@ -213,6 +224,6 @@
     <div id="site-navbar"></div>
     <main id="page-root" class="page-shell"></main>
     <div id="site-footer"></div>
-    <script type="module" src="./js/lslPulse.js?v=1.1"></script>
+    <script type="module" src="./js/lslPulse.js?v=1.2"></script>
   </body>
 </html>

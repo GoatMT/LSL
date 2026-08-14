@@ -1,4 +1,5 @@
 import { setupLayout } from "./main.js";
+import { createPulseCloudStore } from "./pulseFirebase.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 
 setupLayout("lsl-pulse.html");
@@ -16,10 +17,13 @@ let state = {
   account: null,
   accountPanelOpen: false,
   accountMessage: "",
+  syncMessage: "Local mode.",
   posts: [],
   officialPosts: [],
   officialInteractions: {},
 };
+
+let cloudStore = null;
 
 function nowLabel() {
   return new Date().toLocaleString("en-CA", {
@@ -171,6 +175,38 @@ function persistPost(post) {
   savePosts();
 }
 
+async function likePost(post, account) {
+  post.likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
+  if (post.likesBy.includes(account.id)) return;
+
+  if (cloudStore) {
+    if (post.type === "league") {
+      await cloudStore.likeOfficialPost(post.id, account.id);
+    } else {
+      await cloudStore.likeUserPost(post.id, account.id);
+    }
+    return;
+  }
+
+  post.likesBy.push(account.id);
+  persistPost(post);
+}
+
+async function replyToPost(post, reply) {
+  if (cloudStore) {
+    if (post.type === "league") {
+      await cloudStore.replyOfficialPost(post.id, reply);
+    } else {
+      await cloudStore.replyUserPost(post.id, reply);
+    }
+    return;
+  }
+
+  post.replies = post.replies || [];
+  post.replies.push(reply);
+  persistPost(post);
+}
+
 function requireAccount() {
   if (state.account?.id) return state.account;
   state.accountPanelOpen = true;
@@ -197,7 +233,10 @@ function renderHero() {
           <h1>LSL Pulse</h1>
           <p>Official league posts and user posts in one clean feed. Log in with a username and PIN to like or reply.</p>
         </div>
-        <span class="pill green">${state.tab === "league" ? "Official Feed" : "Community Feed"}</span>
+        <div class="pulse-hero-badges">
+          <span class="pill green">${state.tab === "league" ? "Official Feed" : "Community Feed"}</span>
+          <span class="pill">${escapeHTML(state.syncMessage)}</span>
+        </div>
       </div>
       ${renderTabs()}
     </section>
@@ -225,7 +264,7 @@ function renderAccountCard() {
               <input data-pulse-username type="text" maxlength="28" autocomplete="username" placeholder="Username" value="${escapeHTML(account?.username || "")}">
               <input data-pulse-pin type="password" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" autocomplete="current-password" placeholder="4-digit PIN">
               <button type="submit" class="button primary">Log In</button>
-              <small>${escapeHTML(state.accountMessage || "If the account does not exist on this device, it will be created.")}</small>
+              <small>${escapeHTML(state.accountMessage || (cloudStore ? "Use this same username and PIN on another device." : "Local mode: this account is saved on this device until Firebase is configured."))}</small>
             </form>`
           : ""
       }
@@ -261,7 +300,7 @@ function renderComposer() {
       <div class="pulse-composer">
         <textarea data-pulse-post-text maxlength="300" placeholder="What's happening in LSL?"></textarea>
         <div class="pulse-composer-actions">
-          <small>Posts save on this device.</small>
+          <small>${escapeHTML(cloudStore ? "Posts sync between devices." : "Posts save on this device.")}</small>
           <button type="button" class="button primary" data-pulse-post>Post</button>
         </div>
       </div>
@@ -372,7 +411,7 @@ function bindEvents() {
     render();
   });
 
-  root.querySelector("[data-pulse-account-form]")?.addEventListener("submit", (event) => {
+  root.querySelector("[data-pulse-account-form]")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const usernameInput = root.querySelector("[data-pulse-username]");
     const pinInput = root.querySelector("[data-pulse-pin]");
@@ -393,23 +432,34 @@ function bindEvents() {
       return;
     }
 
-    const key = usernameKey(username);
-    const id = accountId(username);
-    const accounts = readAccounts();
-    const existingAccount = accounts[id] || Object.values(accounts).find((account) => account.usernameKey === key);
-    if (existingAccount && existingAccount.pin !== pin) {
-      state.accountMessage = "That PIN does not match this username.";
-      render();
-      return;
-    }
+    try {
+      let account;
+      if (cloudStore) {
+        account = await cloudStore.login(username, pin);
+      } else {
+        const key = usernameKey(username);
+        const id = accountId(username);
+        const accounts = readAccounts();
+        const existingAccount = accounts[id] || Object.values(accounts).find((item) => item.usernameKey === key);
+        if (existingAccount && existingAccount.pin !== pin) {
+          state.accountMessage = "That PIN does not match this username.";
+          render();
+          return;
+        }
+        account = existingAccount || { id, username, usernameKey: key, pin };
+      }
 
-    saveAccount(existingAccount || { id, username, usernameKey: key, pin });
-    state.accountPanelOpen = false;
-    state.accountMessage = "Logged in.";
-    render();
+      saveAccount(account);
+      state.accountPanelOpen = false;
+      state.accountMessage = "Logged in.";
+      render();
+    } catch (error) {
+      state.accountMessage = error.message || "Could not log in.";
+      render();
+    }
   });
 
-  root.querySelector("[data-pulse-post]")?.addEventListener("click", () => {
+  root.querySelector("[data-pulse-post]")?.addEventListener("click", async () => {
     const account = requireAccount();
     if (!account) return;
     const textarea = root.querySelector("[data-pulse-post-text]");
@@ -418,7 +468,7 @@ function bindEvents() {
       textarea?.focus();
       return;
     }
-    state.posts.unshift({
+    const post = {
       id: postId(),
       type: "user",
       author: account.username,
@@ -428,27 +478,29 @@ function bindEvents() {
       body,
       likesBy: [],
       replies: [],
-    });
-    savePosts();
+    };
+    if (cloudStore) {
+      await cloudStore.createUserPost(post);
+    } else {
+      state.posts.unshift(post);
+      savePosts();
+    }
     render();
   });
 
   root.querySelectorAll("[data-pulse-like]").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       const account = requireAccount();
       if (!account) return;
       const post = findPost(button.dataset.pulseLike);
       if (!post) return;
-      post.likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
-      if (post.likesBy.includes(account.id)) return;
-      post.likesBy.push(account.id);
-      persistPost(post);
+      await likePost(post, account);
       render();
     });
   });
 
   root.querySelectorAll("[data-pulse-reply-form]").forEach((form) => {
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const account = requireAccount();
       if (!account) return;
@@ -460,9 +512,7 @@ function bindEvents() {
       }
       const post = findPost(form.dataset.pulseReplyForm);
       if (!post) return;
-      post.replies = post.replies || [];
-      post.replies.push({ author: account.username, body, date: nowLabel() });
-      persistPost(post);
+      await replyToPost(post, { author: account.username, accountId: account.id, body, date: nowLabel() });
       render();
     });
   });
@@ -474,6 +524,21 @@ async function init() {
   state.posts = readStoredPosts();
   state.officialInteractions = readOfficialInteractions();
   state.officialPosts = officialFeedItems();
+  cloudStore = await createPulseCloudStore({
+    onStatus(message) {
+      state.syncMessage = message;
+      render();
+    },
+    onUserPosts(posts) {
+      state.posts = posts;
+      render();
+    },
+    onOfficialInteractions(interactions) {
+      state.officialInteractions = interactions;
+      state.officialPosts = officialFeedItems();
+      render();
+    },
+  });
   render();
 }
 
