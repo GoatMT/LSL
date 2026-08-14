@@ -300,15 +300,6 @@ function renderAccountCard() {
   `;
 }
 
-function renderFloatingAccountButton() {
-  const account = state.account;
-  return `
-    <button type="button" class="pulse-floating-account" data-pulse-account-toggle aria-label="Open account panel">
-      <span>${account ? escapeHTML(account.username.slice(0, 2).toUpperCase()) : "ID"}</span>
-    </button>
-  `;
-}
-
 function renderComposer() {
   if (state.tab === "league") {
     return `
@@ -426,13 +417,10 @@ function renderFeed() {
 
 function render() {
   root.innerHTML = `
-    ${renderFloatingAccountButton()}
     <div class="pulse-page-layout">
-      <aside class="pulse-side-column">
-        ${renderAccountCard()}
-      </aside>
       <div class="pulse-main-column">
         ${renderHero()}
+        ${renderAccountCard()}
         ${renderComposer()}
         ${renderFeed()}
       </div>
