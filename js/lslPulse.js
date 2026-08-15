@@ -1,5 +1,6 @@
 import { setupLayout } from "./main.js";
-import { createPulseCloudStore } from "./pulseFirebase.js";
+import { createPulseCloudStore } from "./pulseFirebase.js?v=1.1";
+import { initNotificationButton, renderNotificationButton } from "./pulseNotifications.js";
 import { OFFICIAL_BASE_POSTS, normalizePost, pulseProfileHref } from "./pulseShared.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 
@@ -284,6 +285,7 @@ function renderHero() {
         </div>
       </div>
       ${renderTabs()}
+      ${renderNotificationButton()}
     </section>
   `;
 }
@@ -319,18 +321,7 @@ function renderAccountCard() {
 
 function renderComposer() {
   if (state.tab === "league") {
-    return `
-      <section class="section-panel pulse-compose-panel locked">
-        <div class="section-head compact-head">
-          <div>
-            <span class="eyebrow">Official Only</span>
-            <h2>League News Is Locked</h2>
-            <p>Only official LSL posts appear here. Logged-in users can like, dislike, repost, and reply, but cannot create League News posts.</p>
-          </div>
-          <a class="button secondary" href="./news.html">Open News</a>
-        </div>
-      </section>
-    `;
+    return "";
   }
 
   return `
@@ -478,6 +469,7 @@ function render() {
   `;
   pendingAction = null;
   bindEvents();
+  initNotificationButton(root);
 }
 
 function bindEvents() {

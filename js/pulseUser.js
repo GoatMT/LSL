@@ -1,5 +1,5 @@
 import { setupLayout } from "./main.js";
-import { fetchAllPulsePosts } from "./pulseFirebase.js";
+import { fetchAllPulsePosts } from "./pulseFirebase.js?v=1.1";
 import { OFFICIAL_BASE_POSTS, normalizePost } from "./pulseShared.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 

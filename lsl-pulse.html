@@ -152,7 +152,6 @@
         background: rgba(255, 255, 255, 0.045);
         border-radius: 18px;
         padding: 18px;
-        transition: background-color 0.15s ease, border-color 0.15s ease;
       }
 
       .pulse-post-card.pulse-post-user {
@@ -300,50 +299,7 @@
         font-size: 0.86rem;
       }
 
-      @keyframes pulse-like-pop {
-        0% { transform: scale(1); }
-        35% { transform: scale(1.28); }
-        60% { transform: scale(0.94); }
-        100% { transform: scale(1); }
-      }
 
-      @keyframes pulse-dislike-shake {
-        0%, 100% { transform: translateX(0); }
-        20% { transform: translateX(-5px) rotate(-4deg); }
-        40% { transform: translateX(5px) rotate(4deg); }
-        60% { transform: translateX(-4px) rotate(-3deg); }
-        80% { transform: translateX(4px) rotate(3deg); }
-      }
-
-      @keyframes pulse-repost-spin {
-        0% { transform: rotate(0deg) scale(1); }
-        50% { transform: rotate(200deg) scale(1.15); }
-        100% { transform: rotate(360deg) scale(1); }
-      }
-
-      .pulse-heart-button.just-clicked {
-        animation: pulse-like-pop 0.45s ease;
-      }
-
-      .pulse-dislike-button.just-clicked {
-        animation: pulse-dislike-shake 0.45s ease;
-      }
-
-      .pulse-repost-button.just-clicked .pulse-repost-icon {
-        animation: pulse-repost-spin 0.5s ease;
-      }
-
-      .pulse-post-actions button {
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
-      }
-
-      .pulse-post-actions button:hover:not(:disabled) {
-        transform: translateY(-2px);
-      }
-
-      .pulse-post-actions button:active:not(:disabled) {
-        transform: translateY(0) scale(0.96);
-      }
 
       .pulse-replies {
         display: grid;
@@ -425,10 +381,10 @@
       }
     </style>
   </head>
-  <body>
+  <body data-disable-animations>
     <div id="site-navbar"></div>
     <main id="page-root" class="page-shell"></main>
     <div id="site-footer"></div>
-    <script type="module" src="./js/lslPulse.js?v=1.4"></script>
+    <script type="module" src="./js/lslPulse.js?v=1.5"></script>
   </body>
 </html>

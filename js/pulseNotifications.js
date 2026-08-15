@@ -1,10 +1,17 @@
 import { escapeHTML } from "./utils.js";
 import { FIREBASE_CONFIG, FIREBASE_ENABLED, FIREBASE_VAPID_KEY } from "./firebaseConfig.js";
-import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
-import { getFirestore, doc, setDoc, deleteField, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-import { getMessaging, getToken, onMessage, isSupported } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-messaging.js";
 
 // Push notifications for League News and User Pulse.
+//
+// IMPORTANT: every Firebase import in this file is DYNAMIC (loaded inside
+// functions, only when actually needed), not a static top-level import.
+// This file is imported by news.js and lslPulse.js, which are core pages -
+// if the Firebase Messaging SDK were imported statically here, a blocked,
+// slow, or failed fetch of that CDN script (ad blocker, firewall, offline,
+// CDN hiccup) would throw at module-load time and take down the ENTIRE
+// page, not just the notification button. Keeping these lazy means the
+// worst case if Firebase can't load is "the notification button doesn't
+// work" - never "the page doesn't load".
 //
 // How it fits together:
 //   - This file: asks for permission, registers this browser/device with
@@ -24,12 +31,14 @@ import { getMessaging, getToken, onMessage, isSupported } from "https://www.gsta
 // push notifications at all - there is no way around this, it's an iOS
 // platform restriction, not a bug here.
 
+const FIREBASE_SDK_VERSION = "12.17.1";
 const TOKENS_COLLECTION = "pushTokens";
 const PERMISSION_KEY = "lsl-push-permission-state";
 
 let firebaseApp = null;
 let db = null;
 let messagingInstance = null;
+let messagingSdk = null;
 
 function isStandaloneIOS() {
   return window.navigator.standalone === true;
@@ -47,7 +56,8 @@ async function pushIsSupportedHere() {
   if (!("Notification" in window) || !("serviceWorker" in navigator)) return false;
   if (isIOS() && !isStandaloneIOS()) return false; // Safari tab, not installed - can't support push at all
   try {
-    return await isSupported();
+    const messagingModule = await import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-messaging.js`);
+    return await messagingModule.isSupported();
   } catch {
     return false;
   }
@@ -55,34 +65,44 @@ async function pushIsSupportedHere() {
 
 async function ensureFirebase() {
   if (!FIREBASE_ENABLED) return false;
+
+  const [appModule, firestoreModule, messagingModule] = await Promise.all([
+    import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-app.js`),
+    import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-firestore.js`),
+    import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-messaging.js`),
+  ]);
+
   if (!firebaseApp) {
-    firebaseApp = getApps().length ? getApps()[0] : initializeApp(FIREBASE_CONFIG);
-    db = getFirestore(firebaseApp);
+    firebaseApp = appModule.getApps().length ? appModule.getApps()[0] : appModule.initializeApp(FIREBASE_CONFIG);
+    db = firestoreModule.getFirestore(firebaseApp);
   }
   if (!messagingInstance) {
-    messagingInstance = getMessaging(firebaseApp);
+    messagingSdk = messagingModule;
+    messagingInstance = messagingModule.getMessaging(firebaseApp);
   }
-  return true;
+  return { firestoreModule };
 }
 
-async function saveToken(token) {
+async function saveToken(token, firestoreModule) {
   if (!db) return;
-  await setDoc(
-    doc(db, TOKENS_COLLECTION, token),
+  await firestoreModule.setDoc(
+    firestoreModule.doc(db, TOKENS_COLLECTION, token),
     {
       token,
       userAgent: navigator.userAgent || "",
       platform: isIOS() ? "ios" : /Android/i.test(navigator.userAgent || "") ? "android" : "desktop",
-      updatedAt: serverTimestamp(),
+      updatedAt: firestoreModule.serverTimestamp(),
     },
     { merge: true }
   );
 }
 
 async function forgetToken(token) {
-  if (!db || !token) return;
+  if (!token) return;
   try {
-    await setDoc(doc(db, TOKENS_COLLECTION, token), { revokedAt: serverTimestamp() }, { merge: true });
+    const { firestoreModule } = (await ensureFirebase()) || {};
+    if (!db || !firestoreModule) return;
+    await firestoreModule.setDoc(firestoreModule.doc(db, TOKENS_COLLECTION, token), { revokedAt: firestoreModule.serverTimestamp() }, { merge: true });
   } catch (error) {
     console.error("Could not mark push token as revoked", error);
   }
@@ -100,25 +120,26 @@ export async function enablePushNotifications() {
     return { ok: false, reason: "unsupported" };
   }
 
-  await ensureFirebase();
-
   const permission = await Notification.requestPermission();
   if (permission !== "granted") {
     return { ok: false, reason: "denied" };
   }
 
   try {
+    const { firestoreModule } = (await ensureFirebase()) || {};
+    if (!firestoreModule) return { ok: false, reason: "error" };
+
     const registration = await navigator.serviceWorker.ready;
-    const token = await getToken(messagingInstance, {
+    const token = await messagingSdk.getToken(messagingInstance, {
       vapidKey: FIREBASE_VAPID_KEY,
       serviceWorkerRegistration: registration,
     });
     if (!token) return { ok: false, reason: "no-token" };
 
-    await saveToken(token);
+    await saveToken(token, firestoreModule);
     localStorage.setItem(PERMISSION_KEY, token);
 
-    onMessage(messagingInstance, (payload) => {
+    messagingSdk.onMessage(messagingInstance, (payload) => {
       // Foreground message (tab open + focused): the service worker's
       // background handler does not run in this case, so show it here.
       const title = payload.notification?.title || payload.data?.title || "LSL Update";
@@ -140,7 +161,6 @@ export async function enablePushNotifications() {
 export async function disablePushNotifications() {
   const token = localStorage.getItem(PERMISSION_KEY);
   if (token) {
-    await ensureFirebase();
     await forgetToken(token);
     localStorage.removeItem(PERMISSION_KEY);
   }

@@ -1073,6 +1073,16 @@ button {
   border-color: #ffffff;
 }
 
+[data-admin-refresh] {
+  background: #ffffff;
+  color: var(--green);
+  border-color: #ffffff;
+}
+
+[data-admin-refresh]:hover {
+  background: #eef1ee;
+}
+
 .pill {
   display: inline-flex;
   align-items: center;

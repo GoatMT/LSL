@@ -80,7 +80,7 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
         const interactions = {};
         snapshot.docs.forEach((docSnap) => {
           const item = sanitizeInteraction(docSnap);
-          interactions[item.id] = { likesBy: item.likesBy, dislikesBy: item.dislikesBy, replies: item.replies };
+          interactions[item.id] = { likesBy: item.likesBy, dislikesBy: item.dislikesBy, repostsBy: item.repostsBy, replies: item.replies };
         });
         onOfficialInteractions?.(interactions);
       },
