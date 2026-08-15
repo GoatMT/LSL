@@ -1,4 +1,4 @@
-// Firebase web app config for LSL Pulse and push notifications.
+// Firebase web app config for LSL Pulse.
 export const FIREBASE_ENABLED = true;
 
 export const FIREBASE_CONFIG = {
@@ -9,8 +9,3 @@ export const FIREBASE_CONFIG = {
   messagingSenderId: "161853176873",
   appId: "1:161853176873:web:a5ce7392bad9c59ecc3038",
 };
-
-// Web Push certificate (VAPID key) from Firebase Console -> Project Settings
-// -> Cloud Messaging -> Web configuration. Required by getToken() to
-// register this browser/device for push notifications.
-export const FIREBASE_VAPID_KEY = "BHPRTOB7x1PA_hN6IsxHcq7qhqiGhVe6JYeM3JOSSVsvtkkd-iKGsBZADtZE5bA2UrcIp3G60bY5NsXDwH1B7x8";

@@ -40,6 +40,7 @@ export const NAV_LINKS = [
   { label: "Media", href: "videos.html", group: "Info" },
   { label: "Owners", href: "owners.html", group: "Info" },
   { label: "Franchise Mode", href: "franchise.html", group: "Franchise" },
+  { label: "Admin", href: "admin.html", group: "Franchise" },
 ];
 
 export const DATA_FILES = [

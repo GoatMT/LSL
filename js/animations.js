@@ -1,4 +1,4 @@
-const REVEAL_SELECTOR = ".section-panel, .card, .hero, .franchise-bracket-round, .advanced-chart-card, .important-news-card, .history-card";
+const REVEAL_SELECTOR = ".section-panel, .card, .hero, .franchise-bracket-round, .advanced-chart-card, .important-news-card, .history-card, .pulse-post-card";
 const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let revealObserver = null;

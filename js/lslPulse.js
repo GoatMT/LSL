@@ -1,6 +1,6 @@
 import { setupLayout } from "./main.js";
 import { createPulseCloudStore } from "./pulseFirebase.js";
-import { initNotificationButton, renderNotificationButton } from "./pulseNotifications.js";
+import { OFFICIAL_BASE_POSTS, normalizePost, pulseProfileHref } from "./pulseShared.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 
 setupLayout("lsl-pulse.html");
@@ -25,6 +25,10 @@ let state = {
 };
 
 let cloudStore = null;
+// {postId, kind} for exactly one render pass, so only the button that was
+// just clicked gets its pop/shake/spin animation - not every already-liked
+// button in the feed on every unrelated re-render.
+let pendingAction = null;
 
 function nowLabel() {
   return new Date().toLocaleString("en-CA", {
@@ -59,27 +63,6 @@ function readJSON(key, fallback) {
 
 function writeJSON(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
-}
-
-function normalizePost(post) {
-  const likes = Array.isArray(post.likesBy)
-    ? post.likesBy
-    : Array.from({ length: Number(post.likes) || 0 }, (_, index) => `old-like-${index}`);
-  const dislikes = Array.isArray(post.dislikesBy) ? post.dislikesBy : [];
-
-  return {
-    id: post.id || postId(),
-    type: post.type || "user",
-    author: post.author || "LSL User",
-    badge: post.badge || "User Pulse",
-    date: post.date || "Date TBA",
-    title: post.title || "",
-    body: post.body || "",
-    accountId: post.accountId || "",
-    likesBy: likes,
-    dislikesBy: dislikes,
-    replies: Array.isArray(post.replies) ? post.replies : [],
-  };
 }
 
 function readStoredPosts() {
@@ -128,33 +111,19 @@ function saveOfficialInteractions() {
 
 function interactionFor(postIdValue) {
   if (!state.officialInteractions[postIdValue]) {
-    state.officialInteractions[postIdValue] = { likesBy: [], dislikesBy: [], replies: [] };
+    state.officialInteractions[postIdValue] = { likesBy: [], dislikesBy: [], repostsBy: [], replies: [] };
   }
   return state.officialInteractions[postIdValue];
 }
 
 function officialFeedItems() {
-  const basePosts = [
-    {
-      id: "league-first-official-pulse",
-      type: "league",
-      author: "LSL Official",
-      reporter: "Reported by Arshad Petal",
-      badge: "League News",
-      date: "August 14, 2026",
-      title: "First Official LSL Pulse Update",
-      body:
-        "This is the first of many official LSL Pulse news updates. League News will be used for direct league updates, important announcements, schedule notes, and quick information as soon as possible.",
-      source: "LSL Pulse",
-    },
-  ];
-
-  return basePosts.map((post) => {
+  return OFFICIAL_BASE_POSTS.map((post) => {
     const saved = interactionFor(post.id);
     return {
       ...post,
       likesBy: Array.isArray(saved.likesBy) ? saved.likesBy : [],
       dislikesBy: Array.isArray(saved.dislikesBy) ? saved.dislikesBy : [],
+      repostsBy: Array.isArray(saved.repostsBy) ? saved.repostsBy : [],
       replies: Array.isArray(saved.replies) ? saved.replies : [],
     };
   });
@@ -173,6 +142,7 @@ function persistPost(post) {
     state.officialInteractions[post.id] = {
       likesBy: post.likesBy || [],
       dislikesBy: post.dislikesBy || [],
+      repostsBy: post.repostsBy || [],
       replies: post.replies || [],
     };
     saveOfficialInteractions();
@@ -182,6 +152,7 @@ function persistPost(post) {
 }
 
 async function likePost(post, account) {
+  pendingAction = { postId: post.id, kind: "like" };
   post.likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
   post.dislikesBy = Array.isArray(post.dislikesBy) ? post.dislikesBy : [];
   const liked = post.likesBy.includes(account.id);
@@ -201,6 +172,7 @@ async function likePost(post, account) {
 }
 
 async function dislikePost(post, account) {
+  pendingAction = { postId: post.id, kind: "dislike" };
   post.likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
   post.dislikesBy = Array.isArray(post.dislikesBy) ? post.dislikesBy : [];
   const disliked = post.dislikesBy.includes(account.id);
@@ -216,6 +188,24 @@ async function dislikePost(post, account) {
 
   post.dislikesBy = disliked ? post.dislikesBy.filter((id) => id !== account.id) : [...post.dislikesBy, account.id];
   if (!disliked) post.likesBy = post.likesBy.filter((id) => id !== account.id);
+  persistPost(post);
+}
+
+async function repostPost(post, account) {
+  pendingAction = { postId: post.id, kind: "repost" };
+  post.repostsBy = Array.isArray(post.repostsBy) ? post.repostsBy : [];
+  const reposted = post.repostsBy.includes(account.id);
+
+  if (cloudStore) {
+    if (post.type === "league") {
+      await (reposted ? cloudStore.unrepostOfficialPost(post.id, account.id) : cloudStore.repostOfficialPost(post.id, account.id));
+    } else {
+      await (reposted ? cloudStore.unrepostUserPost(post.id, account.id) : cloudStore.repostUserPost(post.id, account.id));
+    }
+    return;
+  }
+
+  post.repostsBy = reposted ? post.repostsBy.filter((id) => id !== account.id) : [...post.repostsBy, account.id];
   persistPost(post);
 }
 
@@ -285,15 +275,15 @@ function renderHero() {
         <div>
           <span class="eyebrow">LSL Pulse</span>
           <h1>LSL Pulse</h1>
-          <p>Official league posts and user posts in one clean feed. Log in with a username and PIN to like or reply.</p>
+          <p>Official league posts and user posts in one clean feed. Log in with a username and PIN to like, dislike, repost, or reply.</p>
         </div>
         <div class="pulse-hero-badges">
           <span class="pill green">${state.tab === "league" ? "Official Feed" : "Community Feed"}</span>
           <span class="pill">${escapeHTML(state.syncMessage)}</span>
+          ${state.account?.id ? `<a class="pill" href="${escapeHTML(pulseProfileHref(state.account.id, state.account.username))}">My Profile</a>` : ""}
         </div>
       </div>
       ${renderTabs()}
-      ${renderNotificationButton()}
     </section>
   `;
 }
@@ -309,7 +299,7 @@ function renderAccountCard() {
         <div>
           <span class="eyebrow">Account</span>
           <h2>${account ? escapeHTML(account.username) : "Log In To Interact"}</h2>
-          <p>${account ? "You can like once per post and reply as this account." : "Use a username and 4-digit PIN before liking or replying."}</p>
+          <p>${account ? "You can like, dislike, repost, or reply as this account." : "Use a username and 4-digit PIN before liking or replying."}</p>
         </div>
         ${account ? `<button type="button" class="button secondary small" data-pulse-logout>Log Out</button>` : ""}
       </div>
@@ -335,7 +325,7 @@ function renderComposer() {
           <div>
             <span class="eyebrow">Official Only</span>
             <h2>League News Is Locked</h2>
-            <p>Only official LSL posts appear here. Logged-in users can like and reply, but cannot create League News posts.</p>
+            <p>Only official LSL posts appear here. Logged-in users can like, dislike, repost, and reply, but cannot create League News posts.</p>
           </div>
           <a class="button secondary" href="./news.html">Open News</a>
         </div>
@@ -372,21 +362,43 @@ function renderReplyForm(post) {
   `;
 }
 
+function authorLink(post) {
+  const name = post.type === "league" ? "LSL Official" : post.author;
+  if (post.type !== "league" && post.accountId) {
+    return `<a class="pulse-author-link" href="${escapeHTML(pulseProfileHref(post.accountId, post.author))}">${escapeHTML(name)}</a>`;
+  }
+  return escapeHTML(name);
+}
+
+function repostIconSvg() {
+  return `
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M17 2l4 4-4 4"></path>
+      <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+      <path d="M7 22l-4-4 4-4"></path>
+      <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+    </svg>
+  `;
+}
+
 function renderPost(post) {
   const replies = post.replies || [];
   const likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
   const dislikesBy = Array.isArray(post.dislikesBy) ? post.dislikesBy : [];
+  const repostsBy = Array.isArray(post.repostsBy) ? post.repostsBy : [];
   const liked = state.account?.id ? likesBy.includes(state.account.id) : false;
   const disliked = state.account?.id ? dislikesBy.includes(state.account.id) : false;
+  const reposted = state.account?.id ? repostsBy.includes(state.account.id) : false;
   const canDeletePost = post.type === "user" && state.account?.id && post.accountId === state.account.id;
   const meta = [post.badge, post.date, post.reporter].filter(Boolean).join(" | ");
+  const justClicked = pendingAction?.postId === post.id ? pendingAction.kind : "";
 
   return `
-    <article class="pulse-post-card" data-pulse-post-id="${escapeHTML(post.id)}">
+    <article class="pulse-post-card${post.type !== "league" ? " pulse-post-user" : ""}" data-pulse-post-id="${escapeHTML(post.id)}">
       <div class="pulse-post-head">
         <div class="pulse-avatar">${escapeHTML(post.type === "league" ? "LSL" : post.author.slice(0, 2).toUpperCase())}</div>
         <div>
-          <strong>${escapeHTML(post.author)}</strong>
+          <strong>${authorLink(post)}</strong>
           <p>${escapeHTML(meta)}</p>
         </div>
         ${canDeletePost ? `<button type="button" class="pulse-delete-button" data-pulse-delete-post="${escapeHTML(post.id)}">Remove</button>` : ""}
@@ -395,13 +407,18 @@ function renderPost(post) {
       <p class="pulse-post-body">${escapeHTML(post.body)}</p>
       ${post.source ? `<small class="pulse-source">${escapeHTML(post.source)}</small>` : ""}
       <div class="pulse-post-actions">
-        <button type="button" class="pulse-heart-button${liked ? " liked" : ""}" data-pulse-like="${escapeHTML(post.id)}" aria-label="${liked ? "Unlike post" : "Like post"}">
+        <button type="button" class="pulse-heart-button${liked ? " liked" : ""}${justClicked === "like" ? " just-clicked" : ""}" data-pulse-like="${escapeHTML(post.id)}" aria-label="${liked ? "Unlike post" : "Like post"}">
           <span class="pulse-heart-icon">♥</span>
           <span>${likesBy.length}</span>
         </button>
-        <button type="button" class="pulse-dislike-button${disliked ? " disliked" : ""}" data-pulse-dislike="${escapeHTML(post.id)}" aria-label="${disliked ? "Remove dislike" : "Dislike post"}">
+        <button type="button" class="pulse-dislike-button${disliked ? " disliked" : ""}${justClicked === "dislike" ? " just-clicked" : ""}" data-pulse-dislike="${escapeHTML(post.id)}" aria-label="${disliked ? "Remove dislike" : "Dislike post"}">
           <span class="pulse-dislike-icon">👎</span>
           <span>${dislikesBy.length}</span>
+        </button>
+        <button type="button" class="pulse-repost-button${reposted ? " reposted" : ""}${justClicked === "repost" ? " just-clicked" : ""}" data-pulse-repost="${escapeHTML(post.id)}" aria-label="${reposted ? "Undo repost" : "Repost"}">
+          <span class="pulse-repost-icon">${repostIconSvg()}</span>
+          <span class="pulse-repost-label">${reposted ? "Reposted" : "Repost"}</span>
+          <span>${repostsBy.length}</span>
         </button>
         <span>${replies.length} repl${replies.length === 1 ? "y" : "ies"}</span>
       </div>
@@ -413,7 +430,7 @@ function renderPost(post) {
                   (reply, index) => `
                     <div class="pulse-reply">
                       <div>
-                        <strong>${escapeHTML(reply.author)}</strong>
+                        <strong>${reply.accountId ? `<a class="pulse-author-link" href="${escapeHTML(pulseProfileHref(reply.accountId, reply.author))}">${escapeHTML(reply.author)}</a>` : escapeHTML(reply.author)}</strong>
                         <p>${escapeHTML(reply.body)}</p>
                       </div>
                       <small>${escapeHTML(reply.date)}</small>
@@ -438,7 +455,7 @@ function renderFeed() {
         <div>
           <span class="eyebrow">${state.tab === "league" ? "League News" : "User Pulse"}</span>
           <h2>${state.tab === "league" ? "Official Updates" : "Community Posts"}</h2>
-          <p>${state.tab === "league" ? "Official posts with account-only likes and replies." : "Posts, likes, and replies from this browser."}</p>
+          <p>${state.tab === "league" ? "Official posts with account-only likes, dislikes, reposts, and replies." : "Posts, likes, dislikes, reposts, and replies from this browser."}</p>
         </div>
       </div>
       <div class="pulse-feed">
@@ -459,8 +476,8 @@ function render() {
       </div>
     </div>
   `;
+  pendingAction = null;
   bindEvents();
-  initNotificationButton(root);
 }
 
 function bindEvents() {
@@ -552,6 +569,8 @@ function bindEvents() {
       title: "",
       body,
       likesBy: [],
+      dislikesBy: [],
+      repostsBy: [],
       replies: [],
     };
     if (cloudStore) {
@@ -581,6 +600,17 @@ function bindEvents() {
       const post = findPost(button.dataset.pulseDislike);
       if (!post) return;
       await dislikePost(post, account);
+      render();
+    });
+  });
+
+  root.querySelectorAll("[data-pulse-repost]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const account = requireAccount();
+      if (!account) return;
+      const post = findPost(button.dataset.pulseRepost);
+      if (!post) return;
+      await repostPost(post, account);
       render();
     });
   });

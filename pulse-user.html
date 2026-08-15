@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An LSL Pulse account profile: everything this user has posted, replied, liked, disliked, and reposted.">
+    <meta name="theme-color" content="#113c1f">
+    <title>Lantern Soccer League | Pulse Profile</title>
+    <link rel="icon" href="./Logos/lsl-logo.png">
+    <link rel="stylesheet" href="./css/main.css?v=3.22">
+    <link rel="stylesheet" href="./css/components.css?v=3.22">
+    <link rel="stylesheet" href="./css/responsive.css?v=3.22">
+    <style>
+      .pulse-hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+
+      .pulse-tabs {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .pulse-user-tabs {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .pulse-tabs button {
+        border: 1px solid rgba(199, 163, 103, 0.45);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        border-radius: 14px;
+        padding: 13px 16px;
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .pulse-tabs button.active {
+        background: #113c1f;
+        border-color: #c7a367;
+      }
+
+      .pulse-feed {
+        display: grid;
+        gap: 16px;
+      }
+
+      .pulse-post-card {
+        border: 1px solid rgba(199, 163, 103, 0.22);
+        background: rgba(255, 255, 255, 0.045);
+        border-radius: 18px;
+        padding: 18px;
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+      }
+
+      .pulse-post-card.pulse-post-user {
+        background: #192734;
+        border-color: rgba(56, 139, 209, 0.4);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+      }
+
+      .pulse-post-card.pulse-post-user:hover {
+        background: #1e2f3d;
+        border-color: rgba(56, 139, 209, 0.65);
+      }
+
+      .pulse-post-card.pulse-post-user .pulse-avatar {
+        background: #1d9bf0;
+        border-color: #1d9bf0;
+      }
+
+      .pulse-post-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .pulse-avatar {
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: #113c1f;
+        border: 1px solid #c7a367;
+        color: #fff;
+        font-weight: 900;
+      }
+
+      .pulse-post-head p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .pulse-post-head strong {
+        color: #fff;
+      }
+
+      .pulse-post-body {
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      .pulse-post-actions {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        margin-top: 16px;
+        padding-top: 10px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 800;
+        font-size: 0.9rem;
+      }
+
+      .pulse-user-original {
+        margin-bottom: 12px;
+        padding: 10px 12px;
+        border-left: 3px solid rgba(199, 163, 103, 0.6);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 10px;
+      }
+
+      .pulse-user-original .eyebrow {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .pulse-user-original strong {
+        color: #efd3a5;
+      }
+
+      .pulse-user-original p {
+        margin: 4px 0 0;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .pulse-user-reply-kind {
+        display: inline-flex;
+        width: max-content;
+        margin-bottom: 10px;
+        padding: 4px 10px;
+        border: 1px solid rgba(199, 163, 103, 0.45);
+        border-radius: 999px;
+        color: #efd3a5;
+        font-size: 0.72rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      @media (max-width: 720px) {
+        .pulse-user-tabs {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .pulse-hero-badges {
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="site-navbar"></div>
+    <main id="page-root" class="page-shell"></main>
+    <div id="site-footer"></div>
+    <script type="module" src="./js/pulseUser.js?v=1.0"></script>
+  </body>
+</html>

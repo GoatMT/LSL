@@ -61,6 +61,24 @@ function renderDivisionRecap(data, division) {
   const players = computePlayerStats(data, { stage: "regular" }).filter((player) => player.division === division);
   const playoffData = playoffDataForDivision(data.playoffs, division);
 
+  // 2024 and 2025 both had an actual third-place game on Finals Day, so
+  // that slot shows the real "3rd Place Team" award. 2026 didn't schedule
+  // a third-place match, so that slot instead shows the regular-season
+  // champion (Leeward Lions) under a "League Champions (Regular Season)"
+  // label, reusing the existing "Best Regular Season Team" award record.
+  const thirdSlot =
+    String(data.year) === "2026"
+      ? { lookup: "Best Regular Season Team", label: "League Champions (Regular Season)" }
+      : { lookup: "3rd Place Team", label: "3rd Place Team" };
+
+  const awardSlots = [
+    { lookup: "Champion Team", label: "Champion Team" },
+    { lookup: "2nd Place Team", label: "2nd Place Team" },
+    thirdSlot,
+    { lookup: "MVP", label: "MVP" },
+    { lookup: "Golden Boot", label: "Golden Boot" },
+  ];
+
   return `
     <section class="section-panel recap-division-panel">
       <div class="section-head">
@@ -72,7 +90,7 @@ function renderDivisionRecap(data, division) {
         ${isCurrentSeason ? '<span class="pill green">Live Season</span>' : '<span class="pill">Completed Season</span>'}
       </div>
       <div class="award-season-grid recap-award-grid">
-        ${["Champion Team", "2nd Place Team", "3rd Place Team", "MVP", "Golden Boot"].map((category) => awardCard(awardByCategory.get(category), category)).join("")}
+        ${awardSlots.map((slot) => awardCard(awardByCategory.get(slot.lookup), slot.label)).join("")}
       </div>
       <div class="recap-split">
         <div class="card">

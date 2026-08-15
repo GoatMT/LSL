@@ -152,6 +152,23 @@
         background: rgba(255, 255, 255, 0.045);
         border-radius: 18px;
         padding: 18px;
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+      }
+
+      .pulse-post-card.pulse-post-user {
+        background: #192734;
+        border-color: rgba(56, 139, 209, 0.4);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+      }
+
+      .pulse-post-card.pulse-post-user:hover {
+        background: #1e2f3d;
+        border-color: rgba(56, 139, 209, 0.65);
+      }
+
+      .pulse-post-card.pulse-post-user .pulse-avatar {
+        background: #1d9bf0;
+        border-color: #1d9bf0;
       }
 
       .pulse-post-head {
@@ -188,7 +205,13 @@
         border-top: 1px solid rgba(255, 255, 255, 0.12);
         margin-top: 16px;
         padding-top: 10px;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 10px;
+      }
+
+      .pulse-post-actions > span {
+        margin-left: auto;
+        color: rgba(255, 255, 255, 0.72);
       }
 
       .pulse-post-actions button:disabled {
@@ -223,16 +246,16 @@
       .pulse-dislike-button {
         min-width: 76px;
         justify-content: center;
-        background: rgba(45, 55, 72, 0.72) !important;
-        border-color: rgba(148, 163, 184, 0.75) !important;
+        background: rgba(23, 55, 94, 0.75) !important;
+        border-color: rgba(96, 165, 250, 0.8) !important;
         color: #fff !important;
-        box-shadow: 0 0 16px rgba(148, 163, 184, 0.2);
+        box-shadow: 0 0 16px rgba(59, 130, 246, 0.25);
       }
 
       .pulse-dislike-button.disliked {
-        background: #334155 !important;
-        border-color: #94a3b8 !important;
-        box-shadow: 0 0 20px rgba(148, 163, 184, 0.45);
+        background: #16386a !important;
+        border-color: #60a5fa !important;
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.55);
       }
 
       .pulse-dislike-icon {
@@ -242,6 +265,84 @@
       .pulse-dislike-icon::before {
         content: "\1F44E";
         font-size: 1.05rem;
+      }
+
+      .pulse-repost-button {
+        min-width: 140px;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(17, 60, 31, 0.75) !important;
+        border-color: rgba(101, 217, 155, 0.75) !important;
+        color: #fff !important;
+        box-shadow: 0 0 16px rgba(101, 217, 155, 0.2);
+      }
+
+      .pulse-repost-button.reposted {
+        background: #1b7a45 !important;
+        border-color: #65d99b !important;
+        box-shadow: 0 0 20px rgba(101, 217, 155, 0.5);
+      }
+
+      .pulse-repost-icon {
+        display: inline-flex;
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+      }
+
+      .pulse-repost-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: currentColor;
+      }
+
+      .pulse-repost-label {
+        font-size: 0.86rem;
+      }
+
+      @keyframes pulse-like-pop {
+        0% { transform: scale(1); }
+        35% { transform: scale(1.28); }
+        60% { transform: scale(0.94); }
+        100% { transform: scale(1); }
+      }
+
+      @keyframes pulse-dislike-shake {
+        0%, 100% { transform: translateX(0); }
+        20% { transform: translateX(-5px) rotate(-4deg); }
+        40% { transform: translateX(5px) rotate(4deg); }
+        60% { transform: translateX(-4px) rotate(-3deg); }
+        80% { transform: translateX(4px) rotate(3deg); }
+      }
+
+      @keyframes pulse-repost-spin {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(200deg) scale(1.15); }
+        100% { transform: rotate(360deg) scale(1); }
+      }
+
+      .pulse-heart-button.just-clicked {
+        animation: pulse-like-pop 0.45s ease;
+      }
+
+      .pulse-dislike-button.just-clicked {
+        animation: pulse-dislike-shake 0.45s ease;
+      }
+
+      .pulse-repost-button.just-clicked .pulse-repost-icon {
+        animation: pulse-repost-spin 0.5s ease;
+      }
+
+      .pulse-post-actions button {
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .pulse-post-actions button:hover:not(:disabled) {
+        transform: translateY(-2px);
+      }
+
+      .pulse-post-actions button:active:not(:disabled) {
+        transform: translateY(0) scale(0.96);
       }
 
       .pulse-replies {
@@ -324,7 +425,7 @@
       }
     </style>
   </head>
-  <body data-disable-animations>
+  <body>
     <div id="site-navbar"></div>
     <main id="page-root" class="page-shell"></main>
     <div id="site-footer"></div>
