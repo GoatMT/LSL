@@ -7,19 +7,22 @@
 // requests (Firebase/Firestore, CDN'd Firebase SDK) are left completely
 // alone - this worker never touches them.
 
-const CACHE_NAME = "lsl-cache-v8";
+const CACHE_NAME = "lsl-cache-v10";
 
 const APP_SHELL = [
   "./",
   "./index.html",
   "./lsl-pulse.html",
+  "./pulse-user.html",
   "./manifest.json",
   "./css/main.css",
   "./css/components.css",
   "./css/responsive.css",
   "./js/main.js",
   "./js/lslPulse.js",
+  "./js/pulseUser.js",
   "./js/pulseFirebase.js",
+  "./js/pulseShared.js",
   "./js/config.js",
   "./js/utils.js",
   "./js/dataLoader.js",
@@ -93,16 +96,24 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Everything else (CSS/JS/images): stale-while-revalidate. Serve the
+  // cached copy immediately if there is one (fast, and works offline), but
+  // always also fetch a fresh copy in the background and update the cache
+  // for next time. This is deliberately NOT pure cache-first - a plain
+  // cache-first strategy means once a file is cached it is served forever
+  // until CACHE_NAME changes, which silently serves stale JS/CSS to
+  // returning visitors (including on phones, where there's no easy
+  // hard-refresh gesture) every time this file gets edited.
   event.respondWith(
     caches.match(request).then((cached) => {
-      if (cached) return cached;
-      return fetch(request)
+      const networkFetch = fetch(request)
         .then((response) => {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
           return response;
         })
         .catch(() => cached);
+      return cached || networkFetch;
     })
   );
 });
