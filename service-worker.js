@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v20";
+const CACHE_NAME = "lsl-cache-v21";
 
 /*
  * Static files that are safe to cache.
@@ -493,7 +493,7 @@ async function staleWhileRevalidate(request) {
       },
     }
   );
-});
+}
 
 /* =========================================================
    MESSAGE HANDLING
