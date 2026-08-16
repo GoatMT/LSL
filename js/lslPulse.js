@@ -596,7 +596,7 @@ function renderFeed() {
           <p>${state.tab === "league" ? "Official posts with account-only likes, dislikes, reposts, and replies." : "Posts, likes, dislikes, reposts, and replies from this browser."}</p>
         </div>
       </div>
-      <div class="pulse-feed${state.tab === "users" ? " pulse-feed-chat" : ""}">
+      <div class="pulse-feed">
         ${posts.length ? posts.map(renderPost).join("") : statusMessage("empty", state.tab === "league" ? "Official updates will appear here." : "No user posts yet. Be first.")}
       </div>
     </section>

@@ -508,34 +508,6 @@
         .pulse-reply {
           grid-template-columns: 1fr;
         }
-
-        /* Chat-style layout for the User Pulse tab on phones: input pinned
-           to the bottom of the screen like a messaging app, feed shows
-           oldest-to-newest so the newest post sits right above where you
-           type (feed data itself stays newest-first in the DOM - this is
-           just a flipped visual order via column-reverse). */
-        .pulse-compose-panel {
-          position: fixed;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          z-index: 40;
-          margin: 0;
-          border-radius: 20px 20px 0 0;
-          box-shadow: 0 -10px 26px rgba(0, 0, 0, 0.4);
-          max-height: 46vh;
-          overflow-y: auto;
-        }
-
-        .pulse-feed-chat {
-          display: flex;
-          flex-direction: column-reverse;
-          gap: 16px;
-        }
-
-        .pulse-main-column:has(.pulse-compose-panel) .pulse-feed-panel {
-          padding-bottom: 180px;
-        }
       }
     </style>
   </head>
