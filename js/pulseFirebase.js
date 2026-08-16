@@ -22,6 +22,7 @@ function sanitizePost(docSnap) {
     date: data.date || "Date TBA",
     title: data.title || "",
     body: data.body || "",
+    imageDataUrl: data.imageDataUrl || "",
     accountId: data.accountId || "",
     likesBy: Array.isArray(data.likesBy) ? data.likesBy : [],
     dislikesBy: Array.isArray(data.dislikesBy) ? data.dislikesBy : [],
@@ -87,7 +88,7 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
       (error) => onStatus?.(`Pulse sync issue: ${error.message}`)
     );
 
-    onStatus?.("Cloud sync on.");
+    onStatus?.("");
 
     return {
       enabled: true,
@@ -100,17 +101,21 @@ export async function createPulseCloudStore({ onUserPosts, onOfficialInteraction
         if (accountSnap.exists()) {
           const account = accountSnap.data();
           if (account.pinHash !== pinHash) throw new Error("That PIN does not match this username.");
-          return { id: usernameKey, username: account.username || username.trim(), usernameKey };
+          return { id: usernameKey, username: account.username || username.trim(), usernameKey, avatarDataUrl: account.avatarDataUrl || "" };
         }
 
         const account = {
           username: username.trim(),
           usernameKey,
           pinHash,
+          avatarDataUrl: "",
           createdAtMs: Date.now(),
         };
         await firestore.setDoc(accountRef, account);
-        return { id: usernameKey, username: account.username, usernameKey };
+        return { id: usernameKey, username: account.username, usernameKey, avatarDataUrl: "" };
+      },
+      async updateAvatar(usernameKeyValue, avatarDataUrl) {
+        await firestore.setDoc(firestore.doc(accountsCol, usernameKeyValue), { avatarDataUrl }, { merge: true });
       },
       async createUserPost(post) {
         const postRef = firestore.doc(userPostsCol, post.id);
@@ -282,6 +287,30 @@ export async function fetchAllPulsePosts() {
   } catch (error) {
     console.error("Could not fetch Pulse profile data", error);
     return { userPosts: [], officialInteractions: {} };
+  }
+}
+
+// Public, non-admin directory of every Pulse username, for @mention
+// autocomplete and for rendering @mentions as links in post/reply bodies.
+// Only exposes id + username - never pinHash.
+export async function fetchAllPulseAccounts() {
+  if (!hasConfig()) return [];
+
+  try {
+    const firestore = await import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-firestore.js`);
+    const appModule = await import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-app.js`);
+    const app = appModule.initializeApp(FIREBASE_CONFIG);
+    const db = firestore.getFirestore(app);
+    const rootDoc = firestore.doc(db, PULSE_ROOT, PULSE_ID);
+    const accountsCol = firestore.collection(rootDoc, "accounts");
+    const snapshot = await firestore.getDocs(accountsCol);
+    return snapshot.docs.map((docSnap) => {
+      const data = docSnap.data() || {};
+      return { id: docSnap.id, username: data.username || docSnap.id, avatarDataUrl: data.avatarDataUrl || "" };
+    });
+  } catch (error) {
+    console.error("Could not fetch Pulse accounts", error);
+    return [];
   }
 }
 

@@ -1,7 +1,6 @@
 import { setupLayout } from "./main.js";
-import { createPulseCloudStore } from "./pulseFirebase.js?v=1.1";
-import { initNotificationButton, renderNotificationButton } from "./pulseNotifications.js";
-import { OFFICIAL_BASE_POSTS, normalizePost, pulseProfileHref } from "./pulseShared.js";
+import { createPulseCloudStore, fetchAllPulseAccounts } from "./pulseFirebase.js?v=1.2";
+import { avatarMarkup, compressImageToDataUrl, compressImageToSquareDataUrl, OFFICIAL_BASE_POSTS, normalizePost, pulseProfileHref, renderPostBody } from "./pulseShared.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 
 setupLayout("lsl-pulse.html");
@@ -19,13 +18,24 @@ let state = {
   account: null,
   accountPanelOpen: false,
   accountMessage: "",
-  syncMessage: "Local mode.",
+  avatarMessage: "",
+  syncMessage: "",
   posts: [],
   officialPosts: [],
   officialInteractions: {},
 };
 
 let cloudStore = null;
+let accounts = []; // [{id, username}] - every known Pulse account, for @mention autocomplete and rendering.
+let accountsByKey = new Map(); // usernameKey -> {id, username}
+// Holds the compressed photo data URL from the moment it's chosen until the
+// Post button is clicked (or removed) - kept outside state so selecting a
+// photo never needs a full render() that would blow away in-progress typing.
+let pendingComposerImage = "";
+// Set to a post's id for exactly one render pass right after that post is
+// created, so it gets a pop-in animation instead of every post replaying
+// the animation on every unrelated re-render.
+let justPostedId = "";
 // {postId, kind} for exactly one render pass, so only the button that was
 // just clicked gets its pop/shake/spin animation - not every already-liked
 // button in the feed on every unrelated re-render.
@@ -252,6 +262,26 @@ async function deleteReply(post, replyIndex) {
   persistPost(post);
 }
 
+function rebuildAccountsByKey() {
+  accountsByKey = new Map(accounts.map((acc) => [usernameKey(acc.username), acc]));
+}
+
+async function loadAccountDirectory() {
+  if (cloudStore) {
+    accounts = await fetchAllPulseAccounts();
+  } else {
+    accounts = Object.values(readAccounts()).map((acc) => ({ id: acc.id, username: acc.username }));
+  }
+  rebuildAccountsByKey();
+}
+
+function rememberAccountLocally(account) {
+  if (!accounts.some((acc) => acc.id === account.id)) {
+    accounts = [...accounts, { id: account.id, username: account.username }];
+    rebuildAccountsByKey();
+  }
+}
+
 function requireAccount() {
   if (state.account?.id) return state.account;
   state.accountPanelOpen = true;
@@ -280,12 +310,11 @@ function renderHero() {
         </div>
         <div class="pulse-hero-badges">
           <span class="pill green">${state.tab === "league" ? "Official Feed" : "Community Feed"}</span>
-          <span class="pill">${escapeHTML(state.syncMessage)}</span>
+          ${state.syncMessage ? `<span class="pill">${escapeHTML(state.syncMessage)}</span>` : ""}
           ${state.account?.id ? `<a class="pill" href="${escapeHTML(pulseProfileHref(state.account.id, state.account.username))}">My Profile</a>` : ""}
         </div>
       </div>
       ${renderTabs()}
-      ${renderNotificationButton()}
     </section>
   `;
 }
@@ -296,7 +325,7 @@ function renderAccountCard() {
     <section class="section-panel pulse-account-panel${state.accountPanelOpen || !account ? " open" : ""}">
       <div class="pulse-account-top">
         <button type="button" class="pulse-account-button" data-pulse-account-toggle aria-label="Open account panel">
-          <span>${account ? escapeHTML(account.username.slice(0, 2).toUpperCase()) : "👤"}</span>
+          <span>${avatarMarkup(account?.username, account?.avatarDataUrl)}</span>
         </button>
         <div>
           <span class="eyebrow">Account</span>
@@ -305,6 +334,17 @@ function renderAccountCard() {
         </div>
         ${account ? `<button type="button" class="button secondary small" data-pulse-logout>Log Out</button>` : ""}
       </div>
+      ${
+        account
+          ? `<div class="pulse-avatar-change-row">
+              <label class="pulse-attach-button" title="Change profile photo">
+                📷 Change Photo
+                <input type="file" accept="image/*" data-pulse-avatar-input hidden>
+              </label>
+              <small data-pulse-avatar-message>${escapeHTML(state.avatarMessage || "Any photo works - it's automatically cropped and resized to fit.")}</small>
+            </div>`
+          : ""
+      }
       ${
         state.accountPanelOpen || !account
           ? `<form class="pulse-account-form" data-pulse-account-form>
@@ -330,12 +370,23 @@ function renderComposer() {
         <div>
           <span class="eyebrow">User Pulse</span>
           <h2>Create A Post</h2>
-          <p>Share a thought, prediction, shoutout, or match reaction.</p>
+          <p>Share a thought, prediction, shoutout, or match reaction. Type @ to mention another Pulse user, or attach a photo.</p>
         </div>
       </div>
       <div class="pulse-composer">
-        <textarea data-pulse-post-text maxlength="300" placeholder="What's happening in LSL?"></textarea>
+        <div class="pulse-mention-wrap">
+          <textarea data-pulse-post-text maxlength="300" placeholder="What's happening in LSL? Use @ to mention someone"></textarea>
+          <div class="pulse-mention-menu" data-pulse-mention-menu="composer" hidden></div>
+        </div>
+        <div class="pulse-image-preview" data-pulse-image-preview hidden>
+          <img data-pulse-image-preview-img alt="Attached photo preview">
+          <button type="button" class="pulse-image-remove" data-pulse-image-remove aria-label="Remove photo">✕</button>
+        </div>
         <div class="pulse-composer-actions">
+          <label class="pulse-attach-button" title="Attach a photo">
+            📷
+            <input type="file" accept="image/*" data-pulse-image-input hidden>
+          </label>
           <small>${escapeHTML(cloudStore ? "Posts sync between devices." : "Posts save on this device.")}</small>
           <button type="button" class="button primary" data-pulse-post>Post</button>
         </div>
@@ -346,9 +397,10 @@ function renderComposer() {
 
 function renderReplyForm(post) {
   return `
-    <form class="pulse-reply-form" data-pulse-reply-form="${escapeHTML(post.id)}">
-      <input type="text" maxlength="180" placeholder="${state.account ? "Write a reply" : "Log in to reply"}">
+    <form class="pulse-reply-form pulse-mention-wrap" data-pulse-reply-form="${escapeHTML(post.id)}">
+      <input type="text" maxlength="180" placeholder="${state.account ? "Write a reply, @ to mention someone" : "Log in to reply"}">
       <button type="submit" class="button secondary small">Send</button>
+      <div class="pulse-mention-menu" data-pulse-mention-menu="reply-${escapeHTML(post.id)}" hidden></div>
     </form>
   `;
 }
@@ -372,6 +424,100 @@ function repostIconSvg() {
   `;
 }
 
+// ---------- @mention autocomplete ----------
+
+function accountSuggestions(query) {
+  const normalized = query.trim().toLowerCase();
+  const pool = normalized ? accounts.filter((acc) => acc.username.toLowerCase().includes(normalized)) : accounts;
+  return pool
+    .sort((a, b) => a.username.toLowerCase().indexOf(normalized) - b.username.toLowerCase().indexOf(normalized))
+    .slice(0, 6);
+}
+
+// Finds an in-progress "@partialname" ending exactly at the caret, if any.
+// The "@" must start a word (be at the very start of the text, or right
+// after whitespace) so an email-looking "a@b" never triggers it, and the
+// fragment after "@" cannot contain whitespace (that means the mention was
+// already finished and something else is being typed now).
+function mentionQueryAt(value, caret) {
+  const upToCaret = value.slice(0, caret);
+  const atIndex = upToCaret.lastIndexOf("@");
+  if (atIndex === -1) return null;
+  const before = upToCaret[atIndex - 1];
+  if (atIndex > 0 && before && !/\s/.test(before)) return null;
+  const fragment = upToCaret.slice(atIndex + 1);
+  if (/\s/.test(fragment)) return null;
+  return { start: atIndex, query: fragment };
+}
+
+function renderMentionMenu(menuEl, suggestions, onPick) {
+  if (!suggestions.length) {
+    menuEl.hidden = true;
+    menuEl.innerHTML = "";
+    return;
+  }
+  menuEl.hidden = false;
+  menuEl.innerHTML = suggestions
+    .map(
+      (acc) => `
+        <button type="button" class="pulse-mention-option" data-mention-username="${escapeHTML(acc.username)}">
+          <span class="pulse-mention-avatar">${escapeHTML(acc.username.slice(0, 2).toUpperCase())}</span>
+          <span>${escapeHTML(acc.username)}</span>
+        </button>
+      `
+    )
+    .join("");
+  menuEl.querySelectorAll("[data-mention-username]").forEach((button) => {
+    // mousedown (not click) so it fires before the field's blur event closes the menu first.
+    button.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+      onPick(button.dataset.mentionUsername);
+    });
+  });
+}
+
+function attachMentionAutocomplete(fieldEl, menuEl) {
+  function update() {
+    const caret = fieldEl.selectionStart ?? fieldEl.value.length;
+    const active = mentionQueryAt(fieldEl.value, caret);
+    if (!active) {
+      menuEl.hidden = true;
+      menuEl.innerHTML = "";
+      return;
+    }
+    renderMentionMenu(menuEl, accountSuggestions(active.query), (username) => {
+      const before = fieldEl.value.slice(0, active.start);
+      const after = fieldEl.value.slice(caret);
+      const inserted = `@${username} `;
+      fieldEl.value = `${before}${inserted}${after}`;
+      const newCaret = before.length + inserted.length;
+      fieldEl.focus();
+      fieldEl.setSelectionRange(newCaret, newCaret);
+      menuEl.hidden = true;
+      menuEl.innerHTML = "";
+    });
+  }
+
+  fieldEl.addEventListener("input", update);
+  fieldEl.addEventListener("click", update);
+  fieldEl.addEventListener("keyup", (event) => {
+    if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) update();
+  });
+  fieldEl.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      menuEl.hidden = true;
+      menuEl.innerHTML = "";
+    }
+  });
+  fieldEl.addEventListener("blur", () => {
+    // Delay so a mousedown on a suggestion registers before the menu disappears.
+    setTimeout(() => {
+      menuEl.hidden = true;
+      menuEl.innerHTML = "";
+    }, 150);
+  });
+}
+
 function renderPost(post) {
   const replies = post.replies || [];
   const likesBy = Array.isArray(post.likesBy) ? post.likesBy : [];
@@ -385,9 +531,9 @@ function renderPost(post) {
   const justClicked = pendingAction?.postId === post.id ? pendingAction.kind : "";
 
   return `
-    <article class="pulse-post-card${post.type !== "league" ? " pulse-post-user" : ""}" data-pulse-post-id="${escapeHTML(post.id)}">
+    <article class="pulse-post-card${post.type !== "league" ? " pulse-post-user" : ""}${post.id === justPostedId ? " pulse-post-fresh" : ""}" data-pulse-post-id="${escapeHTML(post.id)}">
       <div class="pulse-post-head">
-        <div class="pulse-avatar">${escapeHTML(post.type === "league" ? "LSL" : post.author.slice(0, 2).toUpperCase())}</div>
+        <div class="pulse-avatar">${avatarMarkup(post.type === "league" ? "LSL" : post.author, post.type === "league" ? "" : accountsByKey.get(post.accountId)?.avatarDataUrl)}</div>
         <div>
           <strong>${authorLink(post)}</strong>
           <p>${escapeHTML(meta)}</p>
@@ -395,7 +541,8 @@ function renderPost(post) {
         ${canDeletePost ? `<button type="button" class="pulse-delete-button" data-pulse-delete-post="${escapeHTML(post.id)}">Remove</button>` : ""}
       </div>
       ${post.title ? `<h3>${escapeHTML(post.title)}</h3>` : ""}
-      <p class="pulse-post-body">${escapeHTML(post.body)}</p>
+      <p class="pulse-post-body">${renderPostBody(post.body, accountsByKey)}</p>
+      ${post.imageDataUrl ? `<img class="pulse-post-image" src="${escapeHTML(post.imageDataUrl)}" alt="Photo attached by ${escapeHTML(post.author)}">` : ""}
       ${post.source ? `<small class="pulse-source">${escapeHTML(post.source)}</small>` : ""}
       <div class="pulse-post-actions">
         <button type="button" class="pulse-heart-button${liked ? " liked" : ""}${justClicked === "like" ? " just-clicked" : ""}" data-pulse-like="${escapeHTML(post.id)}" aria-label="${liked ? "Unlike post" : "Like post"}">
@@ -422,7 +569,7 @@ function renderPost(post) {
                     <div class="pulse-reply">
                       <div>
                         <strong>${reply.accountId ? `<a class="pulse-author-link" href="${escapeHTML(pulseProfileHref(reply.accountId, reply.author))}">${escapeHTML(reply.author)}</a>` : escapeHTML(reply.author)}</strong>
-                        <p>${escapeHTML(reply.body)}</p>
+                        <p>${renderPostBody(reply.body, accountsByKey)}</p>
                       </div>
                       <small>${escapeHTML(reply.date)}</small>
                       ${state.account?.id && reply.accountId === state.account.id ? `<button type="button" class="pulse-delete-button small" data-pulse-delete-reply="${escapeHTML(post.id)}" data-reply-index="${index}">Remove</button>` : ""}
@@ -449,7 +596,7 @@ function renderFeed() {
           <p>${state.tab === "league" ? "Official posts with account-only likes, dislikes, reposts, and replies." : "Posts, likes, dislikes, reposts, and replies from this browser."}</p>
         </div>
       </div>
-      <div class="pulse-feed">
+      <div class="pulse-feed${state.tab === "users" ? " pulse-feed-chat" : ""}">
         ${posts.length ? posts.map(renderPost).join("") : statusMessage("empty", state.tab === "league" ? "Official updates will appear here." : "No user posts yet. Be first.")}
       </div>
     </section>
@@ -469,7 +616,6 @@ function render() {
   `;
   pendingAction = null;
   bindEvents();
-  initNotificationButton(root);
 }
 
 function bindEvents() {
@@ -533,6 +679,7 @@ function bindEvents() {
       }
 
       saveAccount(account);
+      rememberAccountLocally(account);
       state.accountPanelOpen = false;
       state.accountMessage = "Logged in.";
       render();
@@ -560,6 +707,7 @@ function bindEvents() {
       date: nowLabel(),
       title: "",
       body,
+      imageDataUrl: pendingComposerImage,
       likesBy: [],
       dislikesBy: [],
       repostsBy: [],
@@ -571,6 +719,16 @@ function bindEvents() {
       state.posts.unshift(post);
       savePosts();
     }
+    pendingComposerImage = "";
+    justPostedId = post.id;
+    // Cloud mode doesn't add the post to state.posts locally - it arrives
+    // moments later via the Firestore onSnapshot listener, which calls
+    // render() on its own. Clear on a timer instead of inside render()
+    // itself, so the animation still plays whenever the post actually
+    // shows up, not just on whichever render happens to run first.
+    setTimeout(() => {
+      justPostedId = "";
+    }, 900);
     render();
   });
 
@@ -648,6 +806,67 @@ function bindEvents() {
       render();
     });
   });
+
+  const composerField = root.querySelector("[data-pulse-post-text]");
+  const composerMenu = root.querySelector('[data-pulse-mention-menu="composer"]');
+  if (composerField && composerMenu) attachMentionAutocomplete(composerField, composerMenu);
+
+  const imageInput = root.querySelector("[data-pulse-image-input]");
+  const imagePreview = root.querySelector("[data-pulse-image-preview]");
+  const imagePreviewImg = root.querySelector("[data-pulse-image-preview-img]");
+
+  imageInput?.addEventListener("change", async () => {
+    const file = imageInput.files?.[0];
+    if (!file) return;
+    try {
+      pendingComposerImage = await compressImageToDataUrl(file);
+      if (imagePreviewImg) imagePreviewImg.src = pendingComposerImage;
+      if (imagePreview) imagePreview.hidden = false;
+    } catch (error) {
+      console.error("Could not attach that photo", error);
+    }
+  });
+
+  root.querySelector("[data-pulse-image-remove]")?.addEventListener("click", () => {
+    pendingComposerImage = "";
+    if (imageInput) imageInput.value = "";
+    if (imagePreviewImg) imagePreviewImg.src = "";
+    if (imagePreview) imagePreview.hidden = true;
+  });
+
+  root.querySelectorAll("[data-pulse-reply-form]").forEach((form) => {
+    const input = form.querySelector("input");
+    const menu = form.querySelector("[data-pulse-mention-menu]");
+    if (input && menu) attachMentionAutocomplete(input, menu);
+  });
+
+  root.querySelector("[data-pulse-avatar-input]")?.addEventListener("change", async (event) => {
+    const account = state.account;
+    if (!account) return;
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const messageEl = root.querySelector("[data-pulse-avatar-message]");
+    try {
+      if (messageEl) messageEl.textContent = "Uploading...";
+      const avatarDataUrl = await compressImageToSquareDataUrl(file);
+
+      if (cloudStore) {
+        await cloudStore.updateAvatar(account.id, avatarDataUrl);
+      } else {
+        saveAccount({ ...account, avatarDataUrl });
+      }
+
+      state.account = { ...account, avatarDataUrl };
+      accounts = accounts.map((acc) => (acc.id === account.id ? { ...acc, avatarDataUrl } : acc));
+      rebuildAccountsByKey();
+      state.avatarMessage = "Photo updated.";
+      render();
+    } catch (error) {
+      state.avatarMessage = error.message || "Could not update that photo.";
+      render();
+    }
+  });
 }
 
 async function init() {
@@ -671,6 +890,7 @@ async function init() {
       render();
     },
   });
+  await loadAccountDirectory();
   render();
 }
 

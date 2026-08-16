@@ -92,6 +92,7 @@
         display: grid;
         place-items: center;
         flex: 0 0 auto;
+        overflow: hidden;
         border: 1px solid #c7a367;
         background: #113c1f;
         color: #fff;
@@ -102,12 +103,30 @@
       }
 
       .pulse-account-button span {
-        font-size: 0;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 0.98rem;
       }
 
-      .pulse-account-button span::before {
-        content: "ID";
-        font-size: 0.98rem;
+      .pulse-avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: inherit;
+        display: block;
+      }
+
+      .pulse-avatar-change-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .pulse-avatar-change-row small {
+        color: rgba(255, 255, 255, 0.72);
       }
 
       .pulse-account-top h2,
@@ -182,6 +201,7 @@
         height: 48px;
         display: grid;
         place-items: center;
+        overflow: hidden;
         border-radius: 50%;
         background: #113c1f;
         border: 1px solid #c7a367;
@@ -299,6 +319,93 @@
         font-size: 0.86rem;
       }
 
+      .pulse-attach-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(199, 163, 103, 0.45);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font: inherit;
+        font-weight: 800;
+        font-size: 0.86rem;
+        cursor: pointer;
+      }
+
+      .pulse-attach-button:hover {
+        border-color: #c7a367;
+      }
+
+      .pulse-mention-wrap {
+        position: relative;
+      }
+
+      .pulse-mention {
+        color: #8fd8ff;
+        text-decoration: underline;
+        text-decoration-color: rgba(143, 216, 255, 0.55);
+        text-underline-offset: 2px;
+        font-weight: 800;
+      }
+
+      .pulse-mention:hover {
+        color: #b8e8ff;
+        text-decoration-color: #b8e8ff;
+      }
+
+      .pulse-mention-menu {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 100%;
+        margin-bottom: 8px;
+        display: grid;
+        gap: 4px;
+        padding: 6px;
+        background: #16261c;
+        border: 1px solid rgba(199, 163, 103, 0.4);
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+        z-index: 20;
+        max-height: 220px;
+        overflow-y: auto;
+      }
+
+      .pulse-mention-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 10px;
+        font: inherit;
+        font-weight: 700;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .pulse-mention-option:hover {
+        background: rgba(199, 163, 103, 0.18);
+      }
+
+      .pulse-mention-avatar {
+        width: 28px;
+        height: 28px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #113c1f;
+        border: 1px solid #c7a367;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 900;
+      }
+
 
 
       .pulse-replies {
@@ -355,6 +462,25 @@
         padding: 10px 12px;
       }
 
+      @keyframes pulsePostPop {
+        0% {
+          opacity: 0;
+          transform: translateY(18px) scale(0.94);
+        }
+        65% {
+          opacity: 1;
+          transform: translateY(-3px) scale(1.015);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .pulse-post-fresh {
+        animation: pulsePostPop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
       @media (max-width: 720px) {
         .pulse-tabs,
         .pulse-name-row,
@@ -378,6 +504,34 @@
         .pulse-reply {
           grid-template-columns: 1fr;
         }
+
+        /* Chat-style layout for the User Pulse tab on phones: input pinned
+           to the bottom of the screen like a messaging app, feed shows
+           oldest-to-newest so the newest post sits right above where you
+           type (feed data itself stays newest-first in the DOM - this is
+           just a flipped visual order via column-reverse). */
+        .pulse-compose-panel {
+          position: fixed;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 40;
+          margin: 0;
+          border-radius: 20px 20px 0 0;
+          box-shadow: 0 -10px 26px rgba(0, 0, 0, 0.4);
+          max-height: 46vh;
+          overflow-y: auto;
+        }
+
+        .pulse-feed-chat {
+          display: flex;
+          flex-direction: column-reverse;
+          gap: 16px;
+        }
+
+        .pulse-main-column:has(.pulse-compose-panel) .pulse-feed-panel {
+          padding-bottom: 180px;
+        }
       }
     </style>
   </head>
@@ -385,6 +539,6 @@
     <div id="site-navbar"></div>
     <main id="page-root" class="page-shell"></main>
     <div id="site-footer"></div>
-    <script type="module" src="./js/lslPulse.js?v=1.5"></script>
+    <script type="module" src="./js/lslPulse.js?v=1.7"></script>
   </body>
 </html>

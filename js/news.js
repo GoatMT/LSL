@@ -1,7 +1,6 @@
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
 import { setupLayout } from "./main.js";
 import { mirrorLatestNewsArticles } from "./newsMirror.js";
-import { initNotificationButton, renderNotificationButton } from "./pulseNotifications.js";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";
 import { escapeHTML, getQueryParam, setDocumentTitle, statusMessage } from "./utils.js";
 
@@ -282,7 +281,6 @@ function render(articles, onThisDay = []) {
           <p>League updates, match results, roster notes, and announcements in one clean article view.</p>
           </div>
           </div>
-          ${renderNotificationButton()}
           ${renderOnThisDay(onThisDay)}
           <div class="news-layout">
           <aside class="news-sidebar" aria-label="News stories">
@@ -300,7 +298,6 @@ function render(articles, onThisDay = []) {
             </div>
             </section>
           `;
-            initNotificationButton(root);
     return;
   }
 
@@ -319,7 +316,6 @@ function render(articles, onThisDay = []) {
           <p>League updates, match results, roster notes, and announcements in one clean article view.</p>
         </div>
       </div>
-      ${renderNotificationButton()}
       ${renderOnThisDay(onThisDay)}
       <div class="news-layout">
         <aside class="news-sidebar" aria-label="News stories">
@@ -362,7 +358,6 @@ function render(articles, onThisDay = []) {
   });
 
   initShareButtons(root);
-  initNotificationButton(root);
 }
 
 async function init() {

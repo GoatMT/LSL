@@ -1,6 +1,6 @@
 import { setupLayout } from "./main.js";
-import { fetchAllPulsePosts } from "./pulseFirebase.js?v=1.1";
-import { OFFICIAL_BASE_POSTS, normalizePost } from "./pulseShared.js";
+import { fetchAllPulseAccounts, fetchAllPulsePosts } from "./pulseFirebase.js?v=1.2";
+import { avatarMarkup, OFFICIAL_BASE_POSTS, normalizePost, pulseProfileHref, renderPostBody } from "./pulseShared.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 
 setupLayout("lsl-pulse.html");
@@ -25,6 +25,7 @@ let state = {
   tab: "posted",
   loading: true,
   allPosts: [],
+  accountsByKey: new Map(),
 };
 
 function readJSON(key, fallback) {
@@ -114,7 +115,7 @@ function renderOriginalContext(post) {
     <div class="pulse-user-original">
       <span class="eyebrow">Replying to</span>
       <strong>${escapeHTML(post.type === "league" ? "LSL Official" : post.author)}</strong>
-      <p>${escapeHTML(post.body)}</p>
+      <p>${renderPostBody(post.body, state.accountsByKey)}</p>
     </div>
   `;
 }
@@ -144,14 +145,14 @@ function renderItem(item) {
       <article class="pulse-post-card${post.type !== "league" ? " pulse-post-user" : ""}">
         <span class="pulse-user-reply-kind">Reply</span>
         <div class="pulse-post-head">
-          <div class="pulse-avatar">${escapeHTML(initials(reply.author))}</div>
+          <div class="pulse-avatar">${avatarMarkup(reply.author, state.accountsByKey.get(reply.accountId)?.avatarDataUrl)}</div>
           <div>
             <strong>${escapeHTML(reply.author)}</strong>
             <p>${escapeHTML(reply.date || "")}</p>
           </div>
         </div>
         ${renderOriginalContext(post)}
-        <p class="pulse-post-body">${escapeHTML(reply.body)}</p>
+        <p class="pulse-post-body">${renderPostBody(reply.body, state.accountsByKey)}</p>
       </article>
     `;
   }
@@ -159,14 +160,14 @@ function renderItem(item) {
   return `
     <article class="pulse-post-card${post.type !== "league" ? " pulse-post-user" : ""}">
       <div class="pulse-post-head">
-        <div class="pulse-avatar">${escapeHTML(post.type === "league" ? "LSL" : initials(post.author))}</div>
+        <div class="pulse-avatar">${avatarMarkup(post.type === "league" ? "LSL" : post.author, post.type === "league" ? "" : state.accountsByKey.get(post.accountId)?.avatarDataUrl)}</div>
         <div>
           <strong>${escapeHTML(post.type === "league" ? "LSL Official" : post.author)}</strong>
           <p>${escapeHTML(renderPostMeta(post))}</p>
         </div>
       </div>
       ${post.title ? `<h3>${escapeHTML(post.title)}</h3>` : ""}
-      <p class="pulse-post-body">${escapeHTML(post.body)}</p>
+      <p class="pulse-post-body">${renderPostBody(post.body, state.accountsByKey)}</p>
       ${renderActionRow(post)}
     </article>
   `;
@@ -240,7 +241,12 @@ function render() {
 async function init() {
   setDocumentTitle(profileNameFromUrl ? `${profileNameFromUrl} | LSL Pulse` : "LSL Pulse Profile");
   render();
-  state.allPosts = profileId ? await loadAllPosts() : [];
+  const [allPosts, accountList] = await Promise.all([
+    profileId ? loadAllPosts() : Promise.resolve([]),
+    fetchAllPulseAccounts(),
+  ]);
+  state.allPosts = allPosts;
+  state.accountsByKey = new Map(accountList.map((acc) => [acc.username.trim().toLowerCase().replace(/\s+/g, "-"), acc]));
   state.loading = false;
   setDocumentTitle(`${displayName()} | LSL Pulse`);
   render();
