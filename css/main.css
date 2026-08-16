@@ -1352,57 +1352,6 @@ button {
   animation: lsl-fade-up 0.45s ease both;
 }
 
-/* Scroll-reveal utility, applied by js/animations.js */
-.reveal-on-scroll {
-  --reveal-glow: rgba(199, 163, 103, 0.7);
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-  transition-delay: var(--reveal-delay, 0ms);
-}
-
-.reveal-on-scroll.in-view {
-  opacity: 1;
-  transform: translateY(0);
-  animation: lsl-reveal-glow 1.3s ease-out;
-  animation-delay: var(--reveal-delay, 0ms);
-}
-
-/* Each tone reuses its own existing accent color for the glow, so a live
-   card glows red, a final result glows green, and so on; anything without
-   a specific tone (most section-panels and cards) glows the site's gold. */
-.important-news-card.live {
-  --reveal-glow: rgba(255, 120, 110, 0.75);
-}
-
-.important-news-card.final {
-  --reveal-glow: rgba(104, 211, 145, 0.75);
-}
-
-.important-news-card.next {
-  --reveal-glow: rgba(199, 163, 103, 0.75);
-}
-
-.important-news-card.news {
-  --reveal-glow: rgba(143, 216, 255, 0.7);
-}
-
-.history-card:not(.pending) {
-  --reveal-glow: rgba(104, 211, 145, 0.7);
-}
-
-@keyframes lsl-reveal-glow {
-  0% {
-    filter: drop-shadow(0 0 0 transparent);
-  }
-  35% {
-    filter: drop-shadow(0 0 20px var(--reveal-glow));
-  }
-  100% {
-    filter: drop-shadow(0 0 0 transparent);
-  }
-}
-
 /* Hover polish, site-wide */
 .card,
 .section-panel,
@@ -1500,10 +1449,5 @@ a {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
-  }
-
-  .reveal-on-scroll {
-    opacity: 1 !important;
-    transform: none !important;
   }
 }

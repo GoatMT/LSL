@@ -20,8 +20,16 @@ service cloud.firestore {
       match /accounts/{accountId} {
         allow read: if true;
         allow create: if request.resource.data.keys().hasAll(["username", "usernameKey", "pinHash", "createdAtMs"]);
-        allow update: if false;
-        allow delete: if false;
+        // Profile-photo updates (updateAvatar()) and admin PIN resets
+        // (resetAccountPin()) are both setDoc(..., {merge:true}) calls on an
+        // existing account doc, so they need allow update, not just create.
+        // Scoped to only those two fields so no one can rewrite username,
+        // usernameKey, or createdAtMs after the account is created.
+        allow update: if request.resource.data.diff(resource.data).affectedKeys()
+                        .hasOnly(["avatarDataUrl", "pinHash"]);
+        // Needed for admin's "Remove Login" (deleteAccount) and "merge
+        // accounts" (mergeAccounts deletes the "from" account) tools.
+        allow delete: if true;
       }
 
       // User Pulse posts.
