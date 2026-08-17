@@ -36,7 +36,8 @@
         "That 7-1-2 combined record ranks 2nd out of 20 tracked LSL Seniors team-seasons across 2024, 2025, and 2026, behind only this year's EM Haulers FC. Within 2026 alone, Leeward also finish 2nd, one round short of turning the best regular season in league history into the trophy to match it."
       ]
     },
-
+    {
+      "id": "2026-season-recap-em-haulers-fc",
       "category": "Team Season Recap",
       "storyLabel": "Season Wrap-Up",
       "isDeveloping": false,
@@ -68,6 +69,214 @@
         "Add the regular season and playoffs together and EM Haulers FC finish 2026 at 8-1-1 in 10 games. Haroon Ahmadi and Muzamil Kharooti were the constants throughout, combining for goals in the quarterfinal, the semifinal, and the final alike, with Haroon named the league's regular-season MVP and Muzamil closing his own career-goals race in the same run.",
         "WHERE THEY RANK",
         "That 8-1-1 combined record is the best of any team-season on record in LSL history, out of 20 tracked Seniors team-seasons across 2024, 2025, and 2026. It's also, unsurprisingly, the best record of any team in the league this season, ahead of Leeward Lions' 7-1-2 and Sharp Strikers' 6-1-2. A team that finished 3rd on goal difference in its own regular-season table ended the year with the best combined season anyone has put together in LSL's three-year history."
+      ]
+    },
+    {
+      "id": "2026-season-recap-sharp-strikers",
+      "category": "Team Season Recap",
+      "storyLabel": "Season Wrap-Up",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": false,
+      "headline": "2026 Season Recap: Sharp Strikers Survive Penalties, Fall In The Semifinal",
+      "subtitle": "A share of the league's best regular season ended with a shootout win and a one-goal playoff exit.",
+      "date": "August 9, 2026",
+      "time": "Season recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Sharp Strikers.jpg",
+      "heroImage": "./Logos/2026 Teams/Sharp Strikers.jpg",
+      "tags": ["Sharp Strikers", "Season Recap", "M Yahya", "Rehan Mohammed", "All-Time Rankings"],
+      "playerProfiles": [
+        { "id": "m-yahya", "label": "View M Yahya Profile" },
+        { "id": "rehan-ahmed-mohammed", "label": "View Rehan Profile" }
+      ],
+      "caption": "Sharp Strikers' 6-1-2 combined record ranks 3rd all-time out of 20 tracked LSL Seniors team-seasons.",
+      "related": [
+        { "label": "Championship Recap", "articleId": "championship-final-recap-august-8", "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1" },
+        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+      ],
+      "body": [
+        "Sharp Strikers shared the league's best regular-season record with two other teams, then needed a penalty shootout just to reach the semifinal.",
+        "REGULAR SEASON",
+        "Sharp finished 5-1-1, tied for the league lead at 16 points, with 24 goals for and 13 against for a +11 goal difference. Their only regular-season loss came in Week 2, a 3-2 defeat to EM Haulers FC; every other result was a win, plus a Week 7 draw with Amax Visionaries. M Yahya led the attack with 8 goals, including a four-goal game against Gangat Warriors in Week 3, with Rehan Mohammed adding 5 of his own. On tiebreakers behind Leeward Lions and EM Haulers FC, Sharp entered the playoffs as the #3 seed.",
+        "PLAYOFFS",
+        "Sharp's quarterfinal against Amax Visionaries finished 1-1 after regulation, and it took a penalty shootout, won 3-2, to send them through. The run ended in the semifinal, a 2-1 loss to EM Haulers FC in which Sharp's own scorer wasn't specified on the match sheet.",
+        "COMBINED RECORD",
+        "Regular season and playoffs together, Sharp Strikers finish 2026 at 6-1-2 in 9 games, with 26 goals for and 16 against.",
+        "WHERE THEY RANK",
+        "That combined record ranks 3rd out of 20 tracked LSL Seniors team-seasons across 2024, 2025, and 2026, and 3rd within the 2026 season alone, tucked directly behind the two teams they shared a regular-season record with all year."
+      ]
+    },
+    {
+      "id": "2026-season-recap-rawaha-royals",
+      "category": "Team Season Recap",
+      "storyLabel": "Season Wrap-Up",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": false,
+      "headline": "2026 Season Recap: Rawaha Royals Finish Strong, Fall In The Quarterfinal",
+      "subtitle": "A three-game winning streak to close the regular season wasn't enough to survive the opening round of the playoffs.",
+      "date": "August 9, 2026",
+      "time": "Season recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Rawaha Royals.jpg",
+      "heroImage": "./Logos/2026 Teams/Rawaha Royals.jpg",
+      "tags": ["Rawaha Royals", "Season Recap", "Mohammad Ibrahim", "Uthman Manira", "All-Time Rankings"],
+      "playerProfiles": [
+        { "id": "mohammed-ibrahim", "label": "View Ibrahim Profile" },
+        { "id": "uthman", "label": "View Uthman Profile" }
+      ],
+      "caption": "Rawaha Royals' 4-1-3 combined record ranks 10th all-time out of 20 tracked LSL Seniors team-seasons.",
+      "related": [
+        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+      ],
+      "body": [
+        "Rawaha Royals closed the regular season on their best form of the year, then ran into the league's tightest defense in the very next game.",
+        "REGULAR SEASON",
+        "Rawaha finished 4-1-2 for 13 points, the #4 seed, with 21 goals for and 18 against for a +3 goal difference. Their season peaked at the finish: three wins in their last four games, including back-to-back wins over Refuel Rovers and Gangat Warriors, the second a 7-4 shootout of a finale in Week 7. Mohammad Ibrahim led the team with 8 regular-season goals and Uthman Manira added 6, including a three-goal game in that Week 7 win.",
+        "PLAYOFFS",
+        "That momentum ran straight into a rematch. Refuel Rovers, the same team Rawaha had just beaten in Week 6, held them scoreless in the quarterfinal, with Abdul Ghiyas Solyman scoring the only goal of a 1-0 upset that ended Rawaha's season.",
+        "COMBINED RECORD",
+        "Regular season and playoffs together, Rawaha Royals finish 2026 at 4-1-3 in 8 games, with 21 goals for and 19 against.",
+        "WHERE THEY RANK",
+        "That combined record ranks 10th out of 20 tracked LSL Seniors team-seasons across 2024, 2025, and 2026, and 4th within the 2026 season alone, the highest finish of any team that didn't make it past the quarterfinal round this year."
+      ]
+    },
+    {
+      "id": "2026-season-recap-refuel-rovers",
+      "category": "Team Season Recap",
+      "storyLabel": "Season Wrap-Up",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": false,
+      "headline": "2026 Season Recap: Refuel Rovers' Playoff Run Ends One Win From The Final",
+      "subtitle": "The league's lowest-scoring playoff team rode its defense to a quarterfinal upset before running into Leeward Lions.",
+      "date": "August 9, 2026",
+      "time": "Season recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Refuel Rovers.jpg",
+      "heroImage": "./Logos/2026 Teams/Refuel Rovers.jpg",
+      "tags": ["Refuel Rovers", "Season Recap", "Mosa Fazli", "Abdul Ghiyas Solyman", "All-Time Rankings"],
+      "playerProfiles": [
+        { "id": "mosa-fazli", "label": "View Mosa Profile" },
+        { "id": "abdul-ghiyas-solyman", "label": "View Abdul Profile" }
+      ],
+      "caption": "Refuel Rovers' 4-0-5 combined record ranks 12th all-time out of 20 tracked LSL Seniors team-seasons.",
+      "related": [
+        { "label": "Semifinal 2 Recap", "articleId": "semifinal-2-recap-august-8", "title": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final" }
+      ],
+      "body": [
+        "Refuel Rovers scored fewer regular-season goals than any playoff team in the league, and still made it one win away from the Championship Final.",
+        "REGULAR SEASON",
+        "Refuel finished 3-0-4 for 9 points, the #5 seed, with only 9 goals for but just 10 against, a -1 goal difference built almost entirely on defense. Their 3 clean sheets tied Leeward Lions for the most in the league. Mosa Fazli led the attack with 5 goals, and midseason trade addition Abdul Ghiyas Solyman added scoring depth after arriving from EM Haulers FC in June.",
+        "PLAYOFFS",
+        "Refuel's defense carried them past a Rawaha Royals team that had just outscored them during the regular season, winning the quarterfinal 1-0 on an Abdul Ghiyas Solyman goal. The run ended in the semifinal, a 4-1 loss to Leeward Lions in which Mosa Fazli scored Refuel's goal, assisted by Abdul Ghiyas Solyman.",
+        "COMBINED RECORD",
+        "Regular season and playoffs together, Refuel Rovers finish 2026 at 4-0-5 in 9 games, with 11 goals for and 14 against.",
+        "WHERE THEY RANK",
+        "That combined record ranks 12th out of 20 tracked LSL Seniors team-seasons across 2024, 2025, and 2026, and 5th within the 2026 season alone, one spot and one game short of matching Rawaha Royals' finish despite the two teams never playing each other this year."
+      ]
+    },
+    {
+      "id": "2026-season-recap-amax-visionaries",
+      "category": "Team Season Recap",
+      "storyLabel": "Season Wrap-Up",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": false,
+      "headline": "2026 Season Recap: Amax Visionaries' Playoff Debut Ends On Penalties",
+      "subtitle": "A season built almost entirely around Adil Mubashir closed with a shootout loss in the quarterfinal.",
+      "date": "August 9, 2026",
+      "time": "Season recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Amax Visionaries.jpg",
+      "heroImage": "./Logos/2026 Teams/Amax Visionaries.jpg",
+      "tags": ["Amax Visionaries", "Season Recap", "Adil Mubashir", "All-Time Rankings"],
+      "playerProfiles": [
+        { "id": "adil-mubashir", "label": "View Adil Profile" }
+      ],
+      "caption": "Amax Visionaries' 2-1-5 combined record ranks 14th all-time out of 20 tracked LSL Seniors team-seasons.",
+      "related": [
+        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+      ],
+      "body": [
+        "Amax Visionaries opened the season getting run over 9-4, and closed it one penalty kick from the semifinal.",
+        "REGULAR SEASON",
+        "Amax finished 2-1-4 for 7 points, the #6 seed, with 13 goals for and 23 against for a -10 goal difference. Both of their wins came against the bottom two teams in the final standings, Gangat Warriors and Memon Mavericks; against everyone else, including a Week 7 draw with Sharp Strikers, they went winless. Adil Mubashir was the one constant scoring threat all year, finishing with 6 goals, including a three-goal game in Week 6.",
+        "PLAYOFFS",
+        "Amax drew #3 seed Sharp Strikers in the quarterfinal and matched them for a full 35 minutes, finishing 1-1 in regulation. The shootout went the other way, Sharp winning 3-2 on penalties to end Amax's season at the first round.",
+        "COMBINED RECORD",
+        "Regular season and playoffs together, Amax Visionaries finish 2026 at 2-1-5 in 8 games, with 14 goals for and 24 against.",
+        "WHERE THEY RANK",
+        "That combined record ranks 14th out of 20 tracked LSL Seniors team-seasons across 2024, 2025, and 2026, and 6th within the 2026 season alone."
+      ]
+    },
+    {
+      "id": "2026-season-recap-gangat-warriors",
+      "category": "Team Season Recap",
+      "storyLabel": "Season Wrap-Up",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": false,
+      "headline": "2026 Season Recap: Gangat Warriors Never Recover From A Six-Game Skid",
+      "subtitle": "A Week 1 win was the high point of a season that ended with seven straight losses, including the quarterfinal.",
+      "date": "August 9, 2026",
+      "time": "Season recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Gangat Warriors.jpg",
+      "heroImage": "./Logos/2026 Teams/Gangat Warriors.jpg",
+      "tags": ["Gangat Warriors", "Season Recap", "Taaha Nakhuda", "All-Time Rankings"],
+      "playerProfiles": [
+        { "id": "taha-nakhuda", "label": "View Taaha Profile" }
+      ],
+      "caption": "Gangat Warriors' 1-0-7 combined record ranks 17th all-time out of 20 tracked LSL Seniors team-seasons.",
+      "related": [
+        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+      ],
+      "body": [
+        "Gangat Warriors won their opening game of the season and then didn't win again.",
+        "REGULAR SEASON",
+        "Gangat finished 1-0-6 for 3 points, the #7 seed, with 9 goals for and a league-worst 26 against for a -17 goal difference. After beating Memon Mavericks 1-0 in Week 1 on a Taaha Nakhuda penalty, they lost six straight to close the regular season, getting outscored 26-8 across that stretch. Taaha Nakhuda led the team with 5 goals.",
+        "PLAYOFFS",
+        "Gangat drew #2 seed EM Haulers FC in the quarterfinal and lost 4-1, with Umar Manjra scoring the lone Gangat goal. The team was also without Taaha Nakhuda for the game, who was traveling in India during the playoffs, extending their losing streak to seven straight games to end the season.",
+        "COMBINED RECORD",
+        "Regular season and playoffs together, Gangat Warriors finish 2026 at 1-0-7 in 8 games, with 10 goals for and 30 against.",
+        "WHERE THEY RANK",
+        "That combined record ranks 17th out of 20 tracked LSL Seniors team-seasons across 2024, 2025, and 2026, and 7th within the 2026 season alone, ahead of only Memon Mavericks."
+      ]
+    },
+    {
+      "id": "2026-season-recap-memon-mavericks",
+      "category": "Team Season Recap",
+      "storyLabel": "Season Wrap-Up",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": false,
+      "headline": "2026 Season Recap: Memon Mavericks Finish Winless, Fall In The Quarterfinal",
+      "subtitle": "The league's #8 seed never found a win in 8 games, closing the year with a scoreless playoff exit.",
+      "date": "August 9, 2026",
+      "time": "Season recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Memon Mavericks.jpg",
+      "heroImage": "./Logos/2026 Teams/Memon Mavericks.jpg",
+      "tags": ["Memon Mavericks", "Season Recap", "Nasibullah Barak", "All-Time Rankings"],
+      "playerProfiles": [
+        { "id": "nasibullah", "label": "View Nasibullah Profile" }
+      ],
+      "caption": "Memon Mavericks' 0-1-7 combined record ranks last, 20th out of 20 tracked LSL Seniors team-seasons.",
+      "related": [
+        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+      ],
+      "body": [
+        "Memon Mavericks went the entire regular season without a win, and the playoffs didn't change that.",
+        "REGULAR SEASON",
+        "Memon finished 0-1-6 for 1 point, the #8 seed, with only 7 goals for and 23 against for a -16 goal difference. Their only point of the season came from a Week 7 draw with EM Haulers FC, after six straight losses to open the year. Nasibullah Barak led the team with 4 goals.",
+        "PLAYOFFS",
+        "Memon drew #1 seed Leeward Lions in the quarterfinal and were held scoreless, losing 1-0 on a Mudassir penalty to close out a winless season.",
+        "COMBINED RECORD",
+        "Regular season and playoffs together, Memon Mavericks finish 2026 at 0-1-7 in 8 games, with 7 goals for and 24 against.",
+        "WHERE THEY RANK",
+        "That combined record ranks last, 20th out of 20 tracked LSL Seniors team-seasons across 2024, 2025, and 2026, and last within the 2026 season as well."
       ]
     },
     {
