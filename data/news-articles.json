@@ -1,6 +1,76 @@
 {
   "articles": [
     {
+      "id": "2026-season-recap-leeward-lions",
+      "category": "Team Season Recap",
+      "storyLabel": "Season Wrap-Up",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": true,
+      "headline": "2026 Season Recap: Leeward Lions Set The Standard, Fall One Win Short",
+      "subtitle": "The best regular season in LSL history wasn't enough to close out a title, but it's still the second-best combined season on record.",
+      "date": "August 9, 2026",
+      "time": "Season recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/Leeward Lions.jpg",
+      "heroImage": "./Logos/2026 Teams/Leeward Lions.jpg",
+      "tags": ["Leeward Lions", "Season Recap", "Mudassir", "Ajmal Chakkari", "All-Time Rankings"],
+      "playerProfiles": [
+        { "id": "mudassir", "label": "View Mudassir Profile" },
+        { "id": "ajmal-shakkari", "label": "View Ajmal Profile" }
+      ],
+      "caption": "Leeward Lions' 7-1-2 combined record ranks 2nd all-time out of 20 tracked LSL Seniors team-seasons.",
+      "related": [
+        { "label": "Records Broken", "articleId": "leeward-lions-2026-records-broken", "title": "Every Record Leeward Lions Broke (Or Tied) In The 2026 Regular Season" },
+        { "label": "Championship Recap", "articleId": "championship-final-recap-august-8", "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1" }
+      ],
+      "body": [
+        "Leeward Lions played the best regular season LSL has ever recorded, then got within one game of turning it into a championship.",
+        "REGULAR SEASON",
+        "Leeward finished 5-1-1, a league-record 16 points, with a league-best 27 goals for and only 9 against, a +18 goal difference that led every team in every season on record. Their only loss all year was a 5-4 shootout with Sharp Strikers in Week 6; every other week ended in a win, plus an opening Week 1 draw with Rawaha Royals. That record was good enough for the #1 seed, on tiebreakers over EM Haulers FC and Sharp Strikers, both also at 16 points.",
+        "PLAYOFFS",
+        "Leeward beat Memon Mavericks 1-0 in the quarterfinal off a Mudassir penalty, then pulled away from Refuel Rovers 4-1 in the semifinal behind two more Mudassir goals. The run ended in the Championship Final, a 2-1 loss to EM Haulers FC in which Mudassir's own penalty tied the game before Haroon Ahmadi's late goal decided it.",
+        "COMBINED RECORD",
+        "Regular season and playoffs together, Leeward finish 2026 at 7-1-2 in 10 games, with Mudassir's 20 combined goals (16 regular season, 4 playoff) leading the Golden Boot race by a wide margin and setting new single-season and single-game scoring records along the way. Ajmal Chakkari added 9 combined goals of his own, including the Week 7 regular-season winner and a goal in the semifinal win over Refuel Rovers.",
+        "WHERE THEY RANK",
+        "That 7-1-2 combined record ranks 2nd out of 20 tracked LSL Seniors team-seasons across 2024, 2025, and 2026, behind only this year's EM Haulers FC. Within 2026 alone, Leeward also finish 2nd, one round short of turning the best regular season in league history into the trophy to match it."
+      ]
+    },
+
+      "category": "Team Season Recap",
+      "storyLabel": "Season Wrap-Up",
+      "isDeveloping": false,
+      "reportStatus": "Official",
+      "isLatest": true,
+      "headline": "2026 Season Recap: EM Haulers FC Go Unbeaten In The Playoffs To Win It All",
+      "subtitle": "A 5-1-1 regular season and a perfect 3-0 playoff run add up to the best combined record in LSL history.",
+      "date": "August 9, 2026",
+      "time": "Season recap",
+      "author": "LSL News Desk",
+      "thumbnail": "./Logos/2026 Teams/EM Haulers FC.jpg",
+      "heroImage": "./Logos/2026 Teams/EM Haulers FC.jpg",
+      "tags": ["EM Haulers FC", "2026 Champions", "Season Recap", "Haroon Ahmadi", "Muzamil Kharooti", "All-Time Rankings"],
+      "playerProfiles": [
+        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
+        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" }
+      ],
+      "caption": "EM Haulers FC's 8-1-1 combined record is the best in LSL history, out of 20 tracked Seniors team-seasons.",
+      "related": [
+        { "label": "Championship Recap", "articleId": "championship-final-recap-august-8", "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1" }
+      ],
+      "body": [
+        "No team had a better 2026 than EM Haulers FC, and by the numbers, no team in LSL history has had a better single season, period.",
+        "REGULAR SEASON",
+        "EM finished the regular season 5-1-1, tied for the league lead in points at 16, with 25 goals for and 13 against, a +12 goal difference. Their only loss came against Leeward Lions in a tense 1-0 Week 5 result; every other week produced a win or, in the case of the Week 7 finale, a 1-1 draw with Memon Mavericks. A three-way tie at the top of the table with Leeward Lions and Sharp Strikers, all at 16 points, came down to goal difference, and EM's +12 was good enough for the #2 seed.",
+        "PLAYOFFS",
+        "Where EM separated themselves from the pack was August 8. They beat Gangat Warriors 4-1 in the quarterfinal, held off a Sharp Strikers side that had just survived a penalty shootout 2-1 in the semifinal, and closed it out with a 2-1 win over #1 seed Leeward Lions in the Championship Final. Three playoff games, three wins, never allowing more than two goals in any of them.",
+        "COMBINED RECORD",
+        "Add the regular season and playoffs together and EM Haulers FC finish 2026 at 8-1-1 in 10 games. Haroon Ahmadi and Muzamil Kharooti were the constants throughout, combining for goals in the quarterfinal, the semifinal, and the final alike, with Haroon named the league's regular-season MVP and Muzamil closing his own career-goals race in the same run.",
+        "WHERE THEY RANK",
+        "That 8-1-1 combined record is the best of any team-season on record in LSL history, out of 20 tracked Seniors team-seasons across 2024, 2025, and 2026. It's also, unsurprisingly, the best record of any team in the league this season, ahead of Leeward Lions' 7-1-2 and Sharp Strikers' 6-1-2. A team that finished 3rd on goal difference in its own regular-season table ended the year with the best combined season anyone has put together in LSL's three-year history."
+      ]
+    },
+    {
       "id": "greatest-player-in-lsl-history-debate",
       "category": "League Analysis",
       "storyLabel": "Greatest Ever Debate",

@@ -158,20 +158,26 @@
         "Final score reported June 13, 2026.",
         "Sharp Strikers defeated Refuel Rovers 5-1.",
         "Ishaaq Ali was forced to play goalie for Refuel Rovers; he is normally a defender.",
-        "Marwan Ahmed and Mohammed Rayyan Syed each scored for Sharp Strikers.",
-        "Additional scorer details are coming soon."
+        "Marwan Ahmed scored twice, and Mohammed Rayyan Syed and M Yahya each scored once for Sharp Strikers.",
+        "One more Sharp Strikers goal and the Refuel Rovers goal are still unaccounted for."
       ],
       "scorers": [
         {
           "playerId": "marwan-ahmad",
           "teamId": "sharp-strikers",
           "name": "Marwan Ahmed",
-          "goals": 1
+          "goals": 2
         },
         {
           "playerId": "mohammed-rayyan-sayed",
           "teamId": "sharp-strikers",
           "name": "Mohammed Rayyan Syed",
+          "goals": 1
+        },
+        {
+          "playerId": "m-yahya",
+          "teamId": "sharp-strikers",
+          "name": "M Yahya",
           "goals": 1
         }
       ]
@@ -1410,13 +1416,19 @@
           "teamId": "amax-visionaries",
           "name": "Adil Mubashir",
           "goals": 1
+        },
+        {
+          "playerId": "rehan-ahmed-mohammed",
+          "teamId": "sharp-strikers",
+          "name": "Rehan Mohammed",
+          "goals": 1
         }
       ],
       "assists": [],
       "notes": [
         "Amax Visionaries tied Sharp Strikers 1-1 in Week 7.",
         "Adil Mubashir scored for Amax Visionaries.",
-        "Sharp Strikers' scorer was not specified."
+        "Rehan Mohammed scored the equalizer for Sharp Strikers."
       ]
     },
     {
