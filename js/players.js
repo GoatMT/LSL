@@ -137,14 +137,11 @@ function playerLeaderCard(player, index, allData, compact = false) {
 function playerLeaderboard(players, allData) {
   const leaders = players.slice(0, 5);
   if (!leaders.length) return statusMessage("empty", "No leaders found for the current filters.");
-  const topThree = leaders.slice(0, 3).map((player, index) => playerLeaderCard(player, index, allData)).join("");
-  const nextTwo = leaders.slice(3, 5).map((player, index) => playerLeaderCard(player, index + 3, allData, true)).join("");
   return `
     <div class="player-leaderboard">
       <div class="player-leaderboard-main">
-        ${topThree}
+        ${leaders.map((player, index) => playerLeaderCard(player, index, allData)).join("")}
       </div>
-      ${nextTwo ? `<div class="player-leaderboard-more">${nextTwo}</div>` : ""}
     </div>
   `;
 }
@@ -255,33 +252,35 @@ function render(allData, focusSearch = false) {
     </section>
 
     <section class="section-panel players-filter-panel">
-      <div class="section-head compact-head">
-        <div>
-          <span class="eyebrow">Filters</span>
-          <h2>Find Player Leaders</h2>
-          <p>Choose a stat type, season, and division. Playoff games count by team bracket appearances, even when a player did not score.</p>
+      <details class="players-filters-details" open>
+        <summary class="section-head compact-head players-filters-summary">
+          <div>
+            <span class="eyebrow">Filters</span>
+            <h2>Find Player Leaders</h2>
+            <p>Choose a stat type, season, and division.</p>
+          </div>
+        </summary>
+        <div class="controls players-controls">
+          ${controlSelect("stage", "Stats Type", stageOptions, state.stage)}
+          ${controlSelect("season", "Season", [{ value: "All", label: "All" }, ...SITE.seasons.map((season) => ({ value: season, label: season }))], state.season)}
+          ${controlSelect("division", "Division", divisions, state.division)}
+          ${controlSelect("minGames", "Minimum Games", [
+            { value: "0", label: "All" },
+            { value: "1", label: "1+ GP" },
+            { value: "3", label: "3+ GP" },
+            { value: "5", label: "5+ GP" }
+          ], state.minGames)}
+          ${controlSelect("sort", "Sort By", [
+            { value: "goals", label: "Goals" },
+            { value: "shots", label: "Shots" },
+            { value: "assists", label: "Assists" },
+            { value: "points", label: "Points" },
+            { value: "mvpScore", label: "MVP goals" },
+            { value: "ovr", label: "OVR" }
+          ], state.sort)}
+          ${controlInput("search", "Search", "Player or team")}
         </div>
-      </div>
-      <div class="controls players-controls">
-        ${controlSelect("stage", "Stats Type", stageOptions, state.stage)}
-        ${controlSelect("season", "Season", [{ value: "All", label: "All" }, ...SITE.seasons.map((season) => ({ value: season, label: season }))], state.season)}
-        ${controlSelect("division", "Division", divisions, state.division)}
-        ${controlSelect("minGames", "Minimum Games", [
-          { value: "0", label: "All" },
-          { value: "1", label: "1+ GP" },
-          { value: "3", label: "3+ GP" },
-          { value: "5", label: "5+ GP" }
-        ], state.minGames)}
-        ${controlSelect("sort", "Sort By", [
-          { value: "goals", label: "Goals" },
-          { value: "shots", label: "Shots" },
-          { value: "assists", label: "Assists" },
-          { value: "points", label: "Points" },
-          { value: "mvpScore", label: "MVP goals" },
-          { value: "ovr", label: "OVR" }
-        ], state.sort)}
-        ${controlInput("search", "Search", "Player or team")}
-      </div>
+      </details>
     </section>
 
     <section class="section-panel people-panel people-hero-panel players-main-panel">
@@ -313,14 +312,16 @@ function render(allData, focusSearch = false) {
     </section>
 
     <section class="section-panel players-compare-panel">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Compare</span>
-          <h2>Player Comparison</h2>
-          <p>Select two players to compare their career output.</p>
-        </div>
-      </div>
-      ${players.length >= 2 ? comparison(players, allData) : statusMessage("empty", "At least two players are needed for comparison.")}
+      <details class="players-compare-details">
+        <summary class="section-head players-compare-summary">
+          <div>
+            <span class="eyebrow">Compare</span>
+            <h2>Player Comparison</h2>
+            <p>Select two players to compare their career output.</p>
+          </div>
+        </summary>
+        ${players.length >= 2 ? comparison(players, allData) : statusMessage("empty", "At least two players are needed for comparison.")}
+      </details>
     </section>
   `;
 

@@ -2,9 +2,9 @@
   "season": "2026",
   "awards": [
     { "division": "Seniors", "category": "Champion Team", "winner": "EM Haulers FC", "teamId": "em-haulers-fc", "sourceNote": "Defeated Leeward Lions 2-1 in the 2026 LSL Championship Final on August 8, 2026." },
-    { "division": "Seniors", "category": "2nd Place Team", "winner": "Leeward Lions", "teamId": "leeward-lions", "sourceNote": "Lost the 2026 LSL Championship Final to EM Haulers FC, 2-1." },
+    { "division": "Seniors", "category": "2nd Place Team", "winner": "Leeward Lions", "teamId": "leeward-lions", "image": "./Logos/Awards/2026 LSL Cup Runners-ups.jpg", "sourceNote": "Lost the 2026 LSL Championship Final to EM Haulers FC, 2-1." },
     { "division": "Seniors", "category": "3rd Place Team", "winner": "To be announced", "sourceNote": "No third-place match was listed on the 2026 Finals Day schedule." },
-    { "division": "Seniors", "category": "Best Regular Season Team", "winner": "Leeward Lions", "teamId": "leeward-lions", "sourceNote": "Finished first in the 2026 Seniors regular season." },
+    { "division": "Seniors", "category": "Best Regular Season Team", "winner": "Leeward Lions", "teamId": "leeward-lions", "image": "./Logos/Awards/2026 LSL Leauge Champions (regular season).jpg", "sourceNote": "Finished first in the 2026 Seniors regular season." },
     { "division": "Seniors", "category": "MVP", "winner": "Haroon Ahmadi", "playerId": "haroon-ahmadi", "teamId": "em-haulers-fc", "sourceNote": "Claude's pick: EM Haulers FC's captain scored in every round of the playoffs, including the Championship Final winner, and led the club to the 2026 title." },
     { "division": "Seniors", "category": "Golden Boot", "winner": "Mudassir", "playerId": "mudassir", "teamId": "leeward-lions", "sourceNote": "Led the league with 16 regular-season goals, a new single-season Seniors record, and added 4 more in the playoffs." },
     { "division": "Seniors", "category": "Best Goalkeeper", "winner": "Saad Khan", "playerId": "saad-khan", "sourceNote": "Recognized as the league's top goalkeeper this season." },

@@ -3663,17 +3663,57 @@ details.clean-details summary {
 
 .awards-cup-image-wrap {
   min-width: 0;
+  position: relative;
   overflow: hidden;
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(199, 163, 103, 0.2), transparent 45%),
+    #172018;
   border-radius: var(--radius-md);
   border: 1px solid rgba(199, 163, 103, 0.4);
   box-shadow: var(--shadow);
 }
 
-.awards-cup-image-wrap img {
+.awards-cup-image-wrap > img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-height: 260px;
+  object-fit: contain;
   display: block;
+  border-radius: 16px;
+}
+
+.awards-cup-engraved-logo {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: min(142px, 44%);
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  background: rgba(17, 60, 31, 0.9);
+  border: 1px solid rgba(199, 163, 103, 0.58);
+  border-radius: 18px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+}
+
+.awards-cup-engraved-logo span {
+  color: var(--gold);
+  font-size: 0.62rem;
+  font-weight: 950;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.awards-cup-engraved-logo img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 14px;
 }
 
 .awards-cup-copy {
@@ -3739,10 +3779,74 @@ details.clean-details summary {
 .awards-filter-panel,
 .awards-summary-panel,
 .awards-champions-panel,
+.awards-medal-panel,
 .awards-history-panel,
 .awards-honors-panel {
   display: grid;
   gap: 20px;
+}
+
+.awards-medal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.awards-medal-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(170px, 0.42fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+  padding: 18px;
+  background: #202920;
+  border: 1px solid rgba(199, 163, 103, 0.36);
+  border-radius: 24px;
+}
+
+.awards-medal-art {
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: rgba(199, 163, 103, 0.1);
+  border: 1px solid rgba(199, 163, 103, 0.28);
+  border-radius: 20px;
+}
+
+.awards-medal-art img {
+  width: 100%;
+  max-height: 210px;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.awards-medal-copy {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  align-content: center;
+}
+
+.awards-medal-copy h3,
+.awards-medal-copy strong,
+.awards-medal-copy p {
+  margin: 0;
+}
+
+.awards-medal-copy h3 {
+  font-size: 1.45rem;
+  line-height: 1.12;
+}
+
+.awards-medal-copy strong {
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+.awards-medal-copy p {
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .awards-filter-controls {
@@ -3990,6 +4094,19 @@ details.clean-details summary {
   border: 1px solid rgba(199, 163, 103, 0.3);
   border-radius: 14px;
   font-size: 1.35rem;
+}
+
+.award-card.has-medal-image .award-card-top {
+  justify-content: center;
+}
+
+.award-medal-image {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(199, 163, 103, 0.35);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .award-champion-badges {
@@ -6320,6 +6437,184 @@ details.clean-details summary {
 
 .clean-list li + li {
   margin-top: 6px;
+}
+
+.forms-hero {
+  align-items: stretch;
+  border-color: rgba(199, 163, 103, 0.42);
+  background:
+    linear-gradient(135deg, rgba(17, 60, 31, 0.96), rgba(25, 32, 26, 0.96)),
+    #113c1f;
+}
+
+.forms-hero .hero-copy {
+  align-content: center;
+}
+
+.forms-hero-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.forms-office-panel,
+.forms-steps-panel,
+.forms-category-panel,
+.forms-help-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.forms-office-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.forms-office-card {
+  min-width: 0;
+  min-height: 136px;
+  display: grid;
+  gap: 8px;
+  align-content: center;
+  padding: 18px;
+  background: #202920;
+  border: 1px solid rgba(199, 163, 103, 0.28);
+  border-radius: 22px;
+}
+
+.forms-office-card span,
+.form-card-pro-meta strong {
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.forms-office-card strong {
+  color: #ffffff;
+  font-size: 1.35rem;
+  line-height: 1.1;
+}
+
+.forms-office-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.forms-step-grid,
+.forms-grid {
+  gap: 16px;
+}
+
+.forms-step-card,
+.form-card-pro {
+  min-width: 0;
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  background: #202920;
+  border: 1px solid rgba(199, 163, 103, 0.26);
+  border-radius: 24px;
+}
+
+.forms-step-card {
+  align-content: start;
+}
+
+.forms-step-number,
+.form-card-pro-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: var(--green);
+  border: 1px solid rgba(199, 163, 103, 0.42);
+  border-radius: 15px;
+  font-weight: 950;
+}
+
+.forms-step-card h3,
+.form-card-pro h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.22rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.forms-step-card p,
+.form-card-pro p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.form-card-pro {
+  min-height: 330px;
+  border-color: rgba(199, 163, 103, 0.36);
+}
+
+.form-card-pro.closed {
+  background: #1d251f;
+}
+
+.form-card-pro.open {
+  box-shadow: inset 4px 0 0 rgba(122, 224, 147, 0.55);
+}
+
+.form-card-pro-top,
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.form-card-pro-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: auto;
+}
+
+.form-card-pro-meta span {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: #ffffff;
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.forms-help-strip {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 20px;
+  background: #202920;
+  border: 1px solid rgba(199, 163, 103, 0.26);
+  border-radius: 24px;
+}
+
+.forms-help-strip h2,
+.forms-help-strip p {
+  margin: 0;
+}
+
+.forms-help-strip p {
+  margin-top: 6px;
+  color: var(--muted);
 }
 
 .season-details-panel {

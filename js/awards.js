@@ -182,6 +182,14 @@ function renderCupEngravings() {
               <article class="awards-cup-entry">
                 <div class="awards-cup-image-wrap">
                   <img src="${escapeHTML(entry.image)}" alt="${escapeHTML(entry.season)} Lantern Soccer League cup engraving" loading="lazy">
+                  ${
+                    entry.teamLogo
+                      ? `<div class="awards-cup-engraved-logo">
+                          <span>Engraved Team Mark</span>
+                          <img src="${escapeHTML(entry.teamLogo)}" alt="${escapeHTML(entry.champion || "Champion")} logo engraved on the cup" loading="lazy">
+                        </div>`
+                      : ""
+                  }
                 </div>
                 <div class="awards-cup-copy">
                   <span class="eyebrow">${escapeHTML(entry.season)} Champions</span>
@@ -199,6 +207,45 @@ function renderCupEngravings() {
               </article>
             `;
           })
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderMedalWinners(allData) {
+  const medals = getAwards(allData, { season: "All", division: "Seniors" })
+    .filter((award) => award.image)
+    .sort((a, b) => Number(b.season) - Number(a.season) || categoryRank(a.category) - categoryRank(b.category));
+
+  if (!medals.length) return "";
+
+  return `
+    <section class="section-panel awards-medal-panel">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Medal Winners</span>
+          <h2>2026 Leeward Lions Honors</h2>
+          <p>Leeward Lions are featured with both the runner-up medal and regular-season champion medal.</p>
+        </div>
+      </div>
+      <div class="awards-medal-grid">
+        ${medals
+          .map(
+            (award) => `
+              <article class="awards-medal-card">
+                <div class="awards-medal-art">
+                  <img src="${escapeHTML(award.image)}" alt="${escapeHTML(award.winner)} ${escapeHTML(award.category)} medal" loading="lazy">
+                </div>
+                <div class="awards-medal-copy">
+                  <span class="pill green">${escapeHTML(award.season)} ${escapeHTML(award.division || "Seniors")}</span>
+                  <h3>${winnerMarkup(award, "award-winner-link")}</h3>
+                  <strong>${escapeHTML(award.category)}</strong>
+                  <p>${escapeHTML(cleanSourceNote(award.sourceNote))}</p>
+                </div>
+              </article>
+            `
+          )
           .join("")}
       </div>
     </section>
@@ -232,9 +279,13 @@ function renderTabs(awards) {
 function renderAwardCard(award) {
   const type = awardType(award);
   return `
-    <article class="card award-card ${type}">
+    <article class="card award-card ${type}${award.image ? " has-medal-image" : ""}">
       <div class="award-card-top">
-        <span class="award-card-icon" aria-hidden="true">${awardIcon(award)}</span>
+        ${
+          award.image
+            ? `<img class="award-medal-image" src="${escapeHTML(award.image)}" alt="${escapeHTML(award.category)} medal" loading="lazy">`
+            : `<span class="award-card-icon" aria-hidden="true">${awardIcon(award)}</span>`
+        }
       </div>
       <span class="award-title">${escapeHTML(award.category)}</span>
       <h3>${winnerMarkup(award, "award-winner-link")}</h3>
@@ -421,6 +472,7 @@ function render(allData, focusSearch = false) {
     </section>
 
     ${renderCupEngravings()}
+    ${renderMedalWinners(allData)}
 
     <section class="section-panel awards-filter-panel">
       <div class="section-head compact-head">

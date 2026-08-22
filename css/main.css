@@ -1311,6 +1311,17 @@ button {
   object-position: center 25%;
 }
 
+#player-overview,
+#player-career,
+#player-matchups,
+#player-more {
+  scroll-margin-top: 24px;
+}
+
+.player-jump-nav {
+  margin-top: 18px;
+}
+
 /* ================= Animations ================= */
 
 @keyframes lsl-fade-up {

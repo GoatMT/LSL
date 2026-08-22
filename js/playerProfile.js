@@ -184,6 +184,12 @@ function renderProfileHeader(profile, current, ovr) {
         <a class="button secondary" href="./players.html">Back To Stats</a>
       </div>
     </section>
+    <nav class="team-profile-nav player-jump-nav" aria-label="Jump to section">
+      <a href="#player-overview">Overview</a>
+      <a href="#player-career">Career</a>
+      <a href="#player-matchups">Matchups</a>
+      <a href="#player-more">More</a>
+    </nav>
   `;
 }
 
@@ -196,7 +202,7 @@ function renderMainStatsRow(total) {
   ];
 
   return `
-    <section class="official-main-stats" aria-label="Main player stats">
+    <section class="official-main-stats" id="player-overview" aria-label="Main player stats">
       ${stats
         .map(
           (stat) => `
@@ -258,7 +264,7 @@ function renderNextMatchCard(allData, current) {
 
 function renderCareerSection(career, stageLabel, form) {
   return `
-    <section class="card official-career-card">
+    <section class="card official-career-card" id="player-career">
       <div class="section-head compact-head">
         <div>
           <span class="eyebrow">Career Table</span>
@@ -342,7 +348,7 @@ function renderPlayerDetailSections(allData, playerId, profile) {
   const achievements = unique([...(profile.achievements || []), ...careerRows.flatMap((row) => row.achievements || [])]);
 
   return `
-    <section class="player-detail-panels">
+    <section class="player-detail-panels" id="player-more">
       <article class="card player-detail-card">
         <div class="player-detail-card-head">
           <span class="eyebrow">Player Summary</span>
@@ -411,7 +417,7 @@ function renderVsOpponentSection(allData, playerId, viewState) {
   seasonRows = seasonRows.filter((row) => row.year === activeYear);
 
   return `
-    <section class="card vs-opponent-card">
+    <section class="card vs-opponent-card" id="player-matchups">
       <div class="section-head compact-head">
         <div>
           <span class="eyebrow">Matchups</span>

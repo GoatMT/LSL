@@ -1447,6 +1447,44 @@
     justify-content: stretch;
   }
 
+  .all-time-toggle.wide,
+  .all-time-toggle.four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .all-time-toggle.wide button:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .all-time-toggle.season {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .all-time-toggle button {
+    white-space: normal;
+    font-size: 0.82rem;
+    padding: 9px 8px;
+    line-height: 1.25;
+  }
+
+  .all-time-current-row {
+    padding: 12px;
+  }
+
+  .all-time-current-row b {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 0;
+  }
+
+  .all-time-leaderboard-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .all-time-select {
+    min-height: 52px;
+  }
+
   .award-card-top,
   .award-meta-row,
   .owner-row,
@@ -2023,6 +2061,10 @@
     font-size: 1.85rem;
   }
 
+  .player-jump-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .home-leader-feature {
     grid-template-columns: 58px minmax(0, 1fr);
     gap: 10px;
@@ -2176,6 +2218,16 @@
   .mobile-card-table .num {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+
+  .all-time-table td,
+  .all-time-table .num {
+    grid-template-columns: minmax(92px, 0.7fr) minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .all-time-table tbody tr {
+    padding: 10px 12px;
   }
 
   .projected-scorer-row strong {
