@@ -25,8 +25,15 @@
   box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+  min-width: 0;
+}
+
 html {
   min-width: 320px;
+  overflow-x: hidden;
 }
 
 body {
@@ -37,6 +44,7 @@ body {
   font-size: 16px;
   line-height: 1.55;
   overflow-wrap: break-word;
+  overflow-x: hidden;
 }
 
 img {
@@ -46,6 +54,28 @@ img {
 
 video {
   max-width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+td,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+strong,
+small,
+a,
+button,
+label {
+  overflow-wrap: anywhere;
 }
 
 a {
@@ -1427,6 +1457,25 @@ a {
 
 .nav-inner a:hover::after {
   right: 0;
+}
+
+/* Calm site mode: keep the league site readable and still. */
+*,
+*::before,
+*::after {
+  animation-duration: 0s !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-duration: 0s !important;
+}
+
+.card:hover,
+.important-news-card:hover,
+.history-card:hover,
+.advanced-chart-card:hover,
+.button:hover,
+.pill:hover {
+  transform: none;
 }
 
 /* Live indicators */

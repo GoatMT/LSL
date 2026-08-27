@@ -4682,10 +4682,10 @@ details.clean-details summary {
 .official-profile-header {
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(130px, 0.18fr) minmax(0, 1fr) auto;
-  gap: 18px;
+  grid-template-columns: minmax(118px, 0.16fr) minmax(0, 1fr) minmax(116px, auto) auto;
+  gap: 20px;
   align-items: center;
-  padding: 22px;
+  padding: 24px;
   background: #202920;
   border: 1px solid rgba(199, 163, 103, 0.32);
   border-radius: 28px;
@@ -4775,7 +4775,7 @@ details.clean-details summary {
 .official-main-stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 .official-stat-card {
@@ -4883,7 +4883,7 @@ details.clean-details summary {
 .official-filter-body {
   display: grid;
   grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
-  gap: 14px;
+  gap: 16px;
   align-items: stretch;
 }
 
@@ -4924,12 +4924,13 @@ details.clean-details summary {
 .official-career-card .player-career-wrap {
   border: 1px solid rgba(199, 163, 103, 0.28);
   border-radius: 20px;
+  overflow: hidden;
 }
 
 .official-career-card .data-table.player-career-table th,
 .official-career-card .data-table.player-career-table td {
-  padding: 12px 9px;
-  font-size: 0.88rem;
+  padding: 13px 10px;
+  font-size: 0.9rem;
 }
 
 .productive-season-card {
@@ -6504,7 +6505,12 @@ details.clean-details summary {
   line-height: 1.45;
 }
 
-.forms-step-grid,
+.forms-step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
 .forms-grid {
   gap: 16px;
 }

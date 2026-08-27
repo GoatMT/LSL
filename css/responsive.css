@@ -226,6 +226,10 @@
     grid-template-columns: minmax(116px, 0.24fr) minmax(0, 1fr);
   }
 
+  .official-profile-ovr-card {
+    min-height: 112px;
+  }
+
   .official-profile-actions {
     grid-column: 1 / -1;
     justify-content: stretch;
@@ -500,13 +504,13 @@
   }
 
   .hero-copy h1 {
-    max-width: 12ch;
+    max-width: 100%;
     font-size: 1.72rem;
     line-height: 1.16;
   }
 
   .hero-copy p {
-    max-width: 27ch;
+    max-width: 100%;
   }
 
   .section-head,
@@ -625,8 +629,25 @@
   }
 
   .awards-latest-grid,
-  .awards-filter-controls {
+  .awards-filter-controls,
+  .awards-medal-grid,
+  .forms-office-grid,
+  .forms-step-grid,
+  .forms-grid {
     grid-template-columns: 1fr;
+  }
+
+  .awards-medal-card,
+  .forms-help-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .awards-medal-art img {
+    max-height: 240px;
+  }
+
+  .forms-help-strip .button {
+    width: 100%;
   }
 
   .award-search {
@@ -708,13 +729,32 @@
 
   .official-profile-header {
     grid-template-columns: 1fr;
-    padding: 18px;
+    gap: 14px;
+    padding: 16px;
+    text-align: left;
+  }
+
+  .official-profile-photo {
+    width: min(150px, 56vw);
+    justify-self: center;
+  }
+
+  .official-profile-identity {
     text-align: center;
   }
 
+  .official-profile-identity h1 {
+    font-size: clamp(1.85rem, 11vw, 2.55rem);
+  }
+
+  .official-profile-identity p {
+    font-size: 0.95rem;
+  }
+
   .official-profile-ovr-card {
-    width: min(100%, 240px);
-    min-height: 132px;
+    width: 100%;
+    min-height: 96px;
+    grid-template-columns: auto minmax(0, 1fr);
     justify-self: center;
   }
 
@@ -728,8 +768,12 @@
   }
 
   .official-stat-card {
-    min-height: 112px;
+    min-height: 104px;
     padding: 14px;
+  }
+
+  .official-stat-card strong {
+    font-size: clamp(2rem, 13vw, 2.8rem);
   }
 
   .official-info-card,
@@ -1213,7 +1257,8 @@
   .mobile-card-table tbody tr {
     display: grid;
     gap: 0;
-    padding: 12px;
+    padding: 14px;
+    background: var(--card);
     border: 1px solid var(--line);
     border-radius: 16px;
   }
@@ -1262,12 +1307,15 @@
   .all-time-table tbody tr {
     display: grid;
     gap: 0;
-    padding: 12px;
-    border-bottom: 1px solid var(--line);
+    margin-bottom: 12px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
   }
 
   .all-time-table tbody tr:last-child {
-    border-bottom: 0;
+    margin-bottom: 0;
   }
 
   .all-time-table td,
@@ -1317,12 +1365,15 @@
   .record-table tbody tr {
     display: grid;
     gap: 0;
-    padding: 12px;
-    border-bottom: 1px solid var(--line);
+    margin-bottom: 12px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
   }
 
   .record-table tbody tr:last-child {
-    border-bottom: 0;
+    margin-bottom: 0;
   }
 
   .record-table td,
@@ -1730,12 +1781,15 @@
   .projected-table tbody tr {
     display: grid;
     gap: 0;
-    padding: 12px;
-    border-bottom: 1px solid var(--line);
+    margin-bottom: 12px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
   }
 
   .projected-table tbody tr:last-child {
-    border-bottom: 0;
+    margin-bottom: 0;
   }
 
   .projected-table td,
@@ -1911,6 +1965,21 @@
     grid-template-columns: 1fr;
   }
 
+  .awards-cup-image-wrap {
+    min-height: 220px;
+  }
+
+  .awards-cup-engraved-logo {
+    position: static;
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .awards-cup-engraved-logo img {
+    width: min(150px, 100%);
+    justify-self: center;
+  }
+
   .awards-cup-name-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1920,8 +1989,27 @@
   .awards-summary-grid,
   .award-tabs,
   .award-history-row,
-  .award-meta-row {
+  .award-meta-row,
+  .form-card-pro-meta,
+  .forms-office-grid {
     grid-template-columns: 1fr;
+  }
+
+  .form-card-pro-top,
+  .form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .form-card-pro-icon {
+    align-self: flex-start;
+  }
+
+  .forms-office-card,
+  .forms-step-card,
+  .form-card-pro {
+    padding: 16px;
+    border-radius: 20px;
   }
 
   .award-summary-tile {
