@@ -6452,6 +6452,13 @@ details.clean-details summary {
   align-content: center;
 }
 
+.forms-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
 .forms-hero-status {
   display: flex;
   flex-wrap: wrap;
@@ -6459,9 +6466,66 @@ details.clean-details summary {
   margin-top: 22px;
 }
 
+.forms-status-board {
+  min-width: 0;
+  display: grid;
+  gap: 16px;
+  align-content: center;
+  padding: 28px;
+  background: #202920;
+  border: 1px solid rgba(199, 163, 103, 0.36);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.forms-status-board > strong {
+  color: #ffffff;
+  font-size: clamp(1.7rem, 4vw, 2.35rem);
+  line-height: 1.05;
+}
+
+.forms-status-board > p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.forms-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.forms-status-grid span {
+  min-width: 0;
+  min-height: 76px;
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  padding: 10px;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.forms-status-grid b {
+  color: #ffffff;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.forms-status-grid small {
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
 .forms-office-panel,
 .forms-steps-panel,
 .forms-category-panel,
+.forms-list-panel,
 .forms-help-panel {
   display: grid;
   gap: 18px;
@@ -6507,12 +6571,115 @@ details.clean-details summary {
 
 .forms-step-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 
 .forms-grid {
   gap: 16px;
+}
+
+.forms-list {
+  display: grid;
+  gap: 14px;
+}
+
+.form-list-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr) minmax(150px, auto);
+  gap: 18px;
+  align-items: stretch;
+  padding: 18px;
+  background: #202920;
+  border: 1px solid rgba(199, 163, 103, 0.3);
+  border-radius: 24px;
+}
+
+.form-list-card.open {
+  border-color: rgba(122, 224, 147, 0.42);
+  box-shadow: inset 4px 0 0 rgba(122, 224, 147, 0.55);
+}
+
+.form-list-card.closed {
+  background: #1d251f;
+}
+
+.form-list-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  align-self: start;
+  color: #ffffff;
+  background: var(--green);
+  border: 1px solid rgba(199, 163, 103, 0.42);
+  border-radius: 18px;
+  font-size: 0.9rem;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.form-list-main {
+  min-width: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.form-list-title-row {
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.form-list-title-row h3,
+.form-list-main p {
+  margin: 0;
+}
+
+.form-list-title-row h3 {
+  margin-top: 4px;
+  color: #ffffff;
+  font-size: clamp(1.18rem, 2vw, 1.42rem);
+  line-height: 1.18;
+}
+
+.form-list-main p {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.form-purpose-box {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(76px, auto) minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.form-purpose-box strong {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.form-purpose-box span {
+  color: #ffffff;
+  font-weight: 750;
+}
+
+.form-list-action {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  justify-items: stretch;
 }
 
 .forms-step-card,
@@ -6621,6 +6788,13 @@ details.clean-details summary {
 .forms-help-strip p {
   margin-top: 6px;
   color: var(--muted);
+}
+
+.forms-help-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .season-details-panel {

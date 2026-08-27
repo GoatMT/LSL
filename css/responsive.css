@@ -633,13 +633,43 @@
   .awards-medal-grid,
   .forms-office-grid,
   .forms-step-grid,
-  .forms-grid {
+  .forms-grid,
+  .forms-status-grid {
     grid-template-columns: 1fr;
   }
 
   .awards-medal-card,
-  .forms-help-strip {
+  .forms-help-strip,
+  .form-list-card {
     grid-template-columns: 1fr;
+  }
+
+  .forms-status-board {
+    padding: 20px;
+  }
+
+  .forms-hero-actions,
+  .forms-help-actions {
+    width: 100%;
+  }
+
+  .forms-hero-actions .button,
+  .forms-help-actions .button {
+    flex: 1 1 180px;
+  }
+
+  .form-list-icon {
+    width: 54px;
+    height: 54px;
+  }
+
+  .form-list-title-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .form-list-action {
+    justify-items: stretch;
   }
 
   .awards-medal-art img {
@@ -1996,9 +2026,10 @@
   }
 
   .form-card-pro-top,
-  .form-actions {
+  .form-actions,
+  .form-purpose-box {
     align-items: stretch;
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   .form-card-pro-icon {
