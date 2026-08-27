@@ -1,4 +1,16 @@
 {
   "season": "2026",
-  "photos": []
+  "photos": [
+    {
+      "id": "2026-champions",
+      "title": "2026 Champions",
+      "division": "Seniors",
+      "category": "Champions",
+      "teamId": "em-haulers-fc",
+      "teamName": "EM Haulers FC",
+      "uploadDate": "2026-08-08",
+      "description": "EM Haulers FC after winning the 2026 LSL Championship Final 2-1 over Leeward Lions.",
+      "imageUrl": "./Photos%20and%20Videos/2026/2026%20Champions.jpg"
+    }
+  ]
 }
