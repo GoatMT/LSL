@@ -13706,3 +13706,211 @@ a.fan-vote-row {
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
 }
+
+/* ---------- Site-wide cleanup pass ---------- */
+
+.page-shell {
+  display: grid;
+  gap: 28px;
+}
+
+.page-shell > * {
+  min-width: 0;
+}
+
+.section-panel {
+  display: grid;
+  gap: 20px;
+  padding: clamp(20px, 2.4vw, 30px);
+  border-radius: 28px;
+}
+
+.section-panel > .section-head,
+.section-panel > .controls,
+.section-panel > details > .section-head {
+  margin-bottom: 0;
+}
+
+.section-head {
+  min-width: 0;
+  padding: clamp(16px, 2vw, 22px);
+  border-radius: 22px;
+}
+
+.section-head.compact-head {
+  padding: 16px 18px;
+}
+
+.section-head h1,
+.section-head h2 {
+  max-width: 900px;
+  line-height: 1.1;
+}
+
+.section-head p {
+  line-height: 1.55;
+}
+
+.controls {
+  gap: 16px;
+  padding: 18px;
+  border-radius: 22px;
+}
+
+.control {
+  gap: 8px;
+}
+
+.control label,
+.site-search-label {
+  color: #d6c39d;
+}
+
+.control select,
+.control input,
+.site-search input,
+select,
+input[type="search"],
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  min-height: 48px;
+  border-radius: 15px;
+}
+
+.button,
+.text-link,
+.nav-link,
+.nav-dropdown-button {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.card,
+.summary-tile,
+.stat-box,
+.person-card,
+.team-card,
+.match-card,
+.award-card,
+.rule-card,
+.form-list-card,
+.trade-row,
+.projected-team-card,
+.projection-team-card {
+  min-width: 0;
+}
+
+.stat-box {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  min-height: 92px;
+  padding: 16px 12px;
+  text-align: center;
+  border-radius: 18px;
+}
+
+.stat-box span,
+.stat-box strong {
+  width: 100%;
+  text-align: center;
+}
+
+.table-wrap {
+  border-radius: 22px;
+}
+
+.data-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.data-table th,
+.data-table td {
+  padding: 13px 14px;
+}
+
+.data-table th {
+  line-height: 1.15;
+}
+
+.data-table td {
+  line-height: 1.35;
+}
+
+.data-table a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+details > summary {
+  cursor: pointer;
+}
+
+summary.section-head {
+  list-style: none;
+}
+
+summary.section-head::-webkit-details-marker {
+  display: none;
+}
+
+.team-logo,
+.team-logo.small,
+.trade-team-logo,
+.imt-team-logo,
+.brand-link img,
+.hero-logo-card img {
+  flex: 0 0 auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.team-logo,
+.trade-team-logo,
+.imt-team-logo {
+  padding: 5px;
+}
+
+.nav-inner {
+  gap: 14px;
+}
+
+.nav-link,
+.nav-dropdown-button {
+  min-height: 50px;
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+
+.nav-more-button {
+  background: rgba(199, 163, 103, 0.28);
+  border-color: rgba(199, 163, 103, 0.88);
+}
+
+.nav-dropdown-menu {
+  padding: 10px;
+  border-radius: 18px;
+}
+
+.nav-dropdown-menu a {
+  min-height: 42px;
+  display: grid;
+  align-items: center;
+}
+
+.hero,
+.home-split,
+.grid,
+.leader-grid,
+.team-week-grid,
+.award-season-grid,
+.awards-summary-grid,
+.players-summary-grid,
+.coach-summary-grid,
+.rules-summary-grid,
+.rules-update-grid {
+  min-width: 0;
+}

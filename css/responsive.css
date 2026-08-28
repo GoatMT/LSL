@@ -2862,3 +2862,281 @@
     text-align: center;
   }
 }
+
+/* ---------- Site-wide mobile cleanup pass ---------- */
+
+@media (max-width: 900px) {
+  .page-shell {
+    gap: 22px;
+  }
+
+  .section-panel {
+    gap: 18px;
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .controls {
+    gap: 14px;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+
+  .nav-group {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    width: min(100% - 20px, var(--max));
+    gap: 18px;
+    padding-bottom: 38px;
+  }
+
+  .site-header {
+    position: sticky;
+  }
+
+  .nav-inner {
+    width: min(100% - 18px, var(--max));
+    min-height: 0;
+    padding: 10px 0 12px;
+  }
+
+  .brand-link {
+    gap: 10px;
+  }
+
+  .brand-link img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand-text strong {
+    white-space: normal;
+    line-height: 1.05;
+  }
+
+  .brand-text small {
+    white-space: normal;
+    font-size: 0.78rem;
+  }
+
+  .site-search {
+    gap: 5px;
+  }
+
+  .site-search input {
+    min-height: 46px;
+  }
+
+  .nav-toggle {
+    min-height: 46px;
+    border-radius: 14px;
+  }
+
+  .nav-links {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .nav-group {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  .nav-dropdown-menu {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .nav-link,
+  .nav-dropdown-button,
+  .nav-dropdown-menu a {
+    min-height: 48px;
+    justify-content: center;
+    border-radius: 14px;
+  }
+
+  .hero {
+    gap: 16px;
+    margin-bottom: 0;
+  }
+
+  .hero-copy,
+  .hero-logo-card,
+  .section-panel {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .section-panel {
+    gap: 16px;
+  }
+
+  .section-head {
+    gap: 10px;
+    padding: 15px;
+    border-radius: 18px;
+  }
+
+  .section-head.compact-head {
+    padding: 14px;
+  }
+
+  .section-head h1,
+  .section-head h2 {
+    font-size: clamp(1.34rem, 7vw, 1.82rem);
+    line-height: 1.12;
+  }
+
+  .section-head p {
+    font-size: 0.94rem;
+  }
+
+  .controls {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .control select,
+  .control input,
+  select,
+  input[type="search"],
+  input[type="text"],
+  input[type="password"],
+  input[type="number"] {
+    width: 100%;
+    min-height: 48px;
+    font-size: 1rem;
+  }
+
+  .button-row,
+  .hero-actions,
+  .forms-hero-actions,
+  .forms-help-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .stat-box {
+    min-height: 82px;
+    padding: 14px 10px;
+  }
+
+  .table-wrap {
+    border-radius: 18px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 11px 10px;
+    font-size: 0.86rem;
+  }
+
+  .mobile-card-table thead {
+    display: none;
+  }
+
+  .mobile-card-table,
+  .mobile-card-table tbody,
+  .mobile-card-table tr,
+  .mobile-card-table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .mobile-card-table tr {
+    margin: 10px;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+
+  .mobile-card-table td {
+    display: grid;
+    grid-template-columns: minmax(104px, 0.42fr) minmax(0, 1fr);
+    gap: 10px;
+    text-align: left !important;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-card-table td::before {
+    content: attr(data-label);
+    color: var(--gold);
+    font-size: 0.76rem;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+
+  .mobile-card-table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-shell {
+    width: min(100% - 14px, var(--max));
+    gap: 14px;
+    padding-top: 14px;
+  }
+
+  .hero-copy,
+  .hero-logo-card,
+  .section-panel {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(1.9rem, 11vw, 2.5rem);
+  }
+
+  .hero-logo-card img {
+    width: 118px;
+    height: 118px;
+  }
+
+  .section-head {
+    padding: 13px;
+    border-radius: 16px;
+  }
+
+  .section-head h1,
+  .section-head h2 {
+    font-size: clamp(1.24rem, 7.5vw, 1.62rem);
+  }
+
+  .card,
+  .summary-tile,
+  .award-card,
+  .rule-card,
+  .form-list-card,
+  .trade-row,
+  .game-team-card,
+  .home-match-card {
+    border-radius: 16px;
+  }
+
+  .stat-box {
+    min-height: 76px;
+  }
+
+  .mobile-card-table tr {
+    margin: 8px;
+  }
+
+  .mobile-card-table td {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
