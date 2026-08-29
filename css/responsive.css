@@ -3140,3 +3140,96 @@
     gap: 4px;
   }
 }
+
+/* ---------- Player profile clarity mobile ---------- */
+
+@media (max-width: 900px) {
+  .official-style-card,
+  .scored-game-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .scored-game-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .official-profile-header {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .official-profile-photo {
+    width: 72px;
+  }
+
+  .official-profile-identity h1 {
+    font-size: clamp(1.65rem, 9vw, 2.25rem);
+  }
+
+  .official-profile-identity p {
+    font-size: 0.92rem;
+  }
+
+  .official-profile-ovr-card,
+  .official-profile-actions {
+    grid-column: 1 / -1;
+  }
+
+  .official-profile-ovr-card {
+    min-height: 86px;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .official-profile-actions .button {
+    width: 100%;
+  }
+
+  .official-main-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .official-stat-card {
+    min-height: 104px;
+    padding: 14px;
+  }
+
+  .official-stat-card strong {
+    font-size: 2rem;
+  }
+
+  .official-style-card,
+  .player-scored-games-card,
+  .official-career-card,
+  .productive-season-card,
+  .official-player-profile .success-comparison-card,
+  .official-player-profile .inter-profile-card {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .official-style-rates,
+  .scored-game-detail-grid,
+  .scored-game-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .official-style-rates span {
+    min-height: 78px;
+  }
+
+  .scored-game-main h3 span {
+    display: flex;
+    width: max-content;
+    margin: 8px 0;
+  }
+
+  .scored-game-scorebox strong {
+    font-size: 2.25rem;
+  }
+}

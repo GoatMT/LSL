@@ -13914,3 +13914,256 @@ summary.section-head::-webkit-details-marker {
 .rules-update-grid {
   min-width: 0;
 }
+
+/* ---------- Player profile clarity pass ---------- */
+
+.official-info-card {
+  gap: 18px;
+}
+
+.official-style-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
+  gap: 16px;
+  align-items: stretch;
+  padding: 18px;
+  background: #172018;
+  border: 1px solid rgba(199, 163, 103, 0.3);
+  border-radius: 20px;
+}
+
+.official-style-copy {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.official-style-copy h2,
+.official-style-copy p {
+  margin: 0;
+}
+
+.official-style-copy h2 {
+  color: #ffffff;
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  line-height: 1.12;
+}
+
+.official-style-copy p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.official-style-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.official-style-traits span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  color: #ffffff;
+  background: rgba(17, 60, 31, 0.9);
+  border: 1px solid rgba(199, 163, 103, 0.26);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.official-style-rates {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.official-style-rates span {
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 5px;
+  min-height: 104px;
+  padding: 10px;
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.official-style-rates strong {
+  color: #ffffff;
+  font-size: 1.25rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.official-style-rates small {
+  color: var(--gold);
+  font-size: 0.67rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.player-scored-games-card {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  background: #202920;
+  border-color: rgba(199, 163, 103, 0.28);
+  border-radius: 26px;
+}
+
+.player-scored-games-card .section-head {
+  background: #142b1b;
+  border-color: rgba(199, 163, 103, 0.28);
+}
+
+.scored-game-feature {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(132px, 0.2fr);
+  gap: 14px;
+  align-items: stretch;
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+}
+
+.scored-game-main {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+
+.scored-game-main h3,
+.scored-game-main p {
+  margin: 0;
+}
+
+.scored-game-main h3 {
+  color: #ffffff;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  line-height: 1.18;
+}
+
+.scored-game-main h3 span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  margin: 0 6px;
+  padding: 5px 10px;
+  color: #ffffff;
+  background: var(--green);
+  border: 1px solid rgba(199, 163, 103, 0.45);
+  border-radius: 12px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.scored-game-main p {
+  color: var(--muted);
+}
+
+.scored-game-scorebox {
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  padding: 14px;
+  text-align: center;
+  background: #0f341b;
+  border: 1px solid rgba(199, 163, 103, 0.5);
+  border-radius: 18px;
+}
+
+.scored-game-scorebox span,
+.scored-game-scorebox small {
+  color: #efd3a5;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.scored-game-scorebox strong {
+  color: #ffffff;
+  font-size: 2.6rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.scored-game-scorebox small {
+  color: var(--muted);
+  text-transform: none;
+}
+
+.scored-game-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.scored-game-detail-grid span {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  padding: 13px;
+  background: #172018;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.scored-game-detail-grid strong {
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+.scored-game-detail-grid small {
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.scored-game-notes {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scored-game-notes li {
+  padding: 11px 13px;
+  color: var(--muted);
+  background: #172018;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.scored-game-actions {
+  display: grid;
+  grid-template-columns: minmax(120px, auto) minmax(140px, 1fr) minmax(120px, auto);
+  gap: 10px;
+  align-items: center;
+}
+
+.scored-game-actions .button,
+.scored-game-actions .pill {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.scored-game-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

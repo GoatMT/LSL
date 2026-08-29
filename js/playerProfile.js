@@ -14,6 +14,7 @@ const stageOptions = [
   { value: "playoffs", label: "Playoffs" },
 ];
 let state = { stage: "all", vsStage: "all", vsYear: "" };
+let scoredMatchIndex = 0;
 
 const vsStageOptions = [
   { value: "all", label: "All Games" },
@@ -164,6 +165,293 @@ function renderInterMadrasahSection(allData, playerId, aliases) {
   `;
 }
 
+function careerTotals(rows = []) {
+  return rows.reduce(
+    (totals, row) => ({
+      gamesPlayed: totals.gamesPlayed + (Number(row.gamesPlayed) || 0),
+      goals: totals.goals + (Number(row.goals) || 0),
+      assists: totals.assists + (Number(row.assists) || 0),
+      shots: totals.shots + (Number(row.shots) || 0),
+      wins: totals.wins + (Number(row.wins) || 0),
+      ties: totals.ties + (Number(row.ties) || 0),
+      losses: totals.losses + (Number(row.losses) || 0),
+      points: totals.points + (Number(row.points) || 0),
+    }),
+    { gamesPlayed: 0, goals: 0, assists: 0, shots: 0, wins: 0, ties: 0, losses: 0, points: 0 }
+  );
+}
+
+function inferPlayerStyle(profile = {}, careerRows = []) {
+  const totals = careerTotals(careerRows);
+  const games = Math.max(1, totals.gamesPlayed || 0);
+  const goalRate = totals.goals / games;
+  const assistRate = totals.assists / games;
+  const shotRate = totals.shots / games;
+  const winRate = totals.wins / games;
+  const position = String(profile.position || "Field").toLowerCase();
+
+  if (position.includes("goal")) {
+    return {
+      label: "Goalkeeper",
+      traits: ["Shot stopper", "Back line voice", "Penalty box presence"],
+      description: `${profile.name} plays as a goalkeeper, so the biggest impact is organizing the defense, staying composed under pressure, and giving the team a steady last line.` ,
+    };
+  }
+
+  if (position.includes("defen")) {
+    const extra = totals.goals || totals.assists ? " also adds surprise attacking value when chances open up" : " keeps the game simple and protects space first";
+    return {
+      label: "Defensive Anchor",
+      traits: ["Physical defending", "Team shape", winRate >= 0.55 ? "Winning impact" : "Reliable coverage"],
+      description: `${profile.name} profiles as a defense-first player who${extra}. The style is built around positioning, effort, and helping the team stay organized.` ,
+    };
+  }
+
+  if (goalRate >= 1.5) {
+    return {
+      label: "Elite Finisher",
+      traits: ["High goal rate", "Big scoring threat", shotRate >= 2 ? "Creates shots" : "Efficient chances"],
+      description: `${profile.name} plays like a main scoring option. The profile is direct, aggressive in front of goal, and dangerous whenever the team creates space.` ,
+    };
+  }
+
+  if (goalRate >= 0.8 && totals.goals >= totals.assists) {
+    return {
+      label: "Goal-First Attacker",
+      traits: ["Finishing", "Forward runs", winRate >= 0.55 ? "Helps winning teams" : "Scoring spark"],
+      description: `${profile.name} is at the best when attacking the box and looking for goals. The style is simple to understand: find space, get shots, and finish chances.` ,
+    };
+  }
+
+  if (assistRate > goalRate || totals.assists >= 3) {
+    return {
+      label: "Creator",
+      traits: ["Passing", "Chance creation", "Unselfish play"],
+      description: `${profile.name} plays more like a setup player, moving the ball into better areas and helping teammates get cleaner looks at goal.` ,
+    };
+  }
+
+  if (shotRate >= 2) {
+    return {
+      label: "High-Activity Player",
+      traits: ["Shot volume", "Energy", "Pressure"],
+      description: `${profile.name} stays involved and looks to make things happen. The style is active, forward-thinking, and built around putting pressure on the opponent.` ,
+    };
+  }
+
+  if (totals.gamesPlayed >= 8) {
+    return {
+      label: "Steady Contributor",
+      traits: ["Experience", "Team role", "Consistency"],
+      description: `${profile.name} brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure.` ,
+    };
+  }
+
+  return {
+    label: "Developing Profile",
+    traits: ["More to show", "Role building", "Coming soon"],
+    description: `${profile.name} is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact.` ,
+  };
+}
+
+function renderPlayerStyleCard(profile, careerRows) {
+  const style = inferPlayerStyle(profile, careerRows);
+  const totals = careerTotals(careerRows);
+  const games = Math.max(1, totals.gamesPlayed || 0);
+  const rates = [
+    { label: "Goals/Game", value: (totals.goals / games).toFixed(2) },
+    { label: "Points/Game", value: (totals.points / games).toFixed(2) },
+    { label: "Win Rate", value: `${Math.round((totals.wins / games) * 100)}%` },
+  ];
+
+  return `
+    <article class="official-style-card">
+      <div class="official-style-copy">
+        <span class="eyebrow">Player Style</span>
+        <h2>${escapeHTML(style.label)}</h2>
+        <p>${escapeHTML(style.description)}</p>
+        <div class="official-style-traits">
+          ${style.traits.map((trait) => `<span>${escapeHTML(trait)}</span>`).join("")}
+        </div>
+      </div>
+      <div class="official-style-rates" aria-label="Player style rates">
+        ${rates.map((rate) => `<span><strong>${escapeHTML(rate.value)}</strong><small>${escapeHTML(rate.label)}</small></span>`).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function playoffMatchesForSeason(data = {}) {
+  if (Array.isArray(data.playoffs?.divisions)) {
+    return data.playoffs.divisions.flatMap((division) =>
+      (division.rounds || []).flatMap((round) =>
+        (round.matches || []).map((match) => ({
+          ...match,
+          stage: match.stage || "playoffs",
+          division: match.division || division.division,
+          roundName: round.name,
+        }))
+      )
+    );
+  }
+
+  return (data.playoffs?.rounds || []).flatMap((round) =>
+    (round.matches || []).map((match) => ({
+      ...match,
+      stage: match.stage || "playoffs",
+      division: match.division || data.playoffs?.division || data.division || "Seniors",
+      roundName: round.name,
+    }))
+  );
+}
+
+function lslMatchesForSeason(data = {}) {
+  return [
+    ...(data.matches || []),
+    ...playoffMatchesForSeason(data),
+  ];
+}
+
+function scoredMatchTimeValue(season, match = {}) {
+  const dateValue = match.date ? Date.parse(`${match.date}T00:00:00`) : 0;
+  const time = String(match.time || "").match(/^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i);
+  let minutes = 0;
+  if (time) {
+    let hour = Number(time[1]) || 0;
+    const minute = Number(time[2]) || 0;
+    const period = String(time[3] || "").toUpperCase();
+    if (period === "PM" && hour !== 12) hour += 12;
+    if (period === "AM" && hour === 12) hour = 0;
+    minutes = hour * 60 + minute;
+  }
+  return (Number(season) || 0) * 1000000000000 + (Number.isFinite(dateValue) ? dateValue : 0) + minutes * 60000 + (Number(match.week) || 0);
+}
+
+function teamNameForMatch(data, teamId, fallback = "Team TBA") {
+  return (data.teams || []).find((team) => team.id === teamId)?.name || fallback;
+}
+
+function scoredMatchScore(match = {}) {
+  if (Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore)) return `${match.homeScore}-${match.awayScore}`;
+  return "Score TBA";
+}
+
+function scoredMatchResult(match = {}, teamId = "") {
+  const winner = winnerTeamId(match);
+  if (!winner && Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore)) return "Draw";
+  if (!winner) return "Result TBA";
+  return winner === teamId ? "Win" : "Loss";
+}
+
+function buildScoredMatches(allData, playerId, aliases) {
+  return allData
+    .flatMap((data) =>
+      lslMatchesForSeason(data).flatMap((match) => {
+        const playerScorers = (match.scorers || match.goalscorers || []).filter((event) => eventPlayerId(event, aliases) === playerId);
+        if (!playerScorers.length) return [];
+
+        const goals = playerScorers.reduce((sum, event) => sum + eventStatCount(event, "goals"), 0);
+        const assists = (match.assists || [])
+          .filter((event) => eventPlayerId(event, aliases) === playerId)
+          .reduce((sum, event) => sum + eventStatCount(event, "assists"), 0);
+        const teamId = playerScorers.find((event) => event?.teamId)?.teamId || match.homeTeamId;
+        const opponentId = teamId === match.homeTeamId ? match.awayTeamId : match.homeTeamId;
+
+        return [
+          {
+            season: data.year,
+            matchId: match.id || "",
+            week: match.week || "",
+            stage: match.stage || "regular",
+            division: match.division || "Seniors",
+            label: match.label || match.roundName || "Match",
+            roundName: match.roundName || "",
+            date: match.date || "",
+            time: match.time || "",
+            teamId,
+            teamName: teamNameForMatch(data, teamId, playerScorers[0]?.teamName || "Team TBA"),
+            opponentId,
+            opponentName: teamNameForMatch(data, opponentId, teamId === match.homeTeamId ? match.awayTeamName : match.homeTeamName),
+            homeTeamName: teamNameForMatch(data, match.homeTeamId, match.homeTeamName),
+            awayTeamName: teamNameForMatch(data, match.awayTeamId, match.awayTeamName),
+            score: scoredMatchScore(match),
+            result: scoredMatchResult(match, teamId),
+            goals,
+            assists,
+            notes: match.notes || (match.note ? [match.note] : []),
+            sortValue: scoredMatchTimeValue(data.year, match),
+          },
+        ];
+      })
+    )
+    .sort((a, b) => b.sortValue - a.sortValue || String(b.label).localeCompare(String(a.label)));
+}
+
+function renderScoredMatchSection(allData, playerId, aliases) {
+  const matches = buildScoredMatches(allData, playerId, aliases);
+  if (!matches.length) {
+    return `
+      <section class="card player-scored-games-card">
+        <div class="section-head compact-head">
+          <div>
+            <span class="eyebrow">Goal Log</span>
+            <h2>Games Scored In</h2>
+            <p>Scored-game details will appear here once this player has a listed goal.</p>
+          </div>
+        </div>
+        ${statusMessage("empty", "No scored matches listed yet.")}
+      </section>
+    `;
+  }
+
+  if (scoredMatchIndex >= matches.length) scoredMatchIndex = matches.length - 1;
+  if (scoredMatchIndex < 0) scoredMatchIndex = 0;
+  const match = matches[scoredMatchIndex];
+  const stageLabel = match.stage === "playoffs" ? (match.roundName || "Playoffs") : `Week ${match.week || "TBA"}`;
+  const countText = `${scoredMatchIndex + 1} of ${matches.length}`;
+
+  return `
+    <section class="card player-scored-games-card" data-scored-count="${matches.length}">
+      <div class="section-head compact-head">
+        <div>
+          <span class="eyebrow">Goal Log</span>
+          <h2>Games Scored In</h2>
+          <p>Latest scoring match shows first. Use Previous and Next to move through this player's goals from 2024, 2025, and 2026.</p>
+        </div>
+        <span class="pill green">${escapeHTML(countText)}</span>
+      </div>
+      <article class="scored-game-feature" aria-live="polite">
+        <div class="scored-game-main">
+          <span class="pill">${escapeHTML(match.season)} | ${escapeHTML(stageLabel)}</span>
+          <h3>${escapeHTML(match.homeTeamName)} <span>${escapeHTML(match.score)}</span> ${escapeHTML(match.awayTeamName)}</h3>
+          <p>${escapeHTML([formatDate(match.date), match.time, match.division, match.result].filter(Boolean).join(" | "))}</p>
+        </div>
+        <div class="scored-game-scorebox">
+          <span>This Player</span>
+          <strong>${escapeHTML(match.goals)}</strong>
+          <small>${match.goals === 1 ? "Goal" : "Goals"}${match.assists ? ` | ${match.assists} Assist${match.assists === 1 ? "" : "s"}` : ""}</small>
+        </div>
+      </article>
+      <div class="scored-game-detail-grid">
+        <span><strong>${escapeHTML(match.teamName)}</strong><small>Team</small></span>
+        <span><strong>${escapeHTML(match.opponentName)}</strong><small>Opponent</small></span>
+        <span><strong>${escapeHTML(match.label)}</strong><small>Match</small></span>
+        <span><strong>${escapeHTML(match.stage === "playoffs" ? "Playoffs" : "Regular")}</strong><small>Type</small></span>
+      </div>
+      ${
+        match.notes.length
+          ? `<ul class="scored-game-notes">${match.notes.slice(0, 3).map((note) => `<li>${escapeHTML(note)}</li>`).join("")}</ul>`
+          : ""
+      }
+      <div class="scored-game-actions">
+        <button class="button secondary" type="button" data-scored-move="-1"${matches.length < 2 ? " disabled" : ""}>Previous</button>
+        ${match.matchId ? `<a class="button" href="./game.html?id=${encodeURIComponent(match.matchId)}">Open Match</a>` : `<span class="pill">${escapeHTML(match.roundName || "Match details")}</span>`}
+        <button class="button secondary" type="button" data-scored-move="1"${matches.length < 2 ? " disabled" : ""}>Next</button>
+      </div>
+    </section>
+  `;
+}
+
 function renderProfileHeader(profile, current, ovr) {
   const avatar = profile.photo
     ? `<img class="official-profile-photo" src="${escapeHTML(profile.photo)}" alt="${escapeHTML(profile.name)}">`
@@ -227,6 +515,7 @@ function renderPlayerInfoSection(profile, careerRows) {
 
   return `
     <section class="card official-info-card">
+      ${renderPlayerStyleCard(profile, careerRows)}
       <div class="official-achievements-box">
         <span class="eyebrow">Achievements</span>
         <p>${escapeHTML(achievements.join(", ") || "None listed yet")}</p>
@@ -244,7 +533,6 @@ function renderPlayerInfoSection(profile, careerRows) {
     </section>
   `;
 }
-
 function renderNextMatchCard(allData, current) {
   if (!current?.teamId) return "";
   const match = getNextTeamMatch(allData, current.teamId);
@@ -523,6 +811,7 @@ async function init() {
         ${renderMainStatsRow(total)}
         ${renderPlayerInfoSection(profile, careerAll)}
         ${renderNextMatchCard(allData, current)}
+        ${renderScoredMatchSection(allData, id, aliases)}
         ${renderCareerSection(career, stageLabel, form)}
         ${renderSeasonProductionSection(career, stageLabel)}
         ${renderVsOpponentSection(allData, id, state)}
@@ -544,6 +833,15 @@ async function init() {
     document.getElementById("vs-stage")?.addEventListener("change", (event) => {
       state.vsStage = event.target.value;
       render();
+    });
+
+    document.querySelectorAll("[data-scored-move]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const count = Number(document.querySelector("[data-scored-count]")?.dataset.scoredCount) || 0;
+        if (count < 2) return;
+        scoredMatchIndex = (scoredMatchIndex + Number(button.dataset.scoredMove || 0) + count) % count;
+        render();
+      });
     });
   }
 
