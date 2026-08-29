@@ -14167,3 +14167,83 @@ summary.section-head::-webkit-details-marker {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+/* ---------- Player profile section views ---------- */
+
+.player-profile-panel {
+  min-width: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.player-profile-panel[hidden] {
+  display: none !important;
+}
+
+/* ---------- Games Scored In clarity pass ---------- */
+
+.player-scored-games-card {
+  gap: 12px;
+  padding: 18px;
+}
+
+.player-scored-games-card .section-head {
+  min-width: 0;
+  padding: 14px 16px;
+}
+
+.player-scored-games-card .section-head p {
+  max-width: 720px;
+}
+
+.player-scored-games-card .section-head > .pill {
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+.scored-game-feature {
+  grid-template-columns: minmax(0, 1fr) minmax(116px, 0.18fr);
+  gap: 18px;
+  padding: 18px;
+  border-color: rgba(199, 163, 103, 0.3);
+}
+
+.scored-game-main {
+  gap: 8px;
+}
+
+.scored-game-main h3 {
+  max-width: 760px;
+  overflow-wrap: anywhere;
+}
+
+.scored-game-main p {
+  font-size: 0.92rem;
+}
+
+.scored-game-scorebox {
+  min-height: 122px;
+  padding: 12px;
+}
+
+.scored-game-detail-grid {
+  gap: 8px;
+}
+
+.scored-game-detail-grid span {
+  padding: 11px 12px;
+  background: #19221a;
+}
+
+.scored-game-detail-grid strong {
+  overflow-wrap: anywhere;
+}
+
+.scored-game-actions {
+  grid-template-columns: minmax(104px, auto) minmax(130px, 1fr) minmax(104px, auto);
+  gap: 8px;
+}
+
+.scored-game-actions .button {
+  min-height: 42px;
+}

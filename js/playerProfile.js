@@ -13,7 +13,7 @@ const stageOptions = [
   { value: "regular", label: "Regular Season" },
   { value: "playoffs", label: "Playoffs" },
 ];
-let state = { stage: "all", vsStage: "all", vsYear: "" };
+let state = { stage: "all", vsStage: "all", vsYear: "", profileSection: "overview" };
 let scoredMatchIndex = 0;
 
 const vsStageOptions = [
@@ -416,7 +416,7 @@ function renderScoredMatchSection(allData, playerId, aliases) {
         <div>
           <span class="eyebrow">Goal Log</span>
           <h2>Games Scored In</h2>
-          <p>Latest scoring match shows first. Use Previous and Next to move through this player's goals from 2024, 2025, and 2026.</p>
+          <p>Latest scoring match first. Move through every listed game from 2024, 2025, and 2026.</p>
         </div>
         <span class="pill green">${escapeHTML(countText)}</span>
       </div>
@@ -433,10 +433,10 @@ function renderScoredMatchSection(allData, playerId, aliases) {
         </div>
       </article>
       <div class="scored-game-detail-grid">
-        <span><strong>${escapeHTML(match.teamName)}</strong><small>Team</small></span>
+        <span><strong>${escapeHTML(match.teamName)}</strong><small>Player's Team</small></span>
         <span><strong>${escapeHTML(match.opponentName)}</strong><small>Opponent</small></span>
-        <span><strong>${escapeHTML(match.label)}</strong><small>Match</small></span>
-        <span><strong>${escapeHTML(match.stage === "playoffs" ? "Playoffs" : "Regular")}</strong><small>Type</small></span>
+        <span><strong>${escapeHTML(match.goals)}${match.goals === 1 ? " goal" : " goals"}</strong><small>Scored</small></span>
+        <span><strong>${escapeHTML(match.stage === "playoffs" ? "Playoffs" : "Regular Season")}</strong><small>Competition</small></span>
       </div>
       ${
         match.notes.length
@@ -472,11 +472,18 @@ function renderProfileHeader(profile, current, ovr) {
         <a class="button secondary" href="./players.html">Back To Stats</a>
       </div>
     </section>
-    <nav class="team-profile-nav player-jump-nav" aria-label="Jump to section">
-      <a href="#player-overview">Overview</a>
-      <a href="#player-career">Career</a>
-      <a href="#player-matchups">Matchups</a>
-      <a href="#player-more">More</a>
+    <nav class="team-profile-nav player-jump-nav" aria-label="Player profile sections" role="tablist">
+      ${[
+        ["overview", "Overview"],
+        ["career", "Career"],
+        ["matchups", "Matchups"],
+        ["more", "More"],
+      ]
+        .map(
+          ([value, label]) =>
+            '<button type="button" role="tab" class="' + (value === state.profileSection ? "is-active" : "") + '" data-profile-section="' + value + '" aria-selected="' + (value === state.profileSection ? "true" : "false") + '" aria-controls="player-' + value + '-panel">' + label + '</button>'
+        )
+        .join("")}
     </nav>
   `;
 }
@@ -808,17 +815,39 @@ async function init() {
     root.innerHTML = `
       <section class="official-player-profile">
         ${renderProfileHeader(profile, current, ovr)}
-        ${renderMainStatsRow(total)}
-        ${renderPlayerInfoSection(profile, careerAll)}
-        ${renderNextMatchCard(allData, current)}
-        ${renderScoredMatchSection(allData, id, aliases)}
-        ${renderCareerSection(career, stageLabel, form)}
-        ${renderSeasonProductionSection(career, stageLabel)}
-        ${renderVsOpponentSection(allData, id, state)}
-        ${renderInterMadrasahSection(allData, id, aliases)}
-        ${renderPlayerDetailSections(allData, id, profile)}
+
+        <section class="player-profile-panel" id="player-overview-panel" data-profile-panel="overview" role="tabpanel" aria-label="Overview"${state.profileSection !== "overview" ? " hidden" : ""}>
+          ${renderMainStatsRow(total)}
+          ${renderPlayerInfoSection(profile, careerAll)}
+          ${renderNextMatchCard(allData, current)}
+          ${renderScoredMatchSection(allData, id, aliases)}
+        </section>
+
+        <section class="player-profile-panel" id="player-career-panel" data-profile-panel="career" role="tabpanel" aria-label="Career"${state.profileSection !== "career" ? " hidden" : ""}>
+          ${renderCareerSection(career, stageLabel, form)}
+          ${renderSeasonProductionSection(career, stageLabel)}
+        </section>
+
+        <section class="player-profile-panel" id="player-matchups-panel" data-profile-panel="matchups" role="tabpanel" aria-label="Matchups"${state.profileSection !== "matchups" ? " hidden" : ""}>
+          ${renderVsOpponentSection(allData, id, state)}
+        </section>
+
+        <section class="player-profile-panel" id="player-more-panel" data-profile-panel="more" role="tabpanel" aria-label="More"${state.profileSection !== "more" ? " hidden" : ""}>
+          ${renderInterMadrasahSection(allData, id, aliases)}
+          ${renderPlayerDetailSections(allData, id, profile)}
+        </section>
       </section>
     `;
+
+    document.querySelectorAll("[data-profile-section]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.profileSection = button.dataset.profileSection || "overview";
+        render();
+        document.querySelectorAll("[data-profile-section]").forEach((candidate) => {
+          if (candidate.dataset.profileSection === state.profileSection) candidate.focus({ preventScroll: true });
+        });
+      });
+    });
 
     document.getElementById("stage").addEventListener("change", (event) => {
       state.stage = event.target.value;

@@ -3233,3 +3233,32 @@
     font-size: 2.25rem;
   }
 }
+
+/* ---------- Player profile views mobile ---------- */
+
+@media (max-width: 640px) {
+  .player-profile-panel {
+    gap: 14px;
+  }
+
+  .player-scored-games-card .section-head {
+    align-items: flex-start;
+  }
+
+  .player-scored-games-card .section-head > .pill {
+    align-self: flex-start;
+  }
+
+  .scored-game-feature {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .scored-game-detail-grid span {
+    min-height: 0;
+  }
+
+  .scored-game-actions {
+    gap: 8px;
+  }
+}
