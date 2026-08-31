@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v27";
+const CACHE_NAME = "lsl-cache-v30";
 
 /*
  * Static files that are safe to cache.
@@ -93,6 +93,14 @@ const NEVER_CACHE_PATHS = [
   "/firebase/",
 ];
 
+/*
+ * Comparison controls should show the latest page logic after a normal
+ * reload, while still falling back to the cached script when offline.
+ */
+const NETWORK_FIRST_ASSET_PATHS = [
+  "/js/playerVsPlayer.js",
+];
+
 /* =========================================================
    HELPERS
    ========================================================= */
@@ -107,6 +115,12 @@ function isPulseRequest(url) {
   return PULSE_PATHS.some((path) => {
     return pathname.endsWith(path);
   });
+}
+
+function isNetworkFirstAsset(url) {
+  return NETWORK_FIRST_ASSET_PATHS.some((path) =>
+    url.pathname.endsWith(path)
+  );
 }
 
 function isDataRequest(url) {
@@ -279,7 +293,19 @@ self.addEventListener("fetch", (event) => {
   }
 
   /* =======================================================
-     4. STATIC ASSETS
+     4. PAGE-SPECIFIC LIVE ASSETS
+     =======================================================
+
+     The Player vs Player controls should not wait for a background
+     stale-while-revalidate update before showing a new fix.
+  */
+  if (isNetworkFirstAsset(url)) {
+    event.respondWith(networkFirst(request, { cache: "no-store" }));
+    return;
+  }
+
+  /* =======================================================
+     5. STATIC ASSETS
      =======================================================
 
      CSS, normal JS, images, fonts, etc.
@@ -301,9 +327,13 @@ self.addEventListener("fetch", (event) => {
    NETWORK FIRST
    ========================================================= */
 
-async function networkFirst(request) {
+async function networkFirst(request, fetchOptions = {}) {
+  const networkRequest = Object.keys(fetchOptions).length
+    ? new Request(request, fetchOptions)
+    : request;
+
   try {
-    const response = await fetch(request);
+    const response = await fetch(networkRequest);
 
     /*
      * Never replace a good cached file with an error response.

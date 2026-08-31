@@ -287,10 +287,35 @@ function buildStatsMap(seasons) {
   );
 }
 
+function pickerValue(entry) {
+  if (!entry) return "";
+  const team = entry.teams?.[0]?.name;
+  return entry.name + (team ? " | " + team : "");
+}
+
+function findPlayerFromInput(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (!normalized) return null;
+  return (
+    directory.find((player) => pickerValue(player).toLowerCase() === normalized) ||
+    directory.find((player) => player.name.toLowerCase() === normalized) ||
+    null
+  );
+}
+
+function selectPlayer(slot, id) {
+  const entry = directoryEntry(id);
+  if (!entry) return;
+  state["player" + slot.toUpperCase()] = id;
+  state["search" + slot.toUpperCase()] = entry.name;
+  render();
+}
+
 function renderPicker(slot, selectedId, query) {
   const entry = directoryEntry(selectedId);
   const label = slot === "a" ? "Player One" : "Player Two";
   const inputId = "pvp-player-" + slot;
+  const listId = "pvp-player-options-" + slot;
   const selectedMarkup = entry
     ? '<div class="pvp-selected-player">' +
       '<div class="pvp-avatar" aria-hidden="true">' + escapeHTML(initials(entry.name)) + "</div>" +
@@ -303,8 +328,10 @@ function renderPicker(slot, selectedId, query) {
   return (
     '<div class="pvp-picker">' +
     '<label for="' + inputId + '">' + escapeHTML(label) + "</label>" +
-    '<input id="' + inputId + '" type="search" autocomplete="off" placeholder="Search players or teams..." value="' + escapeHTML(query || entry?.name || "") + '" data-pvp-input="' + slot + '">' +
-    '<div class="pvp-picker-results" id="pvp-results-' + slot + '" role="listbox" hidden></div>' +
+    '<input id="' + inputId + '" type="search" list="' + listId + '" autocomplete="off" placeholder="Search players or teams..." value="' + escapeHTML(query || entry?.name || "") + '" data-pvp-input="' + slot + '">' +
+    '<datalist id="' + listId + '">' +
+    directory.map((player) => '<option value="' + escapeHTML(pickerValue(player)) + '"></option>').join("") +
+    "</datalist>" +
     selectedMarkup +
     "</div>"
   );
@@ -610,33 +637,6 @@ function renderSharedGames(leftEntry, rightEntry, leftStats, rightStats) {
   );
 }
 
-function pickerResultsMarkup(slot, query) {
-  const matches = searchDirectory(query);
-  return matches
-    .map(
-      (player) =>
-        '<button type="button" class="pvp-picker-result" data-pvp-select="' +
-        slot +
-        '" data-player-id="' +
-        escapeHTML(player.id) +
-        '" role="option">' +
-        '<span class="pvp-avatar small" aria-hidden="true">' +
-        escapeHTML(initials(player.name)) +
-        "</span><span><strong>" +
-        escapeHTML(player.name) +
-        "</strong><small>" +
-        escapeHTML(player.teams.map((team) => team.name).join(" / ") || "Team not listed") +
-        "</small></span></button>"
-    )
-    .join("");
-}
-
-function showPickerResults(slot, query) {
-  const results = document.getElementById("pvp-results-" + slot);
-  if (!results) return;
-  results.innerHTML = pickerResultsMarkup(slot, query);
-  results.hidden = !String(query || "").trim() || !results.children.length;
-}
 
 function bindPage(statsMap) {
   ["season", "stage"].forEach((id) => {
@@ -650,37 +650,26 @@ function bindPage(statsMap) {
     const input = document.querySelector('[data-pvp-input="' + slot + '"]');
     input?.addEventListener("input", (event) => {
       state["search" + slot.toUpperCase()] = event.target.value;
-      showPickerResults(slot, event.target.value);
+      event.target.setCustomValidity("");
     });
-    input?.addEventListener("focus", () => {
-      showPickerResults(slot, input.value);
+    input?.addEventListener("change", () => {
+      const selected = findPlayerFromInput(input.value);
+      if (selected) {
+        selectPlayer(slot, selected.id);
+      } else {
+        input.setCustomValidity("Choose a player from the list.");
+        input.reportValidity();
+      }
     });
     input?.addEventListener("keydown", (event) => {
       if (event.key !== "Enter") return;
-      const first = searchDirectory(input.value)[0];
-      if (first) {
+      const selected = findPlayerFromInput(input.value);
+      if (selected) {
         event.preventDefault();
-        state["player" + slot.toUpperCase()] = first.id;
-        state["search" + slot.toUpperCase()] = first.name;
-        render();
+        selectPlayer(slot, selected.id);
       }
     });
   });
-
-  if (!root.dataset.pvpSelectionBound) {
-    root.dataset.pvpSelectionBound = "true";
-    root.addEventListener("click", (event) => {
-      const button = event.target.closest?.("[data-pvp-select]");
-      if (!button || !root.contains(button)) return;
-      const slot = button.dataset.pvpSelect;
-      const id = button.dataset.playerId;
-      const entry = directoryEntry(id);
-      state["player" + slot.toUpperCase()] = id;
-      state["search" + slot.toUpperCase()] = entry?.name || "";
-      render();
-    });
-  }
-
   root.querySelectorAll("[data-pvp-clear]").forEach((button) => {
     button.addEventListener("click", () => {
       const slot = button.dataset.pvpClear;
