@@ -3262,3 +3262,123 @@
     gap: 8px;
   }
 }
+/* ---------- 2026 11v11 challenge mobile ---------- */
+
+@media (max-width: 820px) {
+  .challenge-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .challenge-hero-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-width: 0;
+  }
+
+  .challenge-sides {
+    grid-template-columns: 1fr;
+  }
+
+  .challenge-versus {
+    justify-self: center;
+    width: 42px;
+    font-size: 0.64rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .challenge-hero,
+  .challenge-summary,
+  .challenge-method,
+  .challenge-position-card {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .challenge-summary-head,
+  .challenge-position-head {
+    display: grid;
+    gap: 10px;
+  }
+
+  .challenge-summary-head > .pill,
+  .challenge-edge {
+    justify-self: start;
+  }
+
+  .challenge-hero-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .challenge-scoreboard {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .challenge-score-divider {
+    min-height: 48px;
+  }
+
+  .challenge-score-divider span {
+    font-size: 0.95rem;
+  }
+
+  .challenge-score-divider small {
+    display: none;
+  }
+
+  .challenge-position-title {
+    align-items: flex-start;
+  }
+
+  .challenge-position-code {
+    width: 40px;
+    font-size: 1rem;
+  }
+
+  .challenge-position-title h2 {
+    font-size: 1.15rem;
+  }
+
+  .challenge-position-title p {
+    font-size: 0.76rem;
+  }
+
+  .challenge-side {
+    padding: 11px;
+  }
+
+  .challenge-unit-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .challenge-player-row {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .challenge-player-avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .challenge-player-numbers {
+    grid-column: 2;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    text-align: left;
+  }
+
+  .challenge-player-numbers small {
+    white-space: normal;
+  }
+
+  .challenge-lineup-check {
+    display: grid;
+  }
+
+  .challenge-lineup-check span {
+    justify-content: flex-start;
+  }
+}
