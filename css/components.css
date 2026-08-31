@@ -14247,479 +14247,657 @@ summary.section-head::-webkit-details-marker {
 .scored-game-actions .button {
   min-height: 42px;
 }
-/* ---------- 2026 11v11 challenge ---------- */
 
-.challenge-page {
+/* ---------- Player vs Player ---------- */
+
+.pvp-page {
   display: grid;
-  gap: 18px;
+  gap: 24px;
   min-width: 0;
 }
 
-.challenge-hero,
-.challenge-summary,
-.challenge-method {
-  min-width: 0;
+.pvp-hero-panel {
   display: grid;
-  gap: 16px;
-  padding: 22px;
-  border-radius: 24px;
-}
-
-.challenge-hero {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  background: #142b1b;
-  border-color: rgba(199, 163, 103, 0.5);
+  gap: 22px;
+  padding: 28px;
+  background: #123f21;
+  border-color: rgba(199, 163, 103, 0.52);
 }
 
-.challenge-hero h1,
-.challenge-summary h2,
-.challenge-method h2 {
-  margin: 4px 0 0;
-}
-
-.challenge-hero p,
-.challenge-summary p,
-.challenge-method p {
-  margin: 8px 0 0;
-  color: var(--muted);
-  line-height: 1.55;
-}
-
-.challenge-hero-meta {
-  display: grid;
-  gap: 8px;
-  min-width: 170px;
-}
-
-.challenge-hero-meta span,
-.challenge-lineup-check span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 34px;
-  padding: 7px 11px;
-  color: #ffffff;
-  background: #1c2e20;
-  border: 1px solid rgba(199, 163, 103, 0.32);
-  border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 900;
-  text-align: center;
-}
-
-.challenge-summary {
-  background: #202920;
-  border-color: rgba(199, 163, 103, 0.34);
-}
-
-.challenge-summary-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.challenge-scoreboard {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 130px minmax(0, 1fr);
-  gap: 14px;
-  align-items: stretch;
-}
-
-.challenge-score-team,
-.challenge-score-divider {
-  min-width: 0;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 5px;
-  padding: 16px;
-  text-align: center;
-  border-radius: 18px;
-}
-
-.challenge-score-team {
-  background: #143d21;
-  border: 1px solid rgba(199, 163, 103, 0.45);
-}
-
-.challenge-score-team.mt {
-  background: #263142;
-  border-color: rgba(153, 196, 221, 0.55);
-}
-
-.challenge-score-team strong {
-  color: #ffffff;
-  font-size: 1.1rem;
-  overflow-wrap: anywhere;
-}
-
-.challenge-score-team b {
-  color: var(--gold);
-  font-size: 2.7rem;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.challenge-score-team small,
-.challenge-score-divider small {
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.challenge-score-divider {
-  background: #172018;
-  border: 1px solid var(--line);
-}
-
-.challenge-score-divider span {
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 950;
-}
-
-.challenge-lineup-check {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.challenge-lineup-check span {
-  justify-content: flex-start;
-  color: var(--muted);
-  background: #172018;
-  border-color: var(--line);
-  text-align: left;
-}
-
-.challenge-note {
-  margin: 0 !important;
-  padding: 11px 13px;
-  color: #efd3a5 !important;
-  background: rgba(121, 87, 33, 0.18);
-  border: 1px solid rgba(199, 163, 103, 0.32);
-  border-radius: 12px;
-}
-
-.challenge-position-list {
-  display: grid;
-  gap: 18px;
-  min-width: 0;
-}
-
-.challenge-position-card {
-  min-width: 0;
-  display: grid;
-  gap: 14px;
-  padding: 18px;
-  background: #202920;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-}
-
-.challenge-position-head {
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--line);
-}
-
-.challenge-position-title {
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.challenge-position-title h2,
-.challenge-position-title p {
+.pvp-hero-panel h1,
+.pvp-hero-panel p {
   margin: 0;
 }
 
-.challenge-position-title h2 {
+.pvp-hero-panel h1 {
+  margin-top: 7px;
   color: #ffffff;
-  font-size: 1.35rem;
+  font-size: clamp(2rem, 5vw, 3.7rem);
+  line-height: 1.04;
 }
 
-.challenge-position-title p {
-  margin-top: 4px;
+.pvp-hero-panel p {
+  max-width: 760px;
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.pvp-hero-mark {
+  width: 112px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: #1b5630;
+  border: 2px solid rgba(199, 163, 103, 0.72);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 10px rgba(255, 255, 255, 0.05);
+  font-size: 1.4rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+}
+
+.pvp-controls-panel,
+.pvp-main-panel,
+.pvp-games-panel,
+.pvp-note-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.pvp-controls-panel .section-head,
+.pvp-main-panel .section-head,
+.pvp-games-head {
+  align-items: center;
+}
+
+.pvp-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.pvp-picker {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pvp-picker > label {
+  color: var(--gold);
+  font-size: 0.76rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pvp-picker input {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  outline: 0;
+}
+
+.pvp-picker input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(199, 163, 103, 0.14);
+}
+
+.pvp-picker-results {
+  position: absolute;
+  z-index: 30;
+  top: 78px;
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 6px;
+  background: #20231f;
+  border: 1px solid rgba(199, 163, 103, 0.5);
+  border-radius: 14px;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4);
+}
+
+.pvp-picker-result {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  padding: 9px;
+  color: #ffffff;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.pvp-picker-result:last-child {
+  border-bottom: 0;
+}
+
+.pvp-picker-result:hover,
+.pvp-picker-result:focus-visible {
+  background: #123f21;
+  outline: 0;
+}
+
+.pvp-picker-result span:last-child,
+.pvp-selected-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.pvp-picker-result strong,
+.pvp-selected-player strong {
+  color: #ffffff;
+}
+
+.pvp-picker-result small,
+.pvp-selected-player small {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.pvp-selected-player {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 60px;
+  padding: 9px 11px;
+  background: #202920;
+  border: 1px solid rgba(199, 163, 103, 0.3);
+  border-radius: 16px;
+}
+
+.pvp-selected-player.empty {
+  display: flex;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.pvp-clear-button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.pvp-clear-button:hover,
+.pvp-clear-button:focus-visible {
+  color: #ffffff;
+  border-color: var(--gold);
+}
+
+.pvp-avatar {
+  width: 42px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  color: #ffffff;
+  background: #1b5630;
+  border: 1px solid rgba(199, 163, 103, 0.5);
+  border-radius: 50%;
+  font-weight: 950;
+}
+
+.pvp-avatar.small {
+  width: 34px;
+  font-size: 0.72rem;
+}
+
+.pvp-avatar.large {
+  width: 64px;
+  font-size: 1.1rem;
+}
+
+.pvp-scope-controls {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 2px;
+}
+
+.pvp-scope-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 14px;
+  background: #172018;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.pvp-scope-row > span:last-child {
   color: var(--muted);
   font-size: 0.84rem;
 }
 
-.challenge-position-code {
-  width: 46px;
-  aspect-ratio: 1;
+.pvp-comparison-grid {
   display: grid;
-  place-items: center;
-  flex: 0 0 auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.pvp-player-card {
+  min-width: 0;
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  background: #202920;
+  border: 1px solid rgba(199, 163, 103, 0.36);
+  border-radius: 20px;
+}
+
+.pvp-player-card.unavailable {
+  align-content: center;
+  min-height: 180px;
+  border-style: dashed;
+}
+
+.pvp-player-card h3,
+.pvp-player-card p {
+  margin: 0;
+}
+
+.pvp-player-card h3 {
+  margin-top: 3px;
+  font-size: 1.3rem;
+  line-height: 1.18;
+}
+
+.pvp-player-card h3 a,
+.pvp-player-card p a {
   color: #ffffff;
-  background: #0f341b;
-  border: 1px solid rgba(199, 163, 103, 0.58);
-  border-radius: 14px;
-  font-size: 1.2rem;
-  font-weight: 950;
+  text-decoration: none;
 }
 
-.challenge-edge {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 7px 11px;
-  color: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 950;
-  white-space: nowrap;
+.pvp-player-card h3 a:hover,
+.pvp-player-card h3 a:focus-visible,
+.pvp-player-card p a:hover,
+.pvp-player-card p a:focus-visible {
+  color: var(--gold);
 }
 
-.challenge-edge.left-edge {
-  background: #18512c;
-  border-color: rgba(199, 163, 103, 0.48);
-}
-
-.challenge-edge.right-edge {
-  background: #2b4866;
-  border-color: rgba(153, 196, 221, 0.48);
-}
-
-.challenge-edge.even-edge {
+.pvp-player-card p {
+  margin-top: 6px;
   color: var(--muted);
-  background: #19221a;
+  font-size: 0.84rem;
+  line-height: 1.5;
 }
 
-.challenge-sides {
-  min-width: 0;
+.pvp-player-card p a small {
+  color: var(--gold);
+  font-size: 0.72rem;
+}
+
+.pvp-player-card-head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
-  gap: 12px;
-  align-items: start;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 13px;
 }
 
-.challenge-side {
-  min-width: 0;
+.pvp-card-stat-grid {
   display: grid;
-  gap: 12px;
-  padding: 14px;
-  background: #172018;
-  border: 1px solid rgba(199, 163, 103, 0.26);
-  border-radius: 18px;
-}
-
-.challenge-side.mt {
-  background: #182333;
-  border-color: rgba(153, 196, 221, 0.3);
-}
-
-.challenge-side-head {
-  min-width: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
 }
 
-.challenge-side-head h3 {
-  margin: 4px 0 0;
-  color: #ffffff;
-  font-size: 1.05rem;
+.pvp-card-stat-grid > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  padding: 10px 8px;
+  background: #172018;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-align: center;
 }
 
-.challenge-side-count {
-  flex: 0 0 auto;
+.pvp-card-stat-grid span {
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pvp-card-stat-grid strong {
+  color: #ffffff;
+  font-size: 1.24rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.pvp-metric-table {
+  display: grid;
+  gap: 5px;
+  padding: 8px;
+  background: #172018;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.pvp-metric-row {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) minmax(120px, 0.7fr) minmax(80px, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.pvp-metric-row:last-child {
+  border-bottom: 0;
+}
+
+.pvp-metric-row span {
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: 0.77rem;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.challenge-unit-stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 6px;
+.pvp-metric-row strong {
+  color: #ffffff;
+  font-size: 1.08rem;
+  font-variant-numeric: tabular-nums;
 }
 
-.challenge-unit-stats span {
-  min-width: 0;
+.pvp-metric-row strong.winner {
+  color: var(--gold);
+}
+
+.pvp-games-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.pvp-games-head h2,
+.pvp-games-head p {
+  margin: 0;
+}
+
+.pvp-games-head h2 {
+  margin-top: 4px;
+}
+
+.pvp-games-head p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.pvp-match-list {
   display: grid;
-  place-items: center;
-  gap: 3px;
-  min-height: 64px;
-  padding: 7px 4px;
+  gap: 12px;
+}
+
+.pvp-match-card {
+  display: grid;
+  gap: 13px;
+  padding: 16px;
   background: #202920;
   border: 1px solid var(--line);
-  border-radius: 11px;
+  border-radius: 18px;
+}
+
+.pvp-match-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.pvp-match-head > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.pvp-match-head strong,
+.pvp-match-head time {
+  color: #ffffff;
+  font-size: 0.82rem;
+}
+
+.pvp-match-head time {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.pvp-relationship {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.pvp-relationship.opponents {
+  color: #ffffff;
+  background: #3a3427;
+  border-color: rgba(199, 163, 103, 0.5);
+}
+
+.pvp-relationship.shared {
+  color: #ffffff;
+  background: #1b5630;
+  border-color: rgba(89, 177, 110, 0.55);
+}
+
+.pvp-match-scoreline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.pvp-match-scoreline > div {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.pvp-match-scoreline > div:last-child {
+  text-align: right;
+}
+
+.pvp-match-scoreline strong {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.pvp-match-scoreline small {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.pvp-match-scoreline b {
+  min-width: 70px;
+  padding: 8px 10px;
+  color: #ffffff;
+  background: var(--green);
+  border: 1px solid rgba(199, 163, 103, 0.48);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.08rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pvp-match-result {
+  margin: 0;
+  color: var(--gold);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.pvp-note-panel {
+  background: #202920;
+}
+
+.pvp-note-panel h2,
+.pvp-note-panel p {
+  margin: 0;
+}
+
+.pvp-note-panel h2 {
+  margin-top: 3px;
+}
+
+.pvp-note-panel p {
+  max-width: 880px;
+  color: var(--muted);
+}
+
+.pvp-season-games-list {
+  display: grid;
+  gap: 18px;
+}
+
+.pvp-season-games {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  background: #172018;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.pvp-season-games-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.pvp-season-games-head h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.15rem;
+}
+
+.pvp-season-games .pvp-match-card {
+  background: #202920;
+}
+
+.pvp-verdict-card {
+  display: grid;
+  gap: 15px;
+  padding: 18px;
+  background: #123f21;
+  border: 1px solid rgba(199, 163, 103, 0.62);
+  border-radius: 20px;
+}
+
+.pvp-verdict-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pvp-verdict-head h2,
+.pvp-verdict-head p {
+  margin: 0;
+}
+
+.pvp-verdict-head h2 {
+  margin-top: 3px;
+  color: #ffffff;
+}
+
+.pvp-verdict-head p {
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.84rem;
+}
+
+.pvp-verdict-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 7px 12px;
+  color: #ffffff;
+  background: #1b5630;
+  border: 1px solid rgba(199, 163, 103, 0.7);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 950;
   text-align: center;
 }
 
-.challenge-side.mt .challenge-unit-stats span {
-  background: #202d3d;
+.pvp-verdict-result {
+  display: grid;
+  gap: 3px;
+  padding: 13px 14px;
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
 }
 
-.challenge-unit-stats strong {
+.pvp-verdict-result strong {
   color: #ffffff;
-  font-size: 1.05rem;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-  overflow-wrap: anywhere;
+  font-size: 1.12rem;
 }
 
-.challenge-unit-stats small {
+.pvp-verdict-result span {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.45;
+}
+
+.pvp-verdict-edges {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.pvp-verdict-edges > div {
+  display: grid;
+  gap: 4px;
+  padding: 11px 12px;
+  background: #202920;
+  border: 1px solid rgba(199, 163, 103, 0.28);
+  border-radius: 13px;
+}
+
+.pvp-verdict-edges span {
   color: var(--gold);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-weight: 950;
   text-transform: uppercase;
 }
 
-.challenge-leader-note {
-  min-height: 36px;
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.78rem;
+.pvp-verdict-edges strong {
+  color: #ffffff;
+  font-size: 0.84rem;
   line-height: 1.4;
-}
-
-.challenge-player-list {
-  display: grid;
-  gap: 7px;
-}
-
-.challenge-player-row {
-  min-width: 0;
-  display: grid;
-  grid-template-columns: 38px minmax(0, 1fr) auto;
-  gap: 9px;
-  align-items: center;
-  padding: 8px;
-  background: #202920;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-}
-
-.challenge-side.mt .challenge-player-row {
-  background: #202d3d;
-}
-
-.challenge-player-avatar {
-  width: 38px;
-  height: 38px;
-  display: block;
-  object-fit: cover;
-  object-position: center top;
-  background: #0f341b;
-  border: 1px solid rgba(199, 163, 103, 0.45);
-  border-radius: 50%;
-}
-
-.challenge-side.mt .challenge-player-avatar {
-  background: #2b4866;
-  border-color: rgba(153, 196, 221, 0.55);
-}
-
-.challenge-player-avatar.initials-avatar {
-  display: grid;
-  place-items: center;
-  color: #ffffff;
-  font-size: 0.78rem;
-  font-weight: 950;
-}
-
-.challenge-player-copy {
-  min-width: 0;
-  display: grid;
-  gap: 3px;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.challenge-player-copy:hover strong,
-.challenge-player-copy:focus-visible strong {
-  color: var(--gold);
-}
-
-.challenge-player-copy strong,
-.challenge-player-copy span,
-.challenge-player-copy a {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.challenge-player-copy strong {
-  font-size: 0.87rem;
-  line-height: 1.2;
-}
-
-.challenge-player-copy a,
-.challenge-player-copy > a {
-  color: var(--muted);
-  font-size: 0.68rem;
-  text-decoration: none;
-}
-
-.challenge-player-copy > a:hover {
-  color: var(--gold);
-}
-
-.challenge-player-numbers {
-  min-width: 72px;
-  display: grid;
-  gap: 3px;
-  text-align: right;
-}
-
-.challenge-player-numbers strong {
-  color: var(--gold);
-  font-size: 0.72rem;
-  white-space: nowrap;
-}
-
-.challenge-player-numbers small {
-  color: var(--muted);
-  font-size: 0.61rem;
-  white-space: nowrap;
-}
-
-.challenge-versus {
-  align-self: center;
-  display: grid;
-  place-items: center;
-  width: 54px;
-  aspect-ratio: 1;
-  color: #ffffff;
-  background: #0f341b;
-  border: 1px solid rgba(199, 163, 103, 0.5);
-  border-radius: 50%;
-  font-size: 0.72rem;
-  font-weight: 950;
-}
-
-.challenge-method {
-  background: #172018;
-  border-color: var(--line);
-}
-
-.challenge-method p + p {
-  margin-top: 0;
-}
-.challenge-player-name {
-  min-width: 0;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.challenge-player-name:hover strong,
-.challenge-player-name:focus-visible strong {
-  color: var(--gold);
-}
-
-.challenge-player-copy .challenge-player-name strong {
-  display: block;
 }

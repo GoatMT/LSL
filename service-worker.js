@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v26";
+const CACHE_NAME = "lsl-cache-v27";
 
 /*
  * Static files that are safe to cache.
@@ -39,6 +39,7 @@ const CACHE_NAME = "lsl-cache-v26";
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./player-vs-player.html",
   "./manifest.json",
 
   /* Main CSS */
@@ -52,6 +53,7 @@ const APP_SHELL = [
   "./js/utils.js",
   "./js/dataLoader.js",
   "./js/leagueEngine.js",
+  "./js/playerVsPlayer.js",
   "./js/animations.js",
 
   /* Components */
