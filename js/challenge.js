@@ -26,6 +26,7 @@ const LINEUPS = [
       A: [
         { id: "muzamil-kharooti", name: "Muzamil Kharooti" },
         { id: "mohammed-ibrahim", name: "Mohammad Ibrahim" },
+        { id: "muhammad-affan", name: "M. Affan" },
       ],
       M: [
         { id: "uthman", name: "Uthman Manjra" },
