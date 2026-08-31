@@ -34,6 +34,7 @@ export const NAV_LINKS = [
   { label: "Rules", href: "rules.html", group: "Info" },
   { label: "Forms", href: "forms.html", group: "Info" },
   { label: "Best All-Time Team", href: "best-all-time-team.html", group: "People" },
+  { label: "11v11 Challenge", href: "challenge.html", group: "People" },
   { label: "Records", href: "records.html", group: "People" },
   { label: "Playoffs", href: "playoffs.html", group: "League" },
   { label: "Matchday", href: "matchday.html", group: "League" },
