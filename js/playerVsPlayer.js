@@ -52,8 +52,9 @@ const comparisonMetrics = [
   { key: "winPct", label: "Win %", format: (value) => percentText(value) },
   { key: "goalsPerGame", label: "Goals Per Game", format: (value) => numberText(value, 2) },
   { key: "seasonsPlayed", label: "Seasons Played", format: (value) => numberText(value) },
-  { key: "playerOfMatch", label: "Player of the Match", format: (value) => numberText(value) },
-  { key: "honors", label: "Honors", format: (value) => numberText(value) },
+  { key: "mvps", label: "MVP Awards", format: (value) => numberText(value) },
+  { key: "goldenBoots", label: "Golden Boots", format: (value) => numberText(value) },
+  { key: "teamTrophies", label: "Team Trophies", format: (value) => numberText(value) },
 ];
 
 function numberText(value, decimals = 0) {
@@ -177,10 +178,25 @@ function emptyStats(entry) {
     losses: 0,
     goals: 0,
     shots: 0,
-    playerOfMatch: 0,
-    honors: 0,
+    mvps: 0,
+    goldenBoots: 0,
+    teamTrophies: 0,
+
     ovr: null,
     missing: true,
+  };
+}
+
+function playerHonorCounts(data, profile) {
+  const awards = data.awards?.awards || [];
+  const playerAwards = awards.filter((award) => award.playerId === profile.id);
+  const teamIds = new Set([profile.teamId, profile.previousTeamId].filter(Boolean));
+  const trophyCategories = new Set(["Champion Team", "2nd Place Team", "3rd Place Team", "Best Regular Season Team"]);
+
+  return {
+    mvps: playerAwards.filter((award) => /MVP/i.test(award.category || "")).length,
+    goldenBoots: playerAwards.filter((award) => /Golden Boot/i.test(award.category || "")).length,
+    teamTrophies: awards.filter((award) => trophyCategories.has(award.category) && teamIds.has(award.teamId)).length,
   };
 }
 
@@ -208,8 +224,10 @@ function buildStatsMap(seasons) {
           losses: 0,
           goals: 0,
           shots: 0,
-          playerOfMatch: 0,
-          honors: 0,
+          mvps: 0,
+          goldenBoots: 0,
+          teamTrophies: 0,
+
           missing: false,
         });
       }
@@ -223,8 +241,11 @@ function buildStatsMap(seasons) {
       total.losses += Number(row.losses) || 0;
       total.goals += Number(row.goals) || 0;
       total.shots += Number(row.shots) || 0;
-      total.playerOfMatch += Number(row.playerOfMatch) || 0;
-      total.honors += (data.awards?.awards || []).filter((award) => award.playerId === profile.id).length;
+      const honorCounts = playerHonorCounts(data, profile);
+      total.mvps += honorCounts.mvps;
+      total.goldenBoots += honorCounts.goldenBoots;
+      total.teamTrophies += honorCounts.teamTrophies;
+
 
       const team = teamForProfile(data, profile);
       if (team) {
@@ -473,8 +494,9 @@ const verdictMetrics = [
   { key: "winPct", label: "win rate", direction: "higher", weight: 2 },
   { key: "goalsPerGame", label: "goals per game", direction: "higher", weight: 2 },
   { key: "shots", label: "shots", direction: "higher", weight: 1 },
-  { key: "playerOfMatch", label: "player-of-the-match marks", direction: "higher", weight: 1 },
-  { key: "honors", label: "honors", direction: "higher", weight: 1 },
+  { key: "mvps", label: "MVP awards", direction: "higher", weight: 1 },
+  { key: "goldenBoots", label: "Golden Boots", direction: "higher", weight: 1 },
+  { key: "teamTrophies", label: "team trophies", direction: "higher", weight: 1 },
   { key: "losses", label: "fewer losses", direction: "lower", weight: 1 },
 ];
 
@@ -544,7 +566,7 @@ function renderVerdict(leftStats, rightStats, leftEntry, rightEntry) {
   return (
     '<section class="pvp-verdict-card">' +
     '<div class="pvp-verdict-head"><div><span class="eyebrow">Final Read</span><h2>Who is better?</h2>' +
-    '<p>Based on the selected season and game type, with direct output and record weighted most heavily.</p></div>' +
+    '<p>Based on the selected season and game type. Direct output and record are weighted most heavily; only MVP awards, Golden Boots, and team trophies count as honors.</p></div>' +
     '<span class="pvp-verdict-badge">' + escapeHTML(verdict.winner) + "</span></div>" +
     '<div class="pvp-verdict-result"><strong>' + escapeHTML(verdict.winner) + "</strong><span>" + escapeHTML(verdict.summary) + "</span></div>" +
     '<div class="pvp-verdict-edges"><div><span>' + escapeHTML(leftEntry?.name || "Player A") + " leads in</span><strong>" + escapeHTML(leftReasons) + "</strong></div>" +
@@ -645,8 +667,11 @@ function bindPage(statsMap) {
     });
   });
 
-  root.querySelectorAll("[data-pvp-select]").forEach((button) => {
-    button.addEventListener("click", () => {
+  if (!root.dataset.pvpSelectionBound) {
+    root.dataset.pvpSelectionBound = "true";
+    root.addEventListener("click", (event) => {
+      const button = event.target.closest?.("[data-pvp-select]");
+      if (!button || !root.contains(button)) return;
       const slot = button.dataset.pvpSelect;
       const id = button.dataset.playerId;
       const entry = directoryEntry(id);
@@ -654,7 +679,7 @@ function bindPage(statsMap) {
       state["search" + slot.toUpperCase()] = entry?.name || "";
       render();
     });
-  });
+  }
 
   root.querySelectorAll("[data-pvp-clear]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -690,7 +715,7 @@ function render() {
     '<div class="pvp-page">' +
     '<section class="section-panel pvp-hero-panel">' +
     '<div><span class="eyebrow">Player Comparison</span><h1>Player vs Player</h1>' +
-    '<p>Compare two LSL players across OVR, games, record, goals, shots, honors, and every completed game they both played.</p></div>' +
+    '<p>Compare two LSL players across OVR, games, record, goals, shots, MVP awards, Golden Boots, team trophies, and every completed game they both played.</p></div>' +
     '<span class="pvp-hero-mark" aria-hidden="true">VS</span>' +
     "</section>" +
     '<section class="section-panel pvp-controls-panel">' +
@@ -702,7 +727,7 @@ function render() {
     controlSelect("season", "Season", [{ value: "All", label: "All Seasons" }].concat(SITE.seasons.map((season) => ({ value: season, label: season }))), state.season) +
     controlSelect("stage", "Game Type", stageOptions, state.stage) +
     "</div>" +
-    '<div class="pvp-scope-row"><span class="eyebrow">Current Scope</span><span class="pill">' + escapeHTML(scopeText) + "</span><span>Points and assists are left out so the comparison stays focused on direct output and record.</span></div>" +
+    '<div class="pvp-scope-row"><span class="eyebrow">Current Scope</span><span class="pill">' + escapeHTML(scopeText) + "</span><span>Only MVP awards, Golden Boots, and team trophies count as honors in this comparison.</span></div>" +
     "</section>" +
     '<section class="section-panel pvp-main-panel">' +
     '<div class="section-head"><div><span class="eyebrow">Head-to-Head</span><h2>' + escapeHTML(leftEntry?.name || "Player A") + " vs " + escapeHTML(rightEntry?.name || "Player B") + "</h2>" +
