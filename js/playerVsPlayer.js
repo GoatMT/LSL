@@ -631,7 +631,7 @@ function renderSharedGames(leftEntry, rightEntry, leftStats, rightStats) {
   return (
     '<div class="pvp-games-head"><div><span class="eyebrow">Shared Match History</span>' +
     '<h2>Games They Both Played</h2><p>' + escapeHTML(String(total)) + " completed " + (total === 1 ? "game" : "games") + " found in the selected scope.</p></div>" +
-    '<span class="pill">' + escapeHTML(state.season === "All" ? "2024 | 2025 | 2026" : state.season) + " | " + escapeHTML(stageLabel()) + "</span></div>" +
+    '<span class="pill">' + escapeHTML(state.season === "All" ? "All listed seasons" : state.season) + " | " + escapeHTML(stageLabel()) + "</span></div>" +
     groupMarkup +
     renderVerdict(leftStats, rightStats, leftEntry, rightEntry)
   );

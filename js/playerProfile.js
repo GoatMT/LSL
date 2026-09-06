@@ -416,7 +416,7 @@ function renderScoredMatchSection(allData, playerId, aliases) {
         <div>
           <span class="eyebrow">Goal Log</span>
           <h2>Games Scored In</h2>
-          <p>Latest scoring match first. Move through every listed game from 2024, 2025, and 2026.</p>
+          <p>Latest scoring match first. Move through every listed scoring game from this player&apos;s career.</p>
         </div>
         <span class="pill green">${escapeHTML(countText)}</span>
       </div>

@@ -1,0 +1,252 @@
+/* Shared seasonal layer; remove the stylesheet link to restore the core theme. */
+:root {
+  --halloween-amber: #edb478;
+  --halloween-line: rgba(225, 153, 82, 0.32);
+  --halloween-pumpkin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 9c-1-4 1-6 4-7' fill='none' stroke='%2386a677' stroke-width='3' stroke-linecap='round'/%3E%3Cellipse cx='10' cy='19' rx='8' ry='10' fill='%23c67a39'/%3E%3Cellipse cx='22' cy='19' rx='8' ry='10' fill='%23c67a39'/%3E%3Cellipse cx='16' cy='19' rx='8' ry='11' fill='%23e3a35e'/%3E%3Cpath d='m8 18 5-4 1 5zm16 0-5-4-1 5zM11 23l3 1 2-2 2 2 3-1-2 4h-6z' fill='%23202822'/%3E%3C/svg%3E");
+  --halloween-web: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23edb478' stroke-opacity='.17' stroke-width='1'%3E%3Cpath d='M140 0H0M140 0 12 54M140 0 42 98M140 0 86 128M140 0v140M112 0q1 15 9 21t19 7M84 0q2 27 17 40t39 16M56 0q3 40 24 60t60 24M28 0q4 54 33 79t79 33M0 0q5 66 42 98t98 42'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+body:not(.imt-blue-page) { --gold: #d7ad76; }
+
+.site-header,
+.imt-blue-page .imt-site-bar {
+  background-image: var(--halloween-web);
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 140px 140px;
+  border-bottom-color: var(--halloween-line);
+}
+
+.brand-text small {
+  padding-left: 22px;
+  background: var(--halloween-pumpkin) left center / 17px 17px no-repeat;
+  min-height: 18px;
+}
+
+.imt-blue-page .imt-lsl-home {
+  padding-left: 28px;
+  background: var(--halloween-pumpkin) left center / 20px 20px no-repeat;
+}
+
+body:not(.imt-blue-page) .nav-more-button { border-color: var(--halloween-line); }
+body:not(.imt-blue-page) .nav-link.active { box-shadow: inset 0 -3px 0 #ce9557; }
+.page-shell > .section-panel,
+.page-shell > .hero > .hero-copy { border-top-color: var(--halloween-line); }
+body:not(.imt-blue-page) .eyebrow { color: var(--halloween-amber); }
+.site-footer,
+.imt-blue-page .site-footer { border-top-color: var(--halloween-line); }
+
+@media (max-width: 600px) {
+  .site-header,
+  .imt-blue-page .imt-site-bar { background-size: 80px 80px; }
+}
+
+@media print, (forced-colors: active) {
+  .site-header,
+  .imt-blue-page .imt-site-bar,
+  .brand-text small,
+  .imt-blue-page .imt-lsl-home { background-image: none; }
+  .brand-text small,
+  .imt-blue-page .imt-lsl-home { padding-left: 0; }
+}
+
+/* Halloween palette and motion, scoped separately from the core site styles. */
+body,
+body.imt-blue-page {
+  --gold: #ffb36a;
+  --green: #211c25;
+  --green-2: #38303e;
+  --ink: #fff5e9;
+  --muted: #c9c0cc;
+  --line: #50414b;
+  --line-dark: rgba(255, 179, 106, 0.3);
+  --page: #121015;
+  --panel: #242027;
+  --card: #302a32;
+  --card-2: #1d1921;
+  --soft: #302a35;
+  --soft-gold: #403020;
+  --halloween-amber: #ffb36a;
+  --halloween-line: rgba(255, 153, 62, 0.52);
+  color: var(--ink);
+  background-color: var(--page);
+  background-image: repeating-linear-gradient(135deg, transparent 0 37px, rgba(183, 164, 197, 0.045) 37px 38px);
+  background-size: 108px 108px;
+  isolation: isolate;
+  color-scheme: dark;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: auto 1.5% 12% auto;
+  width: 124px;
+  height: 64px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 124 64'%3E%3Cpath fill='%238c728e' d='M62 25 55 14l-2 11C37 8 15 5 3 5c8 9 11 19 8 29 12-7 22-3 27 8 11-5 18 1 24 14 6-13 13-19 24-14 5-11 15-15 27-8-3-10 0-20 8-29-12 0-34 3-50 20l-2-11z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+body .site-header,
+body.imt-blue-page .imt-site-bar {
+  background-color: #1b1720;
+  border-bottom: 2px solid #d9843e;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+body .site-footer,
+body.imt-blue-page .site-footer {
+  background: #1b1720;
+  color: var(--ink);
+  border-top: 1px solid var(--halloween-line);
+}
+
+body .hero-copy,
+body .section-panel,
+body .card,
+body .official-profile-header,
+body .people-hero-panel,
+body .all-time-header-card,
+body .news-article,
+body.imt-blue-page .imt-blue-hero,
+body.imt-blue-page .imt-section,
+body.imt-blue-page .imt-status-panel {
+  background-color: var(--panel);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+body .hero-copy,
+body.imt-blue-page .imt-blue-hero {
+  background: #211b26;
+  border-color: #99623e;
+  box-shadow: inset 0 3px 0 #e48b42, 0 18px 46px rgba(0, 0, 0, 0.35);
+}
+
+body .section-head,
+body .home-priority-panel .section-head,
+body .home-news-panel .section-head,
+body .history-panel .section-head {
+  background: #1c1820;
+  border-color: #51404a;
+}
+
+body .section-head h1,
+body .section-head h2,
+body .hero-copy h1,
+body.imt-blue-page .imt-blue-hero h1 { color: #fff5e9; }
+
+body .eyebrow,
+body .hero-kicker,
+body.imt-blue-page .imt-blue-hero .imt-blue-kicker { color: #ffb36a; }
+
+body .nav-link.active,
+body .nav-dropdown-button.active,
+body .button.primary,
+body .home-leader-tabs button.active,
+body .all-time-toggle button.active,
+body.imt-blue-page .imt-subnav button.active,
+body.imt-blue-page .imt-choice-row button.active {
+  background: #ee9b53;
+  color: #20151a;
+  border-color: #ffbb7e;
+  box-shadow: inset 0 -2px 0 #b35f28;
+}
+
+body .nav-more-button { background: #38272a; border-color: #c47e48; }
+body .nav-link-imt:not(.active) { background: #302638; border-color: #a48cab; color: #f5e9fa; }
+body .controls,
+body .home-leader-tabs,
+body .all-time-toggle,
+body .home-leader-feature,
+body .home-leader-row,
+body .table-wrap,
+body .bracket-match { background-color: var(--card-2); border-color: var(--line); }
+body .home-leader-row.active { background: #493022; border-color: #cc854f; }
+body .data-table thead,
+body .data-table th { background-color: #362730; color: #ffdcba; }
+body.imt-blue-page .imt-subnav { background: #1d1921; }
+body.imt-blue-page .imt-lsl-home { background-color: #ee9b53; color: #20151a; border-color: #ffbb7e; }
+body.imt-blue-page .imt-year-control .control select { color-scheme: dark; }
+body.imt-blue-page .imt-subnav button.active { box-shadow: none; }
+
+body :is(a, button, input, select, summary):focus-visible {
+  outline: 2px solid #ffc186;
+  outline-offset: 3px;
+}
+
+@keyframes halloween-night-drift {
+  from { background-position: 0 0; }
+  to { background-position: 108px 0; }
+}
+@keyframes halloween-bat-float {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-16px) rotate(5deg); }
+}
+@keyframes halloween-panel-arrive {
+  from { transform: translateY(10px); }
+  to { transform: translateY(0); }
+}
+@keyframes halloween-lantern-glow {
+  0%, 100% { box-shadow: inset 0 -2px 0 #b35f28, 0 0 8px rgba(238, 155, 83, 0.12); }
+  50% { box-shadow: inset 0 -2px 0 #b35f28, 0 0 19px rgba(238, 155, 83, 0.3); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body,
+  body.imt-blue-page {
+    animation: halloween-night-drift 32s linear infinite;
+    animation-duration: 32s !important;
+    animation-iteration-count: infinite !important;
+  }
+  body::before {
+    animation: halloween-bat-float 7s ease-in-out infinite;
+    animation-duration: 7s !important;
+    animation-iteration-count: infinite !important;
+  }
+  body .page-shell > :is(section, article),
+  body .imt-page-shell > section {
+    animation: halloween-panel-arrive 450ms ease-out both;
+    animation-duration: 450ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  body .nav-link.active,
+  body .imt-subnav button.active {
+    animation: halloween-lantern-glow 5s ease-in-out infinite;
+    animation-duration: 5s !important;
+    animation-iteration-count: infinite !important;
+  }
+  body :is(.button, .nav-link, .nav-more-button, .home-leader-row, .imt-subnav button) {
+    transition-property: transform, box-shadow, border-color, background-color;
+    transition-duration: 180ms !important;
+    transition-timing-function: ease-out;
+  }
+}
+
+@media (hover: hover) {
+  body .button:hover,
+  body .nav-link:hover,
+  body .imt-subnav button:hover {
+    border-color: #ffb36a;
+    box-shadow: 0 4px 16px rgba(240, 146, 64, 0.22);
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  body .button:hover,
+  body .nav-link:hover { transform: translateY(-2px); }
+}
+@media (max-width: 760px) {
+  body::before { width: 64px; height: 34px; opacity: 0.22; right: 3px; }
+}
+@media (prefers-reduced-motion: reduce), print, (forced-colors: active) {
+  body, body.imt-blue-page, body::before,
+  body .page-shell > :is(section, article),
+  body .imt-page-shell > section,
+  body .nav-link.active,
+  body .imt-subnav button.active {
+    animation: none !important;
+    transform: none;
+  }
+  body::before { display: none; }
+}

@@ -1,0 +1,19 @@
+.home-facts .section-head { align-items: center; gap: 20px; }
+.home-facts .section-head .button { flex-shrink: 0; min-height: 44px; }
+.home-facts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.home-fact { min-width: 0; padding: 22px 0; display: flex; flex-direction: column; gap: 12px; border-top: 2px solid var(--gold); }
+.home-fact p, .home-fact h3 { margin: 0; }
+.home-fact p { color: var(--muted); }
+.home-fact .home-fact-scope { font-size: 0.76rem; font-weight: 700; color: var(--gold); }
+.home-fact-number { display: flex; align-items: center; gap: 14px; min-height: 68px; }
+.home-fact-number strong { font-size: 2.8rem; line-height: 1; color: var(--ink); }
+.home-fact-number span { font-size: 0.82rem; color: var(--muted); max-width: 90px; }
+.home-fact h3 { font-size: 1.05rem; line-height: 1.4; }
+.home-fact > a { margin-top: auto; padding-top: 10px; text-underline-offset: 4px; font-size: 0.85rem; min-height: 44px; }
+.home-facts a:focus-visible, .home-facts button:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.home-facts > .text-link { justify-self: start; }
+@media (max-width: 760px) {
+  .home-facts-grid { grid-template-columns: 1fr; gap: 8px; }
+  .home-facts .section-head { flex-wrap: wrap; }
+  .home-fact { padding: 20px 0; }
+}

@@ -2,8 +2,8 @@ export const SITE = {
   name: "Lantern Soccer League",
   shortName: "LSL",
   logo: "./Logos/lsl-logo.png",
-  defaultSeason: "2026",
-  seasons: ["2024", "2025", "2026"],
+  defaultSeason: "2027",
+  seasons: ["2024", "2025", "2026", "2027"],
   divisions: ["Seniors", "Juniors"],
   dataPath: "./data",
   venue: "Grenoble P.S. Field, 9 Grenoble Dr, Toronto, ON",
@@ -90,6 +90,20 @@ export const PLAYOFF_RULES = {
       description: "Eight-team senior playoff field, no byes. Quarterfinals are 1 vs 8, 2 vs 7, 3 vs 6, and 4 vs 5. Quarterfinals, semifinals, and the championship are all played on Saturday, August 8, 2026.",
     },
     Juniors: FOUR_TEAM_JUNIOR_RULE,
+  },
+  "2027": {
+    Seniors: {
+      teams: 0,
+      cutoff: 0,
+      byes: 0,
+      description: "2027 senior playoff format coming soon.",
+    },
+    Juniors: {
+      teams: 0,
+      cutoff: 0,
+      byes: 0,
+      description: "2027 junior playoff format coming soon.",
+    },
   },
 };
 

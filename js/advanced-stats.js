@@ -1,6 +1,7 @@
 import { loadSeasonData } from "./dataLoader.js?v=1.0";
 import { calculateStandings, computePlayerStats, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
+import { SITE } from "./config.js";
 import { controlSelect, escapeHTML, formatPercent, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("advanced-stats.html");
@@ -8,7 +9,7 @@ setDocumentTitle("Advanced Stats");
 
 const root = document.getElementById("page-root");
 const state = {
-  season: "2026",
+  season: SITE.defaultSeason,
   division: "Seniors",
   week: "all",
 };
@@ -182,8 +183,8 @@ function renderHero(rows, matchCount) {
       <div class="section-head">
         <div>
           <span class="eyebrow">Advanced Stats</span>
-          <h1>LSL 2026 Analytics</h1>
-          <p>Team performance charts for attack, defense, tiers, momentum, and matchup strength.</p>
+          <h1>LSL ${escapeHTML(state.season)} Analytics</h1>
+          <p>Team performance charts for attack, defense, tiers, momentum, and matchup strength in ${escapeHTML(state.season)}.</p>
         </div>
         <span class="pill green">${escapeHTML(matchCount)} matches counted</span>
       </div>
@@ -204,11 +205,11 @@ function renderControls(data) {
         <div>
           <span class="eyebrow">Controls</span>
           <h2>Choose The Scope</h2>
-          <p>Review 2026 senior results by completed week.</p>
+          <p>Review ${escapeHTML(state.season)} senior results by completed week.</p>
         </div>
       </div>
       <div class="controls advanced-controls">
-        ${controlSelect("season", "Season", [{ value: "2026", label: "2026" }], state.season)}
+        ${controlSelect("season", "Season", SITE.seasons.map((season) => ({ value: season, label: season })), state.season)}
         ${controlSelect("division", "Division", [{ value: "Seniors", label: "Seniors" }], state.division)}
         ${controlSelect("week", "Week", weeks(data), state.week)}
       </div>
@@ -848,7 +849,7 @@ function renderTeamTable(rows) {
       <div class="section-head">
         <div>
           <span class="eyebrow">Team Snapshot</span>
-          <h2>2026 Advanced Team Table</h2>
+          <h2>${escapeHTML(state.season)} Advanced Team Table</h2>
           <p>Ranked by points, wins, then goal difference.</p>
         </div>
       </div>
@@ -915,7 +916,9 @@ function render(data) {
           <p>Each chart highlights a different way teams are winning, defending, or handling stronger opponents.</p>
         </div>
       </div>
-      <div class="advanced-chart-grid">
+      ${
+        rows.length || matches.length
+          ? `<div class="advanced-chart-grid">
         ${renderTacticalQuadrant(rows)}
         ${renderGoalsVsWins(rows)}
         ${renderPointsBreakdown(rows)}
@@ -932,8 +935,9 @@ function render(data) {
         ${renderScoringDepth(data, rows)}
         ${renderUpsetTracker(matches, rows)}
         ${renderCleanSheets(matches, rows)}
-      </div>
-    </section>
+      </div>`
+          : statusMessage("empty", `${escapeHTML(state.season)} advanced stats are coming soon.`)
+      }
     ${renderTeamTable(rows)}
   `;
 

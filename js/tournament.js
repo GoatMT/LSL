@@ -8,7 +8,7 @@ setDocumentTitle("Inter-Madrasah Tournament");
 document.body.classList.add("imt-blue-page");
 
 const root = document.getElementById("page-root");
-const YEARS = ["2026", "2025"];
+const YEARS = ["2027", "2026", "2025"];
 const VIEWS = [
   { id: "home", label: "Tournament Home" },
   { id: "schedule", label: "Schedule" },
@@ -21,7 +21,7 @@ const VIEWS = [
 ];
 
 let state = {
-  season: "2026",
+  season: "2027",
   view: window.location.hash?.replace("#", "") || "home",
   standingsView: "",
 };
@@ -131,13 +131,25 @@ function renderStatusPanel(tournament) {
   const champion = tournament.playoffs?.champion || event.champion || "Coming Soon";
   const runnerUp = tournament.playoffs?.runnerUp || event.runnerUp || "Coming Soon";
   const nextMatch = (tournament.matches || []).find((match) => !Number.isFinite(match.homeScore) && !match.activityTitle);
+  const isComplete = champion !== "Coming Soon" && champion.trim() !== "";
+  const statusLabel = nextMatch ? "Next Match" : isComplete ? "Tournament Complete" : "Coming Soon";
+  const statusTitle = nextMatch
+    ? `${nextMatch.homeTeamName} vs ${nextMatch.awayTeamName}`
+    : isComplete
+      ? `Champion: ${champion}`
+      : "Tournament details are coming soon.";
+  const statusNote = nextMatch
+    ? `${nextMatch.time || "Time TBA"} | ${eventDate(event)}`
+    : isComplete
+      ? `Runner-up: ${runnerUp}`
+      : "Dates and match information will be posted here.";
 
   return `
     <section class="imt-status-panel">
       <div class="imt-status-main">
-        <span class="imt-blue-kicker">${nextMatch ? "Next Match" : "Tournament Complete"}</span>
-        <h2>${escapeHTML(nextMatch ? `${nextMatch.homeTeamName} vs ${nextMatch.awayTeamName}` : `Champion: ${champion}`)}</h2>
-        <p>${escapeHTML(nextMatch ? `${nextMatch.time || "Time TBA"} | ${eventDate(event)}` : `Runner-up: ${runnerUp}`)}</p>
+        <span class="imt-blue-kicker">${statusLabel}</span>
+        <h2>${escapeHTML(statusTitle)}</h2>
+        <p>${escapeHTML(statusNote)}</p>
       </div>
       <div class="imt-status-mini-grid">
         <article>

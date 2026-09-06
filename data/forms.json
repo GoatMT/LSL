@@ -1,6 +1,15 @@
 {
   "forms": [
     {
+      "id": "lsl-2027-registration",
+      "title": "2027 LSL Registration",
+      "category": "League Registration",
+      "season": "2027",
+      "status": "Coming Soon",
+      "url": "",
+      "description": "Registration details for the 2027 Lantern Soccer League season will be posted when the new season opens."
+    },
+    {
       "id": "lsl-2026-registration",
       "title": "2026 LSL Registration Form",
       "category": "League Registration",

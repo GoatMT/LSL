@@ -6,6 +6,7 @@ import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedM
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js";
 import { findOnThisDayHighlight } from "./onThisDay.js";
+import { renderHomeFacts, hydrateHomeFacts } from "./homeFacts.js?v=3";
 
 function playerHref(playerId = "") {
   return playerId ? `./player.html?id=${encodeURIComponent(playerId)}` : "./players.html";
@@ -41,49 +42,6 @@ export function setupLayout(activeHref) {
   hydrateNavbar();
   initPageAnimations();
   registerPWA();
-}
-
-function renderTeamOfWeek(teamOfWeek = {}) {
-  const player = teamOfWeek.playerOfTheWeek || {};
-  const topPlayers = teamOfWeek.topPlayers || [];
-  if (!player.name && !topPlayers.length) return "";
-
-  const meta = [teamOfWeek.season, teamOfWeek.week, teamOfWeek.division].filter(Boolean).join(" | ");
-  return `
-    <section class="section-panel team-week-panel">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">${escapeHTML(meta || "Latest Week")}</span>
-          <h2>Team of the Week</h2>
-          <p>Best performers from the latest LSL week.</p>
-        </div>
-        ${teamOfWeek.date ? `<span class="pill">${escapeHTML(teamOfWeek.date)}</span>` : ""}
-      </div>
-      <div class="team-week-grid">
-        <article class="team-week-feature">
-          <span class="pill green">${escapeHTML(player.tag || "Player of the Week")}</span>
-          <a href="${escapeHTML(playerHref(player.playerId))}">${escapeHTML(player.name || "Player TBA")}</a>
-          <p>${escapeHTML(player.summary || "Weekly player note coming soon.")}</p>
-          ${player.teamName ? `<small>${escapeHTML(player.teamName)}</small>` : ""}
-        </article>
-        <div class="team-week-list" aria-label="Top 5 players of the week">
-          ${topPlayers
-            .map(
-              (item) => `
-                <article class="team-week-row">
-                  <span class="team-week-rank">#${escapeHTML(item.rank || "")}</span>
-                  <div>
-                    <a href="${escapeHTML(playerHref(item.playerId))}">${escapeHTML(item.name || "Player TBA")}</a>
-                    <p>${escapeHTML([item.teamName, item.summary].filter(Boolean).join(" - "))}</p>
-                  </div>
-                </article>
-              `
-            )
-            .join("")}
-        </div>
-      </div>
-    </section>
-  `;
 }
 
 const HOME_LEADER_TYPES = [
@@ -508,17 +466,19 @@ function renderScoreTicker(data) {
   `;
 }
 
-function renderChampionBanner(data) {
-  const team = (data.teams || []).find((item) => item.id === "em-haulers-fc");
+function renderChampionBanner(data, allData = []) {
+  const bannerData = allData.find((item) => String(item.year) === "2026") || data;
+  const team = (bannerData.teams || []).find((item) => item.id === "em-haulers-fc");
   if (!team) return "";
+  const bannerSeason = String(bannerData.year || "2026");
   const logoStyle = team.logoBg ? ` style="--logo-bg: ${escapeHTML(team.logoBg)}"` : "";
 
   return `
-    <section class="champion-banner" aria-label="2026 LSL champions">
+    <section class="champion-banner" aria-label="${escapeHTML(bannerSeason)} LSL champions">
       <img class="champion-banner-logo" src="${escapeHTML(team.logo)}" alt="${escapeHTML(team.name)} logo"${logoStyle}>
       <div class="champion-banner-copy">
-        <span class="champion-banner-kicker">🏆 2026 LSL Champions</span>
-        <h2><a href="${escapeHTML(teamProfileHref(team.id, data.year))}">Congratulations, EM Haulers FC!</a></h2>
+        <span class="champion-banner-kicker">🏆 ${escapeHTML(bannerSeason)} LSL Champions</span>
+        <h2><a href="${escapeHTML(teamProfileHref(team.id, bannerData.year))}">Congratulations, EM Haulers FC!</a></h2>
         <p>Captain <a href="${escapeHTML(playerHref("haroon-ahmadi"))}">Haroon Ahmadi</a> and <a href="${escapeHTML(playerHref("muzamil-kharooti"))}">Muzamil Kharooti</a> lead the club to the title.</p>
       </div>
     </section>
@@ -764,11 +724,11 @@ function renderImportantNews(data, allData, newsData = {}) {
   `;
 }
 
-function renderHomeContent(data, allData, teamOfWeek = {}, newsData = {}) {
+function renderHomeContent(data, allData, newsData = {}) {
   const allChampions = getAwards(allData, { division: "Seniors" }).filter((award) => award.category === "Champion Team");
 
   return `
-    ${renderChampionBanner(data)}
+    ${renderChampionBanner(data, allData)}
 
     <section class="hero">
       <div class="hero-copy">
@@ -788,11 +748,9 @@ function renderHomeContent(data, allData, teamOfWeek = {}, newsData = {}) {
       </aside>
     </section>
 
-    ${renderHomeLeaders(allData)}
+    ${renderHomeFacts()}
 
     ${renderImportantNews(data, allData, newsData)}
-
-    ${renderTeamOfWeek(teamOfWeek)}
 
     <section id="history" class="section-panel home-low-priority history-panel">
       <div class="section-head">
@@ -833,14 +791,13 @@ async function renderHome() {
   root.innerHTML = statusMessage("loading", "Loading league dashboard...");
 
   const allData = await loadAllSeasons();
-  const teamOfWeekData = await loadJSON("./data/team-of-week.json", {});
   const newsData = await loadJSON("./data/news.json", { items: [] });
   let selectedSeason = SITE.defaultSeason;
 
   async function render() {
     const data = await loadSeasonData(selectedSeason);
-    root.innerHTML = renderHomeContent(data, allData, teamOfWeekData, newsData);
-    hydrateHomeLeaders(allData);
+    root.innerHTML = renderHomeContent(data, allData, newsData);
+    hydrateHomeFacts(allData, root);
   }
 
   render();

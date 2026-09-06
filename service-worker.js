@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v30";
+const CACHE_NAME = "lsl-cache-v36";
 
 /*
  * Static files that are safe to cache.
@@ -40,12 +40,16 @@ const APP_SHELL = [
   "./",
   "./index.html",
   "./player-vs-player.html",
+  "./projected.html",
   "./manifest.json",
 
   /* Main CSS */
   "./css/main.css",
   "./css/components.css",
   "./css/responsive.css",
+  "./css/halloween.css",
+  "./css/home-facts.css",
+  "./js/homeFacts.js",
 
   /* Core JS */
   "./js/main.js",
@@ -54,6 +58,7 @@ const APP_SHELL = [
   "./js/dataLoader.js",
   "./js/leagueEngine.js",
   "./js/playerVsPlayer.js",
+  "./js/projected.js",
   "./js/animations.js",
 
   /* Components */
@@ -118,8 +123,9 @@ function isPulseRequest(url) {
 }
 
 function isNetworkFirstAsset(url) {
-  return NETWORK_FIRST_ASSET_PATHS.some((path) =>
-    url.pathname.endsWith(path)
+  return (
+    NETWORK_FIRST_ASSET_PATHS.some((path) => url.pathname.endsWith(path)) ||
+    /\.(?:js|css)$/i.test(url.pathname)
   );
 }
 
@@ -293,10 +299,10 @@ self.addEventListener("fetch", (event) => {
   }
 
   /* =======================================================
-     4. PAGE-SPECIFIC LIVE ASSETS
+     4. LIVE SITE CODE
      =======================================================
 
-     The Player vs Player controls should not wait for a background
+     Site JavaScript and CSS should not wait for a background
      stale-while-revalidate update before showing a new fix.
   */
   if (isNetworkFirstAsset(url)) {

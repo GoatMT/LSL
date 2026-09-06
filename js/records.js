@@ -597,7 +597,7 @@ function render(allData) {
         <div>
           <span class="eyebrow">Records</span>
           <h1>LSL Records</h1>
-          <p>Major records across 2024, 2025, and 2026.</p>
+          <p>Major records across all listed seasons.</p>
         </div>
       </div>
       ${renderFilters()}

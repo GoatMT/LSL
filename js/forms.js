@@ -41,7 +41,8 @@ function formPurpose(form) {
 function renderHero(forms) {
   const openCount = forms.filter((form) => statusMeta(form.status).label === "Open").length;
   const closedCount = forms.filter((form) => statusMeta(form.status).label === "Closed").length;
-  const currentStatus = openCount ? "Forms Open" : "Forms Closed";
+  const comingSoonCount = forms.filter((form) => statusMeta(form.status).label === "Coming Soon").length;
+  const currentStatus = openCount ? "Forms Open" : comingSoonCount ? "Next Registration Coming Soon" : "Forms Closed";
   return `
     <section class="hero forms-hero">
       <div class="hero-copy">
@@ -56,7 +57,7 @@ function renderHero(forms) {
       <aside class="forms-status-board" aria-label="Registration status">
         <span class="eyebrow">Current Status</span>
         <strong>${escapeHTML(currentStatus)}</strong>
-        <p>${openCount ? "At least one form is accepting responses." : "Current forms are closed. New links will be posted when registration opens."}</p>
+        <p>${openCount ? "At least one form is accepting responses." : comingSoonCount ? "The next season registration details will be posted when they are ready." : "Current forms are closed. New links will be posted when registration opens."}</p>
         <div class="forms-status-grid">
           <span><b>${escapeHTML(openCount)}</b><small>Open</small></span>
           <span><b>${escapeHTML(closedCount)}</b><small>Closed</small></span>
@@ -187,8 +188,13 @@ function renderFormCard(form) {
   const meta = statusMeta(form.status);
   const icon = CATEGORY_ICONS[form.category] || "FORM";
   const isClosed = meta.label === "Closed";
+  const isComingSoon = meta.label === "Coming Soon";
+  const cardClass = isClosed ? "closed" : isComingSoon ? "coming-soon" : "open";
+  const action = isComingSoon
+    ? `<span class="button secondary" aria-disabled="true">Coming Soon</span>`
+    : `<a class="button ${isClosed ? "secondary" : "primary"}" href="${escapeHTML(form.url || "#")}" target="_blank" rel="noopener">${isClosed ? "View Closed Form" : "Open Form"} -&gt;</a>`;
   return `
-    <article class="form-list-card ${isClosed ? "closed" : "open"}">
+    <article class="form-list-card ${cardClass}">
       <div class="form-list-icon" aria-hidden="true">${escapeHTML(icon)}</div>
       <div class="form-list-main">
         <div class="form-list-title-row">
@@ -209,7 +215,7 @@ function renderFormCard(form) {
         </div>
       </div>
       <div class="form-list-action">
-        <a class="button ${isClosed ? "secondary" : "primary"}" href="${escapeHTML(form.url || "#")}" target="_blank" rel="noopener">${isClosed ? "View Closed Form" : "Open Form"} -&gt;</a>
+        ${action}
       </div>
     </article>
   `;

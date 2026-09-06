@@ -1,5 +1,6 @@
 import { loadJSON, loadSeasonData } from "./dataLoader.js";
 import { setupLayout } from "./main.js";
+import { SITE } from "./config.js";
 import { escapeHTML, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("projected.html");
@@ -11,6 +12,7 @@ function getTeamMaps(seasonData) {
   return {
     teams: new Map((seasonData.teams || []).map((team) => [team.id, team])),
     coaches: new Map((seasonData.coaches || []).map((coach) => [coach.teamId, coach])),
+    season: String(seasonData.year || SITE.defaultSeason),
   };
 }
 
@@ -38,7 +40,7 @@ function teamMark(team) {
 function teamLink(teamId, maps) {
   const team = maps.teams.get(teamId);
   if (!team) return escapeHTML(teamName(teamId, maps));
-  return `<a href="${escapeHTML(teamProfileHref(team.id, "2026"))}">${escapeHTML(team.name)}</a>`;
+  return `<a href="${escapeHTML(teamProfileHref(team.id, maps.season))}">${escapeHTML(team.name)}</a>`;
 }
 
 function renderHero(projected) {
@@ -47,7 +49,7 @@ function renderHero(projected) {
       <div class="projected-hero">
         <div>
           <span class="eyebrow">${escapeHTML(projected.status || "Projected")} | ${escapeHTML(projected.officialStatus || "Not Official")}</span>
-          <h1>${escapeHTML(projected.title || "2026 Projected Season")}</h1>
+          <h1>${escapeHTML(projected.title || `${SITE.defaultSeason} Projected Season`)}</h1>
           <p>${escapeHTML(projected.summary || "Projection details coming soon.")}</p>
           <div class="projected-warning">
             <strong>Prediction only</strong>
@@ -75,7 +77,7 @@ function renderOpeningNotes(projected) {
         <div>
           <span class="eyebrow">Matchday</span>
           <h2>Player Reminders</h2>
-          <p>Important reminders for 2026 LSL matchdays.</p>
+          <p>Important reminders for ${escapeHTML(projected.season || SITE.defaultSeason)} LSL matchdays.</p>
         </div>
         <span class="pill green">Please Read</span>
       </div>
@@ -103,7 +105,7 @@ function renderProjectedStandings(projected, maps) {
         <div>
           <span class="eyebrow">Projected | Not Official</span>
           <h2>Projected Standings</h2>
-          <p>Ranked best to worst for the 2026 senior season prediction.</p>
+          <p>Ranked best to worst for the ${escapeHTML(projected.season || SITE.defaultSeason)} senior season prediction.</p>
         </div>
         <span class="pill">Prediction</span>
       </div>
@@ -412,22 +414,28 @@ function render(projected, seasonData) {
   root.innerHTML = `
     ${renderHero(projected)}
     ${renderOpeningNotes(projected)}
-    ${renderProjectedStandings(projected, maps)}
+    ${
+      (projected.standings || []).length ||
+      (projected.teams || []).length ||
+      (projected.schedule || []).some((week) => (week.matches || []).length) ||
+      (projected.playoffs?.rounds || []).some((round) => (round.matches || []).length)
+        ? `${renderProjectedStandings(projected, maps)}
     ${renderTeamCards(projected, maps)}
     ${renderSchedule(projected, maps)}
-    ${renderProjectedPlayoffs(projected, maps)}
-  `;
+    ${renderProjectedPlayoffs(projected, maps)}`
+        : `<section class="section-panel">${statusMessage("empty", `${escapeHTML(projected.season || SITE.defaultSeason)} projections are coming soon.`)}</section>`
+    }`;
 }
 
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading projected season...");
   const [seasonData, projected] = await Promise.all([
-    loadSeasonData("2026"),
-    loadJSON("./data/2026/projected.json", null),
+    loadSeasonData(SITE.defaultSeason),
+    loadJSON(`./data/${SITE.defaultSeason}/projected.json`, null),
   ]);
 
   if (!projected) {
-    root.innerHTML = statusMessage("empty", "Projected 2026 details are coming soon.");
+    root.innerHTML = statusMessage("empty", `Projected ${SITE.defaultSeason} details are coming soon.`);
     return;
   }
 
