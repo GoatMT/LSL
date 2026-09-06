@@ -63,15 +63,30 @@ function recordRows(items, columns) {
 }
 
 function recordTable(title, note, items, columns, tone = "good") {
+  const leader = items[0];
+  const identity = columns.find(column => ["Player", "Coach", "Team", "Winner", "Champion"].includes(column.label)) || columns[0];
+  const metric = title === "Most Goals In A Single Postseason Run" ? columns.find(column => column.label === "Goals") : columns.find(column => column.num);
+  const tied = leader && metric && items.filter(item => metric.render(item) === metric.render(leader)).length > 1;
+  const context = columns.filter(column => column !== identity && !column.num && column.label !== "Runner-Up");
   return `
     <article class="card record-card record-card--${escapeHTML(tone)}">
       <div class="record-card-head">
         <div>
-          <span class="eyebrow">Record</span>
+          <span class="eyebrow">${escapeHTML(state.division)} / Record Book</span>
           <h3>${escapeHTML(title)}</h3>
           <p>${escapeHTML(note)}</p>
         </div>
       </div>
+      ${leader ? `<div class="record-spotlight">
+        ${metric ? `<div class="record-mark"><strong>${metric.render(leader)}</strong><span>${escapeHTML(metric.label)}</span></div>` : ""}
+        <div class="record-holder">
+          <span class="record-holder-label">${metric ? (tied ? "Joint leading mark" : "Leading mark") : "From the honours roll"}</span>
+          <div class="record-holder-name">${identity.render(leader)}</div>
+          <div class="record-holder-context">${context.map(column => `<span>${column.render(leader)}</span>`).join("")}</div>
+        </div>
+      </div>` : `<p class="record-empty">A new chapter awaits. Records coming soon.</p>`}
+      ${items.length ? `<details class="record-rankings">
+        <summary><span class="record-open-label">View Rankings</span><span class="record-close-label">Hide Rankings</span><small>${items.length} ${items.length === 1 ? "entry" : "entries"}</small></summary>
       <div class="table-wrap record-table-wrap">
         <table class="data-table record-table">
           <thead>
@@ -80,9 +95,10 @@ function recordTable(title, note, items, columns, tone = "good") {
               ${columns.map((column) => `<th class="${column.num ? "num" : ""}">${escapeHTML(column.label)}</th>`).join("")}
             </tr>
           </thead>
-          <tbody>${items.length ? recordRows(items, columns) : `<tr><td colspan="${columns.length + 1}">No records found.</td></tr>`}</tbody>
+          <tbody>${recordRows(items, columns)}</tbody>
         </table>
       </div>
+      </details>` : ""}
     </article>
   `;
 }
@@ -367,7 +383,7 @@ function cupChampions(allData) {
     divisionEntries.forEach((entry) => {
       if (!entry.champion) return;
       if (state.division !== "All" && entry.division !== state.division) return;
-      const finalRound = (entry.rounds || []).find((round) => /final/i.test(round.name)) || {};
+      const finalRound = (entry.rounds || []).find((round) => /^finals?$/i.test((round.name || "").trim())) || {};
       const finalMatch = (finalRound.matches || []).find((match) => !/3rd/i.test(match.label || "")) || {};
       const runnerUpId = finalMatch.winnerId === finalMatch.homeTeamId ? finalMatch.awayTeamId : finalMatch.homeTeamId;
       const runnerUpName = finalMatch.winnerId === finalMatch.homeTeamId ? finalMatch.awayTeamName : finalMatch.homeTeamName;
@@ -591,22 +607,21 @@ function render(allData) {
     .sort((a, b) => b.wins - a.wins || b.championships - a.championships || a.name.localeCompare(b.name))
     .slice(0, 5);
 
+  const archiveYears = allData.filter(season => (season.matches || []).some(match => Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore))).map(season => season.year);
   root.innerHTML = `
-    <section class="section-panel people-panel people-hero-panel">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Records</span>
-          <h1>LSL Records</h1>
-          <p>Major records across all listed seasons.</p>
-        </div>
+    <section class="section-panel records-hero">
+      <div class="records-hero-copy">
+        <span class="eyebrow">The League Record Book</span>
+        <h1>LSL Records</h1>
+        <p>The goals. The winning runs. The names that made league history.</p>
+        <div class="records-archive"><span>Season archives</span>${archiveYears.map(year => `<strong>${escapeHTML(year)}</strong>`).join("")}</div>
       </div>
-      ${renderFilters()}
-      <div class="grid three">
-        <div class="summary-tile"><span>Seasons</span><strong>${SITE.seasons.length}</strong><p>included</p></div>
-        <div class="summary-tile"><span>Players</span><strong>${computeCombinedPlayerStats(allData).length}</strong><p>all divisions</p></div>
-        <div class="summary-tile"><span>Coaches</span><strong>${computeCoachSummary(allData).length}</strong><p>all divisions</p></div>
-      </div>
+      <img class="records-seal" src="${escapeHTML(SITE.logo)}" alt="Lantern Soccer League">
     </section>
+    <section class="section-panel records-controls" aria-label="Record filters">
+      ${renderFilters()}
+    </section>
+    <div class="records-collection-heading"><h2>${escapeHTML(categoryOptions.find(option => option.value === state.category)?.label || "Records")}</h2><span>${escapeHTML(state.division)} / All Seasons</span></div>
 
     ${
       state.category === "player"
@@ -788,23 +803,32 @@ function render(allData) {
   `;
 
   root.querySelectorAll("[data-division]").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.division === state.division));
     button.addEventListener("click", () => {
       state.division = button.dataset.division;
       render(allData);
+      root.querySelector("[data-division].active")?.focus({ preventScroll: true });
     });
   });
 
   root.querySelectorAll("[data-category]").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.category === state.category));
     button.addEventListener("click", () => {
       state.category = button.dataset.category;
       render(allData);
+      root.querySelector("[data-category].active")?.focus({ preventScroll: true });
     });
   });
 }
 
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading records...");
-  render(await loadAllSeasons());
+  try {
+    render(await loadAllSeasons());
+  } catch (error) {
+    console.error("Could not load records", error);
+    root.innerHTML = statusMessage("error", "Records are temporarily unavailable. Please try again soon.");
+  }
 }
 
 init();

@@ -1,0 +1,75 @@
+.records-page .page-shell { gap: 26px; }
+.records-page .records-hero {
+  display: flex; align-items: center; justify-content: space-between; gap: 28px;
+  padding: 36px; margin: 0; border-top: 3px solid var(--gold);
+  background: var(--card-2); box-shadow: none;
+}
+.records-hero-copy { max-width: 760px; }
+.records-hero h1 { margin: 10px 0; font-size: 2.5rem; line-height: 1.1; }
+.records-hero p { margin: 0; color: var(--muted); }
+.records-archive { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 22px; font-size: 0.8rem; }
+.records-archive span { color: var(--muted); }
+.records-archive strong { color: var(--gold); }
+.records-seal { width: 90px; height: 90px; padding: 8px; object-fit: contain; flex-shrink: 0; background: #fff; border-radius: 8px; }
+.records-page .records-controls { margin: 0; padding: 24px; box-shadow: none; }
+.records-page .records-filter-bar { display: grid; grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr); gap: 28px; margin: 0; align-items: end; }
+.records-page .records-filter-bar .eyebrow { display: block; margin-bottom: 10px; }
+.records-page .all-time-toggle { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); min-width: 0; width: 100%; padding: 5px; border-radius: 8px; }
+.records-page .all-time-toggle.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.records-page .all-time-toggle button { min-width: 0; min-height: 46px; padding: 9px 6px; border-radius: 6px; font-size: 0.82rem; line-height: 1.35; overflow-wrap: normal; }
+.records-collection-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 4px; }
+.records-collection-heading h2 { margin: 0; font-size: 1.25rem; }
+.records-collection-heading > span { color: var(--muted); font-size: 0.8rem; }
+.records-page .records-grid-panel { display: block; padding: 0; margin: 0; background: transparent; border: 0; box-shadow: none; border-radius: 0; }
+.records-page .records-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0; align-items: start; }
+.records-page .record-card { padding: 24px; gap: 20px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); box-shadow: none; }
+.records-page .record-card--bad { border-top: 2px solid #d98383; }
+.records-page .record-card-head h3 { color: var(--ink); margin: 8px 0; font-size: 1.1rem; line-height: 1.35; }
+.records-page .record-card-head p { color: var(--muted); margin: 0; font-size: 0.85rem; line-height: 1.6; }
+.record-spotlight { display: flex; align-items: center; gap: 22px; padding: 20px 0; border-block: 1px solid var(--line); }
+.record-mark { flex: 0 0 100px; display: grid; gap: 8px; }
+.record-mark strong { color: var(--gold); font-size: 2.5rem; line-height: 1.1; font-variant-numeric: tabular-nums; overflow-wrap: normal; }
+.record-mark span { color: var(--muted); font-size: 0.73rem; }
+.record-holder { min-width: 0; display: grid; gap: 9px; }
+.record-holder-label { color: var(--muted); font-size: 0.7rem; text-transform: uppercase; font-weight: 700; }
+.record-holder-name { font-size: 1.05rem; line-height: 1.4; font-weight: 800; }
+.record-holder-name a { text-decoration: none; }
+.record-holder-name a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.record-holder-context { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 0.76rem; color: var(--muted); }
+.record-rankings { min-width: 0; }
+.record-rankings summary { display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer; list-style: none; font-size: 0.84rem; font-weight: 700; }
+.record-rankings summary::-webkit-details-marker { display: none; }
+.record-rankings summary::after { content: "+"; font-size: 1.3rem; color: var(--gold); }
+.record-rankings[open] summary::after { content: "-"; }
+.record-rankings summary small { margin-left: auto; color: var(--muted); font-weight: 400; }
+.record-close-label, .record-rankings[open] .record-open-label { display: none; }
+.record-rankings[open] .record-close-label { display: inline; }
+.records-page .record-table-wrap { overflow: visible; border: 0; border-radius: 0; margin-top: 14px; background: transparent; }
+.records-page .record-table { table-layout: fixed; min-width: 0; font-size: 0.8rem; }
+.records-page .record-table th, .records-page .record-table td { padding: 10px 6px; white-space: normal; overflow-wrap: anywhere; }
+.records-page .record-table th:first-child { width: 42px; }
+.records-page :is(a, button, summary):focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.records-page .record-empty { color: var(--muted); margin: 0; }
+@media (max-width: 1000px) {
+  .records-page .records-filter-bar { grid-template-columns: 1fr; gap: 20px; }
+  .records-page .record-table thead { display: none; }
+  .records-page .record-table, .records-page .record-table tbody { display: block; width: 100%; }
+  .records-page .record-table tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .records-page .record-table td, .records-page .record-table td.num { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 12px; width: 100%; text-align: left; border: 0; }
+  .records-page .record-table td::before { content: attr(data-label); color: var(--muted); font-size: 0.7rem; font-weight: 700; }
+}
+@media (max-width: 760px) {
+  .records-page .records-hero { padding: 24px; align-items: flex-start; gap: 16px; }
+  .records-hero h1 { font-size: 2rem; }
+  .records-seal { width: 48px; height: 48px; padding: 4px; }
+  .records-page .records-grid { grid-template-columns: 1fr; gap: 18px; }
+  .records-page .all-time-toggle.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .records-page .record-card { padding: 20px; }
+  .record-spotlight { gap: 16px; }
+  .record-mark { flex-basis: 85px; }
+  .record-mark strong { font-size: 2.1rem; }
+}
+@media (max-width: 480px) {
+  .record-spotlight { flex-direction: column; align-items: flex-start; }
+  .record-mark { flex-basis: auto; display: flex; align-items: baseline; gap: 12px; }
+}
