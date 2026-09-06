@@ -385,37 +385,54 @@ function renderAwardSeasonGroups(awards) {
 
 function renderHistoryGroup(title, icon, awards) {
   if (!awards.length) return "";
-  const rows = [...awards].sort((a, b) => Number(b.season) - Number(a.season));
+
+  const seasonGroups = [...awards]
+    .sort((a, b) => Number(b.season) - Number(a.season))
+    .reduce((map, award) => {
+      if (!map.has(award.season)) map.set(award.season, []);
+      map.get(award.season).push(award);
+      return map;
+    }, new Map());
+
+  const historyRow = (award) => `
+    <div class="award-history-row">
+      <span data-label="Season">${escapeHTML(award.season)}</span>
+      <span data-label="Division">${escapeHTML(award.division || "All Divisions")}</span>
+      <strong data-label="Winner">${winnerMarkup(award, "award-winner-link")}</strong>
+      <span data-label="Team">${award.teamId ? `<a href="./team.html?id=${encodeURIComponent(award.teamId)}">${escapeHTML(award.teamName || "Team TBA")}</a>` : escapeHTML(award.teamName || "\u2014")}</span>
+      <span data-label="Category">${escapeHTML(award.category)}</span>
+    </div>
+  `;
+
   return `
     <section class="award-history-block">
       <div class="award-history-head">
         <span aria-hidden="true">${icon}</span>
         <h3>${escapeHTML(title)}</h3>
       </div>
-      <div class="award-history-table">
-        <div class="award-history-table-head" aria-hidden="true">
-          <span>Season</span><span>Division</span><span>Winner</span><span>Team</span><span>Category</span>
-        </div>
-        <div class="award-history-list">
-          ${rows
-            .map(
-              (award) => `
-                <div class="award-history-row">
-                  <span data-label="Season">${escapeHTML(award.season)}</span>
-                  <span data-label="Division">${escapeHTML(award.division || "All Divisions")}</span>
-                  <strong data-label="Winner">${winnerMarkup(award, "award-winner-link")}</strong>
-                  <span data-label="Team">${award.teamId ? `<a href="./team.html?id=${encodeURIComponent(award.teamId)}">${escapeHTML(award.teamName || "Team TBA")}</a>` : escapeHTML(award.teamName || "\u2014")}</span>
-                  <span data-label="Category">${escapeHTML(award.category)}</span>
+      <div class="award-history-seasons">
+        ${[...seasonGroups.entries()]
+          .map(([season, seasonAwards], index) => `
+            <details class="award-history-season">${index === 0 ? " open" : ""}>
+              <summary>
+                <span><strong>${escapeHTML(season)}</strong><small>${seasonAwards.length} ${seasonAwards.length === 1 ? "honor" : "honors"}</small></span>
+                <span class="award-history-toggle" aria-hidden="true"></span>
+              </summary>
+              <div class="award-history-table">
+                <div class="award-history-table-head" aria-hidden="true">
+                  <span>Season</span><span>Division</span><span>Winner</span><span>Team</span><span>Category</span>
                 </div>
-              `
-            )
-            .join("")}
-        </div>
+                <div class="award-history-list">
+                  ${seasonAwards.map(historyRow).join("")}
+                </div>
+              </div>
+            </details>
+          `)
+          .join("")}
       </div>
     </section>
   `;
 }
-
 function renderAwardHistory(awards) {
   const champions = awards.filter((award) => award.category === "Champion Team");
   const mvps = awards.filter((award) => award.category === "MVP");

@@ -103,7 +103,7 @@
         { "id": "abdullah-hosseinzadah", "name": "Abdullah Hosseinzadah", "position": "Defender" },
         { "id": "zayd-badin", "name": "Zaid Badin", "position": "Defender", "previousTeamId": "memon-mavericks", "previousTeamName": "Memon Mavericks", "tradeEffectiveDate": "2026-07-17", "tradeNote": "Officially traded to Leeward Lions in the Gangat Warriors multi-player trade." },
         { "id": "ibrahim-kadam", "name": "Ibrahim Kadam", "position": "Defender", "previousTeamId": "gangat-warriors", "previousTeamName": "Gangat Warriors", "tradeEffectiveDate": "2026-07-17", "tradeNote": "Officially traded to Leeward Lions in the Gangat Warriors multi-player trade." },
-        { "id": "usman-ahmad-popal", "name": "Usman Ahmad Popal", "position": "Goalie" },
+        { "id": "usman-ahmad-popal", "name": "Usman Ahmad Popal", "position": "Goalie", "achievements": ["2026 LSL Seniors Best Goalkeeper"] },
         { "id": "muhammad-teli", "name": "Muhummud Teli", "photo": "./Logos/Player Pics/Muhummud Teli.png", "position": "Winger", "leadershipRole": "assistant" },
         { "id": "abubakr-manjra", "name": "Abu Bakr Manjra", "photo": "./Logos/Player Pics/Abu Bakr Manjra.png", "position": "Defender", "leadershipRole": "assistant" },
         { "id": "sayem-mohammed-sadi", "name": "Sayem Mohamed Saad", "photo": "./Logos/Player Pics/Sayem Mohamed Saad.png", "position": "Defender" }

@@ -88,6 +88,86 @@
       "playerId": "ajmal-shakkari",
       "teamId": "dhahabiya-strikers",
       "sourceNote": "Led the 2025 Juniors with 10 regular-season goals, the highest single-season total on record."
+    },
+    {
+      "sourceNote": "Selected as Asif Gangat United's 2025 Team MVP after leading the team with 9 regular-season goals.",
+      "teamId": "asif-gangat-united-2025",
+      "category": "Team MVP",
+      "playerId": "hafizullah",
+      "division": "Seniors",
+      "winner": "Hafizullah"
+    },
+    {
+      "sourceNote": "Selected as Umer Memon FC's 2025 Team MVP after leading the champions with 5 regular-season goals.",
+      "teamId": "umer-memon-fc-2025",
+      "category": "Team MVP",
+      "playerId": "muzamil-kharooti",
+      "division": "Seniors",
+      "winner": "Muzamil Kharooti"
+    },
+    {
+      "sourceNote": "Selected as Islamic Bookstore Runners' 2025 Team MVP after leading the team with 4 recorded goals.",
+      "teamId": "islamic-bookstore-runners",
+      "category": "Team MVP",
+      "playerId": "mohammed-hasan",
+      "division": "Seniors",
+      "winner": "Mohammed Hasan"
+    },
+    {
+      "sourceNote": "Selected as Amax Optical Kickers' 2025 Team MVP from the team's leading recorded contributors.",
+      "teamId": "amax-optical-kickers",
+      "category": "Team MVP",
+      "playerId": "taha-nakhuda",
+      "division": "Seniors",
+      "winner": "Taaha Nakhuda"
+    },
+    {
+      "sourceNote": "Selected as IM Construction SC's 2025 Team MVP after leading the team with 8 regular-season goals.",
+      "teamId": "im-construction-sc",
+      "category": "Team MVP",
+      "playerId": "amadu",
+      "division": "Seniors",
+      "winner": "Amadu"
+    },
+    {
+      "sourceNote": "Selected as Refuel Juicery Athletic's 2025 Team MVP after leading the team with 7 regular-season goals.",
+      "teamId": "refuel-juicery-athletic",
+      "category": "Team MVP",
+      "playerId": "mohammed-ibrahim",
+      "division": "Seniors",
+      "winner": "Mohammed Ibrahim"
+    },
+    {
+      "sourceNote": "Selected as Dhahabiya Strikers' 2025 Team MVP after leading the junior champions with 10 goals.",
+      "teamId": "dhahabiya-strikers",
+      "category": "Team MVP",
+      "playerId": "ajmal-shakkari",
+      "division": "Juniors",
+      "winner": "Ajmal Shakkari"
+    },
+    {
+      "sourceNote": "Selected as Travel Builder United's 2025 Team MVP from the team's leading recorded contributors.",
+      "teamId": "the-travel-builder-united",
+      "category": "Team MVP",
+      "playerId": "arsham",
+      "division": "Juniors",
+      "winner": "Arsham"
+    },
+    {
+      "sourceNote": "Selected as EM Truck Repair FC's 2025 Team MVP after leading the team with 4 recorded goals.",
+      "teamId": "em-truck-repair-fc",
+      "category": "Team MVP",
+      "playerId": "mubashir-kharooti",
+      "division": "Juniors",
+      "winner": "Mubashir Kharooti"
+    },
+    {
+      "sourceNote": "Selected as Rafik Enterprise FC's 2025 Team MVP after leading the junior finalist with 5 recorded goals.",
+      "teamId": "rafik-enterprise-fc",
+      "category": "Team MVP",
+      "playerId": "mohammed-hammad-syed",
+      "division": "Juniors",
+      "winner": "Mohammed Hammad Syed"
     }
   ]
 }

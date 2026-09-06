@@ -1,7 +1,7 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
-import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerVsTeamStatsBySeason, getCurrentPlayer, getNextTeamMatch, playerOVR, winnerTeamId } from "./leagueEngine.js?v=3.3";
+import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getCurrentPlayer, getNextTeamMatch, playerOVR, winnerTeamId } from "./leagueEngine.js?v=3.3";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
@@ -254,15 +254,115 @@ function inferPlayerStyle(profile = {}, careerRows = []) {
   };
 }
 
-function renderPlayerStyleCard(profile, careerRows) {
+function isGoalkeeperProfile(profile = {}) {
+  return /goal|keeper|goalie|gk/i.test(String(profile.position || ""));
+}
+
+function goalkeeperTotals(profile = {}, allData = []) {
+  const seenMatches = new Set();
+  const result = { games: 0, goalsAgainst: 0, cleanSheets: 0 };
+
+  allData.forEach((data) => {
+    const player = computePlayerStats(data, { stage: "all" }).find((row) => row.id === profile.id);
+    const teamId = player?.teamId;
+    if (!teamId) return;
+
+    lslMatchesForSeason(data).forEach((match) => {
+      if (seenMatches.has(match.id) || !match.id) return;
+      if (match.homeTeamId !== teamId && match.awayTeamId !== teamId) return;
+      if (!Number.isFinite(match.homeScore) || !Number.isFinite(match.awayScore)) return;
+
+      seenMatches.add(match.id);
+      const opponentScore = match.homeTeamId === teamId ? match.awayScore : match.homeScore;
+      result.games += 1;
+      result.goalsAgainst += Number(opponentScore) || 0;
+      if (Number(opponentScore) === 0) result.cleanSheets += 1;
+    });
+  });
+
+  result.goalsAgainstPerGame = result.games ? result.goalsAgainst / result.games : null;
+  result.cleanSheetRate = result.games ? result.cleanSheets / result.games : 0;
+  return result;
+}
+
+function tierForRate(rate = {}) {
+  const value = Number(rate.tierValue);
+  if (!Number.isFinite(value)) return "F";
+
+  if (rate.kind === "gaRate") {
+    if (value <= 0.75) return "S";
+    if (value <= 1.25) return "A";
+    if (value <= 1.75) return "B";
+    if (value <= 2.25) return "C";
+    if (value <= 3) return "D";
+    return "F";
+  }
+
+  if (rate.kind === "winRate") {
+    if (value >= 0.75) return "S";
+    if (value >= 0.6) return "A";
+    if (value >= 0.45) return "B";
+    if (value >= 0.33) return "C";
+    if (value > 0) return "D";
+    return "F";
+  }
+
+  if (rate.kind === "cleanRate") {
+    if (value >= 0.65) return "S";
+    if (value >= 0.5) return "A";
+    if (value >= 0.35) return "B";
+    if (value >= 0.2) return "C";
+    if (value > 0) return "D";
+    return "F";
+  }
+
+  if (value >= 1.5) return "S";
+  if (value >= 1) return "A";
+  if (value >= 0.65) return "B";
+  if (value >= 0.4) return "C";
+  if (value >= 0.2) return "D";
+  return "F";
+}
+
+function renderStyleRate(rate) {
+  const tier = tierForRate(rate);
+  return `<span class="tier-rate tier-${tier.toLowerCase()}"><strong>${escapeHTML(rate.value)}</strong><small>${escapeHTML(rate.label)}</small><em>${tier}-Tier</em></span>`;
+}
+
+function renderPlayerStyleCard(profile, careerRows, allData) {
   const style = inferPlayerStyle(profile, careerRows);
   const totals = careerTotals(careerRows);
   const games = Math.max(1, totals.gamesPlayed || 0);
-  const rates = [
-    { label: "Goals/Game", value: (totals.goals / games).toFixed(2) },
-    { label: "Points/Game", value: (totals.points / games).toFixed(2) },
-    { label: "Win Rate", value: `${Math.round((totals.wins / games) * 100)}%` },
-  ];
+  const goalie = isGoalkeeperProfile(profile);
+  const rates = goalie
+    ? (() => {
+        const goalieTotals = goalkeeperTotals(profile, allData);
+        return [
+          {
+            label: "Goals Against/Game",
+            value: goalieTotals.goalsAgainstPerGame === null ? "N/A" : goalieTotals.goalsAgainstPerGame.toFixed(2),
+            tierValue: goalieTotals.goalsAgainstPerGame === null ? Number.POSITIVE_INFINITY : goalieTotals.goalsAgainstPerGame,
+            kind: "gaRate",
+          },
+          {
+            label: "Clean Sheets",
+            value: goalieTotals.cleanSheets,
+            tierValue: goalieTotals.cleanSheetRate,
+            kind: "cleanRate",
+          },
+          {
+            label: "Win Rate",
+            value: ${Math.round((totals.wins / games) * 100)}%,
+            tierValue: totals.wins / games,
+            kind: "winRate",
+          },
+        ];
+      })()
+    : [
+        { label: "Goals/Game", value: (totals.goals / games).toFixed(2), tierValue: totals.goals / games, kind: "rate" },
+        { label: "Points/Game", value: (totals.points / games).toFixed(2), tierValue: totals.points / games, kind: "rate" },
+        { label: "Win Rate", value: ${Math.round((totals.wins / games) * 100)}%, tierValue: totals.wins / games, kind: "winRate" },
+      ];
 
   return `
     <article class="official-style-card">
@@ -274,13 +374,12 @@ function renderPlayerStyleCard(profile, careerRows) {
           ${style.traits.map((trait) => `<span>${escapeHTML(trait)}</span>`).join("")}
         </div>
       </div>
-      <div class="official-style-rates" aria-label="Player style rates">
-        ${rates.map((rate) => `<span><strong>${escapeHTML(rate.value)}</strong><small>${escapeHTML(rate.label)}</small></span>`).join("")}
+      <div class="official-style-rates" aria-label="${goalie ? "Goalkeeper" : "Player"} style rates">
+        ${rates.map(renderStyleRate).join("")}
       </div>
     </article>
   `;
 }
-
 function playoffMatchesForSeason(data = {}) {
   if (Array.isArray(data.playoffs?.divisions)) {
     return data.playoffs.divisions.flatMap((division) =>
@@ -395,8 +494,8 @@ function renderScoredMatchSection(allData, playerId, aliases) {
         <div class="section-head compact-head">
           <div>
             <span class="eyebrow">Goal Log</span>
-            <h2>Games Scored In</h2>
-            <p>Scored-game details will appear here once this player has a listed goal.</p>
+            <h2>Scoring Match Log</h2>
+            <p>Scoring-match details will appear here once a goal is listed.</p>
           </div>
         </div>
         ${statusMessage("empty", "No scored matches listed yet.")}
@@ -415,8 +514,8 @@ function renderScoredMatchSection(allData, playerId, aliases) {
       <div class="section-head compact-head">
         <div>
           <span class="eyebrow">Goal Log</span>
-          <h2>Games Scored In</h2>
-          <p>Latest scoring match first. Move through every listed scoring game from this player&apos;s career.</p>
+          <h2>Scoring Match Log</h2>
+          <p>Newest scoring game first. Use the buttons to browse every listed game where this player scored.</p>
         </div>
         <span class="pill green">${escapeHTML(countText)}</span>
       </div>
@@ -427,7 +526,7 @@ function renderScoredMatchSection(allData, playerId, aliases) {
           <p>${escapeHTML([formatDate(match.date), match.time, match.division, match.result].filter(Boolean).join(" | "))}</p>
         </div>
         <div class="scored-game-scorebox">
-          <span>This Player</span>
+          <span>Goals In Match</span>
           <strong>${escapeHTML(match.goals)}</strong>
           <small>${match.goals === 1 ? "Goal" : "Goals"}${match.assists ? ` | ${match.assists} Assist${match.assists === 1 ? "" : "s"}` : ""}</small>
         </div>
@@ -435,7 +534,7 @@ function renderScoredMatchSection(allData, playerId, aliases) {
       <div class="scored-game-detail-grid">
         <span><strong>${escapeHTML(match.teamName)}</strong><small>Player's Team</small></span>
         <span><strong>${escapeHTML(match.opponentName)}</strong><small>Opponent</small></span>
-        <span><strong>${escapeHTML(match.goals)}${match.goals === 1 ? " goal" : " goals"}</strong><small>Scored</small></span>
+        <span><strong>${escapeHTML(match.goals)}${match.goals === 1 ? " goal" : " goals"}</strong><small>Goals In Game</small></span>
         <span><strong>${escapeHTML(match.stage === "playoffs" ? "Playoffs" : "Regular Season")}</strong><small>Competition</small></span>
       </div>
       ${
@@ -444,9 +543,9 @@ function renderScoredMatchSection(allData, playerId, aliases) {
           : ""
       }
       <div class="scored-game-actions">
-        <button class="button secondary" type="button" data-scored-move="-1"${matches.length < 2 ? " disabled" : ""}>Previous</button>
+        <button class="button secondary" type="button" data-scored-move="-1"${matches.length < 2 ? " disabled" : ""}>Previous Game</button>
         ${match.matchId ? `<a class="button" href="./game.html?id=${encodeURIComponent(match.matchId)}">Open Match</a>` : `<span class="pill">${escapeHTML(match.roundName || "Match details")}</span>`}
-        <button class="button secondary" type="button" data-scored-move="1"${matches.length < 2 ? " disabled" : ""}>Next</button>
+        <button class="button secondary" type="button" data-scored-move="1"${matches.length < 2 ? " disabled" : ""}>Next Game</button>
       </div>
     </section>
   `;
@@ -516,13 +615,13 @@ function seasonsPlayed(careerRows = []) {
   return unique(careerRows.map((row) => row.year)).sort((a, b) => Number(b) - Number(a));
 }
 
-function renderPlayerInfoSection(profile, careerRows) {
+function renderPlayerInfoSection(profile, careerRows, allData) {
   const achievements = unique([...(profile.achievements || []), ...careerRows.flatMap((row) => row.achievements || [])]);
   const seasons = seasonsPlayed(careerRows);
 
   return `
     <section class="card official-info-card">
-      ${renderPlayerStyleCard(profile, careerRows)}
+      ${renderPlayerStyleCard(profile, careerRows, allData)}
       <div class="official-achievements-box">
         <span class="eyebrow">Achievements</span>
         <p>${escapeHTML(achievements.join(", ") || "None listed yet")}</p>
@@ -818,7 +917,7 @@ async function init() {
 
         <section class="player-profile-panel" id="player-overview-panel" data-profile-panel="overview" role="tabpanel" aria-label="Overview"${state.profileSection !== "overview" ? " hidden" : ""}>
           ${renderMainStatsRow(total)}
-          ${renderPlayerInfoSection(profile, careerAll)}
+          ${renderPlayerInfoSection(profile, careerAll, allData)}
           ${renderNextMatchCard(allData, current)}
           ${renderScoredMatchSection(allData, id, aliases)}
         </section>

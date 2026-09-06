@@ -1,11 +1,97 @@
 {
   "season": "2024",
   "awards": [
-    { "division": "Seniors", "category": "Champion Team", "winner": "Shifa Pharmacy F.C.", "teamId": "shifa-pharmacy-fc", "sourceNote": "Listed as season 1 champion." },
-    { "division": "Seniors", "category": "2nd Place Team", "winner": "Refuel Juicery Kickers", "teamId": "refuel-juicery-kickers", "sourceNote": "Grand final opponent." },
-    { "division": "Seniors", "category": "3rd Place Team", "winner": "Jogiat Palace", "teamId": "jogiat-palace", "sourceNote": "Listed as the 2024 playoff third-place winner." },
-    { "division": "Seniors", "category": "Best Regular Season Team", "winner": "Refuel Juicery Kickers", "teamId": "refuel-juicery-kickers", "sourceNote": "Finished first in the 2024 Seniors regular season with 13 points." },
-    { "division": "Seniors", "category": "MVP", "winner": "Muzamil Kharooti", "playerId": "muzamil-kharooti", "teamId": "refuel-juicery-kickers", "sourceNote": "Claude's pick: led the 2024 Seniors with 8 regular-season goals and was named Player of the Game for a hat trick, helping Refuel Juicery Kickers reach the final." },
-    { "division": "Seniors", "category": "Golden Boot", "winner": "Muzamil Kharooti", "playerId": "muzamil-kharooti", "teamId": "refuel-juicery-kickers", "sourceNote": "Led the 2024 Seniors with 8 regular-season goals, a total Hafizullah later matched in 2025." }
+    {
+      "division": "Seniors",
+      "category": "Champion Team",
+      "winner": "Shifa Pharmacy F.C.",
+      "teamId": "shifa-pharmacy-fc",
+      "sourceNote": "Listed as season 1 champion."
+    },
+    {
+      "division": "Seniors",
+      "category": "2nd Place Team",
+      "winner": "Refuel Juicery Kickers",
+      "teamId": "refuel-juicery-kickers",
+      "sourceNote": "Grand final opponent."
+    },
+    {
+      "division": "Seniors",
+      "category": "3rd Place Team",
+      "winner": "Jogiat Palace",
+      "teamId": "jogiat-palace",
+      "sourceNote": "Listed as the 2024 playoff third-place winner."
+    },
+    {
+      "division": "Seniors",
+      "category": "Best Regular Season Team",
+      "winner": "Refuel Juicery Kickers",
+      "teamId": "refuel-juicery-kickers",
+      "sourceNote": "Finished first in the 2024 Seniors regular season with 13 points."
+    },
+    {
+      "division": "Seniors",
+      "category": "MVP",
+      "winner": "Muzamil Kharooti",
+      "playerId": "muzamil-kharooti",
+      "teamId": "refuel-juicery-kickers",
+      "sourceNote": "Claude's pick: led the 2024 Seniors with 8 regular-season goals and was named Player of the Game for a hat trick, helping Refuel Juicery Kickers reach the final."
+    },
+    {
+      "division": "Seniors",
+      "category": "Golden Boot",
+      "winner": "Muzamil Kharooti",
+      "playerId": "muzamil-kharooti",
+      "teamId": "refuel-juicery-kickers",
+      "sourceNote": "Led the 2024 Seniors with 8 regular-season goals, a total Hafizullah later matched in 2025."
+    },
+    {
+      "sourceNote": "Selected as Silver Suits Strikers' 2024 Team MVP after leading the team in recorded goals.",
+      "teamId": "silver-suits-strikers",
+      "category": "Team MVP",
+      "playerId": "marwan-ahmad",
+      "division": "Seniors",
+      "winner": "Marwan Ahmad"
+    },
+    {
+      "sourceNote": "Selected as Refuel Juicery Kickers' 2024 Team MVP after leading the team with 8 recorded goals.",
+      "teamId": "refuel-juicery-kickers",
+      "category": "Team MVP",
+      "playerId": "muzamil-kharooti",
+      "division": "Seniors",
+      "winner": "Muzamil Kharooti"
+    },
+    {
+      "sourceNote": "Selected as Shifa Pharmacy F.C.'s 2024 Team MVP after leading the team in recorded goals.",
+      "teamId": "shifa-pharmacy-fc",
+      "category": "Team MVP",
+      "playerId": "bayizedsha",
+      "division": "Seniors",
+      "winner": "Bayizedsha"
+    },
+    {
+      "sourceNote": "Selected as Jogiat Palace's 2024 Team MVP after leading the team in recorded goals.",
+      "teamId": "jogiat-palace",
+      "category": "Team MVP",
+      "playerId": "rehaan-adam",
+      "division": "Seniors",
+      "winner": "Rehaan Adam"
+    },
+    {
+      "sourceNote": "Selected as Asif Gangat United's 2024 Team MVP after leading the team in recorded goals.",
+      "teamId": "asif-gangat-united",
+      "category": "Team MVP",
+      "playerId": "hafizullah",
+      "division": "Seniors",
+      "winner": "Hafizullah"
+    },
+    {
+      "sourceNote": "Selected as Umer Memon F.C.'s 2024 Team MVP from the team's leading recorded contributors.",
+      "teamId": "umer-memon-fc",
+      "category": "Team MVP",
+      "playerId": "ibrahim-mohamed",
+      "division": "Seniors",
+      "winner": "Ibrahim Mohamed"
+    }
   ]
 }

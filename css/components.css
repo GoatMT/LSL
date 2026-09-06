@@ -4316,6 +4316,89 @@ details.clean-details summary {
   place-items: center;
 }
 
+.award-history-seasons {
+  display: grid;
+  gap: 8px;
+}
+
+.award-history-season {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+}
+
+.award-history-season > summary {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 14px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.award-history-season > summary::-webkit-details-marker {
+  display: none;
+}
+
+.award-history-season > summary > span:first-child {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.award-history-season > summary strong {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.award-history-season > summary small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.award-history-season > summary:hover {
+  background: rgba(199, 163, 103, 0.08);
+}
+
+.award-history-toggle {
+  position: relative;
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(199, 163, 103, 0.42);
+  border-radius: 8px;
+}
+
+.award-history-toggle::before,
+.award-history-toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 2px;
+  background: var(--gold);
+  transform: translate(-50%, -50%);
+}
+
+.award-history-toggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.award-history-season[open] .award-history-toggle::after {
+  display: none;
+}
+
+.award-history-season > .award-history-table {
+  margin: 0 10px 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 .media-card {
   display: grid;
   gap: 14px;
@@ -4401,7 +4484,90 @@ details.clean-details summary {
   gap: 18px;
 }
 
-.photo-grid .media-card {
+.photo-grid .award-history-seasons {
+  display: grid;
+  gap: 8px;
+}
+
+.award-history-season {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+}
+
+.award-history-season > summary {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 14px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.award-history-season > summary::-webkit-details-marker {
+  display: none;
+}
+
+.award-history-season > summary > span:first-child {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.award-history-season > summary strong {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.award-history-season > summary small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.award-history-season > summary:hover {
+  background: rgba(199, 163, 103, 0.08);
+}
+
+.award-history-toggle {
+  position: relative;
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(199, 163, 103, 0.42);
+  border-radius: 8px;
+}
+
+.award-history-toggle::before,
+.award-history-toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 2px;
+  background: var(--gold);
+  transform: translate(-50%, -50%);
+}
+
+.award-history-toggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.award-history-season[open] .award-history-toggle::after {
+  display: none;
+}
+
+.award-history-season > .award-history-table {
+  margin: 0 10px 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.media-card {
   padding: 22px;
 }
 
@@ -14009,6 +14175,58 @@ summary.section-head::-webkit-details-marker {
   text-transform: uppercase;
 }
 
+.official-style-rates .tier-rate {
+  position: relative;
+  overflow: hidden;
+  align-content: center;
+  border-width: 1px;
+}
+
+.official-style-rates .tier-rate em {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
+  padding: 2px 7px;
+  color: #ffffff;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-style: normal;
+  font-weight: 950;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.official-style-rates .tier-rate.tier-f {
+  background: #111111;
+  border-color: #292929;
+}
+
+.official-style-rates .tier-rate.tier-d {
+  background: #241815;
+  border-color: #4A2C24;
+}
+
+.official-style-rates .tier-rate.tier-c {
+  background: #3A2119;
+  border-color: #6B3A2C;
+}
+
+.official-style-rates .tier-rate.tier-b {
+  background: #26351F;
+  border-color: #4F713F;
+}
+
+.official-style-rates .tier-rate.tier-a {
+  background: #3F4A1F;
+  border-color: #788C32;
+}
+
+.official-style-rates .tier-rate.tier-s {
+  background: #6B521F;
+  border-color: #D4AF37;
+}
 .player-scored-games-card {
   display: grid;
   gap: 16px;

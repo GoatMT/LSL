@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v38";
+const CACHE_NAME = "lsl-cache-v39";
 
 /*
  * Static files that are safe to cache.
@@ -47,6 +47,7 @@ const APP_SHELL = [
   "./css/main.css",
   "./css/components.css",
   "./css/responsive.css",
+  "./css/players.css",
   "./css/home-facts.css",
   "./css/records.css",
   "./js/homeFacts.js",
@@ -104,6 +105,8 @@ const NEVER_CACHE_PATHS = [
  */
 const NETWORK_FIRST_ASSET_PATHS = [
   "/js/playerVsPlayer.js",
+  "/js/players.js",
+  "/css/players.css",
 ];
 
 /* =========================================================

@@ -189,7 +189,7 @@
         { "slot": "LCB", "id": "mosa-fazli", "name": "Mosa Fazli", "teamId": "refuel-rovers", "teamName": "Refuel Rovers", "x": 25, "y": 72 },
         { "slot": "CB", "id": "uthman", "name": "Uthman Manira", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "x": 50, "y": 74 },
         { "slot": "RCB", "id": "taha-nakhuda", "name": "Taaha Nakhuda", "teamId": "gangat-warriors", "teamName": "Gangat Warriors", "x": 75, "y": 72 },
-        { "slot": "GK", "id": "saad-khan", "name": "Saad Khan", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "x": 50, "y": 89 }
+        { "slot": "GK", "id": "usman-ahmad-popal", "name": "Usman Ahmad Popal", "teamId": "leeward-lions", "teamName": "Leeward Lions", "x": 50, "y": 89 }
       ],
       "bench": [
         { "id": "mohammed-hammad-syed", "name": "Mohammed Hammad Syed", "teamName": "Sharp Strikers" },
