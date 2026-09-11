@@ -779,15 +779,14 @@ function renderLanternRushSpotlight() {
   return `
     <section class="section-panel home-lantern-rush" aria-labelledby="home-lantern-rush-title">
       <div class="home-lantern-rush-mark" aria-hidden="true">
-        <span>LSL</span>
-        <strong>LR</strong>
+        <img src="./Logos/LanternRush.png" alt="">
       </div>
       <div class="home-lantern-rush-copy">
         <span class="eyebrow">New LSL Game</span>
         <h2 id="home-lantern-rush-title">Try Lantern Rush</h2>
         <p>Put your soccer instincts to the test in our new Lantern Soccer League game.</p>
       </div>
-      <a class="button primary home-lantern-rush-action" href="https://goatmt.github.io/LSL-Lantern-Rush/" target="_blank" rel="noopener noreferrer">
+      <a class="button primary home-lantern-rush-action" href="https://goatmt.github.io/Lantern-Rush/" target="_blank" rel="noopener noreferrer">
         Play Lantern Rush
       </a>
     </section>

@@ -30,26 +30,18 @@
 .home-lantern-rush-mark {
   display: grid;
   place-items: center;
-  align-content: center;
-  width: 82px;
-  aspect-ratio: 1;
-  padding: 10px;
-  border: 2px solid var(--gold);
-  border-radius: 18px;
+  width: 170px;
+  height: 106px;
+  padding: 8px;
+  border: 1px solid rgba(199, 163, 103, 0.62);
+  border-radius: 14px;
   background: rgba(7, 24, 12, 0.48);
-  box-shadow: inset 0 0 0 5px rgba(199, 163, 103, 0.1);
-  text-align: center;
+  box-shadow: inset 0 0 0 4px rgba(199, 163, 103, 0.1);
 }
-.home-lantern-rush-mark span {
-  color: var(--gold);
-  font-size: 0.68rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-}
-.home-lantern-rush-mark strong {
-  color: var(--ink);
-  font-size: 1.85rem;
-  line-height: 1;
+.home-lantern-rush-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .home-lantern-rush-copy {
   min-width: 0;
