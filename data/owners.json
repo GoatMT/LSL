@@ -1,0 +1,38 @@
+{
+  "owners": [
+    {
+      "name": "Moulana Junaid",
+      "phone": "647 784-6357"
+    },
+    {
+      "name": "Arshad Petal",
+      "phone": "437 263-6611"
+    }
+  ],
+  "admins": [
+    {
+      "role": "Admin",
+      "phone": "+1 (437) 255-9005"
+    },
+    {
+      "role": "Admin",
+      "phone": "+1 (437) 443-7645"
+    },
+    {
+      "role": "Admin",
+      "phone": "+1 (647) 498-7049"
+    },
+    {
+      "role": "Admin",
+      "phone": "+1 (647) 701-6975"
+    },
+    {
+      "role": "Admin",
+      "phone": "+1 (647) 962-6812"
+    },
+    {
+      "role": "Admin",
+      "phone": "+1 (682) 374-9623"
+    }
+  ]
+}

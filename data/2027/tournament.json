@@ -1,0 +1,19 @@
+{
+  "season": "2027",
+  "event": {
+    "name": "Inter-Madrasah Soccer Tournament",
+    "edition": "2027 Tournament",
+    "headline": "2027 tournament details are coming soon.",
+    "statusLabel": "Coming Soon",
+    "currentStatus": "Coming Soon",
+    "date": "Coming Soon",
+    "time": "Coming Soon",
+    "venue": "Coming Soon",
+    "address": "Coming Soon"
+  },
+  "divisions": [],
+  "matches": [],
+  "playoffs": { "rounds": [] },
+  "news": [],
+  "media": []
+}

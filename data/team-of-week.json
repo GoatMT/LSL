@@ -1,0 +1,56 @@
+{
+  "season": "2026",
+  "week": "Finals Day",
+  "date": "August 8, 2026",
+  "division": "Seniors",
+  "playerOfTheWeek": {
+    "playerId": "haroon-ahmadi",
+    "name": "Haroon Ahmadi",
+    "teamId": "em-haulers-fc",
+    "teamName": "EM Haulers FC",
+    "summary": "Scored the championship-winning goal during the final five minutes of extra time and finished Finals Day with 3 goals as EM Haulers FC won the 2026 LSL Championship.",
+    "tag": "Player of the Week"
+  },
+  "topPlayers": [
+    {
+      "rank": 1,
+      "playerId": "haroon-ahmadi",
+      "name": "Haroon Ahmadi",
+      "teamId": "em-haulers-fc",
+      "teamName": "EM Haulers FC",
+      "summary": "Scored the championship-winning goal in the final five minutes of extra time"
+    },
+    {
+      "rank": 2,
+      "playerId": "mudassir",
+      "name": "Mudassir",
+      "teamId": "leeward-lions",
+      "teamName": "Leeward Lions",
+      "summary": "5 goals across three Finals Day games, including a penalty equalizer in the Final"
+    },
+    {
+      "rank": 3,
+      "playerId": "muzamil-kharooti",
+      "name": "Muzamil Kharooti",
+      "teamId": "em-haulers-fc",
+      "teamName": "EM Haulers FC",
+      "summary": "Opened the scoring in the Final after a two-goal quarterfinal"
+    },
+    {
+      "rank": 4,
+      "playerId": "abdul-ghiyas-solyman",
+      "name": "Abdul Ghiyas Solyman",
+      "teamId": "refuel-rovers",
+      "teamName": "Refuel Rovers",
+      "summary": "Scored the only goal in a quarterfinal upset over Rawaha Royals"
+    },
+    {
+      "rank": 5,
+      "playerId": "ajmal-shakkari",
+      "name": "Ajmal Chakkari",
+      "teamId": "leeward-lions",
+      "teamName": "Leeward Lions",
+      "summary": "Scored in the semifinal win over Refuel Rovers to reach the Final"
+    }
+  ]
+}

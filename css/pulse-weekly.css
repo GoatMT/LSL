@@ -1,0 +1,6 @@
+.pulse-weekly-panel { border-top: 3px solid var(--gold); }
+.pulse-weekly-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.pulse-weekly-grid article { display: grid; gap: 7px; padding: 15px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255, 255, 255, 0.03); }
+.pulse-weekly-grid strong { color: var(--white); font-size: 1.05rem; }
+.pulse-weekly-grid small { color: var(--muted); line-height: 1.45; }
+@media (max-width: 700px) { .pulse-weekly-grid { grid-template-columns: 1fr; } }

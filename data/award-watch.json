@@ -1,0 +1,96 @@
+{
+  "season": "2026",
+  "week": "Week 7",
+  "date": "August 1, 2026",
+  "title": "Award Watch",
+  "subtitle": "Early leaders after the latest reported Week 7 results in the LSL Seniors League.",
+  "categories": [
+    {
+      "label": "MVP Watch",
+      "note": "Goal-first MVP race through the latest senior week.",
+      "leaders": [
+        {
+          "rank": 1,
+          "playerId": "mudassir",
+          "name": "Mudassir",
+          "teamName": "Leeward Lions",
+          "stat": "16 goals",
+          "reason": "Still leads the senior goal race after being held scoreless in Week 7's 1-0 win over Refuel Rovers."
+        },
+        {
+          "rank": 2,
+          "playerId": "haroon-ahmadi",
+          "name": "Haroon Ahmadi",
+          "teamName": "EM Haulers FC",
+          "stat": "13 goals",
+          "reason": "Scored the equalizer in EM Haulers FC's 1-1 Week 7 draw with Memon Mavericks."
+        },
+        {
+          "rank": 3,
+          "playerId": "mohammed-ibrahim",
+          "name": "Mohammad Ibrahim",
+          "teamName": "Rawaha Royals",
+          "stat": "9 goals",
+          "reason": "Scored in Rawaha Royals' 8-4 Week 7 win to take sole possession of third, ahead of Ajmal Chakkari and M Yahya at 8."
+        }
+      ]
+    },
+    {
+      "label": "Golden Boot Watch",
+      "note": "Senior goal race leaders.",
+      "leaders": [
+        {
+          "rank": 1,
+          "playerId": "mudassir",
+          "name": "Mudassir",
+          "teamName": "Leeward Lions",
+          "stat": "16 goals",
+          "reason": "Leads the senior goal race by three after Week 7."
+        },
+        {
+          "rank": 2,
+          "playerId": "haroon-ahmadi",
+          "name": "Haroon Ahmadi",
+          "teamName": "EM Haulers FC",
+          "stat": "13 goals",
+          "reason": "Pulled to within three goals of the lead with his Week 7 equalizer."
+        },
+        {
+          "rank": 3,
+          "playerId": "mohammed-ibrahim",
+          "name": "Mohammad Ibrahim",
+          "teamName": "Rawaha Royals",
+          "stat": "9 goals",
+          "reason": "Moved into sole third place with a Week 7 goal against Gangat Warriors."
+        }
+      ]
+    },
+    {
+      "label": "Team Award Watch",
+      "note": "Best regular season team race.",
+      "leaders": [
+        {
+          "rank": 1,
+          "teamId": "leeward-lions",
+          "name": "Leeward Lions",
+          "stat": "5-1-1",
+          "reason": "Moved into a three-way tie atop the standings and leads on goal differential (+18) after Week 7."
+        },
+        {
+          "rank": 2,
+          "teamId": "em-haulers-fc",
+          "name": "EM Haulers FC",
+          "stat": "5-1-1",
+          "reason": "Tied on points after a 1-1 Week 7 draw with Memon Mavericks; second on goal differential (+12)."
+        },
+        {
+          "rank": 3,
+          "teamId": "sharp-strikers",
+          "name": "Sharp Strikers",
+          "stat": "5-1-1",
+          "reason": "Tied on points after a 1-1 Week 7 draw with Amax Visionaries; third on goal differential (+11)."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Lantern Soccer League pulse page with the latest champions, leaders, awards, and league notes.">
+    <meta name="theme-color" content="#113c1f">
+    <title>Lantern Soccer League | LSL Pulse</title>
+    <link rel="icon" href="./Logos/lsl-logo.png">
+    <link rel="stylesheet" href="./css/main.css?v=3.27">
+    <link rel="stylesheet" href="./css/components.css?v=3.28">
+    <link rel="stylesheet" href="./css/responsive.css?v=3.26">
+    <link rel="stylesheet" href="./css/pulse-weekly.css?v=1">
+    <style>
+      .pulse-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .pulse-hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+
+      .pulse-page-layout {
+        display: grid;
+        gap: 18px;
+      }
+
+      .pulse-main-column {
+        display: grid;
+        gap: 18px;
+        min-width: 0;
+      }
+
+      .pulse-tabs button,
+      .pulse-post-actions button {
+        border: 1px solid rgba(199, 163, 103, 0.45);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        border-radius: 14px;
+        padding: 13px 16px;
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .pulse-tabs button.active {
+        background: #113c1f;
+        border-color: #c7a367;
+      }
+
+      .pulse-name-row,
+      .pulse-account-top,
+      .pulse-account-form,
+      .pulse-composer-actions,
+      .pulse-post-actions,
+      .pulse-reply-form {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .pulse-name-row input,
+      .pulse-account-form input,
+      .pulse-composer textarea,
+      .pulse-reply-form input {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        border-radius: 14px;
+        padding: 14px 16px;
+        font: inherit;
+      }
+
+      .pulse-account-panel {
+        display: grid;
+        gap: 16px;
+      }
+
+      .pulse-account-top {
+        justify-content: space-between;
+      }
+
+      .pulse-account-button {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        overflow: hidden;
+        border: 1px solid #c7a367;
+        background: #113c1f;
+        color: #fff;
+        border-radius: 18px;
+        font: inherit;
+        font-weight: 950;
+        cursor: pointer;
+      }
+
+      .pulse-account-button span {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 0.98rem;
+      }
+
+      .pulse-avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: inherit;
+        display: block;
+      }
+
+      .pulse-avatar-change-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .pulse-avatar-change-row small {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .pulse-account-top h2,
+      .pulse-account-top p {
+        margin: 0;
+      }
+
+      .pulse-account-top > div {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .pulse-account-form {
+        padding: 14px;
+        border: 1px solid rgba(199, 163, 103, 0.22);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+      }
+
+      .pulse-account-form small {
+        color: rgba(255, 255, 255, 0.72);
+        min-width: 180px;
+      }
+
+      .pulse-composer textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .pulse-composer-actions {
+        justify-content: space-between;
+        margin-top: 12px;
+      }
+
+      .pulse-feed {
+        display: grid;
+        gap: 16px;
+      }
+
+      .pulse-post-card {
+        border: 1px solid rgba(199, 163, 103, 0.22);
+        background: rgba(255, 255, 255, 0.045);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .pulse-post-card.pulse-post-user {
+        background: #192734;
+        border-color: rgba(56, 139, 209, 0.4);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+      }
+
+      .pulse-post-card.pulse-post-user:hover {
+        background: #1e2f3d;
+        border-color: rgba(56, 139, 209, 0.65);
+      }
+
+      .pulse-post-card.pulse-post-user .pulse-avatar {
+        background: #1d9bf0;
+        border-color: #1d9bf0;
+      }
+
+      .pulse-post-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .pulse-avatar {
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border-radius: 50%;
+        background: #113c1f;
+        border: 1px solid #c7a367;
+        color: #fff;
+        font-weight: 900;
+      }
+
+      .pulse-post-head p,
+      .pulse-source,
+      .pulse-reply small,
+      .pulse-composer-actions small {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .pulse-post-body {
+        line-height: 1.65;
+      }
+
+      .pulse-post-actions {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        margin-top: 16px;
+        padding-top: 10px;
+        justify-content: flex-start;
+        gap: 10px;
+      }
+
+      .pulse-post-actions > span {
+        margin-left: auto;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .pulse-post-actions button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+
+      .pulse-heart-button {
+        min-width: 76px;
+        justify-content: center;
+        background: rgba(130, 28, 34, 0.72) !important;
+        border-color: rgba(255, 92, 108, 0.9) !important;
+        color: #fff !important;
+        box-shadow: 0 0 16px rgba(255, 62, 86, 0.3);
+      }
+
+      .pulse-heart-button.liked {
+        background: #b91c2d !important;
+        border-color: #ff5c6c !important;
+        box-shadow: 0 0 20px rgba(255, 62, 86, 0.55);
+      }
+
+      .pulse-heart-icon {
+        font-size: 0;
+      }
+
+      .pulse-heart-icon::before {
+        content: "\2665";
+        font-size: 1.15rem;
+      }
+
+      .pulse-dislike-button {
+        min-width: 76px;
+        justify-content: center;
+        background: rgba(23, 55, 94, 0.75) !important;
+        border-color: rgba(96, 165, 250, 0.8) !important;
+        color: #fff !important;
+        box-shadow: 0 0 16px rgba(59, 130, 246, 0.25);
+      }
+
+      .pulse-dislike-button.disliked {
+        background: #16386a !important;
+        border-color: #60a5fa !important;
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.55);
+      }
+
+      .pulse-dislike-icon {
+        font-size: 0;
+      }
+
+      .pulse-dislike-icon::before {
+        content: "\1F44E";
+        font-size: 1.05rem;
+      }
+
+      .pulse-repost-button {
+        min-width: 140px;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(17, 60, 31, 0.75) !important;
+        border-color: rgba(101, 217, 155, 0.75) !important;
+        color: #fff !important;
+        box-shadow: 0 0 16px rgba(101, 217, 155, 0.2);
+      }
+
+      .pulse-repost-button.reposted {
+        background: #1b7a45 !important;
+        border-color: #65d99b !important;
+        box-shadow: 0 0 20px rgba(101, 217, 155, 0.5);
+      }
+
+      .pulse-repost-icon {
+        display: inline-flex;
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+      }
+
+      .pulse-repost-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: currentColor;
+      }
+
+      .pulse-repost-label {
+        font-size: 0.86rem;
+      }
+
+      .pulse-attach-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(199, 163, 103, 0.45);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font: inherit;
+        font-weight: 800;
+        font-size: 0.86rem;
+        cursor: pointer;
+      }
+
+      .pulse-attach-button:hover {
+        border-color: #c7a367;
+      }
+
+      .pulse-mention-wrap {
+        position: relative;
+      }
+
+      .pulse-mention {
+        color: #8fd8ff;
+        text-decoration: underline;
+        text-decoration-color: rgba(143, 216, 255, 0.55);
+        text-underline-offset: 2px;
+        font-weight: 800;
+      }
+
+      .pulse-mention:hover {
+        color: #b8e8ff;
+        text-decoration-color: #b8e8ff;
+      }
+
+      .pulse-mention-menu {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 100%;
+        margin-bottom: 8px;
+        display: grid;
+        gap: 4px;
+        padding: 6px;
+        background: #16261c;
+        border: 1px solid rgba(199, 163, 103, 0.4);
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+        z-index: 20;
+        max-height: 220px;
+        overflow-y: auto;
+      }
+
+      .pulse-mention-menu[hidden] {
+        display: none;
+      }
+
+      .pulse-mention-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 10px;
+        font: inherit;
+        font-weight: 700;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .pulse-mention-option:hover {
+        background: rgba(199, 163, 103, 0.18);
+      }
+
+      .pulse-mention-avatar {
+        width: 28px;
+        height: 28px;
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #113c1f;
+        border: 1px solid #c7a367;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 900;
+      }
+
+
+
+      .pulse-replies {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .pulse-reply {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        gap: 8px;
+        align-items: center;
+        border: 1px solid rgba(199, 163, 103, 0.32);
+        border-left: 3px solid #c7a367;
+        background: rgba(17, 60, 31, 0.5);
+        border-radius: 12px;
+        padding: 10px 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+      }
+
+      .pulse-reply strong {
+        color: #efd3a5;
+      }
+
+      .pulse-reply p {
+        margin: 2px 0 0;
+      }
+
+      .pulse-delete-button {
+        border: 1px solid rgba(255, 92, 108, 0.55);
+        background: rgba(130, 28, 34, 0.28);
+        color: #fff;
+        border-radius: 999px;
+        padding: 7px 10px;
+        font: inherit;
+        font-size: 0.78rem;
+        font-weight: 850;
+        cursor: pointer;
+      }
+
+      .pulse-delete-button.small {
+        padding: 5px 8px;
+      }
+
+      .pulse-reply-form {
+        margin-top: 10px;
+        gap: 8px;
+      }
+
+      .pulse-reply-form input {
+        padding: 10px 12px;
+      }
+
+      @keyframes pulsePostPop {
+        0% {
+          opacity: 0;
+          transform: translateY(18px) scale(0.94);
+        }
+        65% {
+          opacity: 1;
+          transform: translateY(-3px) scale(1.015);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .pulse-post-fresh {
+        animation: pulsePostPop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @media (max-width: 720px) {
+        .pulse-tabs,
+        .pulse-name-row,
+        .pulse-account-top,
+        .pulse-account-form,
+        .pulse-composer-actions,
+        .pulse-reply-form {
+          grid-template-columns: 1fr;
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .pulse-account-button {
+          width: 100%;
+        }
+
+        .pulse-hero-badges {
+          justify-content: flex-start;
+        }
+
+        .pulse-reply {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body data-disable-animations>
+    <div id="site-navbar"></div>
+    <main id="page-root" class="page-shell"></main>
+    <div id="site-footer"></div>
+    <script type="module" src="./js/lslPulse.js?v=20260908-2"></script>
+  </body>
+</html>

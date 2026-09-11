@@ -1,0 +1,88 @@
+{
+  "season": "2024",
+  "division": "Seniors",
+  "format": "Six-team senior playoff. Top two seeds receive semifinal byes.",
+  "champion": "Shifa Pharmacy F.C.",
+  "layout": "wide",
+  "rounds": [
+    {
+      "name": "Quarterfinals",
+      "matches": [
+        {
+          "label": "Q1",
+          "homeTeamId": "silver-suits-strikers",
+          "homeTeamName": "Silver Suits Strikers",
+          "awayTeamId": "jogiat-palace",
+          "awayTeamName": "Jogiat Palace",
+          "homeScore": 2,
+          "awayScore": 3,
+          "winnerId": "jogiat-palace",
+          "note": "Jogiat Palace advanced 3-2 on penalties."
+        },
+        {
+          "label": "Q2",
+          "homeTeamId": "asif-gangat-united",
+          "homeTeamName": "Asif Gangat United",
+          "awayTeamId": "umer-memon-fc",
+          "awayTeamName": "Umer Memon F.C.",
+          "homeScore": 3,
+          "awayScore": 4,
+          "winnerId": "umer-memon-fc",
+          "note": "Umer Memon advanced on penalties."
+        }
+      ]
+    },
+    {
+      "name": "Semifinals",
+      "matches": [
+        {
+          "label": "S1",
+          "homeTeamId": "refuel-juicery-kickers",
+          "homeTeamName": "Refuel Juicery Kickers (1st Place Team)",
+          "awayTeamId": "umer-memon-fc",
+          "awayTeamName": "Umer Memon F.C.",
+          "homeScore": 2,
+          "awayScore": 1,
+          "winnerId": "refuel-juicery-kickers"
+        },
+        {
+          "label": "S2",
+          "homeTeamId": "shifa-pharmacy-fc",
+          "homeTeamName": "Shifa Pharmacy F.C. (2nd Place Team)",
+          "awayTeamId": "jogiat-palace",
+          "awayTeamName": "Jogiat Palace",
+          "homeScore": 5,
+          "awayScore": 3,
+          "winnerId": "shifa-pharmacy-fc"
+        }
+      ]
+    },
+    {
+      "name": "Finals",
+      "matches": [
+        {
+          "label": "Finals",
+          "homeTeamId": "shifa-pharmacy-fc",
+          "homeTeamName": "Shifa Pharmacy F.C.",
+          "awayTeamId": "refuel-juicery-kickers",
+          "awayTeamName": "Refuel Juicery Kickers",
+          "homeScore": 3,
+          "awayScore": 0,
+          "winnerId": "shifa-pharmacy-fc",
+          "note": "Shifa Pharmacy F.C. defeated Refuel Juicery Kickers 3-0 in the Finals."
+        },
+        {
+          "label": "3rd Place",
+          "homeTeamId": "jogiat-palace",
+          "homeTeamName": "Jogiat Palace",
+          "awayTeamId": "umer-memon-fc",
+          "awayTeamName": "Umer Memon F.C.",
+          "homeScore": null,
+          "awayScore": null,
+          "winnerId": "jogiat-palace",
+          "note": "Jogiat Palace listed as the 2024 third-place winner; score not listed."
+        }
+      ]
+    }
+  ]
+}

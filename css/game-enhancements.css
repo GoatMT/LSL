@@ -1,0 +1,39 @@
+.game-data-completeness {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  border-top: 3px solid var(--gold);
+}
+
+.game-data-completeness.is-incomplete {
+  border-top-color: #d96a59;
+  background: rgba(217, 106, 89, 0.08);
+}
+
+.game-data-completeness.is-complete {
+  border-top-color: #4fa56a;
+  background: rgba(79, 165, 106, 0.08);
+}
+
+.game-data-completeness h2,
+.game-data-completeness p {
+  margin: 0;
+}
+
+.game-data-completeness h2 { margin-top: 4px; font-size: 1rem; }
+.game-data-completeness p { margin-top: 5px; color: var(--muted); line-height: 1.5; }
+
+.game-data-completeness-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: var(--gold);
+  font-weight: 950;
+}
+
+.game-data-completeness.is-incomplete .game-data-completeness-icon { color: #f08a76; }
+.game-data-completeness.is-complete .game-data-completeness-icon { color: #7ed69a; }

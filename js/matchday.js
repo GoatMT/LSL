@@ -1,0 +1,462 @@
+import { SITE } from "./config.js";
+import { matchToCalendarEvent, renderCalendarDownloadButton } from "./calendarLinks.js";
+import { loadSeasonData } from "./dataLoader.js?v=1.0";
+import { filterMatches, getMatchTeams, isCompletedMatch, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.10";
+import { setupLayout } from "./main.js";
+import { controlSelect, escapeHTML, formatDate, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
+
+setupLayout("matchday.html");
+setDocumentTitle("Matchday");
+
+const root = document.getElementById("page-root");
+let state = { season: SITE.defaultSeason, division: "All", week: "auto" };
+
+function sortMatches(matches = []) {
+  return filterMatches(matches, { division: "All", stage: "all", week: "all" });
+}
+
+function matchdayKey(match) {
+  return `${match.date || "date-tba"}-${match.week || "week-tba"}`;
+}
+
+function selectedMatches(data) {
+  return sortMatches(data.matches || []).filter((match) => state.division === "All" || match.division === state.division);
+}
+
+function availableDivisionOptions(data) {
+  const divisions = [...new Set((data.matches || []).map((match) => match.division).filter(Boolean))];
+  return [{ value: "All", label: "All divisions" }, ...divisions.map((division) => ({ value: division, label: division }))];
+}
+
+function matchdayOptions(matches = []) {
+  const seen = new Set();
+  const options = [{ value: "auto", label: "Next matchday" }];
+  matches.forEach((match) => {
+    const key = matchdayKey(match);
+    if (seen.has(key)) return;
+    seen.add(key);
+    options.push({
+      value: key,
+      label: `${match.week ? `Week ${match.week}` : "Matchday"} | ${match.date ? formatDate(match.date) : "Date TBA"}`,
+    });
+  });
+  return options;
+}
+
+function isTodayOrLater(date = "") {
+  if (!date) return true;
+  const matchDate = new Date(`${date}T23:59:59`);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return Number.isFinite(matchDate.getTime()) && matchDate >= today;
+}
+
+function matchdayAnchor(matches = []) {
+  if (state.week !== "auto") return matches.find((match) => matchdayKey(match) === state.week) || null;
+  const upcoming = matches.filter((match) => !isCompletedMatch(match) && isTodayOrLater(match.date));
+  return upcoming[0] || matches.at(-1) || null;
+}
+
+function matchStartMinutes(match) {
+  const found = /(\d{1,2}):(\d{2})\s*(AM|PM)/i.exec(String(match.time || ""));
+  if (!found) return Number.POSITIVE_INFINITY;
+  let hours = Number(found[1]) % 12;
+  if (/PM/i.test(found[3])) hours += 12;
+  return hours * 60 + Number(found[2]);
+}
+
+function sortByStartTime(matches = []) {
+  return [...matches].sort((a, b) => matchStartMinutes(a) - matchStartMinutes(b));
+}
+
+function sameMatchdayMatches(matches = [], anchor = null) {
+  if (!anchor) return [];
+  return sortByStartTime(matches.filter((match) => matchdayKey(match) === matchdayKey(anchor)));
+}
+
+function currentMatchday(matches = []) {
+  return sameMatchdayMatches(matches, matchdayAnchor(matches));
+}
+
+function matchdayStatusGroups(matches = []) {
+  const groups = {
+    early: [],
+    late: [],
+    cancelled: [],
+  };
+
+  matches
+    .filter((match) => !match.activityTitle)
+    .forEach((match) => {
+      const notes = Array.isArray(match.notes) ? match.notes.join(" ") : "";
+      const statusText = [
+        match.status,
+        match.timingStatus,
+        match.timingNote,
+        match.delayNote,
+        notes,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      const item = {
+        label: match.label || matchLabel(match),
+        note: match.status || "Update posted",
+      };
+
+      if (/cancel|cancell?ed|postpon|called off|abandon/.test(statusText)) {
+        groups.cancelled.push(item);
+      } else if (/late|delay|behind schedule/.test(statusText)) {
+        groups.late.push(item);
+      } else if (/early|ahead of schedule/.test(statusText)) {
+        groups.early.push(item);
+      }
+    });
+
+  return groups;
+}
+
+function renderMatchdayStatusItems(items, emptyText) {
+  if (!items.length) return `<p class="matchday-status-empty">${escapeHTML(emptyText)}</p>`;
+  return `
+    <ul class="matchday-status-items">
+      ${items
+        .map(
+          (item) => `
+            <li>
+              <strong>${escapeHTML(item.label)}</strong>
+              <span>${escapeHTML(item.note)}</span>
+            </li>
+          `,
+        )
+        .join("")}
+    </ul>
+  `;
+}
+
+function renderMatchdayStatusPanel(matches = []) {
+  const groups = matchdayStatusGroups(matches);
+  const timingChanges = groups.early.length + groups.late.length;
+  const overallCount = groups.cancelled.length || timingChanges;
+  const overallLabel = groups.cancelled.length
+    ? `${groups.cancelled.length} cancellation${groups.cancelled.length === 1 ? "" : "s"} posted`
+    : timingChanges
+      ? `${timingChanges} timing update${timingChanges === 1 ? "" : "s"} posted`
+      : "No schedule changes posted";
+
+  return `
+    <section class="section-panel matchday-status-panel" aria-labelledby="matchday-status-title">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Game-Day Information</span>
+          <h2 id="matchday-status-title">Schedule Updates</h2>
+          <p>Check here for early finishes, late starts, delays, or cancellations affecting this matchday.</p>
+        </div>
+        <span class="matchday-status-overview ${overallCount ? "has-update" : "clear"}">${escapeHTML(overallLabel)}</span>
+      </div>
+      <div class="matchday-status-grid">
+        <article class="matchday-status-card status-early ${groups.early.length ? "has-update" : "clear"}">
+          <span class="matchday-status-icon" aria-hidden="true">◷</span>
+          <div>
+            <span>Early start or finish</span>
+            <strong>${groups.early.length || "None"}</strong>
+            ${renderMatchdayStatusItems(groups.early, "No early timing update reported.")}
+          </div>
+        </article>
+        <article class="matchday-status-card status-late ${groups.late.length ? "has-update" : "clear"}">
+          <span class="matchday-status-icon" aria-hidden="true">◴</span>
+          <div>
+            <span>Late start or delay</span>
+            <strong>${groups.late.length || "None"}</strong>
+            ${renderMatchdayStatusItems(groups.late, "No late start or delay reported.")}
+          </div>
+        </article>
+        <article class="matchday-status-card status-cancelled ${groups.cancelled.length ? "has-update" : "clear"}">
+          <span class="matchday-status-icon" aria-hidden="true">×</span>
+          <div>
+            <span>Cancelled or postponed</span>
+            <strong>${groups.cancelled.length || "None"}</strong>
+            ${renderMatchdayStatusItems(groups.cancelled, "No cancellation or postponement reported.")}
+          </div>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function timeRange(matches = []) {
+  const times = matches.map((match) => match.time).filter(Boolean);
+  if (!times.length) return "Time TBA";
+  const firstStart = times[0].split(/\s+(?:-|to)\s+/i)[0] || times[0];
+  const lastEnd = times.at(-1).split(/\s+(?:-|to)\s+/i).at(-1) || times.at(-1);
+  return `${firstStart.trim()} - ${lastEnd.trim()}`;
+}
+
+function matchLabel(match) {
+  if (match.activityTitle) return match.activityTitle;
+  const { home, away } = getMatchTeams(match.data || {}, match);
+  return `${home?.name || match.homeTeamName || "Home team"} vs ${away?.name || match.awayTeamName || "Away team"}`;
+}
+
+function teamNameById(data, teamId) {
+  return (data.teams || []).find((team) => team.id === teamId)?.name || "Team TBA";
+}
+
+function actualWinnerText(data, match) {
+  const winnerId = winnerTeamId(match);
+  if (winnerId) return `Winner: ${teamNameById(data, winnerId)}`;
+  if (Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore) && match.homeScore === match.awayScore) return "Winner: Draw";
+  return "Winner: TBA";
+}
+
+function hasFullScore(match) {
+  return Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore);
+}
+
+function parseClockTime(baseDate, timeStr = "") {
+  const parts = timeStr.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!parts) return null;
+  const [, hourStr, minuteStr, meridiem] = parts;
+  let hour = Number(hourStr) % 12;
+  if (/PM/i.test(meridiem)) hour += 12;
+  const date = new Date(baseDate);
+  date.setHours(hour, Number(minuteStr), 0, 0);
+  return date;
+}
+
+function matchTimeWindow(match) {
+  if (!match.date || !match.time) return null;
+  const [startPart, endPart] = match.time.split(/\s+(?:-|to)\s+/i);
+  const base = new Date(`${match.date}T00:00:00`);
+  if (Number.isNaN(base.getTime())) return null;
+  const start = parseClockTime(base, startPart);
+  if (!start) return null;
+  const end = endPart ? parseClockTime(base, endPart) : null;
+  return { start, end: end && end > start ? end : new Date(start.getTime() + 45 * 60000) };
+}
+
+function isMatchLive(match) {
+  const window = matchTimeWindow(match);
+  if (!window) return false;
+  const now = new Date();
+  return now >= window.start && now <= window.end;
+}
+
+function resultTypeLabel(match) {
+  return hasFullScore(match) ? "Final" : "Result";
+}
+
+function actualResultLabel(match) {
+  if (hasFullScore(match)) return scoreText(match).replace(/\s+/g, "");
+  if (winnerTeamId(match)) return "Winner posted";
+  return "TBA";
+}
+
+function renderMatchdayStatus(data, match) {
+  if (match.activityTitle) {
+    return `
+      <div class="matchday-projection activity">
+        <span>Activity</span>
+        <strong>${escapeHTML(match.status || "Scheduled")}</strong>
+      </div>
+    `;
+  }
+
+  if (isCompletedMatch(match)) {
+    return `
+      <div class="matchday-projection final">
+        <span>${escapeHTML(resultTypeLabel(match))}: ${escapeHTML(actualResultLabel(match))}</span>
+        <strong>${escapeHTML(actualWinnerText(data, match))}</strong>
+      </div>
+    `;
+  }
+
+  if (isMatchLive(match)) {
+    return `
+      <div class="matchday-projection live">
+        <span>Live</span>
+        <strong>${escapeHTML(match.time || "In progress")}</strong>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="matchday-projection upcoming">
+      <span>Upcoming</span>
+      <strong>${escapeHTML(match.time || "Time TBA")}</strong>
+    </div>
+  `;
+}
+
+function renderScheduleList(data, matches) {
+  if (!matches.length) return statusMessage("empty", "No matchday schedule is published for this selection yet.");
+  return `
+    <div class="matchday-schedule-list">
+      ${matches
+        .map((match) => {
+          const { home, away } = getMatchTeams(data, match);
+          const label = match.activityTitle || `${home?.name || match.homeTeamName || "Home team"} vs ${away?.name || match.awayTeamName || "Away team"}`;
+          const tag = match.activityTitle ? "article" : "a";
+          const href = match.activityTitle ? "" : ` href="./game.html?id=${encodeURIComponent(match.id || "")}&season=${encodeURIComponent(data.year || "")}"`;
+          return `
+            <${tag} class="matchday-row${match.activityTitle ? "" : " clickable"}"${href}>
+              <div class="matchday-row-time">
+                <span>${escapeHTML(match.label || `Game ${match.week}`)}</span>
+                <strong>${escapeHTML(match.time || "Time TBA")}</strong>
+              </div>
+              <div class="matchday-row-main">
+                <h3>${match.activityTitle ? escapeHTML(label) : `<span>${escapeHTML(home?.name || match.homeTeamName || "Home team")}</span> <span>vs</span> <span>${escapeHTML(away?.name || match.awayTeamName || "Away team")}</span>`}</h3>
+                <p>${escapeHTML(match.division || "LSL")} | ${escapeHTML(formatDateWithISO(match.date))}</p>
+              </div>
+              ${renderMatchdayStatus(data, match)}
+            </${tag}>
+          `;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
+function latestCompletedMatchday(matches = []) {
+  return [...matches].reverse().find((match) => !match.activityTitle && isCompletedMatch(match)) || null;
+}
+
+function renderFinalScoreList(data, matches) {
+  const completedAnchor = latestCompletedMatchday(matches);
+  const matchdayMatches = sameMatchdayMatches(matches, completedAnchor);
+  const finals = matchdayMatches.filter((match) => !match.activityTitle && isCompletedMatch(match));
+  const first = completedAnchor || {};
+  const weekText = first.week ? `Week ${first.week}` : "Matchday";
+  const dateText = first.date ? formatDateWithISO(first.date) : "Date TBA";
+
+  return `
+    <section class="section-panel matchday-results-panel">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Final Scores</span>
+          <h2>Previous Results</h2>
+          <p>Open a completed matchday to view its final scores.</p>
+        </div>
+      </div>
+      ${
+        finals.length
+          ? `<details class="matchday-results-details">
+              <summary>
+                <span>
+                  <small>Completed Matchday</small>
+                  <strong>${escapeHTML(weekText)} | ${escapeHTML(dateText)}</strong>
+                </span>
+                <b>${finals.length} ${finals.length === 1 ? "game" : "games"}</b>
+              </summary>
+              <div class="matchday-final-list">
+              ${finals
+                .map((match) => {
+                  const { home, away } = getMatchTeams(data, match);
+                  const winnerId = winnerTeamId(match);
+                  return `
+                    <article class="matchday-final-row">
+                      <div>
+                        <span class="pill green">${escapeHTML(match.label || `Game ${match.week}`)}</span>
+                        <p>${escapeHTML(match.division || "LSL")} | ${escapeHTML(match.time || "Time TBA")}</p>
+                      </div>
+                      <div class="matchday-final-teams">
+                        <a class="${winnerId === match.homeTeamId ? "winner" : ""}" href="${escapeHTML(teamProfileHref(match.homeTeamId, data.year))}">${escapeHTML(home?.name || match.homeTeamName || "Home team")}</a>
+                        <strong>${escapeHTML(actualResultLabel(match))}</strong>
+                        <a class="${winnerId === match.awayTeamId ? "winner" : ""}" href="${escapeHTML(teamProfileHref(match.awayTeamId, data.year))}">${escapeHTML(away?.name || match.awayTeamName || "Away team")}</a>
+                      </div>
+                      <span class="matchday-final-winner">${escapeHTML(actualWinnerText(data, match))}</span>
+                    </article>
+                  `;
+                })
+                .join("")}
+              </div>
+            </details>`
+          : statusMessage("empty", "No final scores are posted for this season yet.")
+      }
+    </section>
+  `;
+}
+
+function matchdayCalendarEvents(data, matches) {
+  return matches
+    .filter((match) => !isCompletedMatch(match))
+    .map((match) => {
+      const { home, away } = getMatchTeams(data, match);
+      return matchToCalendarEvent(match, data, { home: home?.name || match.homeTeamName, away: away?.name || match.awayTeamName });
+    })
+    .filter(Boolean);
+}
+
+async function render(data) {
+  const divisions = availableDivisionOptions(data);
+  if (!divisions.some((option) => option.value === state.division)) state.division = "All";
+  const matches = selectedMatches(data);
+  const weeks = matchdayOptions(matches);
+  if (!weeks.some((option) => option.value === state.week)) state.week = "auto";
+  const anchor = matchdayAnchor(matches);
+  const dayMatches = sameMatchdayMatches(matches, anchor).map((match) => ({ ...match, data }));
+  const first = dayMatches[0] || {};
+  const completedCount = dayMatches.filter(isCompletedMatch).length;
+  const seniorGames = dayMatches.filter((match) => match.division === "Seniors" && !match.activityTitle).length;
+  const juniorActivities = dayMatches.filter((match) => match.division === "Juniors" || match.activityTitle).length;
+  const calendarEvents = matchdayCalendarEvents(data, dayMatches);
+  const calendarFilename = `lsl-matchday-${first.date || "schedule"}.ics`;
+
+  root.innerHTML = `
+    <section class="section-panel matchday-hub-hero">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Matchday Hub</span>
+          <h1>${escapeHTML(formatDateWithISO(first.date || data.event?.firstDay))}</h1>
+          <p>${escapeHTML(data.event?.venue || SITE.venue)} | ${escapeHTML(timeRange(dayMatches))}</p>
+        </div>
+        <div class="matchday-hero-actions">
+          ${renderCalendarDownloadButton(calendarEvents, calendarFilename, "Add Matchday To Calendar")}
+          <a class="text-link" href="./matches.html">All matches</a>
+        </div>
+      </div>
+      <div class="controls">
+        ${controlSelect("season", "Season", SITE.seasons, state.season)}
+        ${controlSelect("division", "Division", divisions, state.division)}
+        ${controlSelect("week", "Matchday", weeks, state.week)}
+      </div>
+      <div class="matchday-summary-grid">
+        <div class="summary-tile"><span>Senior Games</span><strong>${seniorGames}</strong><p>${completedCount ? `${completedCount} results posted` : "official schedule posted"}</p></div>
+        <div class="summary-tile"><span>Juniors</span><strong>${juniorActivities || "TBA"}</strong><p>skills, dribbling, or scrimmage</p></div>
+        <div class="summary-tile"><span>Field</span><strong>${escapeHTML(data.event?.venue || "Venue TBA")}</strong><p>${escapeHTML(data.event?.address || "Address TBA")}</p></div>
+      </div>
+    </section>
+
+    ${renderMatchdayStatusPanel(dayMatches)}
+
+    <section class="section-panel">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Schedule</span>
+          <h2>Game Times</h2>
+          <p>${dayMatches.length ? `${dayMatches.length} item${dayMatches.length === 1 ? "" : "s"} listed for this matchday.` : "No matchday items listed yet."}</p>
+        </div>
+      </div>
+      ${renderScheduleList(data, dayMatches)}
+    </section>
+
+    ${renderFinalScoreList(data, matches)}
+
+  `;
+
+  ["season", "division", "week"].forEach((id) => {
+    document.getElementById(id).addEventListener("change", async (event) => {
+      state[id] = event.target.value;
+      if (id === "season" || id === "division") state.week = "auto";
+      loadAndRender();
+    });
+  });
+}
+
+async function loadAndRender() {
+  root.innerHTML = statusMessage("loading", "Loading matchday...");
+  const data = await loadSeasonData(state.season);
+  render(data);
+}
+
+loadAndRender();
