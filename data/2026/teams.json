@@ -30,7 +30,7 @@
       "roster": [
         { "id": "mosa-fazli", "name": "Mosa Fazli", "jersey": 1, "position": "Striker", "leadershipRole": "assistant", "birthYear": 2013 },
         { "id": "yousaf-hosseinzada", "name": "Yousaf Hosseinzada", "photo": "./Logos/Player Pics/Yousaf Hosseinzada.png", "jersey": 2, "position": "Midfielder", "birthYear": 2011 },
-        { "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "photo": "./Logos/Player Pics/Abdul Ghiyas Solyman.png", "position": "Striker/Winger", "leadershipRole": "assistant", "birthYear": 2012, "previousTeamId": "em-haulers-fc", "previousTeamName": "EM Haulers FC", "tradeEffectiveDate": "2026-06-12", "tradeNote": "Officially traded to Refuel Rovers for Mohammed Wahedi." },
+        { "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "jersey": 7, "photo": "./Logos/Player Pics/Abdul Ghiyas Solyman.png", "position": "Striker/Winger", "leadershipRole": "assistant", "birthYear": 2012, "previousTeamId": "em-haulers-fc", "previousTeamName": "EM Haulers FC", "tradeEffectiveDate": "2026-06-12", "tradeNote": "Officially traded to Refuel Rovers for Mohammed Wahedi." },
         { "id": "ishaaq-ali", "name": "Ishaaq Ali", "photo": "./Logos/Player Pics/Ishaaq Ali.png", "jersey": 4, "position": "Defender", "leadershipRole": "captain", "birthYear": 2010, "birthMonth": 11 },
         { "id": "ibrahim-syed", "name": "Ibrahim Syed", "jersey": 5, "position": "Defender" },
         { "id": "azizullah", "name": "Azizullah", "photo": "./Logos/Player Pics/Azizullah.png", "jersey": 6, "position": "Defender" },
@@ -51,16 +51,16 @@
       "coachName": "Aadil",
       "history": "2026 senior team coached by Aadil, a championship winner with a debut-season finals appearance.",
       "roster": [
-        { "id": "uthman", "name": "Uthman Manjra", "position": "Striker", "leadershipRole": "assistant", "birthYear": 2010, "birthMonth": 11 },
-        { "id": "saad-khan", "name": "Saad Khan", "photo": "./Logos/Player Pics/Saad Khan.png", "position": "Goalie", "leadershipRole": "assistant", "birthYear": 2013 },
-        { "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "photo": "./Logos/Player Pics/Mubashir Kharooti.png", "position": "Midfielder" },
-        { "id": "umair-saiyad", "name": "Umair Saiyad", "position": "Defender" },
-        { "id": "tulha-ahmed", "name": "Tulha Ahmed", "position": "Midfielder" },
-        { "id": "muneeb", "name": "Muneeb", "position": "Defender" },
-        { "id": "syed-zaeem-arshad", "name": "Syed Zaeem Arshad", "position": "Defender" },
-        { "id": "murtaza-syed", "name": "Murtaza Syed", "position": "Defender" },
-        { "id": "mohammed-ibrahim", "name": "Mohammad Ibrahim", "position": "Striker", "leadershipRole": "captain", "birthYear": 2010 },
-        { "id": "zakariya-chhibu", "name": "Zakariya Chhibu", "position": "Defender" }
+        { "id": "uthman", "name": "Uthman Manjra", "jersey": 1, "position": "Striker", "leadershipRole": "assistant", "birthYear": 2010, "birthMonth": 11 },
+        { "id": "saad-khan", "name": "Saad Khan", "jersey": 2, "photo": "./Logos/Player Pics/Saad Khan.png", "position": "Goalie", "leadershipRole": "assistant", "birthYear": 2013 },
+        { "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "jersey": 3, "photo": "./Logos/Player Pics/Mubashir Kharooti.png", "position": "Midfielder" },
+        { "id": "umair-saiyad", "name": "Umair Saiyad", "jersey": 4, "position": "Defender" },
+        { "id": "tulha-ahmed", "name": "Tulha Ahmed", "jersey": 5, "position": "Midfielder" },
+        { "id": "muneeb", "name": "Muneeb", "jersey": 6, "position": "Defender" },
+        { "id": "syed-zaeem-arshad", "name": "Syed Zaeem Arshad", "jersey": 7, "position": "Defender" },
+        { "id": "murtaza-syed", "name": "Murtaza Syed", "jersey": 8, "position": "Defender" },
+        { "id": "mohammed-ibrahim", "name": "Mohammad Ibrahim", "jersey": 9, "position": "Striker", "leadershipRole": "captain", "birthYear": 2010 },
+        { "id": "zakariya-chhibu", "name": "Zakariya Chhibu", "jersey": 10, "position": "Defender" }
       ]
     },
     {
@@ -74,7 +74,7 @@
       "coachName": "Asim",
       "history": "2026 senior team coached by Asim, listed as the youngest coach.",
       "roster": [
-        { "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "photo": "./Logos/Player Pics/Muzamil Kharooti.png", "position": "Striker", "leadershipRole": "assistant", "birthYear": 2011 },
+        { "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "jersey": 7, "photo": "./Logos/Player Pics/Muzamil Kharooti.png", "position": "Striker", "leadershipRole": "assistant", "birthYear": 2011 },
         { "id": "ammar-kazi", "name": "Ammar Kazi", "position": "Defender" },
         { "id": "mohammed-wahedi", "name": "Mohammed Wahedi", "position": "Goalie", "previousTeamId": "refuel-rovers", "previousTeamName": "Refuel Rovers", "tradeEffectiveDate": "2026-06-12", "tradeNote": "Officially traded to EM Haulers FC for Abdul Ghiyas Solyman." },
         { "id": "maaz-andurrahman", "name": "Maaz Abdurrahman", "position": "Defender" },
@@ -82,7 +82,7 @@
         { "id": "azeez-ur-rehman", "name": "Azeez ur Rehman", "position": "Defender" },
         { "id": "ahmed-adeeb-kamga", "name": "Ahmed Adeeb Kamga", "position": "Defender" },
         { "id": "uwais-bemat", "name": "Uwais Bemat", "position": "Attacking Midfielder", "leadershipRole": "assistant", "birthYear": 2012 },
-        { "id": "haroon-ahmadi", "name": "Haroon Ahmadi", "position": "Striker", "leadershipRole": "captain", "birthYear": 2011 },
+        { "id": "haroon-ahmadi", "name": "Haroon Ahmadi", "jersey": 10, "position": "Striker", "leadershipRole": "captain", "birthYear": 2011 },
         { "id": "tayyib-mohammed", "name": "Tayyib Mohammed", "position": "Attacking Midfielder" }
       ]
     },
@@ -97,16 +97,16 @@
       "coachName": "Tanveer",
       "history": "2026 senior team coached by Tanveer in his second year.",
       "roster": [
-        { "id": "mudassir", "name": "Mudassir", "position": "Attacking Midfielder", "leadershipRole": "captain", "birthYear": 2012 },
-        { "id": "ajmal-shakkari", "name": "Ajmal Chakkari", "position": "Winger", "birthYear": 2013 },
-        { "id": "subhanullah-sharza", "name": "Subhanallah Sharzah", "position": "Defender" },
+        { "id": "mudassir", "name": "Mudassir", "jersey": 2, "position": "Attacking Midfielder", "leadershipRole": "captain", "birthYear": 2012 },
+        { "id": "ajmal-shakkari", "name": "Ajmal Chakkari", "jersey": 3, "position": "Winger", "birthYear": 2013 },
+        { "id": "subhanullah-sharza", "name": "Subhanallah Sharzah", "jersey": 4, "position": "Defender" },
         { "id": "abdullah-hosseinzadah", "name": "Abdullah Hosseinzadah", "position": "Defender" },
         { "id": "zayd-badin", "name": "Zaid Badin", "position": "Defender", "previousTeamId": "memon-mavericks", "previousTeamName": "Memon Mavericks", "tradeEffectiveDate": "2026-07-17", "tradeNote": "Officially traded to Leeward Lions in the Gangat Warriors multi-player trade." },
         { "id": "ibrahim-kadam", "name": "Ibrahim Kadam", "position": "Defender", "previousTeamId": "gangat-warriors", "previousTeamName": "Gangat Warriors", "tradeEffectiveDate": "2026-07-17", "tradeNote": "Officially traded to Leeward Lions in the Gangat Warriors multi-player trade." },
-        { "id": "usman-ahmad-popal", "name": "Usman Ahmad Popal", "position": "Goalie", "birthYear": 2011, "achievements": ["2026 LSL Seniors Best Goalkeeper"] },
-        { "id": "muhammad-teli", "name": "Muhummud Teli", "photo": "./Logos/Player Pics/Muhummud Teli.png", "position": "Winger", "leadershipRole": "assistant", "birthYear": 2011 },
-        { "id": "abubakr-manjra", "name": "Abu Bakr Manjra", "photo": "./Logos/Player Pics/Abu Bakr Manjra.png", "position": "Defender", "leadershipRole": "assistant", "birthYear": 2011 },
-        { "id": "sayem-mohammed-sadi", "name": "Sayem Mohamed Saad", "photo": "./Logos/Player Pics/Sayem Mohamed Saad.png", "position": "Defender" }
+        { "id": "usman-ahmad-popal", "name": "Usman Ahmad Popal", "jersey": 6, "position": "Goalie", "birthYear": 2011, "achievements": ["2026 LSL Seniors Best Goalkeeper"] },
+        { "id": "muhammad-teli", "name": "Muhummud Teli", "jersey": 8, "photo": "./Logos/Player Pics/Muhummud Teli.png", "position": "Winger", "leadershipRole": "assistant", "birthYear": 2011 },
+        { "id": "abubakr-manjra", "name": "Abu Bakr Manjra", "jersey": 9, "photo": "./Logos/Player Pics/Abu Bakr Manjra.png", "position": "Defender", "leadershipRole": "assistant", "birthYear": 2011 },
+        { "id": "sayem-mohammed-sadi", "name": "Sayem Mohamed Saad", "jersey": 7, "photo": "./Logos/Player Pics/Sayem Mohamed Saad.png", "position": "Defender" }
       ]
     },
     {
@@ -144,8 +144,8 @@
       "history": "2026 senior team coached by Abdul Hakeem \"Ya Salaam\", listed as defending champion coach.",
       "roster": [
         { "id": "taha-nakhuda", "name": "Taaha Nakhuda", "position": "Striker", "leadershipRole": "captain", "birthYear": 2010, "birthMonth": 11 },
-        { "id": "hammad-shaikh", "name": "Hammad Shaikh", "position": "Goalie", "leadershipRole": "assistant" },
-        { "id": "ahmad-ingar", "name": "Ahmad Ingar", "position": "Winger", "leadershipRole": "assistant" },
+        { "id": "hammad-shaikh", "name": "Hammad Shaikh", "jersey": 2, "position": "Goalie", "leadershipRole": "assistant" },
+        { "id": "ahmad-ingar", "name": "Ahmad Ingar", "jersey": 3, "position": "Winger", "leadershipRole": "assistant" },
         { "id": "huzaifa-ahmad-vadia", "name": "Huzaifa Ahmed Vadia", "position": "Defender" },
         { "id": "ayaan-tutla", "name": "Ayaan Tutla", "position": "Defender" },
         { "id": "yahya-adil-butt", "name": "Yahya Adill Butt", "position": "Attacking Midfielder" },
@@ -153,7 +153,7 @@
         { "id": "bayram-loukil", "name": "Byram Loukil", "position": "Defender", "previousTeamId": "leeward-lions", "previousTeamName": "Leeward Lions", "tradeEffectiveDate": "2026-07-17", "tradeNote": "Officially traded to Gangat Warriors in the Leeward Lions multi-player trade." },
         { "id": "umar-manjra", "name": "Umar Manjra", "position": "Winger", "birthYear": 2014, "previousTeamId": "leeward-lions", "previousTeamName": "Leeward Lions", "tradeEffectiveDate": "2026-07-17", "tradeNote": "Officially traded to Gangat Warriors in the Leeward Lions multi-player trade." },
         { "id": "ali-imran", "name": "Ali Imran", "position": "Defender" },
-        { "id": "ilyas-salim", "name": "Ilyas Salim", "position": "Defender", "birthYear": 2013 }
+        { "id": "ilyas-salim", "name": "Ilyas Salim", "jersey": 10, "position": "Defender", "birthYear": 2013 }
       ]
     },
     {
@@ -190,17 +190,17 @@
       "coachName": "Elhaj",
       "history": "2026 senior team coached by Elhaj in his first year.",
       "roster": [
-        { "id": "ahmed-bhaiyat", "name": "Ahmed Bhaiyat", "position": "Defender" },
-        { "id": "ali-razzaq", "name": "Ali Razzaq", "position": "Goalie", "leadershipRole": "assistant" },
-        { "id": "muhammad-salim", "name": "Muhammad Salim", "position": "Defender", "leadershipRole": "assistant", "birthYear": 2012 },
-        { "id": "yousuf-nathani", "name": "Yousuf Nathani", "position": "Defender" },
-        { "id": "shafiullah", "name": "Shafiullah", "position": "Defender" },
-        { "id": "zaeem-kapil-parakot", "name": "Zaeem Kapil Parakot", "position": "Defender" },
+        { "id": "ahmed-bhaiyat", "name": "Ahmed Bhaiyat", "jersey": 1, "position": "Defender" },
+        { "id": "ali-razzaq", "name": "Ali Razzaq", "jersey": 2, "position": "Goalie", "leadershipRole": "assistant" },
+        { "id": "muhammad-salim", "name": "Muhammad Salim", "jersey": 3, "position": "Defender", "leadershipRole": "assistant", "birthYear": 2012 },
+        { "id": "yousuf-nathani", "name": "Yousuf Nathani", "jersey": 4, "position": "Defender" },
+        { "id": "shafiullah", "name": "Shafiullah", "jersey": 5, "position": "Defender" },
+        { "id": "zaeem-kapil-parakot", "name": "Zaeem Kapil Parakot", "jersey": 6, "position": "Defender" },
         { "id": "adil-mubashir", "name": "Adil Mubashir", "photo": "./Logos/Player Pics/Adil Mubashir.png", "position": "Striker", "leadershipRole": "captain", "birthYear": 2011, "previousTeamId": "sharp-strikers", "previousTeamName": "Sharp Strikers", "tradeEffectiveDate": "2026-06-12", "tradeNote": "Officially traded to Amax Visionaries for Jamal Mujaddidi." },
         { "id": "reda-alijalam", "name": "Mohamad Reda Alijalam", "position": "Midfielder" },
-        { "id": "uzair-sidat", "name": "Uzair Sidat", "position": "Midfielder", "birthYear": 2011 },
-        { "id": "muhammad-shah", "name": "Muhammad Shah", "position": "Defender" },
-        { "id": "sajadullah-khalil", "name": "Sajadullah Khalil", "position": "Defender" }
+        { "id": "uzair-sidat", "name": "Uzair Sidat", "jersey": 8, "position": "Midfielder", "birthYear": 2011 },
+        { "id": "muhammad-shah", "name": "Muhammad Shah", "jersey": 9, "position": "Defender" },
+        { "id": "sajadullah-khalil", "name": "Sajadullah Khalil", "jersey": 10, "position": "Defender" }
       ]
     }
   ]

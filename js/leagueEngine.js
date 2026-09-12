@@ -723,8 +723,8 @@ export function playerRatingScore(player = {}, comparisonPlayers = []) {
   return (
     normalize(player.goals, maxFor("goals")) * 40 +
     normalize(mvpCount, maxMvpCount) * 20 +
-    normalize(player.wins, maxFor("wins")) * 30 +
-    normalize(player.gamesPlayed, maxFor("gamesPlayed")) * 10 +
+    normalize(player.wins, maxFor("wins")) * 35 +
+    normalize(player.gamesPlayed, maxFor("gamesPlayed")) * 5 +
     achievementBonus
   );
 }
