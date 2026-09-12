@@ -28,7 +28,7 @@ function render(data, allData) {
         <div>
           <span class="eyebrow">Teams</span>
           <h1>${escapeHTML(state.season)} Team Directory</h1>
-          <p>Team cards show roster, coach, regular season stats, and history.</p>
+          <p>Team cards show Team OVR, roster, coach, regular season stats, and history.</p>
         </div>
       </div>
       <div class="controls">

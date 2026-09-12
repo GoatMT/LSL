@@ -1,4 +1,5 @@
 import { escapeHTML, initials, leadershipRoleLabel, leadershipRoleShort, teamProfileHref } from "../js/utils.js";
+import { teamOVR } from "../js/leagueEngine.js?v=3.10";
 import { renderFormStrip } from "./formStrip.js";
 
 function teamMark(team) {
@@ -14,7 +15,7 @@ function rosterRatingSummary(roster = [], playerRatings = new Map()) {
     .map((player) => ({ ...player, ovr: Number(playerRatings.get(player.id)) || 0 }))
     .filter((player) => player.ovr > 0)
     .sort((a, b) => b.ovr - a.ovr || a.name.localeCompare(b.name));
-  const average = rated.length ? Math.round(rated.reduce((sum, player) => sum + player.ovr, 0) / rated.length) : "N/A";
+  const average = teamOVR({ roster }, playerRatings) ?? "N/A";
   const top = rated[0];
   return {
     average,
@@ -78,7 +79,7 @@ export function renderTeamCard(team, stats, coach, season, form = [], playerRati
           <strong>${roster.length}</strong>
         </div>
         <div>
-          <span>Avg OVR</span>
+          <span>Team OVR</span>
           <strong>${escapeHTML(ratingSummary.average)}</strong>
         </div>
         <div>

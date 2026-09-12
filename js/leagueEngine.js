@@ -686,9 +686,18 @@ export function playerRatingScore(player = {}, comparisonPlayers = []) {
   const normalize = (value, maximum) => Math.min(1, Math.max(0, (Number(value) || 0) / maximum));
   const achievements = player.achievements || [];
   const mvpCount = achievements.filter((achievement) => /\bMVP\b/i.test(String(achievement)) && !/Team MVP/i.test(String(achievement))).length;
+  const awardCount = achievements.filter((achievement) => /(?:\bMVP\b|Golden Boot)/i.test(String(achievement)) && !/Team MVP/i.test(String(achievement))).length;
   const maxMvpCount = Math.max(1, ...comparisonPool.map((item) =>
     (item.achievements || []).filter((achievement) => /\bMVP\b/i.test(String(achievement)) && !/Team MVP/i.test(String(achievement))).length
   ));
+  const maxAwardCount = Math.max(1, ...comparisonPool.map((item) =>
+    (item.achievements || []).filter((achievement) => /(?:\bMVP\b|Golden Boot)/i.test(String(achievement)) && !/Team MVP/i.test(String(achievement))).length
+  ));
+  const goalsPerGameValue = (item) => {
+    const gamesPlayed = Number(item.gamesPlayed) || 0;
+    return gamesPlayed > 0 ? (Number(item.goals) || 0) / gamesPlayed : 0;
+  };
+  const maxGoalsPerGame = Math.max(1, ...comparisonPool.map(goalsPerGameValue));
   const achievementText = achievements.join(" ");
   const achievementBonus =
     (mvpCount ? 12 : 0) +
@@ -721,11 +730,11 @@ export function playerRatingScore(player = {}, comparisonPlayers = []) {
   }
 
   return (
-    normalize(player.goals, maxFor("goals")) * 40 +
-    normalize(mvpCount, maxMvpCount) * 20 +
-    normalize(player.wins, maxFor("wins")) * 35 +
+    normalize(player.goals, maxFor("goals")) * 30 +
+    normalize(awardCount, maxAwardCount) * 20 +
     normalize(player.gamesPlayed, maxFor("gamesPlayed")) * 5 +
-    achievementBonus
+    normalize(player.wins, maxFor("wins")) * 25 +
+    normalize(goalsPerGameValue(player), maxGoalsPerGame) * 20
   );
 }
 
@@ -744,6 +753,14 @@ export function playersWithOVR(players = [], comparisonPlayers = players) {
     ...player,
     ovr: playerOVR(player, comparisonPlayers),
   }));
+}
+
+export function teamOVR(team = {}, playerRatings = new Map()) {
+  const ratings = (team.roster || [])
+    .map((player) => Number(playerRatings.get(player.id)))
+    .filter(Number.isFinite);
+  if (!ratings.length) return null;
+  return Math.round(ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length);
 }
 
 export function computePlayerVsTeamStatsBySeason(seasons, playerId, { stage = "all" } = {}) {

@@ -1,7 +1,7 @@
 import { renderFormStrip } from "../components/formStrip.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getAwards, getNextTeamMatch, isCompletedMatch, playersWithOVR, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.10";
+import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getAwards, getNextTeamMatch, isCompletedMatch, playersWithOVR, scoreText, teamOVR, winnerTeamId } from "./leagueEngine.js?v=3.10";
 import { setupLayout } from "./main.js";
 import { escapeHTML, formatDateWithISO, getQueryParam, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage } from "./utils.js";
 
@@ -280,7 +280,7 @@ function rosterRatingSummary(roster = [], ratings = new Map()) {
     .filter((player) => player.ovr > 0)
     .sort((a, b) => b.ovr - a.ovr || a.name.localeCompare(b.name));
   return {
-    average: rated.length ? Math.round(rated.reduce((sum, player) => sum + player.ovr, 0) / rated.length) : "N/A",
+    average: teamOVR({ roster }, ratings) ?? "N/A",
     top: rated[0],
     ratedCount: rated.length,
   };
@@ -304,7 +304,7 @@ function renderClubSnapshot(team, players, ratings) {
           <strong>${roster.length}</strong>
         </div>
         <div>
-          <span>Avg OVR</span>
+          <span>Team OVR</span>
           <strong>${escapeHTML(ratingSummary.average)}</strong>
         </div>
         <div>
