@@ -3,7 +3,7 @@ import { renderPlayoffBracket } from "../components/playoffBracket.js";
 import { renderStandingsTable } from "../components/standingsTable.js?v=3.1";
 import { playoffRulesFor, SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=1.0";
-import { filterMatches, getWeeks, standingsWithMovement } from "./leagueEngine.js?v=3.10";
+import { filterMatches, getWeeks, standingsWithMovement } from "./leagueEngine.js?v=3.12";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

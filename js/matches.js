@@ -2,7 +2,7 @@ import { renderMatchCard } from "../components/matchCard.js?v=3.2";
 import { matchToCalendarEvent, renderCalendarDownloadButton } from "./calendarLinks.js";
 import { SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=1.0";
-import { filterMatches, getWeeks, isCompletedMatch, teamMap } from "./leagueEngine.js?v=3.10";
+import { filterMatches, getWeeks, isCompletedMatch, teamMap } from "./leagueEngine.js?v=3.12";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

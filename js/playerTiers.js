@@ -1,5 +1,5 @@
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { computeCombinedPlayerStats, computePlayerStats, playerOVR, playerTeamForMatch } from "./leagueEngine.js?v=3.10";
+import { computeCombinedPlayerStats, computePlayerStats, playerOVR, playerTeamForMatch } from "./leagueEngine.js?v=3.12";
 import { setupLayout } from "./main.js";
 import { SITE } from "./config.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
@@ -190,7 +190,7 @@ function tierRange(tier, metric) {
     goals: { S: "10+", A: "7–9", B: "5–6", C: "3–4", D: "1–2", F: "0" },
     goalsPerGame: { S: "1.40+", A: "1.00–1.39", B: "0.65–0.99", C: "0.40–0.64", D: "0.20–0.39", F: "<0.20" },
     championships: { S: "3+", A: "2", B: "1", C: "0", D: "0", F: "0" },
-    ovr: { S: "95–99", A: "85–94", B: "75–84", C: "65–74", D: "55–64", F: "50–54" },
+    ovr: { S: "95–99", A: "85–94", B: "75–84", C: "65–74", D: "55–64", F: "45–54" },
     gamesPlayed: { S: "20+", A: "15–19", B: "10–14", C: "7–9", D: "3–6", F: "0–2" },
     wins: { S: "10+", A: "7–9", B: "5–6", C: "3–4", D: "1–2", F: "0" },
     winsPerGame: { S: "0.75+", A: "0.60–0.74", B: "0.45–0.59", C: "0.33–0.44", D: ">0–0.32", F: "0" },

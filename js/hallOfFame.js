@@ -1,4 +1,4 @@
-import { buildPlayerCareer, computeCombinedPlayerStats, computePlayerStats, getAwards } from "./leagueEngine.js?v=3.10";
+import { buildPlayerCareer, computeCombinedPlayerStats, computePlayerStats, getAwards } from "./leagueEngine.js?v=3.12";
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
 import { setupLayout } from "./main.js";
 import { escapeHTML, setDocumentTitle, statusMessage, unique } from "./utils.js";

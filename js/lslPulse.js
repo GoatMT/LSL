@@ -1,6 +1,6 @@
 import { setupLayout } from "./main.js";
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.10";
+import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.12";
 import { createPulseCloudStore, fetchAllPulseAccounts } from "./pulseFirebase.js?v=1.2";
 import { avatarMarkup, compressImageToDataUrl, compressImageToSquareDataUrl, OFFICIAL_BASE_POSTS, normalizePost, pulseProfileHref, renderPostBody } from "./pulseShared.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";

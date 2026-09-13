@@ -1,7 +1,7 @@
 import { renderFormStrip } from "../components/formStrip.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getAwards, getNextTeamMatch, isCompletedMatch, playersWithOVR, scoreText, teamOVR, winnerTeamId } from "./leagueEngine.js?v=3.10";
+import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getAwards, getNextTeamMatch, isCompletedMatch, playersWithOVR, scoreText, teamOVR, winnerTeamId } from "./leagueEngine.js?v=3.12";
 import { setupLayout } from "./main.js";
 import { escapeHTML, formatDateWithISO, getQueryParam, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage } from "./utils.js";
 

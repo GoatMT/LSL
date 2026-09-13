@@ -1,7 +1,7 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
-import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.10";
+import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.12";
 import { setupLayout } from "./main.js";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
@@ -582,7 +582,7 @@ function renderProfileHeader(profile, current, ovr) {
           <span><small>Age</small><strong>${escapeHTML(currentPlayerAge(birthYear, birthMonth))}</strong></span>
         </div>
       </div>
-      <div class="official-profile-ovr-card" title="Overall rating based on career stats">
+      <div class="official-profile-ovr-card" title="Career OVR: Seniors count 90% and Juniors 10% for players in both divisions. Junior-only ratings are 10% lower.">
         <span>OVR</span>
         <strong>${escapeHTML(ovr)}</strong>
       </div>
