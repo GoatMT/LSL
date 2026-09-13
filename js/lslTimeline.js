@@ -1,5 +1,5 @@
-import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { setupLayout } from "./main.js";
+import { loadAllSeasons } from "./dataLoader.js?v=1.1";
+import { setupLayout } from "./main.js?v=20260913-3";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("lsl-timeline.html");

@@ -1,7 +1,7 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { computePlayerStats, computeCombinedPlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.12";
-import { setupLayout } from "./main.js";
+import { loadAllSeasons } from "./dataLoader.js?v=1.1";
+import { computePlayerStats, computeCombinedPlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.13";
+import { setupLayout } from "./main.js?v=20260913-3";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("players.html");

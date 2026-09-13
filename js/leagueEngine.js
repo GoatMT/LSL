@@ -455,6 +455,13 @@ function isGoalkeeperPosition(position = "") {
   return /goal|keeper|goalie|gk/i.test(String(position));
 }
 
+function playerRoleFlags(player = {}) {
+  const position = String(player.position || "");
+  const goalkeeper = isGoalkeeperPosition(position);
+  const field = !goalkeeper || /field|forward|defender|midfielder|striker|winger/i.test(position);
+  return { goalkeeper, field };
+}
+
 function goalkeeperMatchStats(data, players, allowedStages) {
   const matches = [];
   if (allowedStages.includes("regular")) {
@@ -781,65 +788,65 @@ function ovrDivisionProfile(player = {}) {
 
 export function playerRatingScore(player = {}, comparisonPlayers = []) {
   const pool = comparisonPlayers.length ? comparisonPlayers : [player];
-  const goalkeeper = isGoalkeeperPosition(player.position);
-  const statPool = pool.filter((item) => isGoalkeeperPosition(item.position) === goalkeeper);
-  const comparisonPool = statPool.length ? statPool : [player];
+  const roles = playerRoleFlags(player);
   const profile = ovrDivisionProfile(player);
-  const comparisonProfiles = comparisonPool.map(ovrDivisionProfile);
-  const maxFor = (key) => Math.max(1, ...comparisonProfiles.map((item) => Number(item[key]) || 0));
+  const fieldProfiles = (pool.filter((item) => playerRoleFlags(item).field).length ? pool.filter((item) => playerRoleFlags(item).field) : [player]).map(ovrDivisionProfile);
+  const goalkeeperProfiles = (pool.filter((item) => playerRoleFlags(item).goalkeeper).length ? pool.filter((item) => playerRoleFlags(item).goalkeeper) : [player]).map(ovrDivisionProfile);
   const normalize = (value, maximum) => Math.min(1, Math.max(0, (Number(value) || 0) / maximum));
-  const maxMvpCount = Math.max(1, ...comparisonProfiles.map((item) => item.mvpCount));
-  const maxAwardCount = Math.max(1, ...comparisonProfiles.map((item) => item.awardCount));
-  const goalsPerGameValue = (item) => Number(item.goalsPerGame) || 0;
-  const maxGoalsPerGame = Math.max(1, ...comparisonProfiles.map(goalsPerGameValue));
-  // Normalize each input within the comparison pool before applying the requested weights.
-  if (goalkeeper) {
-    const goalkeepersWithGames = comparisonProfiles.filter((item) => item.goalkeeperGames > 0);
-    const maxGoalsAgainst = Math.max(1, ...goalkeepersWithGames.map((item) => item.goalsAgainst));
-    const maxGoalsAgainstPerGame = Math.max(1, ...goalkeepersWithGames.map((item) => item.goalsAgainstPerGame));
-    const hasGoalkeeperGames = profile.goalkeeperGames > 0;
-    const goalsAgainstQuality = hasGoalkeeperGames
-      ? 1 - normalize(profile.goalsAgainst, maxGoalsAgainst)
-      : 0;
-    const goalsAgainstAverageQuality = hasGoalkeeperGames
-      ? 1 - normalize(profile.goalsAgainstPerGame, maxGoalsAgainstPerGame)
-      : 0;
+  const fieldMax = (key) => Math.max(1, ...fieldProfiles.map((item) => Number(item[key]) || 0));
+  const goalkeeperMax = (key) => Math.max(1, ...goalkeeperProfiles.map((item) => Number(item[key]) || 0));
+  const fieldScore = roles.field
+    ? (
+        normalize(profile.goals, fieldMax("goals")) * 30 +
+        normalize(profile.awardCount, Math.max(1, ...fieldProfiles.map((item) => item.awardCount))) * 20 +
+        normalize(profile.gamesPlayed, fieldMax("gamesPlayed")) * 5 +
+        normalize(profile.wins, fieldMax("wins")) * 25 +
+        normalize(profile.goalsPerGame, Math.max(1, ...fieldProfiles.map((item) => Number(item.goalsPerGame) || 0))) * 20
+      )
+    : 0;
+  const goalkeepersWithGames = goalkeeperProfiles.filter((item) => item.goalkeeperGames > 0);
+  const maxGoalsAgainstPerGame = Math.max(1, ...goalkeepersWithGames.map((item) => Number(item.goalsAgainstPerGame) || 0));
+  const goalkeeperScore = roles.goalkeeper
+    ? (
+        normalize(profile.mvpCount, Math.max(1, ...goalkeeperProfiles.map((item) => item.mvpCount))) * 20 +
+        normalize(profile.wins, goalkeeperMax("wins")) * 60 +
+        (profile.goalkeeperGames > 0 ? 1 - normalize(profile.goalsAgainstPerGame, maxGoalsAgainstPerGame) : 0) * 40
+      )
+    : 0;
 
-    return (
-      normalize(profile.goals, maxFor("goals")) * 5 +
-      normalize(profile.mvpCount, maxMvpCount) * 20 +
-      normalize(profile.wins, maxFor("wins")) * 40 +
-      normalize(profile.gamesPlayed, maxFor("gamesPlayed")) * 10 +
-      goalsAgainstQuality * 20 +
-      goalsAgainstAverageQuality * 35
-    );
-  }
-
-  return (
-    normalize(profile.goals, maxFor("goals")) * 30 +
-    normalize(profile.awardCount, maxAwardCount) * 20 +
-    normalize(profile.gamesPlayed, maxFor("gamesPlayed")) * 5 +
-    normalize(profile.wins, maxFor("wins")) * 25 +
-    normalize(goalsPerGameValue(profile), maxGoalsPerGame) * 20
-  );
+  if (roles.field && roles.goalkeeper) return fieldScore * 0.5 + goalkeeperScore * 0.5;
+  return roles.goalkeeper ? goalkeeperScore : fieldScore;
 }
 
-export function playerOVR(player = {}, comparisonPlayers = []) {
-  const pool = comparisonPlayers.length ? comparisonPlayers : [player];
-  const scores = [...new Set(pool.map((item) => playerRatingScore(item, pool)))].sort((a, b) => a - b);
-  const score = playerRatingScore(player, pool);
-  const juniorOnly = ovrDivisionProfile(player).juniorOnly;
-  if (scores.length === 1) return juniorOnly ? Math.round(50 * 0.9) : 50;
-  const rank = scores.indexOf(score);
-  const percentile = rank < 0 ? 0 : rank / (scores.length - 1);
+function ratingFromScore(score, scores, juniorOnly) {
+  const uniqueScores = [...new Set(scores)].sort((a, b) => a - b);
+  if (uniqueScores.length === 1) return juniorOnly ? Math.round(50 * 0.9) : 50;
+  const rank = uniqueScores.indexOf(score);
+  const percentile = rank < 0 ? 0 : rank / (uniqueScores.length - 1);
   const rating = Math.round(50 + percentile * 49);
   return juniorOnly ? Math.round(rating * 0.9) : rating;
 }
 
+export function playerOVR(player = {}, comparisonPlayers = []) {
+  const pool = comparisonPlayers.length ? comparisonPlayers : [player];
+  const scores = pool.map((item) => playerRatingScore(item, pool));
+  const score = playerRatingScore(player, pool);
+  const juniorOnly = ovrDivisionProfile(player).juniorOnly;
+  return ratingFromScore(score, scores, juniorOnly);
+}
+
 export function playersWithOVR(players = [], comparisonPlayers = players) {
+  const pool = comparisonPlayers.length ? comparisonPlayers : players;
+  const scores = pool.map((player) => playerRatingScore(player, pool));
+  const scoreByObject = new Map(pool.map((player, index) => [player, scores[index]]));
+  const scoreById = new Map(pool.filter((player) => player.id).map((player, index) => [player.id, scores[index]]));
   return players.map((player) => ({
     ...player,
-    ovr: playerOVR(player, comparisonPlayers),
+    ovr: ratingFromScore(
+      scoreByObject.get(player) ?? scoreById.get(player.id) ?? playerRatingScore(player, pool),
+      scores,
+      ovrDivisionProfile(player).juniorOnly
+    ),
   }));
 }
 

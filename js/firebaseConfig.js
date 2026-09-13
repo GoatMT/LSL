@@ -10,9 +10,6 @@ export const FIREBASE_CONFIG = {
   appId: "1:161853176873:web:a5ce7392bad9c59ecc3038",
 };
 
-// Web Push certificate key pair (VAPID) for Firebase Cloud Messaging.
-// Get this from: Firebase Console -> Project Settings -> Cloud Messaging ->
-// Web configuration -> Web Push certificates -> "Key pair". Until a real
-// key is set here, enablePushNotifications() will fail gracefully (the
-// button will show an error status) rather than breaking page load.
-export const FIREBASE_VAPID_KEY = "";
+// Web Push certificate public key (VAPID) for Firebase Cloud Messaging.
+// This is safe to expose in the browser; the private key must stay in Firebase.
+export const FIREBASE_VAPID_KEY = "BGyk8Xv5lvGtO82w69I45pTdvMVhzpEGC7dXhKxiF0WdlpIOKKHF4wsQU4-EafS_w7PI77GNSvNwIEwIF4hBfr4";

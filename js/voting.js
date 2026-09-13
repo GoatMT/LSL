@@ -1,6 +1,6 @@
-import { loadJSON } from "./dataLoader.js?v=1.0";
+import { loadJSON } from "./dataLoader.js?v=1.1";
 import { renderFanVoteCard, hydrateFanVote } from "./fanVote.js";
-import { setupLayout } from "./main.js";
+import { setupLayout } from "./main.js?v=20260913-3";
 import { setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("voting.html");

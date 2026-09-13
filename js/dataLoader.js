@@ -2,16 +2,75 @@ import { DATA_FILES, SITE } from "./config.js";
 import { slugify } from "./utils.js";
 
 let playerAliasCache;
+const DATA_CACHE_VERSION = "20260913-1";
+const DATA_CACHE_TTL_MS = 30_000;
+const jsonCache = new Map();
+const jsonRequests = new Map();
+const seasonCache = new Map();
+const seasonRequests = new Map();
+const allSeasonsCache = new Map();
+const allSeasonsRequests = new Map();
+
+function sessionCacheKey(path) {
+  return `lsl-data:${DATA_CACHE_VERSION}:${path}`;
+}
+
+function readSessionJSON(path) {
+  try {
+    if (typeof sessionStorage === "undefined") return { found: false, value: null };
+    const raw = sessionStorage.getItem(sessionCacheKey(path));
+    if (!raw) return { found: false, value: null };
+    const cached = JSON.parse(raw);
+    if (!cached || Date.now() - Number(cached.savedAt) > DATA_CACHE_TTL_MS) {
+      sessionStorage.removeItem(sessionCacheKey(path));
+      return { found: false, value: null };
+    }
+    return { found: true, value: cached.value };
+  } catch {
+    return { found: false, value: null };
+  }
+}
+
+function writeSessionJSON(path, value) {
+  try {
+    if (typeof sessionStorage === "undefined") return;
+    sessionStorage.setItem(sessionCacheKey(path), JSON.stringify({ savedAt: Date.now(), value }));
+  } catch {
+    // Session storage can be unavailable or full; memory caching still works.
+  }
+}
 
 async function fetchJSON(path, optional = true) {
+  if (jsonCache.has(path)) return jsonCache.get(path);
+
+  const sessionValue = readSessionJSON(path);
+  if (sessionValue.found) {
+    jsonCache.set(path, sessionValue.value);
+    return sessionValue.value;
+  }
+
+  if (jsonRequests.has(path)) return jsonRequests.get(path);
+
+  const request = (async () => {
+    try {
+      const response = await fetch(path, { cache: "no-store" });
+      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      const value = await response.json();
+      jsonCache.set(path, value);
+      writeSessionJSON(path, value);
+      return value;
+    } catch (error) {
+      if (!optional) throw error;
+      console.warn(`Could not load ${path}`, error);
+      return null;
+    }
+  })();
+
+  jsonRequests.set(path, request);
   try {
-    const response = await fetch(path, { cache: "no-store" });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    return await response.json();
-  } catch (error) {
-    if (!optional) throw error;
-    console.warn(`Could not load ${path}`, error);
-    return null;
+    return await request;
+  } finally {
+    jsonRequests.delete(path);
   }
 }
 
@@ -114,32 +173,61 @@ function mergePlayers(teams, playerPayload, year, aliases = {}) {
 }
 
 export async function loadSeasonData(year) {
-  const entries = await Promise.all(
-    DATA_FILES.map(async (key) => [key, await fetchJSON(`${SITE.dataPath}/${year}/${key}.json`, true)])
-  );
-  const files = Object.fromEntries(entries);
-  const aliases = await loadPlayerAliases();
-  const teams = canonicalizeRoster(files.teams?.teams || [], aliases);
+  const seasonKey = String(year);
+  if (seasonCache.has(seasonKey)) return seasonCache.get(seasonKey);
+  if (seasonRequests.has(seasonKey)) return seasonRequests.get(seasonKey);
 
-  return {
-    year: String(year),
-    event: files.teams?.event || {},
-    teams,
-    players: mergePlayers(teams, files.players, year, aliases),
-    coaches: files.coaches?.coaches || [],
-    matches: (files.matches?.matches || []).map((match) => canonicalizeMatch(match, aliases)),
-    standingsMeta: files.standings || {},
-    playoffs: files.playoffs || { rounds: [] },
-    awards: files.awards || { awards: [] },
-    tournament: files.tournament || null,
-    photos: files.photos?.photos || [],
-    videos: files.videos?.videos || [],
-  };
+  const request = (async () => {
+    const entries = await Promise.all(
+      DATA_FILES.map(async (key) => [key, await fetchJSON(`${SITE.dataPath}/${seasonKey}/${key}.json`, true)])
+    );
+    const files = Object.fromEntries(entries);
+    const aliases = await loadPlayerAliases();
+    const teams = canonicalizeRoster(files.teams?.teams || [], aliases);
+    const seasonData = {
+      year: seasonKey,
+      event: files.teams?.event || {},
+      teams,
+      players: mergePlayers(teams, files.players, seasonKey, aliases),
+      coaches: files.coaches?.coaches || [],
+      matches: (files.matches?.matches || []).map((match) => canonicalizeMatch(match, aliases)),
+      standingsMeta: files.standings || {},
+      playoffs: files.playoffs || { rounds: [] },
+      awards: files.awards || { awards: [] },
+      tournament: files.tournament || null,
+      photos: files.photos?.photos || [],
+      videos: files.videos?.videos || [],
+    };
+    seasonCache.set(seasonKey, seasonData);
+    return seasonData;
+  })();
+
+  seasonRequests.set(seasonKey, request);
+  try {
+    return await request;
+  } finally {
+    seasonRequests.delete(seasonKey);
+  }
 }
 
 export async function loadAllSeasons(seasons = SITE.seasons) {
-  const data = await Promise.all(seasons.map((season) => loadSeasonData(season)));
-  return data.sort((a, b) => Number(a.year) - Number(b.year));
+  const seasonKey = seasons.map(String).sort().join(",");
+  if (allSeasonsCache.has(seasonKey)) return allSeasonsCache.get(seasonKey);
+  if (allSeasonsRequests.has(seasonKey)) return allSeasonsRequests.get(seasonKey);
+
+  const request = Promise.all(seasons.map((season) => loadSeasonData(season)))
+    .then((data) => {
+      const sorted = data.sort((a, b) => Number(a.year) - Number(b.year));
+      allSeasonsCache.set(seasonKey, sorted);
+      return sorted;
+    });
+
+  allSeasonsRequests.set(seasonKey, request);
+  try {
+    return await request;
+  } finally {
+    allSeasonsRequests.delete(seasonKey);
+  }
 }
 
 export function getTeam(data, teamId) {

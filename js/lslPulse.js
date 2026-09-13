@@ -1,7 +1,8 @@
-import { setupLayout } from "./main.js";
-import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.12";
+import { setupLayout } from "./main.js?v=20260913-3";
+import { loadAllSeasons } from "./dataLoader.js?v=1.1";
+import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.13";
 import { createPulseCloudStore, fetchAllPulseAccounts } from "./pulseFirebase.js?v=1.2";
+import { initNotificationButton, renderNotificationButton } from "./pulseNotifications.js?v=20260913-1";
 import { avatarMarkup, compressImageToDataUrl, compressImageToSquareDataUrl, OFFICIAL_BASE_POSTS, normalizePost, pulseProfileHref, renderPostBody } from "./pulseShared.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 
@@ -318,6 +319,7 @@ function renderHero() {
         </div>
       </div>
       ${renderTabs()}
+      ${renderNotificationButton()}
     </section>
   `;
 }
@@ -656,6 +658,7 @@ function render() {
   `;
   pendingAction = null;
   bindEvents();
+  initNotificationButton(root);
 }
 
 function bindEvents() {
@@ -919,6 +922,7 @@ async function init() {
     console.warn("Could not load Weekly League Pulse data", error);
     return [];
   }));
+  render();
   cloudStore = await createPulseCloudStore({
     onStatus(message) {
       state.syncMessage = message;

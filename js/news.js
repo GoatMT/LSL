@@ -1,5 +1,5 @@
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
-import { setupLayout } from "./main.js";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
+import { setupLayout } from "./main.js?v=20260913-3";
 import { mirrorLatestNewsArticles } from "./newsMirror.js";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";
 import { escapeHTML, getQueryParam, setDocumentTitle, statusMessage } from "./utils.js";

@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
-import { setupLayout } from "./main.js";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
+import { setupLayout } from "./main.js?v=20260913-3";
 import { escapeHTML, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("transactions.html");

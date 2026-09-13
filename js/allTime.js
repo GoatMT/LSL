@@ -1,9 +1,9 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.0";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
 import { decorateCoachGrade } from "./coachRatings.js";
-import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.12";
+import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.13";
 import { escapeHTML, formatPercent, setDocumentTitle, slugify, statusMessage, teamProfileHref, unique } from "./utils.js";
-import { setupLayout } from "./main.js";
+import { setupLayout } from "./main.js?v=20260913-3";
 
 setupLayout("all-time.html");
 setDocumentTitle("All Time Stats");

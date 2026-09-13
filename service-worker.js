@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v110";
+const CACHE_NAME = "lsl-cache-v111";
 
 /*
  * Static files that are safe to cache.
@@ -348,6 +348,52 @@ self.addEventListener("fetch", (event) => {
    * Everything else gets network first.
    */
   event.respondWith(networkFirst(request));
+});
+
+/* =========================================================
+   WEB PUSH
+   ========================================================= */
+
+self.addEventListener("push", (event) => {
+  if (!event.data) return;
+
+  let payload = {};
+  try {
+    payload = event.data.json() || {};
+  } catch {
+    payload = { data: { body: event.data.text() } };
+  }
+
+  const notification = payload.notification || {};
+  const data = payload.data || {};
+  const title = notification.title || data.title || "LSL Update";
+  const body = notification.body || data.body || "";
+  const targetUrl = data.url || notification.click_action || "/lsl-pulse.html";
+
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body,
+      icon: "/Logos/lsl-logo.png",
+      badge: "/Logos/lsl-logo.png",
+      data: { url: targetUrl },
+    })
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const targetUrl = new URL(event.notification.data?.url || "/lsl-pulse.html", self.location.origin).href;
+
+  event.waitUntil(
+    self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((clientList) => {
+      const existingClient = clientList.find((client) => "focus" in client);
+      if (existingClient) {
+        existingClient.navigate(targetUrl);
+        return existingClient.focus();
+      }
+      return self.clients.openWindow(targetUrl);
+    })
+  );
 });
 
 /* =========================================================

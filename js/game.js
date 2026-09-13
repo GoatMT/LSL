@@ -1,9 +1,9 @@
 import { renderFormStrip } from "../components/formStrip.js";
 import { renderMatchCard } from "../components/matchCard.js?v=3.2";
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=1.0";
-import { calculateTeamForm, calculateTeamRecord, computePlayerStats, getMatchTeams, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.12";
-import { setupLayout } from "./main.js";
+import { loadAllSeasons } from "./dataLoader.js?v=1.1";
+import { calculateTeamForm, calculateTeamRecord, computePlayerStats, getMatchTeams, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.13";
+import { setupLayout } from "./main.js?v=20260913-3";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";
 import { escapeHTML, formatDateWithISO, getQueryParam, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
