@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v109";
+const CACHE_NAME = "lsl-cache-v110";
 
 /*
  * Static files that are safe to cache.

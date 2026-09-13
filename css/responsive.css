@@ -3450,3 +3450,89 @@
     font-size: 1rem;
   }
 }
+
+/* ---------- Final phone-width guardrails ---------- */
+
+@media (max-width: 760px) {
+  .page-shell,
+  .page-shell > *,
+  .section-panel,
+  .card,
+  .table-wrap,
+  .players-table-wrap {
+    max-width: 100%;
+  }
+
+  .records-page .records-hero {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .records-page .records-hero-copy {
+    width: 100%;
+    max-width: none;
+  }
+
+  .records-page .records-hero h1 {
+    font-size: clamp(1.75rem, 9vw, 2.2rem);
+  }
+
+  .records-page .records-seal {
+    align-self: flex-start;
+  }
+
+  .all-time-page .all-time-hero-actions,
+  .all-time-page .all-time-hero-actions .button {
+    width: 100%;
+  }
+
+  .all-time-page .all-time-hero-actions {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+  }
+
+  .all-time-page .all-time-hero-actions .button {
+    min-width: 0;
+  }
+
+  .brand-link,
+  .brand-text,
+  .site-search,
+  .nav-toggle,
+  .nav-links {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .site-search input,
+  .nav-toggle,
+  .nav-link,
+  .nav-dropdown-button,
+  .nav-dropdown-menu a,
+  .button,
+  .text-link,
+  select,
+  input {
+    max-width: 100%;
+  }
+
+  .media-card video,
+  .media-card img,
+  .video-card video,
+  .photo-card img,
+  .game-media-grid img,
+  .game-media-grid video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .data-table,
+  .data-table tbody,
+  .data-table tr,
+  .data-table td,
+  .data-table th {
+    max-width: 100%;
+  }
+}

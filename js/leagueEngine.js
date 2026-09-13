@@ -698,13 +698,6 @@ export function playerRatingScore(player = {}, comparisonPlayers = []) {
     return gamesPlayed > 0 ? (Number(item.goals) || 0) / gamesPlayed : 0;
   };
   const maxGoalsPerGame = Math.max(1, ...comparisonPool.map(goalsPerGameValue));
-  const achievementText = achievements.join(" ");
-  const achievementBonus =
-    (mvpCount ? 12 : 0) +
-    (/Champion Team/i.test(achievementText) ? 4 : 0) +
-    (/(?:2nd Place Team|Playoff Final Finalist)/i.test(achievementText) ? 2 : 0) +
-    (/3rd Place Team/i.test(achievementText) ? 1 : 0);
-
   // Normalize each input within the comparison pool before applying the requested weights.
   if (goalkeeper) {
     const goalkeepersWithGames = comparisonPool.filter((item) => (Number(item.goalkeeperGames) || 0) > 0);
@@ -724,8 +717,7 @@ export function playerRatingScore(player = {}, comparisonPlayers = []) {
       normalize(player.wins, maxFor("wins")) * 40 +
       normalize(player.gamesPlayed, maxFor("gamesPlayed")) * 10 +
       goalsAgainstQuality * 20 +
-      goalsAgainstAverageQuality * 35 +
-      achievementBonus
+      goalsAgainstAverageQuality * 35
     );
   }
 
@@ -745,7 +737,8 @@ export function playerOVR(player = {}, comparisonPlayers = []) {
   if (scores.length === 1) return 50;
   const rank = scores.indexOf(score);
   const percentile = rank < 0 ? 0 : rank / (scores.length - 1);
-  return Math.round(50 + percentile * 49);
+  const rating = Math.round(50 + percentile * 49);
+  return Number(player.goals) > 0 ? rating : Math.min(89, rating);
 }
 
 export function playersWithOVR(players = [], comparisonPlayers = players) {
