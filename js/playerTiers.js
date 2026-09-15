@@ -1,5 +1,5 @@
 import { loadAllSeasons } from "./dataLoader.js?v=1.1";
-import { computeCombinedPlayerStats, computePlayerStats, playerOVR, playerTeamForMatch } from "./leagueEngine.js?v=3.13";
+import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR, playerTeamForMatch } from "./leagueEngine.js?v=3.13";
 import { setupLayout } from "./main.js?v=20260913-3";
 import { SITE } from "./config.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
@@ -293,26 +293,21 @@ function tierRows(allData) {
   if (state.position !== "All") rows = rows.filter((player) => positionGroup(player.position) === state.position);
   const minGames = Math.max(0, Number(state.minGames) || 0);
   if (minGames > 0) rows = rows.filter((player) => (Number(player.gamesPlayed) || 0) >= minGames);
-  const comparison = rows;
   const championships = championshipMap(selectedSeasons(allData));
   const goalkeeperRates = goalkeeperGoalsAgainstMap(selectedSeasons(allData));
   const search = state.search.trim().toLowerCase();
-  if (search) {
-    rows = rows.filter((player) => `${player.name} ${player.teamName} ${player.position}`.toLowerCase().includes(search));
-  }
-  return rows
+  const enrichedRows = playersWithOVR(rows.map((player) => ({
+    ...player,
+    championships: championships.get(player.id)?.count || 0,
+    goalsAgainstPerGame: goalkeeperRates.get(player.id)?.goalsAgainstPerGame ?? null,
+    cleanSheets: goalkeeperRates.get(player.id)?.cleanSheets ?? null,
+  })), rows);
+  return enrichedRows
+    .filter((player) => !search || `${player.name} ${player.teamName} ${player.position}`.toLowerCase().includes(search))
     .map((player) => {
-      const enrichedPlayer = {
-        ...player,
-        championships: championships.get(player.id)?.count || 0,
-        goalsAgainstPerGame: goalkeeperRates.get(player.id)?.goalsAgainstPerGame ?? null,
-        cleanSheets: goalkeeperRates.get(player.id)?.cleanSheets ?? null,
-      };
-      const ovr = playerOVR(enrichedPlayer, comparison);
-      const value = metricValue(enrichedPlayer, state.metric, ovr);
+      const value = metricValue(player, state.metric, player.ovr);
       return {
-        ...enrichedPlayer,
-        ovr,
+        ...player,
         value,
         tier: metricTier(value, state.metric),
       };

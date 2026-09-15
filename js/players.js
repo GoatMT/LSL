@@ -21,6 +21,8 @@ const defaults = {
 };
 
 let state = { ...defaults };
+let careerOvrCache = { source: null, ratings: null };
+let aggregateCache = { source: null, key: "", players: null };
 
 const metricOptions = [
   { value: "goals", label: "Goals" },
@@ -104,8 +106,11 @@ function teamCode(team = {}) {
 }
 
 function careerOVRMap(allData) {
+  if (careerOvrCache.source === allData && careerOvrCache.ratings) return careerOvrCache.ratings;
   const careerPool = computeCombinedPlayerStats(allData, { stage: "all" });
-  return new Map(playersWithOVR(careerPool, careerPool).map((player) => [player.id, player.ovr]));
+  const ratings = new Map(playersWithOVR(careerPool, careerPool).map((player) => [player.id, player.ovr]));
+  careerOvrCache = { source: allData, ratings };
+  return ratings;
 }
 
 function championshipMap(seasons) {
@@ -131,6 +136,10 @@ function championshipMap(seasons) {
 }
 
 function aggregatePlayers(allData) {
+  const cacheKey = `${state.season}|${state.stage}|${state.division}`;
+  if (aggregateCache.source === allData && aggregateCache.key === cacheKey && aggregateCache.players) {
+    return aggregateCache.players;
+  }
   const seasons = selectedSeasons(allData);
   const map = new Map();
 
@@ -178,7 +187,7 @@ function aggregatePlayers(allData) {
       });
   });
 
-  return [...map.values()].map((player) => ({
+  const players = [...map.values()].map((player) => ({
     ...player,
     seasons: unique(player.seasons),
     divisions: unique(player.divisions),
@@ -188,6 +197,8 @@ function aggregatePlayers(allData) {
       (team, index, list) => list.findIndex((item) => item.id === team.id && item.year === team.year) === index
     ),
   }));
+  aggregateCache = { source: allData, key: cacheKey, players };
+  return players;
 }
 
 function sortPlayers(players) {

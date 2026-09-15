@@ -273,10 +273,42 @@
   margin: 0 auto;
   padding: 24px 0;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.footer-copy {
+  min-width: 0;
+}
+
+.footer-academy-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  min-height: 76px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.footer-academy-link:hover,
+.footer-academy-link:focus-visible {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+  transform: translateY(-2px);
+}
+
+.footer-academy-logo {
+  display: block;
+  width: clamp(72px, 9vw, 112px);
+  height: auto;
+  max-height: 92px;
+  object-fit: contain;
 }
 
 .footer-meta {

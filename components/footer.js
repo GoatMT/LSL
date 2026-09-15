@@ -5,11 +5,26 @@ export function renderFooter() {
   return `
     <footer class="site-footer">
       <div class="footer-inner">
-        <div>
+        <div class="footer-copy">
           <strong>${escapeHTML(SITE.name)}</strong><br>
           <span>Built With The Speed And Skill Of Our Players</span><br>
           <span class="footer-shoutout">Shoutout: Abdul Ghiyas Solyman (TikTok: <a href="https://www.tiktok.com/@raz.aep14" target="_blank" rel="noopener">@raz.aep14</a>), Taaha Nakhuda, Ishaaq Ali — and as far as who I am, keeping that on the low 😉</span>
         </div>
+        <a
+          class="footer-academy-link"
+          href="https://lanternofknowledgeacademy.ca/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Lantern of Knowledge Academy"
+        >
+          <img
+            class="footer-academy-logo"
+            src="./Logos/lantern-of-knowledge-academy.png"
+            alt="Lantern of Knowledge Academy"
+            width="112"
+            height="112"
+          >
+        </a>
       </div>
     </footer>
   `;

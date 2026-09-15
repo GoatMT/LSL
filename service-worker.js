@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v111";
+const CACHE_NAME = "lsl-cache-v112";
 
 /*
  * Static files that are safe to cache.
@@ -86,6 +86,7 @@ const APP_SHELL = [
 
   /* Logo */
   "./Logos/lsl-logo.png",
+  "./Logos/lantern-of-knowledge-academy.png",
 ];
 
 /*

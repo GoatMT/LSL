@@ -520,6 +520,14 @@
     flex-direction: column;
   }
 
+  .footer-inner {
+    align-items: stretch;
+  }
+
+  .footer-academy-link {
+    align-self: flex-end;
+  }
+
   .section-head > *,
   .season-details-head > *,
   .card,
