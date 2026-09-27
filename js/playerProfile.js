@@ -1,7 +1,7 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
-import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.13";
+import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.14";
 import { setupLayout } from "./main.js?v=20260913-3";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
@@ -191,7 +191,262 @@ function careerTotals(rows = []) {
   );
 }
 
+const SCOUTING_PLAYSTYLES = {
+  "mosa-fazli": {
+    label: "Box Finisher",
+    traits: ["Goal instinct", "Positioning", "Quick attacks"],
+    description: "A shorter attacking scorer who finds dangerous areas quickly and can punish mistakes when given space around the box.",
+  },
+  "abdul-ghiyas-solyman": {
+    label: "Creative Left Winger",
+    traits: ["Elite dribbling", "Close control", "One-on-one ability"],
+    description: "A creative left winger who prefers taking on defenders, using close control to create space and turning those attacks into shooting chances. His vision and passing decisions can be inconsistent, and he relies more on ball control and changes of direction than top-end speed.",
+  },
+  "ibrahim-syed": {
+    label: "Developing Rookie",
+    traits: ["Rookie", "Rotation minutes", "Learning curve"],
+    description: "A rookie still building his LSL identity. His first season is centered on experience, adjustment and earning a larger role.",
+  },
+  "yousaf-hosseinzada": {
+    label: "Playoff Power Shooter",
+    traits: ["Powerful shooting", "Playoff impact", "Momentum speed"],
+    description: "A dangerous power shooter who raises his level in important games and becomes much harder to catch once he builds momentum.",
+  },
+  "ishaaq-ali": {
+    label: "Defensive Shield",
+    traits: ["Positioning", "Physicality", "Defensive IQ"],
+    description: "A defense-first player who uses strength, shielding and smart positioning to keep attackers away from dangerous areas.",
+  },
+  "azizullah": {
+    label: "Developing Physical Defender",
+    traits: ["Physical presence", "Strength", "Room to improve"],
+    description: "A physical player whose next step is becoming more consistent with the ball, decision-making and possession security.",
+  },
+  "hasibullah-kharooti": {
+    label: "Long-Term Prospect",
+    traits: ["Potential", "Development runway", "Youthful upside"],
+    description: "A developing prospect with room to grow in speed, confidence and technical ability before becoming a larger immediate impact player.",
+  },
+  "uthman": {
+    label: "Intelligent Finisher",
+    traits: ["Soccer IQ", "Shooting", "Decision-making"],
+    description: "An intelligent attacker who makes good decisions, moves into useful positions and looks to punish defenders with his shooting.",
+  },
+  "mubashir-kharooti": {
+    label: "One-on-One Dribbler",
+    traits: ["Dribbling", "Agility", "Ball control"],
+    description: "A quick, low-centre-of-gravity dribbler who is comfortable changing direction and carrying the ball through tight spaces.",
+  },
+  "tulha-ahmed": {
+    label: "Depth Contributor",
+    traits: ["Squad depth", "Useful flashes", "Room to improve"],
+    description: "A depth player who can provide useful minutes but is still working toward greater technical consistency and overall impact.",
+  },
+  "mohammed-ibrahim": {
+    label: "Tall Target Finisher",
+    traits: ["Finishing", "Height", "Goal scoring"],
+    description: "A tall attacking finisher who is especially dangerous around goal and can turn quality service into goals at a high rate.",
+  },
+  "syed-zaeem-arshad": {
+    label: "Developing Rookie",
+    traits: ["Rookie", "Role building", "More to show"],
+    description: "A rookie with limited LSL experience so far. His first season will help establish his preferred role and long-term ceiling.",
+  },
+  "saad-khan": {
+    label: "Goalkeeping Wall",
+    traits: ["Shot stopping", "Reflexes", "Big saves"],
+    description: "A reliable goalkeeper who can change a game with excellent shot stopping, reflexes and difficult saves under pressure.",
+  },
+  "muzamil-kharooti": {
+    label: "Complete Game Controller",
+    traits: ["Playmaking", "Scoring", "Game control"],
+    description: "A complete player who can control the tempo, create for teammates, carry the ball or take over as the primary scorer.",
+  },
+  "mohammed-wahedi": {
+    label: "Goalkeeper Option",
+    traits: ["Goalkeeping availability", "Position experience", "Rotation role"],
+    description: "A goalkeeper option whose value comes from availability and experience in the position, while consistency and shot stopping remain areas to improve.",
+  },
+  "uwais-bemat": {
+    label: "Transition Sprinter",
+    traits: ["Elite speed", "Counterattacking", "Passing decisions"],
+    description: "An extremely fast transition player who attacks open space, makes the simple pass when needed and gives counterattacks immediate danger.",
+  },
+  "tayyib-mohammed": {
+    label: "Balanced Depth Forward",
+    traits: ["Balanced game", "Occasional scoring", "Useful depth"],
+    description: "A balanced all-around contributor who can provide useful depth and occasional scoring without relying on one elite standout trait.",
+  },
+  "haroon-ahmadi": {
+    label: "Explosive One-on-One Attacker",
+    traits: ["Elite dribbling", "Speed", "Finishing"],
+    description: "A game-changing attacker who combines speed, elite dribbling and finishing to turn individual moves into dangerous chances.",
+  },
+  "mudassir": {
+    label: "Complete Attacking Hub",
+    traits: ["Elite dribbling", "Playmaking", "Creativity"],
+    description: "The centrepiece of the attack: a complete player who can beat defenders, create for teammates or shoot from dangerous areas.",
+  },
+  "subhanullah-sharza": {
+    label: "Physical Support Player",
+    traits: ["Physical presence", "Squad depth", "Simple role"],
+    description: "A stronger-built supporting player who can contribute when he keeps his role simple and brings physical presence to the squad.",
+  },
+  "zayd-badin": {
+    label: "Simple Defensive Marker",
+    traits: ["Defensive awareness", "Positioning", "Simple defending"],
+    description: "A defense-first player best suited to a simple marking role where positioning matters more than carrying the ball into attack.",
+  },
+  "usman-ahmad-popal": {
+    label: "Reflex Goalkeeper",
+    traits: ["Reflexes", "Spectacular saves", "Shot stopping"],
+    description: "A talented goalkeeper with quick reactions who can produce spectacular saves and keep the team alive when chances break down.",
+  },
+  "abubakr-manjra": {
+    label: "Physical Defensive Leader",
+    traits: ["Physicality", "Clearances", "Leadership"],
+    description: "A physical defender who clears danger, organizes teammates and can threaten with a powerful shot when he has room to strike.",
+  },
+  "ajmal-shakkari": {
+    label: "Right-Wing Runner",
+    traits: ["Speed", "Finishing", "Attacking movement"],
+    description: "A quick right winger who attacks scoring positions and can finish difficult chances, even if his finishing can be unpredictable.",
+  },
+  "muhammad-teli": {
+    label: "Recovery-Speed Defender",
+    traits: ["Elite speed", "Recovery defending", "Tackling"],
+    description: "An athletic defender whose elite speed turns recovery runs into a weapon, while tackling, positioning and a useful shot round out his game.",
+  },
+  "sayem-mohammed-sadi": {
+    label: "Buildup Defender",
+    traits: ["Passing from defence", "Buildup play", "Positioning"],
+    description: "An offensive-minded defender who helps move possession forward and supports attacks, with disciplined positioning needed when he pushes up.",
+  },
+  "muhammad-affan": {
+    label: "Athletic Transition Player",
+    traits: ["Speed", "Jumping", "Heading"],
+    description: "A fast, athletic player who is useful in transition and can compete in the air with surprising jumping and heading ability.",
+  },
+  "muhammad-zaidan": {
+    label: "Utility Defender",
+    traits: ["Defending", "Versatility", "Emergency goalkeeping"],
+    description: "A versatile defensive option who can cover multiple roles and even provide emergency goalkeeping when the lineup needs flexibility.",
+  },
+  "nasibullah": {
+    label: "High-Ceiling Contributor",
+    traits: ["Overall quality", "Potential", "Bigger role ahead"],
+    description: "A strong Mavericks player with the potential to become an important contributor as his role and responsibilities grow.",
+  },
+  "taha-nakhuda": {
+    label: "All-Around Attacker",
+    traits: ["Finishing", "Playmaking", "Dribbling"],
+    description: "A versatile attacker who can finish, create for teammates or dribble past defenders instead of relying on only one part of his game.",
+  },
+  "umar-manjra": {
+    label: "Reliable Depth Player",
+    traits: ["Squad depth", "Useful role", "Room to grow"],
+    description: "A useful depth player who can contribute in the right role and has room to show a more dominant trait with additional playing time.",
+  },
+  "ilyas-salim": {
+    label: "Developing Depth Player",
+    traits: ["Squad depth", "Role building", "Consistency to grow"],
+    description: "A developing squad player who is still working toward more consistent technical play, decision-making and match impact.",
+  },
+  "muhammad-salim": {
+    label: "Intelligent Utility Player",
+    traits: ["Soccer IQ", "Versatility", "Backup goalkeeping"],
+    description: "An intelligent utility player who can fill different roles and give Amax extra cover as a backup goalkeeper.",
+  },
+  "adil-mubashir": {
+    label: "Tall Counterattacking Finisher",
+    traits: ["Finishing", "Speed", "Attacking runs"],
+    description: "A tall, fast attacker who is especially dangerous when he gets behind the defense and turns counterattacking runs into chances.",
+  },
+  "reda-alijalam": {
+    label: "Balanced Utility Player",
+    traits: ["Balanced game", "Versatility", "Dependability"],
+    description: "A balanced player who can fill different situations reliably, even without one overwhelming elite attribute.",
+  },
+  "ali-razzaq": {
+    label: "Balanced Utility Player",
+    traits: ["Balanced game", "Versatility", "Dependability"],
+    description: "A balanced player whose value comes from filling different roles dependably rather than taking over matches alone.",
+  },
+  "marwan-ahmad": {
+    label: "Power Shooter",
+    traits: ["Shooting power", "Attacking involvement", "Positioning"],
+    description: "An involved attacking player with real shooting power who becomes more dangerous when he chooses placement over overpowering attempts.",
+  },
+  "rehan-ahmed-mohammed": {
+    label: "Direct Dribbling Attacker",
+    traits: ["Speed", "Dribbling", "Ball carrying"],
+    description: "A direct attacker who combines speed and dribbling to challenge defenders, carry the ball and create chances in open space.",
+  },
+};
+
+const LIMITED_SCOUTING_PLAYER_IDS = new Set([
+  "zakariya-mohmed-bemat",
+  "mohammad-usman",
+  "ayub-jan",
+  "umair-saiyad",
+  "muneeb",
+  "zakariya-chhibu",
+  "murtaza-syed",
+  "sulaim-nakhuda",
+  "ahmed-adeeb-kamga",
+  "ammar-kazi",
+  "maaz-andurrahman",
+  "azeez-ur-rehman",
+  "ibrahim-kadam",
+  "abdullah-hosseinzadah",
+  "omar-hicham",
+  "mohammad-bilal-noorzai",
+  "hassan-muhammad",
+  "idrees-nawabi",
+  "muhammad-hashim-ali",
+  "abidullah-khalil",
+  "hasan-hamraz",
+  "ahmad-ingar",
+  "ayaan-tutla",
+  "rafiullah",
+  "ali-imran",
+  "bayram-loukil",
+  "yahya-adil-butt",
+  "huzaifa-ahmad-vadia",
+  "hammad-shaikh",
+  "ahmed-bhaiyat",
+  "shafiullah",
+  "uzair-sidat",
+  "sajadullah-khalil",
+  "yousuf-nathani",
+  "zaeem-kapil-parakot",
+  "muhammad-shah",
+  "samiullah-naimat",
+  "mohammed-ali-siddiqui",
+  "mohammed-rayyan-sayed",
+  "m-yahya",
+  "mohammad-erfan-noorzai",
+  "younes-meraidia",
+  "jamal-mujaddidi",
+  "mohammed-hammad-syed",
+]);
+
+function scoutingStyleFor(profile = {}) {
+  if (SCOUTING_PLAYSTYLES[profile.id]) return SCOUTING_PLAYSTYLES[profile.id];
+  if (LIMITED_SCOUTING_PLAYER_IDS.has(profile.id)) {
+    return {
+      label: "Limited Scouting",
+      traits: ["More to evaluate", "Role unclear", "2026 report"],
+      description: "The 2026 scouting report has limited information for this player. More meaningful minutes will clarify the role, strengths and long-term style.",
+    };
+  }
+  return null;
+}
+
 function inferPlayerStyle(profile = {}, careerRows = []) {
+  const scoutingStyle = scoutingStyleFor(profile);
+  if (scoutingStyle) return scoutingStyle;
+
   const totals = careerTotals(careerRows);
   const games = Math.max(1, totals.gamesPlayed || 0);
   const goalRate = totals.goals / games;
@@ -582,7 +837,7 @@ function renderProfileHeader(profile, current, ovr) {
           <span><small>Age</small><strong>${escapeHTML(currentPlayerAge(birthYear, birthMonth))}</strong></span>
         </div>
       </div>
-      <div class="official-profile-ovr-card" title="Career OVR: Seniors count 90% and Juniors 10% for players in both divisions. Junior-only ratings are 10% lower. Goalkeepers use MVP awards 20, wins 60, and goals-against-per-game 40. Field/Goalie players blend field and goalie scores 50/50.">
+      <div class="official-profile-ovr-card" title="Career OVR: Seniors count 90% and Juniors 10% for players in both divisions. Junior-only ratings are 10% lower. Goalkeepers use wins 40 and goals-against-per-game 60. Field/Goalie players blend field and goalie scores 50/50.">
         <span>OVR</span>
         <strong>${escapeHTML(ovr)}</strong>
       </div>

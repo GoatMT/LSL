@@ -3,7 +3,7 @@ import { renderFormStrip } from "../components/formStrip.js";
 import { COACH_GRADE_SCALE, decorateCoachGrade } from "./coachRatings.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
-import { calculateCoachForm, computeCoachSummary } from "./leagueEngine.js?v=3.13";
+import { calculateCoachForm, computeCoachSummary } from "./leagueEngine.js?v=3.14";
 import { setupLayout } from "./main.js?v=20260913-3";
 import { controlInput, controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

@@ -808,9 +808,8 @@ export function playerRatingScore(player = {}, comparisonPlayers = []) {
   const maxGoalsAgainstPerGame = Math.max(1, ...goalkeepersWithGames.map((item) => Number(item.goalsAgainstPerGame) || 0));
   const goalkeeperScore = roles.goalkeeper
     ? (
-        normalize(profile.mvpCount, Math.max(1, ...goalkeeperProfiles.map((item) => item.mvpCount))) * 20 +
-        normalize(profile.wins, goalkeeperMax("wins")) * 60 +
-        (profile.goalkeeperGames > 0 ? 1 - normalize(profile.goalsAgainstPerGame, maxGoalsAgainstPerGame) : 0) * 40
+        normalize(profile.wins, goalkeeperMax("wins")) * 40 +
+        (profile.goalkeeperGames > 0 ? 1 - normalize(profile.goalsAgainstPerGame, maxGoalsAgainstPerGame) : 0) * 60
       )
     : 0;
 
