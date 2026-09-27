@@ -1,4 +1,4 @@
-import { setupLayout } from "./main.js?v=20260913-3";
+import { setupLayout } from "./main.js?v=20260927-2";
 import { loadAllSeasons } from "./dataLoader.js?v=1.1";
 import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.14";
 import { createPulseCloudStore, fetchAllPulseAccounts } from "./pulseFirebase.js?v=1.2";

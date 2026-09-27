@@ -3,7 +3,7 @@ import { renderFormStrip } from "../components/formStrip.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
 import { COACH_GRADE_SCALE, decorateCoachGrade } from "./coachRatings.js";
 import { buildCoachCareer, calculateCoachForm, computeCoachSummary, getCurrentCoach, getNextTeamMatch } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260913-3";
+import { setupLayout } from "./main.js?v=20260927-2";
 import { escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, statusMessage, unique } from "./utils.js";
 
 setupLayout("coaches.html");

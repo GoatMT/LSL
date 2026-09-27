@@ -4,7 +4,7 @@ import { matchToCalendarEvent, renderCalendarButtons, renderCalendarDownloadButt
 import { playoffRulesFor, SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=1.1";
 import { calculateStandings } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260913-3";
+import { setupLayout } from "./main.js?v=20260927-2";
 import { controlSelect, escapeHTML, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("playoffs.html");

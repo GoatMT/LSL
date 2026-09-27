@@ -4,7 +4,7 @@ import { renderStandingsTable } from "../components/standingsTable.js?v=3.1";
 import { playoffRulesFor, SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=1.1";
 import { filterMatches, getWeeks, standingsWithMovement } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260913-3";
+import { setupLayout } from "./main.js?v=20260927-2";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("standings.html");

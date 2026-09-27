@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v112";
+const CACHE_NAME = "lsl-cache-v114";
 
 /*
  * Static files that are safe to cache.
@@ -53,6 +53,7 @@ const APP_SHELL = [
   "./css/main.css",
   "./css/components.css",
   "./css/responsive.css",
+  "./css/modern-system.css",
   "./css/players.css",
   "./css/player-tiers.css",
   "./css/home-facts.css",

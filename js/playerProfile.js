@@ -2,7 +2,7 @@ import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
 import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260913-3";
+import { setupLayout } from "./main.js?v=20260927-2";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
 setupLayout("players.html");
@@ -922,7 +922,6 @@ function renderPlayerInfoSection(profile, careerRows, allData) {
 
   return `
     <section class="card official-info-card">
-      ${renderPlayerStyleCard(profile, careerRows, allData)}
       <div class="official-achievement-badges">
         <div class="official-achievement-heading">
           <span class="eyebrow">Honors & Record Badges</span>
@@ -1488,6 +1487,7 @@ async function init() {
     root.innerHTML = `
       <section class="official-player-profile">
         ${renderProfileHeader(profile, current, ovr)}
+        ${renderPlayerStyleCard(profile, careerAll, allData)}
 
         <section class="player-profile-panel" id="player-overview-panel" data-profile-panel="overview" role="tabpanel" aria-label="Overview"${state.profileSection !== "overview" ? " hidden" : ""}>
           ${renderMainStatsRow(total)}

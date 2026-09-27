@@ -1,0 +1,277 @@
+/* Shared LSL interface polish. Existing page content and feature styles stay authoritative. */
+:root {
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 14px 36px rgba(0, 0, 0, 0.24);
+  --focus-ring: 0 0 0 3px rgba(199, 163, 103, 0.34);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-shell {
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.section-panel {
+  gap: 18px;
+  padding: clamp(18px, 2.2vw, 28px);
+  border-radius: 18px;
+}
+
+.section-head {
+  padding: clamp(16px, 1.8vw, 22px);
+  border-radius: 14px;
+}
+
+.section-head.compact-head {
+  padding: 14px 16px;
+}
+
+.section-head h1,
+.section-head h2,
+.section-head h3,
+.section-panel h1,
+.section-panel h2,
+.section-panel h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.section-head p,
+.section-panel > p {
+  max-width: 78ch;
+}
+
+.controls {
+  gap: 14px;
+  padding: 16px;
+  border-radius: 14px;
+}
+
+.control {
+  gap: 7px;
+}
+
+.control label,
+.site-search-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.site-header {
+  border-bottom: 1px solid rgba(199, 163, 103, 0.24);
+}
+
+.nav-inner {
+  gap: 16px;
+}
+
+.brand-link,
+.nav-link,
+.nav-dropdown-button,
+.nav-toggle {
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.nav-link,
+.nav-dropdown-button,
+.nav-toggle {
+  border-radius: 10px;
+}
+
+.nav-link:focus-visible,
+.nav-dropdown-button:focus-visible,
+.nav-toggle:focus-visible,
+.nav-dropdown-menu a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.nav-dropdown-menu {
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.nav-dropdown-menu a {
+  min-height: 42px;
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link, input, select, textarea, summary) {
+  border-radius: 10px;
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link, input, select, textarea) {
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link) {
+  min-height: 42px;
+}
+
+body:not(.imt-blue-page) :where(input, select, textarea) {
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :where(input, select, textarea):focus-visible,
+body:not(.imt-blue-page) :where(button, .button, .text-link, summary):focus-visible,
+body:not(.imt-blue-page) [role="tab"]:focus-visible,
+body:not(.imt-blue-page) [role="switch"]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring);
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link):disabled,
+body:not(.imt-blue-page) :where(button, .button, .text-link)[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link)[aria-pressed="true"],
+body:not(.imt-blue-page) :where(button, .button, .text-link)[aria-expanded="true"],
+body:not(.imt-blue-page) [role="tab"][aria-selected="true"],
+body:not(.imt-blue-page) .nav-link.active {
+  border-color: rgba(199, 163, 103, 0.74);
+}
+
+body:not(.imt-blue-page) input[type="checkbox"],
+body:not(.imt-blue-page) input[type="radio"] {
+  accent-color: var(--gold);
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link):hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: rgba(199, 163, 103, 0.74);
+}
+
+body:not(.imt-blue-page) .section-panel,
+body:not(.imt-blue-page) .table-wrap,
+body:not(.imt-blue-page) .card,
+body:not(.imt-blue-page) .stat-box,
+body:not(.imt-blue-page) .match-card,
+body:not(.imt-blue-page) .team-card,
+body:not(.imt-blue-page) .person-card,
+body:not(.imt-blue-page) .award-card,
+body:not(.imt-blue-page) .rule-card {
+  border-radius: 14px;
+}
+
+.stat-box {
+  min-height: 88px;
+}
+
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 14px;
+}
+
+.data-table th {
+  vertical-align: middle;
+}
+
+.site-footer {
+  margin-top: 12px;
+}
+
+body.imt-blue-page .section-panel,
+body.imt-blue-page .section-head,
+body.imt-blue-page .controls,
+body.imt-blue-page .table-wrap,
+body.imt-blue-page .card {
+  border-radius: 14px;
+}
+
+body.imt-blue-page :where(a, button, input, select, textarea, summary, [role="tab"], [role="switch"]):focus-visible {
+  outline: 2px solid #2789e4;
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  .page-shell {
+    width: min(100% - 24px, var(--max));
+    gap: 18px;
+    padding-top: 16px;
+    padding-bottom: 36px;
+  }
+
+  .section-panel {
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .section-head {
+    padding: 14px;
+  }
+
+  .controls {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 10px 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-shell {
+    width: min(100% - 18px, var(--max));
+    gap: 14px;
+  }
+
+  .section-panel {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .section-head,
+  .section-head.compact-head {
+    padding: 12px;
+  }
+
+  .controls {
+    padding: 10px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 9px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
