@@ -1,5 +1,5 @@
 import { NAV_LINKS, SITE } from "../js/config.js";
-import { loadAllSeasons } from "../js/dataLoader.js?v=20261018-media1";
+import { loadAllSeasons } from "../js/dataLoader.js?v=20261018-media4";
 import { computeCoachSummary, computeCombinedPlayerStats } from "../js/leagueEngine.js";
 import { escapeHTML } from "../js/utils.js";
 

@@ -1,5 +1,5 @@
-import { setupLayout } from "./main.js?v=20261018-media1";
-import { loadAllSeasons } from "./dataLoader.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media4";
+import { loadAllSeasons } from "./dataLoader.js?v=20261018-media4";
 import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.14";
 import { createPulseCloudStore, fetchAllPulseAccounts } from "./pulseFirebase.js?v=1.2";
 import { initNotificationButton, renderNotificationButton } from "./pulseNotifications.js?v=20260913-1";
@@ -343,6 +343,17 @@ function buildWeeklyPulse(allData = []) {
 
 function renderWeeklyPulse() {
   const pulse = state.leaguePulse;
+  if (pulse?.loading) {
+    return `
+      <section class="section-panel pulse-weekly-panel pulse-weekly-loading">
+        <div class="section-head">
+          <div><span class="eyebrow">Weekly League Pulse</span><h2>Updating the latest league read</h2><p>The rest of LSL Pulse is ready while the season summary loads.</p></div>
+          <a class="text-link" href="./matches.html">Open Match Center</a>
+        </div>
+        ${statusMessage("loading", "Updating weekly league pulse...")}
+      </section>
+    `;
+  }
   if (!pulse) return "";
   const spotlightTeams = pulse.spotlight ? `${pulse.teams.get(pulse.spotlight.homeTeamId) || "Home"} ${pulse.spotlight.homeScore}-${pulse.spotlight.awayScore} ${pulse.teams.get(pulse.spotlight.awayTeamId) || "Away"}` : "No completed match yet";
   return `
@@ -913,15 +924,18 @@ function bindEvents() {
 }
 
 async function init() {
-  root.innerHTML = statusMessage("loading", "Loading LSL Pulse...");
   state.account = readActiveAccount();
   state.posts = readStoredPosts();
   state.officialInteractions = readOfficialInteractions();
   state.officialPosts = officialFeedItems();
-  state.leaguePulse = buildWeeklyPulse(await loadAllSeasons().catch((error) => {
+  state.leaguePulse = { loading: true };
+  render();
+
+  const allSeasons = await loadAllSeasons().catch((error) => {
     console.warn("Could not load Weekly League Pulse data", error);
     return [];
-  }));
+  });
+  state.leaguePulse = buildWeeklyPulse(allSeasons);
   render();
   cloudStore = await createPulseCloudStore({
     onStatus(message) {

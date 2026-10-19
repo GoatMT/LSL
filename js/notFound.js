@@ -1,4 +1,4 @@
-import { setupLayout } from "./main.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media4";
 import { setDocumentTitle } from "./utils.js";
 
 setupLayout("404.html");

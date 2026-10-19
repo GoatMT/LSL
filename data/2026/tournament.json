@@ -69,7 +69,7 @@
           "id": "lantern-of-knowledge-academy",
           "name": "Lantern of Knowledge Academy",
           "shortName": "Lantern",
-          "logo": "./IMT/2026/Team Logos/LanternofKnowledgeAcademy.webp",
+          "logo": "./media/imt-2026/imt-2026-asset-012.webp",
           "logoText": "LOK",
           "logoBg": "#001a3a",
           "role": "Host",
@@ -158,7 +158,7 @@
           "id": "galt-islamic-centre",
           "name": "Galt Islamic Centre",
           "shortName": "Galt",
-          "logo": "./IMT/2026/Team Logos/GaltIslamicCenter.webp",
+          "logo": "./media/imt-2026/imt-2026-asset-008.webp",
           "logoText": "GIC",
           "logoBg": "#dceeff",
           "roster": null
@@ -167,7 +167,7 @@
           "id": "madinah-masjid",
           "name": "Madinah Masjid",
           "shortName": "Madinah",
-          "logo": "./IMT/2026/Team Logos/Madinah Masjid.png",
+          "logo": "./media/imt-2026/imt-2026-asset-013.png",
           "logoText": "MM",
           "logoBg": "#f4f6f8",
           "roster": null
@@ -176,7 +176,7 @@
           "id": "islamic-society-of-toronto",
           "name": "Islamic Society of Toronto",
           "shortName": "IST",
-          "logo": "./IMT/2026/Team Logos/Islamic Society Toronto.png",
+          "logo": "./media/imt-2026/imt-2026-asset-009.png",
           "logoText": "IST",
           "logoBg": "#e7f3ff",
           "roster": null
@@ -248,7 +248,7 @@
           "id": "assalam-institute-of-quran",
           "name": "Assalaam Institute of Quran",
           "shortName": "Assalaam",
-          "logo": "./IMT/2026/Team Logos/AssalaamInstitute.webp",
+          "logo": "./media/imt-2026/imt-2026-asset-007.webp",
           "logoText": "AIQ",
           "logoBg": "#dceeff",
           "roster": null
@@ -257,7 +257,7 @@
           "id": "islamic-foundation-of-toronto",
           "name": "Islamic Foundation of Toronto",
           "shortName": "IFT",
-          "logo": "./IMT/2026/Team Logos/IslamicFoundationOfToronto.jpg",
+          "logo": "./media/imt-2026/imt-2026-asset-010.jpg",
           "logoText": "IFT",
           "logoBg": "#001a3a",
           "roster": null
@@ -266,7 +266,7 @@
           "id": "khairul-ummah-academy",
           "name": "Khairul Ummah Academy",
           "shortName": "KUA",
-          "logo": "./IMT/2026/Team Logos/KhairulUmmah.png",
+          "logo": "./media/imt-2026/imt-2026-asset-011.png",
           "logoText": "KUA",
           "logoBg": "#99c4dd",
           "roster": null
@@ -275,7 +275,7 @@
           "id": "scarborough-muslim-association",
           "name": "Scarborough Muslim Association",
           "shortName": "SMA",
-          "logo": "./IMT/2026/Team Logos/ScarboroughMuslimAssociation.png",
+          "logo": "./media/imt-2026/imt-2026-asset-014.png",
           "logoText": "SMA",
           "logoBg": "#f4f6f8",
           "roster": null
@@ -583,7 +583,7 @@
   ],
   "lanternTeam": {
     "name": "Lantern Team - Inter-Madrasah 2026",
-    "logo": "./IMT/2026/Team Logos/LanternofKnowledgeAcademy.webp",
+    "logo": "./media/imt-2026/imt-2026-asset-012.webp",
     "owner": "Moulana Junaid",
     "headCoach": "Ashique",
     "assistantCoach": "Hafizullah",

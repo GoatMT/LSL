@@ -1,7 +1,7 @@
-import { renderFooter } from "../components/footer.js?v=20261018-media1";
+import { renderFooter } from "../components/footer.js?v=20261018-media4";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261018-media1";
+import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261018-media4";
 import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.14";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js?v=20260907-2";
@@ -37,7 +37,7 @@ function registerPWA() {
 
     window.addEventListener("load", async () => {
       try {
-    const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261018-media1", {
+    const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261018-media4", {
           updateViaCache: "none",
         });
         await registration.update();

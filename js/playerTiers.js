@@ -1,6 +1,6 @@
-import { loadAllSeasons } from "./dataLoader.js?v=20261018-media1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261018-media4";
 import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR, playerTeamForMatch } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media4";
 import { SITE } from "./config.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

@@ -2,8 +2,9 @@ import { DATA_FILES, SITE } from "./config.js";
 import { slugify } from "./utils.js";
 
 let playerAliasCache;
-const DATA_CACHE_VERSION = "20261018-media-1";
-const DATA_CACHE_TTL_MS = 30_000;
+const DATA_CACHE_VERSION = "20261018-media-4";
+const DATA_CACHE_TTL_MS = 10 * 60_000;
+const DATA_FETCH_TIMEOUT_MS = 8_000;
 const jsonCache = new Map();
 const jsonRequests = new Map();
 const seasonCache = new Map();
@@ -52,8 +53,10 @@ async function fetchJSON(path, optional = true) {
   if (jsonRequests.has(path)) return jsonRequests.get(path);
 
   const request = (async () => {
+    const controller = typeof AbortController === "function" ? new AbortController() : null;
+    const timeoutId = controller ? setTimeout(() => controller.abort(), DATA_FETCH_TIMEOUT_MS) : null;
     try {
-      const response = await fetch(path, { cache: "no-store" });
+      const response = await fetch(path, { cache: "no-store", signal: controller?.signal });
       if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
       const value = await response.json();
       jsonCache.set(path, value);
@@ -63,6 +66,8 @@ async function fetchJSON(path, optional = true) {
       if (!optional) throw error;
       console.warn(`Could not load ${path}`, error);
       return null;
+    } finally {
+      if (timeoutId) clearTimeout(timeoutId);
     }
   })();
 
@@ -104,7 +109,8 @@ function canonicalizeMatch(match, aliases = {}) {
   if (!match || typeof match !== "object") return match;
   const next = { ...match };
   ["scorers", "assists", "shots", "stars"].forEach((key) => {
-    if (Array.isArray(next[key])) next[key] = next[key].map((event) => canonicalizePlayerEvent(event, aliases));
+    const entries = Array.isArray(next[key]) ? next[key] : next[key] ? [next[key]] : [];
+    next[key] = entries.map((event) => canonicalizePlayerEvent(event, aliases));
   });
   if (next.playerOfMatchId) next.playerOfMatchId = canonicalPlayerId(next.playerOfMatchId, aliases);
   return next;

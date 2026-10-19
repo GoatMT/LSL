@@ -28,7 +28,8 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v118";
+const CACHE_NAME = "lsl-cache-v121";
+const NETWORK_TIMEOUT_MS = 6_000;
 
 /*
  * Static files that are safe to cache.
@@ -192,6 +193,17 @@ function isCacheableResponse(response) {
     response.ok &&
     response.type !== "opaque"
   );
+}
+
+async function fetchWithTimeout(request, timeoutMs = NETWORK_TIMEOUT_MS) {
+  if (typeof AbortController !== "function") return fetch(request);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(request, { signal: controller.signal });
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 /* =========================================================
@@ -422,7 +434,7 @@ async function networkFirst(request, fetchOptions = {}) {
     : request;
 
   try {
-    const response = await fetch(networkRequest);
+    const response = await fetchWithTimeout(networkRequest);
 
     /*
      * Never replace a good cached file with an error response.
@@ -514,7 +526,7 @@ async function networkFirst(request, fetchOptions = {}) {
 
 async function networkFirstNavigation(request) {
   try {
-    const response = await fetch(request);
+    const response = await fetchWithTimeout(request);
 
     if (isCacheableResponse(response)) {
       const cache = await caches.open(CACHE_NAME);

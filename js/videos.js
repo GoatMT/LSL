@@ -1,8 +1,8 @@
 import { renderPhotoCard } from "../components/photoCard.js";
 import { renderVideoCard } from "../components/videoCard.js";
 import { SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js?v=20261018-media1";
-import { setupLayout } from "./main.js?v=20261018-media1";
+import { loadSeasonData } from "./dataLoader.js?v=20261018-media4";
+import { setupLayout } from "./main.js?v=20261018-media4";
 import { controlSelect, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("videos.html");

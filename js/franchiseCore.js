@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js?v=20261018-media1";
+import { loadJSON } from "./dataLoader.js?v=20261018-media4";
 
 const STORAGE_KEY = "lsl-franchise-save-v1";
 

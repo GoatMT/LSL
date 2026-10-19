@@ -1,5 +1,5 @@
-import { setupLayout } from "./main.js?v=20261018-media1";
-import { createPulseAdminStore } from "./pulseFirebase.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media4";
+import { createPulseAdminStore } from "./pulseFirebase.js?v=20261018-media4";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 
 // Client-side only gate - this is NOT real security, just a soft deterrent

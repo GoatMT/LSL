@@ -2,9 +2,9 @@ import { renderPlayoffBracket } from "../components/playoffBracket.js";
 import { renderStandingsTable } from "../components/standingsTable.js?v=3.1";
 import { matchToCalendarEvent, renderCalendarButtons, renderCalendarDownloadButton } from "./calendarLinks.js";
 import { playoffRulesFor, SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js?v=20261018-media1";
+import { loadSeasonData } from "./dataLoader.js?v=20261018-media4";
 import { calculateStandings } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media4";
 import { controlSelect, escapeHTML, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("playoffs.html");

@@ -1,8 +1,8 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261018-media1";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261018-media4";
 import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.14";
 import { escapeHTML, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
-import { setupLayout } from "./main.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media4";
 
 setupLayout("free-agents.html");
 setDocumentTitle("Free Agents");
@@ -434,7 +434,14 @@ async function init() {
     render(allPlayers);
   } catch (error) {
     console.error("Could not load free agents", error);
-    root.innerHTML = statusMessage("error", "Free agents are temporarily unavailable. Please try again soon.");
+    root.innerHTML = `
+      <section class="section-panel free-agents-error-panel">
+        ${statusMessage("error", "The free-agent board could not load right now.")}
+        <p class="muted">Your saved data is still safe. Try the board again when the connection is ready.</p>
+        <button type="button" class="button secondary" data-free-agent-retry>Try Again</button>
+      </section>
+    `;
+    root.querySelector("[data-free-agent-retry]")?.addEventListener("click", init, { once: true });
   }
 }
 
