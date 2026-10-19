@@ -410,3 +410,4 @@ export function hydrateFanVote(root, awardWatch = {}) {
     });
   });
 }
+

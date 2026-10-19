@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "lantern-rush-free",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "build": {"command": "node ../scripts/build-free-backend.mjs"},
+  "durable_objects": {"bindings": [{"name": "LIVE_BACKEND", "class_name": "LiveBackend"}]},
+  "migrations": [{"tag": "v1", "new_sqlite_classes": ["LiveBackend"]}],
+  "vars": {
+    "FIREBASE_PROJECT_ID": "lsl-rivals",
+    "FIREBASE_API_KEY": "AIzaSyCG2f2w4udv2jBw82Yt6J-z1JOlr7nJBjM",
+    "ALLOWED_ORIGINS": "https://goatmt.github.io,http://localhost:4173,http://127.0.0.1:4173",
+    "MAX_DAILY_REQUESTS": "6000"
+  },
+  "observability": {"enabled": false}
+}

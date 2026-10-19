@@ -2,7 +2,7 @@ import { DATA_FILES, SITE } from "./config.js";
 import { slugify } from "./utils.js";
 
 let playerAliasCache;
-const DATA_CACHE_VERSION = "20260926-1";
+const DATA_CACHE_VERSION = "20261018-media-1";
 const DATA_CACHE_TTL_MS = 30_000;
 const jsonCache = new Map();
 const jsonRequests = new Map();
@@ -241,3 +241,5 @@ export function getPlayer(data, playerId) {
 export function getCoach(data, coachId) {
   return (data.coaches || []).find((coach) => coach.id === coachId);
 }
+
+

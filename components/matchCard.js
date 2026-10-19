@@ -208,3 +208,4 @@ export function renderMatchCard(data, match) {
     </article>
   `;
 }
+

@@ -1,7 +1,7 @@
-import { renderFooter } from "../components/footer.js";
+import { renderFooter } from "../components/footer.js?v=20261018-media1";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js";
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=1.1";
+import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261018-media1";
 import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.14";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js?v=20260907-2";
@@ -37,7 +37,7 @@ function registerPWA() {
 
     window.addEventListener("load", async () => {
       try {
-    const registration = await navigator.serviceWorker.register("./service-worker.js?v=20260927-2", {
+    const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261018-media1", {
           updateViaCache: "none",
         });
         await registration.update();
@@ -48,10 +48,48 @@ function registerPWA() {
   }
 }
 
+function mediaFallbackMessage(element, message) {
+  const frame = element.closest(".media-frame, .imt-media-card, .media-card");
+  if (!frame || frame.querySelector(".media-load-fallback")) return;
+
+  element.classList.add("media-load-failed");
+  const fallback = document.createElement("span");
+  fallback.className = "media-load-fallback";
+  fallback.setAttribute("role", "status");
+  fallback.textContent = message;
+  frame.appendChild(fallback);
+}
+
+function hydrateMediaRecovery() {
+  if (document.documentElement.dataset.mediaRecoveryReady) return;
+  document.documentElement.dataset.mediaRecoveryReady = "true";
+
+  document.addEventListener(
+    "error",
+    (event) => {
+      const media = event.target;
+      if (!(media instanceof HTMLImageElement) && !(media instanceof HTMLVideoElement)) return;
+      mediaFallbackMessage(media, media instanceof HTMLVideoElement ? "This video could not be played." : "This photo could not be loaded.");
+    },
+    true
+  );
+
+  document.addEventListener(
+    "loadedmetadata",
+    (event) => {
+      const video = event.target;
+      if (!(video instanceof HTMLVideoElement)) return;
+      video.closest(".media-frame, .imt-media-card, .media-card")?.classList.add("media-is-ready");
+    },
+    true
+  );
+}
+
 export function setupLayout(activeHref) {
   document.getElementById("site-navbar").innerHTML = renderNavbar(activeHref);
   document.getElementById("site-footer").innerHTML = renderFooter();
   hydrateNavbar();
+  hydrateMediaRecovery();
   initPageAnimations();
   registerPWA();
 }
@@ -879,3 +917,5 @@ async function renderHome() {
 if ([...document.scripts].some((script) => script.src.includes("/js/main.js"))) {
   renderHome();
 }
+
+

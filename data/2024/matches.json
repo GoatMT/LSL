@@ -13,26 +13,20 @@
       "homeScore": 2,
       "awayScore": 0,
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "hafizullah",
-          "name": "Hafizullah",
-          "jersey": 1,
-          "goals": 2
-        }
-      ],
-      "assists": [],
-      "shots": [
-        {
-          "playerId": "hafizullah",
-          "name": "Hafizullah",
-          "jersey": 1,
+      "scorers": {
+        "playerId": "hafizullah",
+        "name": "Hafizullah",
+        "jersey": 1,
+        "goals": 2
+      },
+      "assists": null,
+      "shots": {
+        "playerId": "hafizullah",
+        "name": "Hafizullah",
+        "jersey": 1,
         "shots": 7
-        }
-      ],
-      "notes": [
-      "Hafizullah scored both goals and recorded 7 shots."
-      ]
+      },
+      "notes": "Hafizullah scored both goals and recorded 7 shots."
     },
     {
       "id": "2024-w1-g2",
@@ -66,7 +60,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "shots": [
         {
           "playerId": "ayhaam-khalefa",
@@ -87,9 +81,7 @@
           "shots": 2
         }
       ],
-      "notes": [
-        "Incident note appeared to read: No cleats."
-      ]
+      "notes": "Incident note appeared to read: No cleats."
     },
     {
       "id": "2024-w1-g3",
@@ -121,7 +113,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "playerOfMatchId": "muzamil-kharooti",
       "notes": [
         "Silver Suits scored once, but the scorer is not clear on the sheet.",
@@ -155,7 +147,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "shots": [
         {
           "playerId": "muzamil-kharooti",
@@ -237,7 +229,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "shots": [
         {
           "playerId": "rehaan-adam",
@@ -318,7 +310,7 @@
           "goals": 2
         }
       ],
-      "assists": [],
+      "assists": null,
       "shots": [
         {
           "playerId": "mohammed-hanzala",
@@ -494,8 +486,8 @@
       "homeScore": 1,
       "awayScore": 1,
       "status": "Complete",
-      "scorers": [],
-      "assists": []
+      "scorers": null,
+      "assists": null
     },
     {
       "id": "2024-w4-g2",
@@ -509,26 +501,20 @@
       "homeScore": 0,
       "awayScore": 4,
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "bayizedsha",
-          "name": "Bayizedsha",
-          "jersey": 11,
-          "goals": 3
-        }
-      ],
-      "assists": [],
-      "shots": [
-        {
-          "playerId": "bayizedsha",
-          "name": "Bayizedsha",
-          "jersey": 11,
-          "shots": 9
-        }
-      ],
-      "notes": [
-        "Player of the week note listed Bayizedsha #11 with 3 goals and 9 shots. Full goal distribution for Shifa's fourth goal was not listed."
-      ]
+      "scorers": {
+        "playerId": "bayizedsha",
+        "name": "Bayizedsha",
+        "jersey": 11,
+        "goals": 3
+      },
+      "assists": null,
+      "shots": {
+        "playerId": "bayizedsha",
+        "name": "Bayizedsha",
+        "jersey": 11,
+        "shots": 9
+      },
+      "notes": "Player of the week note listed Bayizedsha #11 with 3 goals and 9 shots. Full goal distribution for Shifa's fourth goal was not listed."
     },
     {
       "id": "2024-w4-g3",
@@ -542,8 +528,8 @@
       "homeScore": 0,
       "awayScore": 1,
       "status": "Complete",
-      "scorers": [],
-      "assists": []
+      "scorers": null,
+      "assists": null
     },
     {
       "id": "2024-w4-g4",
@@ -557,8 +543,8 @@
       "homeScore": 2,
       "awayScore": 2,
       "status": "Complete",
-      "scorers": [],
-      "assists": []
+      "scorers": null,
+      "assists": null
     },
     {
       "id": "2024-w5-g1",
@@ -590,10 +576,8 @@
           "goals": 1
         }
       ],
-      "assists": [],
-      "notes": [
-        "Week 5 performer graphic lists Muzamil Kharooti and Muhammad Hassan for Refuel Juicery, and Hafizullah for Asif Gangat United."
-      ]
+      "assists": null,
+      "notes": "Week 5 performer graphic lists Muzamil Kharooti and Muhammad Hassan for Refuel Juicery, and Hafizullah for Asif Gangat United."
     },
     {
       "id": "2024-w5-g2",
@@ -626,19 +610,15 @@
           "goals": 1
         }
       ],
-      "assists": [],
-      "shots": [
-        {
-          "playerId": "muhammad-affan",
-          "name": "M. Affan",
-          "jersey": 9,
-          "shots": 4
-        }
-      ],
+      "assists": null,
+      "shots": {
+        "playerId": "muhammad-affan",
+        "name": "M. Affan",
+        "jersey": 9,
+        "shots": 4
+      },
       "playerOfMatchId": "muhammad-affan",
-      "notes": [
-        "M. Affan was named player of the week. Saad Saud scored one of Umer Memon F.C.'s goals; one Shifa Pharmacy F.C. goal remains unattributed."
-      ]
+      "notes": "M. Affan was named player of the week. Saad Saud scored one of Umer Memon F.C.'s goals; one Shifa Pharmacy F.C. goal remains unattributed."
     },
     {
       "id": "2024-w5-g3",
@@ -670,10 +650,8 @@
           "goals": 1
         }
       ],
-      "assists": [],
-      "notes": [
-        "Week 5 performer graphic lists Shaheer Baig as Jogiat Palace's third scorer."
-      ]
+      "assists": null,
+      "notes": "Week 5 performer graphic lists Shaheer Baig as Jogiat Palace's third scorer."
     },
     {
       "id": "2024-w5-g4",
@@ -687,8 +665,8 @@
       "homeScore": 1,
       "awayScore": 1,
       "status": "Complete",
-      "scorers": [],
-      "assists": []
+      "scorers": null,
+      "assists": null
     },
     {
       "id": "2024-p-qf1",
@@ -703,11 +681,9 @@
       "awayScore": 3,
       "winnerId": "jogiat-palace",
       "status": "Jogiat Palace won 3-2 on penalties",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Jogiat Palace advanced to the semifinals by winning 3-2 against Silver Suits in a penalty shootout."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "Jogiat Palace advanced to the semifinals by winning 3-2 against Silver Suits in a penalty shootout."
     },
     {
       "id": "2024-p-qf2",
@@ -722,11 +698,9 @@
       "awayScore": 4,
       "winnerId": "umer-memon-fc",
       "status": "Umer advanced on penalties",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Source described the result as a penalty shootout."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "Source described the result as a penalty shootout."
     },
     {
       "id": "2024-p-sf1",
@@ -741,22 +715,18 @@
       "awayScore": 5,
       "winnerId": "shifa-pharmacy-fc",
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "mubashir-kharooti",
-          "name": "Mubashir Kharooti",
-          "goals": 1
-        }
-      ],
-      "assists": [],
-      "shots": [
-        {
-          "playerId": "mubashir-kharooti",
-          "name": "Mubashir Kharooti",
-          "jersey": 4,
-          "shots": 7
-        }
-      ],
+      "scorers": {
+        "playerId": "mubashir-kharooti",
+        "name": "Mubashir Kharooti",
+        "goals": 1
+      },
+      "assists": null,
+      "shots": {
+        "playerId": "mubashir-kharooti",
+        "name": "Mubashir Kharooti",
+        "jersey": 4,
+        "shots": 7
+      },
       "playerOfMatchId": "mubashir-kharooti",
       "notes": [
         "Mubashir Kharooti scored once and recorded 7 shots for Jogiat Palace.",
@@ -776,8 +746,8 @@
       "awayScore": 2,
       "winnerId": "refuel-juicery-kickers",
       "status": "Complete",
-      "scorers": [],
-      "assists": []
+      "scorers": null,
+      "assists": null
     },
     {
       "id": "2024-p-final",
@@ -792,11 +762,9 @@
       "awayScore": null,
       "winnerId": "shifa-pharmacy-fc",
       "status": "Shifa Pharmacy F.C. champion",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Final score is coming soon."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "Final score is coming soon."
     },
     {
       "id": "2024-p-third",
@@ -811,11 +779,9 @@
       "awayScore": null,
       "winnerId": "jogiat-palace",
       "status": "Jogiat Palace 3rd place winner",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Jogiat Palace is listed as the 2024 third-place winner. Score was not listed."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "Jogiat Palace is listed as the 2024 third-place winner. Score was not listed."
     }
   ]
 }

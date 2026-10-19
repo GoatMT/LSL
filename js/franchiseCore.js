@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js?v=1.1";
+import { loadJSON } from "./dataLoader.js?v=20261018-media1";
 
 const STORAGE_KEY = "lsl-franchise-save-v1";
 
@@ -1219,3 +1219,5 @@ export function computeFranchiseRecords(save) {
     mostChampionships,
   };
 }
+
+

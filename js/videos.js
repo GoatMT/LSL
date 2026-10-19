@@ -1,8 +1,8 @@
 import { renderPhotoCard } from "../components/photoCard.js";
 import { renderVideoCard } from "../components/videoCard.js";
 import { SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js?v=1.1";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { loadSeasonData } from "./dataLoader.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { controlSelect, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("videos.html");
@@ -174,3 +174,5 @@ async function init() {
 }
 
 init();
+
+

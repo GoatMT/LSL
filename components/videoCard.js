@@ -10,7 +10,10 @@ function detailRows(video) {
 
 export function renderVideoCard(video) {
   const media = video.videoUrl
-    ? `<video controls preload="none" src="${escapeHTML(video.videoUrl)}"></video>`
+    ? `<video controls playsinline preload="metadata" data-media-title="${escapeHTML(video.title || "LSL video")}">
+        <source src="${escapeHTML(video.videoUrl)}" type="video/mp4">
+        Your browser cannot play this video.
+      </video>`
     : video.thumbnail
       ? `<img src="${escapeHTML(video.thumbnail)}" alt="">`
       : escapeHTML(video.category || "LSL Clip");
@@ -25,7 +28,7 @@ export function renderVideoCard(video) {
             </div>`
           : ""
       }
-      <div class="video-thumb">${media}</div>
+      <div class="video-thumb media-frame">${media}</div>
       <span class="pill">${escapeHTML(video.category || "Video")}</span>
       <h3>${escapeHTML(video.title)}</h3>
       <p>${escapeHTML(video.description || "Video details will be posted soon.")}</p>
@@ -36,3 +39,4 @@ export function renderVideoCard(video) {
     </article>
   `;
 }
+

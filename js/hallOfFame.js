@@ -1,6 +1,6 @@
 import { buildPlayerCareer, computeCombinedPlayerStats, computePlayerStats, getAwards } from "./leagueEngine.js?v=3.14";
-import { loadAllSeasons } from "./dataLoader.js?v=1.1";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { loadAllSeasons } from "./dataLoader.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { escapeHTML, setDocumentTitle, statusMessage, unique } from "./utils.js";
 
 setupLayout("hall-of-fame.html");
@@ -286,10 +286,10 @@ function renderTrophyRoom(allData) {
 
   if (!champions.length) return "";
   const trophyImages = [
-    { test: /2024.*shifa/i, src: "./Photos and Videos/HOF/2024 Shifa.png" },
-    { test: /2025.*dhahabiya/i, src: "./Photos and Videos/HOF/2025 Dhahabiya Strikers .jpg" },
-    { test: /2025.*umer memon/i, src: "./Photos and Videos/HOF/2025 Umer Memon FC.jpg" },
-    { test: /2026.*em haulers/i, src: "./Photos and Videos/HOF/2026 EM Haulers FC.jpg" },
+    { test: /2024.*shifa/i, src: "./media/hof/hof-asset-105.png" },
+    { test: /2025.*dhahabiya/i, src: "./media/hof/hof-asset-106.jpg" },
+    { test: /2025.*umer memon/i, src: "./media/hof/hof-asset-107.jpg" },
+    { test: /2026.*em haulers/i, src: "./media/hof/hof-asset-108.jpg" },
   ];
   const trophyCounts = new Map();
   champions.forEach((award) => trophyCounts.set(award.teamId, (trophyCounts.get(award.teamId) || 0) + 1));
@@ -321,7 +321,7 @@ function renderTrophyRoom(allData) {
                       ? " hof-trophy-card--2025-juniors"
                       : "";
               const photoMarkup = trophyImage
-                ? `<button class="hof-trophy-photo has-image" type="button" data-hof-photo="${escapeHTML(trophyImage)}" data-hof-photo-alt="${escapeHTML(photoAlt)}" aria-label="Open full-size ${escapeHTML(photoAlt)} photo"><img src="${escapeHTML(trophyImage)}" alt="${escapeHTML(photoAlt)}"><span class="hof-photo-open">Open Photo</span></button>`
+                ? `<button class="hof-trophy-photo has-image media-frame" type="button" data-hof-photo="${escapeHTML(trophyImage)}" data-hof-photo-alt="${escapeHTML(photoAlt)}" aria-label="Open full-size ${escapeHTML(photoAlt)} photo"><img src="${escapeHTML(trophyImage)}" alt="${escapeHTML(photoAlt)}" loading="lazy" decoding="async"><span class="hof-photo-open">Open Photo</span></button>`
                 : `<div class="hof-trophy-photo" aria-label="${escapeHTML(`${award.season} trophy photo coming soon`)}"><span>PHOTO</span><strong>Coming Soon</strong></div>`;
               return `
               <article class="hof-trophy-card${trophyClass}" style="--hof-order: ${index + 1}">
@@ -638,3 +638,8 @@ async function init() {
 }
 
 init();
+
+
+
+
+

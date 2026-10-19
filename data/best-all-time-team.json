@@ -29,26 +29,142 @@
         }
       ],
       "players": [
-        { "slot": "LW", "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "teamId": "em-haulers-fc", "teamName": "EM Haulers FC", "x": 22, "y": 18 },
-        { "slot": "ST", "id": "hafizullah", "name": "Hafizullah", "teamId": "asif-gangat-united-2025", "teamName": "Asif Gangat United", "x": 50, "y": 16 },
-        { "slot": "RW", "id": "rehaan-adam", "name": "Rehaan Adam", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 78, "y": 18 },
-        { "slot": "LM", "id": "ajmal-shakkari", "name": "Ajmal Chakkari", "teamId": "leeward-lions", "teamName": "Leeward Lions", "x": 15, "y": 45 },
-        { "slot": "LCM", "id": "amadu", "name": "Amadu", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 38, "y": 48 },
-        { "slot": "RCM", "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "teamId": "refuel-rovers", "teamName": "Refuel Rovers", "x": 62, "y": 48 },
-        { "slot": "RM", "id": "mohammed-ibrahim", "name": "Mohammad Ibrahim", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "x": 85, "y": 45 },
-        { "slot": "LCB", "id": "marwan-ahmad", "name": "Marwan Ahmed", "teamId": "sharp-strikers", "teamName": "Sharp Strikers", "x": 25, "y": 72 },
-        { "slot": "CB", "id": "mohammed-hammad-syed", "name": "Mohammed Hammad Syed", "teamId": "sharp-strikers", "teamName": "Sharp Strikers", "x": 50, "y": 74 },
-        { "slot": "RCB", "id": "m-yahya", "name": "M Yahya", "teamId": "sharp-strikers", "teamName": "Sharp Strikers", "x": 75, "y": 72 },
-        { "slot": "GK", "id": "ali-razzaq", "name": "Ali Razzaq", "teamId": "amax-visionaries", "teamName": "Amax Visionaries", "x": 50, "y": 89 }
+        {
+          "slot": "LW",
+          "id": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "teamId": "em-haulers-fc",
+          "teamName": "EM Haulers FC",
+          "x": 22,
+          "y": 18
+        },
+        {
+          "slot": "ST",
+          "id": "hafizullah",
+          "name": "Hafizullah",
+          "teamId": "asif-gangat-united-2025",
+          "teamName": "Asif Gangat United",
+          "x": 50,
+          "y": 16
+        },
+        {
+          "slot": "RW",
+          "id": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "teamId": "im-construction-sc",
+          "teamName": "IM Construction SC",
+          "x": 78,
+          "y": 18
+        },
+        {
+          "slot": "LM",
+          "id": "ajmal-shakkari",
+          "name": "Ajmal Chakkari",
+          "teamId": "leeward-lions",
+          "teamName": "Leeward Lions",
+          "x": 15,
+          "y": 45
+        },
+        {
+          "slot": "LCM",
+          "id": "amadu",
+          "name": "Amadu",
+          "teamId": "im-construction-sc",
+          "teamName": "IM Construction SC",
+          "x": 38,
+          "y": 48
+        },
+        {
+          "slot": "RCM",
+          "id": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiyas Solyman",
+          "teamId": "refuel-rovers",
+          "teamName": "Refuel Rovers",
+          "x": 62,
+          "y": 48
+        },
+        {
+          "slot": "RM",
+          "id": "mohammed-ibrahim",
+          "name": "Mohammad Ibrahim",
+          "teamId": "rawaha-royals",
+          "teamName": "Rawaha Royals",
+          "x": 85,
+          "y": 45
+        },
+        {
+          "slot": "LCB",
+          "id": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "teamId": "sharp-strikers",
+          "teamName": "Sharp Strikers",
+          "x": 25,
+          "y": 72
+        },
+        {
+          "slot": "CB",
+          "id": "mohammed-hammad-syed",
+          "name": "Mohammed Hammad Syed",
+          "teamId": "sharp-strikers",
+          "teamName": "Sharp Strikers",
+          "x": 50,
+          "y": 74
+        },
+        {
+          "slot": "RCB",
+          "id": "m-yahya",
+          "name": "M Yahya",
+          "teamId": "sharp-strikers",
+          "teamName": "Sharp Strikers",
+          "x": 75,
+          "y": 72
+        },
+        {
+          "slot": "GK",
+          "id": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "teamId": "amax-visionaries",
+          "teamName": "Amax Visionaries",
+          "x": 50,
+          "y": 89
+        }
       ],
       "bench": [
-        { "id": "haroon-ahmadi", "name": "Haroon Ahmadi", "teamName": "EM Haulers FC" },
-        { "id": "mohammed-hasan", "name": "Mohammed Hasan", "teamName": "Amax Optical Kickers" },
-        { "id": "mudassir", "name": "Mudassir", "teamName": "Leeward Lions" },
-        { "id": "muhammad-affan", "name": "Mohammed Affan", "teamName": "Asif Gangat United" },
-        { "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "teamName": "Rawaha Royals" },
-        { "id": "taha-nakhuda", "name": "Taaha Nakhuda", "teamName": "Gangat Warriors" },
-        { "id": "aneeq-shaikh", "name": "Aneeq Shaikh", "teamName": "Shifa Pharmacy F.C." }
+        {
+          "id": "haroon-ahmadi",
+          "name": "Haroon Ahmadi",
+          "teamName": "EM Haulers FC"
+        },
+        {
+          "id": "mohammed-hasan",
+          "name": "Mohammed Hasan",
+          "teamName": "Amax Optical Kickers"
+        },
+        {
+          "id": "mudassir",
+          "name": "Mudassir",
+          "teamName": "Leeward Lions"
+        },
+        {
+          "id": "muhammad-affan",
+          "name": "Mohammed Affan",
+          "teamName": "Asif Gangat United"
+        },
+        {
+          "id": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "teamName": "Rawaha Royals"
+        },
+        {
+          "id": "taha-nakhuda",
+          "name": "Taaha Nakhuda",
+          "teamName": "Gangat Warriors"
+        },
+        {
+          "id": "aneeq-shaikh",
+          "name": "Aneeq Shaikh",
+          "teamName": "Shifa Pharmacy F.C."
+        }
       ]
     },
     "2024": {
@@ -79,26 +195,142 @@
         }
       ],
       "players": [
-        { "slot": "LW", "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "teamId": "refuel-juicery-kickers", "teamName": "Refuel Juicery Kickers", "x": 22, "y": 18 },
-        { "slot": "ST", "id": "hafizullah", "name": "Hafizullah", "teamId": "asif-gangat-united", "teamName": "Asif Gangat United", "x": 50, "y": 16 },
-        { "slot": "RW", "id": "bayizedsha", "name": "Bayizedsha", "teamId": "shifa-pharmacy-fc", "teamName": "Shifa Pharmacy F.C.", "x": 78, "y": 18 },
-        { "slot": "LM", "id": "muhammad-affan", "name": "Muhammad Affan", "teamId": "shifa-pharmacy-fc", "teamName": "Shifa Pharmacy F.C.", "x": 15, "y": 45 },
-        { "slot": "LCM", "id": "rehaan-adam", "name": "Rehaan Adam", "teamId": "jogiat-palace", "teamName": "Jogiat Palace", "x": 38, "y": 48 },
-        { "slot": "RCM", "id": "abdur-rakib", "name": "Abdur Rakib", "teamId": "jogiat-palace", "teamName": "Jogiat Palace", "x": 62, "y": 48 },
-        { "slot": "RM", "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "teamId": "jogiat-palace", "teamName": "Jogiat Palace", "x": 85, "y": 45 },
-        { "slot": "LCB", "id": "muhammad-teli", "name": "Muhummud Teli", "teamId": "jogiat-palace", "teamName": "Jogiat Palace", "x": 25, "y": 72 },
-        { "slot": "CB", "id": "taha-nakhuda", "name": "Taaha Nakhuda", "teamId": "shifa-pharmacy-fc", "teamName": "Shifa Pharmacy F.C.", "x": 50, "y": 74 },
-        { "slot": "RCB", "id": "yousuf-haqqani", "name": "Yousuf Haqqani", "teamId": "refuel-juicery-kickers", "teamName": "Refuel Juicery Kickers", "x": 75, "y": 72 },
-        { "slot": "GK", "id": "aneeq-shaikh", "name": "Aneeq Shaikh", "teamId": "shifa-pharmacy-fc", "teamName": "Shifa Pharmacy F.C.", "x": 50, "y": 89 }
+        {
+          "slot": "LW",
+          "id": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "teamId": "refuel-juicery-kickers",
+          "teamName": "Refuel Juicery Kickers",
+          "x": 22,
+          "y": 18
+        },
+        {
+          "slot": "ST",
+          "id": "hafizullah",
+          "name": "Hafizullah",
+          "teamId": "asif-gangat-united",
+          "teamName": "Asif Gangat United",
+          "x": 50,
+          "y": 16
+        },
+        {
+          "slot": "RW",
+          "id": "bayizedsha",
+          "name": "Bayizedsha",
+          "teamId": "shifa-pharmacy-fc",
+          "teamName": "Shifa Pharmacy F.C.",
+          "x": 78,
+          "y": 18
+        },
+        {
+          "slot": "LM",
+          "id": "muhammad-affan",
+          "name": "Muhammad Affan",
+          "teamId": "shifa-pharmacy-fc",
+          "teamName": "Shifa Pharmacy F.C.",
+          "x": 15,
+          "y": 45
+        },
+        {
+          "slot": "LCM",
+          "id": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "teamId": "jogiat-palace",
+          "teamName": "Jogiat Palace",
+          "x": 38,
+          "y": 48
+        },
+        {
+          "slot": "RCM",
+          "id": "abdur-rakib",
+          "name": "Abdur Rakib",
+          "teamId": "jogiat-palace",
+          "teamName": "Jogiat Palace",
+          "x": 62,
+          "y": 48
+        },
+        {
+          "slot": "RM",
+          "id": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "teamId": "jogiat-palace",
+          "teamName": "Jogiat Palace",
+          "x": 85,
+          "y": 45
+        },
+        {
+          "slot": "LCB",
+          "id": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "teamId": "jogiat-palace",
+          "teamName": "Jogiat Palace",
+          "x": 25,
+          "y": 72
+        },
+        {
+          "slot": "CB",
+          "id": "taha-nakhuda",
+          "name": "Taaha Nakhuda",
+          "teamId": "shifa-pharmacy-fc",
+          "teamName": "Shifa Pharmacy F.C.",
+          "x": 50,
+          "y": 74
+        },
+        {
+          "slot": "RCB",
+          "id": "yousuf-haqqani",
+          "name": "Yousuf Haqqani",
+          "teamId": "refuel-juicery-kickers",
+          "teamName": "Refuel Juicery Kickers",
+          "x": 75,
+          "y": 72
+        },
+        {
+          "slot": "GK",
+          "id": "aneeq-shaikh",
+          "name": "Aneeq Shaikh",
+          "teamId": "shifa-pharmacy-fc",
+          "teamName": "Shifa Pharmacy F.C.",
+          "x": 50,
+          "y": 89
+        }
       ],
       "bench": [
-        { "id": "ayhaam-khalefa", "name": "Ayhaam Khalefa", "teamName": "Jogiat Palace" },
-        { "id": "ibrahim-mohamed", "name": "Ibrahim Mohamed", "teamName": "Umer Memon F.C." },
-        { "id": "marwan-ahmad", "name": "Marwan Ahmad", "teamName": "Silver Suits Strikers" },
-        { "id": "saad-khan", "name": "Saad Khan", "teamName": "Refuel Juicery Kickers" },
-        { "id": "ali-razzaq", "name": "Ali Razzaq", "teamName": "Jogiat Palace" },
-        { "id": "haroon-sarood", "name": "Haroon Sarood", "teamName": "Umer Memon F.C." },
-        { "id": "omar-ajmal", "name": "Omar Ajmal", "teamName": "Refuel Juicery Kickers" }
+        {
+          "id": "ayhaam-khalefa",
+          "name": "Ayhaam Khalefa",
+          "teamName": "Jogiat Palace"
+        },
+        {
+          "id": "ibrahim-mohamed",
+          "name": "Ibrahim Mohamed",
+          "teamName": "Umer Memon F.C."
+        },
+        {
+          "id": "marwan-ahmad",
+          "name": "Marwan Ahmad",
+          "teamName": "Silver Suits Strikers"
+        },
+        {
+          "id": "saad-khan",
+          "name": "Saad Khan",
+          "teamName": "Refuel Juicery Kickers"
+        },
+        {
+          "id": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "teamName": "Jogiat Palace"
+        },
+        {
+          "id": "haroon-sarood",
+          "name": "Haroon Sarood",
+          "teamName": "Umer Memon F.C."
+        },
+        {
+          "id": "omar-ajmal",
+          "name": "Omar Ajmal",
+          "teamName": "Refuel Juicery Kickers"
+        }
       ]
     },
     "2025": {
@@ -129,26 +361,142 @@
         }
       ],
       "players": [
-        { "slot": "LW", "id": "ajmal-shakkari", "name": "Ajmal Shakkari", "teamId": "dhahabiya-strikers", "teamName": "Dhahabiya Strikers", "x": 22, "y": 18 },
-        { "slot": "ST", "id": "hafizullah", "name": "Hafizullah", "teamId": "asif-gangat-united-2025", "teamName": "Asif Gangat United", "x": 50, "y": 16 },
-        { "slot": "RW", "id": "rehaan-adam", "name": "Rehaan Adam", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 78, "y": 18 },
-        { "slot": "LM", "id": "amadu", "name": "Amadu", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 15, "y": 45 },
-        { "slot": "LCM", "id": "mohammed-ibrahim", "name": "Mohammed Ibrahim", "teamId": "refuel-juicery-athletic", "teamName": "Refuel Juicery Athletic", "x": 38, "y": 48 },
-        { "slot": "RCM", "id": "mohammed-hammad-syed", "name": "Mohammed Hammad Syed", "teamId": "rafik-enterprise-fc", "teamName": "Rafik Enterprise FC", "x": 62, "y": 48 },
-        { "slot": "RM", "id": "musaddiq-khan", "name": "Musaddiq Khan", "teamId": "rafik-enterprise-fc", "teamName": "Rafik Enterprise FC", "x": 85, "y": 45 },
-        { "slot": "LCB", "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "teamId": "umer-memon-fc-2025", "teamName": "Umer Memon F.C.", "x": 25, "y": 72 },
-        { "slot": "CB", "id": "marwan-ahmad", "name": "Marwan Ahmed", "teamId": "refuel-juicery-athletic", "teamName": "Refuel Juicery Athletic", "x": 50, "y": 74 },
-        { "slot": "RCB", "id": "m-yahya", "name": "M Yahya", "teamId": "refuel-juicery-athletic", "teamName": "Refuel Juicery Athletic", "x": 75, "y": 72 },
-        { "slot": "GK", "id": "ali-razzaq", "name": "Ali Razzaq", "teamId": "im-construction-sc", "teamName": "IM Construction SC", "x": 50, "y": 89 }
+        {
+          "slot": "LW",
+          "id": "ajmal-shakkari",
+          "name": "Ajmal Shakkari",
+          "teamId": "dhahabiya-strikers",
+          "teamName": "Dhahabiya Strikers",
+          "x": 22,
+          "y": 18
+        },
+        {
+          "slot": "ST",
+          "id": "hafizullah",
+          "name": "Hafizullah",
+          "teamId": "asif-gangat-united-2025",
+          "teamName": "Asif Gangat United",
+          "x": 50,
+          "y": 16
+        },
+        {
+          "slot": "RW",
+          "id": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "teamId": "im-construction-sc",
+          "teamName": "IM Construction SC",
+          "x": 78,
+          "y": 18
+        },
+        {
+          "slot": "LM",
+          "id": "amadu",
+          "name": "Amadu",
+          "teamId": "im-construction-sc",
+          "teamName": "IM Construction SC",
+          "x": 15,
+          "y": 45
+        },
+        {
+          "slot": "LCM",
+          "id": "mohammed-ibrahim",
+          "name": "Mohammed Ibrahim",
+          "teamId": "refuel-juicery-athletic",
+          "teamName": "Refuel Juicery Athletic",
+          "x": 38,
+          "y": 48
+        },
+        {
+          "slot": "RCM",
+          "id": "mohammed-hammad-syed",
+          "name": "Mohammed Hammad Syed",
+          "teamId": "rafik-enterprise-fc",
+          "teamName": "Rafik Enterprise FC",
+          "x": 62,
+          "y": 48
+        },
+        {
+          "slot": "RM",
+          "id": "musaddiq-khan",
+          "name": "Musaddiq Khan",
+          "teamId": "rafik-enterprise-fc",
+          "teamName": "Rafik Enterprise FC",
+          "x": 85,
+          "y": 45
+        },
+        {
+          "slot": "LCB",
+          "id": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "teamId": "umer-memon-fc-2025",
+          "teamName": "Umer Memon F.C.",
+          "x": 25,
+          "y": 72
+        },
+        {
+          "slot": "CB",
+          "id": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "teamId": "refuel-juicery-athletic",
+          "teamName": "Refuel Juicery Athletic",
+          "x": 50,
+          "y": 74
+        },
+        {
+          "slot": "RCB",
+          "id": "m-yahya",
+          "name": "M Yahya",
+          "teamId": "refuel-juicery-athletic",
+          "teamName": "Refuel Juicery Athletic",
+          "x": 75,
+          "y": 72
+        },
+        {
+          "slot": "GK",
+          "id": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "teamId": "im-construction-sc",
+          "teamName": "IM Construction SC",
+          "x": 50,
+          "y": 89
+        }
       ],
       "bench": [
-        { "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "teamName": "Asif Gangat United" },
-        { "id": "mohammed-hasan", "name": "Mohammed Hasan", "teamName": "Amax Optical Kickers" },
-        { "id": "mudassir", "name": "Mudassir", "teamName": "Islamic Bookstore Runners" },
-        { "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "teamName": "EM Truck Repair FC" },
-        { "id": "reda-alijalam", "name": "Mohamad Reda Alijalam", "teamName": "Refuel Juicery Athletic" },
-        { "id": "saad-khan", "name": "Saad Khan", "teamName": "Umer Memon F.C." },
-        { "id": "uwais-bemat", "name": "Uwais Bemat", "teamName": "Umer Memon F.C." }
+        {
+          "id": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiyas Solyman",
+          "teamName": "Asif Gangat United"
+        },
+        {
+          "id": "mohammed-hasan",
+          "name": "Mohammed Hasan",
+          "teamName": "Amax Optical Kickers"
+        },
+        {
+          "id": "mudassir",
+          "name": "Mudassir",
+          "teamName": "Islamic Bookstore Runners"
+        },
+        {
+          "id": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "teamName": "EM Truck Repair FC"
+        },
+        {
+          "id": "reda-alijalam",
+          "name": "Mohamad Reda Alijalam",
+          "teamName": "Refuel Juicery Athletic"
+        },
+        {
+          "id": "saad-khan",
+          "name": "Saad Khan",
+          "teamName": "Umer Memon F.C."
+        },
+        {
+          "id": "uwais-bemat",
+          "name": "Uwais Bemat",
+          "teamName": "Umer Memon F.C."
+        }
       ]
     },
     "2026": {
@@ -179,27 +527,147 @@
         }
       ],
       "players": [
-        { "slot": "LW", "id": "haroon-ahmadi", "name": "Haroon Ahmadi", "teamId": "em-haulers-fc", "teamName": "EM Haulers FC", "x": 22, "y": 18 },
-        { "slot": "ST", "id": "mudassir", "name": "Mudassir", "teamId": "leeward-lions", "teamName": "Leeward Lions", "x": 50, "y": 16 },
-        { "slot": "RW", "id": "ajmal-shakkari", "name": "Ajmal Chakkari", "teamId": "leeward-lions", "teamName": "Leeward Lions", "x": 78, "y": 18 },
-        { "slot": "LM", "id": "abdul-ghiyas-solyman", "name": "Abdul Ghiyas Solyman", "teamId": "refuel-rovers", "teamName": "Refuel Rovers", "x": 15, "y": 45 },
-        { "slot": "LCM", "id": "muzamil-kharooti", "name": "Muzamil Kharooti", "teamId": "em-haulers-fc", "teamName": "EM Haulers FC", "x": 38, "y": 48 },
-        { "slot": "RCM", "id": "mohammed-ibrahim", "name": "Mohammad Ibrahim", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "x": 62, "y": 48 },
-        { "slot": "RM", "id": "m-yahya", "name": "M Yahya", "teamId": "sharp-strikers", "teamName": "Sharp Strikers", "x": 85, "y": 45 },
-        { "slot": "LCB", "id": "mosa-fazli", "name": "Mosa Fazli", "teamId": "refuel-rovers", "teamName": "Refuel Rovers", "x": 25, "y": 72 },
-        { "slot": "CB", "id": "uthman", "name": "Uthman Manira", "teamId": "rawaha-royals", "teamName": "Rawaha Royals", "x": 50, "y": 74 },
-        { "slot": "RCB", "id": "taha-nakhuda", "name": "Taaha Nakhuda", "teamId": "gangat-warriors", "teamName": "Gangat Warriors", "x": 75, "y": 72 },
-        { "slot": "GK", "id": "usman-ahmad-popal", "name": "Usman Ahmad Popal", "teamId": "leeward-lions", "teamName": "Leeward Lions", "x": 50, "y": 89 }
+        {
+          "slot": "LW",
+          "id": "haroon-ahmadi",
+          "name": "Haroon Ahmadi",
+          "teamId": "em-haulers-fc",
+          "teamName": "EM Haulers FC",
+          "x": 22,
+          "y": 18
+        },
+        {
+          "slot": "ST",
+          "id": "mudassir",
+          "name": "Mudassir",
+          "teamId": "leeward-lions",
+          "teamName": "Leeward Lions",
+          "x": 50,
+          "y": 16
+        },
+        {
+          "slot": "RW",
+          "id": "ajmal-shakkari",
+          "name": "Ajmal Chakkari",
+          "teamId": "leeward-lions",
+          "teamName": "Leeward Lions",
+          "x": 78,
+          "y": 18
+        },
+        {
+          "slot": "LM",
+          "id": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiyas Solyman",
+          "teamId": "refuel-rovers",
+          "teamName": "Refuel Rovers",
+          "x": 15,
+          "y": 45
+        },
+        {
+          "slot": "LCM",
+          "id": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "teamId": "em-haulers-fc",
+          "teamName": "EM Haulers FC",
+          "x": 38,
+          "y": 48
+        },
+        {
+          "slot": "RCM",
+          "id": "mohammed-ibrahim",
+          "name": "Mohammad Ibrahim",
+          "teamId": "rawaha-royals",
+          "teamName": "Rawaha Royals",
+          "x": 62,
+          "y": 48
+        },
+        {
+          "slot": "RM",
+          "id": "m-yahya",
+          "name": "M Yahya",
+          "teamId": "sharp-strikers",
+          "teamName": "Sharp Strikers",
+          "x": 85,
+          "y": 45
+        },
+        {
+          "slot": "LCB",
+          "id": "mosa-fazli",
+          "name": "Mosa Fazli",
+          "teamId": "refuel-rovers",
+          "teamName": "Refuel Rovers",
+          "x": 25,
+          "y": 72
+        },
+        {
+          "slot": "CB",
+          "id": "uthman",
+          "name": "Uthman Manira",
+          "teamId": "rawaha-royals",
+          "teamName": "Rawaha Royals",
+          "x": 50,
+          "y": 74
+        },
+        {
+          "slot": "RCB",
+          "id": "taha-nakhuda",
+          "name": "Taaha Nakhuda",
+          "teamId": "gangat-warriors",
+          "teamName": "Gangat Warriors",
+          "x": 75,
+          "y": 72
+        },
+        {
+          "slot": "GK",
+          "id": "usman-ahmad-popal",
+          "name": "Usman Ahmad Popal",
+          "teamId": "leeward-lions",
+          "teamName": "Leeward Lions",
+          "x": 50,
+          "y": 89
+        }
       ],
       "bench": [
-        { "id": "mohammed-hammad-syed", "name": "Mohammed Hammad Syed", "teamName": "Sharp Strikers" },
-        { "id": "mubashir-kharooti", "name": "Mubashir Kharooti", "teamName": "Rawaha Royals" },
-        { "id": "ali-razzaq", "name": "Ali Razzaq", "teamName": "Amax Visionaries" },
-        { "id": "muhammad-teli", "name": "Muhummud Teli", "teamName": "Leeward Lions" },
-        { "id": "nasibullah", "name": "Nasibullah Barak", "teamName": "Memon Mavericks" },
-        { "id": "uwais-bemat", "name": "Uwais Bemat", "teamName": "EM Haulers FC" },
-        { "id": "ishaaq-ali", "name": "Ishaaq Ali", "teamName": "Refuel Rovers" },
-        { "id": "marwan-ahmad", "name": "Marwan Ahmed", "teamName": "Sharp Strikers" }
+        {
+          "id": "mohammed-hammad-syed",
+          "name": "Mohammed Hammad Syed",
+          "teamName": "Sharp Strikers"
+        },
+        {
+          "id": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "teamName": "Rawaha Royals"
+        },
+        {
+          "id": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "teamName": "Amax Visionaries"
+        },
+        {
+          "id": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "teamName": "Leeward Lions"
+        },
+        {
+          "id": "nasibullah",
+          "name": "Nasibullah Barak",
+          "teamName": "Memon Mavericks"
+        },
+        {
+          "id": "uwais-bemat",
+          "name": "Uwais Bemat",
+          "teamName": "EM Haulers FC"
+        },
+        {
+          "id": "ishaaq-ali",
+          "name": "Ishaaq Ali",
+          "teamName": "Refuel Rovers"
+        },
+        {
+          "id": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "teamName": "Sharp Strikers"
+        }
       ]
     }
   }

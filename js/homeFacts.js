@@ -125,3 +125,5 @@ export function hydrateHomeFacts(allData, root = document) {
   button.addEventListener('click', show);
   show();
 }
+
+

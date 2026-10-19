@@ -1,7 +1,7 @@
 import { SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js?v=1.1";
+import { loadSeasonData } from "./dataLoader.js?v=20261018-media1";
 import { calculateStandings, getWeeks, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { controlSelect, escapeHTML, formatPercent, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("team-vs-team.html");
@@ -386,3 +386,5 @@ async function init() {
 }
 
 init();
+
+

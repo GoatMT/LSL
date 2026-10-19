@@ -1,0 +1,1264 @@
+{
+  "2024": {
+    "season": "2024",
+    "event": {
+      "name": "Inter-Madrasah Soccer Tournament",
+      "source": "Tournament did not start until 2025"
+    },
+    "divisions": [],
+    "matches": [],
+    "playoffs": {
+      "champion": "",
+      "runnerUp": "",
+      "rounds": []
+    }
+  },
+  "2025": {
+    "season": "2025",
+    "event": {
+      "host": "Lantern of Knowledge Academy",
+      "name": "Inter-Madrasah Soccer Tournament",
+      "dates": "Saturday, August 2, 2025",
+      "schedule": "Full Day",
+      "eligibleAges": "Open to the community",
+      "venue": "Grenoble Public School (Grenoble P.S.)",
+      "address": "9 Grenoble Dr, Toronto, ON M3C 1C3",
+      "phone": "437-888-0261"
+    },
+    "divisions": [
+      {
+        "id": "toronto",
+        "name": "Toronto Division",
+        "teams": [
+          {
+            "id": "al-khair-musalla",
+            "name": "Al-Khair Musalla (Darul Khair Islamic Centre)",
+            "shortName": "AKM",
+            "logo": "assets/tournament/2025/al-khair-musalla.png",
+            "roster": [
+              {
+                "id": "player-0",
+                "name": "Suleman Nazari"
+              },
+              {
+                "id": "player-1",
+                "name": "Abdul Baseer Ahmed"
+              },
+              {
+                "id": "player-2",
+                "name": "Muhammad Ibrahim"
+              },
+              {
+                "id": "player-3",
+                "name": "Abdullahi"
+              },
+              {
+                "id": "player-4",
+                "name": "Hamza"
+              },
+              {
+                "id": "player-5",
+                "name": "Suleman Shah"
+              },
+              {
+                "id": "player-6",
+                "name": "Musawer"
+              },
+              {
+                "id": "player-7",
+                "name": "Abdul Hakeem"
+              },
+              {
+                "id": "player-8",
+                "name": "Yaseen"
+              },
+              {
+                "id": "player-9",
+                "name": "Ahmedu"
+              },
+              {
+                "id": "player-10",
+                "name": "Ossama"
+              },
+              {
+                "id": "player-11",
+                "name": "Bilal Momo"
+              },
+              {
+                "id": "player-12",
+                "name": "Roholla"
+              },
+              {
+                "id": "player-13",
+                "name": "Waris"
+              }
+            ]
+          },
+          {
+            "id": "hifz-city",
+            "name": "Hifz City",
+            "shortName": "HFC",
+            "logo": "assets/tournament/2025/hifz-city.webp",
+            "roster": [
+              {
+                "id": "player-0",
+                "name": "Yakub Shaikh"
+              },
+              {
+                "id": "player-1",
+                "name": "Hashir Abid"
+              },
+              {
+                "id": "player-2",
+                "name": "Bilal Ali Sabyr"
+              },
+              {
+                "id": "player-3",
+                "name": "Nurhussein Nurhussein"
+              },
+              {
+                "id": "player-4",
+                "name": "Berat Ozturk"
+              },
+              {
+                "id": "player-5",
+                "name": "Marwan Akram"
+              },
+              {
+                "id": "player-6",
+                "name": "Sami Sanger"
+              },
+              {
+                "id": "player-7",
+                "name": "Musab Omer"
+              },
+              {
+                "id": "player-8",
+                "name": "Muneeb Ezaz"
+              },
+              {
+                "id": "player-9",
+                "name": "Basel Hossein"
+              },
+              {
+                "id": "player-10",
+                "name": "Khalid Takles"
+              },
+              {
+                "id": "player-11",
+                "name": "AbuBakar Lawal"
+              },
+              {
+                "id": "player-12",
+                "name": "Rayyan Sayed"
+              },
+              {
+                "id": "player-13",
+                "name": "Mazin Ezaz"
+              },
+              {
+                "id": "player-14",
+                "name": "Hamza Karagoz"
+              }
+            ]
+          },
+          {
+            "id": "lantern-of-knowledge-academy",
+            "name": "Lantern of Knowledge Academy",
+            "shortName": "LOK",
+            "logo": "assets/tournament/2025/lantern-of-knowledge-academy.png",
+            "logoBg": "#0E4B25",
+            "roster": [
+              {
+                "id": "player-0",
+                "name": "Hafizullah",
+                "position": "Forward",
+                "role": "Best Forward",
+                "designation": "Best Forward"
+              },
+              {
+                "id": "player-1",
+                "name": "Abdul Basit Mesbah",
+                "position": "Goalkeeper",
+                "role": "Backup Goalie",
+                "designation": "Backup Goalie"
+              },
+              {
+                "id": "player-2",
+                "name": "Muzamil Kharooti"
+              },
+              {
+                "id": "player-3",
+                "name": "Rehan Adam"
+              },
+              {
+                "id": "player-4",
+                "name": "Umar Ajmal"
+              },
+              {
+                "id": "player-5",
+                "name": "Shaheer"
+              },
+              {
+                "id": "player-6",
+                "name": "Abu Bakr Manjra"
+              },
+              {
+                "id": "player-7",
+                "name": "Taha Nakhuda"
+              },
+              {
+                "id": "player-8",
+                "name": "Muhummud Teli"
+              },
+              {
+                "id": "player-9",
+                "name": "Ziyad Adam"
+              },
+              {
+                "id": "player-10",
+                "name": "Mubashir Kharooti"
+              },
+              {
+                "id": "player-11",
+                "name": "Uthman Manira"
+              },
+              {
+                "id": "player-12",
+                "name": "Basir Dastagiri"
+              },
+              {
+                "id": "player-13",
+                "name": "Mudassir Nabizada"
+              },
+              {
+                "id": "player-14",
+                "name": "Hassan Faraz"
+              }
+            ]
+          },
+          {
+            "id": "madinah-masjid",
+            "name": "Madinah Masjid",
+            "shortName": "MM",
+            "logo": "assets/tournament/2025/madinah-masjid.png",
+            "roster": [
+              {
+                "id": "player-0",
+                "name": "Ammar Mamun"
+              },
+              {
+                "id": "player-1",
+                "name": "Abu Mamun"
+              },
+              {
+                "id": "player-2",
+                "name": "Huzaifa Vadia"
+              },
+              {
+                "id": "player-3",
+                "name": "Zakariya Chibu"
+              },
+              {
+                "id": "player-4",
+                "name": "Ali Oakdia"
+              },
+              {
+                "id": "player-5",
+                "name": "Faizan Bhaiyat"
+              },
+              {
+                "id": "player-6",
+                "name": "Maaz Kassuji"
+              },
+              {
+                "id": "player-7",
+                "name": "Ali Khan"
+              },
+              {
+                "id": "player-8",
+                "name": "Ehsan Somali"
+              },
+              {
+                "id": "player-9",
+                "name": "Yassir Somali"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "scarborough-markham",
+        "name": "Scarborough/Markham Division",
+        "teams": [
+          {
+            "id": "as-salaam-institute",
+            "name": "As-Salaam Institute",
+            "shortName": "ASI",
+            "logo": "assets/tournament/2025/as-salaam-institute.webp",
+            "roster": [
+              {
+                "id": "player-0",
+                "name": "Zayaan Howlader"
+              },
+              {
+                "id": "player-1",
+                "name": "Aadil Memon"
+              },
+              {
+                "id": "player-2",
+                "name": "Aamir Memon"
+              },
+              {
+                "id": "player-3",
+                "name": "Mateen Minayar"
+              },
+              {
+                "id": "player-4",
+                "name": "Saad Khan"
+              },
+              {
+                "id": "player-5",
+                "name": "Talhah Ahmed"
+              },
+              {
+                "id": "player-6",
+                "name": "Musa Khalid"
+              },
+              {
+                "id": "player-7",
+                "name": "Talhah Ahmed"
+              },
+              {
+                "id": "player-8",
+                "name": "Musa Jawad"
+              },
+              {
+                "id": "player-9",
+                "name": "Talha Jawed"
+              },
+              {
+                "id": "player-10",
+                "name": "Bilal Baig"
+              },
+              {
+                "id": "player-11",
+                "name": "Massih Minayar"
+              },
+              {
+                "id": "player-12",
+                "name": "Musab Abdul Matin"
+              },
+              {
+                "id": "player-13",
+                "name": "Khalfan Abus Suboor"
+              },
+              {
+                "id": "player-14",
+                "name": "Hamza Memon"
+              }
+            ]
+          },
+          {
+            "id": "darul-imaan",
+            "name": "Darul Imaan",
+            "shortName": "DI",
+            "logo": "assets/tournament/2025/darul-imaan.png",
+            "roster": [
+              {
+                "id": "player-0",
+                "name": "Affan Mir"
+              },
+              {
+                "id": "player-1",
+                "name": "Hassaan Mir"
+              },
+              {
+                "id": "player-2",
+                "name": "Affaan Qureshi"
+              },
+              {
+                "id": "player-3",
+                "name": "Khalid Mohammed"
+              },
+              {
+                "id": "player-4",
+                "name": "Huzaifa Qureshi"
+              },
+              {
+                "id": "player-5",
+                "name": "Yusuf Qureshi"
+              },
+              {
+                "id": "player-6",
+                "name": "Ali Qazi"
+              },
+              {
+                "id": "player-7",
+                "name": "Haseeb Hasan"
+              },
+              {
+                "id": "player-8",
+                "name": "Salman Zouhar"
+              },
+              {
+                "id": "player-9",
+                "name": "Maaz Khan"
+              },
+              {
+                "id": "player-10",
+                "name": "Affan Tariq"
+              },
+              {
+                "id": "player-11",
+                "name": "Hassan Khan"
+              },
+              {
+                "id": "player-12",
+                "name": "Usman Malik"
+              },
+              {
+                "id": "player-13",
+                "name": "Mohsin Khan"
+              },
+              {
+                "id": "player-14",
+                "name": "Humayd Khan"
+              }
+            ]
+          },
+          {
+            "id": "islamic-foundation",
+            "name": "Islamic Foundation (IFT)",
+            "shortName": "IFT",
+            "logo": "assets/tournament/2025/islamic-foundation.png",
+            "logoBg": "#745C3B",
+            "roster": [
+              {
+                "id": "player-0",
+                "name": "Ahmed Patel"
+              },
+              {
+                "id": "player-1",
+                "name": "Taim Al-Jaunita"
+              },
+              {
+                "id": "player-2",
+                "name": "Abdullah Al-Tasman"
+              },
+              {
+                "id": "player-3",
+                "name": "Raihan Matadar"
+              },
+              {
+                "id": "player-4",
+                "name": "Haitham Al-Khalil"
+              },
+              {
+                "id": "player-5",
+                "name": "Loai Al-Karri"
+              },
+              {
+                "id": "player-6",
+                "name": "Abdulaziz Al-Henedi"
+              },
+              {
+                "id": "player-7",
+                "name": "Zohair Sharif"
+              },
+              {
+                "id": "player-8",
+                "name": "Ibrahim Roowala"
+              },
+              {
+                "id": "player-9",
+                "name": "Aakif Shairaz"
+              },
+              {
+                "id": "player-10",
+                "name": "Rayan S. Yousuf"
+              },
+              {
+                "id": "player-11",
+                "name": "Uwais Patel"
+              },
+              {
+                "id": "player-12",
+                "name": "Ishaaq Ali"
+              },
+              {
+                "id": "player-13",
+                "name": "Yassin Al-Jaouni"
+              },
+              {
+                "id": "player-14",
+                "name": "Yahya Jeebhai"
+              }
+            ]
+          },
+          {
+            "id": "khairul-ummah",
+            "name": "Khairul Ummah",
+            "shortName": "KU",
+            "logo": "assets/tournament/2025/khairul-ummah.png",
+            "roster": [
+              {
+                "id": "player-0",
+                "name": "Marwan Ahmed"
+              },
+              {
+                "id": "player-1",
+                "name": "Ahmad Ingar"
+              },
+              {
+                "id": "player-2",
+                "name": "Ibrahim Mohammed"
+              },
+              {
+                "id": "player-3",
+                "name": "Yousaf Hosseinzada"
+              },
+              {
+                "id": "player-4",
+                "name": "Khalid Bana",
+                "position": "Goalkeeper",
+                "role": "Goalkeeper",
+                "designation": "Goalkeeper"
+              },
+              {
+                "id": "player-5",
+                "name": "Abdul Raqib"
+              },
+              {
+                "id": "player-6",
+                "name": "Musa Shamsuddin"
+              },
+              {
+                "id": "player-7",
+                "name": "Noman Hasan"
+              },
+              {
+                "id": "player-8",
+                "name": "Subhan Ali Syed"
+              },
+              {
+                "id": "player-9",
+                "name": "Abdul Hannan"
+              },
+              {
+                "id": "player-10",
+                "name": "Tamzid Ahmad"
+              },
+              {
+                "id": "player-11",
+                "name": "Uthmaan Bana"
+              },
+              {
+                "id": "player-12",
+                "name": "Muhammad Farooq Q. Shaikh"
+              },
+              {
+                "id": "player-13",
+                "name": "Hassan Mohammed"
+              },
+              {
+                "id": "player-14",
+                "name": "Affan Mohammed"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "matches": [
+      {
+        "id": "imt-2025-g1",
+        "divisionId": "toronto",
+        "label": "Game 1",
+        "homeTeamId": "hifz-city",
+        "homeTeamName": "Hifz City",
+        "awayTeamId": "lantern-of-knowledge-academy",
+        "awayTeamName": "Lantern of Knowledge",
+        "homeScore": 1,
+        "awayScore": 0
+      },
+      {
+        "id": "imt-2025-g2",
+        "divisionId": "toronto",
+        "label": "Game 2",
+        "homeTeamId": "al-khair-musalla",
+        "homeTeamName": "Darul Khair",
+        "awayTeamId": "madinah-masjid",
+        "awayTeamName": "Madinah Masjid",
+        "homeScore": 3,
+        "awayScore": 1
+      },
+      {
+        "id": "imt-2025-g3",
+        "divisionId": "scarborough-markham",
+        "label": "Game 3",
+        "homeTeamId": "as-salaam-institute",
+        "homeTeamName": "Assalam Institute",
+        "awayTeamId": "khairul-ummah",
+        "awayTeamName": "Khairul Ummah",
+        "homeScore": 0,
+        "awayScore": 0
+      },
+      {
+        "id": "imt-2025-g4",
+        "divisionId": "scarborough-markham",
+        "label": "Game 4",
+        "homeTeamId": "islamic-foundation",
+        "homeTeamName": "Islamic Foundation",
+        "awayTeamId": "darul-imaan",
+        "awayTeamName": "Darul Imaan",
+        "homeScore": 1,
+        "awayScore": 1
+      },
+      {
+        "id": "imt-2025-g5",
+        "divisionId": "toronto",
+        "label": "Game 5",
+        "homeTeamId": "lantern-of-knowledge-academy",
+        "homeTeamName": "Lantern of Knowledge",
+        "awayTeamId": "madinah-masjid",
+        "awayTeamName": "Madinah Masjid",
+        "homeScore": 4,
+        "awayScore": 0
+      },
+      {
+        "id": "imt-2025-g6",
+        "divisionId": "toronto",
+        "label": "Game 6",
+        "homeTeamId": "hifz-city",
+        "homeTeamName": "Hifz City",
+        "awayTeamId": "al-khair-musalla",
+        "awayTeamName": "Darul Khair",
+        "homeScore": 2,
+        "awayScore": 0
+      },
+      {
+        "id": "imt-2025-g7",
+        "divisionId": "scarborough-markham",
+        "label": "Game 7",
+        "homeTeamId": "as-salaam-institute",
+        "homeTeamName": "Assalam Institute",
+        "awayTeamId": "islamic-foundation",
+        "awayTeamName": "Islamic Foundation",
+        "homeScore": 0,
+        "awayScore": 5
+      },
+      {
+        "id": "imt-2025-g8",
+        "divisionId": "scarborough-markham",
+        "label": "Game 8",
+        "homeTeamId": "darul-imaan",
+        "homeTeamName": "Darul Imaan",
+        "awayTeamId": "khairul-ummah",
+        "awayTeamName": "Khairul Ummah",
+        "homeScore": 2,
+        "awayScore": 0
+      },
+      {
+        "id": "imt-2025-g9",
+        "divisionId": "toronto",
+        "label": "Game 9",
+        "homeTeamId": "lantern-of-knowledge-academy",
+        "homeTeamName": "Lantern of Knowledge",
+        "awayTeamId": "al-khair-musalla",
+        "awayTeamName": "Darul Khair",
+        "homeScore": 2,
+        "awayScore": 1
+      },
+      {
+        "id": "imt-2025-g10",
+        "divisionId": "toronto",
+        "label": "Game 10",
+        "homeTeamId": "hifz-city",
+        "homeTeamName": "Hifz City",
+        "awayTeamId": "madinah-masjid",
+        "awayTeamName": "Madinah Masjid",
+        "homeScore": 3,
+        "awayScore": 1
+      },
+      {
+        "id": "imt-2025-g11",
+        "divisionId": "scarborough-markham",
+        "label": "Game 11",
+        "homeTeamId": "darul-imaan",
+        "homeTeamName": "Darul Imaan",
+        "awayTeamId": "as-salaam-institute",
+        "awayTeamName": "Assalam Institute",
+        "homeScore": 1,
+        "awayScore": 0
+      },
+      {
+        "id": "imt-2025-g12",
+        "divisionId": "scarborough-markham",
+        "label": "Game 12",
+        "homeTeamId": "islamic-foundation",
+        "homeTeamName": "Islamic Foundation",
+        "awayTeamId": "khairul-ummah",
+        "awayTeamName": "Khairul Ummah",
+        "homeScore": 5,
+        "awayScore": 0
+      }
+    ],
+    "playoffs": {
+      "champion": "Hifz City",
+      "runnerUp": "",
+      "rounds": [
+        {
+          "name": "Semifinals",
+          "matches": [
+            {
+              "label": "SF 1",
+              "homeTeamId": "hifz-city",
+              "homeTeamName": "Hifz City",
+              "awayTeamId": "darul-imaan",
+              "awayTeamName": "Darul Imaan",
+              "homeScore": 5,
+              "awayScore": 1
+            },
+            {
+              "label": "SF 2",
+              "homeTeamId": "islamic-foundation",
+              "homeTeamName": "Islamic Foundation (IFT)",
+              "awayTeamId": "lantern-of-knowledge-academy",
+              "awayTeamName": "Lantern of Knowledge Academy",
+              "homeScore": 2,
+              "awayScore": 0
+            }
+          ]
+        },
+        {
+          "name": "Final",
+          "matches": [
+            {
+              "label": "Grand Final",
+              "homeTeamId": "hifz-city",
+              "homeTeamName": "Hifz City",
+              "awayTeamId": "islamic-foundation",
+              "awayTeamName": "Islamic Foundation (IFT)",
+              "homeScore": 4,
+              "awayScore": 0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "2026": {
+    "season": "2026",
+    "event": {
+      "host": "Lantern of Knowledge Academy",
+      "name": "Inter-Madrasah Soccer Tournament",
+      "edition": "2nd Annual",
+      "headline": "Eight institutions. Two divisions. One champion.",
+      "statusLabel": "Tournament Complete",
+      "currentStatus": "Champion: Islamic Foundation of Toronto",
+      "champion": "Islamic Foundation of Toronto",
+      "runnerUp": "Khairul Ummah Academy",
+      "date": "Saturday, July 11, 2026",
+      "isoDate": "2026-07-11",
+      "time": "9:00 AM - 6:30 PM",
+      "gameLength": "Games are 25-30 minutes",
+      "venue": "Grenoble Public School Field",
+      "address": "9 Grenoble Dr, North York, ON M3C 1C3",
+      "intro": [
+        "The Inter-Madrasah Soccer Tournament is back.",
+        "After an incredible first year, madaris came together once again for a day of competition, unity, and community. Players represented their madrasa, showcased their skills, and competed for the top spot."
+      ],
+      "interestFormLabel": "Inter-Madrasah Interest Form",
+      "interestFormUrl": "https://forms.gle/C5G7kataN1FMSUNa6",
+      "interestForm": {
+        "title": "Inter-Madrasah Interest Form",
+        "greeting": "Assalamwalaykum ww",
+        "body": [
+          "Welcome to the 2nd annual Inter-Madrasah Tournament Interest Form.",
+          "The tournament brings together students from different madrasahs for a full day of competition, teamwork, and community.",
+          "The cost per team is $300. Youth born in 2011 or younger are eligible.",
+          "This form helps measure interest, organize teams and age groups, and plan the event smoothly. Players, coaches, volunteers, and supporters are welcome to fill out the form.",
+          "More information regarding schedules, rules, location, and registration details will be shared soon, Insha'Allah."
+        ],
+        "contacts": [
+          "647-784-6357",
+          "437-263-6611"
+        ]
+      }
+    },
+    "divisions": [
+      {
+        "id": "west",
+        "name": "Western Division",
+        "theme": "west",
+        "teams": [
+          {
+            "id": "lantern-of-knowledge-academy",
+            "name": "Lantern of Knowledge Academy",
+            "shortName": "Lantern",
+            "logo": "assets/tournament/2026/lantern-of-knowledge-academy.png",
+            "logoText": "LOK",
+            "logoBg": "#0E4B25",
+            "roster": [
+              {
+                "id": "muzamil-kharooti",
+                "name": "Muzamil Kharooti",
+                "jersey": 7,
+                "role": "Assistant Captain - Midfielder (Alternated Defensive/Offensive)"
+              },
+              {
+                "id": "fares",
+                "name": "Fares",
+                "jersey": 4,
+                "role": "Defender"
+              },
+              {
+                "id": "saad-khan",
+                "name": "Saad Khan",
+                "jersey": 1,
+                "role": "Starting Goalie"
+              },
+              {
+                "id": "abubakr-manjra",
+                "name": "Abu Bakr Manjra",
+                "jersey": 3,
+                "role": "Defender"
+              },
+              {
+                "id": "uwais-bemat",
+                "name": "Uwais Bemat",
+                "jersey": 12,
+                "role": "Defender"
+              },
+              {
+                "id": "mudassir",
+                "name": "Mudassir",
+                "jersey": 10,
+                "role": "Captain - Attacking Midfielder"
+              },
+              {
+                "id": "muhammad-teli",
+                "name": "Muhummud Teli",
+                "jersey": 34,
+                "role": "Defender"
+              },
+              {
+                "id": "haroon-ahmadi",
+                "name": "Haroon Ahmadi",
+                "jersey": 19,
+                "role": "Assistant Captain - Midfielder (Alternated Defensive/Offensive)"
+              },
+              {
+                "id": "usman-ahmad-popal",
+                "name": "Usman Ahmad Popal",
+                "jersey": 2,
+                "role": "Backup Goalie"
+              },
+              {
+                "id": "taha-nakhuda",
+                "name": "Taaha Nakhuda",
+                "jersey": 13,
+                "role": "On Roster - Did Not Play"
+              },
+              {
+                "id": "mosa-fazli",
+                "name": "Mosa Fazli",
+                "role": "Right Wing"
+              },
+              {
+                "id": "ilham",
+                "name": "Ilham",
+                "role": "Player"
+              },
+              {
+                "id": "nasibullah",
+                "name": "Nasibullah Barak",
+                "role": "Player"
+              }
+            ]
+          },
+          {
+            "id": "galt-islamic-centre",
+            "name": "Galt Islamic Centre",
+            "shortName": "Galt",
+            "logo": "assets/tournament/2026/galt-islamic-centre.png",
+            "logoText": "GIC",
+            "logoBg": "#dceeff",
+            "roster": []
+          },
+          {
+            "id": "madinah-masjid",
+            "name": "Madinah Masjid",
+            "shortName": "Madinah",
+            "logo": "assets/tournament/2026/madinah-masjid.png",
+            "logoText": "MM",
+            "logoBg": "#f4f6f8",
+            "roster": []
+          },
+          {
+            "id": "islamic-society-of-toronto",
+            "name": "Islamic Society of Toronto",
+            "shortName": "IST",
+            "logo": "assets/tournament/2026/islamic-society-of-toronto.png",
+            "logoText": "IST",
+            "logoBg": "#e7f3ff",
+            "roster": []
+          }
+        ]
+      },
+      {
+        "id": "east",
+        "name": "Eastern Division",
+        "theme": "east",
+        "teams": [
+          {
+            "id": "assalam-institute-of-quran",
+            "name": "Assalaam Institute of Quran",
+            "shortName": "Assalaam",
+            "logo": "assets/tournament/2026/assalam-institute-of-quran.webp",
+            "logoText": "AIQ",
+            "logoBg": "#dceeff",
+            "roster": []
+          },
+          {
+            "id": "islamic-foundation-of-toronto",
+            "name": "Islamic Foundation of Toronto",
+            "shortName": "IFT",
+            "logo": "assets/tournament/2026/islamic-foundation-of-toronto.png",
+            "logoText": "IFT",
+            "logoBg": "#745C3B",
+            "roster": []
+          },
+          {
+            "id": "khairul-ummah-academy",
+            "name": "Khairul Ummah Academy",
+            "shortName": "KUA",
+            "logo": "assets/tournament/2026/khairul-ummah-academy.png",
+            "logoText": "KUA",
+            "logoBg": "#99c4dd",
+            "roster": []
+          },
+          {
+            "id": "scarborough-muslim-association",
+            "name": "Scarborough Muslim Association",
+            "shortName": "SMA",
+            "logo": "assets/tournament/2026/scarborough-muslim-association.avif",
+            "logoText": "SMA",
+            "logoBg": "#f4f6f8",
+            "roster": []
+          }
+        ]
+      }
+    ],
+    "matches": [
+      {
+        "id": "imt-2026-g1",
+        "divisionId": "east",
+        "round": "Group Stage",
+        "label": "Game 1",
+        "time": "9:00-9:25 AM",
+        "homeTeamId": "khairul-ummah-academy",
+        "homeTeamName": "Khairul Ummah School",
+        "awayTeamId": "scarborough-muslim-association",
+        "awayTeamName": "SMA",
+        "homeScore": 0,
+        "awayScore": 0,
+        "status": "Draw"
+      },
+      {
+        "id": "imt-2026-g2",
+        "divisionId": "east",
+        "round": "Group Stage",
+        "label": "Game 2",
+        "time": "9:30-9:55 AM",
+        "homeTeamId": "assalam-institute-of-quran",
+        "homeTeamName": "As Salaam Institute",
+        "awayTeamId": "islamic-foundation-of-toronto",
+        "awayTeamName": "IFT",
+        "homeScore": 1,
+        "awayScore": 2,
+        "status": "IFT Win"
+      },
+      {
+        "id": "imt-2026-g3",
+        "divisionId": "west",
+        "round": "Group Stage",
+        "label": "Game 3",
+        "time": "10:00-10:25 AM",
+        "homeTeamId": "lantern-of-knowledge-academy",
+        "homeTeamName": "Lantern",
+        "awayTeamId": "madinah-masjid",
+        "awayTeamName": "Madina Masjid",
+        "homeScore": 4,
+        "awayScore": 0,
+        "status": "Lantern Win"
+      },
+      {
+        "id": "imt-2026-g4",
+        "divisionId": "west",
+        "round": "Group Stage",
+        "label": "Game 4",
+        "time": "10:30-10:55 AM",
+        "homeTeamId": "galt-islamic-centre",
+        "homeTeamName": "Galt Islamic Centre",
+        "awayTeamId": "islamic-society-of-toronto",
+        "awayTeamName": "IST",
+        "homeScore": 1,
+        "awayScore": 2,
+        "status": "IST Win"
+      },
+      {
+        "id": "imt-2026-g5",
+        "divisionId": "east",
+        "round": "Group Stage",
+        "label": "Game 5",
+        "time": "11:00-11:25 AM",
+        "homeTeamId": "assalam-institute-of-quran",
+        "homeTeamName": "As Salaam Institute",
+        "awayTeamId": "scarborough-muslim-association",
+        "awayTeamName": "SMA",
+        "homeScore": 1,
+        "awayScore": 2,
+        "status": "SMA Win"
+      },
+      {
+        "id": "imt-2026-g6",
+        "divisionId": "east",
+        "round": "Group Stage",
+        "label": "Game 6",
+        "time": "11:30-11:55 AM",
+        "homeTeamId": "khairul-ummah-academy",
+        "homeTeamName": "Khairul Ummah School",
+        "awayTeamId": "islamic-foundation-of-toronto",
+        "awayTeamName": "IFT",
+        "homeScore": 1,
+        "awayScore": 4,
+        "status": "IFT Win"
+      },
+      {
+        "id": "imt-2026-g7",
+        "divisionId": "west",
+        "round": "Group Stage",
+        "label": "Game 7",
+        "time": "12:00-12:25 PM",
+        "homeTeamId": "lantern-of-knowledge-academy",
+        "homeTeamName": "Lantern",
+        "awayTeamId": "islamic-society-of-toronto",
+        "awayTeamName": "IST",
+        "homeScore": 2,
+        "awayScore": 1,
+        "status": "Lantern Win"
+      },
+      {
+        "id": "imt-2026-g8",
+        "divisionId": "west",
+        "round": "Group Stage",
+        "label": "Game 8",
+        "time": "12:30-12:55 PM",
+        "homeTeamId": "galt-islamic-centre",
+        "homeTeamName": "Galt Islamic Centre",
+        "awayTeamId": "madinah-masjid",
+        "awayTeamName": "Madina Masjid",
+        "homeScore": 3,
+        "awayScore": 2,
+        "status": "Galt Win"
+      },
+      {
+        "id": "imt-2026-g9",
+        "divisionId": "east",
+        "round": "Group Stage",
+        "label": "Game 9",
+        "time": "1:00-1:25 PM",
+        "homeTeamId": "khairul-ummah-academy",
+        "homeTeamName": "Khairul Ummah School",
+        "awayTeamId": "assalam-institute-of-quran",
+        "awayTeamName": "As Salaam Institute",
+        "homeScore": 2,
+        "awayScore": 0,
+        "status": "Khairul Ummah Win"
+      },
+      {
+        "id": "imt-2026-g10",
+        "divisionId": "east",
+        "round": "Group Stage",
+        "label": "Game 10",
+        "time": "1:30-1:55 PM",
+        "homeTeamId": "scarborough-muslim-association",
+        "homeTeamName": "SMA",
+        "awayTeamId": "islamic-foundation-of-toronto",
+        "awayTeamName": "IFT",
+        "homeScore": 0,
+        "awayScore": 5,
+        "status": "IFT Win"
+      },
+      {
+        "id": "imt-2026-g11",
+        "divisionId": "west",
+        "round": "Group Stage",
+        "label": "Game 11",
+        "time": "2:00-2:25 PM",
+        "homeTeamId": "galt-islamic-centre",
+        "homeTeamName": "Galt Islamic Centre",
+        "awayTeamId": "lantern-of-knowledge-academy",
+        "awayTeamName": "Lantern",
+        "homeScore": 1,
+        "awayScore": 2,
+        "status": "Lantern Win"
+      },
+      {
+        "id": "imt-2026-g12",
+        "divisionId": "west",
+        "round": "Group Stage",
+        "label": "Game 12",
+        "time": "2:30-2:55 PM",
+        "homeTeamId": "islamic-society-of-toronto",
+        "homeTeamName": "IST",
+        "awayTeamId": "madinah-masjid",
+        "awayTeamName": "Madina Masjid",
+        "homeScore": 3,
+        "awayScore": 3,
+        "status": "Draw"
+      },
+      {
+        "id": "imt-2026-break",
+        "round": "Break",
+        "label": "Dhuhr Break",
+        "time": "2:55-3:15 PM",
+        "status": "Break"
+      },
+      {
+        "id": "imt-2026-qf1",
+        "round": "Quarter-Finals",
+        "label": "Quarter Final 1",
+        "time": "3:15-3:45 PM",
+        "homeTeamId": "khairul-ummah-academy",
+        "homeTeamName": "Khairul Ummah Academy",
+        "awayTeamId": "galt-islamic-centre",
+        "awayTeamName": "Galt Islamic Centre",
+        "homeScore": 4,
+        "awayScore": 1,
+        "status": "Khairul Ummah advanced"
+      },
+      {
+        "id": "imt-2026-qf2",
+        "round": "Quarter-Finals",
+        "label": "Quarter Final 2",
+        "time": "3:50-4:20 PM",
+        "homeTeamId": "islamic-society-of-toronto",
+        "homeTeamName": "Islamic Society of Toronto",
+        "awayTeamId": "scarborough-muslim-association",
+        "awayTeamName": "Scarborough Muslim Association",
+        "homeScore": 0,
+        "awayScore": 0,
+        "penaltyScore": "3-0",
+        "status": "IST advanced on penalties"
+      },
+      {
+        "id": "imt-2026-sf1",
+        "round": "Semi-Finals",
+        "label": "Semi Final 1",
+        "time": "4:25-4:55 PM",
+        "homeTeamId": "lantern-of-knowledge-academy",
+        "homeTeamName": "Lantern of Knowledge",
+        "awayTeamId": "khairul-ummah-academy",
+        "awayTeamName": "Khairul Ummah Academy",
+        "homeScore": 0,
+        "awayScore": 1,
+        "status": "Khairul Ummah advanced"
+      },
+      {
+        "id": "imt-2026-sf2",
+        "round": "Semi-Finals",
+        "label": "Semi Final 2",
+        "time": "5:00-5:30 PM",
+        "homeTeamId": "islamic-foundation-of-toronto",
+        "homeTeamName": "Islamic Foundation of Toronto",
+        "awayTeamId": "islamic-society-of-toronto",
+        "awayTeamName": "Islamic Society of Toronto",
+        "homeScore": 3,
+        "awayScore": 1,
+        "status": "IFT advanced"
+      },
+      {
+        "id": "imt-2026-final",
+        "round": "Final",
+        "label": "Final",
+        "time": "5:50-6:20 PM",
+        "homeTeamId": "islamic-foundation-of-toronto",
+        "homeTeamName": "Islamic Foundation of Toronto",
+        "awayTeamId": "khairul-ummah-academy",
+        "awayTeamName": "Khairul Ummah Academy",
+        "homeScore": 3,
+        "awayScore": 1,
+        "status": "IFT Champions"
+      }
+    ],
+    "playoffs": {
+      "champion": "Islamic Foundation of Toronto",
+      "runnerUp": "Khairul Ummah Academy",
+      "rounds": [
+        {
+          "name": "Quarter-Finals",
+          "matches": [
+            {
+              "label": "QF 1",
+              "homeTeamId": "khairul-ummah-academy",
+              "homeTeamName": "Khairul Ummah Academy",
+              "awayTeamId": "galt-islamic-centre",
+              "awayTeamName": "Galt Islamic Centre",
+              "homeScore": 4,
+              "awayScore": 1
+            },
+            {
+              "label": "QF 2",
+              "homeTeamId": "islamic-society-of-toronto",
+              "homeTeamName": "Islamic Society of Toronto",
+              "awayTeamId": "scarborough-muslim-association",
+              "awayTeamName": "Scarborough Muslim Association",
+              "homeScore": 0,
+              "awayScore": 0
+            }
+          ]
+        },
+        {
+          "name": "Semi-Finals",
+          "matches": [
+            {
+              "label": "SF 1",
+              "homeTeamId": "lantern-of-knowledge-academy",
+              "homeTeamName": "Lantern of Knowledge",
+              "awayTeamId": "khairul-ummah-academy",
+              "awayTeamName": "Khairul Ummah Academy",
+              "homeScore": 0,
+              "awayScore": 1
+            },
+            {
+              "label": "SF 2",
+              "homeTeamId": "islamic-foundation-of-toronto",
+              "homeTeamName": "Islamic Foundation of Toronto",
+              "awayTeamId": "islamic-society-of-toronto",
+              "awayTeamName": "Islamic Society of Toronto",
+              "homeScore": 3,
+              "awayScore": 1
+            }
+          ]
+        },
+        {
+          "name": "Final",
+          "matches": [
+            {
+              "label": "Championship Final",
+              "homeTeamId": "islamic-foundation-of-toronto",
+              "homeTeamName": "Islamic Foundation of Toronto",
+              "awayTeamId": "khairul-ummah-academy",
+              "awayTeamName": "Khairul Ummah Academy",
+              "homeScore": 3,
+              "awayScore": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

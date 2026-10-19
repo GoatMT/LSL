@@ -13,3 +13,5 @@ export const FIREBASE_CONFIG = {
 // Web Push certificate public key (VAPID) for Firebase Cloud Messaging.
 // This is safe to expose in the browser; the private key must stay in Firebase.
 export const FIREBASE_VAPID_KEY = "BGyk8Xv5lvGtO82w69I45pTdvMVhzpEGC7dXhKxiF0WdlpIOKKHF4wsQU4-EafS_w7PI77GNSvNwIEwIF4hBfr4";
+
+

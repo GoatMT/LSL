@@ -77,3 +77,4 @@ exports.onNewsArticleMirrored = onDocumentCreated("lslPulse/main/newsMirror/{art
     url: article.url || "./news.html",
   });
 });
+

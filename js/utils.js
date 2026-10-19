@@ -139,3 +139,5 @@ export function teamProfileHref(teamId = "", season = "") {
   if (teamId) params.set("id", teamId);
   return `./team.html?${params.toString()}`;
 }
+
+

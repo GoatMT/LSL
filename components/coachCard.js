@@ -52,3 +52,4 @@ export function renderCoachCard(coach, index = null) {
     </article>
   `;
 }
+

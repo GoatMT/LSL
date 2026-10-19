@@ -1,8 +1,8 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261018-media1";
 import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.14";
 import { escapeHTML, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 
 setupLayout("free-agents.html");
 setDocumentTitle("Free Agents");
@@ -439,3 +439,5 @@ async function init() {
 }
 
 init();
+
+

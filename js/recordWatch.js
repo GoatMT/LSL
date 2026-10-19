@@ -1,6 +1,6 @@
 import { calculateTeamRecord, computeCombinedPlayerStats } from "./leagueEngine.js?v=3.14";
-import { loadAllSeasons } from "./dataLoader.js?v=1.1";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { loadAllSeasons } from "./dataLoader.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("record-watch.html");
@@ -119,3 +119,5 @@ async function init() {
 }
 
 init();
+
+

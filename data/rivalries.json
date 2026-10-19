@@ -1,0 +1,197 @@
+{
+  "basis": "Featured game rivalries selected from completed LSL playoff matchups; not an official rivalry designation.",
+  "rivalries": [
+    {
+      "season": "2024",
+      "teamIds": [
+        "shifa-pharmacy-fc",
+        "refuel-juicery-kickers"
+      ],
+      "score": [
+        3,
+        0
+      ],
+      "round": "Finals",
+      "title": "Final rematch",
+      "pending": false,
+      "source": "data/2024/playoffs.json",
+      "id": "2024-refuel-juicery-kickers--shifa-pharmacy-fc"
+    },
+    {
+      "season": "2024",
+      "teamIds": [
+        "refuel-juicery-kickers",
+        "umer-memon-fc"
+      ],
+      "score": [
+        2,
+        1
+      ],
+      "round": "Semifinals",
+      "title": "Semi-final showdown",
+      "pending": false,
+      "source": "data/2024/playoffs.json",
+      "id": "2024-refuel-juicery-kickers--umer-memon-fc"
+    },
+    {
+      "season": "2024",
+      "teamIds": [
+        "silver-suits-strikers",
+        "jogiat-palace"
+      ],
+      "score": [
+        2,
+        3
+      ],
+      "round": "Quarterfinals",
+      "title": "Playoff rematch",
+      "pending": false,
+      "source": "data/2024/playoffs.json",
+      "id": "2024-jogiat-palace--silver-suits-strikers"
+    },
+    {
+      "season": "2024",
+      "teamIds": [
+        "jogiat-palace",
+        "umer-memon-fc"
+      ],
+      "score": [
+        0,
+        0
+      ],
+      "round": "Finals",
+      "title": "Third-place playoff",
+      "pending": true,
+      "source": "data/2024/playoffs.json",
+      "id": "2024-jogiat-palace--umer-memon-fc--third"
+    },
+    {
+      "season": "2025",
+      "teamIds": [
+        "umer-memon-fc-2025",
+        "refuel-juicery-athletic"
+      ],
+      "score": [
+        2,
+        1
+      ],
+      "round": "Finals",
+      "title": "Final rematch",
+      "pending": false,
+      "source": "data/2025/playoffs.json",
+      "id": "2025-refuel-juicery-athletic--umer-memon-fc-2025"
+    },
+    {
+      "season": "2025",
+      "teamIds": [
+        "asif-gangat-united-2025",
+        "umer-memon-fc-2025"
+      ],
+      "score": [
+        1,
+        1
+      ],
+      "round": "Semifinals",
+      "title": "Semi-final showdown",
+      "pending": false,
+      "source": "data/2025/playoffs.json",
+      "id": "2025-asif-gangat-united-2025--umer-memon-fc-2025"
+    },
+    {
+      "season": "2025",
+      "teamIds": [
+        "umer-memon-fc-2025",
+        "amax-optical-kickers"
+      ],
+      "score": [
+        3,
+        0
+      ],
+      "round": "Quarterfinals",
+      "title": "Playoff rematch",
+      "pending": false,
+      "source": "data/2025/playoffs.json",
+      "id": "2025-amax-optical-kickers--umer-memon-fc-2025"
+    },
+    {
+      "season": "2025",
+      "teamIds": [
+        "asif-gangat-united-2025",
+        "im-construction-sc"
+      ],
+      "score": [
+        0,
+        0
+      ],
+      "round": "Finals",
+      "title": "Third-place playoff",
+      "pending": true,
+      "source": "data/2025/playoffs.json",
+      "id": "2025-asif-gangat-united-2025--im-construction-sc--third"
+    },
+    {
+      "season": "2026",
+      "teamIds": [
+        "em-haulers-fc",
+        "leeward-lions"
+      ],
+      "score": [
+        2,
+        1
+      ],
+      "round": "Finals",
+      "title": "Final rematch",
+      "pending": false,
+      "source": "data/2026/playoffs.json",
+      "id": "2026-em-haulers-fc--leeward-lions"
+    },
+    {
+      "season": "2026",
+      "teamIds": [
+        "sharp-strikers",
+        "em-haulers-fc"
+      ],
+      "score": [
+        1,
+        2
+      ],
+      "round": "Semifinals",
+      "title": "Semi-final showdown",
+      "pending": false,
+      "source": "data/2026/playoffs.json",
+      "id": "2026-em-haulers-fc--sharp-strikers"
+    },
+    {
+      "season": "2026",
+      "teamIds": [
+        "sharp-strikers",
+        "amax-visionaries"
+      ],
+      "score": [
+        1,
+        1
+      ],
+      "round": "Quarterfinals",
+      "title": "Playoff rematch",
+      "pending": false,
+      "source": "data/2026/playoffs.json",
+      "id": "2026-amax-visionaries--sharp-strikers"
+    },
+    {
+      "season": "2026",
+      "teamIds": [
+        "sharp-strikers",
+        "refuel-rovers"
+      ],
+      "score": [
+        0,
+        0
+      ],
+      "pending": true,
+      "round": "Third-place playoff",
+      "title": "Third-place playoff",
+      "source": "data/2026/playoffs.json",
+      "id": "2026-refuel-rovers--sharp-strikers--third"
+    }
+  ]
+}

@@ -11,9 +11,11 @@
     "venue": "Coming Soon",
     "address": "Coming Soon"
   },
-  "divisions": [],
-  "matches": [],
-  "playoffs": { "rounds": [] },
-  "news": [],
-  "media": []
+  "divisions": null,
+  "matches": null,
+  "playoffs": {
+    "rounds": null
+  },
+  "news": null,
+  "media": null
 }

@@ -82,3 +82,4 @@ export function renderStandingsTable(rows = [], season = "") {
     </div>
   `;
 }
+

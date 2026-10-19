@@ -250,7 +250,7 @@
                 "name": "Mohammed Rayyan Syed"
               }
             ],
-            "away": []
+            "away": null
           }
         },
         {
@@ -279,7 +279,7 @@
                 "name": "Uwais Bemat"
               }
             ],
-            "away": []
+            "away": null
           }
         },
         {
@@ -291,12 +291,10 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [],
-            "away": [
-              {
-                "name": "Taaha Nakhuda"
-              }
-            ]
+            "home": null,
+            "away": {
+              "name": "Taaha Nakhuda"
+            }
           }
         },
         {
@@ -308,12 +306,10 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [],
-            "away": [
-              {
-                "name": "Mudassir"
-              }
-            ]
+            "home": null,
+            "away": {
+              "name": "Mudassir"
+            }
           }
         }
       ]
@@ -330,12 +326,10 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [],
-            "away": [
-              {
-                "name": "Mosa Fazli"
-              }
-            ]
+            "home": null,
+            "away": {
+              "name": "Mosa Fazli"
+            }
           }
         },
         {
@@ -347,7 +341,7 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [],
+            "home": null,
             "away": [
               {
                 "name": "Mudassir",
@@ -400,12 +394,10 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [
-              {
-                "name": "Haroon Ahmadi",
-                "goals": 3
-              }
-            ],
+            "home": {
+              "name": "Haroon Ahmadi",
+              "goals": 3
+            },
             "away": [
               {
                 "name": "Marwan Ahmed"
@@ -430,11 +422,9 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [
-              {
-                "name": "Taaha Nakhuda"
-              }
-            ],
+            "home": {
+              "name": "Taaha Nakhuda"
+            },
             "away": [
               {
                 "name": "Rehan Mohammed",
@@ -468,7 +458,7 @@
                 "name": "Ishaaq Ali"
               }
             ],
-            "away": []
+            "away": null
           }
         },
         {
@@ -493,11 +483,9 @@
                 "name": "Muhummud Teli"
               }
             ],
-            "away": [
-              {
-                "name": "Adil Mubashir"
-              }
-            ]
+            "away": {
+              "name": "Adil Mubashir"
+            }
           }
         },
         {
@@ -519,11 +507,9 @@
                 "goals": 2
               }
             ],
-            "away": [
-              {
-                "name": "Mohammad Ibrahim"
-              }
-            ]
+            "away": {
+              "name": "Mohammad Ibrahim"
+            }
           }
         }
       ]
@@ -540,12 +526,10 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [
-              {
-                "name": "Nasibullah Barak",
-                "goals": 2
-              }
-            ],
+            "home": {
+              "name": "Nasibullah Barak",
+              "goals": 2
+            },
             "away": [
               {
                 "name": "Mudassir",
@@ -606,16 +590,12 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [
-              {
-                "name": "Abdul Ghiyas Solyman"
-              }
-            ],
-            "away": [
-              {
-                "name": "Muzamil Kharooti"
-              }
-            ]
+            "home": {
+              "name": "Abdul Ghiyas Solyman"
+            },
+            "away": {
+              "name": "Muzamil Kharooti"
+            }
           }
         },
         {
@@ -635,7 +615,7 @@
                 "name": "Mohamad Reda Alijalam"
               }
             ],
-            "away": []
+            "away": null
           }
         }
       ]
@@ -652,11 +632,9 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [
-              {
-                "name": "Adil Mubashir"
-              }
-            ],
+            "home": {
+              "name": "Adil Mubashir"
+            },
             "away": [
               {
                 "name": "Mohammad Ibrahim",
@@ -680,12 +658,10 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [],
-            "away": [
-              {
-                "name": "Mosa Fazli"
-              }
-            ]
+            "home": null,
+            "away": {
+              "name": "Mosa Fazli"
+            }
           }
         },
         {
@@ -697,12 +673,10 @@
           "scoreLabel": "Abandoned Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [
-              {
-                "name": "Mudassir"
-              }
-            ],
-            "away": []
+            "home": {
+              "name": "Mudassir"
+            },
+            "away": null
           }
         },
         {
@@ -714,12 +688,10 @@
           "scoreLabel": "Final",
           "scorerLabel": "Known scorers",
           "scorers": {
-            "home": [
-              {
-                "name": "Mohammed Rayyan Syed"
-              }
-            ],
-            "away": []
+            "home": {
+              "name": "Mohammed Rayyan Syed"
+            },
+            "away": null
           }
         }
       ]
@@ -744,11 +716,9 @@
                 "name": "Mohammed Wahedi"
               }
             ],
-            "away": [
-              {
-                "name": "Taaha Nakhuda"
-              }
-            ]
+            "away": {
+              "name": "Taaha Nakhuda"
+            }
           }
         },
         {
@@ -765,11 +735,9 @@
                 "name": "Ajmal Chakkari"
               }
             ],
-            "away": [
-              {
-                "name": "M Yahya"
-              }
-            ]
+            "away": {
+              "name": "M Yahya"
+            }
           }
         },
         {
@@ -786,11 +754,9 @@
                 "name": "Abdul Ghiyas Solyman"
               }
             ],
-            "away": [
-              {
-                "name": "Mohammad Ibrahim"
-              }
-            ]
+            "away": {
+              "name": "Mohammad Ibrahim"
+            }
           }
         },
         {
@@ -799,11 +765,9 @@
           "homeScore": 1,
           "awayScore": 2,
           "scorers": {
-            "home": [
-              {
-                "name": "Nasibullah Barak"
-              }
-            ],
+            "home": {
+              "name": "Nasibullah Barak"
+            },
             "away": [
               {
                 "name": "Adil Mubashir"
@@ -860,11 +824,9 @@
                 "name": "Abdul Ghiyas Solyman"
               }
             ],
-            "away": [
-              {
-                "name": "Taaha Nakhuda"
-              }
-            ]
+            "away": {
+              "name": "Taaha Nakhuda"
+            }
           }
         },
         {
@@ -885,7 +847,7 @@
                 "name": "Rehan Mohammed"
               }
             ],
-            "away": []
+            "away": null
           }
         },
         {
@@ -902,11 +864,9 @@
                 "name": "Uthman Manira"
               }
             ],
-            "away": [
-              {
-                "name": "Adil Mubashir"
-              }
-            ]
+            "away": {
+              "name": "Adil Mubashir"
+            }
           }
         }
       ]
@@ -944,7 +904,7 @@
                   "name": "Mohammed Wahedi"
                 }
               ],
-              "away": []
+              "away": null
             }
           },
           {
@@ -970,11 +930,9 @@
                   "name": "Rehan Mohammed"
                 }
               ],
-              "away": [
-                {
-                  "name": "Taaha Nakhuda"
-                }
-              ]
+              "away": {
+                "name": "Taaha Nakhuda"
+              }
             }
           },
           {
@@ -999,11 +957,9 @@
                   "name": "Muhummud Teli"
                 }
               ],
-              "away": [
-                {
-                  "name": "Adil Mubashir"
-                }
-              ]
+              "away": {
+                "name": "Adil Mubashir"
+              }
             }
           },
           {
@@ -1025,11 +981,9 @@
                   "name": "Abdul Ghiyas Solyman"
                 }
               ],
-              "away": [
-                {
-                  "name": "Mohammad Ibrahim"
-                }
-              ]
+              "away": {
+                "name": "Mohammad Ibrahim"
+              }
             }
           }
         ]
@@ -1059,11 +1013,9 @@
                   "name": "Tayyib Mohammed"
                 }
               ],
-              "away": [
-                {
-                  "name": "Abdul Ghiyas Solyman"
-                }
-              ]
+              "away": {
+                "name": "Abdul Ghiyas Solyman"
+              }
             }
           },
           {
@@ -1088,52 +1040,48 @@
                   "name": "Mohammed Rayyan Syed"
                 }
               ],
-              "away": [
-                {
-                  "name": "Mudassir",
-                  "goals": 2
-                }
-              ]
+              "away": {
+                "name": "Mudassir",
+                "goals": 2
+              }
             }
           }
         ]
       },
       {
         "name": "Final",
-        "matches": [
-          {
-            "label": "Final",
-            "homeTeamId": "em-haulers-fc",
-            "homeSeed": 1,
-            "awayTeamId": "sharp-strikers",
-            "awaySeed": 2,
-            "homeScore": 3,
-            "awayScore": 2,
-            "winnerTeamId": "em-haulers-fc",
-            "note": "Projected champion: EM Haulers FC",
-            "scorers": {
-              "home": [
-                {
-                  "name": "Haroon Ahmadi"
-                },
-                {
-                  "name": "Muzamil Kharooti"
-                },
-                {
-                  "name": "Uwais Bemat"
-                }
-              ],
-              "away": [
-                {
-                  "name": "M Yahya"
-                },
-                {
-                  "name": "Marwan Ahmed"
-                }
-              ]
-            }
+        "matches": {
+          "label": "Final",
+          "homeTeamId": "em-haulers-fc",
+          "homeSeed": 1,
+          "awayTeamId": "sharp-strikers",
+          "awaySeed": 2,
+          "homeScore": 3,
+          "awayScore": 2,
+          "winnerTeamId": "em-haulers-fc",
+          "note": "Projected champion: EM Haulers FC",
+          "scorers": {
+            "home": [
+              {
+                "name": "Haroon Ahmadi"
+              },
+              {
+                "name": "Muzamil Kharooti"
+              },
+              {
+                "name": "Uwais Bemat"
+              }
+            ],
+            "away": [
+              {
+                "name": "M Yahya"
+              },
+              {
+                "name": "Marwan Ahmed"
+              }
+            ]
           }
-        ]
+        }
       }
     ]
   }

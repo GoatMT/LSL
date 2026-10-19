@@ -36,3 +36,4 @@ export function renderPlayerCard(player, index = 0) {
     </article>
   `;
 }
+

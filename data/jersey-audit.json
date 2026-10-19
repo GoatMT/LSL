@@ -1,0 +1,2087 @@
+{
+  "schemaVersion": 1,
+  "source": "LSL Website local season data",
+  "policy": "Use the exact season, team ID and player ID. teams.json roster wins a disagreement with players.json. Missing numbers remain null. Preserve and flag source conflicts and duplicate numbers; never fill with a roster index, previous-season number or another squad number.",
+  "excludedSources": [
+    "Career profiles and other seasons",
+    "Representative tournament squads, including data/2026/tournament.json"
+  ],
+  "files": [
+    {
+      "file": "data/2024/teams.json",
+      "sha256": "0eb41eaa1aee6372cc13aa4fb70fdbfc64b39c97987f8c15feedde4610f93f10"
+    },
+    {
+      "file": "data/2024/players.json",
+      "sha256": "3b80b554763ebb1053197e051b4fc24046878210cf034f517fd3e69be37bbf28"
+    },
+    {
+      "file": "data/2025/teams.json",
+      "sha256": "989b74967c05f62c99ed269660a898b1bb7a959ea9a0fb1a404d2ad23aef1e15"
+    },
+    {
+      "file": "data/2025/players.json",
+      "sha256": "2d9d52d3447e6582316b1f6749a4b024b99e752ad5d4045e73670577e27f5e07"
+    },
+    {
+      "file": "data/2026/teams.json",
+      "sha256": "2187815601c7d9cb24a1b61694720289e4d9155492d6186e91394f5b5e314f7c"
+    },
+    {
+      "file": "data/2026/players.json",
+      "sha256": "da197a7753a2e34b0ed481a73b32c65bc39374fd7814411ec0429d4aeb88fd9e"
+    }
+  ],
+  "summary": {
+    "total": 278,
+    "known": 235,
+    "missing": 43,
+    "conflicts": 1,
+    "duplicateGroups": 7
+  },
+  "seasons": [
+    {
+      "year": "2024",
+      "total": 81,
+      "known": 81,
+      "missing": 0,
+      "conflicts": [],
+      "duplicates": [
+        {
+          "teamId": "refuel-juicery-kickers",
+          "jersey": 9,
+          "playerIds": [
+            "muzamil-kharooti",
+            "sufyan-munshi"
+          ]
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "jersey": 8,
+          "playerIds": [
+            "abdul-ghiyas-solyman",
+            "muhammad-affan"
+          ]
+        },
+        {
+          "teamId": "jogiat-palace",
+          "jersey": 6,
+          "playerIds": [
+            "ismail-mohammed",
+            "rehaan-adam"
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "abdul-wahab-dastagiri",
+          "name": "Abdul Wahab Dastagiri",
+          "jersey": 1,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "abdul-jalil-alosman",
+          "name": "AbdulJalil Alosman",
+          "jersey": 2,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "ahmad-ingar",
+          "name": "Ahmad Ingar",
+          "jersey": 3,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "ayaan-jogiyat",
+          "name": "Ayaan Jogiyat",
+          "jersey": 4,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "hussain-rizvi",
+          "name": "Hussain Rizvi",
+          "jersey": 5,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "marwan-ahmad",
+          "name": "Marwan Ahmad",
+          "jersey": 6,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "mustafa-sakhiyar",
+          "name": "Mustafa Sakhiyar",
+          "jersey": 7,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "mustafa-hussain-rizvi",
+          "name": "Mustafa Hussain Rizvi",
+          "jersey": 8,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "muhammad-zahran",
+          "name": "Muhammad Zahran",
+          "jersey": 9,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "mohammed-hanzala",
+          "name": "Mohammed Hanzala",
+          "jersey": 10,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "mohammed-hammad-syed",
+          "name": "Mohammed Hammad Syed",
+          "jersey": 11,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "uzair-sidat",
+          "name": "Uzair Sidat",
+          "jersey": 12,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "silver-suits-strikers",
+          "playerId": "hammad-shaikh",
+          "name": "Hammad Shaikh",
+          "jersey": 13,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "abubakr-amirat",
+          "name": "Abubakr Amirat",
+          "jersey": 1,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 9,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "muhammad-hassan",
+          "name": "Muhammad Hassan",
+          "jersey": 3,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "muhammad-iqrash",
+          "name": "Muhammad Iqrash",
+          "jersey": 4,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "muhammad-zaidan",
+          "name": "Muhammad Zaidan",
+          "jersey": 5,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "reda-alijalam",
+          "name": "Mohamad Reda Alijalam",
+          "jersey": 6,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "omar-ajmal",
+          "name": "Omar Ajmal",
+          "jersey": 7,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "subhanullah-sharza",
+          "name": "Subhanullah Sharza",
+          "jersey": 8,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "sufyan-munshi",
+          "name": "Sufyan Munshi",
+          "jersey": 9,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "taha-ahmed",
+          "name": "Taha Ahmed",
+          "jersey": 10,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "umar-nakhuda",
+          "name": "Umar Nakhuda",
+          "jersey": 11,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "yousuf-haqqani",
+          "name": "Yousuf Haqqani",
+          "jersey": 12,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "ziyad-adam",
+          "name": "Ziyad Adam",
+          "jersey": 13,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-kickers",
+          "playerId": "saad-khan",
+          "name": "Saad Khan",
+          "jersey": 14,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiyas Solyman",
+          "jersey": 8,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "ali-shadab-shaikh",
+          "name": "Ali Shadab Shaikh",
+          "jersey": 2,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "ayaz-a-tutla",
+          "name": "Ayaz A Tutla",
+          "jersey": 3,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "ayub-jan",
+          "name": "Ayub Jan",
+          "jersey": 4,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "bayizedsha",
+          "name": "Bayizedsha",
+          "jersey": 5,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "basir-ahmad-dastagiri",
+          "name": "Basir Ahmad Dastagiri",
+          "jersey": 6,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "ilyas-salim",
+          "name": "Ilyas Salim",
+          "jersey": 7,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "muhammad-affan",
+          "name": "Muhammad Affan",
+          "jersey": 8,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "mohammad-hamzah-wahab",
+          "name": "Mohammad hamzah wahab",
+          "jersey": 9,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "taha-nakhuda",
+          "name": "Taha Nakhuda",
+          "jersey": 10,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "tayyib-mohammed",
+          "name": "Tayyib Mohammad",
+          "jersey": 11,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "tulha-ahmad",
+          "name": "Tulha Ahmad",
+          "jersey": 12,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "shifa-pharmacy-fc",
+          "playerId": "aneeq-shaikh",
+          "name": "Aneeq Shaikh",
+          "jersey": 13,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "aamir-jogiat",
+          "name": "Aamir Jogiat",
+          "jersey": 1,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "jersey": 4,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "abdur-rakib",
+          "name": "Abdur Rakib",
+          "jersey": 3,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "ayhaam-khalefa",
+          "name": "Ayhaam Khalefa",
+          "jersey": 11,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "elyas-roien",
+          "name": "Elyas Roien",
+          "jersey": 5,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "ismail-mohammed",
+          "name": "Ismail Mohammed",
+          "jersey": 6,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "m-yahya",
+          "name": "M Yahya",
+          "jersey": 7,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "muhammad-nakhuda",
+          "name": "Muhammad Nakhuda",
+          "jersey": 8,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "jersey": 9,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "mohamed-aathif",
+          "name": "Mohamed Aathif",
+          "jersey": 10,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "jersey": 6,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "zakariya-chhibu",
+          "name": "Zakariya Chhibu",
+          "jersey": 12,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "jogiat-palace",
+          "playerId": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "jersey": 13,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "abdul-basit-mesbah",
+          "name": "Abdul Basit Mesbah",
+          "jersey": 1,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "azizullah",
+          "name": "Azizullah",
+          "jersey": 2,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "jersey": 3,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "hamzah-gangat",
+          "name": "Hamzah Gangat",
+          "jersey": 4,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "huzaifa-ahmad-vadia",
+          "name": "Huzaifa Ahmad Vadia",
+          "jersey": 5,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "muhammad-badin",
+          "name": "Muhammad Badin",
+          "jersey": 6,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "muhammad-salim",
+          "name": "Muhammad Salim",
+          "jersey": 7,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "muhammad-okasha",
+          "name": "Muhammad Okasha",
+          "jersey": 8,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "mussadiq-khan",
+          "name": "Mussadiq Khan",
+          "jersey": 9,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "rehan-ahmad",
+          "name": "Rehan Ahmad",
+          "jersey": 10,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "rizwaan-amirat",
+          "name": "Rizwaan Amirat",
+          "jersey": 11,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "rizwan-khan",
+          "name": "Rizwan Khan",
+          "jersey": 12,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united",
+          "playerId": "saifan-mohammed",
+          "name": "Saifan Mohammed",
+          "jersey": 13,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "anan-abrar",
+          "name": "Anan Abrar",
+          "jersey": 1,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "asad-khan",
+          "name": "Asad Khan",
+          "jersey": 2,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "saad-saud",
+          "name": "Saad Saud",
+          "jersey": 66,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "bashir-ahmad-dastagiri",
+          "name": "Bashir Ahmad Dadtagiri",
+          "jersey": 3,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "bilal-sami-ahmad",
+          "name": "Bilal Sami Ahmad",
+          "jersey": 4,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "haroon-sarood",
+          "name": "Haroon Sarood",
+          "jersey": 5,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "hashir-hassan",
+          "name": "Hashir Hassan",
+          "jersey": 6,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "ibrahim-mohamed",
+          "name": "Ibrahim Mohamed",
+          "jersey": 56,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "imran-abdulimiti",
+          "name": "Imran Abdulimiti",
+          "jersey": 8,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "md-ismail-rayyan",
+          "name": "MD Ismail Rayyan",
+          "jersey": 9,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "mubashir-khan",
+          "name": "Mubashir Khan",
+          "jersey": 10,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "mubeen-tagari",
+          "name": "Mubeen Tagari",
+          "jersey": 11,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "uwais-bemat",
+          "name": "Uwais Bemat",
+          "jersey": 12,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "zain-adam",
+          "name": "Zain Adam",
+          "jersey": 13,
+          "source": "data/2024/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc",
+          "playerId": "mohammed-rayyan-sayed",
+          "name": "Mohammed Rayyan Sayed",
+          "jersey": 14,
+          "source": "data/2024/teams.json"
+        }
+      ]
+    },
+    {
+      "year": "2025",
+      "total": 115,
+      "known": 115,
+      "missing": 0,
+      "conflicts": [
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "ajmal-shakkari",
+          "roster": 11,
+          "profile": 10,
+          "selected": 11
+        }
+      ],
+      "duplicates": [
+        {
+          "teamId": "asif-gangat-united-2025",
+          "jersey": 1,
+          "playerIds": [
+            "mohammed-rayyan-sayed",
+            "abdul-ghiyas-solyman"
+          ]
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "jersey": 7,
+          "playerIds": [
+            "muzamil-kharooti",
+            "adil-mubashir"
+          ]
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "jersey": 11,
+          "playerIds": [
+            "abubakr-manjra",
+            "m-yahya"
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "mohammed-rayyan-sayed",
+          "name": "Mohammed Rayyan Sayed",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "hafizullah",
+          "name": "Hafizullah",
+          "jersey": 2,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "muhammad-affan",
+          "name": "Mohammed Affan",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "sayem-mohammed-sadi",
+          "name": "Sayem Mohammed Sadi",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiya Solyman",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "hammad-shaikh",
+          "name": "Hammad Shaikh",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "muhammad-salim",
+          "name": "Mohammed Salim",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "huzaifa-ahmad-vadia",
+          "name": "Huzaifa Ahmed Vadia",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "haroon-sarood",
+          "name": "Haroon Sarood",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "muhammad-shah",
+          "name": "Muhammad Shah",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "abdullah-patel",
+          "name": "Abdullah Patel",
+          "jersey": 11,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "asif-gangat-united-2025",
+          "playerId": "bilal-sami-ahmad",
+          "name": "Bilal Sami Syed",
+          "jersey": 12,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "saad-khan",
+          "name": "Saad Khan",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "yousaf-hosseinzada",
+          "name": "Yousaf Hosseinzada",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "azizullah",
+          "name": "Azizullah",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "jersey": 5,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "ishaaq-ali",
+          "name": "Ishaaq Ali",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "adil-mubashir",
+          "name": "Adil Mubashir",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "mohammed-hanzala",
+          "name": "Mohammed Hanzala Hasan",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "yusuf-ahmed-baharustani",
+          "name": "Yusuf Ahmed Baharustani",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "uwais-bemat",
+          "name": "Uwais Bemat",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "hasan-hatia",
+          "name": "Hasan Hatia",
+          "jersey": 11,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "umer-memon-fc-2025",
+          "playerId": "abdul-ahad-muabir",
+          "name": "Abdul Ahad Muabir",
+          "jersey": 12,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "rayyan-kazi-mohammed",
+          "name": "Rayyan Kazi Mohammed",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "mudassir",
+          "name": "Mudassir",
+          "jersey": 2,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "ahmad-ingar",
+          "name": "Ahmad Ingar",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "tayyib-mohammed",
+          "name": "Tayyib Mohammed",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "zain-adam",
+          "name": "Zain Adam",
+          "jersey": 5,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "muhammad-farooq",
+          "name": "Muhammad Farooq",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "mohammed-hasan",
+          "name": "Mohammed Hasan",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "basir-ahmad-dastagiri",
+          "name": "Basir Ahmad Dastagiri",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "abubakar-mamun",
+          "name": "Abubakar Mamun",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "abdul-wahab-dastagiri",
+          "name": "Abdul Wahab Dastagiri",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "muhammad-badin",
+          "name": "Muhammed Badin",
+          "jersey": 11,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "islamic-bookstore-runners",
+          "playerId": "zakariyya-dualeh",
+          "name": "Zakariyya Dualeh",
+          "jersey": 12,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "ataa-shaikh",
+          "name": "Ataa Shaikh",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "uthman",
+          "name": "Uthman",
+          "jersey": 2,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "tulha-ahmed",
+          "name": "Tulha Ahmed",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "taha-nakhuda",
+          "name": "Taaha Nakhuda",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "hamza-akalwala",
+          "name": "Hamza Akalwala",
+          "jersey": 5,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "ammar-mamun",
+          "name": "Ammar Mamun",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "subhan-ali-syed",
+          "name": "Subhan Ali Syed",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "mumin-milhan",
+          "name": "Mumin Milhan",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "aamir-jogiat",
+          "name": "Aamir Jogiat",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "maaz",
+          "name": "Maaz",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "hammad-hatia",
+          "name": "Hammad Hatia",
+          "jersey": 11,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "zakariyya-motala",
+          "name": "Zakariyya Motala",
+          "jersey": 12,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "amax-optical-kickers",
+          "playerId": "sufyan-munshi",
+          "name": "Sufyan Munshi",
+          "jersey": 13,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "muhammad-hasan-faraz",
+          "name": "Muhammad Hasan Faraz",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "jersey": 2,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "omar-ajmal",
+          "name": "Omar Ajmal",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "waise-sherzi",
+          "name": "Waise Sherzi",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "amadu",
+          "name": "Amadu",
+          "jersey": 5,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "abdul-basit-mesbah",
+          "name": "Abdul Basit Mesbah",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "ayub-jan",
+          "name": "Ayub Jan",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "rehan-ahmed-mohammed",
+          "name": "Rehan Ahmed Mohammed",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "zakariya-chhibu",
+          "name": "Zakariya Chhibu",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "mohammed-ali-siddiqui",
+          "name": "Mohammed Ali Siddiqui",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "ayaan-tutla",
+          "name": "Ayaan Tutla",
+          "jersey": 11,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "im-construction-sc",
+          "playerId": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "jersey": 12,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "usman",
+          "name": "Usman",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "jersey": 2,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "reda-alijalam",
+          "name": "Mohamad Reda Alijalam",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "mohammed-ibrahim",
+          "name": "Mohammed Ibrahim",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "ziyad-adam",
+          "name": "Ziyad Adam",
+          "jersey": 5,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "abdur-rakib",
+          "name": "Abdur Rakib",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "nasibullah",
+          "name": "Nasibullah",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "tamzid-ahmed",
+          "name": "Tamzid Ahmed",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "bashir-ahmad-dastagiri",
+          "name": "Bashir Ahmad Dastagiri",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "taha-ahmed",
+          "name": "Taha Ahmed",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "abubakr-manjra",
+          "name": "Abubakr Manjra",
+          "jersey": 11,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "rizwan-haque",
+          "name": "Rizwan Haque",
+          "jersey": 12,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "refuel-juicery-athletic",
+          "playerId": "m-yahya",
+          "name": "M Yahya",
+          "jersey": 11,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "azaan",
+          "name": "Azaan",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "saifan",
+          "name": "Saifan",
+          "jersey": 2,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "mustafa-sakhiyar",
+          "name": "Mustafa Sakhiyar",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "shafiullah",
+          "name": "Shafiullah",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "mohammed-wahedi",
+          "name": "Mohammed Wahedi",
+          "jersey": 5,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "abdullah-juniors",
+          "name": "Abdullah",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "hasibullah-kharooti",
+          "name": "Hasibullah Kharooti",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "mohammed-maaz-aswat",
+          "name": "Mohammed Maaz Aswat",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "aijaz-khan",
+          "name": "Aijaz Khan",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "ajmal-shakkari",
+          "name": "Ajmal Shakkari",
+          "jersey": 11,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "dhahabiya-strikers",
+          "playerId": "rafiullah",
+          "name": "Rafiullah",
+          "jersey": 12,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "syed-zaeem-arshad",
+          "name": "Syed Zaeem Arshad",
+          "jersey": 2,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "hammad-parekh",
+          "name": "Hammad Parekh",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "ammar-haque",
+          "name": "Ammar Haque",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "arsham",
+          "name": "Arsham",
+          "jersey": 5,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "umar-manjra",
+          "name": "Umar Manjra",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "ahmed-ibadullah-minhas",
+          "name": "Ahmed Ibadullah Minhas",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "suleman-asmal",
+          "name": "Suleman Asmal",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "yahya-mohammed",
+          "name": "Yahya Mohammed",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "ali-shadab-shaikh",
+          "name": "Ali Shadab Shaikh",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "the-travel-builder-united",
+          "playerId": "idrees-nawabi-travel",
+          "name": "Idrees Nawabi",
+          "jersey": 17,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "umair",
+          "name": "Umair",
+          "jersey": 2,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "arifur-rahman",
+          "name": "Arifur Rahman",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "azizur-rahman",
+          "name": "Azizur Rahman",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "raees-gauri",
+          "name": "Raees Gauri",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "jamal-mujaddidi",
+          "name": "Jamal Mujaddidi",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "raffan-mohammed",
+          "name": "Raffan Mohammed",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "murtaza-ahmadi",
+          "name": "Murtaza Ahmadi",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "huzaifa-kotwal",
+          "name": "Huzaifa Kotwal",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "em-truck-repair-fc",
+          "playerId": "abrar-makrod",
+          "name": "Abrar Makrod",
+          "jersey": 11,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "zakariya",
+          "name": "Zakariya",
+          "jersey": 1,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "ilyas-salim",
+          "name": "Ilyas Salim",
+          "jersey": 2,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "yonus-dualeh",
+          "name": "Yonus Dualeh",
+          "jersey": 3,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "mohammed-hammad-syed",
+          "name": "Mohammed Hammad Syed",
+          "jersey": 4,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "ibad-sheikh",
+          "name": "Ibad Sheikh",
+          "jersey": 5,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "ibrahim-syed",
+          "name": "Ibrahim Syed",
+          "jersey": 6,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "raiyan-jahir",
+          "name": "Raiyan Jahir",
+          "jersey": 7,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "ammar-kazi",
+          "name": "Ammar Kazi",
+          "jersey": 8,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "ibrahim-jawal-ahmed",
+          "name": "Ibrahim Jawal Ahmed",
+          "jersey": 9,
+          "source": "data/2025/teams.json"
+        },
+        {
+          "teamId": "rafik-enterprise-fc",
+          "playerId": "rehan-patel",
+          "name": "Rehan Patel",
+          "jersey": 10,
+          "source": "data/2025/teams.json"
+        }
+      ]
+    },
+    {
+      "year": "2026",
+      "total": 82,
+      "known": 39,
+      "missing": 43,
+      "conflicts": [],
+      "duplicates": [
+        {
+          "teamId": "refuel-rovers",
+          "jersey": 7,
+          "playerIds": [
+            "abdul-ghiyas-solyman",
+            "mohammad-usman"
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "mosa-fazli",
+          "name": "Mosa Fazli",
+          "jersey": 1,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "yousaf-hosseinzada",
+          "name": "Yousaf Hosseinzada",
+          "jersey": 2,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiyas Solyman",
+          "jersey": 7,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "ishaaq-ali",
+          "name": "Ishaaq Ali",
+          "jersey": 4,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "ibrahim-syed",
+          "name": "Ibrahim Syed",
+          "jersey": 5,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "azizullah",
+          "name": "Azizullah",
+          "jersey": 6,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "mohammad-usman",
+          "name": "Mohammad Usman",
+          "jersey": 7,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "zakariya-mohmed-bemat",
+          "name": "Zakariya Mohmed Bemat",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "ayub-jan",
+          "name": "Ayub Jan",
+          "jersey": 9,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "refuel-rovers",
+          "playerId": "hasibullah-kharooti",
+          "name": "Hasibullah Kharooti",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "uthman",
+          "name": "Uthman Manjra",
+          "jersey": 1,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "saad-khan",
+          "name": "Saad Khan",
+          "jersey": 2,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "jersey": 3,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "umair-saiyad",
+          "name": "Umair Saiyad",
+          "jersey": 4,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "tulha-ahmed",
+          "name": "Tulha Ahmed",
+          "jersey": 5,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "muneeb",
+          "name": "Muneeb",
+          "jersey": 6,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "syed-zaeem-arshad",
+          "name": "Syed Zaeem Arshad",
+          "jersey": 7,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "murtaza-syed",
+          "name": "Murtaza Syed",
+          "jersey": 8,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "mohammed-ibrahim",
+          "name": "Mohammad Ibrahim",
+          "jersey": 9,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "rawaha-royals",
+          "playerId": "zakariya-chhibu",
+          "name": "Zakariya Chhibu",
+          "jersey": 10,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 7,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "ammar-kazi",
+          "name": "Ammar Kazi",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "mohammed-wahedi",
+          "name": "Mohammed Wahedi",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "maaz-andurrahman",
+          "name": "Maaz Abdurrahman",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "sulaim-nakhuda",
+          "name": "Sulaim Nakhuda",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "azeez-ur-rehman",
+          "name": "Azeez ur Rehman",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "ahmed-adeeb-kamga",
+          "name": "Ahmed Adeeb Kamga",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "uwais-bemat",
+          "name": "Uwais Bemat",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "haroon-ahmadi",
+          "name": "Haroon Ahmadi",
+          "jersey": 10,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "em-haulers-fc",
+          "playerId": "tayyib-mohammed",
+          "name": "Tayyib Mohammed",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "mudassir",
+          "name": "Mudassir",
+          "jersey": 2,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "ajmal-shakkari",
+          "name": "Ajmal Chakkari",
+          "jersey": 3,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "subhanullah-sharza",
+          "name": "Subhanallah Sharzah",
+          "jersey": 4,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "abdullah-hosseinzadah",
+          "name": "Abdullah Hosseinzadah",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "zayd-badin",
+          "name": "Zaid Badin",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "ibrahim-kadam",
+          "name": "Ibrahim Kadam",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "usman-ahmad-popal",
+          "name": "Usman Ahmad Popal",
+          "jersey": 6,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "jersey": 8,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "abubakr-manjra",
+          "name": "Abu Bakr Manjra",
+          "jersey": 9,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "leeward-lions",
+          "playerId": "sayem-mohammed-sadi",
+          "name": "Sayem Mohamed Saad",
+          "jersey": 7,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "omar-hicham",
+          "name": "Omar Hicham",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "hasan-hamraz",
+          "name": "Hasan Hamraz",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "muhammad-affan",
+          "name": "M. Affan",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "abidullah-khalil",
+          "name": "Abidullah Khalil",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "mohammad-bilal-noorzai",
+          "name": "Mohammad Bilal Noorzai",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "muhammad-hashim-ali",
+          "name": "Muhammad Hashim Ali",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "muhammad-zaidan",
+          "name": "Muhammad Zaidan",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "nasibullah",
+          "name": "Nasibullah Barak",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "hassan-muhammad",
+          "name": "Hassan Muhammad",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "memon-mavericks",
+          "playerId": "idrees-nawabi",
+          "name": "Idris Nawabi",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "taha-nakhuda",
+          "name": "Taaha Nakhuda",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "hammad-shaikh",
+          "name": "Hammad Shaikh",
+          "jersey": 2,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "ahmad-ingar",
+          "name": "Ahmad Ingar",
+          "jersey": 3,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "huzaifa-ahmad-vadia",
+          "name": "Huzaifa Ahmed Vadia",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "ayaan-tutla",
+          "name": "Ayaan Tutla",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "yahya-adil-butt",
+          "name": "Yahya Adill Butt",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "rafiullah",
+          "name": "Rafiullah",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "bayram-loukil",
+          "name": "Byram Loukil",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "umar-manjra",
+          "name": "Umar Manjra",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "ali-imran",
+          "name": "Ali Imran",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "gangat-warriors",
+          "playerId": "ilyas-salim",
+          "name": "Ilyas Salim",
+          "jersey": 10,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "marwan-ahmad",
+          "name": "Marwan Ahmed",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "mohammed-hammad-syed",
+          "name": "Mohammed Hammad Syed",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "m-yahya",
+          "name": "M Yahya",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "rehan-ahmed-mohammed",
+          "name": "Rehan Mohammed",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "mohammad-erfan-noorzai",
+          "name": "Mohammad Erfan Noorzai",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "mohammed-rayyan-sayed",
+          "name": "Mohammed Rayyan Syed",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "younes-meraidia",
+          "name": "Younes Meraidia",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "mohammed-ali-siddiqui",
+          "name": "Mohammed Ali Siddiqui",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "jamal-mujaddidi",
+          "name": "Jamal Mujaddidi",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "sharp-strikers",
+          "playerId": "samiullah-naimat",
+          "name": "Samiullah Naimat",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "ahmed-bhaiyat",
+          "name": "Ahmed Bhaiyat",
+          "jersey": 1,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "jersey": 2,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "muhammad-salim",
+          "name": "Muhammad Salim",
+          "jersey": 3,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "yousuf-nathani",
+          "name": "Yousuf Nathani",
+          "jersey": 4,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "shafiullah",
+          "name": "Shafiullah",
+          "jersey": 5,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "zaeem-kapil-parakot",
+          "name": "Zaeem Kapil Parakot",
+          "jersey": 6,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "adil-mubashir",
+          "name": "Adil Mubashir",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "reda-alijalam",
+          "name": "Mohamad Reda Alijalam",
+          "jersey": null,
+          "source": null
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "uzair-sidat",
+          "name": "Uzair Sidat",
+          "jersey": 8,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "muhammad-shah",
+          "name": "Muhammad Shah",
+          "jersey": 9,
+          "source": "data/2026/teams.json"
+        },
+        {
+          "teamId": "amax-visionaries",
+          "playerId": "sajadullah-khalil",
+          "name": "Sajadullah Khalil",
+          "jersey": 10,
+          "source": "data/2026/teams.json"
+        }
+      ]
+    }
+  ]
+}

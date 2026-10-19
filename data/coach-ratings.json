@@ -13,7 +13,10 @@
         "playoffPerformance": "S",
         "experience": "A"
       },
-      "achievements": ["2024 senior championship", "2024 finals appearance"]
+      "achievements": [
+        "2024 senior championship",
+        "2024 finals appearance"
+      ]
     },
     "coach-abdul-hakeem": {
       "overallGrade": "A+",
@@ -28,7 +31,10 @@
         "playoffPerformance": "S",
         "experience": "B+"
       },
-      "achievements": ["2025 senior championship", "2025 finals appearance"]
+      "achievements": [
+        "2025 senior championship",
+        "2025 finals appearance"
+      ]
     },
     "coach-tanveer": {
       "overallGrade": "S",
@@ -43,7 +49,10 @@
         "playoffPerformance": "S",
         "experience": "B+"
       },
-      "achievements": ["2025 Junior championship", "2025 Junior finals appearance"]
+      "achievements": [
+        "2025 Junior championship",
+        "2025 Junior finals appearance"
+      ]
     },
     "coach-ashique": {
       "overallGrade": "A",
@@ -58,7 +67,7 @@
         "playoffPerformance": "A",
         "experience": "A"
       },
-      "achievements": ["2 finals appearances"]
+      "achievements": "2 finals appearances"
     },
     "coach-sameer": {
       "overallGrade": "A",
@@ -73,7 +82,7 @@
         "playoffPerformance": "B+",
         "experience": "A"
       },
-      "achievements": ["2025 senior 3rd-place coach"]
+      "achievements": "2025 senior 3rd-place coach"
     },
     "coach-asim": {
       "overallGrade": "A-",
@@ -88,7 +97,7 @@
         "playoffPerformance": "Not Rated",
         "experience": "C+"
       },
-      "achievements": ["First 2026 senior coach to reach 2 wins"]
+      "achievements": "First 2026 senior coach to reach 2 wins"
     },
     "coach-shodmon": {
       "overallGrade": "B",
@@ -103,7 +112,7 @@
         "playoffPerformance": "B-",
         "experience": "B"
       },
-      "achievements": []
+      "achievements": null
     },
     "coach-elhaj": {
       "overallGrade": "C",
@@ -118,7 +127,7 @@
         "playoffPerformance": "Not Rated",
         "experience": "C"
       },
-      "achievements": []
+      "achievements": null
     },
     "coach-saud": {
       "overallGrade": "D",
@@ -133,7 +142,7 @@
         "playoffPerformance": "D",
         "experience": "C"
       },
-      "achievements": []
+      "achievements": null
     },
     "coach-fahad": {
       "overallGrade": "D",
@@ -148,7 +157,7 @@
         "playoffPerformance": "D",
         "experience": "C"
       },
-      "achievements": []
+      "achievements": null
     }
   }
 }

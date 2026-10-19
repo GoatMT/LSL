@@ -1,5 +1,5 @@
-import { loadJSON, loadSeasonData } from "./dataLoader.js?v=1.1";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { loadJSON, loadSeasonData } from "./dataLoader.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { SITE } from "./config.js";
 import { escapeHTML, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
@@ -443,3 +443,5 @@ async function init() {
 }
 
 init();
+
+

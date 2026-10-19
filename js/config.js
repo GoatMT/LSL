@@ -122,3 +122,5 @@ export const DEFAULT_PLAYOFF_RULES = {
 export function playoffRulesFor(year, division) {
   return (PLAYOFF_RULES[String(year)] && PLAYOFF_RULES[String(year)][division]) || DEFAULT_PLAYOFF_RULES[division] || {};
 }
+
+

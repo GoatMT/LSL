@@ -1,8 +1,8 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261018-media1";
 import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
 setupLayout("players.html");
@@ -1553,3 +1553,5 @@ async function init() {
 }
 
 init();
+
+

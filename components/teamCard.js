@@ -114,3 +114,4 @@ export function renderTeamCard(team, stats, coach, season, form = [], playerRati
     </article>
   `;
 }
+

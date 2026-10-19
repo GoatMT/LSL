@@ -49,6 +49,26 @@ body {
   overflow-y: visible;
 }
 
+.media-frame {
+  position: relative;
+}
+
+.media-load-failed {
+  opacity: 0;
+}
+
+.media-load-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  color: var(--muted);
+  background: var(--card-2, #20231f);
+  text-align: center;
+  font-weight: 700;
+}
+
 img {
   display: block;
   max-width: 100%;

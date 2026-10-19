@@ -66,23 +66,19 @@
         {
           "teamId": "memon-mavericks",
           "teamName": "Memon Mavericks",
-          "receives": [
-            {
-              "playerId": "muhammad-affan",
-              "name": "M. Affan",
-              "note": "Claimed from waivers."
-            }
-          ]
+          "receives": {
+            "playerId": "muhammad-affan",
+            "name": "M. Affan",
+            "note": "Claimed from waivers."
+          }
         },
         {
           "teamName": "Waivers",
-          "receives": [
-            {
-              "name": "Roster claim",
-              "href": "./transactions.html",
-              "note": "Memon Mavericks used a waiver pickup."
-            }
-          ]
+          "receives": {
+            "name": "Roster claim",
+            "href": "./transactions.html",
+            "note": "Memon Mavericks used a waiver pickup."
+          }
         }
       ],
       "impact": [
@@ -103,24 +99,20 @@
         {
           "teamId": "refuel-rovers",
           "teamName": "Refuel Rovers",
-          "receives": [
-            {
-              "playerId": "abdul-ghiyas-solyman",
-              "name": "Abdul Ghiyas Solyman",
-              "note": "Two goals and one assist in Week 1 before the trade."
-            }
-          ]
+          "receives": {
+            "playerId": "abdul-ghiyas-solyman",
+            "name": "Abdul Ghiyas Solyman",
+            "note": "Two goals and one assist in Week 1 before the trade."
+          }
         },
         {
           "teamId": "em-haulers-fc",
           "teamName": "EM Haulers FC",
-          "receives": [
-            {
-              "playerId": "mohammed-wahedi",
-              "name": "Mohammed Wahedi",
-              "note": "Adds another flexible roster piece for EM Haulers FC."
-            }
-          ]
+          "receives": {
+            "playerId": "mohammed-wahedi",
+            "name": "Mohammed Wahedi",
+            "note": "Adds another flexible roster piece for EM Haulers FC."
+          }
         }
       ],
       "impact": [
@@ -142,24 +134,20 @@
         {
           "teamId": "amax-visionaries",
           "teamName": "Amax Visionaries",
-          "receives": [
-            {
-              "playerId": "adil-mubashir",
-              "name": "Adil Mubashir",
-              "note": "Gives Amax a new option after a difficult Week 1 loss."
-            }
-          ]
+          "receives": {
+            "playerId": "adil-mubashir",
+            "name": "Adil Mubashir",
+            "note": "Gives Amax a new option after a difficult Week 1 loss."
+          }
         },
         {
           "teamId": "sharp-strikers",
           "teamName": "Sharp Strikers",
-          "receives": [
-            {
-              "playerId": "jamal-mujaddidi",
-              "name": "Jamal Mujaddidi",
-              "note": "Adds depth to a Sharp Strikers team that started the season with a win."
-            }
-          ]
+          "receives": {
+            "playerId": "jamal-mujaddidi",
+            "name": "Jamal Mujaddidi",
+            "note": "Adds depth to a Sharp Strikers team that started the season with a win."
+          }
         }
       ],
       "impact": [
@@ -181,24 +169,20 @@
         {
           "teamId": "islamic-bookstore-runners",
           "teamName": "Islamic Bookstore Runners",
-          "receives": [
-            {
-              "playerId": "mohammed-hasan",
-              "name": "Mohammed Hasan",
-              "note": "Moved from Amax Optical Kickers."
-            }
-          ]
+          "receives": {
+            "playerId": "mohammed-hasan",
+            "name": "Mohammed Hasan",
+            "note": "Moved from Amax Optical Kickers."
+          }
         },
         {
           "teamId": "amax-optical-kickers",
           "teamName": "Amax Optical Kickers",
-          "receives": [
-            {
-              "name": "Roster spot",
-              "href": "./team.html?season=2025&id=amax-optical-kickers",
-              "note": "Team adjustment after the exhibition match."
-            }
-          ]
+          "receives": {
+            "name": "Roster spot",
+            "href": "./team.html?season=2025&id=amax-optical-kickers",
+            "note": "Team adjustment after the exhibition match."
+          }
         }
       ],
       "impact": [
@@ -219,24 +203,20 @@
         {
           "teamId": "asif-gangat-united-2025",
           "teamName": "Asif Gangat United",
-          "receives": [
-            {
-              "playerId": "bilal-sami-ahmad",
-              "name": "Bilal Sami Syed",
-              "note": "Moved from Islamic Bookstore Runners."
-            }
-          ]
+          "receives": {
+            "playerId": "bilal-sami-ahmad",
+            "name": "Bilal Sami Syed",
+            "note": "Moved from Islamic Bookstore Runners."
+          }
         },
         {
           "teamId": "islamic-bookstore-runners",
           "teamName": "Islamic Bookstore Runners",
-          "receives": [
-            {
-              "name": "Roster spot",
-              "href": "./team.html?season=2025&id=islamic-bookstore-runners",
-              "note": "Team adjustment after the exhibition match."
-            }
-          ]
+          "receives": {
+            "name": "Roster spot",
+            "href": "./team.html?season=2025&id=islamic-bookstore-runners",
+            "note": "Team adjustment after the exhibition match."
+          }
         }
       ],
       "impact": [
@@ -257,24 +237,20 @@
         {
           "teamId": "amax-optical-kickers",
           "teamName": "Amax Optical Kickers",
-          "receives": [
-            {
-              "playerId": "tulha-ahmed",
-              "name": "Tulha Ahmed",
-              "note": "Moved from Asif Gangat United."
-            }
-          ]
+          "receives": {
+            "playerId": "tulha-ahmed",
+            "name": "Tulha Ahmed",
+            "note": "Moved from Asif Gangat United."
+          }
         },
         {
           "teamId": "asif-gangat-united-2025",
           "teamName": "Asif Gangat United",
-          "receives": [
-            {
-              "name": "Roster spot",
-              "href": "./team.html?season=2025&id=asif-gangat-united-2025",
-              "note": "Team adjustment after the exhibition match."
-            }
-          ]
+          "receives": {
+            "name": "Roster spot",
+            "href": "./team.html?season=2025&id=asif-gangat-united-2025",
+            "note": "Team adjustment after the exhibition match."
+          }
         }
       ],
       "impact": [
@@ -295,24 +271,20 @@
         {
           "teamId": "amax-optical-kickers",
           "teamName": "Amax Optical Kickers",
-          "receives": [
-            {
-              "playerId": "sufyan-munshi",
-              "name": "Sufyan Munshi",
-              "note": "Moved up to the Seniors division."
-            }
-          ]
+          "receives": {
+            "playerId": "sufyan-munshi",
+            "name": "Sufyan Munshi",
+            "note": "Moved up to the Seniors division."
+          }
         },
         {
           "teamId": "the-travel-builder-united",
           "teamName": "Travel Builder United",
-          "receives": [
-            {
-              "name": "Junior roster spot",
-              "href": "./team.html?season=2025&id=the-travel-builder-united",
-              "note": "Sufyan moved up to Seniors."
-            }
-          ]
+          "receives": {
+            "name": "Junior roster spot",
+            "href": "./team.html?season=2025&id=the-travel-builder-united",
+            "note": "Sufyan moved up to Seniors."
+          }
         }
       ],
       "impact": [
@@ -348,13 +320,11 @@
         },
         {
           "teamName": "LSL Junior Player Pool",
-          "receives": [
-            {
-              "name": "Roster adjustment",
-              "href": "./transactions.html",
-              "note": "Junior team adjustment after the exhibition match."
-            }
-          ]
+          "receives": {
+            "name": "Roster adjustment",
+            "href": "./transactions.html",
+            "note": "Junior team adjustment after the exhibition match."
+          }
         }
       ],
       "impact": [
@@ -375,24 +345,20 @@
         {
           "teamId": "em-truck-repair-fc",
           "teamName": "EM Truck Repair FC",
-          "receives": [
-            {
-              "playerId": "abrar-makrod",
-              "name": "Abrar Makrod",
-              "note": "Moved from Dhahabiya Strikers."
-            }
-          ]
+          "receives": {
+            "playerId": "abrar-makrod",
+            "name": "Abrar Makrod",
+            "note": "Moved from Dhahabiya Strikers."
+          }
         },
         {
           "teamId": "dhahabiya-strikers",
           "teamName": "Dhahabiya Strikers",
-          "receives": [
-            {
-              "name": "Roster spot",
-              "href": "./team.html?season=2025&id=dhahabiya-strikers",
-              "note": "Team adjustment after Abrar moved to EM Truck Repair FC."
-            }
-          ]
+          "receives": {
+            "name": "Roster spot",
+            "href": "./team.html?season=2025&id=dhahabiya-strikers",
+            "note": "Team adjustment after Abrar moved to EM Truck Repair FC."
+          }
         }
       ],
       "impact": [
@@ -413,24 +379,20 @@
         {
           "teamId": "the-travel-builder-united",
           "teamName": "Travel Builder United",
-          "receives": [
-            {
-              "playerId": "idrees-nawabi-travel",
-              "name": "Idrees Nawabi",
-              "note": "Moved to Travel Builder United."
-            }
-          ]
+          "receives": {
+            "playerId": "idrees-nawabi-travel",
+            "name": "Idrees Nawabi",
+            "note": "Moved to Travel Builder United."
+          }
         },
         {
           "teamId": "em-truck-repair-fc",
           "teamName": "EM Truck Repair FC",
-          "receives": [
-            {
-              "name": "Roster spot",
-              "href": "./team.html?season=2025&id=em-truck-repair-fc",
-              "note": "Team adjustment after Idrees moved to Travel Builder United."
-            }
-          ]
+          "receives": {
+            "name": "Roster spot",
+            "href": "./team.html?season=2025&id=em-truck-repair-fc",
+            "note": "Team adjustment after Idrees moved to Travel Builder United."
+          }
         }
       ],
       "impact": [

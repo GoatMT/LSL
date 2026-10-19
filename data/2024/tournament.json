@@ -4,7 +4,10 @@
     "name": "Inter-Madrasah Soccer Tournament",
     "source": "Tournament did not start until 2025"
   },
-  "divisions": [],
-  "matches": [],
-  "playoffs": { "champion": "", "rounds": [] }
+  "divisions": null,
+  "matches": null,
+  "playoffs": {
+    "champion": "",
+    "rounds": null
+  }
 }

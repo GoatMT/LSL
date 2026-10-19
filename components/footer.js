@@ -10,22 +10,40 @@ export function renderFooter() {
           <span>Built With The Speed And Skill Of Our Players</span><br>
           <span class="footer-shoutout">Shoutout: Abdul Ghiyas Solyman (TikTok: <a href="https://www.tiktok.com/@raz.aep14" target="_blank" rel="noopener">@raz.aep14</a>), Taaha Nakhuda, Ishaaq Ali — and as far as who I am, keeping that on the low 😉</span>
         </div>
-        <a
-          class="footer-academy-link"
-          href="https://lanternofknowledgeacademy.ca/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit Lantern of Knowledge Academy"
-        >
-          <img
-            class="footer-academy-logo"
-            src="./Logos/lantern-of-knowledge-academy.png"
-            alt="Lantern of Knowledge Academy"
-            width="112"
-            height="112"
+        <div class="footer-partners" aria-label="League partners and games">
+          <a
+            class="footer-partner-link footer-academy-link"
+            href="https://lanternofknowledgeacademy.ca/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Lantern of Knowledge Academy"
           >
-        </a>
+            <img
+              class="footer-academy-logo"
+              src="./Logos/lantern-of-knowledge-academy.png"
+              alt="Lantern of Knowledge Academy"
+              width="112"
+              height="112"
+            >
+          </a>
+          <a
+            class="footer-partner-link footer-rush-link"
+            href="https://goatmt.github.io/Lantern-Rush/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Play Lantern Rush"
+          >
+            <img
+              class="footer-rush-logo"
+              src="./Logos/LanternRush.png"
+              alt="Lantern Rush"
+              width="160"
+              height="112"
+            >
+          </a>
+        </div>
       </div>
     </footer>
   `;
 }
+

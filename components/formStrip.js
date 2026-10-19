@@ -33,3 +33,4 @@ export function renderFormStrip(form = [], label = "Last 5") {
     </div>
   `;
 }
+

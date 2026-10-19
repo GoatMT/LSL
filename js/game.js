@@ -1,9 +1,9 @@
 import { renderFormStrip } from "../components/formStrip.js";
 import { renderMatchCard } from "../components/matchCard.js?v=3.2";
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=1.1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261018-media1";
 import { calculateTeamForm, calculateTeamRecord, computePlayerStats, getMatchTeams, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";
 import { escapeHTML, formatDateWithISO, getQueryParam, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
@@ -186,13 +186,16 @@ function renderGameMediaCard(item, type) {
   const title = item.title || (isPhoto ? "Match photo" : "Match video");
   const media = source
     ? isPhoto
-      ? `<img src="${escapeHTML(source)}" alt="${escapeHTML(title)}" loading="lazy">`
-      : `<video controls preload="metadata" src="${escapeHTML(source)}"></video>`
+      ? `<img src="${escapeHTML(source)}" alt="${escapeHTML(title)}" loading="lazy" decoding="async">`
+      : `<video controls playsinline preload="metadata" data-media-title="${escapeHTML(title)}">
+          <source src="${escapeHTML(source)}" type="video/mp4">
+          Your browser cannot play this video.
+        </video>`
     : `<span>${escapeHTML(isPhoto ? "Photo coming soon" : "Video coming soon")}</span>`;
 
   return `
     <article class="card media-card game-media-card">
-      <div class="game-media-thumb ${isPhoto ? "photo-thumb" : "video-thumb"}">${media}</div>
+      <div class="game-media-thumb media-frame ${isPhoto ? "photo-thumb" : "video-thumb"}">${media}</div>
       <span class="pill">${escapeHTML(item.category || (isPhoto ? "Photo" : "Video"))}</span>
       <h3>${escapeHTML(title)}</h3>
       <p>${escapeHTML(item.description || `${isPhoto ? "Photo" : "Video"} details will be posted soon.`)}</p>
@@ -378,3 +381,5 @@ async function init() {
 }
 
 init();
+
+

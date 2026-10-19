@@ -1,0 +1,10 @@
+/* Lantern Rush shared design tokens: site pages, gameplay UI, and Live H2H. */
+:root{
+  color-scheme:dark;
+  --ink:#0b2528;--panel:#123b38;--line:#e1e8d529;--cream:#f5f1dc;--gold:#e9d28d;--lime:#e8f5a1;--muted:#a8c3b8;
+  --font:Inter,Arial,Helvetica,sans-serif;
+  --admin-ink:#f3f2e9;--admin-muted:#9cb0ad;--admin-gold:#e3d294;--admin-line:#b9cfca2e;--admin-panel:#102f35;--admin-danger:#e78679;
+  --site-nav-height:78px;
+  --space-control:10px;--button-min-height:44px;--radius-control:8px;--radius-card:13px;--radius-panel:18px;--radius-dialog:20px;
+  --shadow-panel:0 12px 35px #00000018;--motion-ui:.18s ease;
+}

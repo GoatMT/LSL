@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=1.1";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261018-media1";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { escapeHTML, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("transactions.html");
@@ -171,3 +171,5 @@ async function init() {
 }
 
 init();
+
+

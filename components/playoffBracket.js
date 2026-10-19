@@ -74,3 +74,4 @@ export function renderPlayoffBracket(playoffs = { rounds: [] }) {
     ${playoffs.champion ? `<p class="source-note">Champion: <strong>${escapeHTML(playoffs.champion)}</strong></p>` : ""}
   `;
 }
+

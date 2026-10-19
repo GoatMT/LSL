@@ -1,6 +1,6 @@
-import { loadJSON } from "./dataLoader.js?v=1.1";
+import { loadJSON } from "./dataLoader.js?v=20261018-media1";
 import { renderFanVoteCard, hydrateFanVote } from "./fanVote.js";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("voting.html");
@@ -71,3 +71,5 @@ async function init() {
 }
 
 init();
+
+

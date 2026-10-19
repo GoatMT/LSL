@@ -14,22 +14,18 @@
       "homeScore": 1,
       "awayScore": 1,
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "mudassir",
-          "teamId": "leeward-lions",
-          "name": "Mudassir",
-          "goals": 1
-        }
-      ],
-      "assists": [
-        {
-          "playerId": "ajmal-shakkari",
-          "teamId": "leeward-lions",
-          "name": "Ajmal Chakkari",
-          "assists": 1
-        }
-      ],
+      "scorers": {
+        "playerId": "mudassir",
+        "teamId": "leeward-lions",
+        "name": "Mudassir",
+        "goals": 1
+      },
+      "assists": {
+        "playerId": "ajmal-shakkari",
+        "teamId": "leeward-lions",
+        "name": "Ajmal Chakkari",
+        "assists": 1
+      },
       "notes": [
         "Final score reported June 13, 2026.",
         "Rawaha Royals tied Leeward Lions 1-1.",
@@ -51,14 +47,12 @@
       "awayScore": 1,
       "winnerId": "gangat-warriors",
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "taha-nakhuda",
-          "teamId": "gangat-warriors",
-          "name": "Taaha Nakhuda",
-          "goals": 1
-        }
-      ],
+      "scorers": {
+        "playerId": "taha-nakhuda",
+        "teamId": "gangat-warriors",
+        "name": "Taaha Nakhuda",
+        "goals": 1
+      },
       "notes": [
         "Gangat Warriors defeated Memon Mavericks 1-0.",
         "Taaha Nakhuda scored the winning goal on a penalty kick."
@@ -104,14 +98,12 @@
           "goals": 1
         }
       ],
-      "assists": [
-        {
-          "playerId": "abdul-ghiyas-solyman",
-          "teamId": "em-haulers-fc",
-          "name": "Abdul Ghiyas Solyman",
-          "assists": 1
-        }
-      ],
+      "assists": {
+        "playerId": "abdul-ghiyas-solyman",
+        "teamId": "em-haulers-fc",
+        "name": "Abdul Ghiyas Solyman",
+        "assists": 1
+      },
       "stars": [
         {
           "rank": 1,
@@ -192,9 +184,7 @@
       "time": "12:15 PM - 1:15 PM",
       "activityTitle": "Skills, Dribbling, Scrimmage",
       "status": "Completed Activity",
-      "notes": [
-        "LSL Week 1 Juniors skills, dribbling, and scrimmage session was completed on June 13, 2026."
-      ]
+      "notes": "LSL Week 1 Juniors skills, dribbling, and scrimmage session was completed on June 13, 2026."
     },
     {
       "id": "2026-seniors-week-2-game-5",
@@ -210,15 +200,13 @@
       "awayScore": 0,
       "winnerId": "refuel-rovers",
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "mosa-fazli",
-          "teamId": "refuel-rovers",
-          "name": "Mosa Fazli",
-          "goals": 1
-        }
-      ],
-      "assists": [],
+      "scorers": {
+        "playerId": "mosa-fazli",
+        "teamId": "refuel-rovers",
+        "name": "Mosa Fazli",
+        "goals": 1
+      },
+      "assists": null,
       "notes": [
         "Refuel Rovers defeated Amax Visionaries 1-0.",
         "Mosa Fazli scored the winning goal."
@@ -258,14 +246,12 @@
           "goals": 1
         }
       ],
-      "assists": [
-        {
-          "playerId": "mudassir",
-          "teamId": "leeward-lions",
-          "name": "Mudassir",
-          "assists": 1
-        }
-      ],
+      "assists": {
+        "playerId": "mudassir",
+        "teamId": "leeward-lions",
+        "name": "Mudassir",
+        "assists": 1
+      },
       "stars": [
         {
           "rank": 1,
@@ -332,7 +318,7 @@
           "goals": 2
         }
       ],
-      "assists": [],
+      "assists": null,
       "stars": [
         {
           "rank": 1,
@@ -394,7 +380,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "referee": "Hafizullah",
       "stars": [
         {
@@ -436,9 +422,7 @@
       "time": "12:15 PM - 1:15 PM",
       "activityTitle": "Skills, Dribbling, Scrimmage",
       "status": "Completed Activity",
-      "notes": [
-        "LSL Week 2 Juniors skills, dribbling, and scrimmage session was completed on June 20, 2026."
-      ]
+      "notes": "LSL Week 2 Juniors skills, dribbling, and scrimmage session was completed on June 20, 2026."
     },
     {
       "id": "2026-seniors-week-3-game-9",
@@ -535,14 +519,12 @@
           "goals": 1
         }
       ],
-      "assists": [
-        {
-          "playerId": "abdul-ghiyas-solyman",
-          "teamId": "refuel-rovers",
-          "name": "Abdul Ghiyas Solyman",
-          "assists": 2
-        }
-      ],
+      "assists": {
+        "playerId": "abdul-ghiyas-solyman",
+        "teamId": "refuel-rovers",
+        "name": "Abdul Ghiyas Solyman",
+        "assists": 2
+      },
       "stars": [
         {
           "rank": 1,
@@ -606,14 +588,12 @@
           "goals": 1
         }
       ],
-      "assists": [
-        {
-          "playerId": "muhammad-teli",
-          "teamId": "leeward-lions",
-          "name": "Muhummud Teli",
-          "assists": 1
-        }
-      ],
+      "assists": {
+        "playerId": "muhammad-teli",
+        "teamId": "leeward-lions",
+        "name": "Muhummud Teli",
+        "assists": 1
+      },
       "stars": [
         {
           "rank": 1,
@@ -676,14 +656,12 @@
           "goals": 2
         }
       ],
-      "assists": [
-        {
-          "playerId": "haroon-ahmadi",
-          "teamId": "em-haulers-fc",
-          "name": "Haroon Ahmadi",
-          "assists": 1
-        }
-      ],
+      "assists": {
+        "playerId": "haroon-ahmadi",
+        "teamId": "em-haulers-fc",
+        "name": "Haroon Ahmadi",
+        "assists": 1
+      },
       "stars": [
         {
           "rank": 1,
@@ -721,9 +699,7 @@
       "time": "12:15 PM - 1:15 PM",
       "activityTitle": "Skills, Dribbling, Scrimmage",
       "status": "Completed",
-      "notes": [
-        "Week 3 Juniors skills, dribbling, and scrimmage session was completed on June 27, 2026."
-      ]
+      "notes": "Week 3 Juniors skills, dribbling, and scrimmage session was completed on June 27, 2026."
     },
     {
       "id": "2026-seniors-week-4-game-13",
@@ -765,7 +741,7 @@
           "goals": 2
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Leeward Lions defeated Memon Mavericks 8-2 in Week 4.",
         "Mudassir scored five goals.",
@@ -832,7 +808,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Sharp Strikers defeated Rawaha Royals 4-3 in Week 4.",
         "Rehan Mohammed, Marwan Ahmed, M Yahya, and Mohammed Rayyan Syed each scored for Sharp Strikers.",
@@ -867,7 +843,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "EM Haulers FC defeated Refuel Rovers 2-1 in Week 4.",
         "Abdul Ghiyas Solyman scored a penalty kick for Refuel Rovers.",
@@ -903,7 +879,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Amax Visionaries defeated Gangat Warriors 2-0 in Week 4.",
         "Adil Mubashir and Mohamad Reda Alijalam scored for Amax Visionaries."
@@ -919,9 +895,7 @@
       "time": "12:15 PM - 1:15 PM",
       "activityTitle": "Skills, Dribbling & Scrimmage",
       "status": "Completed Activity",
-      "notes": [
-        "Week 4 Juniors skills, dribbling, and scrimmage were held on Saturday, July 4, 2026 from 12:15 PM to 1:15 PM."
-      ]
+      "notes": "Week 4 Juniors skills, dribbling, and scrimmage were held on Saturday, July 4, 2026 from 12:15 PM to 1:15 PM."
     },
     {
       "id": "2026-seniors-week-5-game-17",
@@ -963,7 +937,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Rawaha Royals defeated Amax Visionaries 4-1 in Week 5.",
         "Mohammad Ibrahim scored twice for Rawaha Royals.",
@@ -986,15 +960,13 @@
       "awayScore": 1,
       "winnerId": "refuel-rovers",
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "mosa-fazli",
-          "teamId": "refuel-rovers",
-          "name": "Mosa Fazli",
-          "goals": 1
-        }
-      ],
-      "assists": [],
+      "scorers": {
+        "playerId": "mosa-fazli",
+        "teamId": "refuel-rovers",
+        "name": "Mosa Fazli",
+        "goals": 1
+      },
+      "assists": null,
       "notes": [
         "Refuel Rovers defeated Gangat Warriors 1-0 in Week 5.",
         "Mosa Fazli scored the winning goal."
@@ -1014,18 +986,14 @@
       "awayScore": 0,
       "winnerId": "leeward-lions",
       "status": "Finished Early",
-      "absences": [
-        "uwais-bemat"
-      ],
-      "scorers": [
-        {
-          "playerId": "mudassir",
-          "teamId": "leeward-lions",
-          "name": "Mudassir",
-          "goals": 1
-        }
-      ],
-      "assists": [],
+      "absences": "uwais-bemat",
+      "scorers": {
+        "playerId": "mudassir",
+        "teamId": "leeward-lions",
+        "name": "Mudassir",
+        "goals": 1
+      },
+      "assists": null,
       "notes": [
         "Leeward Lions led EM Haulers FC 1-0 when the match was finished early with around five minutes remaining.",
         "Mudassir scored the Leeward Lions goal.",
@@ -1050,15 +1018,13 @@
       "awayScore": 0,
       "winnerId": "sharp-strikers",
       "status": "Finished Early",
-      "scorers": [
-        {
-          "playerId": "mohammed-rayyan-sayed",
-          "teamId": "sharp-strikers",
-          "name": "Mohammed Rayyan Syed",
-          "goals": 1
-        }
-      ],
-      "assists": [],
+      "scorers": {
+        "playerId": "mohammed-rayyan-sayed",
+        "teamId": "sharp-strikers",
+        "name": "Mohammed Rayyan Syed",
+        "goals": 1
+      },
+      "assists": null,
       "notes": [
         "Sharp Strikers defeated Memon Mavericks 1-0 in Week 5.",
         "Mohammed Rayyan Syed scored the winning goal.",
@@ -1105,7 +1071,7 @@
           "goals": 2
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Sharp Strikers defeated Leeward Lions 5-4 in Week 6.",
         "Mudassir scored three goals for Leeward Lions.",
@@ -1154,7 +1120,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Amax Visionaries defeated Memon Mavericks 4-2 in Week 6.",
         "Adil Mubashir scored three goals for Amax Visionaries.",
@@ -1200,7 +1166,7 @@
           "goals": 3
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "EM Haulers FC defeated Gangat Warriors 4-3 in Week 6.",
         "Haroon Ahmadi scored three goals for EM Haulers FC.",
@@ -1224,15 +1190,13 @@
       "awayScore": 0,
       "winnerId": "rawaha-royals",
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "mohammed-ibrahim",
-          "teamId": "rawaha-royals",
-          "name": "Mohammad Ibrahim",
-          "goals": 2
-        }
-      ],
-      "assists": [],
+      "scorers": {
+        "playerId": "mohammed-ibrahim",
+        "teamId": "rawaha-royals",
+        "name": "Mohammad Ibrahim",
+        "goals": 2
+      },
+      "assists": null,
       "notes": [
         "Rawaha Royals defeated Refuel Rovers 2-0 in Week 6.",
         "Mohammad Ibrahim scored both Rawaha Royals goals."
@@ -1248,9 +1212,7 @@
       "time": "12:15 PM - 1:15 PM",
       "activityTitle": "Skills, Dribbling, Scrimmage",
       "status": "Completed Activity",
-      "notes": [
-        "Week 6 Juniors skills, dribbling, and scrimmage session was completed on July 25, 2026."
-      ]
+      "notes": "Week 6 Juniors skills, dribbling, and scrimmage session was completed on July 25, 2026."
     },
     {
       "id": "2026-seniors-week-7-game-25",
@@ -1266,25 +1228,19 @@
       "awayScore": 0,
       "winnerId": "leeward-lions",
       "status": "Complete",
-      "absences": [
-        "usman-ahmad-popal"
-      ],
-      "scorers": [
-        {
-          "playerId": "ajmal-shakkari",
-          "teamId": "leeward-lions",
-          "name": "Ajmal Chakkari",
-          "goals": 1
-        }
-      ],
-      "assists": [
-        {
-          "playerId": "muhammad-teli",
-          "teamId": "leeward-lions",
-          "name": "Muhummud Teli",
-          "assists": 1
-        }
-      ],
+      "absences": "usman-ahmad-popal",
+      "scorers": {
+        "playerId": "ajmal-shakkari",
+        "teamId": "leeward-lions",
+        "name": "Ajmal Chakkari",
+        "goals": 1
+      },
+      "assists": {
+        "playerId": "muhammad-teli",
+        "teamId": "leeward-lions",
+        "name": "Muhummud Teli",
+        "assists": 1
+      },
       "notes": [
         "Leeward Lions defeated Refuel Rovers 1-0 in Week 7.",
         "Ajmal Chakkari scored the only goal, assisted by Muhummud Teli.",
@@ -1304,9 +1260,7 @@
       "homeScore": 1,
       "awayScore": 1,
       "status": "Complete",
-      "absences": [
-        "muzamil-kharooti"
-      ],
+      "absences": "muzamil-kharooti",
       "scorers": [
         {
           "playerId": "haroon-ahmadi",
@@ -1321,7 +1275,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "EM Haulers FC tied Memon Mavericks 1-1 in Week 7.",
         "M. Affan scored first for Memon Mavericks.",
@@ -1438,7 +1392,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Amax Visionaries tied Sharp Strikers 1-1 in Week 7.",
         "Adil Mubashir scored for Amax Visionaries.",
@@ -1459,15 +1413,13 @@
       "awayScore": 0,
       "winnerId": "leeward-lions",
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "mudassir",
-          "teamId": "leeward-lions",
-          "name": "Mudassir",
-          "goals": 1
-        }
-      ],
-      "assists": [],
+      "scorers": {
+        "playerId": "mudassir",
+        "teamId": "leeward-lions",
+        "name": "Mudassir",
+        "goals": 1
+      },
+      "assists": null,
       "notes": [
         "Quarterfinal 4: #1 seed Leeward Lions vs #8 seed Memon Mavericks.",
         "Leeward Lions defeated Memon Mavericks 1-0 to advance to the semifinals.",
@@ -1488,9 +1440,7 @@
       "awayScore": 1,
       "winnerId": "em-haulers-fc",
       "status": "Complete",
-      "absences": [
-        "taha-nakhuda"
-      ],
+      "absences": "taha-nakhuda",
       "scorers": [
         {
           "playerId": "muzamil-kharooti",
@@ -1511,7 +1461,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Quarterfinal 2: #2 seed EM Haulers FC vs #7 seed Gangat Warriors.",
         "EM Haulers FC defeated Gangat Warriors 4-1 to advance to the semifinals.",
@@ -1538,8 +1488,8 @@
         "homeScore": 3,
         "awayScore": 2
       },
-      "scorers": [],
-      "assists": [],
+      "scorers": null,
+      "assists": null,
       "notes": [
         "Quarterfinal 1: #3 seed Sharp Strikers vs #6 seed Amax Visionaries.",
         "Sharp Strikers and Amax Visionaries finished regulation tied 1-1.",
@@ -1560,15 +1510,13 @@
       "awayScore": 1,
       "winnerId": "refuel-rovers",
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "abdul-ghiyas-solyman",
-          "teamId": "refuel-rovers",
-          "name": "Abdul Ghiyas Solyman",
-          "goals": 1
-        }
-      ],
-      "assists": [],
+      "scorers": {
+        "playerId": "abdul-ghiyas-solyman",
+        "teamId": "refuel-rovers",
+        "name": "Abdul Ghiyas Solyman",
+        "goals": 1
+      },
+      "assists": null,
       "notes": [
         "Quarterfinal 3: #4 seed Rawaha Royals vs #5 seed Refuel Rovers.",
         "Refuel Rovers defeated Rawaha Royals 1-0 to advance to the semifinals.",
@@ -1605,7 +1553,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Semifinal 1: Winner of Quarterfinal 1 vs winner of Quarterfinal 2.",
         "Sharp Strikers advanced from Quarterfinal 1, beating Amax Visionaries 3-2 on penalties after a 1-1 draw.",
@@ -1656,14 +1604,12 @@
           "goals": 1
         }
       ],
-      "assists": [
-        {
-          "playerId": "abdul-ghiyas-solyman",
-          "teamId": "refuel-rovers",
-          "name": "Abdul Ghiyas Solyman",
-          "assists": 1
-        }
-      ],
+      "assists": {
+        "playerId": "abdul-ghiyas-solyman",
+        "teamId": "refuel-rovers",
+        "name": "Abdul Ghiyas Solyman",
+        "assists": 1
+      },
       "notes": [
         "Semifinal 2: Winner of Quarterfinal 3 vs winner of Quarterfinal 4.",
         "Refuel Rovers advanced from Quarterfinal 3, beating Rawaha Royals 1-0.",
@@ -1683,9 +1629,7 @@
       "time": "12:25 PM - 12:45 PM",
       "activityTitle": "Coaches & Volunteers Match",
       "status": "Scheduled",
-      "notes": [
-        "A friendly match for LSL coaches and volunteers between the semifinals and the Juniors games on Finals Day, August 8, 2026."
-      ]
+      "notes": "A friendly match for LSL coaches and volunteers between the semifinals and the Juniors games on Finals Day, August 8, 2026."
     },
     {
       "id": "2026-juniors-finals-day-game-1",
@@ -1697,9 +1641,7 @@
       "time": "12:45 PM - 1:05 PM",
       "activityTitle": "Juniors Game 1",
       "status": "Scheduled",
-      "notes": [
-        "Juniors Game 1 on Finals Day, Saturday, August 8, 2026."
-      ]
+      "notes": "Juniors Game 1 on Finals Day, Saturday, August 8, 2026."
     },
     {
       "id": "2026-juniors-finals-day-game-2",
@@ -1711,9 +1653,7 @@
       "time": "1:05 PM - 1:25 PM",
       "activityTitle": "Juniors Game 2",
       "status": "Scheduled",
-      "notes": [
-        "Juniors Game 2 on Finals Day, Saturday, August 8, 2026."
-      ]
+      "notes": "Juniors Game 2 on Finals Day, Saturday, August 8, 2026."
     },
     {
       "id": "2026-juniors-finals-day-final",
@@ -1725,9 +1665,7 @@
       "time": "1:25 PM - 1:45 PM",
       "activityTitle": "Junior Final",
       "status": "Scheduled",
-      "notes": [
-        "Junior Final on Finals Day, Saturday, August 8, 2026."
-      ]
+      "notes": "Junior Final on Finals Day, Saturday, August 8, 2026."
     },
     {
       "id": "2026-finals-day-dhuhr-break",
@@ -1739,9 +1677,7 @@
       "time": "1:45 PM - 2:00 PM",
       "activityTitle": "Dhuhr Break",
       "status": "Scheduled",
-      "notes": [
-        "Dhuhr Break before the LSL Championship Final on Finals Day, Saturday, August 8, 2026."
-      ]
+      "notes": "Dhuhr Break before the LSL Championship Final on Finals Day, Saturday, August 8, 2026."
     },
     {
       "id": "2026-seniors-playoffs-final",
@@ -1779,7 +1715,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "LSL Championship Final: Winner of Semifinal 1 vs winner of Semifinal 2.",
         "45 minutes including a 5-minute halftime.",
@@ -1802,9 +1738,7 @@
       "time": "2:45 PM onwards",
       "activityTitle": "Presentation Ceremony",
       "status": "Scheduled",
-      "notes": [
-        "Trophy and award presentation ceremony following the LSL Championship Final on Saturday, August 8, 2026."
-      ]
+      "notes": "Trophy and award presentation ceremony following the LSL Championship Final on Saturday, August 8, 2026."
     }
   ]
 }

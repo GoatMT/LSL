@@ -125,19 +125,17 @@
         },
         {
           "name": "Finals",
-          "matches": [
-            {
-              "label": "Finals",
-              "homeTeamId": "dhahabiya-strikers",
-              "homeTeamName": "Dhahabiya Strikers",
-              "awayTeamId": "rafik-enterprise-fc",
-              "awayTeamName": "Rafik Enterprise FC",
-              "homeScore": 2,
-              "awayScore": 1,
-              "winnerId": "dhahabiya-strikers",
-              "note": "Dhahabiya Strikers won the 2025 Junior League championship."
-            }
-          ]
+          "matches": {
+            "label": "Finals",
+            "homeTeamId": "dhahabiya-strikers",
+            "homeTeamName": "Dhahabiya Strikers",
+            "awayTeamId": "rafik-enterprise-fc",
+            "awayTeamName": "Rafik Enterprise FC",
+            "homeScore": 2,
+            "awayScore": 1,
+            "winnerId": "dhahabiya-strikers",
+            "note": "Dhahabiya Strikers won the 2025 Junior League championship."
+          }
         }
       ]
     }

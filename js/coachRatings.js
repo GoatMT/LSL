@@ -63,3 +63,5 @@ export function decorateCoachGrade(coach = {}, ratings = {}) {
     ratingAchievements: Array.isArray(rating?.achievements) ? rating.achievements : [],
   };
 }
+
+

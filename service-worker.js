@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v114";
+const CACHE_NAME = "lsl-cache-v118";
 
 /*
  * Static files that are safe to cache.
@@ -54,6 +54,7 @@ const APP_SHELL = [
   "./css/components.css",
   "./css/responsive.css",
   "./css/modern-system.css",
+  "./css/playoff-bracket.css",
   "./css/players.css",
   "./css/player-tiers.css",
   "./css/home-facts.css",
@@ -157,6 +158,10 @@ function isDataRequest(url) {
     url.pathname.includes("/data/") ||
     url.pathname.endsWith(".json")
   );
+}
+
+function isMediaRequest(url) {
+  return url.pathname.includes("/media/");
 }
 
 function shouldNeverCache(url) {
@@ -318,6 +323,15 @@ self.addEventListener("fetch", (event) => {
   */
   if (isDataRequest(url)) {
     event.respondWith(networkFirst(request));
+    return;
+  }
+
+  /*
+   * Uploaded media is versioned by filename. Prefer the network so a newly
+   * published clip or replacement image never gets stuck behind an old cache.
+   */
+  if (isMediaRequest(url)) {
+    event.respondWith(networkFirst(request, { cache: "no-store" }));
     return;
   }
 
@@ -629,3 +643,4 @@ self.addEventListener("message", (event) => {
     );
   }
 });
+

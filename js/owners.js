@@ -1,4 +1,4 @@
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("owners.html");
@@ -60,3 +60,5 @@ async function init() {
 }
 
 init();
+
+

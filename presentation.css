@@ -1,0 +1,22 @@
+#intro-overlay[data-stage="user"],#intro-overlay[data-stage="cpu"] { background:linear-gradient(90deg,#051b27b8,transparent 62%); }
+.intro-single { position:absolute; left:6%; top:50%; transform:translateY(-50%); width:240px; }
+.intro-single header { margin-bottom:14px; }
+.intro-single h2 { font-size:22px; margin:10px 0 6px; line-height:1.1; }
+.intro-single header>span:last-child,.intro-single footer { font-size:10px; letter-spacing:1.2px; color:#e0e6ce; }
+.intro-single footer { margin-top:13px; }
+.intro-single .intro-card { position:relative; left:0; top:0; width:240px; height:285px; transform:none; opacity:1; }
+.intro-single .intro-kit { top:20px; bottom:80px; transform:scale(1.4); }
+.intro-single .card-top b { font-size:34px; }.intro-single .card-top img { width:40px;height:40px; }
+.intro-single .card-name { padding:16px 10px; }.intro-single .card-name strong { font-size:19px; line-height:1.2; }
+.intro-single .card-name span { font-size:10px; padding-top:8px; }.intro-single .card-name small { display:block; font-size:10px; }
+@media (max-height:550px) and (orientation:landscape) {
+ .intro-single { left:5%; width:185px; }.intro-single header { margin-bottom:8px; }.intro-single h2 { font-size:17px; margin:6px 0; }
+ .intro-single .intro-card { width:185px;height:212px; }.intro-single .intro-kit { top:4px;bottom:52px;transform:scale(1.05); }
+ .intro-single .card-name { padding:9px 7px; }.intro-single .card-name strong { font-size:15px; }.intro-single .card-name span { font-size:9px; }.intro-single .card-name small { font-size:8px; }
+ .intro-single footer,.intro-single header>span:last-child { font-size:8px; }.intro-single footer { margin-top:7px; }
+}
+@media (max-width:600px) and (orientation:portrait) {
+ .intro-single { left:20px; top:auto; bottom:75px; transform:none; width:190px; }.intro-single h2 { font-size:19px; }
+ .intro-single .intro-card { width:190px; height:225px; }.intro-single .intro-kit { transform:scale(1.1);top:14px;bottom:66px; }
+ .intro-single .card-name { padding:10px 8px; }.intro-single .card-name strong { font-size:16px; }.intro-single .card-name span { font-size:9px; }
+}

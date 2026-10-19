@@ -1,7 +1,7 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=1.1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261018-media1";
 import { computePlayerStats, computeCombinedPlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("players.html");
@@ -18,6 +18,7 @@ const defaults = {
   minGames: "0",
   search: "",
   sortDirection: "asc",
+  leaderboardExpanded: false,
 };
 
 let state = { ...defaults };
@@ -373,15 +374,17 @@ function metricCell(player, metric, label) {
 }
 
 function leaderboardTable(players) {
-  const rows = players.slice(0, 10);
+  const rows = state.leaderboardExpanded ? players : players.slice(0, 10);
   if (!rows.length) return statusMessage("empty", "No players match these filters.");
   const showSelectedMetric = !["goals", "ovr"].includes(state.metric);
   const selectedMetricLabel = metricLabel();
+  const canExpand = players.length > 10;
+  const resultsLabel = state.leaderboardExpanded ? "All qualifying players" : "Top 10 players";
 
   return `
     <div class="players-table-wrap">
       <table class="players-rank-table">
-        <caption class="sr-only">Top 10 players ranked by ${escapeHTML(metricLabel())} ${escapeHTML(sortDirectionLabel())}</caption>
+        <caption class="sr-only">${escapeHTML(resultsLabel)} ranked by ${escapeHTML(metricLabel())} ${escapeHTML(sortDirectionLabel())}</caption>
         <thead>
           <tr>
             <th scope="col">Rank</th>
@@ -426,6 +429,14 @@ function leaderboardTable(players) {
         </tbody>
       </table>
     </div>
+    ${canExpand ? `
+      <div class="players-list-actions">
+        <span>Showing ${escapeHTML(rows.length)} of ${escapeHTML(players.length)} players</span>
+        <button class="button secondary" id="toggle-leaderboard" type="button" aria-expanded="${String(state.leaderboardExpanded)}">
+          ${state.leaderboardExpanded ? "Show Less" : "Show More"}
+        </button>
+      </div>
+    ` : ""}
   `;
 }
 
@@ -513,6 +524,7 @@ function render(allData, focusId = "") {
       const nextMetric = button.dataset.playerMetric || "goals";
       state.metric = nextMetric;
       state.sortDirection = "asc";
+      state.leaderboardExpanded = false;
       render(allData);
     });
   });
@@ -521,6 +533,7 @@ function render(allData, focusId = "") {
     document.getElementById(id)?.addEventListener("change", (event) => {
       state[id] = event.target.value;
       if (id === "season" || id === "division") state.position = "All";
+      state.leaderboardExpanded = false;
       render(allData);
     });
   });
@@ -529,11 +542,13 @@ function render(allData, focusId = "") {
     const input = document.getElementById(id);
     input?.addEventListener("change", (event) => {
       state[id] = event.target.value;
+      state.leaderboardExpanded = false;
       render(allData);
     });
     input?.addEventListener("keydown", (event) => {
       if (event.key !== "Enter") return;
       state[id] = event.currentTarget.value;
+      state.leaderboardExpanded = false;
       render(allData);
     });
   });
@@ -541,7 +556,13 @@ function render(allData, focusId = "") {
   const search = document.getElementById("search");
   search?.addEventListener("input", (event) => {
     state.search = event.target.value;
+    state.leaderboardExpanded = false;
     render(allData, "search");
+  });
+
+  document.getElementById("toggle-leaderboard")?.addEventListener("click", () => {
+    state.leaderboardExpanded = !state.leaderboardExpanded;
+    render(allData);
   });
 
   document.getElementById("reset-filters")?.addEventListener("click", () => {
@@ -571,3 +592,5 @@ async function init() {
 }
 
 init();
+
+

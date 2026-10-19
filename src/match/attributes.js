@@ -1,0 +1,13 @@
+import { clamp } from '../config.js';
+const styleText=data=>String(data?.playstyle?.label||'')+' '+(data?.playstyle?.traits||[]).join(' ').toLowerCase();
+const factor=(data,key,fallback=1)=>clamp(Number(data?.gameplayProfile?.ratings?.[key])||fallback,.65,1.3);
+export function playerRatings(data={}){
+ const overall=Number.isFinite(data.overall)?clamp(data.overall,50,100):70,q=(overall-50)/50,style=styleText(data),isGK=/goal|keeper/.test(data.position||data.role||'')||/goalkeeper/.test(style),creator=/pass|creat|assist/.test(style),finisher=/finish|scor|goal/.test(style),anchor=/defen|tackle|mark|anchor/.test(style),name=String(data.name||'').toLowerCase();
+ const r={speed:name.includes('muhummud teli')||name.includes('muhammad teli')?100:Math.round(clamp(62+q*31+(finisher?2:0),55,99)),shooting:Math.round(clamp(58+q*34+(finisher?6:0),50,99)),passing:Math.round(clamp(57+q*34+(creator?7:0),50,99)),dribbling:Math.round(clamp(59+q*32+(creator||finisher?4:0),50,99)),defending:Math.round(clamp(54+q*33+(anchor?8:0),45,99)),stamina:Math.round(clamp(64+q*28,55,99)),goalkeeping:isGK?Math.round(clamp(62+q*35,55,99)):Math.round(clamp(35+q*30,25,75))};
+ for(const k of Object.keys(r))if(k!=='stamina')r[k]=Math.round(clamp(r[k]*factor(data,k),1,100));return Object.freeze(r);
+}
+export function playerAttributes(data={}){
+ const q=Number.isFinite(data.overall)?clamp((data.overall-50)/49,0,1):.5,style=data.playstyle?.label||'',t=data.gameplayProfile?.tendencies||{},shooting=factor(data,'shooting'),iq=factor(data,'iq'),finisher=['Elite Finisher','Goal-First Attacker'].includes(style);
+ const profileTraits=(data.gameplayProfile?.traits||[]).join(' ').toLowerCase(),identity=(String(data.id||'')+' '+String(data.name||'')).toLowerCase(),eliteDribbler=/best dribbler|elite dribbler/.test(profileTraits)||/haroon[- ]ahmadi|mudassir|mudasir/.test(identity),dribbleBase=(.4+q*.45+(style==='Creator'?.08:0))*factor(data,'dribbling')*(eliteDribbler?1.24:1),dribble=clamp(dribbleBase,.3,1.22);
+ return Object.freeze({ratings:playerRatings(data),speed:clamp((.97+q*.06)*factor(data,'speed'),.72,1.28),momentum:factor(data,'momentum'),shotPower:clamp((.97+q*.06)*shooting,.72,1.3),shotError:clamp((1.2-q*.4-(finisher?.1:0))/factor(data,'shootingAccuracy',shooting),.55,1.6),passLead:clamp((style==='Creator'?1.15:1)*factor(data,'passing'),.7,1.35),forwardRun:clamp((finisher?1.1:1)*(Number(t.run)||1),.75,1.3),defending:clamp((style==='Defensive Anchor'?1.12:1)*factor(data,'defending')*(.85+iq*.15),.65,1.4),keeper:clamp((.94+q*.12)*factor(data,'goalkeeping'),.55,1.4),dribble,dribbleShield:clamp((dribble-.92)*.62,0,.18),strength:factor(data,'strength'),iq,foulRisk:factor(data,'discipline'),headerJump:clamp(Number(data.gameplayProfile?.headerJump)||1,.85,1.3)});
+}

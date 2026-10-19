@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 import {
   CAP_MAX,
@@ -1668,3 +1668,5 @@ async function init() {
 }
 
 init();
+
+

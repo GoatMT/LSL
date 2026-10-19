@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "baseSource": "LSL season roster overall",
+  "seasons": [2024, 2025, 2026],
+  "cardPrograms": [
+    {"id":"base","name":"BASE MT","boost":0},
+    {"id":"rivalries","name":"RIVALRIES","boost":6},
+    {"id":"toty","name":"LSL TEAM OF THE YEAR","boost":8},
+    {"id":"tots","name":"TEAM OF THE SEASON","boost":7},
+    {"id":"ultimate-tots","name":"ULTIMATE TOTS","boost":12},
+    {"id":"inter-madrasah","name":"INTER-MADRASAH","boost":5}
+  ],
+  "packs": [
+    {"id":"standard","name":"STANDARD PACK","cost":250,"currency":"coins","minimum":60,"guarantee":"60+ OVR","odds":{"bronze":0.7,"silver":0.25,"gold":0.05}},
+    {"id":"silver","name":"SILVER PACK","cost":700,"currency":"coins","minimum":70,"guarantee":"70+ OVR","odds":{"silver":0.72,"gold":0.25,"elite":0.03}},
+    {"id":"gold","name":"GOLD PACK","cost":1500,"currency":"coins","minimum":78,"guarantee":"78+ OVR","odds":{"gold":0.66,"elite":0.3,"special":0.04}},
+    {"id":"elite","name":"ELITE PACK","cost":3000,"currency":"coins","minimum":80,"guarantee":"80+ OVR","odds":{"gold":0.25,"elite":0.62,"special":0.13}},
+    {"id":"event","name":"EVENT PACK","cost":750,"currency":"vouchers","minimum":75,"guarantee":"75+ OVR","odds":{"silver":0.35,"gold":0.45,"elite":0.18,"special":0.02}},
+    {"id":"toty","name":"TOTY PACK","cost":2500,"currency":"vouchers","minimum":82,"guarantee":"82+ OVR · TOTY chance","odds":{"elite":0.7,"special":0.25,"premium":0.05}},
+    {"id":"tots","name":"TOTS PACK","cost":2500,"currency":"vouchers","minimum":82,"guarantee":"82+ OVR · TOTS chance","odds":{"elite":0.7,"special":0.25,"premium":0.05}},
+    {"id":"rivalries","name":"RIVALRIES PACK","cost":1800,"currency":"vouchers","minimum":78,"guarantee":"78+ OVR · Rivalries chance","odds":{"gold":0.5,"elite":0.38,"special":0.12}},
+    {"id":"inter-madrasah","name":"INTER-MADRASAH PACK","cost":1800,"currency":"vouchers","minimum":78,"guarantee":"78+ OVR · IMT chance","odds":{"gold":0.5,"elite":0.38,"special":0.12}},
+    {"id":"ranked","name":"RANKED PACK","cost":0,"currency":"reward","minimum":75,"guarantee":"75+ OVR","odds":{"silver":0.3,"gold":0.45,"elite":0.22,"special":0.03}},
+    {"id":"premium","name":"PREMIUM PACK","cost":5000,"currency":"vouchers","minimum":85,"guarantee":"85+ OVR","odds":{"elite":0.35,"special":0.55,"premium":0.1}},
+    {"id":"draft-voucher-3000","name":"3,000 DRAFT VOUCHER PACK","cost":3000,"currency":"vouchers","minimum":70,"guarantee":"70+ OVR guaranteed","odds":{"70+":0.7,"80+":0.22,"85+":0.06,"90+":0.019,"95+":0.0009,"98+":0.0001,"100":0.00001}}
+  ],
+  "rankedDivisions": [
+    {"id":"bronze-iii","name":"Bronze III","rp":0,"loss":5,"target":65},
+    {"id":"bronze-ii","name":"Bronze II","rp":100,"loss":5,"target":68},
+    {"id":"bronze-i","name":"Bronze I","rp":250,"loss":6,"target":72},
+    {"id":"silver-iii","name":"Silver III","rp":450,"loss":8,"target":75},
+    {"id":"silver-ii","name":"Silver II","rp":700,"loss":9,"target":78},
+    {"id":"silver-i","name":"Silver I","rp":1000,"loss":10,"target":80},
+    {"id":"gold-iii","name":"Gold III","rp":1350,"loss":11,"target":82},
+    {"id":"gold-ii","name":"Gold II","rp":1750,"loss":12,"target":84},
+    {"id":"gold-i","name":"Gold I","rp":2200,"loss":13,"target":86},
+    {"id":"elite-iii","name":"Elite III","rp":2700,"loss":14,"target":88},
+    {"id":"elite-ii","name":"Elite II","rp":3250,"loss":15,"target":89},
+    {"id":"elite-i","name":"Elite I","rp":3850,"loss":16,"target":90},
+    {"id":"world-class-iii","name":"World Class III","rp":4500,"loss":17,"target":91},
+    {"id":"world-class-ii","name":"World Class II","rp":5200,"loss":18,"target":92},
+    {"id":"world-class-i","name":"World Class I","rp":5950,"loss":18,"target":93},
+    {"id":"legendary-iii","name":"Legendary III","rp":6750,"loss":19,"target":94},
+    {"id":"legendary-ii","name":"Legendary II","rp":7600,"loss":19,"target":95},
+    {"id":"legendary-i","name":"Legendary I","rp":8500,"loss":20,"target":96},
+    {"id":"lsl-champion","name":"LSL Champion","rp":9500,"loss":20,"target":98},
+    {"id":"lsl-icon","name":"LSL Icon","rp":10500,"loss":20,"target":100}
+  ],
+  "events": [
+    {"id":"toty","name":"LSL TEAM OF THE YEAR","accent":"#efc86a","description":"Build event points through CPU fixtures and claim the season's brightest cards.","steps":[{"points":0,"reward":"500 Coins"},{"points":250,"reward":"1,000 Draft Vouchers"},{"points":600,"reward":"TOTY Player Pack"},{"points":1000,"reward":"92+ TOTY Player"}]},
+    {"id":"tots","name":"TEAM OF THE SEASON","accent":"#5ad7c7","description":"Play for the best performers from 2024, 2025 and 2026.","steps":[{"points":0,"reward":"500 Coins"},{"points":500,"reward":"TOTS Pack"},{"points":1200,"reward":"93+ TOTS Player"}]},
+    {"id":"rivalries","name":"RIVALRIES","accent":"#ff765e","description":"Special CPU fixtures inspired by the LSL's biggest matchups.","steps":[{"points":0,"reward":"Rivalries Pack"},{"points":750,"reward":"Rivalries Player"}]},
+    {"id":"inter-madrasah","name":"INTER-MADRASAH","accent":"#9c8cff","description":"A single-player path through the tournament's biggest nights.","steps":[{"points":0,"reward":"IMT Pack"},{"points":500,"reward":"Inter-Madrasah Player"}]},
+    {"id":"playoff-push","name":"PLAYOFF PUSH","accent":"#f49c55","description":"Win tight matches and finish the run with a premium reward.","steps":[{"points":0,"reward":"750 Coins"},{"points":800,"reward":"Premium Pack"}]}
+  ],
+  "objectives": [
+    {"id":"daily-match","group":"DAILY","title":"Play 2 matches","target":2,"reward":"500 Coins"},
+    {"id":"daily-goals","group":"DAILY","title":"Score 5 goals","target":5,"reward":"250 Draft Vouchers"},
+    {"id":"weekly-win","group":"WEEKLY","title":"Win 5 CPU matches","target":5,"reward":"1,000 Draft Vouchers"},
+    {"id":"season-rank","group":"SEASONAL","title":"Reach Gold III","target":1,"reward":"Elite Pack"},
+    {"id":"event-match","group":"EVENT","title":"Complete an event fixture","target":1,"reward":"Event Points"}
+  ]
+}

@@ -1,4 +1,4 @@
-import { loadSeasonData } from "./dataLoader.js?v=1.1";
+import { loadSeasonData } from "./dataLoader.js?v=20261018-media1";
 import { renderFooter } from "../components/footer.js";
 import { controlSelect, escapeHTML, initials, setDocumentTitle, statusMessage } from "./utils.js";
 import { initPageAnimations } from "./animations.js?v=20260907-2";
@@ -306,11 +306,16 @@ function renderMediaStrip(tournament) {
           .map(
             (item) => `
               <article class="imt-media-card imt-media-${escapeHTML(item.key || mediaKey(item.title || ""))}">
-                ${
-                  isVideoSrc(item.src)
-                    ? `<video src="${escapeHTML(item.src)}" controls preload="metadata"></video>`
-                    : `<img src="${escapeHTML(item.src)}" alt="${escapeHTML(item.title)}" loading="lazy">`
-                }
+                <div class="imt-media-frame media-frame">
+                  ${
+                    isVideoSrc(item.src)
+                      ? `<video controls playsinline preload="metadata" data-media-title="${escapeHTML(item.title || "Tournament video")}">
+                          <source src="${escapeHTML(item.src)}" type="video/mp4">
+                          Your browser cannot play this video.
+                        </video>`
+                      : `<img src="${escapeHTML(item.src)}" alt="${escapeHTML(item.title)}" loading="lazy" decoding="async">`
+                  }
+                </div>
                 <div>
                   <strong>${escapeHTML(item.title)}</strong>
                   <p>${escapeHTML(item.caption || "Tournament photo.")}</p>
@@ -816,3 +821,5 @@ async function init() {
 }
 
 init();
+
+

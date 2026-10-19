@@ -1,8 +1,8 @@
 import { renderTeamCard } from "../components/teamCard.js?v=3.2";
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=1.1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261018-media1";
 import { calculateTeamForm, coachMap, computeCombinedPlayerStats, getTeamStats, playersWithOVR } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("teams.html");
@@ -63,3 +63,5 @@ async function init() {
 }
 
 init();
+
+

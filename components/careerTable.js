@@ -121,3 +121,4 @@ export function renderCoachCareerTable(rows = []) {
     </div>
   `;
 }
+

@@ -12,8 +12,8 @@ export function renderPhotoCard(photo) {
 
   return `
     <article class="card media-card">
-      <div class="photo-thumb">
-        ${photo.imageUrl ? `<img src="${escapeHTML(photo.imageUrl)}" alt="${escapeHTML(photo.title || "LSL photo")}">` : `<span>${escapeHTML(photo.category || "Photo")}</span>`}
+      <div class="photo-thumb media-frame">
+        ${photo.imageUrl ? `<img src="${escapeHTML(photo.imageUrl)}" alt="${escapeHTML(photo.title || "LSL photo")}" loading="lazy" decoding="async">` : `<span>${escapeHTML(photo.category || "Photo")}</span>`}
       </div>
       <span class="pill">${escapeHTML(photo.category || "Photo")}</span>
       <h3>${escapeHTML(photo.title || "Photo")}</h3>
@@ -24,3 +24,4 @@ export function renderPhotoCard(photo) {
     </article>
   `;
 }
+

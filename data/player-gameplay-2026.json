@@ -1,0 +1,1014 @@
+{
+  "season": "2026",
+  "notes": "User-provided gameplay scouting profiles. Official rosters and OVR values remain unchanged.",
+  "players": {
+    "mosa-fazli": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Goal scorer",
+        "Quick",
+        "Stocky build"
+      ],
+      "ratings": {
+        "speed": 1.03,
+        "shooting": 1.1,
+        "dribbling": 0.96
+      },
+      "physical": {
+        "height": 0.93,
+        "build": 1.12
+      },
+      "tendencies": {
+        "shoot": 1.22,
+        "run": 1.08
+      }
+    },
+    "yousaf-hosseinzada": {
+      "status": "profiled",
+      "traits": [
+        "Flex Focus",
+        "Powerful shot",
+        "Playoff performer",
+        "Builds speed with momentum"
+      ],
+      "ratings": {
+        "speed": 0.94,
+        "shooting": 1.13,
+        "momentum": 1.17
+      },
+      "physical": {},
+      "tendencies": {
+        "shoot": 1.15,
+        "run": 1.08
+      }
+    },
+    "abdul-ghiyas-solyman": {
+      "status": "profiled",
+      "traits": [
+        "Primarily left wing",
+        "Playmaker",
+        "Good shot",
+        "Limited dribbling",
+        "Slim build"
+      ],
+      "ratings": {
+        "speed": 0.94,
+        "shooting": 1.08,
+        "passing": 1.13,
+        "dribbling": 0.82
+      },
+      "physical": {
+        "build": 0.93
+      },
+      "tendencies": {
+        "passFirst": 1.22,
+        "shoot": 1.08
+      },
+      "preferredLane": "left"
+    },
+    "ibrahim-syed": {
+      "status": "profiled",
+      "traits": [
+        "Rookie",
+        "Bench player"
+      ],
+      "ratings": {
+        "speed": 0.94,
+        "shooting": 0.92,
+        "passing": 0.94,
+        "dribbling": 0.92,
+        "defending": 0.96
+      },
+      "physical": {},
+      "tendencies": {},
+      "usage": "bench"
+    },
+    "ishaaq-ali": {
+      "status": "profiled",
+      "traits": [
+        "Elite defender",
+        "Strong ball shielding",
+        "Smart positioning",
+        "Momentum runner"
+      ],
+      "ratings": {
+        "speed": 0.89,
+        "momentum": 1.15,
+        "shooting": 0.84,
+        "dribbling": 0.82,
+        "defending": 1.22,
+        "strength": 1.26,
+        "iq": 1.22
+      },
+      "physical": {},
+      "tendencies": {
+        "passFirst": 0.78,
+        "run": 0.88
+      }
+    },
+    "azizullah": {
+      "status": "profiled",
+      "traits": [
+        "Slow",
+        "Stocky build",
+        "Can give the ball away"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "passing": 0.88,
+        "dribbling": 0.91
+      },
+      "physical": {
+        "build": 1.12
+      },
+      "tendencies": {
+        "passFirst": 0.86
+      }
+    },
+    "hasibullah-kharooti": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "High potential",
+        "Developing",
+        "Slow",
+        "Stocky build"
+      ],
+      "ratings": {
+        "speed": 0.89,
+        "shooting": 0.91,
+        "passing": 0.92,
+        "dribbling": 0.91,
+        "defending": 0.92
+      },
+      "physical": {
+        "height": 0.92,
+        "build": 1.12
+      },
+      "tendencies": {},
+      "potential": "high"
+    },
+    "uthman": {
+      "status": "profiled",
+      "traits": [
+        "Smart",
+        "Strong player",
+        "Good shot",
+        "Not a dribbler"
+      ],
+      "ratings": {
+        "shooting": 1.14,
+        "dribbling": 0.82,
+        "iq": 1.2
+      },
+      "physical": {},
+      "tendencies": {
+        "shoot": 1.14,
+        "passFirst": 1.07,
+        "skill": 0.72
+      }
+    },
+    "mubashir-kharooti": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Strong dribbler",
+        "High potential"
+      ],
+      "ratings": {
+        "speed": 1.02,
+        "shooting": 1.04,
+        "passing": 1.04,
+        "dribbling": 1.19
+      },
+      "physical": {
+        "height": 0.93,
+        "build": 0.97
+      },
+      "tendencies": {
+        "skill": 1.2
+      },
+      "potential": "high"
+    },
+    "tulha-ahmed": {
+      "status": "profiled",
+      "traits": [
+        "Wears glasses",
+        "Developing player"
+      ],
+      "ratings": {
+        "speed": 0.94,
+        "shooting": 0.92,
+        "passing": 0.94,
+        "dribbling": 0.92,
+        "defending": 0.94
+      },
+      "physical": {
+        "glasses": true
+      },
+      "tendencies": {
+        "shoot": 0.9
+      }
+    },
+    "mohammed-ibrahim": {
+      "status": "profiled",
+      "traits": [
+        "Tall",
+        "Elite finisher",
+        "Excellent player"
+      ],
+      "ratings": {
+        "speed": 1.03,
+        "shooting": 1.18,
+        "dribbling": 1.06,
+        "passing": 1.03
+      },
+      "physical": {
+        "height": 1.09
+      },
+      "tendencies": {
+        "shoot": 1.22,
+        "run": 1.15
+      }
+    },
+    "syed-zaeem-arshad": {
+      "status": "profiled",
+      "traits": [
+        "Rookie"
+      ],
+      "ratings": {},
+      "physical": {},
+      "tendencies": {}
+    },
+    "saad-khan": {
+      "status": "profiled",
+      "traits": [
+        "Goalkeeper",
+        "Elite shot stopper"
+      ],
+      "ratings": {
+        "goalkeeping": 1.22,
+        "iq": 1.12
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "muzamil-kharooti": {
+      "status": "profiled",
+      "traits": [
+        "Elite playmaker",
+        "Elite scorer",
+        "Controls the match",
+        "Aggressive when trailing"
+      ],
+      "ratings": {
+        "speed": 1.04,
+        "shooting": 1.16,
+        "passing": 1.17,
+        "dribbling": 1.16,
+        "defending": 1.06,
+        "strength": 1.08,
+        "iq": 1.15
+      },
+      "physical": {},
+      "tendencies": {
+        "shoot": 1.18,
+        "passFirst": 1.16,
+        "skill": 1.14,
+        "frustration": 0.72
+      }
+    },
+    "ammar-kazi": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.91,
+        "shooting": 0.9,
+        "passing": 0.9,
+        "dribbling": 0.9,
+        "defending": 0.92
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "mohammed-wahedi": {
+      "status": "profiled",
+      "traits": [
+        "Starting goalkeeper",
+        "Currently unreliable goalkeeper"
+      ],
+      "ratings": {
+        "goalkeeping": 0.7,
+        "iq": 0.88
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "maaz-andurrahman": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.91,
+        "shooting": 0.9,
+        "passing": 0.9,
+        "dribbling": 0.9,
+        "defending": 0.92
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "sulaim-nakhuda": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.91,
+        "shooting": 0.9,
+        "passing": 0.9,
+        "dribbling": 0.9,
+        "defending": 0.92
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "azeez-ur-rehman": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.91,
+        "shooting": 0.9,
+        "passing": 0.9,
+        "dribbling": 0.9,
+        "defending": 0.92
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "ahmed-adeeb-kamga": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.91,
+        "shooting": 0.9,
+        "passing": 0.9,
+        "dribbling": 0.9,
+        "defending": 0.92
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "uwais-bemat": {
+      "status": "profiled",
+      "traits": [
+        "One of the fastest",
+        "Passes to open teammates",
+        "Average dribbler"
+      ],
+      "ratings": {
+        "speed": 1.12,
+        "passing": 1.12,
+        "dribbling": 0.98
+      },
+      "physical": {},
+      "tendencies": {
+        "passFirst": 1.28,
+        "skill": 0.86
+      }
+    },
+    "haroon-ahmadi": {
+      "status": "profiled",
+      "traits": [
+        "Fast",
+        "Elite dribbler",
+        "Elite finisher"
+      ],
+      "ratings": {
+        "speed": 1.12,
+        "shooting": 1.14,
+        "passing": 1.04,
+        "dribbling": 1.2,
+        "iq": 1.08
+      },
+      "physical": {},
+      "tendencies": {
+        "shoot": 1.18,
+        "skill": 1.18,
+        "run": 1.12
+      }
+    },
+    "tayyib-mohammed": {
+      "status": "profiled",
+      "traits": [
+        "Average player",
+        "Occasional scorer"
+      ],
+      "ratings": {
+        "speed": 1,
+        "shooting": 0.98,
+        "passing": 1,
+        "dribbling": 1,
+        "defending": 1
+      },
+      "physical": {},
+      "tendencies": {
+        "shoot": 0.88
+      }
+    },
+    "mudassir": {
+      "status": "profiled",
+      "traits": [
+        "Best dribbler",
+        "Best playmaker",
+        "Best shot",
+        "Top player"
+      ],
+      "ratings": {
+        "speed": 1.08,
+        "shooting": 1.16,
+        "passing": 1.18,
+        "dribbling": 1.2,
+        "defending": 1.12,
+        "iq": 1.15
+      },
+      "physical": {},
+      "tendencies": {
+        "shoot": 1.18,
+        "passFirst": 1.18,
+        "skill": 1.2
+      }
+    },
+    "subhanullah-sharza": {
+      "status": "profiled",
+      "traits": [
+        "Average player",
+        "Stocky build"
+      ],
+      "ratings": {
+        "speed": 0.97,
+        "shooting": 0.97,
+        "passing": 0.98,
+        "dribbling": 0.96,
+        "defending": 1.01
+      },
+      "physical": {
+        "build": 1.12
+      },
+      "tendencies": {}
+    },
+    "zayd-badin": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Slow defender",
+        "Developing"
+      ],
+      "ratings": {
+        "speed": 0.88,
+        "shooting": 0.89,
+        "passing": 0.92,
+        "dribbling": 0.88,
+        "defending": 1.01
+      },
+      "physical": {
+        "height": 0.92
+      },
+      "tendencies": {
+        "passFirst": 0.88
+      }
+    },
+    "usman-ahmad-popal": {
+      "status": "profiled",
+      "traits": [
+        "Goalkeeper",
+        "Exceptional reflex saves"
+      ],
+      "ratings": {
+        "goalkeeping": 1.16,
+        "iq": 1.08
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "abubakr-manjra": {
+      "status": "profiled",
+      "traits": [
+        "Fat/heavy build",
+        "Large strong defender",
+        "Powerful clearances",
+        "Organizes teammates",
+        "Can get frustrated",
+        "Backup goalkeeper"
+      ],
+      "ratings": {
+        "speed": 0.82,
+        "shooting": 1.16,
+        "passing": 1.06,
+        "dribbling": 0.94,
+        "defending": 1.14,
+        "strength": 1.28,
+        "iq": 1.1
+      },
+      "physical": {
+        "height": 1.04,
+        "build": 1.25
+      },
+      "tendencies": {
+        "passFirst": 1.02,
+        "organizer": 1.12,
+        "frustration": 0.42,
+        "clearance": 1.35
+      },
+      "backupGoalkeeper": true
+    },
+    "ajmal-shakkari": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Right winger",
+        "Fast",
+        "Can miss big chances"
+      ],
+      "ratings": {
+        "speed": 1.09,
+        "shooting": 1.14,
+        "passing": 0.98,
+        "dribbling": 1.02
+      },
+      "physical": {
+        "height": 0.93,
+        "hairStyle": "short"
+      },
+      "tendencies": {
+        "shoot": 1.18
+      },
+      "preferredLane": "right",
+      "shootingAccuracy": 0.86
+    },
+    "muhammad-teli": {
+      "status": "profiled",
+      "traits": [
+        "Fastest player",
+        "Strong defender",
+        "Good shot and pass",
+        "Limited dribbling",
+        "Somewhat tall"
+      ],
+      "ratings": {
+        "speed": 1.15,
+        "shooting": 1.08,
+        "passing": 1.06,
+        "dribbling": 0.92,
+        "defending": 1.16,
+        "iq": 1.08
+      },
+      "physical": {
+        "height": 1.04,
+        "hairStyle": "short"
+      },
+      "tendencies": {
+        "run": 1.1
+      }
+    },
+    "sayem-mohammed-sadi": {
+      "status": "profiled",
+      "traits": [
+        "Attacking defender",
+        "Good contributor",
+        "Not very fast",
+        "Limited dribbling"
+      ],
+      "ratings": {
+        "speed": 0.94,
+        "shooting": 1.02,
+        "passing": 1.1,
+        "dribbling": 0.89,
+        "defending": 1.12
+      },
+      "physical": {},
+      "tendencies": {
+        "passFirst": 1.1,
+        "run": 1.08
+      }
+    },
+    "omar-hicham": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.88,
+        "passing": 0.89,
+        "dribbling": 0.88,
+        "defending": 0.9
+      },
+      "physical": {
+        "height": 0.92
+      },
+      "tendencies": {}
+    },
+    "abidullah-khalil": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.88,
+        "passing": 0.89,
+        "dribbling": 0.88,
+        "defending": 0.9
+      },
+      "physical": {
+        "height": 0.92
+      },
+      "tendencies": {}
+    },
+    "mohammad-bilal-noorzai": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.88,
+        "passing": 0.89,
+        "dribbling": 0.88,
+        "defending": 0.9
+      },
+      "physical": {
+        "height": 0.92
+      },
+      "tendencies": {}
+    },
+    "muhammad-hashim-ali": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.88,
+        "passing": 0.89,
+        "dribbling": 0.88,
+        "defending": 0.9
+      },
+      "physical": {
+        "height": 0.92
+      },
+      "tendencies": {}
+    },
+    "hassan-muhammad": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.88,
+        "passing": 0.89,
+        "dribbling": 0.88,
+        "defending": 0.9
+      },
+      "physical": {
+        "height": 0.92
+      },
+      "tendencies": {}
+    },
+    "idrees-nawabi": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.88,
+        "passing": 0.89,
+        "dribbling": 0.88,
+        "defending": 0.9
+      },
+      "physical": {
+        "height": 0.92
+      },
+      "tendencies": {}
+    },
+    "muhammad-affan": {
+      "status": "profiled",
+      "traits": [
+        "Fast",
+        "Slim build",
+        "Strong jumper and header"
+      ],
+      "ratings": {
+        "speed": 1.12,
+        "shooting": 1.04,
+        "dribbling": 1.04
+      },
+      "physical": {
+        "build": 0.93
+      },
+      "tendencies": {
+        "run": 1.08
+      },
+      "headerJump": 1.17
+    },
+    "muhammad-zaidan": {
+      "status": "profiled",
+      "traits": [
+        "Defender",
+        "Backup goalkeeper"
+      ],
+      "ratings": {
+        "defending": 1.08,
+        "goalkeeping": 1.02,
+        "iq": 1.04
+      },
+      "physical": {},
+      "tendencies": {},
+      "backupGoalkeeper": true
+    },
+    "nasibullah": {
+      "status": "profiled",
+      "traits": [
+        "Strong all-around player"
+      ],
+      "ratings": {
+        "speed": 1.05,
+        "shooting": 1.08,
+        "passing": 1.06,
+        "dribbling": 1.07,
+        "defending": 1.04,
+        "iq": 1.05
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "taha-nakhuda": {
+      "status": "profiled",
+      "traits": [
+        "Somewhat tall",
+        "Good finisher",
+        "Good playmaker",
+        "Good dribbler"
+      ],
+      "ratings": {
+        "speed": 1.04,
+        "shooting": 1.1,
+        "passing": 1.09,
+        "dribbling": 1.09,
+        "iq": 1.06
+      },
+      "physical": {
+        "height": 1.06
+      },
+      "tendencies": {
+        "shoot": 1.1,
+        "passFirst": 1.08
+      }
+    },
+    "umar-manjra": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Decent player"
+      ],
+      "ratings": {
+        "speed": 0.99,
+        "shooting": 0.99,
+        "passing": 0.98,
+        "dribbling": 0.99,
+        "defending": 0.98
+      },
+      "physical": {
+        "height": 0.93
+      },
+      "tendencies": {}
+    },
+    "ilyas-salim": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Developing player"
+      ],
+      "ratings": {
+        "speed": 0.91,
+        "shooting": 0.9,
+        "passing": 0.91,
+        "dribbling": 0.9,
+        "defending": 0.92
+      },
+      "physical": {
+        "height": 0.93
+      },
+      "tendencies": {}
+    },
+    "muhammad-salim": {
+      "status": "profiled",
+      "traits": [
+        "Somewhat short",
+        "Good football IQ",
+        "Backup goalkeeper"
+      ],
+      "ratings": {
+        "iq": 1.15,
+        "passing": 1.04,
+        "defending": 1.02
+      },
+      "physical": {
+        "height": 0.96
+      },
+      "tendencies": {
+        "passFirst": 1.06
+      },
+      "backupGoalkeeper": true
+    },
+    "adil-mubashir": {
+      "status": "profiled",
+      "traits": [
+        "Tall",
+        "Fast",
+        "Elite finisher"
+      ],
+      "ratings": {
+        "speed": 1.09,
+        "shooting": 1.17,
+        "dribbling": 1.04,
+        "passing": 1.03
+      },
+      "physical": {
+        "height": 1.09
+      },
+      "tendencies": {
+        "shoot": 1.2,
+        "run": 1.12
+      }
+    },
+    "yousuf-nathani": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.89,
+        "passing": 0.9,
+        "dribbling": 0.89,
+        "defending": 0.91
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "zaeem-kapil-parakot": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.89,
+        "passing": 0.9,
+        "dribbling": 0.89,
+        "defending": 0.91
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "reda-alijalam": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.89,
+        "passing": 0.9,
+        "dribbling": 0.89,
+        "defending": 0.91
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "uzair-sidat": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.89,
+        "passing": 0.9,
+        "dribbling": 0.89,
+        "defending": 0.91
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "muhammad-shah": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.89,
+        "passing": 0.9,
+        "dribbling": 0.89,
+        "defending": 0.91
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "sajadullah-khalil": {
+      "status": "profiled",
+      "traits": [
+        "Low current performance"
+      ],
+      "ratings": {
+        "speed": 0.9,
+        "shooting": 0.89,
+        "passing": 0.9,
+        "dribbling": 0.89,
+        "defending": 0.91
+      },
+      "physical": {},
+      "tendencies": {}
+    },
+    "ali-razzaq": {
+      "status": "profiled",
+      "traits": [
+        "Average field performance"
+      ],
+      "ratings": {},
+      "physical": {},
+      "tendencies": {}
+    },
+    "marwan-ahmad": {
+      "status": "profiled",
+      "traits": [
+        "Good player",
+        "Can overshoot chances",
+        "Wears glasses"
+      ],
+      "ratings": {
+        "shooting": 1.11,
+        "iq": 1.04
+      },
+      "physical": {
+        "glasses": true
+      },
+      "tendencies": {
+        "shoot": 1.12
+      },
+      "shootingAccuracy": 0.82
+    },
+    "rehan-ahmed-mohammed": {
+      "status": "profiled",
+      "traits": [
+        "Fast",
+        "Good dribbler",
+        "Slim build",
+        "Wears glasses"
+      ],
+      "ratings": {
+        "speed": 1.1,
+        "dribbling": 1.14,
+        "shooting": 1.04
+      },
+      "physical": {
+        "build": 0.93,
+        "glasses": true
+      },
+      "tendencies": {
+        "skill": 1.12
+      }
+    },
+    "ahmed-bhaiyat": {
+      "status": "profiled",
+      "traits": [
+        "Short",
+        "Gameplay details otherwise unknown"
+      ],
+      "ratings": {},
+      "physical": {
+        "height": 0.92
+      },
+      "tendencies": {}
+    }
+  }
+}

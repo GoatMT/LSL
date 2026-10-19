@@ -1,5 +1,5 @@
-import { setupLayout } from "./main.js?v=20260927-2";
-import { loadAllSeasons } from "./dataLoader.js?v=1.1";
+import { setupLayout } from "./main.js?v=20261018-media1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261018-media1";
 import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.14";
 import { createPulseCloudStore, fetchAllPulseAccounts } from "./pulseFirebase.js?v=1.2";
 import { initNotificationButton, renderNotificationButton } from "./pulseNotifications.js?v=20260913-1";
@@ -943,3 +943,5 @@ async function init() {
 }
 
 init();
+
+

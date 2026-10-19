@@ -9,9 +9,7 @@
       "division": "Juniors",
       "position": "Forward",
       "jersey": 10,
-      "achievements": [
-        "2025 Juniors top scorer from visible data"
-      ]
+      "achievements": "2025 Juniors top scorer from visible data"
     },
     {
       "id": "hafizullah",
@@ -19,9 +17,7 @@
       "teamId": "asif-gangat-united-2025",
       "division": "Seniors",
       "position": "Forward",
-      "achievements": [
-        "2025 Golden Boot race leader mention"
-      ]
+      "achievements": "2025 Golden Boot race leader mention"
     },
     {
       "id": "ibad-travel-builder",
@@ -89,9 +85,7 @@
       "teamName": "Rafik Enterprise FC",
       "division": "Juniors",
       "position": "Forward",
-      "achievements": [
-        "Five-goal junior match in 2025 Week 3"
-      ]
+      "achievements": "Five-goal junior match in 2025 Week 3"
     },
     {
       "id": "muzamil-kharooti",
@@ -107,9 +101,7 @@
       "teamId": "im-construction-sc",
       "division": "Seniors",
       "position": "Forward",
-      "achievements": [
-        "Scored two goals in 2025 semifinal"
-      ]
+      "achievements": "Scored two goals in 2025 semifinal"
     },
     {
       "id": "salman-em-juniors",

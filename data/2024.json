@@ -1,0 +1,1535 @@
+{
+  "season": "2024",
+  "teams": [
+    {
+      "id": "silver-suits-strikers",
+      "name": "Silver Suits Strikers",
+      "shortName": "SSS",
+      "division": "Seniors",
+      "logo": "assets/logos/2024-silver-suits-strikers.png",
+      "logoBg": "#f8f8f8",
+      "colors": null,
+      "roster": [
+        {
+          "id": "abdul-wahab-dastagiri",
+          "name": "Abdul Wahab Dastagiri",
+          "jersey": 1,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "abdul-wahab-dastagiri",
+          "overall": 52,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Abdul Wahab Dastagiri brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "abdul-jalil-alosman",
+          "name": "AbdulJalil Alosman",
+          "jersey": 2,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "abdul-jalil-alosman",
+          "overall": 50,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "AbdulJalil Alosman is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "ahmad-ingar",
+          "name": "Ahmad Ingar",
+          "jersey": 3,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "profileId": "ahmad-ingar",
+          "overall": 65,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Ahmad Ingar brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "ayaan-jogiyat",
+          "name": "Ayaan Jogiyat",
+          "jersey": 4,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "ayaan-jogiyat",
+          "overall": 50,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Ayaan Jogiyat is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "hussain-rizvi",
+          "name": "Hussain Rizvi",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "hussain-rizvi",
+          "overall": 50,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Hussain Rizvi is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "marwan-ahmad",
+          "name": "Marwan Ahmad",
+          "jersey": 6,
+          "position": "Field",
+          "leadershipRole": "captain",
+          "profileId": "marwan-ahmad",
+          "overall": 91,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Marwan Ahmed brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "mustafa-sakhiyar",
+          "name": "Mustafa Sakhiyar",
+          "jersey": 7,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "mustafa-sakhiyar",
+          "overall": 51,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Mustafa Sakhiyar brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "mustafa-hussain-rizvi",
+          "name": "Mustafa Hussain Rizvi",
+          "jersey": 8,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "mustafa-hussain-rizvi",
+          "overall": 50,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Mustafa Hussain Rizvi is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "muhammad-zahran",
+          "name": "Muhammad Zahran",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "muhammad-zahran",
+          "overall": 50,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Muhammad Zahran is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "mohammed-hanzala",
+          "name": "Mohammed Hanzala",
+          "jersey": 10,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "mohammed-hanzala",
+          "overall": 64,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Mohammed Hanzala Hasan brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "mohammed-hammad-syed",
+          "name": "Mohammed Hammad Syed",
+          "jersey": 11,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "mohammed-hammad-syed",
+          "overall": 95,
+          "playstyle": {
+            "label": "Goalkeeper",
+            "traits": [
+              "Shot stopper",
+              "Back line voice",
+              "Penalty box presence"
+            ],
+            "description": "Mohammed Hammad Syed plays as a goalkeeper, so the biggest impact is organizing the defense, staying composed under pressure, and giving the team a steady last line."
+          }
+        },
+        {
+          "id": "uzair-sidat",
+          "name": "Uzair Sidat",
+          "jersey": 12,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "uzair-sidat",
+          "overall": 61,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Uzair Sidat brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "hammad-shaikh",
+          "name": "Hammad Shaikh",
+          "jersey": 13,
+          "position": "Goalkeeper",
+          "leadershipRole": "assistant",
+          "profileId": "hammad-shaikh",
+          "overall": 83,
+          "playstyle": {
+            "label": "Goalkeeper",
+            "traits": [
+              "Shot stopper",
+              "Back line voice",
+              "Penalty box presence"
+            ],
+            "description": "Hammad Shaikh plays as a goalkeeper, so the biggest impact is organizing the defense, staying composed under pressure, and giving the team a steady last line."
+          }
+        }
+      ],
+      "overall": 62
+    },
+    {
+      "id": "refuel-juicery-kickers",
+      "name": "Refuel Juicery Kickers",
+      "shortName": "RJK",
+      "division": "Seniors",
+      "logo": "assets/logos/2024-refuel-juicery-kickers.png",
+      "logoBg": "#2a4b47",
+      "colors": null,
+      "roster": [
+        {
+          "id": "abubakr-amirat",
+          "name": "Abubakr Amirat",
+          "jersey": 1,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "abubakr-amirat",
+          "overall": 65,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Abubakr Amirat is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "muzamil-kharooti",
+          "name": "Muzamil Kharooti",
+          "jersey": 9,
+          "position": "Forward",
+          "leadershipRole": "captain",
+          "profileId": "muzamil-kharooti",
+          "overall": 99,
+          "playstyle": {
+            "label": "Goal-First Attacker",
+            "traits": [
+              "Finishing",
+              "Forward runs",
+              "Helps winning teams"
+            ],
+            "description": "Muzamil Kharooti is at the best when attacking the box and looking for goals. The style is simple to understand: find space, get shots, and finish chances."
+          }
+        },
+        {
+          "id": "muhammad-hassan",
+          "name": "Muhammad Hassan",
+          "jersey": 3,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "muhammad-hassan",
+          "overall": 72,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Muhammad Hassan is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "muhammad-iqrash",
+          "name": "Muhammad Iqrash",
+          "jersey": 4,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "muhammad-iqrash",
+          "overall": 65,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Muhammad Iqrash is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "muhammad-zaidan",
+          "name": "Muhammad Zaidan",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "muhammad-zaidan",
+          "overall": 78,
+          "playstyle": {
+            "label": "Goalkeeper",
+            "traits": [
+              "Shot stopper",
+              "Back line voice",
+              "Penalty box presence"
+            ],
+            "description": "Muhammad Zaidan plays as a goalkeeper, so the biggest impact is organizing the defense, staying composed under pressure, and giving the team a steady last line."
+          }
+        },
+        {
+          "id": "reda-alijalam",
+          "name": "Mohamad Reda Alijalam",
+          "jersey": 6,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "reda-alijalam",
+          "overall": 86,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Mohamad Reda Alijalam brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "omar-ajmal",
+          "name": "Omar Ajmal",
+          "jersey": 7,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "omar-ajmal",
+          "overall": 83,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Omar Ajmal brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "subhanullah-sharza",
+          "name": "Subhanullah Sharza",
+          "jersey": 8,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "subhanullah-sharza",
+          "overall": 82,
+          "playstyle": {
+            "label": "Defensive Anchor",
+            "traits": [
+              "Physical defending",
+              "Team shape",
+              "Winning impact"
+            ],
+            "description": "Subhanallah Sharzah profiles as a defense-first player who keeps the game simple and protects space first. The style is built around positioning, effort, and helping the team stay organized."
+          }
+        },
+        {
+          "id": "sufyan-munshi",
+          "name": "Sufyan Munshi",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "sufyan-munshi",
+          "overall": 71,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Sufyan Munshi brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "taha-ahmed",
+          "name": "Taha Ahmed",
+          "jersey": 10,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "taha-ahmed",
+          "overall": 76,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Taha Ahmed brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "umar-nakhuda",
+          "name": "Umar Nakhuda",
+          "jersey": 11,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "umar-nakhuda",
+          "overall": 65,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Umar Nakhuda is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "yousuf-haqqani",
+          "name": "Yousuf Haqqani",
+          "jersey": 12,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "yousuf-haqqani",
+          "overall": 72,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Yousuf Haqqani is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "ziyad-adam",
+          "name": "Ziyad Adam",
+          "jersey": 13,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "profileId": "ziyad-adam",
+          "overall": 77,
+          "playstyle": {
+            "label": "Defensive Anchor",
+            "traits": [
+              "Physical defending",
+              "Team shape",
+              "Winning impact"
+            ],
+            "description": "Ziyad Adam profiles as a defense-first player who also adds surprise attacking value when chances open up. The style is built around positioning, effort, and helping the team stay organized."
+          }
+        },
+        {
+          "id": "saad-khan",
+          "name": "Saad Khan",
+          "jersey": 14,
+          "position": "Goalkeeper",
+          "leadershipRole": "assistant",
+          "profileId": "saad-khan",
+          "overall": 99,
+          "playstyle": {
+            "label": "Goalkeeper",
+            "traits": [
+              "Shot stopper",
+              "Back line voice",
+              "Penalty box presence"
+            ],
+            "description": "Saad Khan plays as a goalkeeper, so the biggest impact is organizing the defense, staying composed under pressure, and giving the team a steady last line."
+          }
+        }
+      ],
+      "overall": 78
+    },
+    {
+      "id": "shifa-pharmacy-fc",
+      "name": "Shifa Pharmacy F.C.",
+      "shortName": "SPF",
+      "division": "Seniors",
+      "logo": "assets/logos/2024-shifa-pharmacy-fc.png",
+      "logoBg": "#94bcc5",
+      "colors": null,
+      "roster": [
+        {
+          "id": "abdul-ghiyas-solyman",
+          "name": "Abdul Ghiyas Solyman",
+          "jersey": 8,
+          "position": "Field",
+          "leadershipRole": "captain",
+          "profileId": "abdul-ghiyas-solyman",
+          "overall": 92,
+          "playstyle": {
+            "label": "Creator",
+            "traits": [
+              "Passing",
+              "Chance creation",
+              "Unselfish play"
+            ],
+            "description": "Abdul Ghiyas Solyman plays more like a setup player, moving the ball into better areas and helping teammates get cleaner looks at goal."
+          }
+        },
+        {
+          "id": "ali-shadab-shaikh",
+          "name": "Ali Shadab Shaikh",
+          "jersey": 2,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "ali-shadab-shaikh",
+          "overall": 63,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Ali Shadab Shaikh brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "ayaz-a-tutla",
+          "name": "Ayaz A Tutla",
+          "jersey": 3,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "ayaz-a-tutla",
+          "overall": 65,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Ayaz A Tutla is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "ayub-jan",
+          "name": "Ayub Jan",
+          "jersey": 4,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "ayub-jan",
+          "overall": 85,
+          "playstyle": {
+            "label": "Defensive Anchor",
+            "traits": [
+              "Physical defending",
+              "Team shape",
+              "Winning impact"
+            ],
+            "description": "Ayub Jan profiles as a defense-first player who keeps the game simple and protects space first. The style is built around positioning, effort, and helping the team stay organized."
+          }
+        },
+        {
+          "id": "bayizedsha",
+          "name": "Bayizedsha",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "bayizedsha",
+          "overall": 81,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Bayizedsha is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "basir-ahmad-dastagiri",
+          "name": "Basir Ahmad Dastagiri",
+          "jersey": 6,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "basir-ahmad-dastagiri",
+          "overall": 66,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Basir Ahmad Dastagiri brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "ilyas-salim",
+          "name": "Ilyas Salim",
+          "jersey": 7,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "ilyas-salim",
+          "overall": 71,
+          "playstyle": {
+            "label": "Defensive Anchor",
+            "traits": [
+              "Physical defending",
+              "Team shape",
+              "Reliable coverage"
+            ],
+            "description": "Ilyas Salim profiles as a defense-first player who also adds surprise attacking value when chances open up. The style is built around positioning, effort, and helping the team stay organized."
+          }
+        },
+        {
+          "id": "muhammad-affan",
+          "name": "Muhammad Affan",
+          "jersey": 8,
+          "position": "Forward",
+          "leadershipRole": "assistant",
+          "profileId": "muhammad-affan",
+          "overall": 87,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "M. Affan brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "mohammad-hamzah-wahab",
+          "name": "Mohammad hamzah wahab",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "mohammad-hamzah-wahab",
+          "overall": 65,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Mohammad hamzah wahab is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "taha-nakhuda",
+          "name": "Taha Nakhuda",
+          "jersey": 10,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "taha-nakhuda",
+          "overall": 88,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Taaha Nakhuda brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "tayyib-mohammed",
+          "name": "Tayyib Mohammad",
+          "jersey": 11,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "tayyib-mohammed",
+          "overall": 88,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Tayyib Mohammed brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "tulha-ahmad",
+          "name": "Tulha Ahmad",
+          "jersey": 12,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "tulha-ahmed",
+          "overall": 84,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Tulha Ahmed brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "aneeq-shaikh",
+          "name": "Aneeq Shaikh",
+          "jersey": 13,
+          "position": "Goalkeeper",
+          "leadershipRole": "assistant",
+          "profileId": "aneeq-shaikh",
+          "overall": 94,
+          "playstyle": {
+            "label": "Goalkeeper",
+            "traits": [
+              "Shot stopper",
+              "Back line voice",
+              "Penalty box presence"
+            ],
+            "description": "Aneeq Shaikh plays as a goalkeeper, so the biggest impact is organizing the defense, staying composed under pressure, and giving the team a steady last line."
+          }
+        }
+      ],
+      "overall": 79
+    },
+    {
+      "id": "jogiat-palace",
+      "name": "Jogiat Palace",
+      "shortName": "JOG",
+      "division": "Seniors",
+      "logo": "assets/logos/2024-jogiat-palace.png",
+      "logoBg": "#08684c",
+      "colors": null,
+      "roster": [
+        {
+          "id": "aamir-jogiat",
+          "name": "Aamir Jogiat",
+          "jersey": 1,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "aamir-jogiat",
+          "overall": 67,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Aamir Jogiat brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "mubashir-kharooti",
+          "name": "Mubashir Kharooti",
+          "jersey": 4,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "mubashir-kharooti",
+          "overall": 80,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Mubashir Kharooti brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "abdur-rakib",
+          "name": "Abdur Rakib",
+          "jersey": 3,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "profileId": "abdur-rakib",
+          "overall": 79,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Abdur Rakib brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "ayhaam-khalefa",
+          "name": "Ayhaam Khalefa",
+          "jersey": 11,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "ayhaam-khalefa",
+          "overall": 67,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Ayhaam Khalefa brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "elyas-roien",
+          "name": "Elyas Roien",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "elyas-roien",
+          "overall": 61,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Elyas Roien brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "ismail-mohammed",
+          "name": "Ismail Mohammed",
+          "jersey": 6,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "ismail-mohammed",
+          "overall": 61,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Ismail Mohammed brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "m-yahya",
+          "name": "M Yahya",
+          "jersey": 7,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "m-yahya",
+          "overall": 95,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "M Yahya brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "muhammad-nakhuda",
+          "name": "Muhammad Nakhuda",
+          "jersey": 8,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "muhammad-nakhuda",
+          "overall": 61,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Muhammad Nakhuda brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "muhammad-teli",
+          "name": "Muhummud Teli",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "profileId": "muhammad-teli",
+          "overall": 92,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Muhummud Teli brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "mohamed-aathif",
+          "name": "Mohamed Aathif",
+          "jersey": 10,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "mohamed-aathif",
+          "overall": 61,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Mohamed Aathif brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "rehaan-adam",
+          "name": "Rehaan Adam",
+          "jersey": 6,
+          "position": "Forward",
+          "leadershipRole": "captain",
+          "profileId": "rehaan-adam",
+          "overall": 91,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Rehaan Adam brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "zakariya-chhibu",
+          "name": "Zakariya Chhibu",
+          "jersey": 12,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "zakariya-chhibu",
+          "overall": 84,
+          "playstyle": {
+            "label": "Defensive Anchor",
+            "traits": [
+              "Physical defending",
+              "Team shape",
+              "Reliable coverage"
+            ],
+            "description": "Zakariya Chhibu profiles as a defense-first player who keeps the game simple and protects space first. The style is built around positioning, effort, and helping the team stay organized."
+          }
+        },
+        {
+          "id": "ali-razzaq",
+          "name": "Ali Razzaq",
+          "jersey": 13,
+          "position": "Goalkeeper",
+          "leadershipRole": null,
+          "profileId": "ali-razzaq",
+          "overall": 97,
+          "playstyle": {
+            "label": "Goalkeeper",
+            "traits": [
+              "Shot stopper",
+              "Back line voice",
+              "Penalty box presence"
+            ],
+            "description": "Ali Razzaq plays as a goalkeeper, so the biggest impact is organizing the defense, staying composed under pressure, and giving the team a steady last line."
+          }
+        }
+      ],
+      "overall": 77
+    },
+    {
+      "id": "asif-gangat-united",
+      "name": "Asif Gangat United",
+      "shortName": "AGU",
+      "division": "Seniors",
+      "logo": "assets/logos/2024-asif-gangat-united.png",
+      "logoBg": "#766078",
+      "colors": null,
+      "roster": [
+        {
+          "id": "abdul-basit-mesbah",
+          "name": "Abdul Basit Mesbah",
+          "jersey": 1,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "abdul-basit-mesbah",
+          "overall": 74,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Abdul Basit Mesbah brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "azizullah",
+          "name": "Azizullah",
+          "jersey": 2,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "azizullah",
+          "overall": 79,
+          "playstyle": {
+            "label": "Defensive Anchor",
+            "traits": [
+              "Physical defending",
+              "Team shape",
+              "Reliable coverage"
+            ],
+            "description": "Azizullah profiles as a defense-first player who keeps the game simple and protects space first. The style is built around positioning, effort, and helping the team stay organized."
+          }
+        },
+        {
+          "id": "hafizullah",
+          "name": "Hafizullah",
+          "jersey": 3,
+          "position": "Forward",
+          "leadershipRole": "captain",
+          "profileId": "hafizullah",
+          "overall": 97,
+          "playstyle": {
+            "label": "Goal-First Attacker",
+            "traits": [
+              "Finishing",
+              "Forward runs",
+              "Scoring spark"
+            ],
+            "description": "Hafizullah is at the best when attacking the box and looking for goals. The style is simple to understand: find space, get shots, and finish chances."
+          }
+        },
+        {
+          "id": "hamzah-gangat",
+          "name": "Hamzah Gangat",
+          "jersey": 4,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "hamzah-gangat",
+          "overall": 56,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Hamzah Gangat is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "huzaifa-ahmad-vadia",
+          "name": "Huzaifa Ahmad Vadia",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "huzaifa-ahmad-vadia",
+          "overall": 75,
+          "playstyle": {
+            "label": "Defensive Anchor",
+            "traits": [
+              "Physical defending",
+              "Team shape",
+              "Reliable coverage"
+            ],
+            "description": "Huzaifa Ahmed Vadia profiles as a defense-first player who keeps the game simple and protects space first. The style is built around positioning, effort, and helping the team stay organized."
+          }
+        },
+        {
+          "id": "muhammad-badin",
+          "name": "Muhammad Badin",
+          "jersey": 6,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "muhammad-badin",
+          "overall": 57,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Muhammed Badin brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "muhammad-salim",
+          "name": "Muhammad Salim",
+          "jersey": 7,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "profileId": "muhammad-salim",
+          "overall": 76,
+          "playstyle": {
+            "label": "Defensive Anchor",
+            "traits": [
+              "Physical defending",
+              "Team shape",
+              "Reliable coverage"
+            ],
+            "description": "Muhammad Salim profiles as a defense-first player who keeps the game simple and protects space first. The style is built around positioning, effort, and helping the team stay organized."
+          }
+        },
+        {
+          "id": "muhammad-okasha",
+          "name": "Muhammad Okasha",
+          "jersey": 8,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "muhammad-okasha",
+          "overall": 56,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Muhammad Okasha is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "mussadiq-khan",
+          "name": "Mussadiq Khan",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "profileId": "mussadiq-khan",
+          "overall": 56,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Mussadiq Khan is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "rehan-ahmad",
+          "name": "Rehan Ahmad",
+          "jersey": 10,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "rehan-ahmad",
+          "overall": 56,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Rehan Ahmad is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "rizwaan-amirat",
+          "name": "Rizwaan Amirat",
+          "jersey": 11,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "rizwaan-amirat",
+          "overall": 56,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Rizwaan Amirat is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "rizwan-khan",
+          "name": "Rizwan Khan",
+          "jersey": 12,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "rizwan-khan",
+          "overall": 56,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Rizwan Khan is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        },
+        {
+          "id": "saifan-mohammed",
+          "name": "Saifan Mohammed",
+          "jersey": 13,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "saifan-mohammed",
+          "overall": 56,
+          "playstyle": {
+            "label": "Developing Profile",
+            "traits": [
+              "More to show",
+              "Role building",
+              "Coming soon"
+            ],
+            "description": "Saifan Mohammed is still building a clearer LSL profile. More matches will show whether the style leans toward scoring, creating, defending, or all-around impact."
+          }
+        }
+      ],
+      "overall": 65
+    },
+    {
+      "id": "umer-memon-fc",
+      "name": "Umer Memon F.C.",
+      "shortName": "UMF",
+      "division": "Seniors",
+      "logo": "assets/logos/2024-umer-memon-fc.png",
+      "logoBg": "#d8d3d3",
+      "colors": null,
+      "roster": [
+        {
+          "id": "anan-abrar",
+          "name": "Anan Abrar",
+          "jersey": 1,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "anan-abrar",
+          "overall": 53,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Anan Abrar brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "asad-khan",
+          "name": "Asad Khan",
+          "jersey": 2,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "asad-khan",
+          "overall": 58,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Asad Khan brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "saad-saud",
+          "name": "Saad Saud",
+          "jersey": 66,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "saad-saud",
+          "overall": 58,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Saad Saud brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "bashir-ahmad-dastagiri",
+          "name": "Bashir Ahmad Dadtagiri",
+          "jersey": 3,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "bashir-ahmad-dastagiri",
+          "overall": 69,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Bashir Ahmad Dastagiri brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "bilal-sami-ahmad",
+          "name": "Bilal Sami Ahmad",
+          "jersey": 4,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "bilal-sami-ahmad",
+          "overall": 68,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Bilal Sami Syed brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "haroon-sarood",
+          "name": "Haroon Sarood",
+          "jersey": 5,
+          "position": "Field",
+          "leadershipRole": "captain",
+          "profileId": "haroon-sarood",
+          "overall": 68,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Haroon Sarood brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "hashir-hassan",
+          "name": "Hashir Hassan",
+          "jersey": 6,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "hashir-hassan",
+          "overall": 53,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Hashir Hassan brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "ibrahim-mohamed",
+          "name": "Ibrahim Mohamed",
+          "jersey": 56,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "ibrahim-mohamed",
+          "overall": 58,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Ibrahim Mohamed brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "imran-abdulimiti",
+          "name": "Imran Abdulimiti",
+          "jersey": 8,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "imran-abdulimiti",
+          "overall": 53,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Imran Abdulimiti brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "md-ismail-rayyan",
+          "name": "MD Ismail Rayyan",
+          "jersey": 9,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "md-ismail-rayyan",
+          "overall": 53,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "MD Ismail Rayyan brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "mubashir-khan",
+          "name": "Mubashir Khan",
+          "jersey": 10,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "mubashir-khan",
+          "overall": 53,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Mubashir Khan brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "mubeen-tagari",
+          "name": "Mubeen Tagari",
+          "jersey": 11,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "mubeen-tagari",
+          "overall": 53,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Mubeen Tagari brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "uwais-bemat",
+          "name": "Uwais Bemat",
+          "jersey": 12,
+          "position": "Field",
+          "leadershipRole": "assistant",
+          "profileId": "uwais-bemat",
+          "overall": 86,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Uwais Bemat brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "zain-adam",
+          "name": "Zain Adam",
+          "jersey": 13,
+          "position": "Field",
+          "leadershipRole": null,
+          "profileId": "zain-adam",
+          "overall": 54,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Zain Adam brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        },
+        {
+          "id": "mohammed-rayyan-sayed",
+          "name": "Mohammed Rayyan Sayed",
+          "jersey": 14,
+          "position": "Goalkeeper",
+          "leadershipRole": "assistant",
+          "profileId": "mohammed-rayyan-sayed",
+          "overall": 89,
+          "playstyle": {
+            "label": "Steady Contributor",
+            "traits": [
+              "Experience",
+              "Team role",
+              "Consistency"
+            ],
+            "description": "Mohammed Rayyan Syed brings a steady role across seasons. The profile is less about one stat and more about being available, competing, and fitting into the team structure."
+          }
+        }
+      ],
+      "overall": 62
+    }
+  ]
+}

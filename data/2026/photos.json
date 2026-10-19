@@ -10,7 +10,7 @@
       "teamName": "EM Haulers FC",
       "uploadDate": "2026-08-08",
       "description": "EM Haulers FC after defeating Leeward Lions 2-1 in extra time to win the 2026 LSL Championship.",
-      "imageUrl": "./Photos%20and%20Videos/2026/2026%20Champions.jpg",
+      "imageUrl": "./media/2026/2026-asset-066.jpg",
       "matchId": "2026-seniors-playoffs-final",
       "matchReference": "LSL Championship Final"
     },
@@ -23,7 +23,7 @@
       "teamName": "EM Haulers FC",
       "uploadDate": "2026-06-27",
       "description": "Match photo from Week 3 Game 4.",
-      "imageUrl": "./Photos%20and%20Videos/2026/Week%203%20EM%20Haulers%20FC%20vs%20Rawaha%20Royals.jpg",
+      "imageUrl": "./media/2026/2026-asset-095.jpg",
       "matchId": "2026-seniors-week-3-game-12",
       "matchReference": "Week 3 Game 4"
     },
@@ -35,7 +35,7 @@
       "teamId": "em-haulers-fc",
       "teamName": "EM Haulers FC",
       "description": "The 2026 LSL Championship Final between EM Haulers FC and Leeward Lions.",
-      "imageUrl": "./Photos%20and%20Videos/2026/2026%20PLAYOFFS%20FINALS%20EM%20HAULERS%20VS%20LEEWARD%20LIONS.jpg",
+      "imageUrl": "./media/2026/2026-asset-067.jpg",
       "matchId": "2026-seniors-playoffs-final",
       "matchReference": "LSL Championship Final"
     },
@@ -47,7 +47,7 @@
       "teamId": "sharp-strikers",
       "teamName": "Sharp Strikers",
       "description": "Quarterfinal photo from Sharp Strikers vs Amax Visionaries.",
-      "imageUrl": "./Photos%20and%20Videos/2026/Quarterfinal%201%20SharpVSamax%20.jpg",
+      "imageUrl": "./media/2026/2026-asset-079.jpg",
       "matchId": "2026-seniors-playoffs-qf3",
       "matchReference": "Quarterfinal 1"
     },
@@ -59,7 +59,7 @@
       "teamId": "leeward-lions",
       "teamName": "Leeward Lions",
       "description": "Semifinal photo from Leeward Lions vs Refuel Rovers.",
-      "imageUrl": "./Photos%20and%20Videos/2026/Semi%20Final%202%20LEEWARD%20VS%20REFUEL.jpg",
+      "imageUrl": "./media/2026/2026-asset-084.jpg",
       "matchId": "2026-seniors-playoffs-sf2",
       "matchReference": "Semifinal 2"
     }

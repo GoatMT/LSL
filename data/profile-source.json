@@ -1,0 +1,37 @@
+{
+  "teamBasis": "LSL Website teamOVR using the full published season roster and career player ratings",
+  "basis": "LSL Website career OVR and inferPlayerStyle, all games; not season-only ratings",
+  "seasons": [
+    "2024",
+    "2025",
+    "2026",
+    "2027"
+  ],
+  "files": {
+    "js/dataLoader.js": "4c75766d9a730cf0e2cb313cd7287a18c29d665df02745d335103e844c1284e1",
+    "js/leagueEngine.js": "0e6115fd7526b7fcd0cb8138ce52409e6b5cd85ac962b9d7e3e2d80c8de7a6b3",
+    "js/playerProfile.js": "37f0be88e9feff64039f142539ec12b79c68d2a0b9b7b3e956dea06effffd697",
+    "js/config.js": "cdfbd9360d2436bc9e21a89f27e0a902841bb07fad1b11f3d10d5752d6c99b39",
+    "data/player-aliases.json": "9647f9d41f86cf33e049887e24e926e354d52dc2eaada0b824ff4128506df805",
+    "data/2024/teams.json": "0eb41eaa1aee6372cc13aa4fb70fdbfc64b39c97987f8c15feedde4610f93f10",
+    "data/2024/players.json": "3b80b554763ebb1053197e051b4fc24046878210cf034f517fd3e69be37bbf28",
+    "data/2024/matches.json": "bfda460b3c11e7b515cb35e780120053212497124a9b3275b4527387c930da1d",
+    "data/2024/awards.json": "8972dc1fe75344d9bda9827e5d4c377bdedf8e94319de78d09f36a80e1d40d2e",
+    "data/2024/playoffs.json": "7c74d6007c034cb39a1e22035ee1123e7c5fd23b83ca080d5316a5c86871b459",
+    "data/2025/teams.json": "989b74967c05f62c99ed269660a898b1bb7a959ea9a0fb1a404d2ad23aef1e15",
+    "data/2025/players.json": "2d9d52d3447e6582316b1f6749a4b024b99e752ad5d4045e73670577e27f5e07",
+    "data/2025/matches.json": "75958f6a686eafbbfce70c8ae91c6e542670443849b90ecc03d1ef47a95260e6",
+    "data/2025/awards.json": "1d6c0d1b688a3ca36a921fbc3fa13817dc8afda586b14ccde50e705e4d5c30ba",
+    "data/2025/playoffs.json": "318f88b61a1af6d1ec9f612c14833e88851cc7a0c4fb3b132f8ef10ec74417b0",
+    "data/2026/teams.json": "2187815601c7d9cb24a1b61694720289e4d9155492d6186e91394f5b5e314f7c",
+    "data/2026/players.json": "da197a7753a2e34b0ed481a73b32c65bc39374fd7814411ec0429d4aeb88fd9e",
+    "data/2026/matches.json": "17c2c8ac18b6f772f3327da9ed19c27c215c6a6ea18072e102ef5429822e3799",
+    "data/2026/awards.json": "70112490bbc2a6d9b0007c5d9fe9e4d96b0dfbf43cf89ce124da5bb23485f505",
+    "data/2026/playoffs.json": "a45b1be5e3644321ee2196ecfb6455340d89eeee807ca37b344a51f4916abfbd",
+    "data/2027/teams.json": "a4b56ba07cf47bee9d5fff45dc158b6313fd14bffff75abaa17675bcab966701",
+    "data/2027/players.json": "b26fe5c72140883d15f490cda21b85b7491a21f48241e3e3a5ecd5562d664705",
+    "data/2027/matches.json": "105350ac13d6bd3eedc8d946dfab7cc110caa7f55c65a1e681b10ae5a0aed5a6",
+    "data/2027/awards.json": "8584447f06845d76112248896cf50ddeaa977eddaa150e18ab327beb71909408",
+    "data/2027/playoffs.json": "6115816629349ff2a61a3cdbe21ebb1ff0b00495b777a35ed74d419764f99660"
+  }
+}

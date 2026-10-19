@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=1.1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261018-media1";
 import {
   computeCombinedPlayerStats,
   computePlayerStats,
@@ -8,7 +8,7 @@ import {
   playerTeamForMatch,
   winnerTeamId,
 } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import {
   controlSelect,
   escapeHTML,
@@ -755,3 +755,5 @@ loadAllSeasons()
   .catch(() => {
     root.innerHTML = '<section class="section-panel">' + statusMessage("error", "Could not load player comparison right now.") + "</section>";
   });
+
+

@@ -13,12 +13,42 @@
     "note": "The calendar advances day by day. Games are simulated automatically whenever Saturday arrives."
   },
   "teams": [
-    { "id": "northside-falcons", "name": "Northside Falcons", "abbr": "NSF", "color": "#1d4ed8" },
-    { "id": "ironbridge-fc", "name": "Ironbridge FC", "abbr": "IBF", "color": "#b91c1c" },
-    { "id": "crestview-comets", "name": "Crestview Comets", "abbr": "CVC", "color": "#7c3aed" },
-    { "id": "harbor-city-sc", "name": "Harbor City SC", "abbr": "HCS", "color": "#0f766e" },
-    { "id": "summit-rangers", "name": "Summit Rangers", "abbr": "SMR", "color": "#c2410c" },
-    { "id": "meridian-united", "name": "Meridian United", "abbr": "MRU", "color": "#15803d" }
+    {
+      "id": "northside-falcons",
+      "name": "Northside Falcons",
+      "abbr": "NSF",
+      "color": "#1d4ed8"
+    },
+    {
+      "id": "ironbridge-fc",
+      "name": "Ironbridge FC",
+      "abbr": "IBF",
+      "color": "#b91c1c"
+    },
+    {
+      "id": "crestview-comets",
+      "name": "Crestview Comets",
+      "abbr": "CVC",
+      "color": "#7c3aed"
+    },
+    {
+      "id": "harbor-city-sc",
+      "name": "Harbor City SC",
+      "abbr": "HCS",
+      "color": "#0f766e"
+    },
+    {
+      "id": "summit-rangers",
+      "name": "Summit Rangers",
+      "abbr": "SMR",
+      "color": "#c2410c"
+    },
+    {
+      "id": "meridian-united",
+      "name": "Meridian United",
+      "abbr": "MRU",
+      "color": "#15803d"
+    }
   ],
   "playoffFormat": {
     "qualifiers": 6,

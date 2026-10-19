@@ -12,15 +12,22 @@
       "date": "September 26, 2026",
       "time": "LSL News announcement",
       "author": "LSL News Desk",
-      "thumbnail": "./Photos and Videos/2026/Abdul Ghiyas Solyman LSL Championship Medal.png",
-      "heroImage": "./Photos and Videos/2026/Abdul Ghiyas Solyman LSL Championship Medal.png",
+      "thumbnail": "./media/2026/2026-asset-068.png",
+      "heroImage": "./media/2026/2026-asset-068.png",
       "mediaFit": "contain",
-      "tags": ["Abdul Ghiyas Solyman", "Player Spotlight", "Championship", "Career Stats", "2026"],
-      "playerProfiles": [
-        { "id": "abdul-ghiyas-solyman", "label": "View Abdul Ghiyas Solyman's Profile" }
+      "tags": [
+        "Abdul Ghiyas Solyman",
+        "Player Spotlight",
+        "Championship",
+        "Career Stats",
+        "2026"
       ],
+      "playerProfiles": {
+        "id": "abdul-ghiyas-solyman",
+        "label": "View Abdul Ghiyas Solyman's Profile"
+      },
       "caption": "Abdul Ghiyas Solyman shows off his LSL championship medal with championship-level confidence.",
-      "related": [],
+      "related": null,
       "body": [
         "Abdul Ghiyas Solyman posted the medal like he had just completed an undefeated, record-breaking career. The actual LSL record is a little more humble: one championship achievement, 7 goals, and enough confidence to make the medal do overtime.",
         "THE MEDAL AND THE MOMENT",
@@ -56,15 +63,35 @@
       "thumbnail": "./Logos/Awards/2026 LSL Leauge Champions (regular season).jpg",
       "heroImage": "./Logos/Awards/2026 LSL Leauge Champions (regular season).jpg",
       "mediaFit": "contain",
-      "tags": ["2026", "Leeward Lions", "Records", "Mudassir", "Ajmal Chakkari", "Usman Ahmad Popal", "Regular Season"],
+      "tags": [
+        "2026",
+        "Leeward Lions",
+        "Records",
+        "Mudassir",
+        "Ajmal Chakkari",
+        "Usman Ahmad Popal",
+        "Regular Season"
+      ],
       "playerProfiles": [
-        { "id": "mudassir", "label": "View Mudassir Profile" },
-        { "id": "ajmal-shakkari", "label": "View Ajmal Chakkari Profile" },
-        { "id": "usman-ahmad-popal", "label": "View Usman Ahmad Popal Profile" },
-        { "id": "muhammad-teli", "label": "View Muhummud Teli Profile" }
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        },
+        {
+          "id": "ajmal-shakkari",
+          "label": "View Ajmal Chakkari Profile"
+        },
+        {
+          "id": "usman-ahmad-popal",
+          "label": "View Usman Ahmad Popal Profile"
+        },
+        {
+          "id": "muhammad-teli",
+          "label": "View Muhummud Teli Profile"
+        }
       ],
       "caption": "Leeward Lions finished the 2026 regular season first and left the record book filled with team and player milestones.",
-      "related": [],
+      "related": null,
       "body": [
         "Leeward Lions finished the 2026 LSL Seniors season as regular-season champions and runners-up in the Championship Final. The final trophy went to EM Haulers FC after extra time, but the season-long record book belongs to Leeward in several important categories.",
         "A COMPLETE REGULAR-SEASON STANDARD",
@@ -107,15 +134,35 @@
       "thumbnail": "./Logos/lsl-logo.png",
       "heroImage": "./Logos/lsl-logo.png",
       "mediaFit": "contain",
-      "tags": ["2010 Generation", "Career Feature", "Retirement Watch", "Ishaaq Ali", "Uthman Manjra", "Mohammad Ibrahim", "Taaha Nakhuda"],
+      "tags": [
+        "2010 Generation",
+        "Career Feature",
+        "Retirement Watch",
+        "Ishaaq Ali",
+        "Uthman Manjra",
+        "Mohammad Ibrahim",
+        "Taaha Nakhuda"
+      ],
       "playerProfiles": [
-        { "id": "ishaaq-ali", "label": "View Ishaaq Ali Profile" },
-        { "id": "uthman", "label": "View Uthman Manjra Profile" },
-        { "id": "mohammed-ibrahim", "label": "View Mohammad Ibrahim Profile" },
-        { "id": "taha-nakhuda", "label": "View Taaha Nakhuda Profile" }
+        {
+          "id": "ishaaq-ali",
+          "label": "View Ishaaq Ali Profile"
+        },
+        {
+          "id": "uthman",
+          "label": "View Uthman Manjra Profile"
+        },
+        {
+          "id": "mohammed-ibrahim",
+          "label": "View Mohammad Ibrahim Profile"
+        },
+        {
+          "id": "taha-nakhuda",
+          "label": "View Taaha Nakhuda Profile"
+        }
       ],
       "caption": "Four players born in 2010 have built multi-season careers that now sit at an important crossroads.",
-      "related": [],
+      "related": null,
       "body": [
         "No retirement has been announced by any of these players. This is a full-career look at four LSL players born in 2010, tracing where they started, how their roles changed, and what the league would lose if their playing careers eventually came to an end.",
         "THE 2010 CLASS",
@@ -154,15 +201,36 @@
       "thumbnail": "./Logos/Awards/2026 LSL Leauge Champions (regular season).jpg",
       "heroImage": "./Logos/Awards/2026 LSL Leauge Champions (regular season).jpg",
       "mediaFit": "contain",
-      "tags": ["2026", "Regular Season", "Leeward Lions", "EM Haulers FC", "Sharp Strikers", "Mudassir", "Haroon Ahmadi", "Golden Boot"],
+      "tags": [
+        "2026",
+        "Regular Season",
+        "Leeward Lions",
+        "EM Haulers FC",
+        "Sharp Strikers",
+        "Mudassir",
+        "Haroon Ahmadi",
+        "Golden Boot"
+      ],
       "playerProfiles": [
-        { "id": "mudassir", "label": "View Mudassir Profile" },
-        { "id": "haroon-ahmadi", "label": "View Haroon Ahmadi Profile" },
-        { "id": "ajmal-shakkari", "label": "View Ajmal Chakkari Profile" },
-        { "id": "m-yahya", "label": "View M Yahya Profile" }
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        },
+        {
+          "id": "haroon-ahmadi",
+          "label": "View Haroon Ahmadi Profile"
+        },
+        {
+          "id": "ajmal-shakkari",
+          "label": "View Ajmal Chakkari Profile"
+        },
+        {
+          "id": "m-yahya",
+          "label": "View M Yahya Profile"
+        }
       ],
       "caption": "Leeward Lions finished first after Leeward, EM Haulers FC, and Sharp Strikers all ended the regular season with 16 points and five wins.",
-      "related": [],
+      "related": null,
       "body": [
         "The 2026 LSL Seniors regular season delivered seven weeks of high-scoring matches, dramatic finishes, major roster changes, and a first-place race that came down to goal difference. Every team played seven games, 28 matches were completed, and the final table was not settled until Week 7.",
         "THE FINAL TABLE",
@@ -213,17 +281,34 @@
       "date": "September 6, 2026",
       "time": "Playoff feature",
       "author": "LSL News Desk",
-      "thumbnail": "./Photos and Videos/2026/2026 Champions.jpg",
-      "heroImage": "./Photos and Videos/2026/2026 Champions.jpg",
+      "thumbnail": "./media/2026/2026-asset-066.jpg",
+      "heroImage": "./media/2026/2026-asset-066.jpg",
       "mediaFit": "contain",
-      "tags": ["2026", "Playoffs", "EM Haulers FC", "Leeward Lions", "LSL Cup", "Haroon Ahmadi", "Muzamil Kharooti"],
+      "tags": [
+        "2026",
+        "Playoffs",
+        "EM Haulers FC",
+        "Leeward Lions",
+        "LSL Cup",
+        "Haroon Ahmadi",
+        "Muzamil Kharooti"
+      ],
       "playerProfiles": [
-        { "id": "haroon-ahmadi", "label": "View Haroon Ahmadi Profile" },
-        { "id": "muzamil-kharooti", "label": "View Muzamil Kharooti Profile" },
-        { "id": "mudassir", "label": "View Mudassir Profile" }
+        {
+          "id": "haroon-ahmadi",
+          "label": "View Haroon Ahmadi Profile"
+        },
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Kharooti Profile"
+        },
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        }
       ],
       "caption": "EM Haulers FC defeated Leeward Lions 2-1 on August 8, 2026 to become LSL champions.",
-      "related": [],
+      "related": null,
       "body": [
         "The 2026 LSL Seniors playoffs brought all eight teams to Grenoble Public School Field on Saturday, August 8. There were no byes and no second chances. Four quarterfinals, two semifinals, and the Championship Final were played on the same Finals Day, turning the regular-season standings into a full elimination tournament.",
         "THE BRACKET",
@@ -273,13 +358,28 @@
       "thumbnail": "./Logos/lsl-logo.png",
       "heroImage": "./Logos/lsl-logo.png",
       "mediaFit": "contain",
-      "tags": ["Champions", "2024", "2025", "2026", "Shifa Pharmacy F.C.", "Umer Memon F.C.", "EM Haulers FC", "LSL History"],
+      "tags": [
+        "Champions",
+        "2024",
+        "2025",
+        "2026",
+        "Shifa Pharmacy F.C.",
+        "Umer Memon F.C.",
+        "EM Haulers FC",
+        "LSL History"
+      ],
       "playerProfiles": [
-        { "id": "muzamil-kharooti", "label": "View Muzamil Kharooti Profile" },
-        { "id": "haroon-ahmadi", "label": "View Haroon Ahmadi Profile" }
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Kharooti Profile"
+        },
+        {
+          "id": "haroon-ahmadi",
+          "label": "View Haroon Ahmadi Profile"
+        }
       ],
       "caption": "Three seasons, three different LSL Seniors champions, and three unbeaten playoff runs.",
-      "related": [],
+      "related": null,
       "body": [
         "The first three completed LSL Seniors seasons produced three different champions. Shifa Pharmacy F.C. won in 2024, Umer Memon F.C. won in 2025, and EM Haulers FC won in 2026. The teams had different rosters, different coaches, different regular-season records, and different paths through the bracket. Yet the shape of all three championship runs reveals a clear LSL formula.",
         "THE THREE CHAMPIONS",
@@ -330,15 +430,35 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/Leeward Lions.jpg",
       "heroImage": "./Logos/2026 Teams/Leeward Lions.jpg",
-      "tags": ["Leeward Lions", "Season Recap", "Mudassir", "Ajmal Chakkari", "All-Time Rankings"],
+      "tags": [
+        "Leeward Lions",
+        "Season Recap",
+        "Mudassir",
+        "Ajmal Chakkari",
+        "All-Time Rankings"
+      ],
       "playerProfiles": [
-        { "id": "mudassir", "label": "View Mudassir Profile" },
-        { "id": "ajmal-shakkari", "label": "View Ajmal Profile" }
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        },
+        {
+          "id": "ajmal-shakkari",
+          "label": "View Ajmal Profile"
+        }
       ],
       "caption": "Leeward Lions' 7-1-2 combined record ranks 2nd all-time out of 20 tracked LSL Seniors team-seasons.",
       "related": [
-        { "label": "Records Broken", "articleId": "leeward-lions-2026-records-broken", "title": "Every Record Leeward Lions Broke (Or Tied) In The 2026 Regular Season" },
-        { "label": "Championship Recap", "articleId": "championship-final-recap-august-8", "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1" }
+        {
+          "label": "Records Broken",
+          "articleId": "leeward-lions-2026-records-broken",
+          "title": "Every Record Leeward Lions Broke (Or Tied) In The 2026 Regular Season"
+        },
+        {
+          "label": "Championship Recap",
+          "articleId": "championship-final-recap-august-8",
+          "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1"
+        }
       ],
       "body": [
         "Leeward Lions played the best regular season LSL has ever recorded, then got within one game of turning it into a championship.",
@@ -366,15 +486,30 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/EM Haulers FC.jpg",
       "heroImage": "./Logos/2026 Teams/EM Haulers FC.jpg",
-      "tags": ["EM Haulers FC", "2026 Champions", "Season Recap", "Haroon Ahmadi", "Muzamil Kharooti", "All-Time Rankings"],
+      "tags": [
+        "EM Haulers FC",
+        "2026 Champions",
+        "Season Recap",
+        "Haroon Ahmadi",
+        "Muzamil Kharooti",
+        "All-Time Rankings"
+      ],
       "playerProfiles": [
-        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
-        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" }
+        {
+          "id": "haroon-ahmadi",
+          "label": "View Haroon Profile"
+        },
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Profile"
+        }
       ],
       "caption": "EM Haulers FC's 8-1-1 combined record is the best in LSL history, out of 20 tracked Seniors team-seasons.",
-      "related": [
-        { "label": "Championship Recap", "articleId": "championship-final-recap-august-8", "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1" }
-      ],
+      "related": {
+        "label": "Championship Recap",
+        "articleId": "championship-final-recap-august-8",
+        "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1"
+      },
       "body": [
         "No team had a better 2026 than EM Haulers FC, and by the numbers, no team in LSL history has had a better single season, period.",
         "REGULAR SEASON",
@@ -401,15 +536,35 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/Sharp Strikers.jpg",
       "heroImage": "./Logos/2026 Teams/Sharp Strikers.jpg",
-      "tags": ["Sharp Strikers", "Season Recap", "M Yahya", "Rehan Mohammed", "All-Time Rankings"],
+      "tags": [
+        "Sharp Strikers",
+        "Season Recap",
+        "M Yahya",
+        "Rehan Mohammed",
+        "All-Time Rankings"
+      ],
       "playerProfiles": [
-        { "id": "m-yahya", "label": "View M Yahya Profile" },
-        { "id": "rehan-ahmed-mohammed", "label": "View Rehan Profile" }
+        {
+          "id": "m-yahya",
+          "label": "View M Yahya Profile"
+        },
+        {
+          "id": "rehan-ahmed-mohammed",
+          "label": "View Rehan Profile"
+        }
       ],
       "caption": "Sharp Strikers' 6-1-2 combined record ranks 3rd all-time out of 20 tracked LSL Seniors team-seasons.",
       "related": [
-        { "label": "Championship Recap", "articleId": "championship-final-recap-august-8", "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1" },
-        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+        {
+          "label": "Championship Recap",
+          "articleId": "championship-final-recap-august-8",
+          "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1"
+        },
+        {
+          "label": "Quarterfinals Recap",
+          "articleId": "quarterfinals-recap-august-8",
+          "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters"
+        }
       ],
       "body": [
         "Sharp Strikers shared the league's best regular-season record with two other teams, then needed a penalty shootout just to reach the semifinal.",
@@ -437,15 +592,29 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/Rawaha Royals.jpg",
       "heroImage": "./Logos/2026 Teams/Rawaha Royals.jpg",
-      "tags": ["Rawaha Royals", "Season Recap", "Mohammad Ibrahim", "Uthman Manira", "All-Time Rankings"],
+      "tags": [
+        "Rawaha Royals",
+        "Season Recap",
+        "Mohammad Ibrahim",
+        "Uthman Manira",
+        "All-Time Rankings"
+      ],
       "playerProfiles": [
-        { "id": "mohammed-ibrahim", "label": "View Ibrahim Profile" },
-        { "id": "uthman", "label": "View Uthman Profile" }
+        {
+          "id": "mohammed-ibrahim",
+          "label": "View Ibrahim Profile"
+        },
+        {
+          "id": "uthman",
+          "label": "View Uthman Profile"
+        }
       ],
       "caption": "Rawaha Royals' 4-1-3 combined record ranks 10th all-time out of 20 tracked LSL Seniors team-seasons.",
-      "related": [
-        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
-      ],
+      "related": {
+        "label": "Quarterfinals Recap",
+        "articleId": "quarterfinals-recap-august-8",
+        "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters"
+      },
       "body": [
         "Rawaha Royals closed the regular season on their best form of the year, then ran into the league's tightest defense in the very next game.",
         "REGULAR SEASON",
@@ -472,15 +641,29 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/Refuel Rovers.jpg",
       "heroImage": "./Logos/2026 Teams/Refuel Rovers.jpg",
-      "tags": ["Refuel Rovers", "Season Recap", "Mosa Fazli", "Abdul Ghiyas Solyman", "All-Time Rankings"],
+      "tags": [
+        "Refuel Rovers",
+        "Season Recap",
+        "Mosa Fazli",
+        "Abdul Ghiyas Solyman",
+        "All-Time Rankings"
+      ],
       "playerProfiles": [
-        { "id": "mosa-fazli", "label": "View Mosa Profile" },
-        { "id": "abdul-ghiyas-solyman", "label": "View Abdul Profile" }
+        {
+          "id": "mosa-fazli",
+          "label": "View Mosa Profile"
+        },
+        {
+          "id": "abdul-ghiyas-solyman",
+          "label": "View Abdul Profile"
+        }
       ],
       "caption": "Refuel Rovers' 4-0-5 combined record ranks 12th all-time out of 20 tracked LSL Seniors team-seasons.",
-      "related": [
-        { "label": "Semifinal 2 Recap", "articleId": "semifinal-2-recap-august-8", "title": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final" }
-      ],
+      "related": {
+        "label": "Semifinal 2 Recap",
+        "articleId": "semifinal-2-recap-august-8",
+        "title": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final"
+      },
       "body": [
         "Refuel Rovers scored fewer regular-season goals than any playoff team in the league, and still made it one win away from the Championship Final.",
         "REGULAR SEASON",
@@ -507,14 +690,22 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/Amax Visionaries.jpg",
       "heroImage": "./Logos/2026 Teams/Amax Visionaries.jpg",
-      "tags": ["Amax Visionaries", "Season Recap", "Adil Mubashir", "All-Time Rankings"],
-      "playerProfiles": [
-        { "id": "adil-mubashir", "label": "View Adil Profile" }
+      "tags": [
+        "Amax Visionaries",
+        "Season Recap",
+        "Adil Mubashir",
+        "All-Time Rankings"
       ],
+      "playerProfiles": {
+        "id": "adil-mubashir",
+        "label": "View Adil Profile"
+      },
       "caption": "Amax Visionaries' 2-1-5 combined record ranks 14th all-time out of 20 tracked LSL Seniors team-seasons.",
-      "related": [
-        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
-      ],
+      "related": {
+        "label": "Quarterfinals Recap",
+        "articleId": "quarterfinals-recap-august-8",
+        "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters"
+      },
       "body": [
         "Amax Visionaries opened the season getting run over 9-4, and closed it one penalty kick from the semifinal.",
         "REGULAR SEASON",
@@ -541,14 +732,22 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/Gangat Warriors.jpg",
       "heroImage": "./Logos/2026 Teams/Gangat Warriors.jpg",
-      "tags": ["Gangat Warriors", "Season Recap", "Taaha Nakhuda", "All-Time Rankings"],
-      "playerProfiles": [
-        { "id": "taha-nakhuda", "label": "View Taaha Profile" }
+      "tags": [
+        "Gangat Warriors",
+        "Season Recap",
+        "Taaha Nakhuda",
+        "All-Time Rankings"
       ],
+      "playerProfiles": {
+        "id": "taha-nakhuda",
+        "label": "View Taaha Profile"
+      },
       "caption": "Gangat Warriors' 1-0-7 combined record ranks 17th all-time out of 20 tracked LSL Seniors team-seasons.",
-      "related": [
-        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
-      ],
+      "related": {
+        "label": "Quarterfinals Recap",
+        "articleId": "quarterfinals-recap-august-8",
+        "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters"
+      },
       "body": [
         "Gangat Warriors won their opening game of the season and then didn't win again.",
         "REGULAR SEASON",
@@ -575,14 +774,22 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/Memon Mavericks.jpg",
       "heroImage": "./Logos/2026 Teams/Memon Mavericks.jpg",
-      "tags": ["Memon Mavericks", "Season Recap", "Nasibullah Barak", "All-Time Rankings"],
-      "playerProfiles": [
-        { "id": "nasibullah", "label": "View Nasibullah Profile" }
+      "tags": [
+        "Memon Mavericks",
+        "Season Recap",
+        "Nasibullah Barak",
+        "All-Time Rankings"
       ],
+      "playerProfiles": {
+        "id": "nasibullah",
+        "label": "View Nasibullah Profile"
+      },
       "caption": "Memon Mavericks' 0-1-7 combined record ranks last, 20th out of 20 tracked LSL Seniors team-seasons.",
-      "related": [
-        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
-      ],
+      "related": {
+        "label": "Quarterfinals Recap",
+        "articleId": "quarterfinals-recap-august-8",
+        "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters"
+      },
       "body": [
         "Memon Mavericks went the entire regular season without a win, and the playoffs didn't change that.",
         "REGULAR SEASON",
@@ -620,15 +827,36 @@
         "Career Goals"
       ],
       "playerProfiles": [
-        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" },
-        { "id": "mudassir", "label": "View Mudassir Profile" },
-        { "id": "hafizullah", "label": "View Hafizullah Profile" }
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Profile"
+        },
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        },
+        {
+          "id": "hafizullah",
+          "label": "View Hafizullah Profile"
+        }
       ],
       "caption": "Muzamil Kharooti and Mudassir enter the offseason separated by a single career goal at the top of LSL history.",
       "related": [
-        { "label": "Championship Recap", "articleId": "championship-final-recap-august-8", "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1" },
-        { "label": "Record Watch", "articleId": "mudassir-breaks-alltime-regular-season-goal-record", "title": "Mudassir Breaks the All-Time Record: Leeward Lions Star Passes Muzamil Kharooti and the Once-Unbeatable Hafizullah Mark" },
-        { "label": "Record Watch", "articleId": "muzamil-ties-hafizullah-goal-record", "title": "Hafizullah Retired, Muzamil Kharooti Ties Regular-Season Goal Record at 13" }
+        {
+          "label": "Championship Recap",
+          "articleId": "championship-final-recap-august-8",
+          "title": "EM Haulers FC Win The 2026 LSL Championship, Beating Leeward Lions 2-1"
+        },
+        {
+          "label": "Record Watch",
+          "articleId": "mudassir-breaks-alltime-regular-season-goal-record",
+          "title": "Mudassir Breaks the All-Time Record: Leeward Lions Star Passes Muzamil Kharooti and the Once-Unbeatable Hafizullah Mark"
+        },
+        {
+          "label": "Record Watch",
+          "articleId": "muzamil-ties-hafizullah-goal-record",
+          "title": "Hafizullah Retired, Muzamil Kharooti Ties Regular-Season Goal Record at 13"
+        }
       ],
       "body": [
         "Trophies get remembered for a season. Goals get remembered forever. Awards can depend on who's on your roster, which bracket you draw, or which year you happened to play in. A goal is just a goal, credited to one name, forever. So this is a goals-first case for the greatest player in LSL history, using every regular-season and playoff match on record from 2024 through the 2026 Championship Final.",
@@ -672,16 +900,41 @@
         "2026 Champions"
       ],
       "playerProfiles": [
-        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
-        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" },
-        { "id": "mudassir", "label": "View Mudassir Profile" }
+        {
+          "id": "haroon-ahmadi",
+          "label": "View Haroon Profile"
+        },
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Profile"
+        },
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        }
       ],
       "caption": "EM Haulers FC are the 2026 Lantern Soccer League Champions after defeating Leeward Lions 2-1 in extra time.",
       "related": [
-        { "label": "Semifinal 1 Recap", "articleId": "semifinal-1-recap-august-8", "title": "Semifinal 1 Recap: EM Haulers FC Hold Off Sharp Strikers 2-1 To Reach The Final" },
-        { "label": "Semifinal 2 Recap", "articleId": "semifinal-2-recap-august-8", "title": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final" },
-        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" },
-        { "label": "Repeat Champions Watch", "articleId": "back-to-back-cup-watch-quarterfinals", "title": "Every Team's Path To A Repeat Champion: Who Would Win The Cup Twice On August 8" }
+        {
+          "label": "Semifinal 1 Recap",
+          "articleId": "semifinal-1-recap-august-8",
+          "title": "Semifinal 1 Recap: EM Haulers FC Hold Off Sharp Strikers 2-1 To Reach The Final"
+        },
+        {
+          "label": "Semifinal 2 Recap",
+          "articleId": "semifinal-2-recap-august-8",
+          "title": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final"
+        },
+        {
+          "label": "Quarterfinals Recap",
+          "articleId": "quarterfinals-recap-august-8",
+          "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters"
+        },
+        {
+          "label": "Repeat Champions Watch",
+          "articleId": "back-to-back-cup-watch-quarterfinals",
+          "title": "Every Team's Path To A Repeat Champion: Who Would Win The Cup Twice On August 8"
+        }
       ],
       "body": [
         "EM Haulers FC are the 2026 Lantern Soccer League Champions.",
@@ -719,15 +972,35 @@
         "Mosa Fazli"
       ],
       "playerProfiles": [
-        { "id": "mudassir", "label": "View Mudassir Profile" },
-        { "id": "ajmal-shakkari", "label": "View Ajmal Profile" },
-        { "id": "abdul-ghiyas-solyman", "label": "View Abdul Profile" },
-        { "id": "mosa-fazli", "label": "View Mosa Profile" }
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        },
+        {
+          "id": "ajmal-shakkari",
+          "label": "View Ajmal Profile"
+        },
+        {
+          "id": "abdul-ghiyas-solyman",
+          "label": "View Abdul Profile"
+        },
+        {
+          "id": "mosa-fazli",
+          "label": "View Mosa Profile"
+        }
       ],
       "caption": "Leeward Lions defeated Refuel Rovers 4-1 to reach the 2026 LSL Championship Final.",
       "related": [
-        { "label": "Semifinal 1 Recap", "articleId": "semifinal-1-recap-august-8", "title": "Semifinal 1 Recap: EM Haulers FC Hold Off Sharp Strikers 2-1 To Reach The Final" },
-        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+        {
+          "label": "Semifinal 1 Recap",
+          "articleId": "semifinal-1-recap-august-8",
+          "title": "Semifinal 1 Recap: EM Haulers FC Hold Off Sharp Strikers 2-1 To Reach The Final"
+        },
+        {
+          "label": "Quarterfinals Recap",
+          "articleId": "quarterfinals-recap-august-8",
+          "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters"
+        }
       ],
       "body": [
         "Semifinal 2 was the more lopsided of the day's two semifinals. #1 seed Leeward Lions, coming off a 1-0 quarterfinal win over Memon Mavericks, took control early against #5 seed Refuel Rovers and never let go.",
@@ -759,13 +1032,27 @@
         "Muzamil Kharooti"
       ],
       "playerProfiles": [
-        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
-        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" }
+        {
+          "id": "haroon-ahmadi",
+          "label": "View Haroon Profile"
+        },
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Profile"
+        }
       ],
       "caption": "EM Haulers FC defeated Sharp Strikers 2-1 to reach the 2026 LSL Championship Final.",
       "related": [
-        { "label": "Semifinal 2 Recap", "articleId": "semifinal-2-recap-august-8", "title": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final" },
-        { "label": "Quarterfinals Recap", "articleId": "quarterfinals-recap-august-8", "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters" }
+        {
+          "label": "Semifinal 2 Recap",
+          "articleId": "semifinal-2-recap-august-8",
+          "title": "Semifinal 2 Recap: Leeward Lions Pull Away From Refuel Rovers 4-1 To Reach The Final"
+        },
+        {
+          "label": "Quarterfinals Recap",
+          "articleId": "quarterfinals-recap-august-8",
+          "title": "Quarterfinals Recap: A Penalty Shootout, Two Statement Wins, and Two 1-0 Nail-Biters"
+        }
       ],
       "body": [
         "Semifinal 1 brought together #3 seed Sharp Strikers, who had just survived a penalty shootout to get past Amax Visionaries in the quarterfinal, and #2 seed EM Haulers FC, who cruised past Gangat Warriors 4-1 to get here.",
@@ -805,19 +1092,39 @@
         "Mudassir"
       ],
       "playerProfiles": [
-        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
-        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" },
-        { "id": "abdul-ghiyas-solyman", "label": "View Abdul Profile" },
-        { "id": "mudassir", "label": "View Mudassir Profile" }
+        {
+          "id": "haroon-ahmadi",
+          "label": "View Haroon Profile"
+        },
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Profile"
+        },
+        {
+          "id": "abdul-ghiyas-solyman",
+          "label": "View Abdul Profile"
+        },
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        }
       ],
       "caption": "A penalty shootout, two lopsided scorelines, and two 1-0 grinders set the Finals Day semifinal matchups.",
       "related": [
-        { "label": "Numbers Watch", "articleId": "playoff-predictions-what-the-numbers-say", "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats" },
-        { "label": "Finals Day Schedule", "articleId": "finals-day-official-schedule-august-8", "title": "Lantern Soccer League Finals Day: Official Schedule for Saturday, August 8" }
+        {
+          "label": "Numbers Watch",
+          "articleId": "playoff-predictions-what-the-numbers-say",
+          "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats"
+        },
+        {
+          "label": "Finals Day Schedule",
+          "articleId": "finals-day-official-schedule-august-8",
+          "title": "Lantern Soccer League Finals Day: Official Schedule for Saturday, August 8"
+        }
       ],
       "body": [
         "Finals Day opened with four quarterfinals back to back to back to back starting at 8:30 AM, and by 11:05 AM the semifinal matchups were set. Two games went to form, one delivered the morning's biggest scare for a top seed, and one needed penalties to settle it.",
-        "QUARTERFINAL 1: SHARP STRIKERS 1 (3), AMAX VISIONARIES 1 (2) \u2014 PENALTIES",
+        "QUARTERFINAL 1: SHARP STRIKERS 1 (3), AMAX VISIONARIES 1 (2) — PENALTIES",
         "The #3 seed and #6 seed played to a 1-1 draw through regulation, sending the day's first game to a penalty shootout. Sharp Strikers held on 3-2 from the spot to advance, a tense finish for a team that spent the regular season trading results with the middle of the table.",
         "QUARTERFINAL 2: EM HAULERS FC 4, GANGAT WARRIORS 1",
         "EM Haulers FC's top two scorers did the work early: Muzamil Kharooti and Haroon Ahmadi each scored twice as the #2 seed pulled away from #7 seed Gangat Warriors. Umar Manjra got Gangat on the board, but Gangat were already playing without Taaha Nakhuda, who was traveling in India during the playoffs and missed the match with his team.",
@@ -860,46 +1167,66 @@
         "Sharp Strikers"
       ],
       "playerProfiles": [
-        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" },
-        { "id": "adil-mubashir", "label": "View Adil Profile" },
-        { "id": "ajmal-shakkari", "label": "View Ajmal Profile" },
-        { "id": "abdul-ghiyas-solyman", "label": "View Abdul Profile" }
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Profile"
+        },
+        {
+          "id": "adil-mubashir",
+          "label": "View Adil Profile"
+        },
+        {
+          "id": "ajmal-shakkari",
+          "label": "View Ajmal Profile"
+        },
+        {
+          "id": "abdul-ghiyas-solyman",
+          "label": "View Abdul Profile"
+        }
       ],
       "caption": "Ten players across five different quarterfinal teams already own an LSL Cup and could become two-time champions on August 8.",
       "related": [
-        { "label": "Numbers Watch", "articleId": "playoff-predictions-what-the-numbers-say", "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats" },
-        { "label": "Finals Day Schedule", "articleId": "finals-day-official-schedule-august-8", "title": "Lantern Soccer League Finals Day: Official Schedule for Saturday, August 8" }
+        {
+          "label": "Numbers Watch",
+          "articleId": "playoff-predictions-what-the-numbers-say",
+          "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats"
+        },
+        {
+          "label": "Finals Day Schedule",
+          "articleId": "finals-day-official-schedule-august-8",
+          "title": "Lantern Soccer League Finals Day: Official Schedule for Saturday, August 8"
+        }
       ],
       "body": [
         "UPDATE, AUGUST 8: EM Haulers FC won the 2026 LSL Championship, which means the back-to-back case laid out below for Muzamil Kharooti and Uwais Bemat is now real. Both won the 2025 Seniors title with Umer Memon F.C. and have now won again with EM Haulers FC in 2026, making them the first confirmed back-to-back Seniors champions in LSL history. The rest of this piece is the original pre-tournament breakdown.",
         "Only one LSL Cup is on the line on August 8, but for a handful of players across the bracket, a win with their current team would mean something more than a first title. Cross-referencing every 2026 Seniors roster against the 2024 champion (Shifa Pharmacy F.C.) and the 2025 champions (Umer Memon F.C. in the Seniors, Dhahabiya Strikers in the Juniors) turns up ten players spread across five of the eight quarterfinal teams who already have a championship on their resume.",
         "Two are true back-to-back cases, on the roster of the reigning champions themselves: Gangat Warriors are coached by Abdul Hakeem \"Ya Salaam,\" who won the 2025 title with Umer Memon F.C., but no player from that title roster followed him to Gangat. The closer back-to-back threats are actually scattered across the rest of the bracket, on rosters that faced Gangat's former teammates in trades and transfers over the last year.",
         "REFUEL ROVERS (vs Rawaha Royals)",
-        "\u2022 Yousaf Hosseinzada, Ishaaq Ali, and Azizullah all won the 2025 Seniors title with Umer Memon F.C. \u2014 a Refuel Rovers win would make it back-to-back for all three.",
-        "\u2022 Abdul Ghiyas Solyman and Ayub Jan both won in 2024 with Shifa Pharmacy F.C. \u2014 a second title, but not consecutive.",
-        "\u2022 Hasibullah Kharooti won the 2025 Juniors title with Dhahabiya Strikers, a different division's trophy but still a repeat if it counts.",
+        "• Yousaf Hosseinzada, Ishaaq Ali, and Azizullah all won the 2025 Seniors title with Umer Memon F.C. — a Refuel Rovers win would make it back-to-back for all three.",
+        "• Abdul Ghiyas Solyman and Ayub Jan both won in 2024 with Shifa Pharmacy F.C. — a second title, but not consecutive.",
+        "• Hasibullah Kharooti won the 2025 Juniors title with Dhahabiya Strikers, a different division's trophy but still a repeat if it counts.",
         "RAWAHA ROYALS (vs Refuel Rovers)",
-        "\u2022 Saad Khan won the 2025 Seniors title with Umer Memon F.C. and is one win from back-to-back.",
-        "\u2022 Tulha Ahmed won the 2024 title with Shifa Pharmacy F.C. and scored in that Grand Final \u2014 a second title, but not consecutive.",
+        "• Saad Khan won the 2025 Seniors title with Umer Memon F.C. and is one win from back-to-back.",
+        "• Tulha Ahmed won the 2024 title with Shifa Pharmacy F.C. and scored in that Grand Final — a second title, but not consecutive.",
         "EM HAULERS FC (vs Gangat Warriors)",
-        "\u2022 Muzamil Kharooti and Uwais Bemat both won the 2025 Seniors title with Umer Memon F.C. \u2014 Muzamil as team captain, no less \u2014 and both are back-to-back candidates.",
-        "\u2022 Mohammed Wahedi won the 2025 Juniors title with Dhahabiya Strikers.",
-        "\u2022 Tayyib Mohammed won in 2024 with Shifa Pharmacy F.C., a second title with a gap in between.",
+        "• Muzamil Kharooti and Uwais Bemat both won the 2025 Seniors title with Umer Memon F.C. — Muzamil as team captain, no less — and both are back-to-back candidates.",
+        "• Mohammed Wahedi won the 2025 Juniors title with Dhahabiya Strikers.",
+        "• Tayyib Mohammed won in 2024 with Shifa Pharmacy F.C., a second title with a gap in between.",
         "LEEWARD LIONS (vs Memon Mavericks)",
-        "\u2022 Muhummud Teli won the 2025 Seniors title with Umer Memon F.C. and is a back-to-back candidate.",
-        "\u2022 Ajmal Chakkari won the 2025 Juniors title with Dhahabiya Strikers.",
+        "• Muhummud Teli won the 2025 Seniors title with Umer Memon F.C. and is a back-to-back candidate.",
+        "• Ajmal Chakkari won the 2025 Juniors title with Dhahabiya Strikers.",
         "MEMON MAVERICKS (vs Leeward Lions)",
-        "\u2022 Muhammad Affan won in 2024 with Shifa Pharmacy F.C., picked up on waivers this year \u2014 a second title with a gap in between.",
+        "• Muhammad Affan won in 2024 with Shifa Pharmacy F.C., picked up on waivers this year — a second title with a gap in between.",
         "GANGAT WARRIORS (vs EM Haulers FC)",
-        "\u2022 Taaha Nakhuda, Ilyas Salim, and Ayaan Tutla all won in 2024 with Shifa Pharmacy F.C.",
-        "\u2022 Rafiullah won the 2025 Juniors title with Dhahabiya Strikers.",
+        "• Taaha Nakhuda, Ilyas Salim, and Ayaan Tutla all won in 2024 with Shifa Pharmacy F.C.",
+        "• Rafiullah won the 2025 Juniors title with Dhahabiya Strikers.",
         "SHARP STRIKERS (vs Amax Visionaries)",
-        "\u2022 No player on the roster has a prior LSL Cup win.",
+        "• No player on the roster has a prior LSL Cup win.",
         "AMAX VISIONARIES (vs Sharp Strikers)",
-        "\u2022 Adil Mubashir won the 2025 Seniors title with Umer Memon F.C. and is a back-to-back candidate.",
-        "\u2022 Shafiullah won the 2025 Juniors title with Dhahabiya Strikers.",
+        "• Adil Mubashir won the 2025 Seniors title with Umer Memon F.C. and is a back-to-back candidate.",
+        "• Shafiullah won the 2025 Juniors title with Dhahabiya Strikers.",
         "Put together, the 2025 Seniors champions from Umer Memon F.C. did not stay together long. Between trades and the offseason, that title-winning roster is now scattered across five different 2026 quarterfinal teams: Refuel Rovers, Rawaha Royals, EM Haulers FC, Leeward Lions, and Amax Visionaries all carry at least one player from that team. If any of those five wins on August 8, it produces a genuine back-to-back champion.",
-        "A short note on the count: the 2025 Juniors title (Dhahabiya Strikers) is a different division's championship than the Seniors Cup being decided in this bracket, so those five names \u2014 Hasibullah Kharooti, Mohammed Wahedi, Ajmal Chakkari, Rafiullah, and Shafiullah \u2014 are flagged separately above rather than folded into the Seniors repeat-champion count.",
+        "A short note on the count: the 2025 Juniors title (Dhahabiya Strikers) is a different division's championship than the Seniors Cup being decided in this bracket, so those five names — Hasibullah Kharooti, Mohammed Wahedi, Ajmal Chakkari, Rafiullah, and Shafiullah — are flagged separately above rather than folded into the Seniors repeat-champion count.",
         "This is a historical cross-reference, not a prediction of who will actually win on August 8. It only identifies who would extend their championship history if their team comes through the bracket."
       ]
     },
@@ -946,25 +1273,25 @@
       "body": [
         "After seven weeks of league play, it all comes down to one final day. LSL's eight Seniors teams battle through the playoffs on Saturday, August 8 to determine the 2026 Lantern Soccer League Playoff Champions.",
         "QUARTERFINALS (35 minutes, including a 5-minute halftime)",
-        "\u2022 8:30 AM \u2013 9:05 AM | QF1: Sharp Strikers vs Amax Visionaries",
-        "\u2022 9:10 AM \u2013 9:45 AM | QF2: EM Haulers FC vs Gangat Warriors",
-        "\u2022 9:50 AM \u2013 10:25 AM | QF3: Rawaha Royals vs Refuel Rovers",
-        "\u2022 10:30 AM \u2013 11:05 AM | QF4: Leeward Lions vs Memon Mavericks",
+        "• 8:30 AM – 9:05 AM | QF1: Sharp Strikers vs Amax Visionaries",
+        "• 9:10 AM – 9:45 AM | QF2: EM Haulers FC vs Gangat Warriors",
+        "• 9:50 AM – 10:25 AM | QF3: Rawaha Royals vs Refuel Rovers",
+        "• 10:30 AM – 11:05 AM | QF4: Leeward Lions vs Memon Mavericks",
         "SEMIFINALS (35 minutes, including a 5-minute halftime)",
-        "\u2022 11:05 AM \u2013 11:40 AM | SF1: Winner QF1 vs Winner QF2",
-        "\u2022 11:45 AM \u2013 12:20 PM | SF2: Winner QF3 vs Winner QF4",
+        "• 11:05 AM – 11:40 AM | SF1: Winner QF1 vs Winner QF2",
+        "• 11:45 AM – 12:20 PM | SF2: Winner QF3 vs Winner QF4",
         "COACHES & VOLUNTEERS MATCH",
-        "\u2022 12:25 PM \u2013 12:45 PM",
+        "• 12:25 PM – 12:45 PM",
         "JUNIORS",
-        "\u2022 12:45 PM \u2013 1:05 PM | Game 1",
-        "\u2022 1:05 PM \u2013 1:25 PM | Game 2",
-        "\u2022 1:25 PM \u2013 1:45 PM | Junior Final",
+        "• 12:45 PM – 1:05 PM | Game 1",
+        "• 1:05 PM – 1:25 PM | Game 2",
+        "• 1:25 PM – 1:45 PM | Junior Final",
         "DHUHR BREAK",
-        "\u2022 1:45 PM \u2013 2:00 PM",
+        "• 1:45 PM – 2:00 PM",
         "LSL CHAMPIONSHIP FINAL (45 minutes, including a 5-minute halftime)",
-        "\u2022 2:00 PM \u2013 2:45 PM",
+        "• 2:00 PM – 2:45 PM",
         "PRESENTATION CEREMONY",
-        "\u2022 2:45 PM onwards",
+        "• 2:45 PM onwards",
         "Come out with family and friends to support the players and enjoy a day of exciting football. Congratulations again to the Leeward Lions, LSL's 2026 Regular Season Champions. Now every team has one final opportunity to lift the 2026 LSL Playoff Championship.",
         "May Allah grant everyone a safe, enjoyable, and successful Finals Day. The league looks forward to seeing everyone there, In sha'Allah."
       ]
@@ -983,33 +1310,47 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/Leeward Lions.jpg",
       "heroImage": "./Logos/2026 Teams/Leeward Lions.jpg",
-      "tags": ["Leeward Lions", "Mudassir", "Ajmal Chakkari", "Records", "Advanced Stats"],
+      "tags": [
+        "Leeward Lions",
+        "Mudassir",
+        "Ajmal Chakkari",
+        "Records",
+        "Advanced Stats"
+      ],
       "playerProfiles": [
-        { "id": "mudassir", "label": "View Mudassir Profile" },
-        { "id": "ajmal-shakkari", "label": "View Ajmal Profile" }
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        },
+        {
+          "id": "ajmal-shakkari",
+          "label": "View Ajmal Profile"
+        }
       ],
       "caption": "Mudassir's 16 goals and Leeward Lions' 16 points both rank at the top of the LSL Seniors record book.",
-      "related": [
-        { "label": "Numbers Watch", "articleId": "playoff-predictions-what-the-numbers-say", "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats" }
-      ],
+      "related": {
+        "label": "Numbers Watch",
+        "articleId": "playoff-predictions-what-the-numbers-say",
+        "title": "What The Numbers Say: Picking All Four Quarterfinals By The Stats"
+      },
       "body": [
         "Leeward Lions locked up the #1 seed with the best regular season the LSL Seniors have recorded in three years. Here's every mark they broke or matched, team and player, with the old benchmark next to each one.",
         "TEAM RECORDS",
-        "\u2022 Most regular-season points on record: 16 (5-1-1). Passes Refuel Juicery Kickers' 13 points in 2024 and Asif Gangat United's 12 points in 2025, the two previous Best Regular Season Team winners.",
-        "\u2022 Best goal difference in the 2026 Seniors season: +18 (27 scored, 9 allowed), the top mark of any team this year and also the league's stingiest defense.",
-        "\u2022 League's top-scoring team in 2026: 27 goals in 7 games, ahead of EM Haulers FC's 25 and Sharp Strikers' 24.",
-        "\u2022 Longest unbeaten start of the season: 5 games (1 draw, 4 wins) to open the year, which included the longest active winning run of the season at 4 straight (Weeks 2 through 5).",
-        "\u2022 Only one loss all regular season, 5-4 to Sharp Strikers in Week 6.",
+        "• Most regular-season points on record: 16 (5-1-1). Passes Refuel Juicery Kickers' 13 points in 2024 and Asif Gangat United's 12 points in 2025, the two previous Best Regular Season Team winners.",
+        "• Best goal difference in the 2026 Seniors season: +18 (27 scored, 9 allowed), the top mark of any team this year and also the league's stingiest defense.",
+        "• League's top-scoring team in 2026: 27 goals in 7 games, ahead of EM Haulers FC's 25 and Sharp Strikers' 24.",
+        "• Longest unbeaten start of the season: 5 games (1 draw, 4 wins) to open the year, which included the longest active winning run of the season at 4 straight (Weeks 2 through 5).",
+        "• Only one loss all regular season, 5-4 to Sharp Strikers in Week 6.",
         "PLAYER RECORDS",
-        "\u2022 Mudassir: 16 regular-season goals. New Seniors single-season scoring record, more than double the old mark of 8, shared by Muzamil Kharooti (2024, Refuel Juicery Kickers) and Hafizullah (2025, Asif Gangat United).",
-        "\u2022 Ajmal Chakkari: 8 regular-season goals. Matches that old Seniors single-season record on his own, meaning Leeward had two players at or above the previous league benchmark in the same season.",
-        "\u2022 Mudassir and Ajmal Chakkari both finish 2026 among the top individual scoring seasons in Seniors history, at #1 and tied for the old #1 mark respectively.",
-        "\u2022 Goal involvement (goals only, no assists): Mudassir and Ajmal Chakkari alone scored 24 of Leeward's 27 goals this season.",
-        "\u2022 Mudassir posted a multi-goal game in 4 of Leeward's 7 matches this season, in Weeks 2, 3, 4, and 6.",
-        "\u2022 Mudassir's 5-goal game against Memon Mavericks in Week 4 is a new Seniors single-game scoring record. It passed a three-way tie at 4, set earlier this same season by Haroon Ahmadi, Muzamil Kharooti, and M Yahya, which had itself passed the old mark of 3 shared by several players across 2024 and 2025.",
+        "• Mudassir: 16 regular-season goals. New Seniors single-season scoring record, more than double the old mark of 8, shared by Muzamil Kharooti (2024, Refuel Juicery Kickers) and Hafizullah (2025, Asif Gangat United).",
+        "• Ajmal Chakkari: 8 regular-season goals. Matches that old Seniors single-season record on his own, meaning Leeward had two players at or above the previous league benchmark in the same season.",
+        "• Mudassir and Ajmal Chakkari both finish 2026 among the top individual scoring seasons in Seniors history, at #1 and tied for the old #1 mark respectively.",
+        "• Goal involvement (goals only, no assists): Mudassir and Ajmal Chakkari alone scored 24 of Leeward's 27 goals this season.",
+        "• Mudassir posted a multi-goal game in 4 of Leeward's 7 matches this season, in Weeks 2, 3, 4, and 6.",
+        "• Mudassir's 5-goal game against Memon Mavericks in Week 4 is a new Seniors single-game scoring record. It passed a three-way tie at 4, set earlier this same season by Haroon Ahmadi, Muzamil Kharooti, and M Yahya, which had itself passed the old mark of 3 shared by several players across 2024 and 2025.",
         "RECORDS CONFIRMED AFTER CHECKING 2024 AND 2025 MATCH BY MATCH",
-        "\u2022 Leeward's two 6-goal win margins this season (8-2 over Memon Mavericks in Week 4, 6-0 over Gangat Warriors in Week 2) are now confirmed as the largest single-game victory margins in Seniors history. The previous high was 5 (IM Construction SC 5-0 over Amax Optical Kickers, 2025 Week 1); 2024's largest was 4.",
-        "\u2022 Add up the margin of every win this season and Leeward's five victories were won by a combined 19 goals.",
+        "• Leeward's two 6-goal win margins this season (8-2 over Memon Mavericks in Week 4, 6-0 over Gangat Warriors in Week 2) are now confirmed as the largest single-game victory margins in Seniors history. The previous high was 5 (IM Construction SC 5-0 over Amax Optical Kickers, 2025 Week 1); 2024's largest was 4.",
+        "• Add up the margin of every win this season and Leeward's five victories were won by a combined 19 goals.",
         "All of this is regular-season only. The quarterfinal round starts August 8, where Leeward can add a deeper playoff run on top of it."
       ]
     },
@@ -1039,10 +1380,22 @@
         "Advanced Stats"
       ],
       "playerProfiles": [
-        { "id": "mudassir", "label": "View Mudassir Profile" },
-        { "id": "haroon-ahmadi", "label": "View Haroon Profile" },
-        { "id": "mohammed-ibrahim", "label": "View Ibrahim Profile" },
-        { "id": "m-yahya", "label": "View M Yahya Profile" }
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        },
+        {
+          "id": "haroon-ahmadi",
+          "label": "View Haroon Profile"
+        },
+        {
+          "id": "mohammed-ibrahim",
+          "label": "View Ibrahim Profile"
+        },
+        {
+          "id": "m-yahya",
+          "label": "View M Yahya Profile"
+        }
       ],
       "caption": "Mudassir led the 2026 regular season with 16 goals in 7 games, the best scoring rate of any player in the league.",
       "related": [
@@ -1457,17 +1810,47 @@
       "author": "LSL News Desk",
       "thumbnail": "./Logos/2026 Teams/Leeward Lions.jpg",
       "heroImage": "./Logos/2026 Teams/Leeward Lions.jpg",
-      "tags": ["Record Watch", "Mudassir", "Muzamil Kharooti", "Hafizullah", "Leeward Lions", "EM Haulers FC", "Regular Season Record", "Week 6"],
+      "tags": [
+        "Record Watch",
+        "Mudassir",
+        "Muzamil Kharooti",
+        "Hafizullah",
+        "Leeward Lions",
+        "EM Haulers FC",
+        "Regular Season Record",
+        "Week 6"
+      ],
       "playerProfiles": [
-        { "id": "mudassir", "label": "View Mudassir Profile" },
-        { "id": "muzamil-kharooti", "label": "View Muzamil Profile" },
-        { "id": "hafizullah", "label": "View Hafizullah Profile" }
+        {
+          "id": "mudassir",
+          "label": "View Mudassir Profile"
+        },
+        {
+          "id": "muzamil-kharooti",
+          "label": "View Muzamil Profile"
+        },
+        {
+          "id": "hafizullah",
+          "label": "View Hafizullah Profile"
+        }
       ],
       "caption": "Mudassir's 19 career regular-season goals now stand alone as the highest total in LSL history.",
       "related": [
-        { "label": "Where It Started", "articleId": "hafizullah-retires-at-17", "title": "Hafizullah Retires at 17, Leaving Behind One of LSL's Best Careers" },
-        { "label": "The First Challenger", "articleId": "muzamil-ties-hafizullah-goal-record", "title": "Hafizullah Retired, Muzamil Kharooti Ties Regular-Season Goal Record at 13" },
-        { "label": "Week 6 Recap", "articleId": "week-6-recap-leeward-em-amax-rawaha", "title": "Week 6 Recap: Sharp Edge Leeward as EM Win Another 4-3 Thriller" }
+        {
+          "label": "Where It Started",
+          "articleId": "hafizullah-retires-at-17",
+          "title": "Hafizullah Retires at 17, Leaving Behind One of LSL's Best Careers"
+        },
+        {
+          "label": "The First Challenger",
+          "articleId": "muzamil-ties-hafizullah-goal-record",
+          "title": "Hafizullah Retired, Muzamil Kharooti Ties Regular-Season Goal Record at 13"
+        },
+        {
+          "label": "Week 6 Recap",
+          "articleId": "week-6-recap-leeward-em-amax-rawaha",
+          "title": "Week 6 Recap: Sharp Edge Leeward as EM Win Another 4-3 Thriller"
+        }
       ],
       "body": [
         "For most of the 2026 season, the biggest number in LSL history belonged to Muzamil Kharooti. As of Week 6, it belongs to Mudassir.",
@@ -2441,13 +2824,11 @@
       "playerProfileId": "abdul-ghiyas-solyman",
       "playerProfileLabel": "View Abdul Profile",
       "caption": "Abdul Ghiyas Solyman remains with EM Haulers FC while more teams are connected to the rumor market.",
-      "related": [
-        {
-          "label": "Previous Story",
-          "articleId": "abdul-ghiyas-trade-rumors-heat-up",
-          "title": "Abdul Trade Talk Heats Up as Multi-Player Deal Rumors Grow"
-        }
-      ],
+      "related": {
+        "label": "Previous Story",
+        "articleId": "abdul-ghiyas-trade-rumors-heat-up",
+        "title": "Abdul Trade Talk Heats Up as Multi-Player Deal Rumors Grow"
+      },
       "body": [
         "Abdul Ghiyas Solyman's name is becoming one of the loudest names on the LSL trade board, and the list of possible teams is starting to grow.",
         "After Abdul recorded 2 goals and 1 assist in EM Haulers FC's huge 9-4 Week 1 win over Amax Visionaries, rumors around his future have only gotten stronger. Haroon Ahmadi scored four goals, Muzamil Kharooti scored twice, and Uwais Bemat added one more in the same win. EM Haulers FC still has Abdul on the roster, but league sources believe the team may be forced to listen to trade offers because of how strong their squad looked after just one game.",
@@ -2497,13 +2878,11 @@
       "playerProfileId": "hafizullah",
       "playerProfileLabel": "View Hafizullah Profile",
       "caption": "Hafizullah became one of LSL's most feared scorers across two seasons with Asif Gangat United.",
-      "related": [
-        {
-          "label": "Update",
-          "articleId": "muzamil-ties-hafizullah-goal-record",
-          "title": "Muzamil Kharooti Ties Hafizullah's Regular-Season Goal Record"
-        }
-      ],
+      "related": {
+        "label": "Update",
+        "articleId": "muzamil-ties-hafizullah-goal-record",
+        "title": "Muzamil Kharooti Ties Hafizullah's Regular-Season Goal Record"
+      },
       "body": [
         "Hafizullah, one of the greatest players in LSL history, has officially retired at the age of 17.",
         "Even though he never won a championship, Hafizullah will still go down as one of the best players to ever play in the league. In just 2 seasons with Asif Gangat United, he became one of the league's most dangerous scorers and one of the hardest players to stop.",

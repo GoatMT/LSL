@@ -6,11 +6,9 @@
     "Win = 3 points, draw = 1 point, loss = 0 points.",
     "Tie breaker order: points, wins, then goal difference."
   ],
-  "divisions": [
-    {
-      "name": "Seniors",
-      "playoffCutoff": 6,
-      "byeSeeds": 2
-    }
-  ]
+  "divisions": {
+    "name": "Seniors",
+    "playoffCutoff": 6,
+    "byeSeeds": 2
+  }
 }

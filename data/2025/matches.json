@@ -14,8 +14,8 @@
       "homeScore": null,
       "awayScore": null,
       "status": "Exhibition",
-      "scorers": [],
-      "assists": []
+      "scorers": null,
+      "assists": null
     },
     {
       "id": "2025-w1-g1",
@@ -47,7 +47,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w1-g2",
@@ -79,7 +79,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w1-g3",
@@ -105,7 +105,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w2-g1",
@@ -131,7 +131,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w2-g2",
@@ -145,14 +145,12 @@
       "homeScore": 1,
       "awayScore": 0,
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "hafizullah",
-          "name": "Hafizullah",
-          "goals": 1
-        }
-      ],
-      "assists": []
+      "scorers": {
+        "playerId": "hafizullah",
+        "name": "Hafizullah",
+        "goals": 1
+      },
+      "assists": null
     },
     {
       "id": "2025-w2-g3",
@@ -166,14 +164,12 @@
       "homeScore": 1,
       "awayScore": 0,
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "subhan-ali-syed",
-          "name": "Subhan Ali Syed",
-          "goals": 1
-        }
-      ],
-      "assists": []
+      "scorers": {
+        "playerId": "subhan-ali-syed",
+        "name": "Subhan Ali Syed",
+        "goals": 1
+      },
+      "assists": null
     },
     {
       "id": "2025-w3-g1",
@@ -209,7 +205,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w3-g2",
@@ -240,7 +236,7 @@
           "goals": 2
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w3-g3",
@@ -266,7 +262,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w4-g1",
@@ -292,7 +288,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w4-g2",
@@ -320,10 +316,8 @@
           "goals": 1
         }
       ],
-      "assists": [],
-      "notes": [
-        "Updated result: 1-1 tie. Muzamil Kharooti #7 scored for Umer Memon; Taaha Nakhuda #3 scored for Amax Optical."
-      ]
+      "assists": null,
+      "notes": "Updated result: 1-1 tie. Muzamil Kharooti #7 scored for Umer Memon; Taaha Nakhuda #3 scored for Amax Optical."
     },
     {
       "id": "2025-w4-g3",
@@ -364,7 +358,7 @@
           "goals": 2
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w5-g1",
@@ -404,7 +398,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-w5-g2",
@@ -431,10 +425,8 @@
           "goals": 1
         }
       ],
-      "assists": [],
-      "notes": [
-        "Updated scorer: Ahmad Ingar #5 scored for Islamic Bookstore."
-      ]
+      "assists": null,
+      "notes": "Updated scorer: Ahmad Ingar #5 scored for Islamic Bookstore."
     },
     {
       "id": "2025-w5-g3",
@@ -465,7 +457,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-p-qf1",
@@ -494,10 +486,8 @@
           "goals": 1
         }
       ],
-      "assists": [],
-      "notes": [
-        "Updated playoff result: Umer Memon defeated Amax Optical 3-0."
-      ]
+      "assists": null,
+      "notes": "Updated playoff result: Umer Memon defeated Amax Optical 3-0."
     },
     {
       "id": "2025-p-qf2",
@@ -526,7 +516,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-p-sf1",
@@ -553,7 +543,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-p-sf2",
@@ -626,7 +616,7 @@
           "goals": 1
         }
       ],
-      "assists": [],
+      "assists": null,
       "notes": [
         "Updated result: Refuel Juicery Athletic defeated IM Construction SC 7-5 in regulation (not on penalties as previously listed).",
         "Match started at 12:25 PM.",
@@ -647,11 +637,9 @@
       "awayScore": null,
       "winnerId": "im-construction-sc",
       "status": "IM Construction SC 3rd place winner",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "IM Construction SC came 3rd. Score was not listed."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "IM Construction SC came 3rd. Score was not listed."
     },
     {
       "id": "2025-p-final",
@@ -666,15 +654,13 @@
       "awayScore": 1,
       "winnerId": "umer-memon-fc-2025",
       "status": "Umer Memon F.C. champion",
-      "scorers": [
-        {
-          "playerId": "adil-mubashir",
-          "teamId": "umer-memon-fc-2025",
-          "name": "Adil Mubashir",
-          "goals": 2
-        }
-      ],
-      "assists": [],
+      "scorers": {
+        "playerId": "adil-mubashir",
+        "teamId": "umer-memon-fc-2025",
+        "name": "Adil Mubashir",
+        "goals": 2
+      },
+      "assists": null,
       "notes": [
         "2025 Grand Final official result: Umer Memon F.C. defeated Refuel Juicery Athletic 2-1.",
         "Adil Mubashir scored both Umer Memon F.C. goals.",
@@ -713,7 +699,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-jr-w1-g2",
@@ -740,7 +726,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-jr-w2-g1",
@@ -778,7 +764,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-jr-w2-g2",
@@ -792,15 +778,13 @@
       "homeScore": 1,
       "awayScore": 0,
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "ajmal-shakkari",
-          "name": "Ajmal Shakkari",
-          "jersey": 10,
-          "goals": 1
-        }
-      ],
-      "assists": []
+      "scorers": {
+        "playerId": "ajmal-shakkari",
+        "name": "Ajmal Shakkari",
+        "jersey": 10,
+        "goals": 1
+      },
+      "assists": null
     },
     {
       "id": "2025-jr-w3-g1",
@@ -814,20 +798,16 @@
       "homeScore": 5,
       "awayScore": 0,
       "status": "Complete",
-      "scorers": [
-        {
-          "playerId": "musaddiq-khan",
-          "name": "Musaddiq Khan",
-          "goals": 5
-        }
-      ],
-      "assists": [
-        {
-          "playerId": "ilyas-salim",
-          "name": "Ilyas Salim",
-          "assists": 1
-        }
-      ]
+      "scorers": {
+        "playerId": "musaddiq-khan",
+        "name": "Musaddiq Khan",
+        "goals": 5
+      },
+      "assists": {
+        "playerId": "ilyas-salim",
+        "name": "Ilyas Salim",
+        "assists": 1
+      }
     },
     {
       "id": "2025-jr-w3-g2",
@@ -861,7 +841,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-jr-w4-g1",
@@ -875,11 +855,9 @@
       "homeScore": 1,
       "awayScore": 1,
       "status": "Complete",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Scorers were not shown in the supplied image."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "Scorers were not shown in the supplied image."
     },
     {
       "id": "2025-jr-w4-g2",
@@ -894,11 +872,9 @@
       "awayScore": 0,
       "winnerId": "rafik-enterprise-fc",
       "status": "Rafik Enterprise FC won by default",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Default result counted as a 2-0 win for Rafik Enterprise FC in the standings."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "Default result counted as a 2-0 win for Rafik Enterprise FC in the standings."
     },
     {
       "id": "2025-jr-w5-g1",
@@ -926,14 +902,12 @@
           "goals": 1
         }
       ],
-      "assists": [
-        {
-          "playerId": "mohammed-hammad-syed",
-          "name": "Syed",
-          "jersey": 4,
-          "assists": 1
-        }
-      ]
+      "assists": {
+        "playerId": "mohammed-hammad-syed",
+        "name": "Syed",
+        "jersey": 4,
+        "assists": 1
+      }
     },
     {
       "id": "2025-jr-w5-g2",
@@ -979,10 +953,8 @@
           "goals": 2
         }
       ],
-      "assists": [],
-      "notes": [
-        "Final standings count this game as 3-4. The supplied score graphic appeared to show 3-5 and Manjra/Manra #7 with two goals."
-      ]
+      "assists": null,
+      "notes": "Final standings count this game as 3-4. The supplied score graphic appeared to show 3-5 and Manjra/Manra #7 with two goals."
     },
     {
       "id": "2025-jr-w6-g1",
@@ -1010,7 +982,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-jr-w6-g2",
@@ -1038,7 +1010,7 @@
           "goals": 1
         }
       ],
-      "assists": []
+      "assists": null
     },
     {
       "id": "2025-jp-sf1",
@@ -1053,11 +1025,9 @@
       "awayScore": 0,
       "winnerId": "dhahabiya-strikers",
       "status": "Dhahabiya advanced by default",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Dhahabiya Strikers advanced by default after EM Truck Repair FC forfeited."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "Dhahabiya Strikers advanced by default after EM Truck Repair FC forfeited."
     },
     {
       "id": "2025-jp-sf2",
@@ -1072,11 +1042,9 @@
       "awayScore": 0,
       "winnerId": "rafik-enterprise-fc",
       "status": "Complete",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Rafik Enterprise FC advanced to the final with a 3-0 semifinal win."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "Rafik Enterprise FC advanced to the final with a 3-0 semifinal win."
     },
     {
       "id": "2025-jp-final",
@@ -1091,11 +1059,9 @@
       "awayScore": 1,
       "winnerId": "dhahabiya-strikers",
       "status": "Dhahabiya Strikers junior champions",
-      "scorers": [],
-      "assists": [],
-      "notes": [
-        "Dhahabiya Strikers defeated Rafik Enterprise FC 2-1 to win the 2025 Junior League championship."
-      ]
+      "scorers": null,
+      "assists": null,
+      "notes": "Dhahabiya Strikers defeated Rafik Enterprise FC 2-1 to win the 2025 Junior League championship."
     }
   ]
 }

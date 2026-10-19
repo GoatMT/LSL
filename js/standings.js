@@ -2,9 +2,9 @@ import { renderMatchCard } from "../components/matchCard.js";
 import { renderPlayoffBracket } from "../components/playoffBracket.js";
 import { renderStandingsTable } from "../components/standingsTable.js?v=3.1";
 import { playoffRulesFor, SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js?v=1.1";
+import { loadSeasonData } from "./dataLoader.js?v=20261018-media1";
 import { filterMatches, getWeeks, standingsWithMovement } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20260927-2";
+import { setupLayout } from "./main.js?v=20261018-media1";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("standings.html");
@@ -104,3 +104,5 @@ async function init() {
 }
 
 init();
+
+

@@ -1,0 +1,130 @@
+/* Physical placement is independent of the camera and movement axes. */
+#touch-controls { --edge:max(20px,env(safe-area-inset-right)); --button:58px; --reach:62px; position:absolute; inset:0; z-index:12; pointer-events:none; touch-action:none; user-select:none; -webkit-user-select:none; }
+#touch-controls .touch-actions { display:block; position:absolute; right:var(--edge); bottom:max(18px,env(safe-area-inset-bottom)); width:calc(var(--button)*2.6); height:calc(var(--button)*3.15); pointer-events:none; touch-action:none; }
+#touch-controls .touch-action { position:absolute; display:grid; place-items:center; width:var(--button); height:var(--button); min-width:44px; min-height:44px; padding:0; border-radius:50%; font:700 9px/1.2 system-ui,sans-serif; white-space:pre-line; pointer-events:auto; -webkit-tap-highlight-color:transparent; transition:background .12s,transform .12s; touch-action:none; }
+#touch-controls .touch-movement { position:absolute; left:max(20px,env(safe-area-inset-left)); bottom:max(18px,env(safe-area-inset-bottom)); pointer-events:auto; touch-action:none; }
+#touch-controls #joystick { width:112px; height:112px; border:1px solid #f4ffe446; background:radial-gradient(circle,transparent 49%,#e0edd10a 50%); box-shadow:inset 0 0 0 12px #ffffff04; border-radius:50%; touch-action:none; }
+#touch-controls #joystick-thumb { width:46px; height:46px; background:#e4efdf40; border:1px solid #f4ffe48c; box-shadow:0 3px 10px #0002; }
+.mobile-settings legend { color:var(--gold); font-size:11px; letter-spacing:1.2px; padding:0 8px; }
+.mobile-settings > label { display:block; font-size:13px; margin-bottom:8px; }
+.mobile-settings select { width:100%; background:#112f29; color:var(--cream); border:1px solid #a9bbaa65; border-radius:5px; padding:12px 8px; font:inherit; font-size:12px; }
+.mobile-settings .toggle-setting { display:flex; align-items:center; gap:12px; margin-top:16px; min-height:44px; cursor:pointer; }
+.toggle-setting input { accent-color:var(--gold); width:20px; height:20px; flex-shrink:0; }
+.toggle-setting small { display:block; font-size:11px; color:var(--muted); margin-top:5px; line-height:1.5; }
+#power-meter { width:188px; border:1px solid #eee7a65e; padding:9px 12px; }
+#power-label { font-size:9px; letter-spacing:.6px; }
+#power-meter #shot-type { display:block; color:#cfecd6; font-size:10px; letter-spacing:1.2px; margin-top:7px; }
+#power-meter[data-level="high"] #power-fill { background:#ffc563; }
+#power-meter[data-level="max"] { border-color:#ff7f6c; }
+#power-meter[data-level="max"] #power-fill { background:#ff7568; }
+#power-meter[data-level="max"] #power-label { color:#ff9d87; }
+@media (pointer:coarse), (max-width:960px) and (max-height:600px) { #power-meter { bottom:90px; } }
+@media (max-height:430px) { #touch-controls { --button:52px; --reach:53px; } #touch-controls #joystick { width:104px; height:104px; } }
+@media (max-width:600px) and (orientation:portrait) { #touch-controls { --button:50px; --reach:51px; --edge:16px; } #touch-controls .touch-movement { left:16px; } #touch-controls #joystick { width:100px; height:100px; } #power-meter { bottom:240px; } }
+@media (prefers-reduced-motion:reduce) { #touch-controls .touch-action { transition:none; } }
+
+/* Compact curved action cluster, with the reference's larger sprint button. */
+#touch-controls { --button:58px; --reach:62px; }
+#touch-controls .touch-actions { width:calc(var(--button)*2.6); height:calc(var(--button)*3.15); }
+#touch-controls .touch-action { --accent:#dfebe2; border:2px solid var(--accent); outline:2px solid #e4eee358; outline-offset:3px; background:#11262179; backdrop-filter:none; box-shadow:inset 0 0 0 2px #061e2340; font-size:10px; letter-spacing:0; color:#fff; }
+#touch-controls #touch-shoot { left:auto; right:2px; top:0; --accent:#e8915b; border-color:var(--accent); background:#11262179; }
+#touch-controls #touch-dribble { left:12px; top:calc(var(--button)*.72); --accent:#d6c75e; }
+#touch-controls #touch-pass { left:0; top:auto; bottom:0; --accent:#81b9dc; font-size:10px; }
+#touch-controls #touch-sprint { left:auto; right:0; top:auto; bottom:0; width:calc(var(--button)*1.2); height:calc(var(--button)*1.2); padding-top:7px; font-size:10px; --accent:#80c98b; }
+#touch-controls #touch-sprint::before { top:3px; font-size:10px; opacity:.7; }
+#touch-controls .touch-secondary { outline-offset:2px; outline-width:1px; border-width:1px; --accent:#c9ddd4;opacity:.88; pointer-events:auto; }
+#touch-controls .touch-secondary:disabled { opacity:.35; pointer-events:none; }
+#touch-controls #touch-goalie[aria-pressed="true"] { background:#76bc8f68; border-color:#b4ffd0; }
+#touch-controls .touch-action.held { background:#d4e5cb45; color:#fff; border-color:#fff; }
+.mobile-settings .muted-copy { font-size:11px; line-height:1.5; }
+.mobile-settings .layout-setting { justify-content:space-between; margin-top:0; font-size:13px; }
+.mobile-settings .toggle-setting small { font-size:10px; }
+.layout-setting input[role="switch"] { appearance:none; width:42px; height:24px; border:1px solid #acc7b570; border-radius:20px; background:#263f37; position:relative; cursor:pointer; transition:background .15s; }
+.layout-setting input[role="switch"]::before { content:''; position:absolute; width:16px; height:16px; top:3px; left:3px; border-radius:50%; background:#e6f0e6; transition:transform .15s; }
+.layout-setting input[role="switch"]:checked { background:#758f55; }
+.layout-setting input[role="switch"]:checked::before { transform:translateX(18px); }
+.layout-setting input:focus-visible { outline:2px solid var(--gold); outline-offset:4px; }
+@media (max-height:430px), (max-width:600px) and (orientation:portrait) { #touch-controls { --button:52px; } #touch-controls .touch-action { font-size:9px; } #touch-controls .touch-secondary { font-size:8px; } }
+
+/* Leave separate thumb targets even on narrow portrait phones when mirrored. */
+.camera-options { flex-wrap:wrap; }
+.camera-options [data-camera="mobile"] { border-color:#90b991; }
+@media (max-width:600px) { .camera-options > button { flex:1 1 40%; min-height:58px; } }
+@media (max-width:360px) and (orientation:portrait) {
+  #touch-controls { --edge:max(12px,env(safe-area-inset-right)); }
+  #touch-controls .touch-movement { left:max(12px,env(safe-area-inset-left)); }
+  #touch-controls #joystick { width:88px; height:88px; }
+  #touch-controls[data-layout="right"] .touch-movement { left:auto; right:max(12px,env(safe-area-inset-right)); }
+  #touch-controls[data-layout="right"] .touch-actions { left:max(12px,env(safe-area-inset-left)); }
+}
+
+/* Browser zoom remains available on menus and information pages; gameplay owns only its field gestures. */
+body { touch-action:auto !important; -webkit-user-select:text; user-select:text; }
+.screen, dialog { touch-action:auto; }
+body[data-screen="match"] #game-canvas,
+body[data-screen="match"] #live-canvas,
+#touch-controls,
+#touch-controls * { touch-action:none; }
+#touch-controls,
+#touch-controls * { -webkit-user-select:none; user-select:none; }
+#touch-controls .touch-actions { right:var(--touch-action-x,4%); bottom:var(--touch-action-y,4%); left:auto; zoom:var(--touch-scale,1); transform-origin:bottom right; }
+#touch-controls .touch-movement { left:var(--touch-pad-x,4%); bottom:var(--touch-pad-y,4%); zoom:var(--touch-scale,1); transform-origin:bottom left; }
+#touch-controls[data-layout="right"] .touch-actions { right:auto; left:var(--touch-action-x,4%); transform:scaleX(-1); transform-origin:bottom left; }
+#touch-controls[data-layout="right"] .touch-movement { left:auto; right:var(--touch-pad-x,4%); transform-origin:bottom right; }
+#touch-controls .touch-secondary { width:52px; height:52px; font-size:9px; }
+#touch-controls #touch-goalie { left:-78px; bottom:8px; top:auto; }
+#touch-controls[data-layout="right"] #touch-goalie { left:auto; right:-78px; }
+#touch-controls[data-editing="true"] .touch-actions,
+#touch-controls[data-editing="true"] .touch-movement { outline:1px dashed #f4dc8a; outline-offset:7px; cursor:move; }
+@media (max-width:360px) and (orientation:portrait) {
+  #touch-controls .touch-actions,
+  #touch-controls .touch-movement { zoom:min(var(--touch-scale,1),.95); }
+  #touch-controls .touch-secondary { width:48px; height:48px; }
+  #touch-controls #touch-goalie { left:-70px; }
+  #touch-controls[data-layout="right"] #touch-goalie { left:auto; right:-70px; }
+}
+#touch-controls #touch-goalie[hidden] { display:none !important; }
+
+/* Compact upper-left match score for touch play across CPU modes and Live H2H. */
+@media (pointer:coarse), (max-width:700px) {
+  #match-hud .scoreboard {
+    top:max(8px,env(safe-area-inset-top));
+    left:max(8px,env(safe-area-inset-left));
+    right:auto;
+    transform:none;
+    width:min(286px,calc(100vw - 70px));
+    min-width:0;
+    grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr);
+    border-radius:7px;
+    box-shadow:0 3px 12px #00132145;
+  }
+  #match-hud .scoreboard>.hud-team {padding:5px 7px;gap:5px;}
+  #match-hud .hud-team img {width:18px;height:18px;}
+  #match-hud .hud-team-copy {display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:8px;letter-spacing:0;}
+  #match-hud .hud-team-ovr {display:none;}
+  #match-hud .scoreboard>strong {gap:4px;font-size:16px;padding:4px 5px;}
+  #match-hud .scoreboard>strong i {font-size:11px;}
+  #match-hud .clock {gap:8px;padding:3px 7px;font-size:7px;letter-spacing:.6px;}
+  #match-hud .broadcast-mark {display:none;}
+  #match-hud .clock time {font-size:8px;}
+
+  #live-arena .live-score {
+    top:max(8px,env(safe-area-inset-top));
+    left:max(8px,env(safe-area-inset-left));
+    right:64px;
+    transform:none;
+    width:auto;
+    min-width:0;
+    max-width:none;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    gap:2px 7px;
+    padding:6px 9px;
+    border-radius:7px;
+    font-size:8px;
+    text-align:center;
+    box-shadow:0 3px 12px #00132145;
+  }
+  #live-arena .live-score>span {display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;-webkit-line-clamp:unset;font-size:8px;}
+  #live-arena .live-score strong {font-size:17px;}
+  #live-arena .live-score small {font-size:7px;letter-spacing:.08em;}
+}
