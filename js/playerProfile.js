@@ -1,8 +1,8 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261018-media4";
-import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20261018-media4";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261019-fast1";
+import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.15";
+import { setupLayout } from "./main.js?v=20261019-fast1";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
 setupLayout("players.html");
@@ -837,7 +837,7 @@ function renderProfileHeader(profile, current, ovr) {
           <span><small>Age</small><strong>${escapeHTML(currentPlayerAge(birthYear, birthMonth))}</strong></span>
         </div>
       </div>
-      <div class="official-profile-ovr-card" title="Career OVR: Seniors count 90% and Juniors 10% for players in both divisions. Junior-only ratings are 10% lower. Goalkeepers use wins 40 and goals-against-per-game 60. Field/Goalie players blend field and goalie scores 50/50.">
+      <div class="official-profile-ovr-card" title="Career OVR: Seniors count 90% and Juniors 10% for players in both divisions. Junior-only ratings are 10% lower. Goalkeepers use wins 30%, championships 15%, goals-against-per-game 35%, and team finish 20%. Field/Goalie players blend field and goalie scores 50/50.">
         <span>OVR</span>
         <strong>${escapeHTML(ovr)}</strong>
       </div>

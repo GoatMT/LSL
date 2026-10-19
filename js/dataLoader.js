@@ -12,6 +12,11 @@ const seasonRequests = new Map();
 const allSeasonsCache = new Map();
 const allSeasonsRequests = new Map();
 
+function selectDataFiles(dataFiles = DATA_FILES) {
+  const requested = new Set(Array.isArray(dataFiles) ? dataFiles : DATA_FILES);
+  return DATA_FILES.filter((key) => requested.has(key));
+}
+
 function sessionCacheKey(path) {
   return `lsl-data:${DATA_CACHE_VERSION}:${path}`;
 }
@@ -178,14 +183,16 @@ function mergePlayers(teams, playerPayload, year, aliases = {}) {
   return [...map.values()].sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export async function loadSeasonData(year) {
+export async function loadSeasonData(year, dataFiles = DATA_FILES) {
   const seasonKey = String(year);
-  if (seasonCache.has(seasonKey)) return seasonCache.get(seasonKey);
-  if (seasonRequests.has(seasonKey)) return seasonRequests.get(seasonKey);
+  const requestedFiles = selectDataFiles(dataFiles);
+  const cacheKey = `${seasonKey}|${requestedFiles.join(",")}`;
+  if (seasonCache.has(cacheKey)) return seasonCache.get(cacheKey);
+  if (seasonRequests.has(cacheKey)) return seasonRequests.get(cacheKey);
 
   const request = (async () => {
     const entries = await Promise.all(
-      DATA_FILES.map(async (key) => [key, await fetchJSON(`${SITE.dataPath}/${seasonKey}/${key}.json`, true)])
+      requestedFiles.map(async (key) => [key, await fetchJSON(`${SITE.dataPath}/${seasonKey}/${key}.json`, true)])
     );
     const files = Object.fromEntries(entries);
     const aliases = await loadPlayerAliases();
@@ -204,24 +211,25 @@ export async function loadSeasonData(year) {
       photos: files.photos?.photos || [],
       videos: files.videos?.videos || [],
     };
-    seasonCache.set(seasonKey, seasonData);
+    seasonCache.set(cacheKey, seasonData);
     return seasonData;
   })();
 
-  seasonRequests.set(seasonKey, request);
+  seasonRequests.set(cacheKey, request);
   try {
     return await request;
   } finally {
-    seasonRequests.delete(seasonKey);
+    seasonRequests.delete(cacheKey);
   }
 }
 
-export async function loadAllSeasons(seasons = SITE.seasons) {
-  const seasonKey = seasons.map(String).sort().join(",");
+export async function loadAllSeasons(seasons = SITE.seasons, dataFiles = DATA_FILES) {
+  const requestedFiles = selectDataFiles(dataFiles);
+  const seasonKey = `${seasons.map(String).sort().join(",")}|${requestedFiles.join(",")}`;
   if (allSeasonsCache.has(seasonKey)) return allSeasonsCache.get(seasonKey);
   if (allSeasonsRequests.has(seasonKey)) return allSeasonsRequests.get(seasonKey);
 
-  const request = Promise.all(seasons.map((season) => loadSeasonData(season)))
+  const request = Promise.all(seasons.map((season) => loadSeasonData(season, requestedFiles)))
     .then((data) => {
       const sorted = data.sort((a, b) => Number(a.year) - Number(b.year));
       allSeasonsCache.set(seasonKey, sorted);

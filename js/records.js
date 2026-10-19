@@ -1,7 +1,7 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=20261018-media4";
-import { calculateTeamRecord, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20261018-media4";
+import { loadAllSeasons } from "./dataLoader.js?v=20261019-fast1";
+import { calculateTeamRecord, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.15";
+import { setupLayout } from "./main.js?v=20261019-fast1";
 import { escapeHTML, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("records.html");

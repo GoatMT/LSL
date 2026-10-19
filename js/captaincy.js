@@ -1,5 +1,5 @@
-import { loadAllSeasons } from "./dataLoader.js?v=20261018-media4";
-import { setupLayout } from "./main.js?v=20261018-media4";
+import { loadAllSeasons } from "./dataLoader.js?v=20261019-fast1";
+import { setupLayout } from "./main.js?v=20261019-fast1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("captaincy.html");

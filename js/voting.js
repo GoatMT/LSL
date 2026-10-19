@@ -1,6 +1,6 @@
-import { loadJSON } from "./dataLoader.js?v=20261018-media4";
+import { loadJSON } from "./dataLoader.js?v=20261019-fast1";
 import { renderFanVoteCard, hydrateFanVote } from "./fanVote.js";
-import { setupLayout } from "./main.js?v=20261018-media4";
+import { setupLayout } from "./main.js?v=20261019-fast1";
 import { setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("voting.html");

@@ -1,5 +1,5 @@
 import { NAV_LINKS, SITE } from "../js/config.js";
-import { loadAllSeasons } from "../js/dataLoader.js?v=20261018-media4";
+import { loadAllSeasons } from "../js/dataLoader.js?v=20261019-fast1";
 import { computeCoachSummary, computeCombinedPlayerStats } from "../js/leagueEngine.js";
 import { escapeHTML } from "../js/utils.js";
 
@@ -173,26 +173,46 @@ export function hydrateNavbar() {
   });
 
   if (searchInput && searchResults) {
-    searchResults.innerHTML = `<div class="site-search-empty">Loading search...</div>`;
-    loadAllSeasons().then((seasons) => {
-      searchIndex = buildSearchIndex(seasons);
-      if (!searchResults.hidden && searchInput.value.trim()) {
-        const query = searchInput.value.trim().toLowerCase();
-        const matches = searchIndex.filter((item) => `${item.type} ${item.title} ${item.subtitle}`.toLowerCase().includes(query));
-        searchResults.innerHTML = renderSearchResults(matches, query);
-      }
-    });
+    let searchIndexReady = false;
+    let searchIndexRequest = null;
 
-    searchInput.addEventListener("input", () => {
+    const renderCurrentSearch = () => {
       const query = searchInput.value.trim().toLowerCase();
       const matches = searchIndex.filter((item) => `${item.type} ${item.title} ${item.subtitle}`.toLowerCase().includes(query));
       searchResults.innerHTML = renderSearchResults(matches, query);
+    };
+
+    const loadSearchIndex = () => {
+      if (searchIndexReady || searchIndexRequest) return searchIndexRequest;
+      searchResults.innerHTML = `<div class="site-search-empty">Loading search...</div>`;
+      searchIndexRequest = loadAllSeasons()
+        .then((seasons) => {
+          searchIndex = buildSearchIndex(seasons);
+          searchIndexReady = true;
+          if (!searchResults.hidden) renderCurrentSearch();
+        })
+        .catch((error) => {
+          console.warn("Could not load search data", error);
+          if (!searchResults.hidden) searchResults.innerHTML = `<div class="site-search-empty">Search is unavailable. Try again.</div>`;
+        })
+        .finally(() => {
+          searchIndexRequest = null;
+        });
+      return searchIndexRequest;
+    };
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
       searchResults.hidden = false;
+      if (searchIndexReady) renderCurrentSearch();
+      else if (query) loadSearchIndex();
+      else searchResults.innerHTML = renderSearchResults([], query);
     });
 
     searchInput.addEventListener("focus", () => {
       searchResults.innerHTML = renderSearchResults([], searchInput.value);
       searchResults.hidden = false;
+      if (searchInput.value.trim() && !searchIndexReady) loadSearchIndex();
     });
 
     searchInput.addEventListener("keydown", (event) => {

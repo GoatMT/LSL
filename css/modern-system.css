@@ -243,6 +243,13 @@ body:not(.imt-blue-page) .rule-card {
   transform: scale(1.12);
 }
 
+.footer-instagram-icon {
+  display: block;
+  width: 36px;
+  height: 36px;
+  color: #f3f5ef;
+}
+
 @media (hover: hover) {
   body:not(.imt-blue-page) .section-panel {
     transition: border-color 180ms ease, box-shadow 180ms ease;
@@ -347,5 +354,208 @@ body.imt-blue-page :where(a, button, input, select, textarea, summary, [role="ta
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* LSL shared visual refresh: sharper surfaces, clearer names, and scoreboard metrics. */
+body:not(.imt-blue-page) {
+  --page: #151a17;
+  --panel: #202621;
+  --card: #292f2a;
+  --card-2: #1b221d;
+  --soft: #252e28;
+  --line: #424d45;
+  --line-dark: rgba(255, 255, 255, 0.2);
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 7px;
+  --shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+  color-scheme: dark;
+}
+
+body:not(.imt-blue-page) .page-shell {
+  gap: 22px;
+  padding-top: 22px;
+}
+
+body:not(.imt-blue-page) .section-panel {
+  margin-top: 0;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+body:not(.imt-blue-page) .section-head {
+  border-radius: 8px;
+  border-left: 3px solid var(--gold);
+}
+
+body:not(.imt-blue-page) .section-head h1,
+body:not(.imt-blue-page) .section-head h2,
+body:not(.imt-blue-page) .section-head h3 {
+  font-weight: 850;
+}
+
+body:not(.imt-blue-page) .controls {
+  border-radius: 10px;
+  border-color: rgba(199, 163, 103, 0.24);
+}
+
+body:not(.imt-blue-page) :where(.card, .match-card, .team-card, .person-card, .award-card, .rule-card, .record-card, .table-wrap, .summary-tile) {
+  border-radius: 8px;
+}
+
+body:not(.imt-blue-page) .stat-grid {
+  gap: 8px;
+}
+
+body:not(.imt-blue-page) .stat-box {
+  min-height: 82px;
+  padding: 11px 9px;
+  border: 1px solid rgba(199, 163, 103, 0.25);
+  border-top: 2px solid rgba(199, 163, 103, 0.62);
+  border-radius: 7px;
+  background: linear-gradient(155deg, rgba(44, 54, 47, 0.96), rgba(31, 39, 33, 0.98));
+}
+
+body:not(.imt-blue-page) .stat-box span {
+  color: #c6d0c8;
+  font-size: 0.68rem;
+  letter-spacing: 0;
+}
+
+body:not(.imt-blue-page) .stat-box strong,
+body:not(.imt-blue-page) .official-stat-card strong,
+body:not(.imt-blue-page) .projected-score-box strong,
+body:not(.imt-blue-page) .pvp-card-stat-grid strong {
+  color: #f1d08f;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+body:not(.imt-blue-page) .person-card {
+  gap: 13px;
+  padding: 16px;
+  background: linear-gradient(145deg, #292f2a, #222923);
+}
+
+body:not(.imt-blue-page) .person-card-head {
+  gap: 12px;
+  align-items: center;
+}
+
+body:not(.imt-blue-page) .person-title h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+body:not(.imt-blue-page) .person-title h3 a:hover,
+body:not(.imt-blue-page) .person-title h3 a:focus-visible {
+  color: #f1d08f;
+}
+
+body:not(.imt-blue-page) .person-rank,
+body:not(.imt-blue-page) .rank-badge,
+body:not(.imt-blue-page) .roster-jersey {
+  font-variant-numeric: tabular-nums;
+}
+
+body:not(.imt-blue-page) .person-rank {
+  min-height: 25px;
+  padding-inline: 8px;
+  border-radius: 6px;
+}
+
+body:not(.imt-blue-page) .person-photo,
+body:not(.imt-blue-page) .person-avatar,
+body:not(.imt-blue-page) .team-logo,
+body:not(.imt-blue-page) .team-mark {
+  border-radius: 9px;
+}
+
+body:not(.imt-blue-page) .person-meta-line span,
+body:not(.imt-blue-page) .detail-chip {
+  border-radius: 6px;
+}
+
+body:not(.imt-blue-page) .score-box,
+body:not(.imt-blue-page) .projected-score-box,
+body:not(.imt-blue-page) .game-hero-scoreline,
+body:not(.imt-blue-page) .match-star-rank {
+  border-radius: 8px;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+body:not(.imt-blue-page) .data-table {
+  font-variant-numeric: tabular-nums;
+}
+
+body:not(.imt-blue-page) .data-table thead th {
+  color: #ead3a8;
+  background: #202922;
+}
+
+body:not(.imt-blue-page) .data-table tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+body:not(.imt-blue-page) .data-table tbody tr:hover td {
+  background: rgba(199, 163, 103, 0.07);
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link, summary) {
+  border-radius: 8px;
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link):active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(1px);
+}
+
+body:not(.imt-blue-page) :where(input, select, textarea) {
+  border-radius: 8px;
+  background-color: #252d27;
+}
+
+body:not(.imt-blue-page) .nav-link,
+body:not(.imt-blue-page) .nav-dropdown-button {
+  border-radius: 8px;
+}
+
+body:not(.imt-blue-page) .nav-link.active,
+body:not(.imt-blue-page) .nav-dropdown-button.active {
+  box-shadow: inset 0 -3px 0 var(--gold);
+}
+
+@media (max-width: 760px) {
+  body:not(.imt-blue-page) .page-shell {
+    gap: 16px;
+    padding-top: 14px;
+  }
+
+  body:not(.imt-blue-page) .section-panel {
+    border-radius: 11px;
+  }
+
+  body:not(.imt-blue-page) .stat-box {
+    min-height: 74px;
+  }
+}
+
+@media (max-width: 480px) {
+  body:not(.imt-blue-page) .section-head {
+    border-left-width: 2px;
+  }
+
+  body:not(.imt-blue-page) .person-card {
+    padding: 12px;
+  }
+
+  body:not(.imt-blue-page) .person-card .stat-box {
+    min-height: 66px;
+    padding: 8px 5px;
+  }
+
+  body:not(.imt-blue-page) .person-card .stat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

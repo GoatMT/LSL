@@ -513,6 +513,23 @@ export function computePlayerStats(data, { stage = "all" } = {}) {
   const players = playerMap(data);
   const stats = new Map();
   const allowedStages = stage === "all" ? ["regular", "playoffs"] : [stage];
+  const standingsByDivision = new Map();
+  const championshipTeams = new Set(
+    (data.awards?.awards || [])
+      .filter((award) => award.category === "Champion Team" && award.teamId)
+      .map((award) => award.teamId)
+  );
+  const teamFinishScoreFor = (player) => {
+    if (!player.teamId || !player.division) return 0;
+    if (!standingsByDivision.has(player.division)) {
+      standingsByDivision.set(player.division, calculateStandings(data, { division: player.division }));
+    }
+    const standings = standingsByDivision.get(player.division);
+    const row = standings.find((standing) => standing.teamId === player.teamId);
+    if (!row || row.gp <= 0) return 0;
+    if (standings.length <= 1) return 1;
+    return Math.min(1, Math.max(0, (standings.length - row.rank) / (standings.length - 1)));
+  };
 
   players.forEach((player) => {
     stats.set(player.id, {
@@ -527,6 +544,8 @@ export function computePlayerStats(data, { stage = "all" } = {}) {
         wins: 0,
         ties: 0,
         losses: 0,
+        championshipWon: championshipTeams.has(player.teamId),
+        teamFinishScore: teamFinishScoreFor(player),
         achievements: unique([
           ...(player.achievements || []),
           ...teamAwardAchievements(data, player.teamId),
@@ -658,6 +677,9 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
         goalsAgainst: 0,
         goalkeeperGames: 0,
         cleanSheets: 0,
+        championshipScore: 0,
+        teamFinishTotal: 0,
+        teamFinishSamples: 0,
         achievements: [],
       };
       divisionTotals.goals += row.goals;
@@ -668,6 +690,11 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
       if (Number.isFinite(row.goalsAgainst)) divisionTotals.goalsAgainst += row.goalsAgainst;
       if (Number.isFinite(row.goalkeeperGames)) divisionTotals.goalkeeperGames += row.goalkeeperGames;
       if (Number.isFinite(row.cleanSheets)) divisionTotals.cleanSheets += row.cleanSheets;
+      divisionTotals.championshipScore = Math.max(divisionTotals.championshipScore, row.championshipWon ? 1 : 0);
+      if (row.gamesPlayed > 0) {
+        divisionTotals.teamFinishTotal += Number(row.teamFinishScore) || 0;
+        divisionTotals.teamFinishSamples += 1;
+      }
       divisionTotals.achievements = unique([...(divisionTotals.achievements || []), ...(row.achievements || [])]);
       existing.divisionStats[divisionKey] = divisionTotals;
       existing.goals += row.goals;
@@ -698,12 +725,30 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
     });
   });
   return [...map.values()]
-    .map((row) => ({
-      ...row,
-      goalsAgainst: row.goalkeeperGames ? row.goalsAgainst : null,
-      cleanSheets: row.goalkeeperGames ? row.cleanSheets : null,
-      goalsAgainstPerGame: row.goalkeeperGames ? row.goalsAgainst / row.goalkeeperGames : null,
-    }))
+    .map((row) => {
+      const divisionStats = Object.fromEntries(
+        Object.entries(row.divisionStats).map(([division, stats]) => [
+          division,
+          {
+            ...stats,
+            teamFinishScore: stats.teamFinishSamples ? stats.teamFinishTotal / stats.teamFinishSamples : 0,
+          },
+        ])
+      );
+      const divisionValues = Object.values(divisionStats);
+      const finishSamples = divisionValues.reduce((sum, stats) => sum + (Number(stats.teamFinishSamples) || 0), 0);
+      return {
+        ...row,
+        divisionStats,
+        championshipWon: divisionValues.some((stats) => Number(stats.championshipScore) > 0),
+        teamFinishScore: finishSamples
+          ? divisionValues.reduce((sum, stats) => sum + (Number(stats.teamFinishScore) || 0) * (Number(stats.teamFinishSamples) || 0), 0) / finishSamples
+          : 0,
+        goalsAgainst: row.goalkeeperGames ? row.goalsAgainst : null,
+        cleanSheets: row.goalkeeperGames ? row.cleanSheets : null,
+        goalsAgainstPerGame: row.goalkeeperGames ? row.goalsAgainst / row.goalkeeperGames : null,
+      };
+    })
     .sort((a, b) => b.points - a.points || b.goals - a.goals || b.shots - a.shots || a.name.localeCompare(b.name));
 }
 
@@ -733,6 +778,8 @@ function ovrDivisionProfile(player = {}) {
         goalkeeperGames: Number(player.goalkeeperGames) || 0,
         goalsPerGame: Number(player.gamesPlayed) > 0 ? (Number(player.goals) || 0) / Number(player.gamesPlayed) : 0,
         goalsAgainstPerGame: Number(player.goalsAgainstPerGame) || 0,
+      championshipScore: player.championshipWon ? 1 : 0,
+      teamFinishScore: Number(player.teamFinishScore) || 0,
       mvpCount: countOvrAchievements(fallbackAchievements, /\bMVP\b/i),
       awardCount: countOvrAchievements(fallbackAchievements, /(?:\bMVP\b|Golden Boot)/i),
       juniorOnly: /juniors?/i.test(String(player.division || "")),
@@ -777,6 +824,8 @@ function ovrDivisionProfile(player = {}) {
     losses: blend("losses"),
     goalsAgainst,
     goalkeeperGames,
+    championshipScore: blend("championshipScore"),
+    teamFinishScore: blend("teamFinishScore"),
       goalsAgainstPerGame: hasSeniors && hasJuniors
         ? seniorGoalsAgainstPerGame * OVR_SENIOR_WEIGHT + juniorGoalsAgainstPerGame * OVR_JUNIOR_WEIGHT
         : hasSeniors ? seniorGoalsAgainstPerGame : juniorGoalsAgainstPerGame,
@@ -808,8 +857,10 @@ export function playerRatingScore(player = {}, comparisonPlayers = []) {
   const maxGoalsAgainstPerGame = Math.max(1, ...goalkeepersWithGames.map((item) => Number(item.goalsAgainstPerGame) || 0));
   const goalkeeperScore = roles.goalkeeper
     ? (
-        normalize(profile.wins, goalkeeperMax("wins")) * 40 +
-        (profile.goalkeeperGames > 0 ? 1 - normalize(profile.goalsAgainstPerGame, maxGoalsAgainstPerGame) : 0) * 60
+        normalize(profile.wins, goalkeeperMax("wins")) * 30 +
+        normalize(profile.championshipScore, 1) * 15 +
+        (profile.goalkeeperGames > 0 ? 1 - normalize(profile.goalsAgainstPerGame, maxGoalsAgainstPerGame) : 0) * 35 +
+        Math.min(1, Math.max(0, Number(profile.teamFinishScore) || 0)) * 20
       )
     : 0;
 

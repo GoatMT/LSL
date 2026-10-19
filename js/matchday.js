@@ -1,8 +1,8 @@
 import { SITE } from "./config.js";
 import { matchToCalendarEvent, renderCalendarDownloadButton } from "./calendarLinks.js";
-import { loadSeasonData } from "./dataLoader.js?v=20261018-media4";
-import { filterMatches, getMatchTeams, isCompletedMatch, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20261018-media4";
+import { loadSeasonData } from "./dataLoader.js?v=20261019-fast1";
+import { filterMatches, getMatchTeams, isCompletedMatch, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.15";
+import { setupLayout } from "./main.js?v=20261019-fast1";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("matchday.html");

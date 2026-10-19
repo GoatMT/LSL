@@ -1,14 +1,15 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261018-media4";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261019-fast1";
 import { decorateCoachGrade } from "./coachRatings.js";
-import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.14";
+import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.15";
 import { escapeHTML, formatPercent, setDocumentTitle, slugify, statusMessage, teamProfileHref, unique } from "./utils.js";
-import { setupLayout } from "./main.js?v=20261018-media4";
+import { setupLayout } from "./main.js?v=20261019-fast1";
 
 setupLayout("all-time.html");
 setDocumentTitle("All Time Stats");
 
 const root = document.getElementById("page-root");
+const ALL_TIME_DATA_FILES = ["teams", "players", "coaches", "matches", "playoffs", "awards"];
 let globalPlayerRatings = new Map();
 let coachRatings = {};
 let teamCodeMap = new Map();
@@ -865,7 +866,7 @@ function render(allData, aliases) {
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading all-time stats...");
   const [allData, aliases, ratings] = await Promise.all([
-    loadAllSeasons(SITE.seasons),
+    loadAllSeasons(SITE.seasons, ALL_TIME_DATA_FILES),
     loadJSON("./data/player-aliases.json", {}),
     loadJSON("./data/coach-ratings.json", { coaches: {} }),
   ]);

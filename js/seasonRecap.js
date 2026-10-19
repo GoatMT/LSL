@@ -1,9 +1,9 @@
 import { renderPlayoffBracket } from "../components/playoffBracket.js";
 import { renderStandingsTable } from "../components/standingsTable.js";
 import { SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js?v=20261018-media4";
-import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.14";
-import { setupLayout } from "./main.js?v=20261018-media4";
+import { loadSeasonData } from "./dataLoader.js?v=20261019-fast1";
+import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.15";
+import { setupLayout } from "./main.js?v=20261019-fast1";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("season-recap.html");

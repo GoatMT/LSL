@@ -1,8 +1,8 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261018-media4";
-import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.14";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261019-fast1";
+import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.15";
 import { escapeHTML, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
-import { setupLayout } from "./main.js?v=20261018-media4";
+import { setupLayout } from "./main.js?v=20261019-fast1";
 
 setupLayout("free-agents.html");
 setDocumentTitle("Free Agents");

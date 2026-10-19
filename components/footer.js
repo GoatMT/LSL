@@ -8,7 +8,7 @@ export function renderFooter() {
         <div class="footer-copy">
           <strong>${escapeHTML(SITE.name)}</strong><br>
           <span>Built With The Speed And Skill Of Our Players</span><br>
-          <span class="footer-shoutout">Shoutout: Abdul Ghiyas Solyman (TikTok: <a href="https://www.tiktok.com/@raz.aep14" target="_blank" rel="noopener">@raz.aep14</a>), Taaha Nakhuda, Ishaaq Ali — and as far as who I am, keeping that on the low 😉</span>
+          <span class="footer-shoutout">Shoutout to Abdul Ghiyas Solyman, Taaha Nakhuda, and Ishaaq Ali.</span>
         </div>
         <div class="footer-partners" aria-label="League partners and games">
           <a
@@ -25,6 +25,20 @@ export function renderFooter() {
               width="112"
               height="112"
             >
+          </a>
+          <a
+            class="footer-partner-link footer-instagram-link"
+            href="https://www.instagram.com/lanternsoccerleague/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Lantern Soccer League on Instagram"
+            title="Instagram"
+          >
+            <svg class="footer-instagram-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"></rect>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+              <circle cx="17.5" cy="6.8" r="1.1" fill="currentColor"></circle>
+            </svg>
           </a>
           <a
             class="footer-partner-link footer-rush-link"

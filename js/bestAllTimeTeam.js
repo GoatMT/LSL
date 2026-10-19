@@ -1,5 +1,5 @@
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261018-media4";
-import { setupLayout } from "./main.js?v=20261018-media4";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261019-fast1";
+import { setupLayout } from "./main.js?v=20261019-fast1";
 import { escapeHTML, initials, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("best-all-time-team.html");
