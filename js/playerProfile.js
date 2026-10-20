@@ -1,8 +1,8 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261019-fast1";
-import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.15";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261020-records1";
+import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.16";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
 setupLayout("players.html");
@@ -647,10 +647,15 @@ function renderPlayerStyleCard(profile, careerRows, allData) {
   `;
 }
 function playoffMatchesForSeason(data = {}) {
+  const roundMatches = (round) => {
+    const matches = round?.matches;
+    return Array.isArray(matches) ? matches : matches && typeof matches === "object" ? [matches] : [];
+  };
+
   if (Array.isArray(data.playoffs?.divisions)) {
     return data.playoffs.divisions.flatMap((division) =>
       (division.rounds || []).flatMap((round) =>
-        (round.matches || []).map((match) => ({
+        roundMatches(round).map((match) => ({
           ...match,
           stage: match.stage || "playoffs",
           division: match.division || division.division,
@@ -661,7 +666,7 @@ function playoffMatchesForSeason(data = {}) {
   }
 
   return (data.playoffs?.rounds || []).flatMap((round) =>
-    (round.matches || []).map((match) => ({
+    roundMatches(round).map((match) => ({
       ...match,
       stage: match.stage || "playoffs",
       division: match.division || data.playoffs?.division || data.division || "Seniors",
@@ -1552,6 +1557,9 @@ async function init() {
   render();
 }
 
-init();
+init().catch((error) => {
+  console.error("Could not load player profile", error);
+  root.innerHTML = `<section class="section-panel">${statusMessage("error", "Player profile could not be loaded. Please try again.")}</section>`;
+});
 
 

@@ -1,6 +1,6 @@
-import { loadAllSeasons } from "./dataLoader.js?v=20261019-fast1";
-import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR, playerTeamForMatch } from "./leagueEngine.js?v=3.15";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
+import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR, playerTeamForMatch } from "./leagueEngine.js?v=3.16";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { SITE } from "./config.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

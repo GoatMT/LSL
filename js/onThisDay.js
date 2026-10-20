@@ -1,4 +1,4 @@
-import { teamMap, winnerTeamId } from "./leagueEngine.js?v=3.15";
+import { teamMap, winnerTeamId } from "./leagueEngine.js?v=3.16";
 import { escapeHTML, formatDate } from "./utils.js";
 
 /**

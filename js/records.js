@@ -1,15 +1,19 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=20261019-fast1";
-import { calculateTeamRecord, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.15";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
+import { calculateTeamRecord, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.16";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("records.html");
 setDocumentTitle("Records");
 
 const root = document.getElementById("page-root");
-let state = { division: "Seniors", category: "player", stage: "all" };
+let state = { division: "Seniors", category: "player", stage: "all", search: "" };
 let teamCodeMap = new Map();
+
+function recordList(value) {
+  return Array.isArray(value) ? value : value && typeof value === "object" ? [value] : [];
+}
 
 const categoryOptions = [
   { value: "player", label: "Player Records" },
@@ -161,12 +165,12 @@ function recordTable(title, note, items, columns, tone = "good", options = {}) {
   const holder = options.tiebreaker && tied
     ? `<strong class="record-tiebreaker-winner">${identity.render(leader)}</strong><span class="record-tiebreaker-label">Tiebreaker winner</span><span class="record-tied-note">Also tied: ${tiedLeaders.slice(1).map((item) => identity.render(item)).join('<span class="record-tied-separator" aria-hidden="true"> / </span>')}</span>`
     : holderItems.map((item) => identity.render(item)).join('<span class="record-tied-separator" aria-hidden="true"> / </span>');
-  const recordMark = metric
+  const recordMark = leader && metric
     ? `<div class="record-mark"><strong>${metric.render(leader)}</strong><span>${escapeHTML(metric.label)}</span></div>`
-    : holderItems.length > 1
+    : leader && holderItems.length > 1
       ? `<div class="record-mark"><strong>${holderItems.length}</strong><span>${escapeHTML(recordCountLabel(title, identity.label))}</span></div>`
       : "";
-  const contextItems = metric ? [leader] : holderItems;
+  const contextItems = metric ? (leader ? [leader] : []) : holderItems;
   return `
     <article class="card record-card record-card--${escapeHTML(tone)}">
       <div class="record-card-head">
@@ -185,7 +189,7 @@ function recordTable(title, note, items, columns, tone = "good", options = {}) {
         </div>
       </div>` : `<p class="record-empty">A new chapter awaits. Records coming soon.</p>`}
       ${items.length ? `<details class="record-rankings">
-        <summary><span class="record-open-label">View Rankings</span><span class="record-close-label">Hide Rankings</span><small>${items.length} ${items.length === 1 ? "entry" : "entries"}</small></summary>
+        <summary><span class="record-open-label">View Rankings</span><span class="record-close-label">Hide Rankings</span><small>${items.length > 10 ? `Top 10 of ${items.length} entries` : `${items.length} ${items.length === 1 ? "entry" : "entries"}`}</small></summary>
       <div class="table-wrap record-table-wrap">
         <table class="data-table record-table">
           <thead>
@@ -194,7 +198,7 @@ function recordTable(title, note, items, columns, tone = "good", options = {}) {
               ${columns.map((column) => `<th class="${column.num ? "num" : ""}">${escapeHTML(column.label)}</th>`).join("")}
             </tr>
           </thead>
-          <tbody>${recordRows(items, columns)}</tbody>
+          <tbody>${recordRows(items.slice(0, 10), columns)}</tbody>
         </table>
       </div>
       </details>` : ""}
@@ -225,49 +229,54 @@ function teamNameFor(season, teamId) {
   return (season.teams || []).find((team) => team.id === teamId)?.name || "Team TBA";
 }
 
+function scorerGoalsForMatch(season, match) {
+  const goalsByPlayer = new Map();
+  recordList(match.scorers).forEach((scorer) => {
+    if (!scorer.playerId) return;
+    const player = goalsByPlayer.get(scorer.playerId) || {
+      id: scorer.playerId,
+      name: scorer.name || "Unknown Player",
+      teamId: resolveScorerTeamId(season, match, scorer),
+      goals: 0,
+    };
+    player.goals += Number(scorer.goals) || 0;
+    goalsByPlayer.set(scorer.playerId, player);
+  });
+  return [...goalsByPlayer.values()].map((player) => ({
+    ...player,
+    season: season.year,
+    teamName: teamNameFor(season, player.teamId),
+    opponent: teamNameFor(season, player.teamId === match.homeTeamId ? match.awayTeamId : match.homeTeamId),
+    label: match.label || `Week ${match.week}`,
+  }));
+}
+
 function biggestSingleGameGoals(allData, stage = state.stage) {
   return allData
     .flatMap((season) =>
       (season.matches || [])
+        .filter((match) => Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore))
         .filter((match) => matchesStageValue(match, stage))
         .filter(matchesDivision)
-        .flatMap((match) =>
-          (match.scorers || [])
-            .filter((scorer) => scorer.playerId && Number(scorer.goals) > 0)
-            .map((scorer) => {
-              const teamId = resolveScorerTeamId(season, match, scorer);
-              const opponentId = teamId === match.homeTeamId ? match.awayTeamId : match.homeTeamId;
-              return {
-                id: scorer.playerId,
-                name: scorer.name,
-                season: season.year,
-                teamId,
-                teamName: teamNameFor(season, teamId),
-                opponent: teamNameFor(season, opponentId),
-                goals: Number(scorer.goals) || 0,
-                label: match.label || `Week ${match.week}`,
-              };
-            })
-        )
+        .flatMap((match) => scorerGoalsForMatch(season, match).filter((player) => player.goals > 0))
     )
     .sort((a, b) => b.goals - a.goals || a.season.localeCompare(b.season) || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function multiGoalGameCounts(allData, stage = state.stage) {
   const rows = new Map();
   allData.forEach((season) => {
     (season.matches || []).filter((match) => matchesStageValue(match, stage)).filter(matchesDivision).forEach((match) => {
-      (match.scorers || []).forEach((scorer) => {
-        if (!scorer.playerId || Number(scorer.goals) < 2) return;
-        const key = `${season.year}:${scorer.playerId}`;
-        const teamId = resolveScorerTeamId(season, match, scorer);
+      scorerGoalsForMatch(season, match).forEach((player) => {
+        if (player.goals < 2) return;
+        const key = `${season.year}:${player.id}`;
         const existing = rows.get(key) || {
-          id: scorer.playerId,
-          name: scorer.name,
+          id: player.id,
+          name: player.name,
           season: season.year,
-          teamId,
-          teamName: teamNameFor(season, teamId),
+          teamId: player.teamId,
+          teamName: player.teamName,
           count: 0,
         };
         existing.count += 1;
@@ -277,14 +286,14 @@ function multiGoalGameCounts(allData, stage = state.stage) {
   });
   return [...rows.values()]
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function mostCareerGamesPlayed(allData, stage = state.stage) {
   return combinedPlayerStatsForDivision(allData, { stage })
     .filter((player) => player.gamesPlayed > 0)
     .sort((a, b) => b.gamesPlayed - a.gamesPlayed || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function bestGoalsPerGameRate(allData, stage = state.stage) {
@@ -292,7 +301,48 @@ function bestGoalsPerGameRate(allData, stage = state.stage) {
     .filter((player) => player.gamesPlayed >= MIN_GAMES_FOR_RATE)
     .map((player) => ({ ...player, rate: player.goals / player.gamesPlayed }))
     .sort((a, b) => b.rate - a.rate || b.goals - a.goals || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
+}
+
+function playerSeasonMetricRows(allData, stage, metric) {
+  return playerSeasonRows(allData, stage)
+    .filter((player) => Number(player[metric]) > 0)
+    .sort((a, b) => b[metric] - a[metric] || b.gamesPlayed - a.gamesPlayed || a.name.localeCompare(b.name))
+    .slice(0, 10);
+}
+
+function careerPlayerMetricRows(allData, stage, metric) {
+  return combinedPlayerStatsForDivision(allData, { stage })
+    .filter((player) => Number(player[metric]) > 0)
+    .sort((a, b) => b[metric] - a[metric] || b.gamesPlayed - a.gamesPlayed || a.name.localeCompare(b.name))
+    .slice(0, 10);
+}
+
+function mostHatTricksInSeason(allData, stage = state.stage) {
+  const rows = new Map();
+  allData.forEach((season) => {
+    (season.matches || [])
+      .filter((match) => Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore))
+      .filter((match) => matchesStageValue(match, stage) && matchesDivision(match))
+      .forEach((match) => {
+        scorerGoalsForMatch(season, match).forEach((player) => {
+          if (player.goals < 3) return;
+          const key = `${season.year}:${player.id}`;
+          const current = rows.get(key) || {
+            ...player,
+            teamName: teamNameFor(season, player.teamId),
+            season: season.year,
+            division: match.division,
+            count: 0,
+          };
+          current.count += 1;
+          rows.set(key, current);
+        });
+      });
+  });
+  return [...rows.values()]
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+    .slice(0, 10);
 }
 
 function biggestWins(allData, stage = state.stage) {
@@ -318,7 +368,7 @@ function biggestWins(allData, stage = state.stage) {
     )
     .filter((row) => row.margin > 0)
     .sort((a, b) => b.margin - a.margin || a.season.localeCompare(b.season))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function biggestLosses(allData, stage = state.stage) {
@@ -328,13 +378,13 @@ function biggestLosses(allData, stage = state.stage) {
 function bestTeams(allData, stage = state.stage) {
   return teamSeasonRows(allData, stage)
     .sort((a, b) => b.pts - a.pts || b.w - a.w || b.gd - a.gd || a.teamName.localeCompare(b.teamName))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function bestPlayoffRuns(allData) {
   return teamSeasonRows(allData, "playoffs")
     .sort((a, b) => b.w - a.w || b.gd - a.gd || b.gf - a.gf || a.teamName.localeCompare(b.teamName))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function teamSeasonRows(allData, stage = state.stage) {
@@ -361,19 +411,19 @@ function teamSeasonRows(allData, stage = state.stage) {
 function bestGoalsFor(allData, stage = state.stage) {
   return teamSeasonRows(allData, stage)
     .sort((a, b) => b.gf - a.gf || a.teamName.localeCompare(b.teamName))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function leastGoalsAgainst(allData, stage = state.stage) {
   return teamSeasonRows(allData, stage)
     .sort((a, b) => a.ga - b.ga || a.teamName.localeCompare(b.teamName))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function bestGoalDifferential(allData, stage = state.stage) {
   return teamSeasonRows(allData, stage)
     .sort((a, b) => b.gd - a.gd || a.teamName.localeCompare(b.teamName))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 const MIN_TEAM_GAMES_FOR_RATE = 5;
@@ -383,7 +433,38 @@ function bestTeamPointsPerGame(allData, stage = state.stage) {
     .filter((row) => row.gp >= MIN_TEAM_GAMES_FOR_RATE)
     .map((row) => ({ ...row, ppg: row.pts / row.gp }))
     .sort((a, b) => b.ppg - a.ppg || b.pts - a.pts || a.teamName.localeCompare(b.teamName))
-    .slice(0, 5);
+    .slice(0, 10);
+}
+
+function mostTeamWins(allData, stage = state.stage) {
+  return teamSeasonRows(allData, stage)
+    .filter((row) => row.w > 0)
+    .sort((a, b) => b.w - a.w || b.gd - a.gd || a.teamName.localeCompare(b.teamName))
+    .slice(0, 10);
+}
+
+function mostTeamDraws(allData, stage = state.stage) {
+  return teamSeasonRows(allData, stage)
+    .filter((row) => row.d > 0)
+    .sort((a, b) => b.d - a.d || b.gp - a.gp || a.teamName.localeCompare(b.teamName))
+    .slice(0, 10);
+}
+
+function mostTeamGoalsInOneMatch(allData, stage = state.stage) {
+  const rows = [];
+  allData.forEach((season) => {
+    const teams = new Map((season.teams || []).map((team) => [team.id, team]));
+    (season.matches || [])
+      .filter((match) => Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore))
+      .filter((match) => matchesStageValue(match, stage) && matchesDivision(match))
+      .forEach((match) => {
+        const home = teams.get(match.homeTeamId);
+        const away = teams.get(match.awayTeamId);
+        if (home) rows.push({ teamId: home.id, teamName: home.name, opponent: away?.name || "Team TBA", season: season.year, division: match.division, goals: match.homeScore, score: `${match.homeScore}-${match.awayScore}` });
+        if (away) rows.push({ teamId: away.id, teamName: away.name, opponent: home?.name || "Team TBA", season: season.year, division: match.division, goals: match.awayScore, score: `${match.awayScore}-${match.homeScore}` });
+      });
+  });
+  return rows.sort((a, b) => b.goals - a.goals || a.season.localeCompare(b.season) || a.teamName.localeCompare(b.teamName)).slice(0, 10);
 }
 
 function mostCleanSheetsInSeason(allData, stage = state.stage) {
@@ -407,7 +488,7 @@ function mostCleanSheetsInSeason(allData, stage = state.stage) {
         if (match.homeScore === 0) addCleanSheet(match.awayTeamId);
       });
   });
-  return [...rows.values()].sort((a, b) => b.count - a.count || a.teamName.localeCompare(b.teamName)).slice(0, 5);
+  return [...rows.values()].sort((a, b) => b.count - a.count || a.teamName.localeCompare(b.teamName)).slice(0, 10);
 }
 
 function worstSingleGameDefense(allData, stage = state.stage) {
@@ -432,7 +513,7 @@ function worstSingleGameDefense(allData, stage = state.stage) {
   return rows
     .filter((row) => row.conceded > 0)
     .sort((a, b) => b.conceded - a.conceded || a.teamName.localeCompare(b.teamName))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 const MIN_COACH_GAMES_FOR_RATE = 5;
@@ -443,7 +524,23 @@ function bestCoachWinPct(allData, stage = state.stage) {
     .filter((coach) => coach.gamesPlayed >= MIN_COACH_GAMES_FOR_RATE)
     .map((coach) => ({ ...coach, pct: coach.gamesPlayed ? coach.wins / coach.gamesPlayed : 0 }))
     .sort((a, b) => b.pct - a.pct || b.wins - a.wins || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
+}
+
+function mostCoachGames(allData, stage = state.stage) {
+  return computeCoachSummary(allData, { stage })
+    .filter(matchesDivision)
+    .filter((coach) => coach.gamesPlayed > 0)
+    .sort((a, b) => b.gamesPlayed - a.gamesPlayed || b.wins - a.wins || a.name.localeCompare(b.name))
+    .slice(0, 10);
+}
+
+function mostCoachingSeasons(allData, stage = state.stage) {
+  return computeCoachSummary(allData, { stage })
+    .filter(matchesDivision)
+    .filter((coach) => coach.seasons > 0)
+    .sort((a, b) => b.seasons - a.seasons || b.gamesPlayed - a.gamesPlayed || a.name.localeCompare(b.name))
+    .slice(0, 10);
 }
 
 function mostFinalsAppearances(allData, stage = state.stage) {
@@ -451,7 +548,7 @@ function mostFinalsAppearances(allData, stage = state.stage) {
     .filter(matchesDivision)
     .filter((coach) => coach.finals > 0)
     .sort((a, b) => b.finals - a.finals || b.championships - a.championships || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function mostPostseasonGoals(allData) {
@@ -466,7 +563,7 @@ function mostPostseasonGoals(allData) {
         }
       });
   });
-  return rows.sort((a, b) => b.goals - a.goals || a.teamName.localeCompare(b.teamName)).slice(0, 5);
+  return rows.sort((a, b) => b.goals - a.goals || a.teamName.localeCompare(b.teamName)).slice(0, 10);
 }
 
 function coachChampionships(allData, stage = state.stage) {
@@ -474,7 +571,7 @@ function coachChampionships(allData, stage = state.stage) {
     .filter(matchesDivision)
     .filter((coach) => coach.championships > 0)
     .sort((a, b) => b.championships - a.championships || b.wins - a.wins || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function cupChampions(allData) {
@@ -487,8 +584,8 @@ function cupChampions(allData) {
     divisionEntries.forEach((entry) => {
       if (!entry.champion) return;
       if (state.division !== "All" && entry.division !== state.division) return;
-      const finalRound = (entry.rounds || []).find((round) => /^finals?$/i.test((round.name || "").trim())) || {};
-      const finalMatch = (finalRound.matches || []).find((match) => !/3rd/i.test(match.label || "")) || {};
+      const finalRound = recordList(entry.rounds).find((round) => /^finals?$/i.test((round.name || "").trim())) || {};
+      const finalMatch = recordList(finalRound.matches).find((match) => !/3rd/i.test(match.label || "")) || {};
       const runnerUpId = finalMatch.winnerId === finalMatch.homeTeamId ? finalMatch.awayTeamId : finalMatch.homeTeamId;
       const runnerUpName = finalMatch.winnerId === finalMatch.homeTeamId ? finalMatch.awayTeamName : finalMatch.homeTeamName;
       // Match the champion team by id from the bracket first (reliable), and
@@ -505,6 +602,7 @@ function cupChampions(allData) {
         division: entry.division || season.division || "Seniors",
         champion: entry.champion,
         championId: championTeam?.id || finalMatch.winnerId || "",
+        runnerUpId: runnerUpId || "",
         runnerUp: runnerUpName || "",
         roster: championTeam?.roster || [],
       });
@@ -538,6 +636,57 @@ function cupRepeatWinners(champions) {
     multi: multi.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name)),
     backToBack: backToBack.sort((a, b) => a.name.localeCompare(b.name)),
   };
+}
+
+function cupTeamTitleLeaders(champions) {
+  const rows = new Map();
+  champions.forEach((row) => {
+    const key = `${row.championId || row.champion}::${row.division}`;
+    const current = rows.get(key) || {
+      teamId: row.championId,
+      teamName: row.champion,
+      division: row.division,
+      titles: 0,
+      seasons: [],
+      latestSeason: row.season,
+    };
+    current.titles += 1;
+    current.seasons.push(row.season);
+    current.latestSeason = row.season;
+    rows.set(key, current);
+  });
+  return [...rows.values()]
+    .map((row) => ({ ...row, seasons: row.seasons.join(", ") }))
+    .sort((a, b) => b.titles - a.titles || a.teamName.localeCompare(b.teamName))
+    .slice(0, 10);
+}
+
+function cupTeamFinalists(champions) {
+  const rows = new Map();
+  champions.forEach((row) => {
+    [
+      { id: row.championId, name: row.champion },
+      { id: row.runnerUpId, name: row.runnerUp },
+    ].filter((team) => team.name).forEach((team) => {
+      const key = `${team.id || team.name}::${row.division}`;
+      const current = rows.get(key) || {
+        teamId: team.id,
+        teamName: team.name,
+        division: row.division,
+        finals: 0,
+        seasons: [],
+        latestSeason: row.season,
+      };
+      current.finals += 1;
+      current.seasons.push(row.season);
+      current.latestSeason = row.season;
+      rows.set(key, current);
+    });
+  });
+  return [...rows.values()]
+    .map((row) => ({ ...row, seasons: row.seasons.join(", ") }))
+    .sort((a, b) => b.finals - a.finals || a.teamName.localeCompare(b.teamName))
+    .slice(0, 10);
 }
 
 function matchDateValue(match) {
@@ -594,8 +743,8 @@ function longestResultStreaks(allData, stage = state.stage) {
     });
   });
   return {
-    win: winStreaks.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 5),
-    loss: lossStreaks.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 5),
+    win: winStreaks.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 10),
+    loss: lossStreaks.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 10),
   };
 }
 
@@ -622,8 +771,8 @@ function biggestScoringStreaks(allData, stage = state.stage) {
     });
   });
   return {
-    hot: hot.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 5),
-    cold: cold.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 5),
+    hot: hot.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 10),
+    cold: cold.sort((a, b) => b.length - a.length || a.teamName.localeCompare(b.teamName)).slice(0, 10),
   };
 }
 
@@ -663,13 +812,33 @@ function renderFilters() {
             .join("")}
         </div>
       </div>
+      <div class="records-search-field">
+        <label class="eyebrow" for="records-search">Search Records</label>
+        <input id="records-search" type="search" placeholder="Find a record, player, team, or coach" value="${escapeHTML(state.search)}" autocomplete="off" aria-describedby="records-search-status">
+      </div>
     </div>
   `;
 }
 
 function renderCupSection(allData) {
+  if (state.stage === "regular") {
+    return `
+      <section class="section-panel records-grid-panel">
+        <div class="section-head compact-head">
+          <div>
+            <span class="eyebrow">${escapeHTML(stageLabel())}</span>
+            <h3>LSL Cup Records</h3>
+            <p>LSL Cup titles are decided in the playoffs, not the regular season.</p>
+          </div>
+        </div>
+        <p class="record-empty">Choose Playoffs or All to view championship history.</p>
+      </section>
+    `;
+  }
   const champions = cupChampions(allData);
   const { multi, backToBack } = cupRepeatWinners(champions);
+  const teamTitles = cupTeamTitleLeaders(champions);
+  const teamFinals = cupTeamFinalists(champions);
   const postseasonGoals = state.stage === "regular" ? [] : mostPostseasonGoals(allData);
   const scopeDescription = state.stage === "all"
     ? "Complete LSL Cup history across every championship season and division."
@@ -689,6 +858,18 @@ function renderCupSection(allData) {
           { label: "Division", render: (row) => escapeHTML(row.division) },
           { label: "Champion", render: (row) => (row.championId ? teamLink({ teamId: row.championId, teamName: row.champion }, row.season) : escapeHTML(row.champion)) },
           { label: "Runner-Up", render: (row) => escapeHTML(teamCodeFor(null, row.runnerUp || "TBA")) },
+        ])}
+        ${recordTable("Most LSL Cup Titles By A Team", "Teams with the most recorded league championships.", teamTitles, [
+          { label: "Team", render: (row) => teamLink(row, row.latestSeason) },
+          { label: "Division", render: (row) => escapeHTML(row.division) },
+          { label: "Titles", num: true, render: (row) => row.titles },
+          { label: "Seasons", render: (row) => escapeHTML(row.seasons) },
+        ])}
+        ${recordTable("Most LSL Cup Final Appearances", "Final appearances counted from recorded championship and runner-up results.", teamFinals, [
+          { label: "Team", render: (row) => teamLink(row, row.latestSeason) },
+          { label: "Division", render: (row) => escapeHTML(row.division) },
+          { label: "Finals", num: true, render: (row) => row.finals },
+          { label: "Seasons", render: (row) => escapeHTML(row.seasons) },
         ])}
         ${recordTable("Multiple-Time Champions", "Players who were on 2 or more LSL Cup-winning rosters.", multi, [
           { label: "Player", render: (row) => playerLink({ id: row.id, name: row.name }) },
@@ -724,7 +905,7 @@ function renderCoachRecordSection(allData, stage) {
     .filter(matchesDivision)
     .filter((coach) => coach.wins > 0)
     .sort((a, b) => b.wins - a.wins || b.championships - a.championships || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
 
   return `
     <section class="section-panel records-grid-panel coach-record-stage" aria-labelledby="${escapeHTML(id)}">
@@ -747,6 +928,18 @@ function renderCoachRecordSection(allData, stage) {
           { label: "Teams", render: (row) => escapeHTML(teamListDisplay(row.pastTeams || [row.teamName])) },
           { label: "Win %", num: true, render: (row) => `${(row.pct * 100).toFixed(1)}%` },
           { label: "Record", render: (row) => `${row.wins}-${row.ties}-${row.losses}` },
+        ])}
+        ${recordTable("Most Games Coached", `${label} coaching matches across all available seasons in the selected division.`, mostCoachGames(allData, stage), [
+          { label: "Coach", render: coachLink },
+          { label: "Teams", render: (row) => escapeHTML(teamListDisplay(row.pastTeams || [row.teamName])) },
+          { label: "Games", num: true, render: (row) => row.gamesPlayed },
+          { label: "Record", render: (row) => `${row.wins}-${row.ties}-${row.losses}` },
+        ])}
+        ${recordTable("Most Coaching Seasons", `${label} seasons with a coach listed in the league archive.`, mostCoachingSeasons(allData, stage), [
+          { label: "Coach", render: coachLink },
+          { label: "Division", render: (row) => escapeHTML(row.division || "") },
+          { label: "Seasons", num: true, render: (row) => row.seasons },
+          { label: "Teams", render: (row) => escapeHTML(teamListDisplay(row.pastTeams || [row.teamName])) },
         ])}
         ${stage === "playoffs" ? `
           ${recordTable("Coach Championships", "Coaches with one or more LSL Cup titles on record.", coachChampionships(allData, stage), [
@@ -771,15 +964,20 @@ function playerRecordSet(allData, stage) {
   const singleSeasonGoals = playerSeasonRows(allData, stage)
     .filter((player) => player.goals > 0)
     .sort((a, b) => b.goals - a.goals || b.gamesPlayed - a.gamesPlayed || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
   const careerGoals = combinedPlayerStatsForDivision(allData, { stage })
     .filter((player) => player.goals > 0)
     .sort((a, b) => b.goals - a.goals || b.gamesPlayed - a.gamesPlayed || a.name.localeCompare(b.name))
-    .slice(0, 5);
+    .slice(0, 10);
 
   return {
     singleSeasonGoals,
     careerGoals,
+    seasonAssists: playerSeasonMetricRows(allData, stage, "assists"),
+    careerAssists: careerPlayerMetricRows(allData, stage, "assists"),
+    seasonShots: playerSeasonMetricRows(allData, stage, "shots"),
+    careerShots: careerPlayerMetricRows(allData, stage, "shots"),
+    hatTricks: mostHatTricksInSeason(allData, stage),
     singleGameGoals: biggestSingleGameGoals(allData, stage),
     multiGoalGames: multiGoalGameCounts(allData, stage),
     careerGamesPlayed: mostCareerGamesPlayed(allData, stage),
@@ -870,6 +1068,61 @@ function renderPlayerRecordSection(allData, stage) {
             { label: "Games", num: true, render: (row) => row.gamesPlayed },
           ]
         )}
+        ${recordTable(
+          isPlayoffs ? "Most Assists In A Playoff Run" : "Most Assists In A Regular Season",
+          isPlayoffs ? "Most assists recorded by a player in one playoff run." : "Most assists recorded by a player in one Regular Season.",
+          records.seasonAssists,
+          [
+            { label: "Player", render: playerLink },
+            { label: "Season", render: (row) => escapeHTML(row.season) },
+            { label: "Team", render: (row) => teamLink(row, row.season) },
+            { label: "Assists", num: true, render: (row) => row.assists },
+          ]
+        )}
+        ${recordTable(
+          isPlayoffs ? "Career Assists In The Playoffs" : "Career Assists In The Regular Season",
+          isPlayoffs ? "Career assists across all listed playoff seasons in the selected division." : "Career assists across all listed Regular Season seasons in the selected division.",
+          records.careerAssists,
+          [
+            { label: "Player", render: playerLink },
+            { label: "Teams", render: (row) => escapeHTML(teamDisplay(row)) },
+            { label: "Assists", num: true, render: (row) => row.assists },
+            { label: "Games Played", num: true, render: (row) => row.gamesPlayed },
+          ]
+        )}
+        ${recordTable(
+          isPlayoffs ? "Most Shots In A Playoff Run" : "Most Shots In A Regular Season",
+          isPlayoffs ? "Most recorded shots by a player in one playoff run." : "Most recorded shots by a player in one Regular Season.",
+          records.seasonShots,
+          [
+            { label: "Player", render: playerLink },
+            { label: "Season", render: (row) => escapeHTML(row.season) },
+            { label: "Team", render: (row) => teamLink(row, row.season) },
+            { label: "Shots", num: true, render: (row) => row.shots },
+          ]
+        )}
+        ${recordTable(
+          isPlayoffs ? "Career Shots In The Playoffs" : "Career Shots In The Regular Season",
+          isPlayoffs ? "Career shots across all listed playoff seasons in the selected division." : "Career shots across all listed Regular Season seasons in the selected division.",
+          records.careerShots,
+          [
+            { label: "Player", render: playerLink },
+            { label: "Teams", render: (row) => escapeHTML(teamDisplay(row)) },
+            { label: "Shots", num: true, render: (row) => row.shots },
+            { label: "Games Played", num: true, render: (row) => row.gamesPlayed },
+          ]
+        )}
+        ${recordTable(
+          isPlayoffs ? "Most Hat-Tricks In A Playoff Run" : "Most Hat-Tricks In A Regular Season",
+          "Hat-tricks counted from recorded scorer totals in completed matches.",
+          records.hatTricks,
+          [
+            { label: "Player", render: playerLink },
+            { label: "Season", render: (row) => escapeHTML(row.season) },
+            { label: "Team", render: (row) => teamLink(row, row.season) },
+            { label: "Hat-Tricks", num: true, render: (row) => row.count },
+          ]
+        )}
       </div>
     </section>
   `;
@@ -880,7 +1133,7 @@ function bestPlayoffWinRate(allData) {
     .filter((row) => row.gp > 0)
     .map((row) => ({ ...row, winRate: row.w / row.gp }))
     .sort((a, b) => b.winRate - a.winRate || b.w - a.w || b.gd - a.gd || a.teamName.localeCompare(b.teamName))
-    .slice(0, 5);
+    .slice(0, 10);
 }
 
 function teamRecordScopeDescription(stage) {
@@ -895,6 +1148,9 @@ function renderTeamRecordSection(allData, stage) {
   const rows = {
     bestTeam: isPlayoffs ? bestPlayoffRuns(allData) : bestTeams(allData, stage),
     goalsFor: bestGoalsFor(allData, stage),
+    mostWins: mostTeamWins(allData, stage),
+    mostDraws: isPlayoffs ? [] : mostTeamDraws(allData, stage),
+    singleMatchGoals: mostTeamGoalsInOneMatch(allData, stage),
     goalDifference: bestGoalDifferential(allData, stage),
     goalsAgainst: leastGoalsAgainst(allData, stage),
     cleanSheets: mostCleanSheetsInSeason(allData, stage),
@@ -966,6 +1222,25 @@ function renderTeamRecordSection(allData, stage) {
               { label: "PPG", num: true, render: (row) => row.ppg.toFixed(2) },
               { label: "Points", num: true, render: (row) => row.pts },
             ], "good")}
+        ${!isPlayoffs ? recordTable("Most Wins In A Regular Season", "Most league wins by a team in one Regular Season.", rows.mostWins, [
+          { label: "Team", render: teamColumn },
+          { label: "Season", render: seasonColumn },
+          { label: "Wins", num: true, render: (row) => row.w },
+          { label: "Record", render: (row) => `${row.w}-${row.d}-${row.l}` },
+        ]) : ""}
+        ${!isPlayoffs ? recordTable("Most Draws In A Regular Season", "Most tied matches by a team in one Regular Season.", rows.mostDraws, [
+          { label: "Team", render: teamColumn },
+          { label: "Season", render: seasonColumn },
+          { label: "Draws", num: true, render: (row) => row.d },
+          { label: "Record", render: (row) => `${row.w}-${row.d}-${row.l}` },
+        ]) : ""}
+        ${recordTable(isPlayoffs ? "Most Goals In A Single Playoff Game" : "Most Goals In A Single Regular Season Game", `Most goals scored by one team in a single ${label.toLowerCase()} match.`, rows.singleMatchGoals, [
+          { label: "Team", render: teamColumn },
+          { label: "Season", render: seasonColumn },
+          { label: "Opponent", render: (row) => escapeHTML(teamCodeFor(null, row.opponent)) },
+          { label: "Score", render: (row) => escapeHTML(row.score) },
+          { label: "Goals", num: true, render: (row) => row.goals },
+        ])}
         ${recordTable(isPlayoffs ? "Biggest Wins In The Playoffs" : "Biggest Wins In The Regular Season", `Largest listed ${label.toLowerCase()} score margins.`, rows.biggestWins, [
           { label: "Winner", render: (row) => teamLink(row.winner || { name: "Team TBA" }, row.season) },
           { label: "Opponent", render: (row) => escapeHTML(teamCodeFor(row.loser?.id, row.loser?.name || "Team TBA")) },
@@ -1021,6 +1296,30 @@ function renderTeamRecordSection(allData, stage) {
   `;
 }
 
+function applyRecordSearch() {
+  const query = state.search.trim().toLocaleLowerCase();
+  const status = root.querySelector("#records-search-status");
+  let visibleCount = 0;
+  root.querySelectorAll(".records-grid-panel").forEach((panel) => {
+    const cards = [...panel.querySelectorAll(".record-card")];
+    let panelCount = 0;
+    cards.forEach((card) => {
+      const visible = !query || card.textContent.toLocaleLowerCase().includes(query);
+      card.hidden = !visible;
+      if (visible) panelCount += 1;
+    });
+    visibleCount += panelCount;
+    panel.hidden = Boolean(query) && panelCount === 0;
+  });
+  if (!status) return;
+  status.hidden = !query;
+  status.textContent = !query
+    ? ""
+    : visibleCount
+      ? `${visibleCount} record${visibleCount === 1 ? "" : "s"} found in this view.`
+      : `No records matched "${state.search.trim()}" in this view.`;
+}
+
 function render(allData) {
   teamCodeMap = buildTeamCodeMap(allData);
   const selectedCategoryLabel = categoryOptions.find((option) => option.value === state.category)?.label || "Records";
@@ -1043,6 +1342,7 @@ function render(allData) {
     <section class="section-panel records-controls" aria-label="Record filters">
       ${renderFilters()}
     </section>
+    <p class="records-search-status" id="records-search-status" role="status" aria-live="polite" hidden></p>
     <div class="records-collection-heading">
       <div>
         <h2>${escapeHTML(selectedCategoryLabel)}</h2>
@@ -1094,6 +1394,12 @@ function render(allData) {
       root.querySelector("[data-stage].active")?.focus({ preventScroll: true });
     });
   });
+
+  root.querySelector("#records-search")?.addEventListener("input", (event) => {
+    state.search = event.currentTarget.value;
+    applyRecordSearch();
+  });
+  applyRecordSearch();
 }
 
 async function init() {

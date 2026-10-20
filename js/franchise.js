@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 import {
   CAP_MAX,

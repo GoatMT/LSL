@@ -2,9 +2,9 @@ import { renderCoachCard } from "../components/coachCard.js";
 import { renderFormStrip } from "../components/formStrip.js";
 import { COACH_GRADE_SCALE, decorateCoachGrade } from "./coachRatings.js";
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261019-fast1";
-import { calculateCoachForm, computeCoachSummary } from "./leagueEngine.js?v=3.15";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261020-records1";
+import { calculateCoachForm, computeCoachSummary } from "./leagueEngine.js?v=3.16";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { controlInput, controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("coaches.html");

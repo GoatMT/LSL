@@ -1,6 +1,6 @@
-import { buildPlayerCareer, computeCombinedPlayerStats, computePlayerStats, getAwards } from "./leagueEngine.js?v=3.15";
-import { loadAllSeasons } from "./dataLoader.js?v=20261019-fast1";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { buildPlayerCareer, computeCombinedPlayerStats, computePlayerStats, getAwards } from "./leagueEngine.js?v=3.16";
+import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage, unique } from "./utils.js";
 
 setupLayout("hall-of-fame.html");

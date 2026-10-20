@@ -1,4 +1,4 @@
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { setDocumentTitle } from "./utils.js";
 
 setupLayout("404.html");

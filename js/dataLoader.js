@@ -131,6 +131,35 @@ function canonicalizeRoster(teams, aliases = {}) {
   }));
 }
 
+function normalizeList(value) {
+  return Array.isArray(value) ? value : value && typeof value === "object" ? [value] : [];
+}
+
+function normalizePlayoffRound(round) {
+  const safeRound = round && typeof round === "object" ? round : {};
+  return {
+    ...safeRound,
+    matches: normalizeList(safeRound.matches),
+  };
+}
+
+function normalizePlayoffs(playoffs) {
+  if (!playoffs || typeof playoffs !== "object") return { rounds: [] };
+
+  return {
+    ...playoffs,
+    ...(Array.isArray(playoffs.rounds) ? { rounds: playoffs.rounds.map(normalizePlayoffRound) } : {}),
+    ...(Array.isArray(playoffs.divisions)
+      ? {
+          divisions: playoffs.divisions.map((division) => ({
+            ...division,
+            ...(Array.isArray(division?.rounds) ? { rounds: division.rounds.map(normalizePlayoffRound) } : {}),
+          })),
+        }
+      : {}),
+  };
+}
+
 function normalizeRosterPlayer(player, team, year, aliases = {}) {
   const name = player.name || "Unnamed Player";
   const id = normalizeRosterId(player, aliases);
@@ -202,10 +231,10 @@ export async function loadSeasonData(year, dataFiles = DATA_FILES) {
       event: files.teams?.event || {},
       teams,
       players: mergePlayers(teams, files.players, seasonKey, aliases),
-      coaches: files.coaches?.coaches || [],
+      coaches: normalizeList(files.coaches?.coaches),
       matches: (files.matches?.matches || []).map((match) => canonicalizeMatch(match, aliases)),
       standingsMeta: files.standings || {},
-      playoffs: files.playoffs || { rounds: [] },
+      playoffs: normalizePlayoffs(files.playoffs),
       awards: files.awards || { awards: [] },
       tournament: files.tournament || null,
       photos: files.photos?.photos || [],

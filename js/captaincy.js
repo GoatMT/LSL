@@ -1,12 +1,12 @@
-import { loadAllSeasons } from "./dataLoader.js?v=20261019-fast1";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("captaincy.html");
 setDocumentTitle("Captaincy History");
 
 const root = document.getElementById("page-root");
-const state = { season: "All", division: "All" };
+const state = { season: "All", division: "All", role: "Both" };
 
 function buildRows(allData) {
   return allData.flatMap((data) => (data.teams || []).flatMap((team) => (team.roster || [])
@@ -47,7 +47,11 @@ function render(allData) {
   const allRows = buildRows(allData);
   const seasons = [...new Set(allRows.map((row) => row.season))].sort((a, b) => Number(b) - Number(a));
   const divisions = [...new Set(allRows.map((row) => row.division))].sort();
-  const rows = allRows.filter((row) => (state.season === "All" || row.season === state.season) && (state.division === "All" || row.division === state.division));
+  const rows = allRows.filter((row) =>
+    (state.season === "All" || row.season === state.season) &&
+    (state.division === "All" || row.division === state.division) &&
+    (state.role === "Both" || row.role === state.role)
+  );
   root.innerHTML = `
     <section class="section-panel archive-hero">
       <div><span class="eyebrow">Leadership Archive</span><h1>LSL Captaincy History</h1><p>Every recorded captain and assistant captain, season by season, with links to their player and team pages.</p></div>
@@ -57,6 +61,7 @@ function render(allData) {
       <div class="archive-toolbar">
         <div class="control"><label for="captaincy-season">Season</label><select id="captaincy-season"><option value="All">All Seasons</option>${seasons.map((season) => `<option value="${escapeHTML(season)}"${state.season === season ? " selected" : ""}>${escapeHTML(season)}</option>`).join("")}</select></div>
         <div class="control"><label for="captaincy-division">Division</label><select id="captaincy-division"><option value="All">All Divisions</option>${divisions.map((division) => `<option value="${escapeHTML(division)}"${state.division === division ? " selected" : ""}>${escapeHTML(division)}</option>`).join("")}</select></div>
+        <div class="control"><label for="captaincy-role">Role</label><select id="captaincy-role"><option value="Both"${state.role === "Both" ? " selected" : ""}>Both</option><option value="Captain"${state.role === "Captain" ? " selected" : ""}>Captain</option><option value="Assistant Captain"${state.role === "Assistant Captain" ? " selected" : ""}>Assistant Captain</option></select></div>
       </div>
       <div class="archive-section-head"><div><span class="eyebrow">${rows.length} records</span><h2>Leadership by season</h2><p>Leadership roles are read from the season roster records.</p></div></div>
       ${renderRows(rows)}
@@ -64,6 +69,7 @@ function render(allData) {
   `;
   root.querySelector("#captaincy-season")?.addEventListener("change", (event) => { state.season = event.target.value; render(allData); });
   root.querySelector("#captaincy-division")?.addEventListener("change", (event) => { state.division = event.target.value; render(allData); });
+  root.querySelector("#captaincy-role")?.addEventListener("change", (event) => { state.role = event.target.value; render(allData); });
 }
 
 async function init() {

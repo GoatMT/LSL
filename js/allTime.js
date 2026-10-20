@@ -1,9 +1,9 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261019-fast1";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261020-records1";
 import { decorateCoachGrade } from "./coachRatings.js";
-import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.15";
+import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.16";
 import { escapeHTML, formatPercent, setDocumentTitle, slugify, statusMessage, teamProfileHref, unique } from "./utils.js";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { setupLayout } from "./main.js?v=20261020-records1";
 
 setupLayout("all-time.html");
 setDocumentTitle("All Time Stats");
@@ -398,7 +398,12 @@ function buildAllTimeCoaches(seasons, stage = "all") {
   const includePostseasonHonors = state.week === "All";
 
   seasons.forEach((season) => {
-    (season.coaches || []).filter(matchesDivision).forEach((coach) => {
+    const coachList = Array.isArray(season.coaches)
+      ? season.coaches
+      : season.coaches && typeof season.coaches === "object"
+        ? [season.coaches]
+        : [];
+    coachList.filter(matchesDivision).forEach((coach) => {
       const key = coach.id || slugify(coach.name);
       const teamStats = calculateTeamRecord(season, coach.teamId, { stage }) || {};
       const row = rows.get(key) || {
@@ -875,6 +880,9 @@ async function init() {
   render(allData, aliases);
 }
 
-init();
+init().catch((error) => {
+  console.error("Could not load all-time stats", error);
+  root.innerHTML = `<section class="section-panel">${statusMessage("error", "All-Time stats could not be loaded. Please try again.")}</section>`;
+});
 
 

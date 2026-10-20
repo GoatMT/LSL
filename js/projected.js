@@ -1,5 +1,5 @@
-import { loadJSON, loadSeasonData } from "./dataLoader.js?v=20261019-fast1";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { loadJSON, loadSeasonData } from "./dataLoader.js?v=20261020-records1";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { SITE } from "./config.js";
 import { escapeHTML, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 

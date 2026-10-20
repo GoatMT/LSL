@@ -1,8 +1,8 @@
-import { renderFooter } from "../components/footer.js?v=20261019-fast1";
-import { hydrateNavbar, renderNavbar } from "../components/navbar.js?v=20261019-fast1";
+import { renderFooter } from "../components/footer.js?v=20261020-records1";
+import { hydrateNavbar, renderNavbar } from "../components/navbar.js?v=20261020-records1";
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261019-fast1";
-import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.15";
+import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261020-records1";
+import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.16";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js?v=20260907-2";
 import { findOnThisDayHighlight } from "./onThisDay.js";
@@ -37,7 +37,7 @@ function registerPWA() {
 
     window.addEventListener("load", async () => {
       try {
-    const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261019-fast1", {
+    const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261020-offline1", {
           updateViaCache: "none",
         });
         await registration.update();

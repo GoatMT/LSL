@@ -1,5 +1,5 @@
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261019-fast1";
-import { setupLayout } from "./main.js?v=20261019-fast1";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261020-records1";
+import { setupLayout } from "./main.js?v=20261020-records1";
 import { mirrorLatestNewsArticles } from "./newsMirror.js";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";
 import { escapeHTML, getQueryParam, setDocumentTitle, statusMessage } from "./utils.js";

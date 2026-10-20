@@ -1,6 +1,14 @@
 import { playoffRulesFor } from "./config.js";
 import { byId, formatPercent, unique } from "./utils.js";
 
+function entries(value) {
+  return Array.isArray(value) ? value : value && typeof value === "object" ? [value] : [];
+}
+
+function coachEntries(data) {
+  return entries(data?.coaches);
+}
+
 export function teamMap(data) {
   return byId(data.teams || []);
 }
@@ -10,7 +18,7 @@ export function playerMap(data) {
 }
 
 export function coachMap(data) {
-  return byId(data.coaches || []);
+  return byId(coachEntries(data));
 }
 
 export function getMatchTeams(data, match) {
@@ -343,7 +351,7 @@ export function calculatePlayerForm(seasons, playerId, { stage = "all", limit = 
 export function calculateCoachForm(seasons, coachId, { stage = "all", division = "All", limit = 5 } = {}) {
   return seasons
     .flatMap((data) =>
-      (data.coaches || [])
+      coachEntries(data)
         .filter((coach) => coach.id === coachId)
         .filter((coach) => division === "All" || coach.division === division)
         .flatMap((coach) => teamFormEntries(data, coach.teamId, { stage }))
@@ -387,10 +395,11 @@ export function getNextTeamMatch(seasonsOrData, teamId) {
 }
 
 function playoffBracketMatches(data) {
-  if (Array.isArray(data.playoffs?.divisions)) {
-    return data.playoffs.divisions.flatMap((division) => (division.rounds || []).flatMap((round) => round.matches || []));
+  const playoffDivisions = entries(data.playoffs?.divisions);
+  if (playoffDivisions.length) {
+    return playoffDivisions.flatMap((division) => entries(division.rounds).flatMap((round) => entries(round.matches)));
   }
-  return (data.playoffs?.rounds || []).flatMap((round) => round.matches || []);
+  return entries(data.playoffs?.rounds).flatMap((round) => entries(round.matches));
 }
 
 function teamAwardAchievements(data, teamId) {
@@ -591,21 +600,21 @@ export function computePlayerStats(data, { stage = "all" } = {}) {
     .filter((match) => allowedStages.includes(match.stage))
     .filter((match) => isCompletedMatch(match))
     .forEach((match) => {
-      (match.scorers || []).forEach((scorer) => {
+      entries(match.scorers).forEach((scorer) => {
         if (!scorer.playerId) return;
         const row = stats.get(scorer.playerId);
         if (!row) return;
         row.goals += Number(scorer.goals) || 0;
       });
 
-      (match.assists || []).forEach((assist) => {
+      entries(match.assists).forEach((assist) => {
         if (!assist.playerId) return;
         const row = stats.get(assist.playerId);
         if (!row) return;
         row.assists += Number(assist.assists) || 0;
       });
 
-      (match.shots || []).forEach((shot) => {
+      entries(match.shots).forEach((shot) => {
         if (!shot.playerId) return;
         const row = stats.get(shot.playerId);
         if (!row) return;
@@ -956,10 +965,10 @@ export function computePlayerVsTeamStatsBySeason(seasons, playerId, { stage = "a
 
           let matchGoals = 0;
           let matchAssists = 0;
-          (match.scorers || []).forEach((scorer) => {
+          entries(match.scorers).forEach((scorer) => {
             if (scorer.playerId === playerId) matchGoals += Number(scorer.goals) || 0;
           });
-          (match.assists || []).forEach((assist) => {
+          entries(match.assists).forEach((assist) => {
             if (assist.playerId === playerId) matchAssists += Number(assist.assists) || 0;
           });
           row.goals += matchGoals;
@@ -1026,7 +1035,7 @@ export function getCurrentPlayer(seasons, playerId) {
 export function buildCoachCareer(seasons, coachId) {
   return seasons
     .flatMap((data) => {
-      return (data.coaches || [])
+      return coachEntries(data)
         .filter((coach) => coach.id === coachId)
         .map((coach) => {
           const teamStats = getTeamStats(data, coach.teamId) || {};
@@ -1055,7 +1064,7 @@ export function buildCoachCareer(seasons, coachId) {
 export function computeCoachSummary(seasons, { stage = "regular" } = {}) {
   const map = new Map();
   seasons.forEach((data) => {
-    (data.coaches || []).forEach((coach) => {
+    coachEntries(data).forEach((coach) => {
       const teamStats = calculateTeamRecord(data, coach.teamId, { stage }) || {};
       const key = `${coach.id}::${coach.division || ""}`;
       const existing = map.get(key) || {
@@ -1096,7 +1105,7 @@ export function computeCoachSummary(seasons, { stage = "regular" } = {}) {
 export function getCurrentCoach(seasons, coachId) {
   return [...seasons]
     .reverse()
-    .flatMap((data) => data.coaches || [])
+    .flatMap((data) => coachEntries(data))
     .find((coach) => coach.id === coachId);
 }
 
