@@ -7,7 +7,7 @@ import {
   playerOVR,
   playerTeamForMatch,
   winnerTeamId,
-} from "./leagueEngine.js?v=3.16";
+} from "./leagueEngine.js?v=3.18";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import {
   controlSelect,

@@ -1,5 +1,5 @@
 import { loadSeasonData } from "./dataLoader.js?v=20261020-records1";
-import { calculateStandings, computePlayerStats, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.16";
+import { calculateStandings, computePlayerStats, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.18";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { SITE } from "./config.js";
 import { controlSelect, escapeHTML, formatPercent, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";

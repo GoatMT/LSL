@@ -2,7 +2,7 @@ import { renderPlayoffBracket } from "../components/playoffBracket.js";
 import { renderStandingsTable } from "../components/standingsTable.js";
 import { SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=20261020-records1";
-import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.16";
+import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.18";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

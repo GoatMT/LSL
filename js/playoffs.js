@@ -3,7 +3,7 @@ import { renderStandingsTable } from "../components/standingsTable.js?v=3.1";
 import { matchToCalendarEvent, renderCalendarButtons, renderCalendarDownloadButton } from "./calendarLinks.js";
 import { playoffRulesFor, SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=20261020-records1";
-import { calculateStandings } from "./leagueEngine.js?v=3.16";
+import { calculateStandings } from "./leagueEngine.js?v=3.18";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { controlSelect, escapeHTML, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 

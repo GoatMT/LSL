@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
-import { calculateTeamRecord, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.16";
+import { calculateTeamRecord, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.18";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 

@@ -2,7 +2,7 @@ import { renderFooter } from "../components/footer.js?v=20261020-records1";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js?v=20261020-records1";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261020-records1";
-import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.16";
+import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.18";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js?v=20260907-2";
 import { findOnThisDayHighlight } from "./onThisDay.js";
@@ -779,13 +779,22 @@ function renderImportantNews(data, allData, newsData = {}) {
   `;
 }
 
-function renderExpectedDates() {
+function seasonStartDate(event = {}) {
+  if (event.firstDay && !/coming soon/i.test(event.firstDay)) return event.firstDay;
+  const dateRange = String(event.dates || "");
+  const year = dateRange.match(/\b20\d{2}\b/)?.[0];
+  const start = dateRange.split(/\s+[–-]\s+/)[0]?.replace(/^[A-Za-z]+,\s*/, "").trim();
+  return start && year ? `${start}, ${year}` : "Start date not listed";
+}
+
+function renderExpectedDates(allData = []) {
   const dates = [
     { label: "Combine Day Expected", date: "May 24, 2027" },
     { label: "First Week", date: "Saturday Morning, June 5, 2027" },
     { label: "Get Your Jerseys", date: "Wednesday, June 2, 2027" },
     { label: "Teams", date: "Wednesday, June 2, 2027" },
   ];
+  const pastSeasons = allData.filter((season) => Number(season.year) >= 2024 && Number(season.year) < 2027);
 
   return `
     <section class="section-panel home-expected-dates" aria-labelledby="home-expected-dates-title">
@@ -808,6 +817,36 @@ function renderExpectedDates() {
             `
           )
           .join("")}
+      </div>
+      <div class="home-season-history">
+        <div class="home-season-history-heading">
+          <span class="eyebrow">Season Archive</span>
+          <h3>Past Season Dates</h3>
+        </div>
+        <div class="home-season-history-grid">
+          ${pastSeasons
+            .map((season) => {
+              const event = season.event || {};
+              const details = [
+                { label: "Season dates", value: event.dates },
+                { label: "Game-day schedule", value: event.schedule && !/results are posted/i.test(event.schedule) ? event.schedule : "" },
+                { label: "Registration deadline", value: event.registrationDeadline },
+                { label: "Combine day", value: event.combineDay },
+              ].filter((item) => item.value);
+              return `
+                <article class="home-season-date-card">
+                  <span class="home-season-date-year">${escapeHTML(season.year)} Season</span>
+                  <strong class="home-season-start">Started ${escapeHTML(seasonStartDate(event))}</strong>
+                  <dl>
+                    ${details
+                      .map((item) => `<div><dt>${escapeHTML(item.label)}</dt><dd>${escapeHTML(item.value)}</dd></div>`)
+                      .join("")}
+                  </dl>
+                </article>
+              `;
+            })
+            .join("")}
+        </div>
       </div>
     </section>
   `;
@@ -857,7 +896,7 @@ function renderHomeContent(data, allData, newsData = {}) {
 
     ${renderLanternRushSpotlight()}
 
-    ${renderExpectedDates()}
+    ${renderExpectedDates(allData)}
 
     ${renderHomeFacts()}
 

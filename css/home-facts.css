@@ -92,7 +92,41 @@
   font-size: 1rem;
   line-height: 1.4;
 }
+.home-season-history {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.home-season-history-heading h3 { margin: 3px 0 0; font-size: 1.15rem; }
+.home-season-history-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 14px;
+}
+.home-season-date-card {
+  min-width: 0;
+  padding: 16px 0 0;
+  border-top: 2px solid rgba(199, 163, 103, 0.58);
+}
+.home-season-date-year {
+  display: block;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.home-season-start {
+  display: block;
+  margin-top: 7px;
+  color: var(--ink);
+}
+.home-season-date-card dl { display: grid; gap: 10px; margin: 14px 0 0; }
+.home-season-date-card dl div { display: grid; gap: 3px; }
+.home-season-date-card dt { color: var(--muted); font-size: 0.75rem; }
+.home-season-date-card dd { margin: 0; color: var(--ink); font-size: 0.86rem; line-height: 1.45; }
 @media (max-width: 760px) {
+  .home-season-history-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .home-facts-grid { grid-template-columns: 1fr; gap: 8px; }
   .home-facts .section-head { flex-wrap: wrap; }
   .home-fact { padding: 20px; }
@@ -102,6 +136,7 @@
   .home-expected-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 480px) {
+  .home-season-history-grid { grid-template-columns: 1fr; }
   .home-lantern-rush { grid-template-columns: 1fr; justify-items: center; text-align: center; }
   .home-lantern-rush-mark { width: 148px; height: 112px; }
   .home-lantern-rush-action { justify-self: stretch; }

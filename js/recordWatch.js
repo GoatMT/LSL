@@ -1,4 +1,4 @@
-import { calculateTeamRecord, computeCombinedPlayerStats } from "./leagueEngine.js?v=3.16";
+import { calculateTeamRecord, computeCombinedPlayerStats } from "./leagueEngine.js?v=3.18";
 import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";

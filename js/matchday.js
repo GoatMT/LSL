@@ -1,7 +1,7 @@
 import { SITE } from "./config.js";
 import { matchToCalendarEvent, renderCalendarDownloadButton } from "./calendarLinks.js";
 import { loadSeasonData } from "./dataLoader.js?v=20261020-records1";
-import { filterMatches, getMatchTeams, isCompletedMatch, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.16";
+import { filterMatches, getMatchTeams, isCompletedMatch, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.18";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 

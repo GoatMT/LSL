@@ -2,7 +2,7 @@ import { DATA_FILES, SITE } from "./config.js";
 import { slugify } from "./utils.js";
 
 let playerAliasCache;
-const DATA_CACHE_VERSION = "20261018-media-4";
+const DATA_CACHE_VERSION = "20261020-profile1";
 const DATA_CACHE_TTL_MS = 10 * 60_000;
 const DATA_FETCH_TIMEOUT_MS = 8_000;
 const jsonCache = new Map();
@@ -116,6 +116,11 @@ function canonicalizeMatch(match, aliases = {}) {
   ["scorers", "assists", "shots", "stars"].forEach((key) => {
     const entries = Array.isArray(next[key]) ? next[key] : next[key] ? [next[key]] : [];
     next[key] = entries.map((event) => canonicalizePlayerEvent(event, aliases));
+  });
+  const absences = Array.isArray(next.absences) ? next.absences : next.absences ? [next.absences] : [];
+  next.absences = absences.map((absence) => {
+    if (typeof absence === "string") return aliases[absence] || aliases[slugify(absence)] || absence;
+    return canonicalizePlayerEvent(absence, aliases);
   });
   if (next.playerOfMatchId) next.playerOfMatchId = canonicalPlayerId(next.playerOfMatchId, aliases);
   return next;
