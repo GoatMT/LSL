@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v124";
+const CACHE_NAME = "lsl-cache-v130";
 const NETWORK_TIMEOUT_MS = 6_000;
 
 /*
@@ -90,6 +90,7 @@ const APP_SHELL = [
   /* Logo */
   "./Logos/lsl-logo.png",
   "./Logos/lantern-of-knowledge-academy.png",
+  "./Logos/NoInternet.png",
 ];
 
 /*
@@ -457,67 +458,88 @@ async function networkFirst(request, fetchOptions = {}) {
       return cached;
     }
 
-    /*
-     * Return a clean offline response instead of throwing.
-     */
-    return new Response(
-      `
-      <!DOCTYPE html>
-      <html>
+    return new Response("This LSL resource is unavailable offline.", {
+      status: 503,
+      headers: { "Content-Type": "text/plain; charset=UTF-8" },
+    });
+  }
+}
+
+function offlinePageResponse() {
+  const logoURL = new URL("./Logos/NoInternet.png", self.registration.scope).href;
+  return new Response(
+    `<!doctype html>
+    <html lang="en">
       <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#111713">
         <title>LSL Offline</title>
         <style>
-          body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0b120d;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-          }
-
-          .box {
-            max-width: 500px;
-            padding: 32px;
-          }
-
-          h1 {
-            margin-bottom: 12px;
-          }
-
-          p {
-            opacity: .75;
-            line-height: 1.6;
-          }
+          :root { color-scheme: dark; font-family: Inter, "Segoe UI", system-ui, sans-serif; background: #111713; color: #f5f7f4; }
+          * { box-sizing: border-box; }
+          body { min-height: 100vh; margin: 0; padding: 36px 20px; display: grid; place-items: center; background: #111713; }
+          main { width: min(100%, 760px); text-align: center; }
+          .status { display: inline-flex; align-items: center; gap: 9px; color: #e7bd70; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+          .status::before { width: 9px; height: 9px; border-radius: 50%; background: #e7bd70; content: ""; box-shadow: 0 0 0 4px rgb(231 189 112 / 14%); }
+          h1 { margin: 12px 0 8px; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.1; }
+          .intro { max-width: 560px; margin: 0 auto 22px; color: #bbc7be; line-height: 1.65; }
+          .details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; margin: 0 0 22px; text-align: left; }
+          .detail { min-width: 0; padding: 12px 14px; border: 1px solid #39443d; border-radius: 8px; background: #1b231e; }
+          .detail dt { margin-bottom: 5px; color: #aab7ad; font-size: .68rem; font-weight: 750; text-transform: uppercase; }
+          .detail dd { margin: 0; overflow-wrap: anywhere; font-size: .92rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+          time { color: #f4d394; font-size: 1.05rem !important; }
+          .logo { display: block; width: min(250px, 62vw); max-height: 250px; margin: 0 auto 22px; object-fit: contain; }
+          .copy-title { margin: 0 0 8px; color: #f4d394; font-size: 1.25rem; }
+          .copy { max-width: 590px; margin: 0 auto; color: #c0cbc3; line-height: 1.65; }
+          .reasons { width: fit-content; max-width: 100%; margin: 12px auto 20px; padding-left: 22px; color: #c0cbc3; text-align: left; line-height: 1.7; }
+          button { min-height: 44px; padding: 10px 18px; border: 1px solid #57936a; border-radius: 7px; background: #124b29; color: white; font: inherit; font-weight: 800; cursor: pointer; }
+          button:hover { background: #176137; }
+          button:focus-visible { outline: 3px solid #f4d394; outline-offset: 3px; }
+          @media (max-width: 560px) { body { padding: 25px 16px; } .details { grid-template-columns: repeat(2, minmax(0, 1fr)); } .detail { padding: 10px; } }
+          @media (prefers-reduced-motion: no-preference) { main { animation: arrive .5s ease-out both; } @keyframes arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } } }
         </style>
       </head>
       <body>
-        <div class="box">
-          <h1>LSL is Offline</h1>
-          <p>
-            The Lantern Soccer League could not connect
-            to the live website.
-          </p>
-          <p>
-            Check your internet connection and try again.
-          </p>
-        </div>
+        <main>
+          <div class="status">Connection unavailable</div>
+          <h1>No Internet Connection</h1>
+          <p class="intro">The live LSL site is not responding. These diagnostics come from this device and work offline.</p>
+          <dl class="details" aria-label="Offline diagnostics">
+            <div class="detail"><dt>Local time (IRL)</dt><dd><time id="local-time"></time></dd></div>
+            <div class="detail"><dt>Local date</dt><dd id="local-date"></dd></div>
+            <div class="detail"><dt>Time zone (EST/EDT when applicable)</dt><dd id="timezone"></dd></div>
+            <div class="detail"><dt>UTC offset</dt><dd id="utc-offset"></dd></div>
+            <div class="detail"><dt>Region estimate (device time zone)</dt><dd id="location"></dd></div>
+            <div class="detail"><dt>Public IP</dt><dd>Not available offline</dd></div>
+            <div class="detail"><dt>Browser language</dt><dd id="locale"></dd></div>
+            <div class="detail"><dt>Network signal</dt><dd id="network-signal"></dd></div>
+            <div class="detail"><dt>Connection type</dt><dd id="connection-type"></dd></div>
+            <div class="detail"><dt>Site status</dt><dd>Could not connect</dd></div>
+          </dl>
+          <img class="logo" src="${logoURL}" alt="No Internet connection">
+          <h2 class="copy-title">Lantern Soccer League is Offline.</h2>
+          <p class="copy">The Lantern Soccer League could not connect to the live website. Check your internet connection and try again. Problem might be:</p>
+          <ul class="reasons">
+            <li>Your internet connection is disconnected or unstable.</li>
+            <li>The LSL website or its hosting service is temporarily unavailable.</li>
+            <li>A network, firewall, or DNS setting is blocking the connection.</li>
+          </ul>
+          <button type="button" onclick="location.reload()">Try again</button>
+        </main>
+        <script>
+          const locale = navigator.language || "en-CA";
+          const zone = Intl.DateTimeFormat().resolvedOptions().timeZone || "Device local time";
+          const timeFormatter = new Intl.DateTimeFormat(locale, { hour: "numeric", minute: "2-digit", second: "2-digit", timeZoneName: "short" });
+          const dateFormatter = new Intl.DateTimeFormat(locale, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+          const offsetLabel = (date) => { const minutes = -date.getTimezoneOffset(); const sign = minutes >= 0 ? "+" : "-"; const absolute = Math.abs(minutes); return "UTC" + sign + String(Math.floor(absolute / 60)).padStart(2, "0") + ":" + String(absolute % 60).padStart(2, "0"); };
+          const updateClock = () => { const now = new Date(); const region = zone.split("/").pop().replace(/_/g, " "); document.getElementById("local-time").dateTime = now.toISOString(); document.getElementById("local-time").textContent = timeFormatter.format(now); document.getElementById("local-date").textContent = dateFormatter.format(now); document.getElementById("timezone").textContent = zone; document.getElementById("utc-offset").textContent = offsetLabel(now); document.getElementById("location").textContent = region + " (" + zone + ")"; document.getElementById("locale").textContent = locale; document.getElementById("network-signal").textContent = navigator.onLine ? "Network detected; site unreachable" : "Offline"; document.getElementById("connection-type").textContent = navigator.connection && navigator.connection.effectiveType ? navigator.connection.effectiveType : "Not reported by browser"; };
+          updateClock(); setInterval(updateClock, 1000);
+        </script>
       </body>
-      </html>
-      `,
-      {
-        status: 503,
-        headers: {
-          "Content-Type": "text/html; charset=UTF-8",
-        },
-      }
-    );
-  }
+    </html>`,
+    { status: 503, headers: { "Content-Type": "text/html; charset=UTF-8", "Cache-Control": "no-store" } }
+  );
 }
 
 /* =========================================================
@@ -549,24 +571,7 @@ async function networkFirstNavigation(request) {
       return cachedPage;
     }
 
-    /*
-     * Then try the index page.
-     */
-    const index = await caches.match("./index.html");
-
-    if (index) {
-      return index;
-    }
-
-    return new Response(
-      "LSL is currently offline.",
-      {
-        status: 503,
-        headers: {
-          "Content-Type": "text/plain",
-        },
-      }
-    );
+    return offlinePageResponse();
   }
 }
 
