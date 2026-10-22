@@ -1,7 +1,7 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261020-profile1";
-import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.18";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 
@@ -842,7 +842,7 @@ function renderProfileHeader(profile, current, ovr) {
           <span><small>Age</small><strong>${escapeHTML(currentPlayerAge(birthYear, birthMonth))}</strong></span>
         </div>
       </div>
-      <div class="official-profile-ovr-card" title="Career OVR: Seniors count 90% and Juniors 10% for players in both divisions. Junior-only ratings are 10% lower. Goalkeepers use win rate 40% and goals-against-per-game 60%, a five-game sample adjustment, up to 2 championship bonus points, and a calibrated 50-90 rating scale. Field/Goalie players blend field and goalie scores 50/50.">
+      <div class="official-profile-ovr-card" title="Career OVR: Seniors count 90% and Juniors 10% for players in both divisions. Field players use goals 30%, MVP/Golden Boot awards 10%, games played 5%, wins 25%, and goals per game 30%. Playoff goals and playoff games are excluded from the Goals and Goals Per Game OVR inputs unless the player scores at least 2 playoff goals. Junior-only ratings are 10% lower. Goalkeepers use goals 5%, win rate 40%, games played 15%, goals against 20%, and GAA 35%, then receive a 3% reduction. Emergency backup goalkeepers remain field players unless listed as a primary goalkeeper.">
         <span>OVR</span>
         <strong>${escapeHTML(ovr)}</strong>
       </div>

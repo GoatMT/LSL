@@ -1,5 +1,5 @@
 import { escapeHTML, initials, leadershipRoleLabel, leadershipRoleShort, teamProfileHref } from "../js/utils.js";
-import { teamOVR } from "../js/leagueEngine.js?v=3.18";
+import { teamOVR } from "../js/leagueEngine.js?v=3.20";
 import { renderFormStrip } from "./formStrip.js";
 
 function teamMark(team) {

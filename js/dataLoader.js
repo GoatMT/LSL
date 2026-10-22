@@ -2,7 +2,7 @@ import { DATA_FILES, SITE } from "./config.js";
 import { slugify } from "./utils.js";
 
 let playerAliasCache;
-const DATA_CACHE_VERSION = "20261020-profile1";
+const DATA_CACHE_VERSION = "20261021-backup-goalie";
 const DATA_CACHE_TTL_MS = 10 * 60_000;
 const DATA_FETCH_TIMEOUT_MS = 8_000;
 const jsonCache = new Map();

@@ -1,4 +1,4 @@
-import { teamMap, winnerTeamId } from "./leagueEngine.js?v=3.18";
+import { teamMap, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { escapeHTML, formatDate } from "./utils.js";
 
 /**

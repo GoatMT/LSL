@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js?v=20261020-records1";
+import { loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
 import { renderFanVoteCard, hydrateFanVote } from "./fanVote.js";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { setDocumentTitle, statusMessage } from "./utils.js";

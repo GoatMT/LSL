@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
+import { loadAllSeasons } from "./dataLoader.js?v=20261021-backup-goalie";
 import {
   computeCombinedPlayerStats,
   computePlayerStats,
@@ -7,7 +7,7 @@ import {
   playerOVR,
   playerTeamForMatch,
   winnerTeamId,
-} from "./leagueEngine.js?v=3.18";
+} from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import {
   controlSelect,

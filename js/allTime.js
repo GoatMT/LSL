@@ -1,7 +1,7 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261020-records1";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
 import { decorateCoachGrade } from "./coachRatings.js";
-import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.18";
+import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { escapeHTML, formatPercent, setDocumentTitle, slugify, statusMessage, teamProfileHref, unique } from "./utils.js";
 import { setupLayout } from "./main.js?v=20261020-records1";
 

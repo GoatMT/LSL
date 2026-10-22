@@ -1,5 +1,5 @@
-import { buildPlayerCareer, computeCombinedPlayerStats, computePlayerStats, getAwards } from "./leagueEngine.js?v=3.18";
-import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
+import { buildPlayerCareer, computeCombinedPlayerStats, computePlayerStats, getAwards } from "./leagueEngine.js?v=3.24-playoff-threshold";
+import { loadAllSeasons } from "./dataLoader.js?v=20261021-backup-goalie";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage, unique } from "./utils.js";
 
@@ -18,10 +18,11 @@ const HALL_OF_FAME_CLASS = [
     accent: "gold",
     teams: "Asif Gangat United",
     titles: 0,
-    honors: "2024 Team MVP; 2025 Seniors MVP and Golden Boot",
+    honors: "2024 and 2025 Seniors MVP; 2025 Golden Boot",
     achievements: [
-      "Set the early LSL Seniors regular-season goals record with 13 goals.",
-      "Won the 2025 Seniors MVP and Golden Boot after another outstanding scoring season.",
+      "Led the 2025 Seniors with 9 regular-season goals.",
+      "Won back-to-back Seniors MVP awards in 2024 and 2025.",
+      "Won the 2025 Seniors Golden Boot after another outstanding scoring season.",
       "Retired at 17 and left a benchmark that Muzamil Kharooti and Mudassir later chased.",
     ],
     impact: "Hafizullah gave the league its first true scoring benchmark. Even after retirement, his record shaped the conversation around every elite LSL scorer that followed.",
@@ -35,9 +36,9 @@ const HALL_OF_FAME_CLASS = [
     accent: "green",
     teams: "Refuel Juicery Kickers / Umer Memon FC / EM Haulers FC",
     titles: 2,
-    honors: "2024 Seniors MVP and Golden Boot; 2025 and 2026 Seniors champion",
+    honors: "2024 Seniors Golden Boot; 2025 and 2026 Seniors champion",
     achievements: [
-      "Won the 2024 Seniors MVP and Golden Boot with Refuel Juicery Kickers.",
+      "Won the 2024 Seniors Golden Boot with Refuel Juicery Kickers.",
       "Won back-to-back Seniors championships with Umer Memon FC in 2025 and EM Haulers FC in 2026.",
       "Scored in every round of EM's 2026 playoff run, including the Championship Final.",
       "Finished with 24 career goals across three seasons and 24 games played.",

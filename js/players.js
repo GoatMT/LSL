@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
-import { computePlayerStats, computeCombinedPlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.18";
+import { loadAllSeasons } from "./dataLoader.js?v=20261021-backup-goalie";
+import { computePlayerStats, computeCombinedPlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
@@ -70,7 +70,7 @@ function stageLabel() {
 
 function positionGroup(position = "") {
   const value = String(position).toLowerCase();
-  if (/goal|keeper|gk/.test(value)) return "Goalkeeper";
+  if (/goal\s*keeper|goalie|\bgk\b/.test(value)) return "Goalkeeper";
   if (/defend|back|centre back|center back|cb/.test(value)) return "Defender";
   if (/mid|wing back/.test(value)) return "Midfielder";
   if (/forward|striker|winger|attack/.test(value)) return "Forward";
@@ -85,7 +85,7 @@ function positionOptions(allData) {
       .map((player) => positionGroup(player.position))
   );
   const order = ["Goalkeeper", "Defender", "Midfielder", "Forward", "Other"];
-  return ["All", ...order.filter((group) => groups.includes(group))];
+  return ["All", "Non-Goalies", ...order.filter((group) => groups.includes(group))];
 }
 
 const teamCodeOverrides = {
@@ -241,7 +241,11 @@ function filteredPlayers(allData) {
         championshipLabels: titleRecord.labels,
       };
     })
-    .filter((player) => state.position === "All" || player.positionGroup === state.position)
+    .filter((player) => {
+      if (state.position === "All") return true;
+      if (state.position === "Non-Goalies") return player.positionGroup !== "Goalkeeper";
+      return player.positionGroup === state.position;
+    })
     .filter((player) => player.gamesPlayed >= min)
     .filter((player) => {
       if (!query) return true;

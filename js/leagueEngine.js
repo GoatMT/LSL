@@ -644,10 +644,32 @@ export function computePlayerStats(data, { stage = "all" } = {}) {
     .sort((a, b) => b.points - a.points || b.goals - a.goals || b.shots - a.shots || a.name.localeCompare(b.name));
 }
 
+function ovrScoringTotals(stats = {}) {
+  const totalGoals = Number(stats.goals) || 0;
+  const totalGamesPlayed = Number(stats.gamesPlayed) || 0;
+  const playoffGoals = Number(stats.playoffGoals) || 0;
+  const playoffGamesPlayed = Number(stats.playoffGamesPlayed) || 0;
+  const playoffScoringQualifies = playoffGoals >= 2;
+  return {
+    goals: playoffScoringQualifies ? totalGoals : Math.max(0, totalGoals - playoffGoals),
+    gamesPlayed: playoffScoringQualifies ? totalGamesPlayed : Math.max(0, totalGamesPlayed - playoffGamesPlayed),
+  };
+}
+
 export function computeCombinedPlayerStats(seasons, options = {}) {
   const map = new Map();
+  const combinedStage = options.stage || "all";
   seasons.forEach((data) => {
-    computePlayerStats(data, options).forEach((row) => {
+    const seasonRows = computePlayerStats(data, options);
+    const regularRows = combinedStage === "all"
+      ? new Map(computePlayerStats(data, { stage: "regular" }).map((row) => [row.id, row]))
+      : null;
+    const playoffRows = combinedStage === "all"
+      ? new Map(computePlayerStats(data, { stage: "playoffs" }).map((row) => [row.id, row]))
+      : null;
+    seasonRows.forEach((row) => {
+      const regularRow = regularRows?.get(row.id);
+      const playoffRow = playoffRows?.get(row.id);
       const existing = map.get(row.id) || {
         id: row.id,
         name: row.name,
@@ -670,6 +692,10 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
         losses: 0,
         playerOfMatch: 0,
         mvpScore: 0,
+        regularGoals: 0,
+        playoffGoals: 0,
+        regularGamesPlayed: 0,
+        playoffGamesPlayed: 0,
         goalsAgainst: 0,
         goalkeeperGames: 0,
         cleanSheets: 0,
@@ -690,12 +716,20 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
         teamFinishTotal: 0,
         teamFinishSamples: 0,
         achievements: [],
+        regularGoals: 0,
+        playoffGoals: 0,
+        regularGamesPlayed: 0,
+        playoffGamesPlayed: 0,
       };
       divisionTotals.goals += row.goals;
       divisionTotals.gamesPlayed += row.gamesPlayed;
       divisionTotals.wins += row.wins;
       divisionTotals.ties += row.ties;
       divisionTotals.losses += row.losses;
+      divisionTotals.regularGoals += Number(regularRow?.goals) || 0;
+      divisionTotals.playoffGoals += Number(playoffRow?.goals) || 0;
+      divisionTotals.regularGamesPlayed += Number(regularRow?.gamesPlayed) || 0;
+      divisionTotals.playoffGamesPlayed += Number(playoffRow?.gamesPlayed) || 0;
       if (Number.isFinite(row.goalsAgainst)) divisionTotals.goalsAgainst += row.goalsAgainst;
       if (Number.isFinite(row.goalkeeperGames)) divisionTotals.goalkeeperGames += row.goalkeeperGames;
       if (Number.isFinite(row.cleanSheets)) divisionTotals.cleanSheets += row.cleanSheets;
@@ -716,6 +750,10 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
       existing.losses += row.losses;
       existing.playerOfMatch += row.playerOfMatch;
       existing.mvpScore += row.mvpScore;
+      existing.regularGoals += Number(regularRow?.goals) || 0;
+      existing.playoffGoals += Number(playoffRow?.goals) || 0;
+      existing.regularGamesPlayed += Number(regularRow?.gamesPlayed) || 0;
+      existing.playoffGamesPlayed += Number(playoffRow?.gamesPlayed) || 0;
       if (Number.isFinite(row.goalsAgainst)) existing.goalsAgainst += row.goalsAgainst;
       if (Number.isFinite(row.goalkeeperGames)) existing.goalkeeperGames += row.goalkeeperGames;
       if (Number.isFinite(row.cleanSheets)) existing.cleanSheets += row.cleanSheets;
@@ -738,17 +776,25 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
       const divisionStats = Object.fromEntries(
         Object.entries(row.divisionStats).map(([division, stats]) => [
           division,
-          {
-            ...stats,
-            teamFinishScore: stats.teamFinishSamples ? stats.teamFinishTotal / stats.teamFinishSamples : 0,
-          },
+          (() => {
+            const scoring = ovrScoringTotals(stats);
+            return {
+              ...stats,
+              scoringGoals: scoring.goals,
+              scoringGamesPlayed: scoring.gamesPlayed,
+              teamFinishScore: stats.teamFinishSamples ? stats.teamFinishTotal / stats.teamFinishSamples : 0,
+            };
+          })(),
         ])
       );
       const divisionValues = Object.values(divisionStats);
       const finishSamples = divisionValues.reduce((sum, stats) => sum + (Number(stats.teamFinishSamples) || 0), 0);
+      const scoring = ovrScoringTotals(row);
       return {
         ...row,
         divisionStats,
+        scoringGoals: scoring.goals,
+        scoringGamesPlayed: scoring.gamesPlayed,
         championshipWon: divisionValues.some((stats) => Number(stats.championshipScore) > 0),
         teamFinishScore: finishSamples
           ? divisionValues.reduce((sum, stats) => sum + (Number(stats.teamFinishScore) || 0) * (Number(stats.teamFinishSamples) || 0), 0) / finishSamples
@@ -763,6 +809,21 @@ export function computeCombinedPlayerStats(seasons, options = {}) {
 
 const OVR_SENIOR_WEIGHT = 0.9;
 const OVR_JUNIOR_WEIGHT = 0.1;
+const OVR_FIELD_WEIGHTS = {
+  goals: 30,
+  awards: 10,
+  gamesPlayed: 5,
+  wins: 25,
+  goalsPerGame: 30,
+};
+const OVR_GOALKEEPER_WEIGHTS = {
+  goals: 5,
+  winRate: 40,
+  gamesPlayed: 15,
+  goalsAgainst: 20,
+  goalsAgainstPerGame: 35,
+};
+const OVR_GOALKEEPER_REDUCTION = 0.97;
 
 function countOvrAchievements(achievements = [], pattern) {
   return achievements.filter((achievement) => pattern.test(String(achievement)) && !/Team MVP/i.test(String(achievement))).length;
@@ -777,15 +838,17 @@ function ovrDivisionProfile(player = {}) {
   const fallbackAchievements = player.achievements || [];
 
   if (!hasSeniors && !hasJuniors) {
+    const scoringGoals = Number(player.scoringGoals ?? player.goals) || 0;
+    const scoringGamesPlayed = Number(player.scoringGamesPlayed ?? player.gamesPlayed) || 0;
     return {
-      goals: Number(player.goals) || 0,
+      goals: scoringGoals,
       gamesPlayed: Number(player.gamesPlayed) || 0,
       wins: Number(player.wins) || 0,
       ties: Number(player.ties) || 0,
       losses: Number(player.losses) || 0,
         goalsAgainst: Number(player.goalsAgainst) || 0,
         goalkeeperGames: Number(player.goalkeeperGames) || 0,
-        goalsPerGame: Number(player.gamesPlayed) > 0 ? (Number(player.goals) || 0) / Number(player.gamesPlayed) : 0,
+        goalsPerGame: scoringGamesPlayed > 0 ? scoringGoals / scoringGamesPlayed : 0,
         goalsAgainstPerGame: Number(player.goalsAgainstPerGame) || 0,
       championshipScore: player.championshipWon ? 1 : 0,
       teamFinishScore: Number(player.teamFinishScore) || 0,
@@ -809,11 +872,15 @@ function ovrDivisionProfile(player = {}) {
   };
   const goalsAgainst = blend("goalsAgainst");
   const goalkeeperGames = blend("goalkeeperGames");
-  const seniorGoalsPerGame = hasSeniors && Number(seniors.gamesPlayed) > 0
-    ? (Number(seniors.goals) || 0) / Number(seniors.gamesPlayed)
+  const seniorScoringGoals = Number(seniors?.scoringGoals ?? seniors?.goals) || 0;
+  const juniorScoringGoals = Number(juniors?.scoringGoals ?? juniors?.goals) || 0;
+  const seniorScoringGamesPlayed = Number(seniors?.scoringGamesPlayed ?? seniors?.gamesPlayed) || 0;
+  const juniorScoringGamesPlayed = Number(juniors?.scoringGamesPlayed ?? juniors?.gamesPlayed) || 0;
+  const seniorGoalsPerGame = hasSeniors && seniorScoringGamesPlayed > 0
+    ? seniorScoringGoals / seniorScoringGamesPlayed
     : 0;
-  const juniorGoalsPerGame = hasJuniors && Number(juniors.gamesPlayed) > 0
-    ? (Number(juniors.goals) || 0) / Number(juniors.gamesPlayed)
+  const juniorGoalsPerGame = hasJuniors && juniorScoringGamesPlayed > 0
+    ? juniorScoringGoals / juniorScoringGamesPlayed
     : 0;
   const seniorGoalsAgainstPerGame = hasSeniors && Number(seniors.goalkeeperGames) > 0
     ? (Number(seniors.goalsAgainst) || 0) / Number(seniors.goalkeeperGames)
@@ -823,7 +890,7 @@ function ovrDivisionProfile(player = {}) {
     : 0;
 
   return {
-      goals: blend("goals"),
+      goals: blend("scoringGoals"),
       goalsPerGame: hasSeniors && hasJuniors
         ? seniorGoalsPerGame * OVR_SENIOR_WEIGHT + juniorGoalsPerGame * OVR_JUNIOR_WEIGHT
         : hasSeniors ? seniorGoalsPerGame : juniorGoalsPerGame,
@@ -855,28 +922,35 @@ export function playerRatingScore(player = {}, comparisonPlayers = []) {
   const goalkeeperMax = (key) => Math.max(1, ...goalkeeperProfiles.map((item) => Number(item[key]) || 0));
   const fieldScore = roles.field
     ? (
-        normalize(profile.goals, fieldMax("goals")) * 30 +
-        normalize(profile.awardCount, Math.max(1, ...fieldProfiles.map((item) => item.awardCount))) * 10 +
-        normalize(profile.gamesPlayed, fieldMax("gamesPlayed")) * 5 +
-        normalize(profile.wins, fieldMax("wins")) * 25 +
-        normalize(profile.goalsPerGame, Math.max(1, ...fieldProfiles.map((item) => Number(item.goalsPerGame) || 0))) * 30
+        normalize(profile.goals, fieldMax("goals")) * OVR_FIELD_WEIGHTS.goals +
+        normalize(profile.awardCount, Math.max(1, ...fieldProfiles.map((item) => item.awardCount))) * OVR_FIELD_WEIGHTS.awards +
+        normalize(profile.gamesPlayed, fieldMax("gamesPlayed")) * OVR_FIELD_WEIGHTS.gamesPlayed +
+        normalize(profile.wins, fieldMax("wins")) * OVR_FIELD_WEIGHTS.wins +
+        normalize(profile.goalsPerGame, Math.max(1, ...fieldProfiles.map((item) => Number(item.goalsPerGame) || 0))) * OVR_FIELD_WEIGHTS.goalsPerGame
       )
     : 0;
   const goalkeepersWithGames = goalkeeperProfiles.filter((item) => item.goalkeeperGames > 0);
+  const maxGoalkeeperGoals = Math.max(1, ...goalkeepersWithGames.map((item) => Number(item.goals) || 0));
+  const maxGoalkeeperGames = Math.max(1, ...goalkeepersWithGames.map((item) => Number(item.gamesPlayed) || 0));
+  const maxGoalsAgainst = Math.max(1, ...goalkeepersWithGames.map((item) => Number(item.goalsAgainst) || 0));
   const maxGoalsAgainstPerGame = Math.max(1, ...goalkeepersWithGames.map((item) => Number(item.goalsAgainstPerGame) || 0));
-  const goalkeeperGames = Math.max(0, Number(profile.goalkeeperGames) || 0);
+  const goalkeeperGames = Math.max(0, Number(profile.gamesPlayed) || 0);
   const goalkeeperWinRate = goalkeeperGames > 0
     ? Math.min(1, Math.max(0, (Number(profile.wins) || 0) / goalkeeperGames))
+    : 0;
+  const goalkeeperGoalsAgainstScore = goalkeeperGames > 0
+    ? 1 - normalize(profile.goalsAgainst, maxGoalsAgainst)
     : 0;
   const goalkeeperGaaScore = goalkeeperGames > 0
     ? 1 - normalize(profile.goalsAgainstPerGame, maxGoalsAgainstPerGame)
     : 0;
-  const goalkeeperSampleConfidence = Math.min(1, goalkeeperGames / 5);
   const goalkeeperScore = roles.goalkeeper
-    ? Math.min(
-        100,
-        (goalkeeperWinRate * 40 + goalkeeperGaaScore * 60) * goalkeeperSampleConfidence +
-          (Number(profile.championshipScore) > 0 ? 2 : 0)
+    ? Math.min(99,
+        normalize(profile.goals, maxGoalkeeperGoals) * OVR_GOALKEEPER_WEIGHTS.goals +
+        goalkeeperWinRate * OVR_GOALKEEPER_WEIGHTS.winRate +
+        normalize(goalkeeperGames, maxGoalkeeperGames) * OVR_GOALKEEPER_WEIGHTS.gamesPlayed +
+        goalkeeperGoalsAgainstScore * OVR_GOALKEEPER_WEIGHTS.goalsAgainst +
+        goalkeeperGaaScore * OVR_GOALKEEPER_WEIGHTS.goalsAgainstPerGame
       )
     : 0;
 
@@ -898,9 +972,10 @@ export function playerOVR(player = {}, comparisonPlayers = []) {
   const score = playerRatingScore(player, pool);
   const profile = ovrDivisionProfile(player);
   const roles = playerRoleFlags(player);
-  if (roles.goalkeeper) {
-    const calibratedRating = Math.round(50 + Math.min(100, Math.max(0, score)) * 0.4);
-    return profile.juniorOnly ? Math.round(calibratedRating * 0.9) : calibratedRating;
+  if (roles.goalkeeper && !roles.field) {
+    const calibratedRating = Math.round(50 + Math.min(99, Math.max(0, score)) * 0.4);
+    const loweredRating = Math.round(calibratedRating * OVR_GOALKEEPER_REDUCTION);
+    return profile.juniorOnly ? Math.round(loweredRating * 0.9) : loweredRating;
   }
   const scores = pool.map((item) => playerRatingScore(item, pool));
   return ratingFromScore(score, scores, profile.juniorOnly);
@@ -908,16 +983,9 @@ export function playerOVR(player = {}, comparisonPlayers = []) {
 
 export function playersWithOVR(players = [], comparisonPlayers = players) {
   const pool = comparisonPlayers.length ? comparisonPlayers : players;
-  const scores = pool.map((player) => playerRatingScore(player, pool));
-  const scoreByObject = new Map(pool.map((player, index) => [player, scores[index]]));
-  const scoreById = new Map(pool.filter((player) => player.id).map((player, index) => [player.id, scores[index]]));
   return players.map((player) => ({
     ...player,
-    ovr: ratingFromScore(
-      scoreByObject.get(player) ?? scoreById.get(player.id) ?? playerRatingScore(player, pool),
-      scores,
-      ovrDivisionProfile(player).juniorOnly
-    ),
+    ovr: playerOVR(player, pool),
   }));
 }
 

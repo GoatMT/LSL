@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js?v=20261020-records1";
+import { loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

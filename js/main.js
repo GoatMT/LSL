@@ -1,8 +1,8 @@
 import { renderFooter } from "../components/footer.js?v=20261020-records1";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js?v=20261020-records1";
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261020-records1";
-import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.18";
+import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261021-backup-goalie";
+import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js?v=20260907-2";
 import { findOnThisDayHighlight } from "./onThisDay.js";

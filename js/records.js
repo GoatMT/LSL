@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=20261020-records1";
-import { calculateTeamRecord, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.18";
+import { loadAllSeasons } from "./dataLoader.js?v=20261021-backup-goalie";
+import { calculateTeamRecord, computeCoachSummary, computeCombinedPlayerStats, computePlayerStats } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
@@ -973,10 +973,6 @@ function playerRecordSet(allData, stage) {
   return {
     singleSeasonGoals,
     careerGoals,
-    seasonAssists: playerSeasonMetricRows(allData, stage, "assists"),
-    careerAssists: careerPlayerMetricRows(allData, stage, "assists"),
-    seasonShots: playerSeasonMetricRows(allData, stage, "shots"),
-    careerShots: careerPlayerMetricRows(allData, stage, "shots"),
     hatTricks: mostHatTricksInSeason(allData, stage),
     singleGameGoals: biggestSingleGameGoals(allData, stage),
     multiGoalGames: multiGoalGameCounts(allData, stage),
@@ -1066,50 +1062,6 @@ function renderPlayerRecordSection(allData, stage) {
             { label: "Rate", num: true, render: (row) => row.rate.toFixed(2) },
             { label: "Goals", num: true, render: (row) => row.goals },
             { label: "Games", num: true, render: (row) => row.gamesPlayed },
-          ]
-        )}
-        ${recordTable(
-          isPlayoffs ? "Most Assists In A Playoff Run" : "Most Assists In A Regular Season",
-          isPlayoffs ? "Most assists recorded by a player in one playoff run." : "Most assists recorded by a player in one Regular Season.",
-          records.seasonAssists,
-          [
-            { label: "Player", render: playerLink },
-            { label: "Season", render: (row) => escapeHTML(row.season) },
-            { label: "Team", render: (row) => teamLink(row, row.season) },
-            { label: "Assists", num: true, render: (row) => row.assists },
-          ]
-        )}
-        ${recordTable(
-          isPlayoffs ? "Career Assists In The Playoffs" : "Career Assists In The Regular Season",
-          isPlayoffs ? "Career assists across all listed playoff seasons in the selected division." : "Career assists across all listed Regular Season seasons in the selected division.",
-          records.careerAssists,
-          [
-            { label: "Player", render: playerLink },
-            { label: "Teams", render: (row) => escapeHTML(teamDisplay(row)) },
-            { label: "Assists", num: true, render: (row) => row.assists },
-            { label: "Games Played", num: true, render: (row) => row.gamesPlayed },
-          ]
-        )}
-        ${recordTable(
-          isPlayoffs ? "Most Shots In A Playoff Run" : "Most Shots In A Regular Season",
-          isPlayoffs ? "Most recorded shots by a player in one playoff run." : "Most recorded shots by a player in one Regular Season.",
-          records.seasonShots,
-          [
-            { label: "Player", render: playerLink },
-            { label: "Season", render: (row) => escapeHTML(row.season) },
-            { label: "Team", render: (row) => teamLink(row, row.season) },
-            { label: "Shots", num: true, render: (row) => row.shots },
-          ]
-        )}
-        ${recordTable(
-          isPlayoffs ? "Career Shots In The Playoffs" : "Career Shots In The Regular Season",
-          isPlayoffs ? "Career shots across all listed playoff seasons in the selected division." : "Career shots across all listed Regular Season seasons in the selected division.",
-          records.careerShots,
-          [
-            { label: "Player", render: playerLink },
-            { label: "Teams", render: (row) => escapeHTML(teamDisplay(row)) },
-            { label: "Shots", num: true, render: (row) => row.shots },
-            { label: "Games Played", num: true, render: (row) => row.gamesPlayed },
           ]
         )}
         ${recordTable(

@@ -1,6 +1,6 @@
 import { SITE } from "./config.js";
-import { loadSeasonData } from "./dataLoader.js?v=20261020-records1";
-import { calculateStandings, getWeeks, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.18";
+import { loadSeasonData } from "./dataLoader.js?v=20261021-backup-goalie";
+import { calculateStandings, getWeeks, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { controlSelect, escapeHTML, formatPercent, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 

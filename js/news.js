@@ -1,4 +1,4 @@
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261020-records1";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { mirrorLatestNewsArticles } from "./newsMirror.js";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";
