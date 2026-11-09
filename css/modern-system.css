@@ -1,13 +1,13 @@
 /* Shared design tokens and interface foundation. */
 :root {
-  --brand-gold: #9e7921;
+  --brand-gold: var(--gold);
   --brand-green: #0d4923;
   --brand-green-strong: #1b5630;
   --gold: #d1b166;
   --gold-soft: #ead3a8;
   --green: #0d4923;
   --green-2: #1b5630;
-  --page: #242624;
+  --page: #1f2922;
   --panel: #303230;
   --card: #3a3c3a;
   --card-2: #252725;
@@ -467,7 +467,7 @@ body.imt-blue-page :where(a, button, input, select, textarea, summary, [role="ta
 
 /* Site-wide gray, gold, charcoal, and league-green palette. */
 body:not(.imt-blue-page) {
-  --page: #242624;
+  --page: #1f2922;
   --panel: #303230;
   --card: #3a3c3a;
   --card-2: #252725;

@@ -37,7 +37,7 @@ function registerPWA() {
 
     window.addEventListener("load", async () => {
       try {
-        const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261108-green2", {
+        const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261109-greenbg1", {
           updateViaCache: "none",
         });
         await registration.update();

@@ -50,9 +50,13 @@ Completed a final shared-system pass across the active non-IMST pages, focusing 
 
 Rotated active root-page asset query versions and the service-worker cache so clients pick up the shared design without a hard refresh. A follow-up palette adjustment promoted LSL green as the shared secondary/action color and restored the 2027 Expected Dates section to a green field with gold date tiles. The homepage's missing Expected Dates stylesheet is now linked and precached, restoring its card grid and season archive layout; IMST remains unchanged. Checks passed: all 42 root pages load the current design layer, IMST metadata remains blue, CSS scoping assertions, existing homepage/IMST/competition/Team Builder validators, and JavaScript syntax checks. Visual browser QA remains for Phase 11 because this environment cannot bind a local HTTP preview server.
 
-## Phase 11: Full QA and Polish
+## Phase 11: Full QA and Polish (In Progress)
 
-Test all pages, controls, stats, profiles, brackets, season filters, account flows, mobile layouts, accessibility, PWA/offline, images/video, and console/network errors. Fix findings and provide a comprehensive evidence-based report.
+Added `scripts/validate-site-assets.mjs` for filesystem-based auditing of every root page, reachable stylesheet/module, local media URL in data, and service-worker app-shell entry. It passes for all 42 root pages, 401 local file references, and 220 media references. The strict 2024-2027 runtime data validator, homepage leaders, Team Builder, and IMST page/rendering checks pass. `node --check` passes for all 83 JavaScript files under `js/`, `components/`, and `scripts/`. Media probes pass for all 119 video files (readable stream, dimensions, duration) and all 110 PNG/JPEG/WebP images (readable dimensions); two WebP files report malformed EXIF metadata but decode successfully.
+
+Aligned the shared fallback green tokens with the approved LSL green, unified the shared brand-gold token with the canonical gold, and changed the site canvas to a subtle green-charcoal (`#1f2922`) while retaining neutral gray panels. Matched browser/PWA theme colors, refreshed stylesheet/service-worker versions across all 42 pages, and kept Inter-Madrasah's blue background/theme color and all team/championship colors unchanged. Updated the Team Builder validator to assert these palette and cache-version rules.
+
+Remaining: live HTTP/browser checks for page controls, profiles, brackets, filters, account flows, mobile layouts, keyboard/accessibility behavior, reduced-motion rendering, service-worker/offline transitions, actual playback, and console/network errors. The GitHub site is open in the in-app browser, but Work settings disable browser control for this session and local loopback requests are denied, so those checks have not been performed. Do not mark Phase 11 complete until browser verification is available.
 
 ## Phase 1 Risks and Open Items
 
