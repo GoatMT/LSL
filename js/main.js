@@ -2,12 +2,12 @@ import { renderFooter } from "../components/footer.js?v=20261108-shared4";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js?v=20261108-shared4";
 import { hydrateTabs } from "../components/tabs.js?v=20261108-shared4";
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261108-data3";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js?v=20260907-2";
-import { findOnThisDayHighlight } from "./onThisDay.js";
 import { renderHomeFacts, hydrateHomeFacts } from "./homeFacts.js?v=4";
+import { renderHomeOnThisDay, renderHomeRecordWatch, hydrateHomeRecordWatch } from "./homeSpotlights.js?v=20261108-home1";
 
 function playerHref(playerId = "") {
   return playerId ? `./player.html?id=${encodeURIComponent(playerId)}` : "./players.html";
@@ -38,7 +38,7 @@ function registerPWA() {
 
     window.addEventListener("load", async () => {
       try {
-        const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261108-shared4", {
+        const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261108-phase6", {
           updateViaCache: "none",
         });
         await registration.update();
@@ -102,10 +102,10 @@ const HOME_LEADER_TYPES = [
 ];
 
 const homeLeaderState = {
-  year: SITE.defaultSeason,
+  year: "2026",
   division: "Seniors",
   teamId: "All",
-  stage: "regular",
+  stage: "all",
   stat: "goals",
 };
 
@@ -123,7 +123,7 @@ function renderHomeLeaderFeature(data, type, player, active = false) {
       aria-label="Open ${escapeHTML(player.name)} player profile"
       ${active ? "" : "hidden"}
     >
-      <div class="home-leader-avatar" aria-hidden="true">${escapeHTML(initials(player.name))}</div>
+      <div class="home-leader-avatar" aria-hidden="true">${player.photo ? `<img src="${escapeHTML(player.photo)}" alt="" loading="lazy" decoding="async">` : escapeHTML(initials(player.name))}</div>
       <div class="home-leader-feature-copy">
         <span>${escapeHTML(data.year)} ${escapeHTML(type.label)} Leader</span>
         <strong>${escapeHTML(player.name)}</strong>
@@ -210,6 +210,7 @@ function homeLeaderRows(data, type) {
 }
 
 function renderHomeLeaderView(data, type, active = false) {
+  const panelId = `home-leader-panel-${type.key}`;
   const selectedTeamId = homeLeaderState.teamId;
   const selectedTeam = (data.teams || []).find((team) => team.id === selectedTeamId);
   const divisionLabel = homeLeaderState.division === "All" ? "all divisions" : homeLeaderState.division;
@@ -217,11 +218,11 @@ function renderHomeLeaderView(data, type, active = false) {
   const rows = homeLeaderRows(data, type);
 
   if (!rows.length) {
-    return `<div class="home-leader-view" data-home-leader-panel="${type.key}"${active ? "" : " hidden"}>${statusMessage("empty", `No ${type.label.toLowerCase()} are listed for ${scopeLabel} yet.`)}</div>`;
+    return `<div class="home-leader-view" id="${panelId}" role="tabpanel" aria-labelledby="home-leader-tab-${type.key}" tabindex="0" data-home-leader-panel="${type.key}"${active ? "" : " hidden"}>${statusMessage("empty", `No ${type.label.toLowerCase()} are listed for ${scopeLabel} yet.`)}</div>`;
   }
 
   return `
-    <div class="home-leader-view" data-home-leader-panel="${type.key}"${active ? "" : " hidden"}>
+    <div class="home-leader-view" id="${panelId}" role="tabpanel" aria-labelledby="home-leader-tab-${type.key}" tabindex="0" data-home-leader-panel="${type.key}"${active ? "" : " hidden"}>
       <div class="home-leader-feature-stack">
         ${rows.map((player, index) => renderHomeLeaderFeature(data, type, player, index === 0)).join("")}
       </div>
@@ -296,12 +297,12 @@ function renderHomeLeaders(allData = []) {
   ];
 
   return `
-    <section class="section-panel home-leaders-panel" data-home-leaders-panel>
+    <section class="section-panel home-leaders-panel" data-home-leaders-panel aria-labelledby="home-leaders-title">
       <div class="section-head compact-head">
         <div>
           <span class="eyebrow">League Leaders</span>
-          <h2>${escapeHTML(data.year)} Leaders</h2>
-          <p>${escapeHTML(stageLabel)} ${escapeHTML(selectedDivision.toLowerCase())} leaders for ${escapeHTML(scopeLabel)}.</p>
+          <h2 id="home-leaders-title">${escapeHTML(data.year)} Player Leaders</h2>
+          <p>Top 10 ${escapeHTML(stageLabel.toLowerCase())} leaders across ${escapeHTML(selectedDivision.toLowerCase())} for ${escapeHTML(scopeLabel)}.</p>
         </div>
         <a class="text-link" href="./players.html">All player stats</a>
       </div>
@@ -311,10 +312,10 @@ function renderHomeLeaders(allData = []) {
         ${controlSelect("home-leader-team", "Team", teamOptions, homeLeaderState.teamId)}
         ${controlSelect("home-leader-stage", "Stage", stageOptions, homeLeaderState.stage)}
       </div>
-      <div class="home-leader-tabs" role="tablist" aria-label="Leader stat">
+      <div class="home-leader-tabs" role="tablist" aria-label="Player leader statistic">
         ${HOME_LEADER_TYPES.map(
           (type) => `
-            <button type="button" role="tab" class="${type.key === homeLeaderState.stat ? "active" : ""}" data-home-leader-stat="${type.key}" aria-selected="${type.key === homeLeaderState.stat}">
+            <button type="button" role="tab" id="home-leader-tab-${type.key}" aria-controls="home-leader-panel-${type.key}" tabindex="${type.key === homeLeaderState.stat ? "0" : "-1"}" class="${type.key === homeLeaderState.stat ? "active" : ""}" data-home-leader-stat="${type.key}" aria-selected="${type.key === homeLeaderState.stat}">
               ${escapeHTML(type.label)}
             </button>
           `
@@ -481,7 +482,8 @@ function renderScoreTicker(data) {
   const matches = (data.matches || []).filter((match) => match.stage === "regular" || match.stage === "playoffs" || match.stage === "exhibition");
   if (!matches.length) return "";
 
-  const todayIso = new Date().toISOString().slice(0, 10);
+  const now = new Date();
+  const todayIso = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
   let tickerMatches = matches.filter((match) => match.date === todayIso);
   let tickerLabel = formatDate(todayIso);
 
@@ -654,29 +656,6 @@ function matchupRecordHighlight(allData, teamIds = []) {
   return null;
 }
 
-function onThisDayNewsItem(allData) {
-  const highlight = findOnThisDayHighlight(allData);
-  if (!highlight) return null;
-  const teams = teamMap(highlight.data || {});
-  const home = teams.get(highlight.homeTeamId);
-  const away = teams.get(highlight.awayTeamId);
-  const homeName = home?.name || highlight.homeTeamName || "Home team";
-  const awayName = away?.name || highlight.awayTeamName || "Away team";
-  const winnerId = winnerTeamId(highlight);
-  const winnerName = winnerId === highlight.homeTeamId ? homeName : winnerId === highlight.awayTeamId ? awayName : null;
-  const topScorer = [...(highlight.scorers || [])].sort((a, b) => (Number(b.goals) || 0) - (Number(a.goals) || 0))[0];
-  const scorerNote = topScorer ? ` ${topScorer.name || "A player"} scored ${Number(topScorer.goals) > 1 ? `${topScorer.goals} goals` : "a goal"}.` : "";
-  const gameHref = `./game.html?id=${encodeURIComponent(highlight.id || "")}&season=${encodeURIComponent(highlight.season || "")}`;
-
-  return {
-    tag: "💡 DID YOU KNOW?",
-    tone: "trivia",
-    headline: `On this day in ${highlight.season}: ${homeName} ${highlight.homeScore}-${highlight.awayScore} ${awayName}`,
-    detail: `${winnerName ? `${winnerName} won.` : ""}${scorerNote}`.trim() || (highlight.label || "A league match happened on this date."),
-    href: gameHref,
-  };
-}
-
 function renderImportantNewsCard({ tag, tone, headline, detail, href }) {
   return `
     <a class="important-news-card ${escapeHTML(tone)}" href="${escapeHTML(href || "./matchday.html")}">
@@ -740,9 +719,6 @@ function renderImportantNews(data, allData, newsData = {}) {
 
   const recordHighlight = matchupRecordHighlight(allData, featuredTeamIds);
   if (recordHighlight) items.push(recordHighlight);
-
-  const trivia = onThisDayNewsItem(allData);
-  if (trivia) items.push(trivia);
 
   const featuredItems = (newsData.items || []).filter((item) => item.homeFeatured);
   const spotlight = [...featuredItems]
@@ -874,6 +850,10 @@ function renderLanternRushSpotlight() {
 
 function renderHomeContent(data, allData, newsData = {}) {
   const allChampions = getAwards(allData, { division: "Seniors" }).filter((award) => award.category === "Champion Team");
+  const currentYear = String(new Date().getFullYear());
+  const tickerData = allData.find((season) => String(season.year) === currentYear)
+    || allData.filter((season) => Number(season.year) <= Number(currentYear)).at(-1)
+    || data;
 
   return `
     ${renderChampionBanner(data, allData)}
@@ -896,13 +876,22 @@ function renderHomeContent(data, allData, newsData = {}) {
       </aside>
     </section>
 
-    ${renderLanternRushSpotlight()}
+    ${renderScoreTicker(tickerData)}
 
-    ${renderExpectedDates(allData)}
+    ${renderHomeLeaders(allData)}
+
+    <div class="home-spotlight-grid">
+      ${renderHomeRecordWatch(allData)}
+      ${renderHomeOnThisDay(allData)}
+    </div>
+
+    ${renderImportantNews(data, allData, newsData)}
+
+    ${renderLanternRushSpotlight()}
 
     ${renderHomeFacts()}
 
-    ${renderImportantNews(data, allData, newsData)}
+    ${renderExpectedDates(allData)}
 
     <section id="history" class="section-panel home-low-priority history-panel">
       <div class="section-head">
@@ -941,18 +930,24 @@ async function renderHome() {
   setDocumentTitle("Home");
   const root = document.getElementById("page-root");
   root.innerHTML = statusMessage("loading", "Loading league dashboard...");
+  root.setAttribute("aria-busy", "true");
 
-  const allData = await loadAllSeasons();
-  const newsData = await loadJSON("./data/shared/news.json", { items: [] });
-  let selectedSeason = SITE.defaultSeason;
-
-  async function render() {
-    const data = await loadSeasonData(selectedSeason);
+  try {
+    const [allData, newsData] = await Promise.all([
+      loadAllSeasons(["2024", "2025", "2026"], ["teams", "players", "matches", "standings", "playoffs", "awards"]),
+      loadJSON("./data/shared/news.json", { items: [] }),
+    ]);
+    const data = allData.find((season) => String(season.year) === "2026") || allData.at(-1) || {};
     root.innerHTML = renderHomeContent(data, allData, newsData);
+    hydrateHomeLeaders(allData);
+    hydrateHomeRecordWatch(root);
     hydrateHomeFacts(allData, root);
+  } catch (error) {
+    console.error("Could not load the LSL homepage", error);
+    root.innerHTML = `<section class="section-panel">${statusMessage("error", "The LSL homepage could not load right now. Please check your connection and try again.")}</section>`;
+  } finally {
+    root.removeAttribute("aria-busy");
   }
-
-  render();
 }
 
 if ([...document.scripts].some((script) => script.src.includes("/js/main.js"))) {

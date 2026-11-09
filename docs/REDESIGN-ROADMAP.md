@@ -20,13 +20,13 @@ Separated 2024-2026 into Seniors, Juniors, and IMST folders with ten standard JS
 
 Improved shared search to index pages, players, coaches, teams, matches, tournament information, and record topics; added keyboard navigation and accessible combobox/listbox state; strengthened mobile and More-menu state; added accessible roving keyboard behavior for tablists; gave the Hall of Fame photo viewer focus trapping and focus return; simplified the shared footer shoutout and labeled partner links; aligned shared PWA/browser theme colors; updated the 404 landmark labels; and bumped shared asset/service-worker versions for automatic update pickup. The offline experience remains the service worker's existing detailed, self-contained offline page. Automated checks passed; visual browser QA was not available in this phase environment.
 
-## Phase 5: Homepage
+## Phase 5: Homepage (Complete)
 
-Rebuild home while preserving the EM Haulers championship banner and verified date/history content. Add verified 2026 leaderboard, Record Watch slideshow, and On This Day. Every interaction must work and unsupported stats must remain absent.
+Reworked the homepage dashboard while preserving the 2026 EM Haulers championship banner, the verified 2027 expected dates, Lantern Rush feature, and league history. Added the actual current-year/last-completed-season score ticker, a default 2026 Seniors top-10 leaderboard with season/division/team/stage filters, a keyboard-operable Record Watch carousel from verified 2026 match highs, and a dedicated On This Day panel with an honest empty state. Reduced initial homepage data loading to 2024-2026 league records and only the data files used by these features; added a visible loading/error state, responsive homepage-only styling, reduced-motion-aware entrance, and the new home assets to the service-worker cache. Runtime data checks confirmed 82 Seniors players appeared in 2026, the leaders and five Record Watch slides derive from the normalized loader, and November 8 correctly has no On This Day match. Automated checks passed; visual browser QA was unavailable because this environment denied local HTTP server binding.
 
-## Phase 6: Players, Profiles, and Statistics
+## Phase 6: Players, Profiles, and Statistics (Complete)
 
-Redesign players, player profiles, comparison, leaderboards, and advanced statistics. Use verified data and documented derived formulas only.
+Audited the player leaderboard, individual profile, comparison, all-time, and advanced-statistics surfaces while preserving their existing career timeline, Player Style, top-10/show-more, filters, comparison verdict, and documented OVR formulas. Corrected the player leaderboard to show Rank, Name, Team, Position, Seasons, GP, Goals, and only the selected additional metric; fixed its descending leaderboard order and matching labels. Verified player pages continue to load through the normalized 2024-2027 data loader. Updated the shared standings renderer so 2025 bye rows (including the President Trophy row) receive the green row treatment and 2026 Leeward Lions receive the same highlight anywhere shared standings render, including standings, playoffs, and recaps. Kept the President Trophy badge gold and the Semifinal bye badge green. Automated checks passed: 81 JavaScript syntax checks, standings-render assertions, and the runtime competition-data validator. Visual browser QA remains unavailable because local HTTP server binding is denied in this environment.
 
 ## Phase 7: Teams, Matches, and Playoffs
 

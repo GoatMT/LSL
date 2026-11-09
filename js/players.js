@@ -17,7 +17,7 @@ const defaults = {
   position: "All",
   minGames: "0",
   search: "",
-  sortDirection: "asc",
+  sortDirection: "desc",
   leaderboardExpanded: false,
 };
 
@@ -56,12 +56,12 @@ function metricLabel() {
 }
 
 function sortDirectionLabel() {
-  return "ascending";
+  return state.sortDirection === "asc" ? "ascending" : "descending";
 }
 
 function metricButtonLabel(option) {
   if (state.metric !== option.value) return option.label;
-  return `${option.label} ↑`;
+  return `${option.label} ${state.sortDirection === "asc" ? "↑" : "↓"}`;
 }
 
 function stageLabel() {
@@ -203,7 +203,7 @@ function aggregatePlayers(allData) {
 }
 
 function sortPlayers(players) {
-  const direction = state.sortDirection === "asc" ? 1 : -1;
+  const direction = state.sortDirection === "desc" ? 1 : -1;
   const tieBreakers = {
     goals: ["goals", "wins", "ovr"],
     goalsPerGame: ["goalsPerGame", "goals", "wins", "ovr"],
@@ -309,7 +309,7 @@ function renderMetricToggle() {
                 class="players-metric-button${state.metric === option.value ? " active" : ""}"
                 data-player-metric="${escapeHTML(option.value)}"
                 aria-pressed="${state.metric === option.value ? "true" : "false"}"
-                aria-label="${escapeHTML(option.label)}: ascending"
+                aria-label="${escapeHTML(option.label)}${state.metric === option.value ? `: ${escapeHTML(sortDirectionLabel())}` : ""}"
               >${escapeHTML(metricButtonLabel(option))}</button>
             `
           )
@@ -351,7 +351,7 @@ function leaderSpotlight(player) {
       <div class="players-leader-rank">1</div>
       <div class="players-avatar large" aria-hidden="true">${escapeHTML(initials(player.name))}</div>
       <div class="players-leader-copy">
-        <span class="eyebrow">${state.sortDirection === "asc" ? "Lowest in" : "Number One in"} ${escapeHTML(metricLabel())}</span>
+      <span class="eyebrow">${state.sortDirection === "asc" ? "Lowest in" : "Number One in"} ${escapeHTML(metricLabel())}</span>
         <h3><a href="./player.html?id=${escapeHTML(player.id)}">${escapeHTML(player.name)}</a></h3>
         <p>${escapeHTML(teamLabel(player))} | ${escapeHTML(player.positionGroup)}</p>
       </div>
@@ -380,7 +380,7 @@ function metricCell(player, metric, label) {
 function leaderboardTable(players) {
   const rows = state.leaderboardExpanded ? players : players.slice(0, 10);
   if (!rows.length) return statusMessage("empty", "No players match these filters.");
-  const showSelectedMetric = !["goals", "ovr"].includes(state.metric);
+  const showSelectedMetric = state.metric !== "goals";
   const selectedMetricLabel = metricLabel();
   const canExpand = players.length > 10;
   const resultsLabel = state.leaderboardExpanded ? "All qualifying players" : "Top 10 players";
@@ -392,14 +392,13 @@ function leaderboardTable(players) {
         <thead>
           <tr>
             <th scope="col">Rank</th>
-            <th scope="col">Player</th>
+            <th scope="col">Name</th>
             <th scope="col">Team</th>
             <th scope="col">Position</th>
             <th scope="col">Season</th>
             <th scope="col" class="numeric${state.metric === "gamesPlayed" ? " active-metric" : ""}">GP</th>
             <th scope="col" class="numeric${state.metric === "goals" ? " active-metric" : ""}">Goals</th>
             ${showSelectedMetric ? `<th scope="col" class="numeric active-metric">${escapeHTML(selectedMetricLabel)}</th>` : ""}
-            <th scope="col" class="numeric${state.metric === "ovr" ? " active-metric" : ""}">OVR</th>
           </tr>
         </thead>
         <tbody>
@@ -408,7 +407,7 @@ function leaderboardTable(players) {
               (player, index) => `
                 <tr>
                   <td data-label="Rank"><span class="players-table-rank${index < 3 ? " top-three" : ""}">#${index + 1}</span></td>
-                  <td data-label="Player">
+                  <td data-label="Name">
                     <div class="players-name-cell">
                       <span class="players-avatar" aria-hidden="true">${escapeHTML(initials(player.name))}</span>
                       <span>
@@ -425,7 +424,6 @@ function leaderboardTable(players) {
                   ${metricCell(player, "gamesPlayed", "GP")}
                   ${metricCell(player, "goals", "Goals")}
                   ${showSelectedMetric ? metricCell(player, state.metric, selectedMetricLabel) : ""}
-                  ${metricCell(player, "ovr", "OVR")}
                 </tr>
               `
             )
@@ -527,7 +525,7 @@ function render(allData, focusId = "") {
     button.addEventListener("click", () => {
       const nextMetric = button.dataset.playerMetric || "goals";
       state.metric = nextMetric;
-      state.sortDirection = "asc";
+      state.sortDirection = "desc";
       state.leaderboardExpanded = false;
       render(allData);
     });

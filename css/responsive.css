@@ -1106,7 +1106,11 @@
   }
 
   .standings-table tbody tr.bye {
-    border-left-color: var(--gold);
+    border-left-color: var(--green);
+  }
+
+  .standings-table tbody tr.leeward-highlight {
+    border-left-color: var(--green);
   }
 
   .standings-table tbody tr.outside {

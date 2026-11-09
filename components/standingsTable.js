@@ -54,8 +54,15 @@ export function renderStandingsTable(rows = [], season = "") {
         <tbody>
           ${rows
             .map(
-              (row) => `
-                <tr class="standings-row${row.bye ? " bye" : row.playoff ? " playoff" : !row.notStarted && !row.scorePending ? " outside" : ""}">
+              (row) => {
+                const leeward2026 = String(season) === "2026" && row.team?.id === "leeward-lions";
+                const rowClasses = [
+                  "standings-row",
+                  row.bye ? "bye" : row.playoff ? "playoff" : !row.notStarted && !row.scorePending ? "outside" : "",
+                  leeward2026 ? "leeward-highlight" : "",
+                ].filter(Boolean).join(" ");
+                return `
+                <tr class="${rowClasses}">
                   <td class="num standings-rank-cell" data-label="Rank">${escapeHTML(row.rankLabel || row.rank)}</td>
                   ${showMovement ? `<td class="num standings-move-cell" data-label="Move">${movementBadge(row)}</td>` : ""}
                   <td class="standings-team-cell" data-label="Team">
@@ -74,7 +81,8 @@ export function renderStandingsTable(rows = [], season = "") {
                   <td class="num standings-stat-cell" data-label="GA">${row.ga}</td>
                   <td class="num standings-stat-cell" data-label="GD">${row.gd > 0 ? `+${row.gd}` : row.gd}</td>
                 </tr>
-              `
+              `;
+              }
             )
             .join("")}
         </tbody>

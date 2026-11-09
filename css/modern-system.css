@@ -596,6 +596,16 @@ body:not(.imt-blue-page) .data-table tbody tr:nth-child(even) td {
   background: rgba(255, 255, 255, 0.018);
 }
 
+body:not(.imt-blue-page) .standings-table.data-table tbody tr.bye > td,
+body:not(.imt-blue-page) .standings-table.data-table tbody tr.leeward-highlight > td {
+  background: #203d2a;
+}
+
+body:not(.imt-blue-page) .standings-table.data-table tbody tr.bye:hover > td,
+body:not(.imt-blue-page) .standings-table.data-table tbody tr.leeward-highlight:hover > td {
+  background: #294c34;
+}
+
 body:not(.imt-blue-page) .data-table tbody tr:hover td {
   background: rgba(199, 163, 103, 0.07);
 }
