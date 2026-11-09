@@ -1,0 +1,183 @@
+.official-player-profile {
+  gap: 22px;
+}
+
+.official-profile-header {
+  grid-template-columns: minmax(96px, 132px) minmax(0, 1fr) minmax(100px, 124px);
+  gap: 20px;
+  padding: clamp(18px, 3vw, 30px);
+  background:
+    linear-gradient(110deg, rgba(13, 73, 35, 0.74), rgba(48, 50, 48, 0.94) 48%),
+    var(--panel);
+  border-color: rgba(209, 177, 102, 0.48);
+  border-radius: 16px;
+}
+
+.official-profile-photo {
+  max-width: 132px;
+}
+
+.official-profile-identity p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  font-weight: 750;
+}
+
+.official-profile-identity .official-profile-latest-team {
+  color: #c0c3bf;
+  font-size: 0.86rem;
+  font-weight: 550;
+}
+
+.official-profile-latest-team strong {
+  color: #f5f5f2;
+}
+
+.official-profile-latest-team span {
+  color: #d1b166;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.official-profile-ovr-card {
+  min-height: 112px;
+  border-radius: 12px;
+  background: #0d4923;
+}
+
+.official-profile-actions {
+  grid-column: 2 / 4;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.official-profile-actions .button {
+  min-height: 42px;
+}
+
+.official-profile-actions .button.primary {
+  color: #fff;
+  background: #0d4923;
+  border-color: #d1b166;
+}
+
+.player-jump-nav {
+  grid-column: 1 / -1;
+  margin-top: 2px;
+}
+
+.official-main-stats {
+  gap: 10px;
+}
+
+.official-stat-card {
+  min-height: 104px;
+  gap: 6px;
+  padding: 14px 10px;
+  background: #303230;
+  border-color: #484b48;
+  border-radius: 12px;
+}
+
+.official-stat-card span {
+  color: #d1b166;
+  font-size: 0.76rem;
+  line-height: 1.25;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.official-stat-card strong {
+  font-size: clamp(1.25rem, 3vw, 1.9rem);
+}
+
+.official-info-card,
+.player-timeline-card {
+  border-radius: 14px;
+}
+
+.official-style-card {
+  border-radius: 14px;
+}
+
+@media (max-width: 700px) {
+  .official-profile-header {
+    grid-template-columns: 82px minmax(0, 1fr) 74px;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .official-profile-photo {
+    width: 82px;
+  }
+
+  .official-profile-identity h1 {
+    font-size: 1.7rem;
+  }
+
+  .official-profile-identity p {
+    font-size: 0.9rem;
+  }
+
+  .official-profile-ovr-card {
+    min-height: 74px;
+    padding: 8px;
+  }
+
+  .official-profile-ovr-card strong {
+    font-size: 1.65rem;
+  }
+
+  .official-profile-actions {
+    grid-column: 1 / -1;
+  }
+
+  .official-profile-actions .button {
+    flex: 1 1 150px;
+  }
+
+  .official-main-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 380px) {
+  .official-profile-header {
+    grid-template-columns: 64px minmax(0, 1fr) 64px;
+  }
+
+  .official-profile-photo {
+    width: 64px;
+  }
+
+  .official-profile-identity h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .official-player-profile > * {
+    animation: player-profile-arrive 420ms ease both;
+  }
+
+  .official-player-profile > *:nth-child(2) {
+    animation-delay: 35ms;
+  }
+
+  .official-player-profile > *:nth-child(3) {
+    animation-delay: 70ms;
+  }
+}
+
+@keyframes player-profile-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

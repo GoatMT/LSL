@@ -822,13 +822,14 @@ function renderScoredMatchSection(allData, playerId, aliases) {
   `;
 }
 
-function renderProfileHeader(profile, current, ovr) {
+function renderProfileHeader(profile, current, ovr, careerRows = []) {
   const avatar = profile.photo
     ? `<img class="official-profile-photo" src="${escapeHTML(profile.photo)}" alt="${escapeHTML(profile.name)}">`
     : `<div class="official-profile-photo placeholder" aria-hidden="true">${escapeHTML(initials(profile.name))}</div>`;
   const birthYear = current?.birthYear || profile.birthYear;
   const birthMonth = current?.birthMonth || profile.birthMonth;
   const jersey = current?.jersey || profile.jersey;
+  const latestSeason = careerRows.find((row) => Number(row.year) <= 2026);
   return `
     <section class="official-profile-header">
       ${avatar}
@@ -836,6 +837,7 @@ function renderProfileHeader(profile, current, ovr) {
         <span class="eyebrow">Player Profile</span>
         <h1>${escapeHTML(profile.name)}</h1>
         <p>${escapeHTML(current?.division || profile.division || "Division TBA")} | ${escapeHTML(current?.position || profile.position || "Position TBA")}</p>
+        <p class="official-profile-latest-team">Latest recorded club: <strong>${escapeHTML(latestSeason?.team || "Not recorded")}</strong>${latestSeason ? " <span>| " + escapeHTML(latestSeason.year) + " season</span>" : ""}</p>
         <div class="official-profile-meta" aria-label="Player details">
           <span><small>Jersey</small><strong>${jersey ? `#${escapeHTML(jersey)}` : "Not listed"}</strong></span>
           <span><small>Born</small><strong>${birthYear ? escapeHTML(birthYear) : "Not listed"}</strong></span>
@@ -847,15 +849,16 @@ function renderProfileHeader(profile, current, ovr) {
         <strong>${escapeHTML(ovr)}</strong>
       </div>
       <div class="official-profile-actions">
+        <a class="button primary" href="./player-card-studio.html?id=${encodeURIComponent(profile.id)}">Create Player Card</a>
         <a class="button secondary" href="./players.html">Back To Stats</a>
       </div>
     </section>
     <nav class="team-profile-nav player-jump-nav" aria-label="Player profile sections" role="tablist">
       ${[
-        ["overview", "Overview"],
-        ["career", "Career"],
+        ["overview", "At a glance"],
+        ["career", "Season Stats"],
         ["matchups", "Matchups"],
-        ["more", "More"],
+        ["more", "History & Awards"],
       ]
         .map(
           ([value, label]) =>
@@ -866,13 +869,24 @@ function renderProfileHeader(profile, current, ovr) {
   `;
 }
 
-function renderMainStatsRow(total) {
-  const stats = [
-    { label: "Games", value: total.gamesPlayed || 0 },
-    { label: "Goals", value: total.goals || 0 },
-    { label: "Points", value: total.points || 0 },
-    { label: "Shots", value: total.shots || 0 },
-  ];
+function renderMainStatsRow(total, profile) {
+  const position = String(profile.position || "");
+  const isGoalkeeper = /goalkeeper|goalie|\bgk\b/i.test(position);
+  const isFieldPlayer = !isGoalkeeper || /field|forward|defender|midfielder|striker|winger/i.test(position);
+  const winRate = Number(total.gamesPlayed) > 0 ? `${Math.round((Number(total.wins || 0) / total.gamesPlayed) * 100)}%` : "Not recorded";
+  const stats = isGoalkeeper && !isFieldPlayer
+    ? [
+        { label: "Goalie Games", value: total.goalkeeperGames || 0 },
+        { label: "Goals Against / Game", value: Number.isFinite(total.goalsAgainstPerGame) ? total.goalsAgainstPerGame.toFixed(2) : "Not recorded" },
+        { label: "Clean Sheets", value: Number.isFinite(total.cleanSheets) ? total.cleanSheets : "Not recorded" },
+        { label: "Team Win Rate", value: winRate },
+      ]
+    : [
+        { label: "Games Played", value: total.gamesPlayed || 0 },
+        { label: "Goals", value: total.goals || 0 },
+        ...(isGoalkeeper ? [{ label: "Goals Against / Game", value: Number.isFinite(total.goalsAgainstPerGame) ? total.goalsAgainstPerGame.toFixed(2) : "Not recorded" }] : [{ label: "Goals / Game", value: total.gamesPlayed ? (total.goals / total.gamesPlayed).toFixed(2) : "Not recorded" }]),
+        { label: "Wins", value: total.wins || 0 },
+      ];
 
   return `
     <section class="official-main-stats" id="player-overview" aria-label="Main player stats">
@@ -1491,28 +1505,28 @@ async function init() {
     setDocumentTitle(profile.name);
     root.innerHTML = `
       <section class="official-player-profile">
-        ${renderProfileHeader(profile, current, ovr)}
+        ${renderProfileHeader(profile, current, ovr, careerAll)}
         ${renderPlayerStyleCard(profile, careerAll, allData)}
 
-        <section class="player-profile-panel" id="player-overview-panel" data-profile-panel="overview" role="tabpanel" aria-label="Overview"${state.profileSection !== "overview" ? " hidden" : ""}>
-          ${renderMainStatsRow(total)}
+        <section class="player-profile-panel" id="player-overview-panel" data-profile-panel="overview" role="tabpanel" aria-label="At a glance"${state.profileSection !== "overview" ? " hidden" : ""}>
+          ${renderMainStatsRow(total, profile)}
           ${renderPlayerInfoSection(profile, careerAll, allData)}
           ${renderPlayerTimeline(allData, id, aliases)}
-          ${renderPlayerPassport(allData, id, profile, aliases)}
-          ${renderNextMatchCard(allData, current)}
-          ${renderScoredMatchSection(allData, id, aliases)}
         </section>
 
-        <section class="player-profile-panel" id="player-career-panel" data-profile-panel="career" role="tabpanel" aria-label="Career"${state.profileSection !== "career" ? " hidden" : ""}>
+        <section class="player-profile-panel" id="player-career-panel" data-profile-panel="career" role="tabpanel" aria-label="Season Stats"${state.profileSection !== "career" ? " hidden" : ""}>
           ${renderCareerSection(career, stageLabel, form)}
           ${renderSeasonProductionSection(career, stageLabel)}
+          ${renderNextMatchCard(allData, current)}
+          ${renderScoredMatchSection(allData, id, aliases)}
         </section>
 
         <section class="player-profile-panel" id="player-matchups-panel" data-profile-panel="matchups" role="tabpanel" aria-label="Matchups"${state.profileSection !== "matchups" ? " hidden" : ""}>
           ${renderVsOpponentSection(allData, id, state, aliases)}
         </section>
 
-        <section class="player-profile-panel" id="player-more-panel" data-profile-panel="more" role="tabpanel" aria-label="More"${state.profileSection !== "more" ? " hidden" : ""}>
+        <section class="player-profile-panel" id="player-more-panel" data-profile-panel="more" role="tabpanel" aria-label="History and Awards"${state.profileSection !== "more" ? " hidden" : ""}>
+          ${renderPlayerPassport(allData, id, profile, aliases)}
           ${renderInterMadrasahSection(allData, id, aliases)}
           ${renderPlayerDetailSections(allData, id, profile)}
         </section>

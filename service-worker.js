@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v145";
+const CACHE_NAME = "lsl-cache-v146";
 const NETWORK_TIMEOUT_MS = 6_000;
 
 /*
@@ -50,6 +50,8 @@ const APP_SHELL = [
   "./player-vs-player.html",
   "./player-tiers.html",
   "./projected.html",
+  "./player.html",
+  "./player-card-studio.html",
   "./manifest.json",
 
   /* Main CSS */
@@ -62,6 +64,8 @@ const APP_SHELL = [
   "./css/team-builder.css",
   "./css/playoff-bracket.css",
   "./css/players.css",
+  "./css/player-profile.css?v=20261109-cardstudio1",
+  "./css/player-card-studio.css?v=20261109-cardstudio1",
   "./css/player-tiers.css",
   "./css/home-facts.css",
   "./css/records.css",
@@ -84,6 +88,8 @@ const APP_SHELL = [
   "./js/leagueEngine.js",
   "./js/playerVsPlayer.js",
   "./js/playerTiers.js",
+  "./js/playerProfile.js?v=20261109-cardstudio1",
+  "./js/playerCardStudio.js?v=20261109-cardstudio1",
   "./js/projected.js?v=20261109-playerproj1",
   "./js/playerProjectionModel.js?v=20261109-playerproj1",
   "./js/animations.js",
@@ -136,13 +142,17 @@ const NEVER_CACHE_PATHS = [
 ];
 
 /*
- * Comparison controls should show the latest page logic after a normal
- * reload, while still falling back to the cached script when offline.
+ * Player data views should pick up refreshed code on ordinary reloads,
+ * while still falling back to cached assets when offline.
  */
 const NETWORK_FIRST_ASSET_PATHS = [
   "/js/playerVsPlayer.js",
   "/js/players.js",
   "/css/players.css",
+  "/js/playerProfile.js",
+  "/js/playerCardStudio.js",
+  "/css/player-profile.css",
+  "/css/player-card-studio.css",
 ];
 
 /* =========================================================

@@ -29,6 +29,7 @@ export const NAV_LINKS = [
   { label: "Teams", href: "teams.html", group: "League" },
   { label: "Team Builder", href: "team-builder.html", group: "League" },
   { label: "Players", href: "players.html", group: "People" },
+  { label: "Card Studio", href: "player-card-studio.html", group: "People" },
   { label: "Player Tiers", href: "player-tiers.html", group: "People" },
   { label: "Coaches", href: "coaches.html", group: "People" },
   { label: "Awards", href: "awards.html", group: "League" },

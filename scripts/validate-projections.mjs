@@ -58,7 +58,7 @@ assert.match(controller, /Team scenario/);
 assert.match(controller, /2026 goals/);
 assert.match(controller, /No player projections match these filters/);
 assert.match(stylesheet, /prefers-reduced-motion/);
-assert.match(serviceWorker, /lsl-cache-v145/);
+assert.match(serviceWorker, /lsl-cache-v146/);
 assert.match(serviceWorker, /\.\/js\/playerProjectionModel\.js/);
 assert.match(data.summary, /2024-2026 Seniors records/);
 assert.equal(data.lastUpdated, "November 9, 2026");

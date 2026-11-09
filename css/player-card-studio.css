@@ -1,0 +1,170 @@
+.player-card-studio {
+  display: grid;
+  gap: 20px;
+}
+
+.card-studio-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid rgba(209, 177, 102, 0.46);
+  border-radius: 14px;
+  background: linear-gradient(110deg, rgba(13, 73, 35, 0.82), #303230 75%);
+}
+
+.card-studio-heading h1 {
+  margin: 4px 0 8px;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  line-height: 1.05;
+}
+
+.card-studio-heading p {
+  max-width: 640px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.card-studio-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.card-studio-controls,
+.card-studio-preview-panel {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+}
+
+.card-studio-controls {
+  display: grid;
+  gap: 14px;
+}
+
+.card-studio-controls label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.card-studio-controls input,
+.card-studio-controls select {
+  width: 100%;
+  min-height: 46px;
+}
+
+.card-studio-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.card-studio-actions .button {
+  justify-content: center;
+  min-height: 44px;
+  padding-inline: 10px;
+}
+
+.card-studio-actions .button:first-child {
+  grid-column: 1 / -1;
+}
+
+.card-studio-source {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.83rem;
+  line-height: 1.5;
+}
+
+.card-studio-feedback {
+  min-height: 1.3em;
+  margin: 0;
+  color: var(--gold);
+  font-size: 0.88rem;
+}
+
+.card-studio-preview-panel {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  background: #252725;
+}
+
+.card-studio-canvas {
+  display: block;
+  width: min(100%, 480px);
+  height: auto;
+  aspect-ratio: 4 / 5;
+  border: 1px solid rgba(209, 177, 102, 0.58);
+  border-radius: 12px;
+  background: #252725;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+}
+
+.card-studio-transcript {
+  width: min(100%, 480px);
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #303230;
+}
+
+.card-studio-transcript h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.card-studio-transcript p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.card-studio-back {
+  justify-self: start;
+}
+
+@media (max-width: 760px) {
+  .card-studio-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card-studio-heading {
+    align-items: flex-start;
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-studio-heading,
+  .card-studio-controls,
+  .card-studio-preview-panel {
+    animation: card-studio-arrive 440ms ease both;
+  }
+
+  .card-studio-preview-panel {
+    animation-delay: 60ms;
+  }
+}
+
+@keyframes card-studio-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

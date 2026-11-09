@@ -68,6 +68,14 @@ Disclosed the assumptions and source gaps: the 2027 schedule baseline is the 202
 
 Checks passed: 82 player scenarios, 8 goalkeepers, 2026 10 unattributed scoreboard goals, distinct 2024/2025 player-ID gaps, November-birthday age handling, no fabricated Juniors projections, JavaScript syntax, existing site asset/data/home/Team Builder/IMST validators. Live browser and visual QA remain unavailable in this environment; Phase 11 remains in progress.
 
+## Phase 13: Player Profiles and Card Studio (Feature Complete; Browser QA Pending)
+
+Refined individual player profiles into clearer At a glance, Season Stats, Matchups, and History & Awards views while preserving the existing Player Style and career timeline. The overview now shows role-appropriate summary stats, seasons/honors, and a latest recorded club label. Keeper-only profiles emphasize goalie games, GAA, clean sheets, and win rate; field players show games, goals, goals/game, and wins. Next-match/scoring logs are grouped with season stats, and the passport, IMST history, and deeper career notes are grouped under History & Awards.
+
+Added the linked LSL Player Card Studio as a shared-navigation page and from each profile. It offers searchable selection across 190 unique players from 2024-2026, uses the centralized OVR calculation and recorded awards/player notes, shows the latest recorded club/jersey, supports available profile photos with initials when absent, and exports a shareable PNG/link. 2027 projections are excluded from career facts; missing keeper statistics are shown as not recorded. Studio season lookups are built once and OVR is calculated only for the selected player to keep initial rendering responsive. Added reduced-motion-aware styling and refreshed the service-worker shell/cache so normal reloads can update the assets.
+
+Checks passed: 43-page/asset audit, 2024-2027 competition runtime validation, Player Card Studio data/OVR/keeper/source/nav/cache assertions, projections, Team Builder, homepage leaders, and IMST checks; changed JavaScript parses. Live browser interaction/visual QA remains pending because this environment has not allowed a local HTTP preview or browser-control session. Phase 11 remains in progress.
+
 ## Phase 1 Risks and Open Items
 
 - No Git worktree was detectable in the canonical folder during this audit, so change history and preexisting uncommitted work are unavailable here.

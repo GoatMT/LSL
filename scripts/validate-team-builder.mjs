@@ -104,7 +104,7 @@ assert.match(theme, /home-expected-card[\s\S]*?background-color: var\(--gold\)/)
 assert.match(theme, /body:not\(\.imt-blue-page\) :is\(button\.active[\s\S]*?background-color: var\(--brand-green\)/);
 assert.match(theme, /body:not\(\.imt-blue-page\) \.pulse-post-card\.pulse-post-user[\s\S]*?background: var\(--card\)/);
 assert.match(theme, /body:not\(\.imt-blue-page\) \.trade-row:hover[\s\S]*?background: var\(--card-2\)/);
-assert.match(shell, /lsl-cache-v145/);
+assert.match(shell, /lsl-cache-v146/);
 assert.match(await readFile(resolve(siteRoot, "js/main.js"), "utf8"), /service-worker\.js\?v=20261109-greenprimary1/);
 
 console.log(`Team Builder checks passed: ${playerRowsChecked} real season-player rows, five 11-player formations, division filters, OVR, local-only saves, 42 refreshed pages, and IMST color isolation.`);
