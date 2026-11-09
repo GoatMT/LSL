@@ -1,5 +1,5 @@
 import { loadSeasonData } from "./dataLoader.js?v=20261108-data3";
-import { setupLayout } from "./main.js?v=20261108-green2";
+import { setupLayout } from "./main.js?v=20261109-greenprimary1";
 import { buildPlayerPool, FORMATIONS, formationSlots, roleLabel, summarizePlayers } from "./teamBuilderCore.js?v=20261108-green2";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 

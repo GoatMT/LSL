@@ -42,6 +42,8 @@ Added the season-specific 11v11 Team Builder to shared navigation, using real 20
 
 Applied the requested gray-first, gold-emphasis, black/charcoal-depth, green-last visual hierarchy through shared tokens and non-IMST component states. IMST retains its existing blue/red palette, and explicit team/championship colors remain intact. Updated the PWA theme, service-worker cache, and page stylesheet/script query versions so pages pick up the shared theme and navigation without a hard refresh.
 
+Follow-up palette approval: green is now the primary action and selected-state color, gray is used for secondary controls and neutral surfaces, and gold remains the tertiary accent. IMST remains blue. Shared primary, secondary, selected, and open states are scoped away from IMST.
+
 Checks: real 2024-2026 player-pool/formation validation, JS syntax, service-worker shell, existing homepage/IMST/competition checks, shared CSS scoping, and stale asset-version scan. Visual browser QA remains limited in this environment.
 
 ## Phase 10: Remaining Pages and Features (Complete)
@@ -54,9 +56,17 @@ Rotated active root-page asset query versions and the service-worker cache so cl
 
 Added `scripts/validate-site-assets.mjs` for filesystem-based auditing of every root page, reachable stylesheet/module, local media URL in data, and service-worker app-shell entry. It passes for all 42 root pages, 401 local file references, and 220 media references. The strict 2024-2027 runtime data validator, homepage leaders, Team Builder, and IMST page/rendering checks pass. `node --check` passes for all 83 JavaScript files under `js/`, `components/`, and `scripts/`. Media probes pass for all 119 video files (readable stream, dimensions, duration) and all 110 PNG/JPEG/WebP images (readable dimensions); two WebP files report malformed EXIF metadata but decode successfully.
 
-Aligned the shared fallback green tokens with the approved LSL green, unified the shared brand-gold token with the canonical gold, and changed the site canvas to a subtle green-charcoal (`#1f2922`) while retaining neutral gray panels. Matched browser/PWA theme colors, refreshed stylesheet/service-worker versions across all 42 pages, and kept Inter-Madrasah's blue background/theme color and all team/championship colors unchanged. Updated the Team Builder validator to assert these palette and cache-version rules.
+Aligned the shared fallback green tokens with the approved LSL green, unified the shared brand-gold token with the canonical gold, and changed the site canvas to a subtle green-charcoal (`#1f2922`) while retaining neutral gray panels. The approved control hierarchy is green primary actions/selected states, gray secondary controls, and gold accents. Matched browser/PWA theme colors, refreshed stylesheet/service-worker versions across all 42 pages, and kept Inter-Madrasah's blue background/theme color and all team/championship colors unchanged. Updated the Team Builder validator to assert these palette and cache-version rules.
 
 Remaining: live HTTP/browser checks for page controls, profiles, brackets, filters, account flows, mobile layouts, keyboard/accessibility behavior, reduced-motion rendering, service-worker/offline transitions, actual playback, and console/network errors. The GitHub site is open in the in-app browser, but Work settings disable browser control for this session and local loopback requests are denied, so those checks have not been performed. Do not mark Phase 11 complete until browser verification is available.
+
+## Phase 12: 2027 Player Projections (Feature Complete; Browser QA Pending)
+
+Rebuilt the active 2027 projection surface around 2024-2026 verified Seniors records and added it to shared navigation. The searchable table includes all 82 2026 Seniors roster players, position, age range where derivable, 2026 roster-based GP and player-linked goals, projected 2027 GP/goals/W-T-L, goalie GAA, and a clearly identified prior-club retention scenario. 2027 team finishes, fixtures, playoffs, and Juniors forecasts remain pending because official 2027 team/schedule inputs and a 2026 Juniors player dataset are absent.
+
+Disclosed the assumptions and source gaps: the 2027 schedule baseline is the 2026 median of seven regular-season games per Seniors team; GP is a roster/absence availability proxy, not a confirmed lineup; goals use player-ID-linked scorer records only; team result rates use the 2026 club; and role-specific age curves are hypothetical assumptions using recorded birth year/month. The model reports unassigned scoreboard goals and scorer events without stable player IDs separately, leaves unknown ages unadjusted, and never assigns missing goals to players. Added responsive search/role/sort controls, reduced-motion-aware entrance styling, focused automated checks, and bumped the service-worker cache.
+
+Checks passed: 82 player scenarios, 8 goalkeepers, 2026 10 unattributed scoreboard goals, distinct 2024/2025 player-ID gaps, November-birthday age handling, no fabricated Juniors projections, JavaScript syntax, existing site asset/data/home/Team Builder/IMST validators. Live browser and visual QA remain unavailable in this environment; Phase 11 remains in progress.
 
 ## Phase 1 Risks and Open Items
 

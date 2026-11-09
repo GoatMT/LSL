@@ -1329,3 +1329,61 @@ body.home-page .home-expected-dates .home-season-date-card dl div + div {
   padding-top: 8px;
   border-top: 1px solid rgba(234, 211, 168, 0.16);
 }
+
+/* Approved shared hierarchy: LSL green actions, gray secondary controls, gold accents. */
+body:not(.imt-blue-page) :is(.button.primary, button.primary),
+body:not(.imt-blue-page) :is(.button.primary, button.primary):focus-visible {
+  color: #ffffff;
+  background-color: var(--brand-green);
+  border-color: var(--brand-green-strong);
+  box-shadow: none;
+}
+
+body:not(.imt-blue-page) :is(.button.primary, button.primary):hover:not(:disabled):not([aria-disabled="true"]) {
+  color: #ffffff;
+  background-color: var(--brand-green-strong);
+  border-color: var(--success);
+}
+
+body:not(.imt-blue-page) :is(.button.primary, button.primary):focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+body:not(.imt-blue-page) :is(.button.primary, button.primary):disabled,
+body:not(.imt-blue-page) :is(.button.primary, button.primary)[aria-disabled="true"] {
+  color: var(--muted);
+  background-color: var(--soft);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :is(.button.secondary, button.secondary) {
+  color: var(--ink);
+  background-color: var(--card);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :is(.button.secondary, button.secondary):hover:not(:disabled):not([aria-disabled="true"]) {
+  color: var(--ink);
+  background-color: var(--soft);
+  border-color: var(--border-interactive);
+}
+
+body:not(.imt-blue-page) :is(.button.secondary, button.secondary):disabled,
+body:not(.imt-blue-page) :is(.button.secondary, button.secondary)[aria-disabled="true"] {
+  color: var(--muted);
+  background-color: var(--card-2);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :is(button.active, .button.active, .nav-link.active, .nav-dropdown-button.active, .tab-button.active, .home-leader-tabs button.active, .all-time-toggle button.active, [role="tab"][aria-selected="true"], [aria-pressed="true"], [aria-expanded="true"]) {
+  color: #ffffff;
+  background-color: var(--brand-green);
+  border-color: var(--brand-green-strong);
+}
+
+body:not(.imt-blue-page) .pulse-tabs button.active {
+  color: #ffffff;
+  background-color: var(--brand-green);
+  border-color: var(--brand-green-strong);
+}

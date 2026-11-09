@@ -80,16 +80,17 @@ assert.match(baseCss, /--green-2: #1b5630/);
 assert.match(baseCss, /--page: #1f2922/);
 assert.ok(theme.lastIndexOf("Final palette precedence") > theme.indexOf("LSL shared visual refresh"), "site palette wins over the later legacy shared rules");
 assert.match(theme, /:is\(button\.active, \.button\.active/);
-assert.match(theme, /body:not\(\.imt-blue-page\) \.button\.primary[\s\S]*?background-color: var\(--gold\)/);
+assert.match(theme, /body:not\(\.imt-blue-page\) :is\(\.button\.primary, button\.primary\)[\s\S]*?background-color: var\(--brand-green\)/);
 assert.match(theme, /\.button\.primary:disabled[\s\S]*?background-color: var\(--soft\)/);
+assert.match(theme, /body:not\(\.imt-blue-page\) :is\(\.button\.secondary, button\.secondary\)[\s\S]*?background-color: var\(--card\)/);
 assert.match(imstStyles, /\.imt-blue-page \{[\s\S]*?--green: #001a3a[\s\S]*?--gold: #1f7bd1/);
 assert.equal(manifest.theme_color, "#1f2922");
 assert.equal(manifest.background_color, "#1f2922");
 const rootPages = (await readdir(siteRoot)).filter((entry) => entry.endsWith(".html"));
 for (const page of rootPages) {
   const source = await readFile(resolve(siteRoot, page), "utf8");
-  assert.match(source, /main\.css\?v=20261109-greenbg1/, `${page} refreshes shared base styles`);
-  assert.match(source, /modern-system\.css\?v=20261109-greenbg1/, `${page} loads the current design layer`);
+  assert.match(source, /main\.css\?v=20261109-greenprimary1/, `${page} refreshes shared base styles`);
+  assert.match(source, /modern-system\.css\?v=20261109-greenprimary1/, `${page} loads the current design layer`);
   if (page === "tournament.html") assert.match(source, /theme-color" content="#001a3a/);
   else assert.match(source, /theme-color" content="#1f2922/);
 }
@@ -97,13 +98,13 @@ for (const page of rootPages) {
 assert.match(theme, /Phase 10: bring remaining community and operations surfaces into the shared system/);
 assert.match(theme, /--green: #0d4923/);
 assert.match(theme, /--green-2: #1b5630/);
-assert.match(theme, /button\.secondary[\s\S]*?background-color: var\(--brand-green\)/);
+assert.match(theme, /body:not\(\.imt-blue-page\) :is\(\.button\.secondary, button\.secondary\)[\s\S]*?background-color: var\(--card\)/);
 assert.match(theme, /body\.home-page \.home-expected-dates[\s\S]*?background-color: #16432a/);
 assert.match(theme, /home-expected-card[\s\S]*?background-color: var\(--gold\)/);
 assert.match(theme, /body:not\(\.imt-blue-page\) :is\(button\.active[\s\S]*?background-color: var\(--brand-green\)/);
 assert.match(theme, /body:not\(\.imt-blue-page\) \.pulse-post-card\.pulse-post-user[\s\S]*?background: var\(--card\)/);
 assert.match(theme, /body:not\(\.imt-blue-page\) \.trade-row:hover[\s\S]*?background: var\(--card-2\)/);
-assert.match(shell, /lsl-cache-v143/);
-assert.match(await readFile(resolve(siteRoot, "js/main.js"), "utf8"), /service-worker\.js\?v=20261109-greenbg1/);
+assert.match(shell, /lsl-cache-v145/);
+assert.match(await readFile(resolve(siteRoot, "js/main.js"), "utf8"), /service-worker\.js\?v=20261109-greenprimary1/);
 
 console.log(`Team Builder checks passed: ${playerRowsChecked} real season-player rows, five 11-player formations, division filters, OVR, local-only saves, 42 refreshed pages, and IMST color isolation.`);

@@ -26,7 +26,7 @@ This repository is the static Lantern Soccer League website deployed through Git
 
 ## Design Direction
 
-Shared design tokens live in `css/modern-system.css`. The site-wide interface hierarchy is gray surfaces, gold primary emphasis, black/charcoal depth, and LSL green as the secondary color for buttons and selected states. Current surfaces are page `#242624`, panel `#303230`, card `#3A3C3A`, deep card `#252725`, muted text `#C0C3BF`, and border `#484B48`; emphasis gold is `#D1B166`, with league greens `#0D4923` and `#1B5630`. Preserve team/championship-specific colors and Inter-Madrasah's current colors. Global palette rules must be scoped to `body:not(.imt-blue-page)`.
+Shared design tokens live in `css/modern-system.css`. The site-wide interface hierarchy is a green-charcoal canvas, neutral gray panels and secondary controls, LSL green primary actions and selected states, gold as the third accent, and black/charcoal depth. Current surfaces are page `#1F2922`, panel `#303230`, card `#3A3C3A`, deep card `#252725`, muted text `#C0C3BF`, and border `#484B48`; gold is `#D1B166`, with league greens `#0D4923` and `#1B5630`. Preserve team/championship-specific colors and Inter-Madrasah's blue identity. Global palette rules must be scoped to `body:not(.imt-blue-page)`.
 
 Use the existing system font stack until a proposed font is approved and bundled or otherwise made reliably available. Use consistent, compact radii, clear typography, numerical alignment, keyboard focus, readable contrast, and responsive layouts. Respect reduced motion. Avoid unnecessary frameworks and animation workload.
 

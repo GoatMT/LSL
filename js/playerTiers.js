@@ -1,6 +1,6 @@
 import { loadAllSeasons } from "./dataLoader.js?v=20261108-data3";
 import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR, playerTeamForMatch } from "./leagueEngine.js?v=3.24-playoff-threshold";
-import { setupLayout } from "./main.js?v=20261108-green2";
+import { setupLayout } from "./main.js?v=20261109-greenprimary1";
 import { SITE } from "./config.js";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 

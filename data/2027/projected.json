@@ -3,8 +3,14 @@
   "title": "2027 Projected Season",
   "status": "Projected",
   "officialStatus": "Not Official",
-  "summary": "2027 projections will be published after rosters and the schedule are announced.",
-  "methodology": null,
+  "lastUpdated": "November 9, 2026",
+  "summary": "Player estimates are simulations from verified 2024-2026 Seniors records. 2027 team assignments, schedule, and playoff outlook remain pending official information.",
+  "methodology": [
+    "Player projections use 2024-2026 credited Seniors match records and are not official statistics.",
+    "Club scenarios retain each player's 2026 team only for forecasting; no 2027 roster assignment is confirmed.",
+    "Projected appearances use a roster-availability proxy because individual lineups are not consistently recorded.",
+    "Age and position curves are disclosed model assumptions; missing age data receives no adjustment."
+  ],
   "openingNotes": null,
   "standings": null,
   "teams": null,

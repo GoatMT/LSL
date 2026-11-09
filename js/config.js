@@ -23,6 +23,7 @@ export const NAV_LINKS = [
   { label: "Recap", href: "season-recap.html", group: "League" },
   { label: "All Time Stat", href: "all-time.html", group: "People" },
   { label: "Standings", href: "standings.html", group: "League" },
+  { label: "Projections", href: "projected.html", group: "League" },
   { label: "Inter-Madrasah", href: "tournament.html", group: "Tournament" },
   { label: "Matches", href: "matches.html", group: "League" },
   { label: "Teams", href: "teams.html", group: "League" },
