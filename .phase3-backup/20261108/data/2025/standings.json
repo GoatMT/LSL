@@ -1,0 +1,24 @@
+{
+  "season": "2025",
+  "source": "League records",
+  "notes": [
+    "Standings are calculated from regular season match results.",
+    "All six senior teams qualified for the playoff bracket.",
+    "Top two senior regular season seeds received semifinal byes.",
+    "Top four junior teams qualified for the junior playoff bracket.",
+    "Tie breaker order: points, wins, then goal difference.",
+    "Junior Week 5 EM Truck Repair FC vs Travel Builder United is stored as 3-4 to match the final standings; the supplied score graphic appeared to show 3-5."
+  ],
+  "divisions": [
+    {
+      "name": "Seniors",
+      "playoffCutoff": 6,
+      "byeSeeds": 2
+    },
+    {
+      "name": "Juniors",
+      "playoffCutoff": 4,
+      "byeSeeds": 0
+    }
+  ]
+}

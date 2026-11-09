@@ -1,0 +1,101 @@
+{
+  "season": "2026",
+  "matches": [
+    {
+      "id": "2026-juniors-week-1-skills",
+      "week": 1,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-06-13",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling, Scrimmage",
+      "status": "Completed Activity",
+      "notes": "LSL Week 1 Juniors skills, dribbling, and scrimmage session was completed on June 13, 2026."
+    },
+    {
+      "id": "2026-juniors-week-2-skills",
+      "week": 2,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-06-20",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling, Scrimmage",
+      "status": "Completed Activity",
+      "notes": "LSL Week 2 Juniors skills, dribbling, and scrimmage session was completed on June 20, 2026."
+    },
+    {
+      "id": "2026-juniors-week-3-skills",
+      "week": 3,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-06-27",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling, Scrimmage",
+      "status": "Completed",
+      "notes": "Week 3 Juniors skills, dribbling, and scrimmage session was completed on June 27, 2026."
+    },
+    {
+      "id": "2026-juniors-week-4-skills",
+      "week": 4,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-07-04",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling & Scrimmage",
+      "status": "Completed Activity",
+      "notes": "Week 4 Juniors skills, dribbling, and scrimmage were held on Saturday, July 4, 2026 from 12:15 PM to 1:15 PM."
+    },
+    {
+      "id": "2026-juniors-week-6-skills",
+      "week": 6,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors",
+      "date": "2026-07-25",
+      "time": "12:15 PM - 1:15 PM",
+      "activityTitle": "Skills, Dribbling, Scrimmage",
+      "status": "Completed Activity",
+      "notes": "Week 6 Juniors skills, dribbling, and scrimmage session was completed on July 25, 2026."
+    },
+    {
+      "id": "2026-juniors-finals-day-game-1",
+      "week": 8,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors Game 1",
+      "date": "2026-08-08",
+      "time": "12:45 PM - 1:05 PM",
+      "activityTitle": "Juniors Game 1",
+      "status": "Scheduled",
+      "notes": "Juniors Game 1 on Finals Day, Saturday, August 8, 2026."
+    },
+    {
+      "id": "2026-juniors-finals-day-game-2",
+      "week": 8,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Juniors Game 2",
+      "date": "2026-08-08",
+      "time": "1:05 PM - 1:25 PM",
+      "activityTitle": "Juniors Game 2",
+      "status": "Scheduled",
+      "notes": "Juniors Game 2 on Finals Day, Saturday, August 8, 2026."
+    },
+    {
+      "id": "2026-juniors-finals-day-final",
+      "week": 8,
+      "stage": "exhibition",
+      "division": "Juniors",
+      "label": "Junior Final",
+      "date": "2026-08-08",
+      "time": "1:25 PM - 1:45 PM",
+      "activityTitle": "Junior Final",
+      "status": "Scheduled",
+      "notes": "Junior Final on Finals Day, Saturday, August 8, 2026."
+    }
+  ]
+}

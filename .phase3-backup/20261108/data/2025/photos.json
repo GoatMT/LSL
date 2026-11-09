@@ -1,0 +1,115 @@
+{
+  "season": "2025",
+  "photos": [
+    {
+      "id": "2025-photo-01",
+      "title": "2025 Season Photo 1",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-024.webp"
+    },
+    {
+      "id": "2025-photo-02",
+      "title": "2025 Season Photo 2",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-025.webp"
+    },
+    {
+      "id": "2025-photo-03",
+      "title": "2025 Season Photo 3",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-026.webp"
+    },
+    {
+      "id": "2025-photo-04",
+      "title": "2025 Season Photo 4",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-027.webp"
+    },
+    {
+      "id": "2025-photo-05",
+      "title": "2025 Season Photo 5",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-028.webp"
+    },
+    {
+      "id": "2025-photo-06",
+      "title": "Award Time",
+      "division": "All",
+      "category": "Awards",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season awards photo.",
+      "imageUrl": "./media/2025/2025-asset-043.webp"
+    },
+    {
+      "id": "2025-photo-07",
+      "title": "Pizza Time",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season team photo.",
+      "imageUrl": "./media/2025/2025-asset-049.webp"
+    },
+    {
+      "id": "2025-photo-08",
+      "title": "Junior Champions - Dhahabiya Strikers (Photo 1)",
+      "division": "Juniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "imageUrl": "./media/2025/2025-asset-052.jpg"
+    },
+    {
+      "id": "2025-photo-09",
+      "title": "Junior Champions - Dhahabiya Strikers (Photo 2)",
+      "division": "Juniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "imageUrl": "./media/2025/2025-asset-056.jpg"
+    },
+    {
+      "id": "2025-photo-10",
+      "title": "Senior Champions - Umer Memon FC",
+      "division": "Seniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Umer Memon FC are the 2025 Senior champions after a tense final that went down to the wire.",
+      "imageUrl": "./media/2025/2025-asset-064.jpg"
+    }
+  ]
+}

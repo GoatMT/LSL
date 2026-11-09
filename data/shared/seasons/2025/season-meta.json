@@ -1,0 +1,26 @@
+{
+  "season": "2025",
+  "event": {
+    "host": "Lantern Soccer League",
+    "name": "Boys Soccer Tournament (season 2)",
+    "dates": "June 9 - August 9, 2025",
+    "schedule": "Every Saturday, 9:30 AM - 12:30 PM",
+    "eligibleAges": "9 - 15 years old",
+    "cost": "$65",
+    "venue": "Grenoble P.S. (Grenoble Public School)",
+    "address": "9 Grenoble Dr, Toronto, ON M3C 1C3",
+    "phone": "437-888-0261",
+    "source": "LSL - 2025.pdf"
+  },
+  "standings": {
+    "source": "League records",
+    "notes": [
+      "Standings are calculated from regular season match results.",
+      "All six senior teams qualified for the playoff bracket.",
+      "Top two senior regular season seeds received semifinal byes.",
+      "Top four junior teams qualified for the junior playoff bracket.",
+      "Tie breaker order: points, wins, then goal difference.",
+      "Junior Week 5 EM Truck Repair FC vs Travel Builder United is stored as 3-4 to match the final standings; the supplied score graphic appeared to show 3-5."
+    ]
+  }
+}

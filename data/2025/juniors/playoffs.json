@@ -1,0 +1,49 @@
+{
+  "season": "2025",
+  "division": "Juniors",
+  "format": "Four-team junior playoff. Semifinals are 1 vs 4 and 2 vs 3.",
+  "champion": "Dhahabiya Strikers",
+  "rounds": [
+    {
+      "name": "Semifinals",
+      "matches": [
+        {
+          "label": "S1",
+          "homeTeamId": "dhahabiya-strikers",
+          "homeTeamName": "Dhahabiya Strikers (1st Place Team)",
+          "awayTeamId": "em-truck-repair-fc",
+          "awayTeamName": "EM Truck Repair FC",
+          "homeScore": 2,
+          "awayScore": 0,
+          "winnerId": "dhahabiya-strikers",
+          "note": "Dhahabiya advanced by default after EM Truck Repair FC forfeited."
+        },
+        {
+          "label": "S2",
+          "homeTeamId": "rafik-enterprise-fc",
+          "homeTeamName": "Rafik Enterprise FC (2nd Place Team)",
+          "awayTeamId": "the-travel-builder-united",
+          "awayTeamName": "Travel Builder United",
+          "homeScore": 3,
+          "awayScore": 0,
+          "winnerId": "rafik-enterprise-fc",
+          "note": "Rafik Enterprise FC booked a final spot with a clean 3-0 win."
+        }
+      ]
+    },
+    {
+      "name": "Finals",
+      "matches": {
+        "label": "Finals",
+        "homeTeamId": "dhahabiya-strikers",
+        "homeTeamName": "Dhahabiya Strikers",
+        "awayTeamId": "rafik-enterprise-fc",
+        "awayTeamName": "Rafik Enterprise FC",
+        "homeScore": 2,
+        "awayScore": 1,
+        "winnerId": "dhahabiya-strikers",
+        "note": "Dhahabiya Strikers won the 2025 Junior League championship."
+      }
+    }
+  ]
+}

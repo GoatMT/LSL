@@ -1,0 +1,82 @@
+{
+  "season": "2025",
+  "photos": [
+    {
+      "id": "2025-photo-01",
+      "title": "2025 Season Photo 1",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-024.webp"
+    },
+    {
+      "id": "2025-photo-02",
+      "title": "2025 Season Photo 2",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-025.webp"
+    },
+    {
+      "id": "2025-photo-03",
+      "title": "2025 Season Photo 3",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-026.webp"
+    },
+    {
+      "id": "2025-photo-04",
+      "title": "2025 Season Photo 4",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-027.webp"
+    },
+    {
+      "id": "2025-photo-05",
+      "title": "2025 Season Photo 5",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season photo.",
+      "imageUrl": "./media/2025/2025-asset-028.webp"
+    },
+    {
+      "id": "2025-photo-06",
+      "title": "Award Time",
+      "division": "All",
+      "category": "Awards",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season awards photo.",
+      "imageUrl": "./media/2025/2025-asset-043.webp"
+    },
+    {
+      "id": "2025-photo-07",
+      "title": "Pizza Time",
+      "division": "All",
+      "category": "Highlights",
+      "teamId": "",
+      "teamName": "All",
+      "uploadDate": "",
+      "description": "2025 season team photo.",
+      "imageUrl": "./media/2025/2025-asset-049.webp"
+    }
+  ]
+}

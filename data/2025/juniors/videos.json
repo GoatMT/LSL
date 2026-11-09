@@ -1,0 +1,89 @@
+{
+  "season": "2025",
+  "videos": [
+    {
+      "id": "2025-video-01",
+      "title": "Juniors Week 5 Recap",
+      "division": "Juniors",
+      "category": "Weekly Highlights",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Week 5 recap for the Juniors league with standings tightening.",
+      "videoUrl": "./media/2025/2025-asset-044.mp4",
+      "matchReference": "Weekly Highlights"
+    },
+    {
+      "id": "2025-video-02",
+      "title": "Juniors Week 6 Highlights",
+      "division": "Juniors",
+      "category": "Weekly Highlights",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Top-tier moments from week 6 of the Juniors league.",
+      "videoUrl": "./media/2025/2025-asset-045.mp4",
+      "matchReference": "Weekly Highlights"
+    },
+    {
+      "id": "2025-video-03",
+      "title": "Juniors Week 3 Highlights",
+      "division": "Juniors",
+      "category": "Weekly Highlights",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Energy, teamwork, and clean competition from week 3 of the Juniors league.",
+      "videoUrl": "./media/2025/2025-asset-046.mp4",
+      "matchReference": "Weekly Highlights"
+    },
+    {
+      "id": "2025-video-08",
+      "title": "Junior Champions - Dhahabiya Strikers (Clip 1)",
+      "division": "Juniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "videoUrl": "./media/2025/2025-asset-053.mp4",
+      "matchReference": "Champions"
+    },
+    {
+      "id": "2025-video-09",
+      "title": "Junior Champions - Dhahabiya Strikers (Clip 2)",
+      "division": "Juniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "videoUrl": "./media/2025/2025-asset-054.mp4",
+      "matchReference": "Champions"
+    },
+    {
+      "id": "2025-video-10",
+      "title": "Junior Champions - Dhahabiya Strikers (Clip 3)",
+      "division": "Juniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "videoUrl": "./media/2025/2025-asset-055.mp4",
+      "matchReference": "Champions"
+    },
+    {
+      "id": "2025-video-11",
+      "title": "Junior Champions - Dhahabiya Strikers (Clip 4)",
+      "division": "Juniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "videoUrl": "./media/2025/2025-asset-057.mp4",
+      "matchReference": "Champions"
+    }
+  ]
+}

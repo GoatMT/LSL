@@ -1,0 +1,10 @@
+{
+  "season": "2025",
+  "divisions": [
+    {
+      "name": "Juniors",
+      "playoffCutoff": 4,
+      "byeSeeds": 0
+    }
+  ]
+}

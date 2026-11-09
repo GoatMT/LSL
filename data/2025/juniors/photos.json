@@ -1,0 +1,27 @@
+{
+  "season": "2025",
+  "photos": [
+    {
+      "id": "2025-photo-08",
+      "title": "Junior Champions - Dhahabiya Strikers (Photo 1)",
+      "division": "Juniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "imageUrl": "./media/2025/2025-asset-052.jpg"
+    },
+    {
+      "id": "2025-photo-09",
+      "title": "Junior Champions - Dhahabiya Strikers (Photo 2)",
+      "division": "Juniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Juniors",
+      "uploadDate": "",
+      "description": "Dhahabiya Strikers are the 2025 Junior champions after a hard-fought battle.",
+      "imageUrl": "./media/2025/2025-asset-056.jpg"
+    }
+  ]
+}

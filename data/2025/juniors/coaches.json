@@ -1,0 +1,46 @@
+{
+  "season": "2025",
+  "coaches": [
+    {
+      "id": "coach-tanveer",
+      "name": "Tanveer",
+      "teamId": "dhahabiya-strikers",
+      "teamName": "Dhahabiya Strikers",
+      "division": "Juniors",
+      "championships": 1,
+      "finals": 1,
+      "notes": "Won the 2025 Junior championship with Dhahabiya Strikers."
+    },
+    {
+      "id": "coach-ashique",
+      "name": "Ashique",
+      "teamId": "the-travel-builder-united",
+      "teamName": "The Travel Builder United",
+      "photo": "./Logos/Player Pics/Coach Ashique.png",
+      "division": "Juniors",
+      "championships": 0,
+      "finals": 0,
+      "notes": "2025 Juniors coach."
+    },
+    {
+      "id": "coach-fahad",
+      "name": "Fahad",
+      "teamId": "em-truck-repair-fc",
+      "teamName": "EM Truck Repair FC",
+      "division": "Juniors",
+      "championships": 0,
+      "finals": 0,
+      "notes": "2025 Juniors coach."
+    },
+    {
+      "id": "coach-sameer",
+      "name": "Sameer",
+      "teamId": "rafik-enterprise-fc",
+      "teamName": "Rafik Enterprise FC",
+      "division": "Juniors",
+      "championships": 0,
+      "finals": 0,
+      "notes": "2025 Juniors coach."
+    }
+  ]
+}

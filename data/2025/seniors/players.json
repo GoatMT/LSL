@@ -1,0 +1,61 @@
+{
+  "season": "2025",
+  "players": [
+    {
+      "id": "hafizullah",
+      "name": "Hafizullah",
+      "teamId": "asif-gangat-united-2025",
+      "division": "Seniors",
+      "position": "Forward",
+      "achievements": "2025 Golden Boot race leader mention"
+    },
+    {
+      "id": "m-yahya",
+      "name": "M Yahya",
+      "teamId": "refuel-juicery-athletic",
+      "teamName": "Refuel Juicery Athletic",
+      "division": "Seniors",
+      "position": "Forward",
+      "jersey": 11
+    },
+    {
+      "id": "marwan-ahmad",
+      "name": "Marwan Ahmed",
+      "teamId": "refuel-juicery-athletic",
+      "teamName": "Refuel Juicery Athletic",
+      "division": "Seniors",
+      "position": "Forward",
+      "jersey": 2
+    },
+    {
+      "id": "reda-alijalam",
+      "name": "Mohamad Reda Alijalam",
+      "teamId": "refuel-juicery-athletic",
+      "division": "Seniors",
+      "position": "Forward"
+    },
+    {
+      "id": "mohammed-ibrahim",
+      "name": "Mohammed Ibrahim",
+      "teamId": "refuel-juicery-athletic",
+      "division": "Seniors",
+      "position": "Forward"
+    },
+    {
+      "id": "muzamil-kharooti",
+      "name": "Muzamil Kharooti",
+      "teamId": "umer-memon-fc-2025",
+      "division": "Seniors",
+      "position": "Forward",
+      "jersey": 7
+    },
+    {
+      "id": "rehaan-adam",
+      "name": "Rehaan Adam",
+      "teamId": "im-construction-sc",
+      "division": "Seniors",
+      "position": "Forward",
+      "achievements": "Scored two goals in 2025 semifinal"
+    }
+  ]
+}

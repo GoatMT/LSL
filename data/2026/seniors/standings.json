@@ -1,0 +1,10 @@
+{
+  "season": "2026",
+  "divisions": [
+    {
+      "name": "Seniors",
+      "playoffCutoff": 6,
+      "byeSeeds": 2
+    }
+  ]
+}

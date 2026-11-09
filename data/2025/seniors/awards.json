@@ -1,0 +1,97 @@
+{
+  "season": "2025",
+  "awards": [
+    {
+      "division": "Seniors",
+      "category": "Champion Team",
+      "winner": "Umer Memon F.C.",
+      "teamId": "umer-memon-fc-2025",
+      "sourceNote": "Listed as 2025 senior champions."
+    },
+    {
+      "division": "Seniors",
+      "category": "2nd Place Team",
+      "winner": "Refuel Juicery Athletic",
+      "teamId": "refuel-juicery-athletic",
+      "sourceNote": "Grand final opponent."
+    },
+    {
+      "division": "Seniors",
+      "category": "3rd Place Team",
+      "winner": "IM Construction SC",
+      "teamId": "im-construction-sc",
+      "sourceNote": "Updated result: IM Construction SC came 3rd in the 2025 senior playoffs."
+    },
+    {
+      "division": "Seniors",
+      "category": "Best Regular Season Team",
+      "winner": "Asif Gangat United",
+      "teamId": "asif-gangat-united-2025",
+      "sourceNote": "Finished first in the 2025 Seniors regular season with 12 points."
+    },
+    {
+      "division": "Seniors",
+      "category": "MVP",
+      "winner": "Hafizullah",
+      "playerId": "hafizullah",
+      "teamId": "asif-gangat-united-2025",
+      "sourceNote": "Claude's pick: Hafizullah led all 2025 Seniors with 9 regular-season goals for regular-season-best Asif Gangat United and took them within a penalty shootout of the final."
+    },
+    {
+      "division": "Seniors",
+      "category": "Golden Boot",
+      "winner": "Hafizullah",
+      "playerId": "hafizullah",
+      "teamId": "asif-gangat-united-2025",
+      "sourceNote": "Led the 2025 Seniors with 9 regular-season goals for Asif Gangat United."
+    },
+    {
+      "sourceNote": "Selected as Asif Gangat United's 2025 Team MVP after leading the team with 9 regular-season goals.",
+      "teamId": "asif-gangat-united-2025",
+      "category": "Team MVP",
+      "playerId": "hafizullah",
+      "division": "Seniors",
+      "winner": "Hafizullah"
+    },
+    {
+      "sourceNote": "Selected as Umer Memon FC's 2025 Team MVP after leading the champions with 5 regular-season goals.",
+      "teamId": "umer-memon-fc-2025",
+      "category": "Team MVP",
+      "playerId": "muzamil-kharooti",
+      "division": "Seniors",
+      "winner": "Muzamil Kharooti"
+    },
+    {
+      "sourceNote": "Selected as Islamic Bookstore Runners' 2025 Team MVP after leading the team with 4 recorded goals.",
+      "teamId": "islamic-bookstore-runners",
+      "category": "Team MVP",
+      "playerId": "mohammed-hasan",
+      "division": "Seniors",
+      "winner": "Mohammed Hasan"
+    },
+    {
+      "sourceNote": "Selected as Amax Optical Kickers' 2025 Team MVP from the team's leading recorded contributors.",
+      "teamId": "amax-optical-kickers",
+      "category": "Team MVP",
+      "playerId": "taha-nakhuda",
+      "division": "Seniors",
+      "winner": "Taaha Nakhuda"
+    },
+    {
+      "sourceNote": "Selected as IM Construction SC's 2025 Team MVP after leading the team with 8 regular-season goals.",
+      "teamId": "im-construction-sc",
+      "category": "Team MVP",
+      "playerId": "amadu",
+      "division": "Seniors",
+      "winner": "Amadu"
+    },
+    {
+      "sourceNote": "Selected as Refuel Juicery Athletic's 2025 Team MVP after leading the team with 7 regular-season goals.",
+      "teamId": "refuel-juicery-athletic",
+      "category": "Team MVP",
+      "playerId": "mohammed-ibrahim",
+      "division": "Seniors",
+      "winner": "Mohammed Ibrahim"
+    }
+  ]
+}

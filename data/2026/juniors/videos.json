@@ -1,0 +1,17 @@
+{
+  "season": "2026",
+  "videos": [
+    {
+      "id": "2026-video-27",
+      "title": "Juniors Ceremony",
+      "division": "Juniors",
+      "category": "League Event",
+      "teamId": "",
+      "teamName": "",
+      "description": "Footage from the 2026 Juniors ceremony.",
+      "videoUrl": "./media/2026/2026-asset-075.mp4",
+      "matchId": "2026-finals-day-presentation-ceremony",
+      "matchReference": "Presentation Ceremony"
+    }
+  ]
+}

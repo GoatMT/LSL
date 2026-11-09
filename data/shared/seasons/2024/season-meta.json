@@ -1,0 +1,23 @@
+{
+  "season": "2024",
+  "event": {
+    "host": "Lantern Soccer League",
+    "name": "Boys Soccer Tournament (season 1)",
+    "dates": "June 29 - August 15, 2024",
+    "schedule": "Every Saturday, 9:30 AM - 12:00 PM",
+    "eligibleAges": "9 - 14 years old",
+    "cost": "$55",
+    "venue": "Grenoble P.S. (Grenoble Public School)",
+    "address": "9 Grenoble Dr, Toronto, ON M3C 1C3",
+    "phone": "437-888-0261",
+    "source": "LSL - 2024.pdf"
+  },
+  "standings": {
+    "source": "League records",
+    "notes": [
+      "Standings are calculated from regular season match results.",
+      "Win = 3 points, draw = 1 point, loss = 0 points.",
+      "Tie breaker order: points, wins, then goal difference."
+    ]
+  }
+}

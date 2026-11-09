@@ -1,0 +1,137 @@
+{
+  "season": "2025",
+  "videos": [
+    {
+      "id": "2025-video-04",
+      "title": "Seniors Week 3 Recap",
+      "division": "Seniors",
+      "category": "Weekly Highlights",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Three competitive matches from week 3 of the Seniors league.",
+      "videoUrl": "./media/2025/2025-asset-047.mp4",
+      "matchReference": "Weekly Highlights"
+    },
+    {
+      "id": "2025-video-05",
+      "title": "Seniors Week of Intensity",
+      "division": "Seniors",
+      "category": "Weekly Highlights",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Big plays and bigger statements from an intense week in the Seniors league.",
+      "videoUrl": "./media/2025/2025-asset-048.mp4",
+      "matchReference": "Weekly Highlights"
+    },
+    {
+      "id": "2025-video-06",
+      "title": "Seniors Week 3 Highlights",
+      "division": "Seniors",
+      "category": "Weekly Highlights",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Powerful strikes and clutch equalizers from week 3 of the Seniors league.",
+      "videoUrl": "./media/2025/2025-asset-050.mp4",
+      "matchReference": "Weekly Highlights"
+    },
+    {
+      "id": "2025-video-07",
+      "title": "Seniors Week 4 Update",
+      "division": "Seniors",
+      "category": "Weekly Highlights",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Asif Gangat United set the pace in the Seniors league after a 4-0 week 4 win.",
+      "videoUrl": "./media/2025/2025-asset-051.mp4",
+      "matchReference": "Weekly Highlights"
+    },
+    {
+      "id": "2025-video-12",
+      "title": "Senior Champions - Umer Memon FC (Clip 1)",
+      "division": "Seniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Umer Memon FC are the 2025 Senior champions after a tense final that went down to the wire.",
+      "videoUrl": "./media/2025/2025-asset-058.mp4",
+      "matchReference": "Champions"
+    },
+    {
+      "id": "2025-video-13",
+      "title": "Senior Champions - Umer Memon FC (Clip 2)",
+      "division": "Seniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Umer Memon FC are the 2025 Senior champions after a tense final that went down to the wire.",
+      "videoUrl": "./media/2025/2025-asset-059.mp4",
+      "matchReference": "Champions"
+    },
+    {
+      "id": "2025-video-14",
+      "title": "Senior Champions - Umer Memon FC (Clip 3)",
+      "division": "Seniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Umer Memon FC are the 2025 Senior champions after a tense final that went down to the wire.",
+      "videoUrl": "./media/2025/2025-asset-060.mp4",
+      "matchReference": "Champions"
+    },
+    {
+      "id": "2025-video-15",
+      "title": "Senior Champions - Umer Memon FC (Clip 4)",
+      "division": "Seniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Umer Memon FC are the 2025 Senior champions after a tense final that went down to the wire.",
+      "videoUrl": "./media/2025/2025-asset-061.mp4",
+      "matchReference": "Champions"
+    },
+    {
+      "id": "2025-video-16",
+      "title": "Senior Champions - Umer Memon FC (Clip 5)",
+      "division": "Seniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Umer Memon FC are the 2025 Senior champions after a tense final that went down to the wire.",
+      "videoUrl": "./media/2025/2025-asset-062.mp4",
+      "matchReference": "Champions"
+    },
+    {
+      "id": "2025-video-17",
+      "title": "Senior Champions - Umer Memon FC (Clip 6)",
+      "division": "Seniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Umer Memon FC are the 2025 Senior champions after a tense final that went down to the wire.",
+      "videoUrl": "./media/2025/2025-asset-063.mp4",
+      "matchReference": "Champions"
+    },
+    {
+      "id": "2025-video-18",
+      "title": "Senior Champions - Umer Memon FC (Clip 7)",
+      "division": "Seniors",
+      "category": "Champions",
+      "teamId": "",
+      "teamName": "Seniors",
+      "uploadDate": "",
+      "description": "Umer Memon FC are the 2025 Senior champions after a tense final that went down to the wire.",
+      "videoUrl": "./media/2025/2025-asset-065.mp4",
+      "matchReference": "Champions"
+    }
+  ]
+}
