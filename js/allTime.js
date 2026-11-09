@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { decorateCoachGrade } from "./coachRatings.js";
 import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { escapeHTML, formatPercent, setDocumentTitle, slugify, statusMessage, teamProfileHref, unique } from "./utils.js";
@@ -872,8 +872,8 @@ async function init() {
   root.innerHTML = statusMessage("loading", "Loading all-time stats...");
   const [allData, aliases, ratings] = await Promise.all([
     loadAllSeasons(SITE.seasons, ALL_TIME_DATA_FILES),
-    loadJSON("./data/player-aliases.json", {}),
-    loadJSON("./data/coach-ratings.json", { coaches: {} }),
+    loadJSON("./data/shared/player-aliases.json", {}),
+    loadJSON("./data/shared/coach-ratings.json", { coaches: {} }),
   ]);
   coachRatings = ratings;
   globalPlayerRatings = buildGlobalPlayerRatingMap(allData, aliases);

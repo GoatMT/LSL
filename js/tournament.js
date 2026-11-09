@@ -1,4 +1,4 @@
-import { loadSeasonData } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadSeasonData } from "./dataLoader.js?v=20261108-data3";
 import { renderFooter } from "../components/footer.js";
 import { controlSelect, escapeHTML, initials, setDocumentTitle, statusMessage } from "./utils.js";
 import { initPageAnimations } from "./animations.js?v=20260907-2";

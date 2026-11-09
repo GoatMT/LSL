@@ -1,4 +1,4 @@
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, initials, setDocumentTitle, statusMessage } from "./utils.js";
 
@@ -247,7 +247,7 @@ function renderPage(data, lookups) {
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading best all-time team...");
   const [lineupData, seasons] = await Promise.all([
-    loadJSON("./data/best-all-time-team.json", { teams: {} }),
+    loadJSON("./data/shared/best-all-time-team.json", { teams: {} }),
     loadAllSeasons(),
   ]);
   const lookups = buildLookups(seasons);

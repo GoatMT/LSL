@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
@@ -303,7 +303,7 @@ function render(data, focusSearch = false) {
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading rules...");
   try {
-    const data = await loadJSON("./data/rules.json", null);
+    const data = await loadJSON("./data/shared/rules.json", null);
     if (!data) throw new Error("Rules are unavailable");
     render(data);
   } catch (error) {

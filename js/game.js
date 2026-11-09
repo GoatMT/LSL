@@ -1,7 +1,7 @@
 import { renderFormStrip } from "../components/formStrip.js";
 import { renderMatchCard } from "../components/matchCard.js?v=3.2";
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons } from "./dataLoader.js?v=20261108-data3";
 import { calculateTeamForm, calculateTeamRecord, computePlayerStats, getMatchTeams, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";

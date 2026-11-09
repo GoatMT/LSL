@@ -1,4 +1,4 @@
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { mirrorLatestNewsArticles } from "./newsMirror.js";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";
@@ -363,7 +363,7 @@ function render(articles, onThisDay = []) {
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading news...");
   const [data, allSeasons] = await Promise.all([
-    loadJSON("./data/news-articles.json", { articles: [] }),
+    loadJSON("./data/shared/news-articles.json", { articles: [] }),
     loadAllSeasons().catch(() => []),
   ]);
   const articles = [...(data.articles || [])].sort(

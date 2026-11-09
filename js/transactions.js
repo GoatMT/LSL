@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
@@ -165,7 +165,7 @@ function renderPage(data, seasonTeams) {
 
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading trades...");
-  const [data, allSeasons] = await Promise.all([loadJSON("./data/transactions.json", { transactions: [] }), loadAllSeasons()]);
+  const [data, allSeasons] = await Promise.all([loadJSON("./data/shared/transactions.json", { transactions: [] }), loadAllSeasons()]);
   const seasonTeams = new Map(allSeasons.map((season) => [season.year, new Map((season.teams || []).map((team) => [team.id, team]))]));
   renderPage(data, seasonTeams);
 }

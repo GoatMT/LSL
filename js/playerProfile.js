@@ -1,6 +1,6 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { controlSelect, escapeHTML, formatDate, getQueryParam, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
@@ -1465,7 +1465,7 @@ function renderVsOpponentSection(allData, playerId, viewState, aliases = {}) {
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading player profile...");
   const requestedId = getQueryParam("id");
-  const aliases = await loadJSON("./data/player-aliases.json", {});
+  const aliases = await loadJSON("./data/shared/player-aliases.json", {});
   const id = aliases[requestedId] || requestedId;
   const allData = await loadAllSeasons();
   const current = getCurrentPlayer(allData, id);

@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons } from "./dataLoader.js?v=20261108-data3";
 import { computePlayerStats, computeCombinedPlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";

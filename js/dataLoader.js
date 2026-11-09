@@ -2,7 +2,7 @@ import { DATA_FILES, SITE } from "./config.js";
 import { slugify } from "./utils.js";
 
 let playerAliasCache;
-const DATA_CACHE_VERSION = "20261021-backup-goalie";
+const DATA_CACHE_VERSION = "20261108-competition-data3";
 const DATA_CACHE_TTL_MS = 10 * 60_000;
 const DATA_FETCH_TIMEOUT_MS = 8_000;
 const jsonCache = new Map();
@@ -91,7 +91,7 @@ export async function loadJSON(path, fallback = null) {
 
 async function loadPlayerAliases() {
   if (!playerAliasCache) {
-    playerAliasCache = fetchJSON(`${SITE.dataPath}/player-aliases.json`, true).then((data) => data || {});
+    playerAliasCache = fetchJSON(`${SITE.dataPath}/shared/player-aliases.json`, true).then((data) => data || {});
   }
   return playerAliasCache;
 }
@@ -217,6 +217,82 @@ function mergePlayers(teams, playerPayload, year, aliases = {}) {
   return [...map.values()].sort((a, b) => a.name.localeCompare(b.name));
 }
 
+async function loadLegacySeasonData(seasonKey, requestedFiles) {
+  const entries = await Promise.all(
+    requestedFiles.map(async (key) => [key, await fetchJSON(`${SITE.dataPath}/${seasonKey}/${key}.json`, true)])
+  );
+  const files = Object.fromEntries(entries);
+  const aliases = await loadPlayerAliases();
+  const teams = canonicalizeRoster(files.teams?.teams || [], aliases);
+  return {
+    year: seasonKey,
+    event: files.teams?.event || {},
+    teams,
+    players: mergePlayers(teams, files.players, seasonKey, aliases),
+    coaches: normalizeList(files.coaches?.coaches),
+    matches: (files.matches?.matches || []).map((match) => canonicalizeMatch(match, aliases)),
+    standingsMeta: files.standings || {},
+    playoffs: normalizePlayoffs(files.playoffs),
+    awards: files.awards || { awards: [] },
+    tournament: files.tournament || null,
+    photos: files.photos?.photos || [],
+    videos: files.videos?.videos || [],
+  };
+}
+
+async function loadScopedSeasonData(seasonKey, requestedFiles) {
+  const competitionSlugs = ["seniors", "juniors", "inter-madrasah-soccer-tournament"];
+  const [competitionEntries, seasonMeta, sharedPhotos, sharedVideos] = await Promise.all([
+    Promise.all(competitionSlugs.map(async (competition) => {
+      const entries = await Promise.all(
+        requestedFiles.map(async (key) => [key, await fetchJSON(`${SITE.dataPath}/${seasonKey}/${competition}/${key}.json`, true)])
+      );
+      return [competition, Object.fromEntries(entries)];
+    })),
+    fetchJSON(`${SITE.dataPath}/shared/seasons/${seasonKey}/season-meta.json`, true),
+    requestedFiles.includes("photos") ? fetchJSON(`${SITE.dataPath}/shared/seasons/${seasonKey}/photos.json`, true) : null,
+    requestedFiles.includes("videos") ? fetchJSON(`${SITE.dataPath}/shared/seasons/${seasonKey}/videos.json`, true) : null,
+  ]);
+  const filesByCompetition = Object.fromEntries(competitionEntries);
+  const leagueFiles = [filesByCompetition.seniors || {}, filesByCompetition.juniors || {}];
+  const aliases = await loadPlayerAliases();
+  const teams = canonicalizeRoster(leagueFiles.flatMap((files) => normalizeList(files.teams?.teams)), aliases);
+  const players = leagueFiles.flatMap((files) => normalizeList(files.players?.players));
+  const coaches = leagueFiles.flatMap((files) => normalizeList(files.coaches?.coaches));
+  const matches = leagueFiles.flatMap((files) => normalizeList(files.matches?.matches));
+  const awards = leagueFiles.flatMap((files) => normalizeList(files.awards?.awards));
+  const photoRows = leagueFiles.flatMap((files) => normalizeList(files.photos?.photos));
+  const videoRows = leagueFiles.flatMap((files) => normalizeList(files.videos?.videos));
+  const divisionPlayoffs = leagueFiles
+    .map((files) => files.playoffs)
+    .filter((playoffs) => playoffs && ((playoffs.rounds || []).length || playoffs.champion));
+  const playoffData = divisionPlayoffs.length > 1
+    ? { season: seasonKey, divisions: divisionPlayoffs }
+    : divisionPlayoffs[0] || { season: seasonKey, rounds: [] };
+  const standingsDivisions = leagueFiles.flatMap((files) => normalizeList(files.standings?.divisions));
+  const imst = filesByCompetition["inter-madrasah-soccer-tournament"] || {};
+
+  return {
+    year: seasonKey,
+    event: seasonMeta?.event || {},
+    teams,
+    players: mergePlayers(teams, { players }, seasonKey, aliases),
+    coaches,
+    matches: matches.map((match) => canonicalizeMatch(match, aliases)),
+    standingsMeta: {
+      season: seasonKey,
+      source: seasonMeta?.standings?.source || "",
+      notes: normalizeList(seasonMeta?.standings?.notes),
+      divisions: standingsDivisions,
+    },
+    playoffs: normalizePlayoffs(playoffData),
+    awards: { season: seasonKey, awards },
+    tournament: imst.tournament || null,
+    photos: [...photoRows, ...normalizeList(sharedPhotos?.photos)],
+    videos: [...videoRows, ...normalizeList(sharedVideos?.videos)],
+  };
+}
+
 export async function loadSeasonData(year, dataFiles = DATA_FILES) {
   const seasonKey = String(year);
   const requestedFiles = selectDataFiles(dataFiles);
@@ -224,30 +300,13 @@ export async function loadSeasonData(year, dataFiles = DATA_FILES) {
   if (seasonCache.has(cacheKey)) return seasonCache.get(cacheKey);
   if (seasonRequests.has(cacheKey)) return seasonRequests.get(cacheKey);
 
-  const request = (async () => {
-    const entries = await Promise.all(
-      requestedFiles.map(async (key) => [key, await fetchJSON(`${SITE.dataPath}/${seasonKey}/${key}.json`, true)])
-    );
-    const files = Object.fromEntries(entries);
-    const aliases = await loadPlayerAliases();
-    const teams = canonicalizeRoster(files.teams?.teams || [], aliases);
-    const seasonData = {
-      year: seasonKey,
-      event: files.teams?.event || {},
-      teams,
-      players: mergePlayers(teams, files.players, seasonKey, aliases),
-      coaches: normalizeList(files.coaches?.coaches),
-      matches: (files.matches?.matches || []).map((match) => canonicalizeMatch(match, aliases)),
-      standingsMeta: files.standings || {},
-      playoffs: normalizePlayoffs(files.playoffs),
-      awards: files.awards || { awards: [] },
-      tournament: files.tournament || null,
-      photos: files.photos?.photos || [],
-      videos: files.videos?.videos || [],
-    };
+  const request = (Number(seasonKey) >= 2024 && Number(seasonKey) <= 2026
+    ? loadScopedSeasonData(seasonKey, requestedFiles)
+    : loadLegacySeasonData(seasonKey, requestedFiles)
+  ).then((seasonData) => {
     seasonCache.set(cacheKey, seasonData);
     return seasonData;
-  })();
+  });
 
   seasonRequests.set(cacheKey, request);
   try {

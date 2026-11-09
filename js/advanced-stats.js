@@ -1,4 +1,4 @@
-import { loadSeasonData } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadSeasonData } from "./dataLoader.js?v=20261108-data3";
 import { calculateStandings, computePlayerStats, isCompletedMatch, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { SITE } from "./config.js";

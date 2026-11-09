@@ -8,7 +8,7 @@ const root = document.getElementById("page-root");
 
 async function loadOwners() {
   try {
-    const response = await fetch("./data/owners.json", { cache: "no-store" });
+    const response = await fetch("./data/shared/owners.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
     return await response.json();
   } catch (error) {

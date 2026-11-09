@@ -1,6 +1,6 @@
 import { renderCoachCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { COACH_GRADE_SCALE, decorateCoachGrade } from "./coachRatings.js";
 import { buildCoachCareer, calculateCoachForm, computeCoachSummary, getCurrentCoach, getNextTeamMatch } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261020-records1";
@@ -83,7 +83,7 @@ function combinedCoachCareer(allData, id) {
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading coach profile...");
   const id = getQueryParam("id");
-  const [allData, ratings] = await Promise.all([loadAllSeasons(), loadJSON("./data/coach-ratings.json", { coaches: {} })]);
+  const [allData, ratings] = await Promise.all([loadAllSeasons(), loadJSON("./data/shared/coach-ratings.json", { coaches: {} })]);
   const current = decorateCoachGrade(getCurrentCoach(allData, id) || {}, ratings);
   const summaryBase = combinedCoachCareer(allData, id);
   const career = buildCoachCareer(allData, id);

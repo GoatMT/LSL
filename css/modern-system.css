@@ -1,10 +1,40 @@
-/* Shared LSL interface polish. Existing page content and feature styles stay authoritative. */
+/* Shared design tokens and interface foundation. */
 :root {
-  --radius-lg: 18px;
-  --radius-md: 12px;
-  --radius-sm: 8px;
+  --brand-gold: #9e7921;
+  --brand-green: #0d4923;
+  --brand-green-strong: #1b5630;
+  --gold: #d1b166;
+  --gold-soft: #ead3a8;
+  --green: var(--brand-green);
+  --green-2: var(--brand-green-strong);
+  --page: #151a17;
+  --panel: #202621;
+  --card: #292f2a;
+  --card-2: #1b221d;
+  --soft: #252e28;
+  --ink: #f4f7f2;
+  --muted: #bac6bc;
+  --line: #424d45;
+  --line-dark: rgba(255, 255, 255, 0.2);
+  --success: #65b47b;
+  --warning: #e1b85d;
+  --error: #e17d72;
+  --focus: #f0d58f;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 7px;
+  --radius-control: 8px;
   --shadow: 0 14px 36px rgba(0, 0, 0, 0.24);
-  --focus-ring: 0 0 0 3px rgba(199, 163, 103, 0.34);
+  --shadow-raised: 0 18px 38px rgba(0, 0, 0, 0.3);
+  --focus-ring: 0 0 0 3px rgba(209, 177, 102, 0.34);
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-numeric: var(--font-sans);
+  --motion-fast: 150ms;
+  --motion-base: 190ms;
+  --motion-enter: 440ms;
+  --ease-standard: cubic-bezier(0.2, 0.65, 0.3, 1);
+  --surface-hover: rgba(255, 255, 255, 0.045);
+  --border-interactive: rgba(209, 177, 102, 0.58);
 }
 
 html {
@@ -15,6 +45,11 @@ html {
 body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+body:not(.imt-blue-page) {
+  color-scheme: dark;
+  font-family: var(--font-sans);
 }
 
 .page-shell {
@@ -69,7 +104,7 @@ body {
 }
 
 .site-header {
-  border-bottom: 1px solid rgba(199, 163, 103, 0.24);
+  border-bottom: 1px solid rgba(209, 177, 102, 0.3);
 }
 
 .nav-inner {
@@ -107,11 +142,11 @@ body {
 }
 
 body:not(.imt-blue-page) :where(button, .button, .text-link, input, select, textarea, summary) {
-  border-radius: 10px;
+  border-radius: var(--radius-control);
 }
 
 body:not(.imt-blue-page) :where(button, .button, .text-link, input, select, textarea) {
-  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+  transition: background-color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
 }
 
 body:not(.imt-blue-page) :where(button, .button, .text-link) {
@@ -123,9 +158,7 @@ body:not(.imt-blue-page) :where(input, select, textarea) {
 }
 
 body:not(.imt-blue-page) :where(input, select, textarea):focus-visible,
-body:not(.imt-blue-page) :where(button, .button, .text-link, summary):focus-visible,
-body:not(.imt-blue-page) [role="tab"]:focus-visible,
-body:not(.imt-blue-page) [role="switch"]:focus-visible {
+body:not(.imt-blue-page) :where(a, button, .button, .text-link, summary, input, select, textarea, [role="tab"], [role="switch"], [tabindex]):focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
   box-shadow: var(--focus-ring);
@@ -141,8 +174,10 @@ body:not(.imt-blue-page) :where(button, .button, .text-link)[aria-disabled="true
 body:not(.imt-blue-page) :where(button, .button, .text-link)[aria-pressed="true"],
 body:not(.imt-blue-page) :where(button, .button, .text-link)[aria-expanded="true"],
 body:not(.imt-blue-page) [role="tab"][aria-selected="true"],
-body:not(.imt-blue-page) .nav-link.active {
-  border-color: rgba(199, 163, 103, 0.74);
+body:not(.imt-blue-page) .nav-link.active,
+body:not(.imt-blue-page) .nav-dropdown-menu a.active,
+body:not(.imt-blue-page) [aria-current="page"] {
+  border-color: var(--border-interactive);
 }
 
 body:not(.imt-blue-page) input[type="checkbox"],
@@ -151,7 +186,21 @@ body:not(.imt-blue-page) input[type="radio"] {
 }
 
 body:not(.imt-blue-page) :where(button, .button, .text-link):hover:not(:disabled):not([aria-disabled="true"]) {
-  border-color: rgba(199, 163, 103, 0.74);
+  border-color: var(--border-interactive);
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link, summary):active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(1px);
+}
+
+body:not(.imt-blue-page) :where(input, select, textarea):disabled,
+body:not(.imt-blue-page) :where(input, select, textarea)[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+body:not(.imt-blue-page) :where(input, select, textarea):user-invalid {
+  border-color: var(--error);
 }
 
 body:not(.imt-blue-page) .section-panel,
@@ -163,7 +212,7 @@ body:not(.imt-blue-page) .team-card,
 body:not(.imt-blue-page) .person-card,
 body:not(.imt-blue-page) .award-card,
 body:not(.imt-blue-page) .rule-card {
-  border-radius: 14px;
+  border-radius: var(--radius-md);
 }
 
 .stat-box {
@@ -359,17 +408,6 @@ body.imt-blue-page :where(a, button, input, select, textarea, summary, [role="ta
 
 /* LSL shared visual refresh: sharper surfaces, clearer names, and scoreboard metrics. */
 body:not(.imt-blue-page) {
-  --page: #151a17;
-  --panel: #202621;
-  --card: #292f2a;
-  --card-2: #1b221d;
-  --soft: #252e28;
-  --line: #424d45;
-  --line-dark: rgba(255, 255, 255, 0.2);
-  --radius-lg: 14px;
-  --radius-md: 10px;
-  --radius-sm: 7px;
-  --shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
   color-scheme: dark;
 }
 
@@ -526,6 +564,56 @@ body:not(.imt-blue-page) .nav-dropdown-button.active {
   box-shadow: inset 0 -3px 0 var(--gold);
 }
 
+/* Token-backed control, table, and shared surface states. */
+body:not(.imt-blue-page) :where(button, .button, .nav-link, .nav-dropdown-button, .nav-dropdown-menu a) {
+  font-family: var(--font-sans);
+}
+
+body:not(.imt-blue-page) .site-search input,
+body:not(.imt-blue-page) .nav-dropdown-menu,
+body:not(.imt-blue-page) .site-search-results {
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .nav-link:focus-visible,
+body:not(.imt-blue-page) .nav-dropdown-button:focus-visible,
+body:not(.imt-blue-page) .nav-dropdown-menu a:focus-visible {
+  outline-color: var(--focus);
+  box-shadow: var(--focus-ring);
+}
+
+body:not(.imt-blue-page) .data-table thead th {
+  color: var(--gold-soft);
+}
+
+body:not(.imt-blue-page) :where(.card, .match-card, .team-card, .person-card, .award-card, .rule-card, .record-card, .stat-box, .summary-tile) {
+  border-color: color-mix(in srgb, var(--line) 82%, var(--brand-gold));
+}
+
+body:not(.imt-blue-page) :where(.card, .match-card, .team-card, .person-card, .award-card, .rule-card, .record-card):hover {
+  border-color: var(--border-interactive);
+}
+
+body:not(.imt-blue-page) :where(.button.primary, .home-leader-tabs button.active, .tab-button.active, [role="tab"][aria-selected="true"]) {
+  border-color: var(--brand-green-strong);
+}
+
+body:not(.imt-blue-page) :where(.score-box, .projected-score-box, .game-hero-scoreline, .data-table .num, .stat-box strong) {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+body:not(.imt-blue-page) .site-footer {
+  border-top-color: color-mix(in srgb, var(--brand-gold) 38%, var(--line));
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  body:not(.imt-blue-page) :where(.nav-link, .nav-dropdown-button, .button, .card, .section-panel, .match-card, .team-card) {
+    transition-duration: var(--motion-base);
+    transition-timing-function: var(--ease-standard);
+  }
+}
+
 @media (max-width: 760px) {
   body:not(.imt-blue-page) .page-shell {
     gap: 16px;
@@ -557,5 +645,16 @@ body:not(.imt-blue-page) .nav-dropdown-button.active {
 
   body:not(.imt-blue-page) .person-card .stat-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:not(.imt-blue-page) *,
+  body:not(.imt-blue-page) *::before,
+  body:not(.imt-blue-page) *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }

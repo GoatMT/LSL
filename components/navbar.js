@@ -1,5 +1,5 @@
 import { NAV_LINKS, SITE } from "../js/config.js";
-import { loadAllSeasons } from "../js/dataLoader.js?v=20261020-records1";
+import { loadAllSeasons } from "../js/dataLoader.js?v=20261108-data3";
 import { computeCoachSummary, computeCombinedPlayerStats } from "../js/leagueEngine.js";
 import { escapeHTML } from "../js/utils.js";
 
@@ -26,11 +26,11 @@ export function renderNavbar(activeHref = "") {
         </a>
         <div class="site-search" role="search">
           <label class="site-search-label" for="site-search-input">Search LSL</label>
-          <input id="site-search-input" type="search" autocomplete="off" placeholder="Search players, teams, coaches...">
-          <div id="site-search-results" class="site-search-results" hidden></div>
+          <input id="site-search-input" type="search" autocomplete="off" placeholder="Search players, teams, matches..." role="combobox" aria-autocomplete="list" aria-controls="site-search-results" aria-expanded="false">
+          <div id="site-search-results" class="site-search-results" role="listbox" aria-label="Search results" hidden></div>
         </div>
-        <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
-        <nav class="nav-links" aria-label="Primary navigation">
+        <button class="nav-toggle" type="button" aria-label="Open navigation" aria-controls="primary-navigation" aria-expanded="false">Menu</button>
+        <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
           <div class="nav-group">
             <span class="nav-group-label">Main</span>
             ${primary.map(renderLink).join("")}
@@ -38,10 +38,10 @@ export function renderNavbar(activeHref = "") {
           <div class="nav-group">
             <span class="nav-group-label">More</span>
             <div class="nav-dropdown">
-              <button class="nav-dropdown-button nav-more-button${secondary.some((link) => isActive(link.href)) ? " active" : ""}" type="button" aria-label="More navigation" aria-expanded="false">
+              <button id="nav-more-button" class="nav-dropdown-button nav-more-button${secondary.some((link) => isActive(link.href)) ? " active" : ""}" type="button" aria-label="Open more navigation" aria-controls="nav-more-menu" aria-haspopup="true" aria-expanded="false">
                 <span class="more-label">More</span>
               </button>
-              <div class="nav-dropdown-menu" hidden>
+              <div id="nav-more-menu" class="nav-dropdown-menu" hidden>
                 ${secondary
                   .map(
                     (link) =>
@@ -92,7 +92,29 @@ function buildSearchIndex(seasons) {
     });
   });
 
-  return [...pages, ...players, ...coaches, ...teamMap.values()];
+  const matches = seasons.flatMap((season) => (season.matches || []).map((match) => ({
+    type: "Match",
+    title: `${match.homeTeamName || match.homeTeamId || "Team TBA"} vs ${match.awayTeamName || match.awayTeamId || "Team TBA"}`,
+    subtitle: `${season.year} | ${match.division || "Seniors"} | ${match.date || match.weekLabel || "Date TBA"}`,
+    href: `./game.html?season=${encodeURIComponent(season.year)}&id=${encodeURIComponent(match.id || "")}`,
+  })));
+  const tournaments = seasons.flatMap((season) => {
+    const event = season.tournament?.event;
+    return event?.name ? [{
+      type: "Tournament",
+      title: `${season.year} ${event.name}`,
+      subtitle: event.date || event.dates || event.currentStatus || "Tournament information",
+      href: "./tournament.html",
+    }] : [];
+  });
+  const records = [
+    { title: "Player Records", subtitle: "Goals, games, and individual milestones" },
+    { title: "Team Records", subtitle: "Standings, results, and team milestones" },
+    { title: "Coach Records", subtitle: "Coaching history and achievements" },
+    { title: "LSL Cup Records", subtitle: "Cup winners and championship history" },
+  ].map((record) => ({ ...record, type: "Record", href: "./records.html" }));
+
+  return [...pages, ...players, ...coaches, ...teamMap.values(), ...matches, ...tournaments, ...records];
 }
 
 function renderSearchResults(items, query) {
@@ -108,7 +130,7 @@ function renderSearchResults(items, query) {
     .slice(0, 8)
     .map(
       (item) => `
-        <a class="site-search-result" href="${escapeHTML(item.href)}">
+        <a class="site-search-result" href="${escapeHTML(item.href)}" role="option" aria-selected="false" tabindex="-1">
           <span class="pill">${escapeHTML(item.type)}</span>
           <strong>${escapeHTML(item.title)}</strong>
           <small>${escapeHTML(item.subtitle)}</small>

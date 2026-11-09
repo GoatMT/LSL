@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { SITE } from "./config.js";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
@@ -263,7 +263,7 @@ function renderHelpStrip() {
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading forms...");
   const [data, seasonData] = await Promise.all([
-    loadJSON("./data/forms.json", { forms: [] }),
+    loadJSON("./data/shared/forms.json", { forms: [] }),
     loadJSON(`./data/${SITE.defaultSeason}/teams.json`, { event: {} }),
   ]);
   const forms = data.forms || [];

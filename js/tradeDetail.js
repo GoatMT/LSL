@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { loadJSON, loadSeasonData } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadJSON, loadSeasonData } from "./dataLoader.js?v=20261108-data3";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { escapeHTML, getQueryParam, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
@@ -106,7 +106,7 @@ function renderDetail(transaction = {}, teams) {
 
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading trade details...");
-  const data = await loadJSON("./data/transactions.json", { transactions: [] });
+  const data = await loadJSON("./data/shared/transactions.json", { transactions: [] });
   const tradeId = getQueryParam("id");
   const transaction = (data.transactions || []).find((item) => item.id === tradeId);
 

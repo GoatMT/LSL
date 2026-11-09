@@ -1,7 +1,7 @@
 import { renderFooter } from "../components/footer.js?v=20261020-records1";
 import { hydrateNavbar, renderNavbar } from "../components/navbar.js?v=20261020-records1";
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261108-data3";
 import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js?v=1.0";
 import { initPageAnimations } from "./animations.js?v=20260907-2";
@@ -37,7 +37,7 @@ function registerPWA() {
 
     window.addEventListener("load", async () => {
       try {
-    const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261020-offline1", {
+    const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261108-data3", {
           updateViaCache: "none",
         });
         await registration.update();
@@ -941,7 +941,7 @@ async function renderHome() {
   root.innerHTML = statusMessage("loading", "Loading league dashboard...");
 
   const allData = await loadAllSeasons();
-  const newsData = await loadJSON("./data/news.json", { items: [] });
+  const newsData = await loadJSON("./data/shared/news.json", { items: [] });
   let selectedSeason = SITE.defaultSeason;
 
   async function render() {

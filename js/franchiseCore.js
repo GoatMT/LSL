@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadJSON } from "./dataLoader.js?v=20261108-data3";
 
 const STORAGE_KEY = "lsl-franchise-save-v1";
 

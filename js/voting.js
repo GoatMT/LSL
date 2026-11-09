@@ -1,4 +1,4 @@
-import { loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { renderFanVoteCard, hydrateFanVote } from "./fanVote.js";
 import { setupLayout } from "./main.js?v=20261020-records1";
 import { setDocumentTitle, statusMessage } from "./utils.js";
@@ -62,7 +62,7 @@ function render() {
 async function init() {
   root.innerHTML = statusMessage("loading", "Loading voting...");
   try {
-    awardWatchData = await loadJSON("./data/award-watch.json", {});
+    awardWatchData = await loadJSON("./data/shared/award-watch.json", {});
     render();
   } catch (error) {
     console.error("Could not load voting data", error);

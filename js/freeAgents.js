@@ -1,5 +1,5 @@
 import { SITE } from "./config.js";
-import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261021-backup-goalie";
+import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { escapeHTML, initials, setDocumentTitle, slugify, statusMessage, unique } from "./utils.js";
 import { setupLayout } from "./main.js?v=20261020-records1";
@@ -427,8 +427,8 @@ async function init() {
   try {
     const [allData, news, articles] = await Promise.all([
       loadAllSeasons(),
-      loadJSON("./data/news.json", { items: [] }),
-      loadJSON("./data/news-articles.json", { articles: [] }),
+      loadJSON("./data/shared/news.json", { items: [] }),
+      loadJSON("./data/shared/news-articles.json", { articles: [] }),
     ]);
     const allPlayers = buildFreeAgents(allData, news, articles);
     render(allPlayers);

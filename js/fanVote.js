@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/fireba
 import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 // Fan MVP / Golden Boot voting.
-// Candidates come straight from data/award-watch.json's "MVP Watch" and
+// Candidates come straight from data/shared/award-watch.json's "MVP Watch" and
 // "Golden Boot Watch" leader lists, so the poll automatically rotates to a
 // new week whenever that file is updated - no separate poll data file to
 // maintain.
