@@ -92,7 +92,7 @@ function buildSearchIndex(seasons) {
     });
   });
 
-  const matches = seasons.flatMap((season) => (season.matches || []).map((match) => ({
+  const matches = seasons.flatMap((season) => (season.matches || []).filter((match) => match.id).map((match) => ({
     type: "Match",
     title: `${match.homeTeamName || match.homeTeamId || "Team TBA"} vs ${match.awayTeamName || match.awayTeamId || "Team TBA"}`,
     subtitle: `${season.year} | ${match.division || "Seniors"} | ${match.date || match.weekLabel || "Date TBA"}`,
@@ -175,79 +175,147 @@ export function hydrateNavbar() {
   const searchInput = document.getElementById("site-search-input");
   const searchResults = document.getElementById("site-search-results");
   let searchIndex = [];
+  let searchIndexReady = false;
+  let searchIndexRequest = null;
+
+  const closeNavigation = (returnFocus = false) => {
+    links?.classList.remove("open");
+    toggle?.setAttribute("aria-expanded", "false");
+    toggle?.setAttribute("aria-label", "Open navigation");
+    if (returnFocus) toggle?.focus();
+  };
+
+  const closeMoreMenu = (returnFocus = false) => {
+    menu?.setAttribute("hidden", "");
+    moreButton?.setAttribute("aria-expanded", "false");
+    moreButton?.setAttribute("aria-label", "Open more navigation");
+    if (returnFocus) moreButton?.focus();
+  };
+
+  const setSearchOpen = (open) => {
+    if (!searchResults || !searchInput) return;
+    searchResults.hidden = !open;
+    searchInput.setAttribute("aria-expanded", String(open));
+  };
 
   toggle?.addEventListener("click", () => {
-    const isOpen = links.classList.toggle("open");
+    const isOpen = links?.classList.toggle("open") || false;
     toggle.setAttribute("aria-expanded", String(isOpen));
+    toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
   });
 
   moreButton?.addEventListener("click", () => {
-    const isOpen = menu.hasAttribute("hidden");
-    menu.toggleAttribute("hidden", !isOpen);
+    const isOpen = menu?.hasAttribute("hidden") || false;
+    menu?.toggleAttribute("hidden", !isOpen);
     moreButton.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".nav-dropdown")) {
-      menu?.setAttribute("hidden", "");
-      moreButton?.setAttribute("aria-expanded", "false");
+    moreButton.setAttribute("aria-label", isOpen ? "Close more navigation" : "Open more navigation");
+    if (isOpen && window.matchMedia("(max-width: 1040px)").matches) {
+      menu?.querySelector("a")?.focus();
     }
   });
 
+  const renderCurrentSearch = () => {
+    const query = searchInput?.value.trim().toLowerCase() || "";
+    const matches = searchIndex.filter((item) => `${item.type} ${item.title} ${item.subtitle}`.toLowerCase().includes(query));
+    if (searchResults) searchResults.innerHTML = renderSearchResults(matches, query);
+  };
+
+  const loadSearchIndex = () => {
+    if (searchIndexReady || searchIndexRequest) return searchIndexRequest;
+    if (searchResults) {
+      searchResults.innerHTML = `<div class="site-search-empty" role="status">Loading search...</div>`;
+      searchResults.setAttribute("aria-busy", "true");
+    }
+    searchIndexRequest = loadAllSeasons()
+      .then((seasons) => {
+        searchIndex = buildSearchIndex(seasons);
+        searchIndexReady = true;
+        if (searchResults && !searchResults.hidden) renderCurrentSearch();
+      })
+      .catch((error) => {
+        console.warn("Could not load search data", error);
+        if (searchResults && !searchResults.hidden) searchResults.innerHTML = `<div class="site-search-empty" role="status">Search is temporarily unavailable. Type again to retry.</div>`;
+      })
+      .finally(() => {
+        searchIndexRequest = null;
+        searchResults?.removeAttribute("aria-busy");
+      });
+    return searchIndexRequest;
+  };
+
   if (searchInput && searchResults) {
-    let searchIndexReady = false;
-    let searchIndexRequest = null;
-
-    const renderCurrentSearch = () => {
-      const query = searchInput.value.trim().toLowerCase();
-      const matches = searchIndex.filter((item) => `${item.type} ${item.title} ${item.subtitle}`.toLowerCase().includes(query));
-      searchResults.innerHTML = renderSearchResults(matches, query);
-    };
-
-    const loadSearchIndex = () => {
-      if (searchIndexReady || searchIndexRequest) return searchIndexRequest;
-      searchResults.innerHTML = `<div class="site-search-empty">Loading search...</div>`;
-      searchIndexRequest = loadAllSeasons()
-        .then((seasons) => {
-          searchIndex = buildSearchIndex(seasons);
-          searchIndexReady = true;
-          if (!searchResults.hidden) renderCurrentSearch();
-        })
-        .catch((error) => {
-          console.warn("Could not load search data", error);
-          if (!searchResults.hidden) searchResults.innerHTML = `<div class="site-search-empty">Search is unavailable. Try again.</div>`;
-        })
-        .finally(() => {
-          searchIndexRequest = null;
-        });
-      return searchIndexRequest;
+    const stepSearchFocus = (direction) => {
+      const options = [...searchResults.querySelectorAll("[role=option]")];
+      if (!options.length) return;
+      const current = options.indexOf(document.activeElement);
+      const next = current < 0
+        ? (direction > 0 ? 0 : options.length - 1)
+        : Math.max(0, Math.min(options.length - 1, current + direction));
+      options.forEach((option, index) => option.setAttribute("aria-selected", String(index === next)));
+      options[next].focus();
     };
 
     searchInput.addEventListener("input", () => {
       const query = searchInput.value.trim().toLowerCase();
-      searchResults.hidden = false;
+      setSearchOpen(true);
       if (searchIndexReady) renderCurrentSearch();
       else if (query) loadSearchIndex();
       else searchResults.innerHTML = renderSearchResults([], query);
     });
 
     searchInput.addEventListener("focus", () => {
-      searchResults.innerHTML = renderSearchResults([], searchInput.value);
-      searchResults.hidden = false;
-      if (searchInput.value.trim() && !searchIndexReady) loadSearchIndex();
+      setSearchOpen(true);
+      if (searchIndexReady) renderCurrentSearch();
+      else {
+        searchResults.innerHTML = renderSearchResults([], "");
+        if (searchInput.value.trim()) loadSearchIndex();
+      }
     });
 
     searchInput.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        searchResults.hidden = true;
-        searchInput.blur();
+        setSearchOpen(false);
+      } else if (event.key === "ArrowDown") {
+        event.preventDefault();
+        if (!searchIndexReady && searchInput.value.trim()) loadSearchIndex()?.then(() => stepSearchFocus(1));
+        else stepSearchFocus(1);
+      }
+    });
+
+    searchResults.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        stepSearchFocus(event.key === "ArrowDown" ? 1 : -1);
+      } else if (event.key === "Escape") {
+        setSearchOpen(false);
+        searchInput.focus();
       }
     });
   }
 
   document.addEventListener("click", (event) => {
+    if (!event.target.closest(".nav-dropdown")) closeMoreMenu();
+    if (!event.target.closest(".nav-links") && !event.target.closest(".nav-toggle")) closeNavigation();
     if (!event.target.closest(".site-search")) {
-      searchResults?.setAttribute("hidden", "");
+      setSearchOpen(false);
+    }
+  });
+
+  document.addEventListener("focusin", (event) => {
+    if (!event.target.closest?.(".site-search")) setSearchOpen(false);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (menu && !menu.hidden) closeMoreMenu(true);
+    else if (links?.classList.contains("open")) closeNavigation(true);
+    else if (searchResults && !searchResults.hidden) setSearchOpen(false);
+  });
+
+  links?.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      closeNavigation();
+      closeMoreMenu();
     }
   });
 }

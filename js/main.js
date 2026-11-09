@@ -1,5 +1,6 @@
-import { renderFooter } from "../components/footer.js?v=20261020-records1";
-import { hydrateNavbar, renderNavbar } from "../components/navbar.js?v=20261020-records1";
+import { renderFooter } from "../components/footer.js?v=20261108-shared4";
+import { hydrateNavbar, renderNavbar } from "../components/navbar.js?v=20261108-shared4";
+import { hydrateTabs } from "../components/tabs.js?v=20261108-shared4";
 import { SITE } from "./config.js";
 import { loadAllSeasons, loadJSON, loadSeasonData } from "./dataLoader.js?v=20261108-data3";
 import { computeCombinedPlayerStats, computePlayerStats, getAwards, isCompletedMatch, teamMap, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
@@ -37,7 +38,7 @@ function registerPWA() {
 
     window.addEventListener("load", async () => {
       try {
-    const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261108-data3", {
+        const registration = await navigator.serviceWorker.register("./service-worker.js?v=20261108-shared4", {
           updateViaCache: "none",
         });
         await registration.update();
@@ -89,6 +90,7 @@ export function setupLayout(activeHref) {
   document.getElementById("site-navbar").innerHTML = renderNavbar(activeHref);
   document.getElementById("site-footer").innerHTML = renderFooter();
   hydrateNavbar();
+  hydrateTabs();
   hydrateMediaRecovery();
   initPageAnimations();
   registerPWA();

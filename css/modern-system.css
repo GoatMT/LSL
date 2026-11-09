@@ -244,12 +244,45 @@ body:not(.imt-blue-page) .rule-card {
   padding-block: 20px;
 }
 
+body:not(.imt-blue-page) .footer-copy {
+  display: grid;
+  gap: 4px;
+}
+
+body:not(.imt-blue-page) .footer-copy > strong {
+  color: var(--ink);
+}
+
+body:not(.imt-blue-page) .footer-tagline,
+body:not(.imt-blue-page) .footer-shoutout,
+body:not(.imt-blue-page) .footer-copyright {
+  line-height: 1.45;
+}
+
+body:not(.imt-blue-page) .footer-shoutout {
+  font-size: 0.84rem;
+}
+
+body:not(.imt-blue-page) .footer-copyright {
+  color: color-mix(in srgb, var(--muted) 78%, transparent);
+  font-size: 0.75rem;
+}
+
 .footer-partners {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   gap: 12px;
+}
+
+body:not(.imt-blue-page) .footer-partner {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
 .footer-partner-link {
@@ -297,6 +330,28 @@ body:not(.imt-blue-page) .rule-card {
   width: 36px;
   height: 36px;
   color: #f3f5ef;
+}
+
+body:not(.imt-blue-page) [role="tablist"] [role="tab"] {
+  min-height: 40px;
+  font-family: var(--font-sans);
+  transition: color var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard);
+}
+
+body:not(.imt-blue-page) [role="tablist"] [role="tab"]:focus-visible {
+  z-index: 1;
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring);
+}
+
+body:not(.imt-blue-page) [role="dialog"][aria-modal="true"]:not([hidden]) {
+  animation: shared-dialog-enter var(--motion-enter) var(--ease-standard) both;
+}
+
+@keyframes shared-dialog-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @media (hover: hover) {
@@ -358,6 +413,10 @@ body.imt-blue-page :where(a, button, input, select, textarea, summary, [role="ta
     align-items: center;
     flex-direction: column;
     text-align: center;
+  }
+
+  body:not(.imt-blue-page) .footer-copy {
+    justify-items: center;
   }
 
   .footer-partners {

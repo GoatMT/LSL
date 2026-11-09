@@ -16,9 +16,9 @@ Consolidated logo-derived colors, typography tokens, interaction states, shared 
 
 Separated 2024-2026 into Seniors, Juniors, and IMST folders with ten standard JSON files each; moved global data and shared season metadata/media under `data/shared/`; preserved the IMST nested payload and 2027 layout/projections; updated active loaders and paths; archived original source JSON; and passed source/target parity plus runtime loader validation.
 
-## Phase 4: Shared Components and Navigation
+## Phase 4: Shared Components and Navigation (Complete)
 
-Redesign navigation, search, footer, shared cards/tables/dialogs/tabs, offline and 404 experiences, and PWA presentation. Verify shared behavior across representative pages.
+Improved shared search to index pages, players, coaches, teams, matches, tournament information, and record topics; added keyboard navigation and accessible combobox/listbox state; strengthened mobile and More-menu state; added accessible roving keyboard behavior for tablists; gave the Hall of Fame photo viewer focus trapping and focus return; simplified the shared footer shoutout and labeled partner links; aligned shared PWA/browser theme colors; updated the 404 landmark labels; and bumped shared asset/service-worker versions for automatic update pickup. The offline experience remains the service worker's existing detailed, self-contained offline page. Automated checks passed; visual browser QA was not available in this phase environment.
 
 ## Phase 5: Homepage
 

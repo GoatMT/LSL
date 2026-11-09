@@ -3,7 +3,7 @@ import { renderStandingsTable } from "../components/standingsTable.js";
 import { SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=20261108-data3";
 import { calculateStandings, computePlayerStats } from "./leagueEngine.js?v=3.24-playoff-threshold";
-import { setupLayout } from "./main.js?v=20261020-records1";
+import { setupLayout } from "./main.js?v=20261108-shared4";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("season-recap.html");

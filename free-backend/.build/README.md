@@ -1,1 +1,0 @@
-This folder contains the built output assets for the worker "lantern-rush-free" generated at 2026-09-21T20:32:47.722Z.

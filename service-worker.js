@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v132";
+const CACHE_NAME = "lsl-cache-v133";
 const NETWORK_TIMEOUT_MS = 6_000;
 
 /*
@@ -86,6 +86,8 @@ const APP_SHELL = [
   /* Components */
   "./components/navbar.js",
   "./components/footer.js",
+  "./components/tabs.js",
+  "./components/dialog.js",
 
   /* Logo */
   "./Logos/lsl-logo.png",

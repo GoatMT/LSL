@@ -1,6 +1,7 @@
 import { buildPlayerCareer, computeCombinedPlayerStats, computePlayerStats, getAwards } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { loadAllSeasons } from "./dataLoader.js?v=20261108-data3";
-import { setupLayout } from "./main.js?v=20261020-records1";
+import { setupLayout } from "./main.js?v=20261108-shared4";
+import { bindModalDialog } from "../components/dialog.js?v=20261108-shared4";
 import { escapeHTML, setDocumentTitle, statusMessage, unique } from "./utils.js";
 
 setupLayout("hall-of-fame.html");
@@ -468,29 +469,20 @@ function setupHallControls(allData) {
   const lightbox = document.querySelector("[data-hof-lightbox]");
   const lightboxImage = lightbox?.querySelector("[data-hof-lightbox-image]");
   const lightboxCaption = lightbox?.querySelector("[data-hof-lightbox-caption]");
-  const closeLightbox = () => {
-    if (!lightbox) return;
-    lightbox.hidden = true;
+  const lightboxDialog = bindModalDialog(lightbox, { closeSelector: "[data-hof-lightbox-close]" });
+  lightbox?.addEventListener("dialogclose", () => {
     document.body.classList.remove("hof-lightbox-open");
     if (lightboxImage) lightboxImage.removeAttribute("src");
-  };
+  });
   document.querySelectorAll("[data-hof-photo]").forEach((button) => {
     button.addEventListener("click", () => {
       if (!lightbox || !lightboxImage) return;
       lightboxImage.src = button.dataset.hofPhoto || "";
       lightboxImage.alt = button.dataset.hofPhotoAlt || "Championship team photo";
       if (lightboxCaption) lightboxCaption.textContent = button.dataset.hofPhotoAlt || "Championship team photo";
-      lightbox.hidden = false;
+      lightboxDialog?.open(button);
       document.body.classList.add("hof-lightbox-open");
-      lightbox.querySelector("[data-hof-lightbox-close]")?.focus();
     });
-  });
-  lightbox?.querySelector("[data-hof-lightbox-close]")?.addEventListener("click", closeLightbox);
-  lightbox?.addEventListener("click", (event) => {
-    if (event.target === lightbox) closeLightbox();
-  });
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && lightbox && !lightbox.hidden) closeLightbox();
   });
 }
 

@@ -1,4 +1,4 @@
-import { setupLayout } from "./main.js?v=20261020-records1";
+import { setupLayout } from "./main.js?v=20261108-shared4";
 import { createPulseAdminStore } from "./pulseFirebase.js?v=20261020-records1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";
 
