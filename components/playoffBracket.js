@@ -1,5 +1,9 @@
 import { escapeHTML, teamProfileHref } from "../js/utils.js";
 
+function list(value) {
+  return Array.isArray(value) ? value : value && typeof value === "object" ? [value] : [];
+}
+
 function renderTeamLine(match, side, season) {
   const teamId = side === "home" ? match.homeTeamId : match.awayTeamId;
   const name = side === "home" ? match.homeTeamName : match.awayTeamName;
@@ -8,7 +12,7 @@ function renderTeamLine(match, side, season) {
   return `
     <div class="bracket-team${isWinner ? " winner" : ""}">
       <strong>${teamId ? `<a href="${escapeHTML(teamProfileHref(teamId, season))}">${escapeHTML(name || "TBA")}</a>` : escapeHTML(name || "TBA")}</strong>
-      <span>${Number.isFinite(score) ? score : "(Score)"}</span>
+      <span${Number.isFinite(score) ? "" : ' aria-label="Score not recorded"'}>${Number.isFinite(score) ? score : "N/R"}</span>
     </div>
   `;
 }
@@ -31,7 +35,7 @@ function matchClass(match, index) {
 }
 
 function bracketShapeClass(rounds) {
-  const firstRoundMatches = rounds[0]?.matches?.length || 0;
+  const firstRoundMatches = list(rounds[0]?.matches).length;
   if (firstRoundMatches >= 4) {
     return " bracket-four-quarterfinals";
   }
@@ -42,7 +46,7 @@ function bracketShapeClass(rounds) {
 }
 
 export function renderPlayoffBracket(playoffs = { rounds: [] }) {
-  const rounds = playoffs.rounds || [];
+  const rounds = list(playoffs.rounds);
   const season = playoffs.season || "";
   if (!rounds.length) {
     return `<div class="empty-state">Playoff bracket has not been published for this selection yet.</div>`;
@@ -54,7 +58,7 @@ export function renderPlayoffBracket(playoffs = { rounds: [] }) {
           (round, roundIndex) => `
             <section class="bracket-round${roundClass(round, roundIndex)}">
               <h3>${escapeHTML(round.name)}</h3>
-              ${(round.matches || [])
+              ${list(round.matches)
                 .map(
                   (match, matchIndex) => `
                     <article class="bracket-match${matchClass(match, matchIndex)}">

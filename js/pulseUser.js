@@ -1,4 +1,4 @@
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { fetchAllPulseAccounts, fetchAllPulsePosts } from "./pulseFirebase.js?v=1.2";
 import { avatarMarkup, OFFICIAL_BASE_POSTS, normalizePost, pulseProfileHref, renderPostBody } from "./pulseShared.js";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js?v=1.0";

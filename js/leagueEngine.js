@@ -74,6 +74,42 @@ export function filterMatches(matches = [], { division = "Seniors", stage = "reg
     .sort((a, b) => matchSortValue(a) - matchSortValue(b) || String(a.label || "").localeCompare(String(b.label || "")));
 }
 
+function scheduledKickoffMinutes(match = {}) {
+  const start = String(match.time || "").split(/\s+(?:-|to|\u2013)\s+/i)[0].trim();
+  const parts = start.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!parts) return Number.POSITIVE_INFINITY;
+  let hours = Number(parts[1]) % 12;
+  if (/PM/i.test(parts[3])) hours += 12;
+  return hours * 60 + Number(parts[2]);
+}
+
+export function matchGameNumberForWeek(matches = [], target = {}) {
+  if (target.stage !== "regular" || target.week == null || String(target.week).trim() === "" || !Number.isFinite(Number(target.week))) return null;
+  const sameWeek = matches
+    .map((match, index) => ({ match, index }))
+    .filter(({ match }) =>
+      match.stage === "regular" &&
+      !match.activityTitle &&
+      match.division === target.division &&
+      String(match.week) === String(target.week)
+    )
+    .sort((a, b) =>
+      String(a.match.date || "").localeCompare(String(b.match.date || "")) ||
+      scheduledKickoffMinutes(a.match) - scheduledKickoffMinutes(b.match) ||
+      a.index - b.index
+    );
+  const index = sameWeek.findIndex(({ match }) => match === target || (target.id && match.id === target.id));
+  return index < 0 ? null : index + 1;
+}
+
+export function regularSeasonGameLabel(matches = [], match = {}) {
+  if (match.stage === "regular" && match.week != null && String(match.week).trim() !== "" && Number.isFinite(Number(match.week))) {
+    const gameNumber = matchGameNumberForWeek(matches, match);
+    if (gameNumber) return `Week ${match.week} - Game ${gameNumber}`;
+  }
+  return match.label || (match.week ? `Week ${match.week}` : "Match");
+}
+
 export function getWeeks(matches = [], division = "Seniors", stage = "regular") {
   const weeks = matches
     .filter((match) => match.division === division && match.stage === stage)

@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v135";
+const CACHE_NAME = "lsl-cache-v139";
 const NETWORK_TIMEOUT_MS = 6_000;
 
 /*
@@ -40,6 +40,8 @@ const NETWORK_TIMEOUT_MS = 6_000;
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./team-builder.html",
+  "./tournament.html",
   "./hall-of-fame.html",
   "./free-agents.html",
   "./record-watch.html",
@@ -56,6 +58,7 @@ const APP_SHELL = [
   "./css/responsive.css",
   "./css/modern-system.css",
   "./css/homepage.css",
+  "./css/team-builder.css",
   "./css/playoff-bracket.css",
   "./css/players.css",
   "./css/player-tiers.css",
@@ -70,6 +73,10 @@ const APP_SHELL = [
 
   /* Core JS */
   "./js/main.js",
+  "./js/teamBuilder.js",
+  "./js/teamBuilderCore.js",
+  "./js/tournament.js",
+  "./js/tournamentData.js",
   "./js/config.js",
   "./js/utils.js",
   "./js/dataLoader.js",

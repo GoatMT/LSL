@@ -4,7 +4,7 @@ import { matchToCalendarEvent, renderCalendarButtons, renderCalendarDownloadButt
 import { playoffRulesFor, SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=20261108-data3";
 import { calculateStandings } from "./leagueEngine.js?v=3.24-playoff-threshold";
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { controlSelect, escapeHTML, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("playoffs.html");
@@ -194,24 +194,39 @@ function buildOfficialBracket(data, division) {
     };
   };
 
-  const qfMatches = playoffMatches.filter((match) => /^Quarterfinal \d+$/.test(match.label || "")).sort((a, b) => qfSortKey(a.label) - qfSortKey(b.label));
-  const sfMatches = playoffMatches.filter((match) => /^Semifinal \d+$/.test(match.label || "")).sort((a, b) => sfSortKey(a.label) - sfSortKey(b.label));
-  const finalMatch = playoffMatches.find((match) => /championship final/i.test(match.label || ""));
+  const qfMatches = playoffMatches
+    .filter((match) => /quarter\s*final|\bqf\b/i.test(match.label || ""))
+    .sort((a, b) => qfSortKey(a.label) - qfSortKey(b.label));
+  const sfMatches = playoffMatches
+    .filter((match) => /semi\s*final|\bsf\b/i.test(match.label || ""))
+    .sort((a, b) => sfSortKey(a.label) - sfSortKey(b.label));
+  const thirdPlaceMatches = playoffMatches.filter((match) => /^(?:3rd|third)\s+place/i.test(match.label || ""));
+  const finalMatch = playoffMatches.find(
+    (match) => !thirdPlaceMatches.includes(match) && /(?:championship|grand)\s+final|^finals?$/i.test(match.label || "")
+  );
 
   const rounds = [];
   if (qfMatches.length) rounds.push({ name: "Quarterfinals", matches: qfMatches.map(toMatch) });
   if (sfMatches.length) rounds.push({ name: "Semifinals", matches: sfMatches.map(toMatch) });
-  if (finalMatch) rounds.push({ name: "Final", matches: [toMatch(finalMatch)] });
+  if (finalMatch || thirdPlaceMatches.length) {
+    rounds.push({
+      name: "Finals",
+      matches: [...(finalMatch ? [toMatch(finalMatch)] : []), ...thirdPlaceMatches.map(toMatch)],
+    });
+  }
   if (!rounds.length) return null;
 
-  const champion = finalMatch && Number.isFinite(finalMatch.homeScore) && Number.isFinite(finalMatch.awayScore) ? teams.get(finalMatch.winnerId)?.name || "" : "";
+  const finalWinner = finalMatch
+    ? finalMatch.winnerId || (Number(finalMatch.homeScore) > Number(finalMatch.awayScore) ? finalMatch.homeTeamId : Number(finalMatch.awayScore) > Number(finalMatch.homeScore) ? finalMatch.awayTeamId : "")
+    : "";
+  const champion = finalWinner ? teams.get(finalWinner)?.name || "" : "";
 
   return {
     season: data.year,
     division,
     layout: "wide",
     champion,
-    format: "Eight-team single-day bracket. Quarterfinals, semifinals, and the championship are all played Saturday, August 8, 2026.",
+    format: playoffRulesFor(data.year, division).description || "Official playoff bracket.",
     rounds,
   };
 }

@@ -1956,7 +1956,7 @@
   }
 
   .home-leader-row {
-    grid-template-columns: 34px minmax(0, 1fr) 42px;
+    grid-template-columns: 34px minmax(0, 1fr) minmax(42px, max-content);
     padding: 9px 11px;
   }
 
@@ -2230,7 +2230,7 @@
   }
 
   .home-leader-row {
-    grid-template-columns: 30px minmax(0, 1fr) 34px;
+    grid-template-columns: 30px minmax(0, 1fr) minmax(34px, max-content);
     gap: 7px;
     padding-inline: 9px;
   }

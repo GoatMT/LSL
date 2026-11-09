@@ -5,16 +5,16 @@
   --brand-green-strong: #1b5630;
   --gold: #d1b166;
   --gold-soft: #ead3a8;
-  --green: var(--brand-green);
-  --green-2: var(--brand-green-strong);
-  --page: #151a17;
-  --panel: #202621;
-  --card: #292f2a;
-  --card-2: #1b221d;
-  --soft: #252e28;
+  --green: #292b29;
+  --green-2: #3b3d3b;
+  --page: #242624;
+  --panel: #303230;
+  --card: #3a3c3a;
+  --card-2: #252725;
+  --soft: #444644;
   --ink: #f4f7f2;
-  --muted: #bac6bc;
-  --line: #424d45;
+  --muted: #c0c3bf;
+  --line: #484b48;
   --line-dark: rgba(255, 255, 255, 0.2);
   --success: #65b47b;
   --warning: #e1b85d;
@@ -465,6 +465,186 @@ body.imt-blue-page :where(a, button, input, select, textarea, summary, [role="ta
   }
 }
 
+/* Site-wide gray, gold, and black palette; green stays a restrained accent. */
+body:not(.imt-blue-page) {
+  --page: #242624;
+  --panel: #303230;
+  --card: #3a3c3a;
+  --card-2: #252725;
+  --soft: #444644;
+  --green: #292b29;
+  --green-2: #3b3d3b;
+  --ink: #f4f7f2;
+  --muted: #c0c3bf;
+  --line: #484b48;
+  --gold: #d1b166;
+}
+
+body:not(.imt-blue-page) .page-shell::before {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(209, 177, 102, 0.075), transparent 22rem),
+    radial-gradient(circle at 88% 62%, rgba(255, 255, 255, 0.035), transparent 26rem),
+    linear-gradient(118deg, transparent 32%, rgba(255, 255, 255, 0.025) 49%, transparent 64%);
+}
+
+body:not(.imt-blue-page) .nav-link:not(.active),
+body:not(.imt-blue-page) .nav-dropdown-button:not(.active),
+body:not(.imt-blue-page) .nav-dropdown-menu a {
+  color: var(--ink);
+  background-color: var(--card);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :where(.section-panel, .section-head, .controls, .table-wrap, .card, .match-card, .team-card, .person-card, .award-card, .rule-card, .record-card, .stat-box, .summary-tile, .player-detail-card, .player-profile-panel, .pvp-controls-panel, .pvp-main-panel, .pvp-games-panel, .pvp-note-panel) {
+  color: var(--ink);
+  background-color: var(--panel);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :where(.section-head, .controls, .pvp-player-card, .pvp-verdict-card, .player-leader-card, .player-profile-summary, .record-rankings, .record-table-wrap) {
+  background-color: var(--card-2);
+}
+
+body:not(.imt-blue-page) :where(.home-leader-tabs, [class*="-tabs"], [class*="-toggle"], [class*="-filter-bar"], [class*="-filters"]) {
+  color: var(--ink);
+  background-color: var(--card-2);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) [class*="-panel"] {
+  background-color: var(--panel);
+  background-image: none;
+}
+
+body:not(.imt-blue-page) [class*="-hero"] {
+  background-color: var(--panel);
+}
+
+body:not(.imt-blue-page) .section-panel {
+  background-color: var(--panel);
+  background-image: none;
+}
+
+body:not(.imt-blue-page) .section-head {
+  background-color: var(--card-2);
+  background-image: none;
+}
+
+body:not(.imt-blue-page) [class*="-head"] {
+  background-color: var(--card-2);
+}
+
+body:not(.imt-blue-page) :where([class*="-card"], [class*="-tile"], [class*="-column"]):not(.hof-trophy-card) {
+  background-color: var(--card);
+  background-image: none;
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link, [role="button"]):not(.button.primary):not(.active):not([aria-pressed="true"]):not([aria-selected="true"]) {
+  color: var(--ink);
+  background-color: var(--card);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .button:not(.primary):not(.active):not(.builder-position-select):not(.builder-position-clear),
+body:not(.imt-blue-page) button:not(.active):not([aria-pressed="true"]):not([aria-selected="true"]):not(.builder-position-select):not(.builder-position-clear) {
+  color: var(--ink);
+  background-color: var(--card);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .builder-position-select {
+  color: var(--ink);
+  background: var(--builder-slot, var(--card-2));
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .builder-position-clear {
+  color: var(--muted);
+  background: transparent;
+}
+
+body:not(.imt-blue-page) :where(button, .button, .text-link, [role="button"]):not(:disabled):not([aria-disabled="true"]):hover {
+  border-color: var(--gold);
+}
+
+body:not(.imt-blue-page) .button.primary,
+body:not(.imt-blue-page) .button.primary:focus-visible {
+  color: #171817;
+  background-color: var(--gold);
+  border-color: var(--gold);
+}
+
+body:not(.imt-blue-page) .button.primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  color: #171817;
+  background-color: #e0c77f;
+  border-color: #e0c77f;
+}
+
+body:not(.imt-blue-page) .button.primary:disabled,
+body:not(.imt-blue-page) .button.primary[aria-disabled="true"] {
+  color: var(--muted);
+  background-color: var(--soft);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :is(button.active, .button.active, .nav-link.active, .nav-dropdown-button.active, .tab-button.active, .home-leader-tabs button.active, .all-time-toggle button.active, [role="tab"][aria-selected="true"], [aria-pressed="true"]) {
+  color: #171817;
+  background-color: var(--gold);
+  border-color: var(--gold);
+}
+
+body:not(.imt-blue-page) :where(input, select, textarea) {
+  color: var(--ink);
+  background-color: #252725;
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :where(.stat-box, .person-card, .player-profile-summary, .pvp-card-stat-grid > div) {
+  background: var(--card-2);
+}
+
+body:not(.imt-blue-page) .players-summary-row > div,
+body:not(.imt-blue-page) .players-leader-spotlight,
+body:not(.imt-blue-page) .awards-hero-copy,
+body:not(.imt-blue-page) .home-record-watch-slide,
+body:not(.imt-blue-page) .news-sidebar-actions,
+body:not(.imt-blue-page) .news-developing-block {
+  background-color: var(--card-2);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .champion-banner {
+  color: var(--ink);
+  background: linear-gradient(120deg, var(--panel), var(--card-2));
+  border-color: var(--border-interactive);
+}
+
+body:not(.imt-blue-page) .data-table thead th,
+body:not(.imt-blue-page) [class*="-table"] thead th {
+  color: var(--gold-soft);
+  background-color: var(--card-2);
+}
+
+body:not(.imt-blue-page) .data-table tfoot td {
+  color: var(--ink);
+  background-color: var(--card-2);
+}
+
+body:not(.imt-blue-page) :where(.footer-partner-link) {
+  background-color: var(--card-2);
+}
+
+body:not(.imt-blue-page) .hof-hero-panel,
+body:not(.imt-blue-page) .pvp-hero-panel {
+  background-color: var(--panel);
+  background-image: radial-gradient(circle at 78% 35%, rgba(209, 177, 102, 0.12), transparent 24rem), linear-gradient(120deg, #303230, #202220);
+}
+
+body:not(.imt-blue-page) :where(.hof-trophy-card--2024-seniors, .hof-trophy-card--2025-seniors, .hof-trophy-card--2025-juniors, .hof-trophy-card--2026-seniors) {
+  background-image: none;
+}
+
 /* LSL shared visual refresh: sharper surfaces, clearer names, and scoreboard metrics. */
 body:not(.imt-blue-page) {
   color-scheme: dark;
@@ -598,7 +778,7 @@ body:not(.imt-blue-page) .data-table tbody tr:nth-child(even) td {
 
 body:not(.imt-blue-page) .standings-table.data-table tbody tr.bye > td,
 body:not(.imt-blue-page) .standings-table.data-table tbody tr.leeward-highlight > td {
-  background: #203d2a;
+  background: var(--card);
 }
 
 body:not(.imt-blue-page) .standings-table.data-table tbody tr.bye:hover > td,
@@ -676,6 +856,28 @@ body:not(.imt-blue-page) .site-footer {
   border-top-color: color-mix(in srgb, var(--brand-gold) 38%, var(--line));
 }
 
+body:not(.imt-blue-page) .site-header {
+  background: #222422;
+}
+
+body:not(.imt-blue-page) :where(.button.primary, button.active, .nav-link.active, .nav-dropdown-button.active, [role="tab"][aria-selected="true"], [aria-pressed="true"]) {
+  color: #171817;
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+body:not(.imt-blue-page) :where(.button.primary, button.active, .nav-link.active, .nav-dropdown-button.active, [role="tab"][aria-selected="true"], [aria-pressed="true"]):hover:not(:disabled):not([aria-disabled="true"]) {
+  color: #171817;
+  background: #e0c77f;
+  border-color: #e0c77f;
+}
+
+body:not(.imt-blue-page) :where(.button.primary, button.active, .nav-link.active, .nav-dropdown-button.active, [role="tab"][aria-selected="true"], [aria-pressed="true"]):disabled {
+  background: var(--soft);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   body:not(.imt-blue-page) :where(.nav-link, .nav-dropdown-button, .button, .card, .section-panel, .match-card, .team-card) {
     transition-duration: var(--motion-base);
@@ -726,4 +928,148 @@ body:not(.imt-blue-page) .site-footer {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* Final palette precedence over older page-level and shared refresh rules. */
+body:not(.imt-blue-page) .section-panel,
+body:not(.imt-blue-page) [class*="-panel"] {
+  color: var(--ink);
+  background-color: var(--panel);
+  background-image: none;
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) [class*="-card"]:not(.hof-trophy-card),
+body:not(.imt-blue-page) [class*="-tile"],
+body:not(.imt-blue-page) [class*="-column"] {
+  color: var(--ink);
+  background-color: var(--card);
+  background-image: none;
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .section-head,
+body:not(.imt-blue-page) [class*="-head"] {
+  color: var(--ink);
+  background-color: var(--card-2);
+  background-image: none;
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .stat-box,
+body:not(.imt-blue-page) .person-card,
+body:not(.imt-blue-page) .players-summary-row > div,
+body:not(.imt-blue-page) .players-leader-spotlight,
+body:not(.imt-blue-page) .awards-hero-copy,
+body:not(.imt-blue-page) .home-record-watch-slide,
+body:not(.imt-blue-page) .news-sidebar-actions,
+body:not(.imt-blue-page) .news-developing-block {
+  color: var(--ink);
+  background-color: var(--card-2);
+  background-image: none;
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .champion-banner {
+  color: var(--ink);
+  background: linear-gradient(120deg, var(--panel), var(--card-2));
+  border-color: var(--border-interactive);
+}
+
+body:not(.imt-blue-page) .data-table thead th,
+body:not(.imt-blue-page) [class*="-table"] thead th {
+  color: var(--gold-soft);
+  background-color: var(--card-2);
+}
+
+body:not(.imt-blue-page) .data-table tfoot td {
+  color: var(--ink);
+  background-color: var(--card-2);
+}
+
+body:not(.imt-blue-page) .home-leader-tabs,
+body:not(.imt-blue-page) [class*="-tabs"],
+body:not(.imt-blue-page) [class*="-toggle"],
+body:not(.imt-blue-page) [class*="-filter-bar"],
+body:not(.imt-blue-page) [class*="-filters"] {
+  color: var(--ink);
+  background-color: var(--card-2);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .nav-link:not(.active),
+body:not(.imt-blue-page) .nav-dropdown-button:not(.active),
+body:not(.imt-blue-page) .nav-dropdown-menu a {
+  color: var(--ink);
+  background-color: var(--card);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .button:not(.primary):not(.active):not(.builder-position-select):not(.builder-position-clear),
+body:not(.imt-blue-page) button:not(.active):not([aria-pressed="true"]):not([aria-selected="true"]):not(.builder-position-select):not(.builder-position-clear) {
+  color: var(--ink);
+  background-color: var(--card);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .builder-position-select {
+  color: var(--ink);
+  background: var(--builder-slot, var(--card-2));
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .builder-position-clear {
+  color: var(--muted);
+  background: transparent;
+}
+
+body:not(.imt-blue-page) .button.primary,
+body:not(.imt-blue-page) .button.primary:focus-visible {
+  color: #171817;
+  background-color: var(--gold);
+  border-color: var(--gold);
+}
+
+body:not(.imt-blue-page) .button.primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: #e0c77f;
+  border-color: #e0c77f;
+}
+
+body:not(.imt-blue-page) .button.primary:disabled,
+body:not(.imt-blue-page) .button.primary[aria-disabled="true"] {
+  color: var(--muted);
+  background-color: var(--soft);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :is(button.active, .button.active, .nav-link.active, .nav-dropdown-button.active, .tab-button.active, .home-leader-tabs button.active, .all-time-toggle button.active, [role="tab"][aria-selected="true"], [aria-pressed="true"]) {
+  color: #171817;
+  background-color: var(--gold);
+  border-color: var(--gold);
+}
+
+body:not(.imt-blue-page) input,
+body:not(.imt-blue-page) select,
+body:not(.imt-blue-page) textarea {
+  color: var(--ink);
+  background-color: var(--card-2);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .builder-player-list {
+  max-height: none;
+  overflow: visible;
+}
+
+body:not(.imt-blue-page) .hof-hero-panel,
+body:not(.imt-blue-page) .pvp-hero-panel {
+  background-color: var(--panel);
+  background-image: radial-gradient(circle at 78% 35%, rgba(209, 177, 102, 0.12), transparent 24rem), linear-gradient(120deg, #303230, #202220);
+}
+
+body:not(.imt-blue-page) .hof-trophy-card--2024-seniors,
+body:not(.imt-blue-page) .hof-trophy-card--2025-seniors,
+body:not(.imt-blue-page) .hof-trophy-card--2025-juniors,
+body:not(.imt-blue-page) .hof-trophy-card--2026-seniors {
+  background-image: none;
 }

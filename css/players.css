@@ -7,7 +7,7 @@
 .players-filter-card,
 .players-leaderboard-card {
   border-color: rgba(199, 163, 103, 0.34);
-  background: #202720;
+  background: var(--panel);
 }
 
 .players-page-hero {
@@ -17,8 +17,8 @@
   align-items: center;
   padding: 34px;
   background:
-    linear-gradient(110deg, rgba(17, 60, 31, 0.96), rgba(20, 43, 27, 0.86)),
-    #123f21;
+    linear-gradient(110deg, rgba(39, 41, 39, 0.96), rgba(46, 48, 46, 0.86)),
+    #303230;
 }
 
 .players-page-hero h1 {

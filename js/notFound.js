@@ -1,4 +1,4 @@
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { setDocumentTitle } from "./utils.js";
 
 setupLayout("404.html");

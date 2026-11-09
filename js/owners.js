@@ -1,4 +1,4 @@
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("owners.html");

@@ -1,8 +1,8 @@
 import { SITE } from "./config.js";
 import { matchToCalendarEvent, renderCalendarDownloadButton } from "./calendarLinks.js";
 import { loadSeasonData } from "./dataLoader.js?v=20261108-data3";
-import { filterMatches, getMatchTeams, isCompletedMatch, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { filterMatches, getMatchTeams, isCompletedMatch, regularSeasonGameLabel, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { controlSelect, escapeHTML, formatDate, formatDateWithISO, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
 setupLayout("matchday.html");
@@ -78,7 +78,7 @@ function currentMatchday(matches = []) {
   return sameMatchdayMatches(matches, matchdayAnchor(matches));
 }
 
-function matchdayStatusGroups(matches = []) {
+function matchdayStatusGroups(matches = [], allMatches = matches) {
   const groups = {
     early: [],
     late: [],
@@ -88,7 +88,7 @@ function matchdayStatusGroups(matches = []) {
   matches
     .filter((match) => !match.activityTitle)
     .forEach((match) => {
-      const notes = Array.isArray(match.notes) ? match.notes.join(" ") : "";
+      const notes = Array.isArray(match.notes) ? match.notes.join(" ") : String(match.notes || "");
       const statusText = [
         match.status,
         match.timingStatus,
@@ -100,8 +100,8 @@ function matchdayStatusGroups(matches = []) {
         .join(" ")
         .toLowerCase();
       const item = {
-        label: match.label || matchLabel(match),
-        note: match.status || "Update posted",
+        label: regularSeasonGameLabel(allMatches, match),
+        note: match.timingNote || match.delayNote || match.timingStatus || notes || match.status || "Update posted",
       };
 
       if (/cancel|cancell?ed|postpon|called off|abandon/.test(statusText)) {
@@ -134,8 +134,8 @@ function renderMatchdayStatusItems(items, emptyText) {
   `;
 }
 
-function renderMatchdayStatusPanel(matches = []) {
-  const groups = matchdayStatusGroups(matches);
+function renderMatchdayStatusPanel(matches = [], allMatches = matches) {
+  const groups = matchdayStatusGroups(matches, allMatches);
   const timingChanges = groups.early.length + groups.late.length;
   const overallCount = groups.cancelled.length || timingChanges;
   const overallLabel = groups.cancelled.length
@@ -301,7 +301,7 @@ function renderScheduleList(data, matches) {
           return `
             <${tag} class="matchday-row${match.activityTitle ? "" : " clickable"}"${href}>
               <div class="matchday-row-time">
-                <span>${escapeHTML(match.label || `Game ${match.week}`)}</span>
+                <span>${escapeHTML(regularSeasonGameLabel(data.matches, match))}</span>
                 <strong>${escapeHTML(match.time || "Time TBA")}</strong>
               </div>
               <div class="matchday-row-main">
@@ -356,7 +356,7 @@ function renderFinalScoreList(data, matches) {
                   return `
                     <article class="matchday-final-row">
                       <div>
-                        <span class="pill green">${escapeHTML(match.label || `Game ${match.week}`)}</span>
+                        <span class="pill green">${escapeHTML(regularSeasonGameLabel(data.matches, match))}</span>
                         <p>${escapeHTML(match.division || "LSL")} | ${escapeHTML(match.time || "Time TBA")}</p>
                       </div>
                       <div class="matchday-final-teams">
@@ -427,7 +427,7 @@ async function render(data) {
       </div>
     </section>
 
-    ${renderMatchdayStatusPanel(dayMatches)}
+    ${renderMatchdayStatusPanel(dayMatches, data.matches)}
 
     <section class="section-panel">
       <div class="section-head">

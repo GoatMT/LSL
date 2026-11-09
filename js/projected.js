@@ -1,7 +1,11 @@
 import { loadJSON, loadSeasonData } from "./dataLoader.js?v=20261108-data3";
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { SITE } from "./config.js";
 import { escapeHTML, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
+
+function list(value) {
+  return Array.isArray(value) ? value : value && typeof value === "object" ? [value] : [];
+}
 
 setupLayout("projected.html");
 setDocumentTitle("Projected");
@@ -313,7 +317,7 @@ function renderSchedule(projected, maps) {
         </div>
       </div>
       <div class="projected-week-list">
-        ${(projected.schedule || [])
+      ${list(projected.schedule)
           .map(
             (week) => `
               <article class="projected-week-card">
@@ -322,7 +326,7 @@ function renderSchedule(projected, maps) {
                   <strong>Projected matchups</strong>
                 </div>
                 <div class="projected-match-list">
-                  ${(week.matches || [])
+                  ${list(week.matches)
                     .map((match) => renderProjectedMatch(match, maps))
                     .join("")}
                 </div>
@@ -363,12 +367,12 @@ function renderProjectedPlayoffs(projected, maps) {
         <span class="pill green">Prediction</span>
       </div>
       <div class="projected-bracket">
-        ${(playoffs.rounds || [])
+        ${list(playoffs.rounds)
           .map(
             (round) => `
               <section class="projected-bracket-round">
                 <h3>${escapeHTML(round.name)}</h3>
-                ${(round.matches || [])
+                ${list(round.matches)
                   .map(
                     (match) => `
                       <article class="projected-bracket-match">
@@ -417,8 +421,8 @@ function render(projected, seasonData) {
     ${
       (projected.standings || []).length ||
       (projected.teams || []).length ||
-      (projected.schedule || []).some((week) => (week.matches || []).length) ||
-      (projected.playoffs?.rounds || []).some((round) => (round.matches || []).length)
+      list(projected.schedule).some((week) => list(week.matches).length) ||
+      list(projected.playoffs?.rounds).some((round) => list(round.matches).length)
         ? `${renderProjectedStandings(projected, maps)}
     ${renderTeamCards(projected, maps)}
     ${renderSchedule(projected, maps)}

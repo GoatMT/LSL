@@ -2,8 +2,8 @@ import { renderMatchCard } from "../components/matchCard.js?v=3.2";
 import { matchToCalendarEvent, renderCalendarDownloadButton } from "./calendarLinks.js";
 import { SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=20261108-data3";
-import { filterMatches, getWeeks, isCompletedMatch, teamMap } from "./leagueEngine.js?v=3.24-playoff-threshold";
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { filterMatches, getWeeks, isCompletedMatch, regularSeasonGameLabel, teamMap } from "./leagueEngine.js?v=3.24-playoff-threshold";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { controlSelect, escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("matches.html");
@@ -54,13 +54,6 @@ function weekTitle(match) {
   return `Week ${match.week} | ${label}`;
 }
 
-function regularSeasonMatchLabel(match, gameNumber) {
-  if (match.stage !== "regular" || !Number.isFinite(Number(match.week)) || !Number.isFinite(gameNumber)) {
-    return match.label || `Week ${match.week}`;
-  }
-  return `Week ${match.week} - Game ${gameNumber}`;
-}
-
 function matchStartMinutes(match) {
   const [startRaw] = String(match.time || "").split(/\s+(?:-|to|\u2013)\s+/i);
   const parsed = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(String(startRaw || "").trim());
@@ -73,7 +66,7 @@ function matchStartMinutes(match) {
 function renderMatchGroups(data, matches) {
   if (!matches.length) return "";
   const groups = matches.reduce((map, match) => {
-    const key = `${match.week}-${match.stage}`;
+    const key = `${match.division}-${match.week}-${match.stage}`;
     if (!map.has(key)) map.set(key, []);
     map.get(key).push(match);
     return map;
@@ -83,7 +76,10 @@ function renderMatchGroups(data, matches) {
     <div class="match-week-list">
       ${[...groups.values()]
         .map((group) => {
-          const sortedGroup = [...group].sort((a, b) => matchStartMinutes(a) - matchStartMinutes(b));
+          const sortedGroup = [...group].sort((a, b) =>
+            String(a.date || "").localeCompare(String(b.date || "")) ||
+            matchStartMinutes(a) - matchStartMinutes(b)
+          );
           const first = sortedGroup[0];
           return `
             <details class="match-week-section">
@@ -96,7 +92,7 @@ function renderMatchGroups(data, matches) {
               </summary>
               <div class="match-week-grid">
                 ${sortedGroup
-                  .map((match, index) => renderMatchCard(data, { ...match, label: regularSeasonMatchLabel(match, index + 1) }))
+                  .map((match) => renderMatchCard(data, { ...match, label: regularSeasonGameLabel(data.matches, match) }))
                   .join("")}
               </div>
             </details>

@@ -1,8 +1,8 @@
 import { renderFormStrip } from "../components/formStrip.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=20261108-data3";
-import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getAwards, getNextTeamMatch, isCompletedMatch, playersWithOVR, scoreText, teamOVR, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getAwards, getNextTeamMatch, isCompletedMatch, playersWithOVR, regularSeasonGameLabel, scoreText, teamOVR, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { escapeHTML, formatDateWithISO, getQueryParam, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("teams.html");
@@ -499,7 +499,7 @@ function renderTeamMatchRows(data, team, matches) {
           <span class="pill ${result === "Win" ? "green" : ""}">${escapeHTML(result)}</span>
           <div>
             <strong>${escapeHTML(opponent?.name || "Opponent TBA")}</strong>
-            <p>${escapeHTML(match.label || `Week ${match.week}`)} | ${escapeHTML(match.time || "Time TBA")}</p>
+            <p>${escapeHTML(regularSeasonGameLabel(data.matches, match))} | ${escapeHTML(match.time || "Time TBA")}</p>
           </div>
           <b>${escapeHTML(complete ? scoreText(match) : "vs")}</b>
         </article>
@@ -528,7 +528,7 @@ function renderTeamScheduleRows(data, team, matches) {
           return `
             <article class="team-schedule-row">
               <div class="team-schedule-date">
-                <span>${escapeHTML(match.label || `Week ${match.week}`)}</span>
+                <span>${escapeHTML(regularSeasonGameLabel(data.matches, match))}</span>
                 <strong>${escapeHTML(formatDateWithISO(match.date))}</strong>
                 <small>${escapeHTML(match.time || "Time TBA")}</small>
               </div>

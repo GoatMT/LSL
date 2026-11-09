@@ -2,7 +2,7 @@ import { renderPhotoCard } from "../components/photoCard.js";
 import { renderVideoCard } from "../components/videoCard.js";
 import { SITE } from "./config.js";
 import { loadSeasonData } from "./dataLoader.js?v=20261108-data3";
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { controlSelect, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("videos.html");

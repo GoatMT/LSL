@@ -8,7 +8,7 @@ The active root pages below are current entry points. Pages are grouped by user-
 
 ## Players and Staff
 
-`players.html`; `player.html` individual profile; `player-tiers.html`; `player-vs-player.html`; `free-agents.html`; `teams.html`; `team.html` individual team; `team-vs-team.html`; `coaches.html`; `coach.html` individual coach; `awards.html`; `best-all-time-team.html`; `hall-of-fame.html`; `owners.html`.
+`players.html`; `player.html` individual profile; `player-tiers.html`; `player-vs-player.html`; `free-agents.html`; `teams.html`; `team.html` individual team; `team-vs-team.html`; `team-builder.html` 11v11 Team Builder; `coaches.html`; `coach.html` individual coach; `awards.html`; `best-all-time-team.html`; `hall-of-fame.html`; `owners.html`.
 
 ## Tournament and Media
 

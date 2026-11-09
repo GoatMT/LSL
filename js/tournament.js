@@ -2,6 +2,7 @@ import { loadSeasonData } from "./dataLoader.js?v=20261108-data3";
 import { renderFooter } from "../components/footer.js";
 import { controlSelect, escapeHTML, initials, setDocumentTitle, statusMessage } from "./utils.js";
 import { initPageAnimations } from "./animations.js?v=20260907-2";
+import { asList, normalizeTournamentArchive, playoffRounds, scheduleMatches, tournamentScore, tournamentWinner } from "./tournamentData.js?v=20261108-phase8";
 
 document.getElementById("site-navbar").innerHTML = "";
 document.getElementById("site-footer").innerHTML = renderFooter();
@@ -41,8 +42,8 @@ function eventTime(event = {}) {
 }
 
 function allTeams(tournament = {}) {
-  return (tournament.divisions || []).flatMap((division) =>
-    (division.teams || []).map((team) => ({
+  return asList(tournament.divisions).flatMap((division) =>
+    asList(division.teams).map((team) => ({
       ...team,
       divisionId: division.id,
       divisionName: division.name,
@@ -53,23 +54,6 @@ function allTeams(tournament = {}) {
 
 function teamById(tournament = {}) {
   return new Map(allTeams(tournament).map((team) => [team.id, team]));
-}
-
-function scoreText(match = {}) {
-  if (match.activityTitle) return match.status || "Scheduled";
-  if (Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore)) {
-    const pens = match.penaltyScore ? `, pens ${match.penaltyScore}` : "";
-    return `${match.homeScore}-${match.awayScore}${pens}`;
-  }
-  return "VS";
-}
-
-function winnerText(match = {}) {
-  if (match.status) return match.status;
-  if (!Number.isFinite(match.homeScore) || !Number.isFinite(match.awayScore)) return "Coming Soon";
-  if (match.homeScore > match.awayScore) return `${match.homeTeamName} win`;
-  if (match.awayScore > match.homeScore) return `${match.awayTeamName} win`;
-  return "Draw";
 }
 
 function logoMark(team = {}, size = "normal") {
@@ -90,7 +74,7 @@ function renderPageChrome(tournament) {
     <nav class="imt-subnav" aria-label="Inter-Madrasah navigation">
       ${VIEWS.map(
         (view) => `
-          <button class="${view.id === activeView ? "active" : ""}" type="button" data-imt-view="${escapeHTML(view.id)}">
+          <button class="${view.id === activeView ? "active" : ""}" type="button" data-imt-view="${escapeHTML(view.id)}"${view.id === activeView ? ' aria-current="page"' : ""}>
             ${escapeHTML(view.label)}
           </button>
         `
@@ -132,7 +116,7 @@ function renderStatusPanel(tournament) {
   const event = tournament.event || {};
   const champion = tournament.playoffs?.champion || event.champion || "Coming Soon";
   const runnerUp = tournament.playoffs?.runnerUp || event.runnerUp || "Coming Soon";
-  const nextMatch = (tournament.matches || []).find((match) => !Number.isFinite(match.homeScore) && !match.activityTitle);
+  const nextMatch = asList(tournament.matches).find((match) => !Number.isFinite(match.homeScore) && !match.activityTitle);
   const isComplete = champion !== "Coming Soon" && champion.trim() !== "";
   const statusLabel = nextMatch ? "Next Match" : isComplete ? "Tournament Complete" : "Coming Soon";
   const statusTitle = nextMatch
@@ -214,7 +198,7 @@ function renderQuickButtons() {
 }
 
 function renderDivisionCards(tournament) {
-  const divisions = tournament.divisions || [];
+  const divisions = asList(tournament.divisions);
   if (!divisions.length) return statusMessage("empty", "Tournament divisions are coming soon.");
   return `
     <section class="imt-section">
@@ -229,11 +213,11 @@ function renderDivisionCards(tournament) {
               <article class="imt-division-card ${escapeHTML(division.theme || division.id)}">
                 <div class="imt-division-card-head">
                   <span>${escapeHTML(division.name)}</span>
-                  <strong>${escapeHTML((division.teams || []).length)} teams</strong>
+                <strong>${escapeHTML(asList(division.teams).length)} teams</strong>
                 </div>
                 <p>${escapeHTML(division.description || "Division details coming soon.")}</p>
                 <div class="imt-institution-grid">
-                  ${(division.teams || [])
+                  ${asList(division.teams)
                     .map(
                       (team) => `
                         <div class="imt-institution-chip">
@@ -289,11 +273,18 @@ function mediaKey(title = "") {
 }
 
 function isVideoSrc(src = "") {
-  return /\.(mp4|webm|mov|m4v)$/i.test(src);
+  return /\.(mp4|webm|mov|m4v)$/i.test(String(src).split(/[?#]/)[0]);
+}
+
+function videoMimeType(src = "") {
+  const extension = String(src).split("?")[0].split(".").at(-1)?.toLowerCase();
+  if (extension === "webm") return "video/webm";
+  if (extension === "mov") return "video/quicktime";
+  return "video/mp4";
 }
 
 function renderMediaStrip(tournament) {
-  const media = tournament.media || [];
+  const media = asList(tournament.media);
   if (!media.length) return "";
   return `
     <section class="imt-section">
@@ -310,7 +301,7 @@ function renderMediaStrip(tournament) {
                   ${
                     isVideoSrc(item.src)
                       ? `<video controls playsinline preload="metadata" data-media-title="${escapeHTML(item.title || "Tournament video")}">
-                          <source src="${escapeHTML(item.src)}" type="video/mp4">
+                          <source src="${escapeHTML(item.src)}" type="${videoMimeType(item.src)}">
                           Your browser cannot play this video.
                         </video>`
                       : `<img src="${escapeHTML(item.src)}" alt="${escapeHTML(item.title)}" loading="lazy" decoding="async">`
@@ -330,7 +321,7 @@ function renderMediaStrip(tournament) {
 }
 
 function renderNewsPanel(tournament) {
-  const news = tournament.news || [];
+  const news = asList(tournament.news);
   if (!news.length) return "";
   return `
     <section class="imt-section">
@@ -356,6 +347,17 @@ function renderNewsPanel(tournament) {
 }
 
 function renderHome(tournament) {
+  if (/did not start until 2025/i.test(tournament.event?.source || "")) {
+    return `
+      <section class="imt-section imt-archive-empty">
+        <div class="imt-section-head">
+          <span class="imt-blue-kicker">Tournament Archive</span>
+          <h2>No 2024 Tournament Results</h2>
+          <p>${escapeHTML(tournament.event.source)}</p>
+        </div>
+      </section>
+    `;
+  }
   return `
     ${renderStatusPanel(tournament)}
     ${renderIntroPanel(tournament)}
@@ -388,16 +390,16 @@ function renderScheduleRow(match, index) {
         <small>${escapeHTML(match.label || match.round || "Match")}</small>
       </div>
       <div class="imt-schedule-result">
-        <strong>${escapeHTML(scoreText(match))}</strong>
-        <small>${escapeHTML(winnerText(match))}</small>
+      <strong>${escapeHTML(tournamentScore(match))}</strong>
+      <small>${escapeHTML(tournamentWinner(match))}</small>
       </div>
     </article>
   `;
 }
 
 function renderSchedule(tournament) {
-  const matches = tournament.matches || [];
-  const groups = ["Group Stage", "Break", "Quarter-Finals", "Semi-Finals", "Final"];
+  const matches = scheduleMatches(tournament);
+  const groups = [...new Set(["Group Stage", "Break", ...matches.map((match) => match.round || "Group Stage")])];
   return `
     <section class="imt-section">
       <div class="imt-section-head">
@@ -424,7 +426,7 @@ function renderSchedule(tournament) {
 }
 
 function groupStageMatches(tournament, divisionId) {
-  return (tournament.matches || []).filter(
+  return asList(tournament.matches).filter(
     (match) => !match.activityTitle && (!match.round || match.round === "Group Stage") && (!divisionId || match.divisionId === divisionId)
   );
 }
@@ -517,7 +519,7 @@ function renderStandingsList(rows) {
 
 function renderStandings(tournament) {
   const options = [
-    ...(tournament.divisions || []).map((division) => ({ id: division.id, label: division.name })),
+    ...asList(tournament.divisions).map((division) => ({ id: division.id, label: division.name })),
     { id: "combined", label: "Combined" },
   ];
   const activeStandingsView = options.some((option) => option.id === state.standingsView) ? state.standingsView : options[0]?.id || "combined";
@@ -525,7 +527,7 @@ function renderStandings(tournament) {
   const rows = standingsRows(tournament, activeStandingsView);
 
   return `
-    <section class="imt-section">
+    <section class="imt-section" id="imt-standings-panel" role="tabpanel" aria-labelledby="imt-standings-tab-${escapeHTML(activeStandingsView)}">
       <div class="imt-section-head">
         <span class="imt-blue-kicker">Standings</span>
         <h2>Division Tables</h2>
@@ -534,7 +536,7 @@ function renderStandings(tournament) {
       <div class="imt-choice-row" role="tablist" aria-label="Tournament standings view">
         ${options
           .map(
-            (option) => `<button class="${activeStandingsView === option.id ? "active" : ""}" type="button" data-imt-standings="${escapeHTML(option.id)}">${escapeHTML(option.label)}</button>`
+            (option) => `<button class="${activeStandingsView === option.id ? "active" : ""}" type="button" role="tab" id="imt-standings-tab-${escapeHTML(option.id)}" aria-controls="imt-standings-panel" aria-selected="${activeStandingsView === option.id}" tabindex="${activeStandingsView === option.id ? "0" : "-1"}" data-imt-standings="${escapeHTML(option.id)}">${escapeHTML(option.label)}</button>`
           )
           .join("")}
       </div>
@@ -544,7 +546,7 @@ function renderStandings(tournament) {
 }
 
 function renderBracket(tournament) {
-  const rounds = tournament.playoffs?.rounds || [];
+  const rounds = playoffRounds(tournament);
   const teams = teamById(tournament);
   if (!rounds.length) return statusMessage("empty", "Playoff bracket coming soon.");
   return `
@@ -560,9 +562,15 @@ function renderBracket(tournament) {
             (round) => `
               <div class="imt-bracket-round">
                 <h3>${escapeHTML(round.name)}</h3>
-                ${(round.matches || [])
+                ${asList(round.matches)
                   .map(
                     (match) => `
+                      ${(() => {
+                        const hasScore = Number.isFinite(match.homeScore) && Number.isFinite(match.awayScore);
+                        const homeScore = hasScore ? match.homeScore : "N/R";
+                        const awayScore = hasScore ? match.awayScore : "N/R";
+                        const accessibleScore = hasScore ? "" : ' aria-label="Score not recorded"';
+                        return `
                       <article class="imt-bracket-match">
                         <span>${escapeHTML(match.label || round.name)}</span>
                         <div class="${[teams.get(match.homeTeamId)?.divisionTheme, match.winnerId === match.homeTeamId ? "winner" : ""].filter(Boolean).join(" ")}">
@@ -570,17 +578,19 @@ function renderBracket(tournament) {
                             ${logoMark(teams.get(match.homeTeamId) || {}, "small")}
                             <strong>${escapeHTML(match.homeTeamName)}</strong>
                           </span>
-                          <b>${escapeHTML(match.homeScore)}</b>
+                          <b${accessibleScore}>${escapeHTML(homeScore)}</b>
                         </div>
                         <div class="${[teams.get(match.awayTeamId)?.divisionTheme, match.winnerId === match.awayTeamId ? "winner" : ""].filter(Boolean).join(" ")}">
                           <span class="imt-bracket-team-name">
                             ${logoMark(teams.get(match.awayTeamId) || {}, "small")}
                             <strong>${escapeHTML(match.awayTeamName)}</strong>
                           </span>
-                          <b>${escapeHTML(match.awayScore)}</b>
+                          <b${accessibleScore}>${escapeHTML(awayScore)}</b>
                         </div>
                         ${match.note ? `<p>${escapeHTML(match.note)}</p>` : ""}
                       </article>
+                        `;
+                      })()}
                     `
                   )
                   .join("")}
@@ -605,7 +615,7 @@ function renderTeamSchedule(tournament, teamId) {
             <div>
               <span>${escapeHTML(match.time || match.label || "Match")}</span>
               <strong>${escapeHTML(opponent || "Opponent TBA")}</strong>
-              <small>${escapeHTML(scoreText(match))}</small>
+                            <small>${escapeHTML(tournamentScore(match))}</small>
             </div>
           `;
         })
@@ -685,7 +695,7 @@ function renderTeams(tournament) {
 function renderLanternTeam(tournament) {
   const lantern = tournament.lanternTeam || allTeams(tournament).find((team) => /lantern/i.test(team.name)) || {};
   const roster = lantern.roster || [];
-  const lanternMatches = (tournament.matches || []).filter((match) => match.homeTeamId === "lantern-of-knowledge-academy" || match.awayTeamId === "lantern-of-knowledge-academy");
+  const lanternMatches = asList(tournament.matches).filter((match) => match.homeTeamId === "lantern-of-knowledge-academy" || match.awayTeamId === "lantern-of-knowledge-academy");
 
   return `
     <section class="imt-section">
@@ -713,7 +723,7 @@ function renderLanternTeam(tournament) {
             (match) => `
               <article>
                 <span>${escapeHTML(match.round || match.label || "Match")}</span>
-                <strong>${escapeHTML(match.homeTeamName)} ${escapeHTML(scoreText(match))} ${escapeHTML(match.awayTeamName)}</strong>
+                <strong>${escapeHTML(match.homeTeamName)} ${escapeHTML(tournamentScore(match))} ${escapeHTML(match.awayTeamName)}</strong>
                 <small>${escapeHTML(match.status || "Result")}</small>
               </article>
             `
@@ -747,12 +757,34 @@ function renderView(tournament) {
 }
 
 function hydrate(tournament) {
+  if (!root.dataset.imtMediaFallbacks) {
+    root.dataset.imtMediaFallbacks = "true";
+    root.addEventListener("error", (event) => {
+      const media = event.target;
+      if (!(media instanceof HTMLImageElement) && !(media instanceof HTMLVideoElement)) return;
+      const frame = media.closest(".imt-media-frame");
+      if (!frame || frame.querySelector(".media-load-fallback")) return;
+      const fallback = document.createElement("span");
+      fallback.className = "media-load-fallback";
+      fallback.setAttribute("role", "status");
+      fallback.textContent = media instanceof HTMLVideoElement ? "This tournament video could not be played." : "This tournament photo could not be loaded.";
+      frame.appendChild(fallback);
+    }, true);
+  }
+
   document.getElementById("imt-year")?.addEventListener("change", async (event) => {
+    const previousSeason = state.season;
     state.season = event.target.value;
     state.view = "home";
     state.standingsView = "";
     window.history.replaceState(null, "", window.location.pathname);
-    render(await loadSeasonData(state.season));
+    try {
+      render(await loadSeasonData(state.season));
+    } catch (error) {
+      console.error("Could not load the Inter-Madrasah season", error);
+      state.season = previousSeason;
+      root.innerHTML = statusMessage("error", "This tournament season could not load. Please try again.");
+    }
   });
 
   root.querySelectorAll("[data-imt-view]").forEach((button) => {
@@ -760,6 +792,7 @@ function hydrate(tournament) {
       state.view = button.dataset.imtView || "home";
       window.history.replaceState(null, "", `#${state.view}`);
       render({ tournament });
+      root.querySelector(`[data-imt-view="${state.view}"]`)?.focus();
     });
   });
 
@@ -767,35 +800,24 @@ function hydrate(tournament) {
     button.addEventListener("click", () => {
       state.standingsView = button.dataset.imtStandings || "combined";
       render({ tournament });
+      root.querySelector(`[data-imt-standings="${state.standingsView}"]`)?.focus();
+    });
+  });
+
+  root.querySelectorAll("[data-imt-standings]").forEach((button, index, buttons) => {
+    button.addEventListener("keydown", (event) => {
+      const direction = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
+      const destination = event.key === "Home" ? buttons[0] : event.key === "End" ? buttons.at(-1) : direction ? buttons[(index + direction + buttons.length) % buttons.length] : null;
+      if (!destination) return;
+      event.preventDefault();
+      destination.focus();
+      destination.click();
     });
   });
 }
 
-function normalize2025Tournament(tournament = {}) {
-  if (tournament.event?.date || tournament.event?.headline) return tournament;
-  const champion = tournament.playoffs?.champion || "Hifz City";
-  return {
-    ...tournament,
-    event: {
-      ...(tournament.event || {}),
-      edition: tournament.season ? `${tournament.season} Tournament` : "Tournament Archive",
-      headline: "Tournament archive with divisions, teams, match results, and playoff history.",
-      statusLabel: "Tournament Archive",
-      currentStatus: `Champion: ${champion}`,
-      champion,
-      date: tournament.event?.dates,
-      time: tournament.event?.schedule,
-      gameLength: "Full day tournament",
-      intro: [
-        "The first Inter-Madrasah Soccer Tournament brought together multiple madrasah teams for a full day of competition.",
-        "Use the year selector to compare tournament seasons."
-      ],
-    },
-  };
-}
-
 function render(data) {
-  const tournament = normalize2025Tournament(data.tournament || {});
+  const tournament = normalizeTournamentArchive(data.tournament || {});
   if (!tournament) {
     root.innerHTML = statusMessage("empty", "Tournament page coming soon.");
     return;

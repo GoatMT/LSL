@@ -2,8 +2,8 @@ import { renderFormStrip } from "../components/formStrip.js";
 import { renderMatchCard } from "../components/matchCard.js?v=3.2";
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=20261108-data3";
-import { calculateTeamForm, calculateTeamRecord, computePlayerStats, getMatchTeams, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
-import { setupLayout } from "./main.js?v=20261108-shared4";
+import { calculateTeamForm, calculateTeamRecord, computePlayerStats, getMatchTeams, matchGameNumberForWeek, regularSeasonGameLabel, scoreText, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
+import { setupLayout } from "./main.js?v=20261108-palette1";
 import { initShareButtons, renderShareButtons } from "./shareLinks.js";
 import { escapeHTML, formatDateWithISO, getQueryParam, initials, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 
@@ -141,25 +141,11 @@ function renderStartingGoalies(data, home, away) {
   `;
 }
 
-function matchGameNumber(match) {
-  const idParts = String(match?.id || "").split("-");
-  const gameIndex = idParts.indexOf("game");
-  if (gameIndex >= 0 && Number.isFinite(Number(idParts[gameIndex + 1]))) {
-    const globalGame = Number(idParts[gameIndex + 1]);
-    return ((globalGame - 1) % 4) + 1;
-  }
-
-  const labelMatch = String(match?.label || "").match(/game\s+(\d+)/i);
-  return labelMatch ? Number(labelMatch[1]) : null;
+function matchDisplayLabel(matches, match) {
+  return regularSeasonGameLabel(matches, match);
 }
 
-function matchDisplayLabel(match) {
-  if (match?.label && !/^game\s+\d+$/i.test(String(match.label))) return match.label;
-  if (match?.week && matchGameNumber(match)) return `Week ${match.week} Game ${matchGameNumber(match)}`;
-  return match?.label || (match?.week ? `Week ${match.week}` : "Match");
-}
-
-function mediaBelongsToMatch(item, match) {
+function mediaBelongsToMatch(item, match, matches) {
   if (!item || !match) return false;
   const ids = [item.matchId, item.gameId, ...(Array.isArray(item.matchIds) ? item.matchIds : [])]
     .filter(Boolean)
@@ -167,7 +153,7 @@ function mediaBelongsToMatch(item, match) {
   if (ids.includes(String(match.id || "").toLowerCase())) return true;
 
   const week = Number(match.week);
-  const game = matchGameNumber(match);
+  const game = matchGameNumberForWeek(matches, match);
   const itemWeek = Number(item.week ?? item.matchWeek);
   const itemGame = Number(item.game ?? item.gameNumber ?? item.matchNumber);
   if (Number.isFinite(week) && Number.isFinite(game) && itemWeek === week && itemGame === game) return true;
@@ -175,9 +161,12 @@ function mediaBelongsToMatch(item, match) {
   const references = [item.matchReference, item.matchLabel, item.gameLabel, item.title, item.description]
     .filter(Boolean)
     .join(" ")
-    .toLowerCase();
-  const label = matchDisplayLabel(match).toLowerCase();
-  return Boolean(label && references.includes(label));
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+  const label = matchDisplayLabel(matches, match).toLowerCase();
+  const normalizedLabel = label.replace(/[^a-z0-9]+/g, " ").trim();
+  return Boolean(normalizedLabel && references.includes(normalizedLabel));
 }
 
 function renderGameMediaCard(item, type) {
@@ -204,8 +193,8 @@ function renderGameMediaCard(item, type) {
 }
 
 function renderGameMedia(data, match) {
-  const photos = (data.photos || []).filter((item) => mediaBelongsToMatch(item, match));
-  const videos = (data.videos || []).filter((item) => mediaBelongsToMatch(item, match));
+  const photos = (data.photos || []).filter((item) => mediaBelongsToMatch(item, match, data.matches));
+  const videos = (data.videos || []).filter((item) => mediaBelongsToMatch(item, match, data.matches));
   const items = [
     ...photos.map((item) => ({ item, type: "photo" })),
     ...videos.map((item) => ({ item, type: "video" })),
@@ -332,7 +321,7 @@ async function init() {
     <section class="section-panel game-hero-panel">
       <div class="section-head compact-head">
         <div>
-          <span class="eyebrow">${escapeHTML(data.year)} ${escapeHTML(match.division || "LSL")} | ${escapeHTML(matchDisplayLabel(match))}</span>
+          <span class="eyebrow">${escapeHTML(data.year)} ${escapeHTML(match.division || "LSL")} | ${escapeHTML(matchDisplayLabel(data.matches, match))}</span>
           <h1>${escapeHTML(homeName)} vs ${escapeHTML(awayName)}</h1>
           <p>${escapeHTML(formatDateWithISO(match.date))} | ${escapeHTML(match.time || "Time TBA")}</p>
         </div>
@@ -355,7 +344,7 @@ async function init() {
     </section>
 
     <section class="section-panel">
-      ${renderMatchCard(data, { ...match, detailsOpen: true })}
+      ${renderMatchCard(data, { ...match, label: matchDisplayLabel(data.matches, match), detailsOpen: true })}
     </section>
 
     ${renderDataCompleteness(match)}

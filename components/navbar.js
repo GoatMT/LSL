@@ -1,6 +1,6 @@
 import { NAV_LINKS, SITE } from "../js/config.js";
 import { loadAllSeasons } from "../js/dataLoader.js?v=20261108-data3";
-import { computeCoachSummary, computeCombinedPlayerStats } from "../js/leagueEngine.js";
+import { computeCoachSummary, computeCombinedPlayerStats, regularSeasonGameLabel } from "../js/leagueEngine.js";
 import { escapeHTML } from "../js/utils.js";
 
 const MAIN_NAV_HREFS = new Set(["index.html", "news.html", "lsl-pulse.html", "free-agents.html", "season-recap.html", "all-time.html", "tournament.html"]);
@@ -95,7 +95,7 @@ function buildSearchIndex(seasons) {
   const matches = seasons.flatMap((season) => (season.matches || []).filter((match) => match.id).map((match) => ({
     type: "Match",
     title: `${match.homeTeamName || match.homeTeamId || "Team TBA"} vs ${match.awayTeamName || match.awayTeamId || "Team TBA"}`,
-    subtitle: `${season.year} | ${match.division || "Seniors"} | ${match.date || match.weekLabel || "Date TBA"}`,
+    subtitle: `${season.year} | ${match.division || "Seniors"} | ${regularSeasonGameLabel(season.matches, match)} | ${match.date || match.weekLabel || "Date TBA"}`,
     href: `./game.html?season=${encodeURIComponent(season.year)}&id=${encodeURIComponent(match.id || "")}`,
   })));
   const tournaments = seasons.flatMap((season) => {

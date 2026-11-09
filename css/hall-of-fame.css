@@ -8,7 +8,7 @@
   padding: clamp(30px, 4vw, 52px);
   border-top: 3px solid var(--gold);
   background:
-    linear-gradient(115deg, rgba(17, 60, 31, 0.98), rgba(31, 39, 32, 0.98)),
+    linear-gradient(115deg, rgba(39, 41, 39, 0.98), rgba(31, 39, 32, 0.98)),
     var(--card-2);
 }
 
@@ -603,7 +603,7 @@
 .hof-trophy-card--2026-seniors { background: #0D265E; border-color: #31589b; border-top-color: #7da9ef; }
 .hof-trophy-card--2025-seniors { background: #00007C; border-color: #3f5fc3; border-top-color: #9ab4ff; }
 .hof-trophy-card--2025-juniors { background: #1E1D2F; border-color: #575375; border-top-color: #aaa4dc; }
-.hof-trophy-photo { display: grid; place-items: center; align-content: center; min-height: 128px; color: var(--gold); background: linear-gradient(135deg, rgba(212, 175, 55, 0.13), rgba(17, 60, 31, 0.5)); border: 1px dashed rgba(212, 175, 55, 0.5); border-radius: 6px; text-align: center; }
+.hof-trophy-photo { display: grid; place-items: center; align-content: center; min-height: 128px; color: var(--gold); background: linear-gradient(135deg, rgba(212, 175, 55, 0.13), rgba(39, 41, 39, 0.5)); border: 1px dashed rgba(212, 175, 55, 0.5); border-radius: 6px; text-align: center; }
 .hof-trophy-photo span { font-size: 0.68rem; font-weight: 900; letter-spacing: 0.12em; }
 .hof-trophy-photo strong { margin-top: 6px; font-size: 1rem; }
 .hof-trophy-photo.has-image { min-height: 128px; padding: 0; overflow: hidden; background: inherit; border-style: solid; }

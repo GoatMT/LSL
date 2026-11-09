@@ -1,17 +1,17 @@
 :root {
-  --gold: #c7a367;
-  --green: #113c1f;
-  --green-2: #1b5630;
+  --gold: #d1b166;
+  --green: #292b29;
+  --green-2: #3b3d3b;
   --ink: #f4f7f2;
-  --muted: #bac6bc;
-  --line: #3c463f;
+  --muted: #c0c3bf;
+  --line: #484b48;
   --line-dark: rgba(255, 255, 255, 0.18);
-  --page: #191b19;
-  --panel: #242724;
-  --card: #2e332f;
-  --card-2: #20231f;
-  --soft: #303832;
-  --soft-gold: #3a3427;
+  --page: #242624;
+  --panel: #303230;
+  --card: #3a3c3a;
+  --card-2: #252725;
+  --soft: #444644;
+  --soft-gold: #403a2e;
   --danger: #ffb2a8;
   --radius-lg: 24px;
   --radius-md: 18px;
@@ -152,7 +152,7 @@ button {
 .hero-copy {
   min-width: 0;
   color: #ffffff;
-  background: #123f21;
+  background: #303230;
   border: 1px solid var(--line-dark);
   border-radius: var(--radius-lg);
   padding: 34px;
@@ -226,7 +226,7 @@ button {
   gap: 16px;
   margin-bottom: 24px;
   padding: 12px 16px;
-  background: #123f21;
+  background: #303230;
   border: 1px solid var(--line-dark);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow);
@@ -406,7 +406,7 @@ button {
 }
 
 .home-priority-panel .section-head {
-  background: #123f21;
+  background: #303230;
   border-color: rgba(199, 163, 103, 0.34);
 }
 
@@ -600,18 +600,25 @@ button {
 
 .home-leader-total {
   grid-column: 1 / -1;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
-  justify-content: space-between;
   gap: 16px;
   padding-top: 18px;
   border-top: 1px solid var(--line);
 }
 
 .home-leader-total strong {
+  grid-column: 2;
+  grid-row: 1 / span 2;
   color: #ffffff;
   font-size: 4rem;
   line-height: 0.9;
+}
+
+.home-leader-total small {
+  color: var(--muted);
+  font-weight: 800;
 }
 
 .home-leader-list {
@@ -624,7 +631,7 @@ button {
 .home-leader-row {
   width: 100%;
   display: grid;
-  grid-template-columns: 42px minmax(0, 1fr) 52px;
+  grid-template-columns: 42px minmax(0, 1fr) minmax(52px, max-content);
   gap: 10px;
   align-items: center;
   min-height: 46px;
@@ -673,6 +680,21 @@ button {
   justify-self: end;
   color: #ffffff;
   font-size: 1.05rem;
+}
+
+.home-leader-row-metric {
+  display: grid;
+  gap: 2px;
+  justify-items: end;
+  text-align: right;
+}
+
+.home-leader-row-metric small {
+  max-width: 84px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .team-week-panel {

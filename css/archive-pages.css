@@ -11,7 +11,7 @@
   gap: 24px;
   align-items: end;
   border-top: 3px solid var(--gold);
-  background: linear-gradient(125deg, rgba(17, 60, 31, 0.96), rgba(28, 34, 29, 0.96));
+  background: linear-gradient(125deg, rgba(39, 41, 39, 0.96), rgba(46, 48, 46, 0.96));
 }
 
 .archive-hero::after {

@@ -286,7 +286,7 @@
 
 .free-agents-table tbody tr:hover,
 .free-agents-table tbody tr:focus-within {
-  background: rgba(17, 60, 31, 0.42);
+  background: rgba(39, 41, 39, 0.42);
   box-shadow: inset 3px 0 0 var(--gold);
 }
 
@@ -606,7 +606,7 @@
   overflow: hidden;
   isolation: isolate;
   border-top: 3px solid var(--gold);
-  background: #202621;
+  background: var(--panel);
 }
 
 .free-agents-page .free-agents-hero::before {

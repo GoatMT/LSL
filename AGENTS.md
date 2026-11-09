@@ -26,7 +26,7 @@ This repository is the static Lantern Soccer League website deployed through Git
 
 ## Design Direction
 
-Shared design tokens live in `css/modern-system.css`. Logo sampling from `Logos/lsl-logo.png` identified the most frequent opaque brand pixels as gold `#9E7921` and green `#0D4923`; accessible emphasis gold is `#D1B166`. Dark surfaces use charcoal `#151A17`, panel `#202621`, card `#292F2A`, muted text `#BAC6BC`, and border `#424D45`. The target hierarchy is gold, grayish, blackish/charcoal, then green. Preserve Inter-Madrasah's current colors during redesign unless the project owner explicitly changes that constraint.
+Shared design tokens live in `css/modern-system.css`. The site-wide interface hierarchy is gray, gold, black/charcoal, with green used last as a restrained accent. Current surfaces are page `#242624`, panel `#303230`, card `#3A3C3A`, deep card `#252725`, muted text `#C0C3BF`, and border `#484B48`; emphasis gold is `#D1B166`. Preserve team/championship-specific colors and Inter-Madrasah's current colors. Global palette rules must be scoped to `body:not(.imt-blue-page)`.
 
 Use the existing system font stack until a proposed font is approved and bundled or otherwise made reliably available. Use consistent, compact radii, clear typography, numerical alignment, keyboard focus, readable contrast, and responsive layouts. Respect reduced motion. Avoid unnecessary frameworks and animation workload.
 

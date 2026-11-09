@@ -1,4 +1,4 @@
-import { isCompletedMatch, playerMap, scoreText, teamMap, winnerTeamId } from "../js/leagueEngine.js";
+import { isCompletedMatch, playerMap, regularSeasonGameLabel, scoreText, teamMap, winnerTeamId } from "../js/leagueEngine.js";
 import { matchToCalendarEvent, renderCalendarButtons } from "../js/calendarLinks.js";
 import { escapeHTML, formatDateWithISO, joinNames, teamProfileHref } from "../js/utils.js";
 
@@ -125,6 +125,7 @@ export function renderMatchCard(data, match) {
     renderStatBlock("Assists", match.assists || [], players, match, "assists"),
   ].join("");
   const matchMeta = `${escapeHTML(match.division)} | ${escapeHTML(formatDateWithISO(match.date))}`;
+  const displayLabel = regularSeasonGameLabel(data.matches, match);
   const timePill = match.time ? `<span class="match-time-pill">${escapeHTML(match.time)}</span>` : "";
 
   if (match.activityTitle) {
@@ -132,7 +133,7 @@ export function renderMatchCard(data, match) {
       <article class="card match-card">
         <div class="match-topline">
           <div>
-            <span class="pill green">${escapeHTML(match.label || `Week ${match.week}`)}</span>
+            <span class="pill green">${escapeHTML(displayLabel)}</span>
             <div class="match-meta-line">
               <p class="source-note">${matchMeta}</p>
               ${timePill}
@@ -163,7 +164,7 @@ export function renderMatchCard(data, match) {
     <article class="card match-card">
       <div class="match-topline">
         <div>
-          <span class="pill ${match.stage === "playoffs" ? "" : "green"}">${escapeHTML(match.label || `Week ${match.week}`)}</span>
+          <span class="pill ${match.stage === "playoffs" ? "" : "green"}">${escapeHTML(displayLabel)}</span>
           <div class="match-meta-line">
             <p class="source-note">${matchMeta}</p>
             ${timePill}

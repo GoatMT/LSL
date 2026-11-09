@@ -23,7 +23,7 @@
   gap: 20px;
   border-color: rgba(199, 163, 103, 0.52);
   background:
-    linear-gradient(120deg, rgba(17, 60, 31, 0.94), rgba(32, 42, 35, 0.96)),
+    linear-gradient(120deg, rgba(39, 41, 39, 0.94), rgba(32, 42, 35, 0.96)),
     var(--panel);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
 }
