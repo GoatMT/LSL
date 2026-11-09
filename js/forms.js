@@ -1,6 +1,6 @@
 import { loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { SITE } from "./config.js";
-import { setupLayout } from "./main.js?v=20261108-palette1";
+import { setupLayout } from "./main.js?v=20261108-green2";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("forms.html");

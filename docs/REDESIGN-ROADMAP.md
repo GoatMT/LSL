@@ -44,9 +44,11 @@ Applied the requested gray-first, gold-emphasis, black/charcoal-depth, green-las
 
 Checks: real 2024-2026 player-pool/formation validation, JS syntax, service-worker shell, existing homepage/IMST/competition checks, shared CSS scoping, and stale asset-version scan. Visual browser QA remains limited in this environment.
 
-## Phase 10: Remaining Pages and Features
+## Phase 10: Remaining Pages and Features (Complete)
 
-Redesign remaining pages and approved supported features; remove inconsistent legacy presentation without deleting content.
+Completed a final shared-system pass across the active non-IMST pages, focusing on the remaining community and operations surfaces. LSL Pulse now uses gray/charcoal surfaces, gold primary actions, green selected controls, restrained positive-reaction states, neutral user-post cards, and responsive post actions instead of the isolated blue styling. Trade history, news selection/links, and form states now follow the same surface and interaction hierarchy. Existing content, data, workflows, and league-specific standings/championship colors were preserved; all new global styling remains scoped away from IMST.
+
+Rotated active root-page asset query versions and the service-worker cache so clients pick up the shared design without a hard refresh. A follow-up palette adjustment promoted LSL green as the shared secondary/action color and restored the 2027 Expected Dates section to a green field with gold date tiles. The homepage's missing Expected Dates stylesheet is now linked and precached, restoring its card grid and season archive layout; IMST remains unchanged. Checks passed: all 42 root pages load the current design layer, IMST metadata remains blue, CSS scoping assertions, existing homepage/IMST/competition/Team Builder validators, and JavaScript syntax checks. Visual browser QA remains for Phase 11 because this environment cannot bind a local HTTP preview server.
 
 ## Phase 11: Full QA and Polish
 

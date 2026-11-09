@@ -5,8 +5,8 @@
   --brand-green-strong: #1b5630;
   --gold: #d1b166;
   --gold-soft: #ead3a8;
-  --green: #292b29;
-  --green-2: #3b3d3b;
+  --green: #0d4923;
+  --green-2: #1b5630;
   --page: #242624;
   --panel: #303230;
   --card: #3a3c3a;
@@ -465,19 +465,20 @@ body.imt-blue-page :where(a, button, input, select, textarea, summary, [role="ta
   }
 }
 
-/* Site-wide gray, gold, and black palette; green stays a restrained accent. */
+/* Site-wide gray, gold, charcoal, and league-green palette. */
 body:not(.imt-blue-page) {
   --page: #242624;
   --panel: #303230;
   --card: #3a3c3a;
   --card-2: #252725;
   --soft: #444644;
-  --green: #292b29;
-  --green-2: #3b3d3b;
+  --green: #0d4923;
+  --green-2: #1b5630;
   --ink: #f4f7f2;
   --muted: #c0c3bf;
   --line: #484b48;
   --gold: #d1b166;
+  --border-interactive: rgba(101, 180, 123, 0.68);
 }
 
 body:not(.imt-blue-page) .page-shell::before {
@@ -1072,4 +1073,259 @@ body:not(.imt-blue-page) .hof-trophy-card--2025-seniors,
 body:not(.imt-blue-page) .hof-trophy-card--2025-juniors,
 body:not(.imt-blue-page) .hof-trophy-card--2026-seniors {
   background-image: none;
+}
+
+/* Phase 10: bring remaining community and operations surfaces into the shared system. */
+body:not(.imt-blue-page) .trade-year-divider {
+  color: var(--gold-soft);
+  background: var(--card-2);
+}
+
+body:not(.imt-blue-page) .trade-row {
+  background: var(--card);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .trade-row:hover {
+  background: var(--card-2);
+  border-color: var(--border-interactive);
+  transform: none;
+}
+
+body:not(.imt-blue-page) .trade-row-date a,
+body:not(.imt-blue-page) .news-related-block a {
+  color: var(--gold-soft);
+  text-decoration-color: rgba(209, 177, 102, 0.6);
+}
+
+body:not(.imt-blue-page) .trade-row-date a:hover,
+body:not(.imt-blue-page) .trade-row-date a:focus-visible,
+body:not(.imt-blue-page) .news-related-block a:hover,
+body:not(.imt-blue-page) .news-related-block a:focus-visible {
+  color: var(--gold);
+}
+
+body:not(.imt-blue-page) .news-story-card.active {
+  background: var(--card-2);
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+
+body:not(.imt-blue-page) .news-article-media,
+body:not(.imt-blue-page) .news-article-hero,
+body:not(.imt-blue-page) .pulse-post-image {
+  background-color: var(--card-2);
+}
+
+body:not(.imt-blue-page) .news-article-card h1,
+body:not(.imt-blue-page) .news-article-card h2,
+body:not(.imt-blue-page) .news-article-card h3 {
+  text-wrap: balance;
+}
+
+body:not(.imt-blue-page) .pulse-tabs button:not(.active),
+body:not(.imt-blue-page) .pulse-post-actions button,
+body:not(.imt-blue-page) .pulse-account-button,
+body:not(.imt-blue-page) .pulse-attach-button,
+body:not(.imt-blue-page) .pulse-mention-option {
+  min-height: 44px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  box-shadow: none;
+  transition: background-color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard);
+}
+
+body:not(.imt-blue-page) .pulse-tabs button:not(.active):hover,
+body:not(.imt-blue-page) .pulse-post-actions button:hover:not(:disabled),
+body:not(.imt-blue-page) .pulse-account-button:hover,
+body:not(.imt-blue-page) .pulse-attach-button:hover,
+body:not(.imt-blue-page) .pulse-mention-option:hover {
+  color: var(--ink);
+  background: var(--soft);
+  border-color: var(--border-interactive);
+}
+
+body:not(.imt-blue-page) .pulse-tabs button.active {
+  color: #171817;
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+body:not(.imt-blue-page) .pulse-account-button,
+body:not(.imt-blue-page) .pulse-avatar {
+  color: var(--gold-soft);
+  background: var(--card-2);
+  border-color: var(--border-interactive);
+}
+
+body:not(.imt-blue-page) .pulse-post-card.pulse-post-user {
+  background: var(--card);
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+body:not(.imt-blue-page) .pulse-post-card.pulse-post-user:hover {
+  background: var(--card-2);
+  border-color: var(--border-interactive);
+  box-shadow: var(--shadow);
+}
+
+body:not(.imt-blue-page) .pulse-mention {
+  color: var(--gold-soft);
+  text-decoration-color: rgba(209, 177, 102, 0.6);
+}
+
+body:not(.imt-blue-page) .pulse-mention:hover,
+body:not(.imt-blue-page) .pulse-mention:focus-visible {
+  color: var(--gold);
+}
+
+body:not(.imt-blue-page) .pulse-mention-menu,
+body:not(.imt-blue-page) .pulse-reply {
+  color: var(--ink);
+  background: var(--card-2);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) .pulse-heart-button.liked {
+  color: #a9d7b1 !important;
+  background: rgba(101, 180, 123, 0.14) !important;
+  border-color: rgba(101, 180, 123, 0.48) !important;
+  box-shadow: none !important;
+}
+
+body:not(.imt-blue-page) .pulse-dislike-button.disliked {
+  color: var(--gold-soft) !important;
+  background: rgba(209, 177, 102, 0.12) !important;
+  border-color: var(--border-interactive) !important;
+  box-shadow: none !important;
+}
+
+body:not(.imt-blue-page) .pulse-repost-button.reposted {
+  color: #a9d7b1;
+  background: rgba(101, 180, 123, 0.14);
+  border-color: rgba(101, 180, 123, 0.48);
+  box-shadow: none;
+}
+
+body:not(.imt-blue-page) .pulse-post-actions {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+  body:not(.imt-blue-page) .pulse-post-actions button {
+    flex: 1 1 88px;
+  }
+}
+
+/* Green is the shared secondary control color; gold remains the primary accent. */
+body:not(.imt-blue-page) .button.secondary,
+body:not(.imt-blue-page) button.secondary {
+  color: var(--ink);
+  background-color: var(--brand-green);
+  border-color: var(--brand-green-strong);
+}
+
+body:not(.imt-blue-page) .button.secondary:hover:not(:disabled):not([aria-disabled="true"]),
+body:not(.imt-blue-page) button.secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  color: #ffffff;
+  background-color: var(--brand-green-strong);
+  border-color: var(--success);
+}
+
+body:not(.imt-blue-page) .button.secondary:disabled,
+body:not(.imt-blue-page) button.secondary:disabled,
+body:not(.imt-blue-page) .button.secondary[aria-disabled="true"],
+body:not(.imt-blue-page) button.secondary[aria-disabled="true"] {
+  color: var(--muted);
+  background-color: var(--soft);
+  border-color: var(--line);
+}
+
+body:not(.imt-blue-page) :is(button.active, .button.active, .nav-link.active, .nav-dropdown-button.active, .tab-button.active, .home-leader-tabs button.active, .all-time-toggle button.active, [role="tab"][aria-selected="true"], [aria-pressed="true"]) {
+  color: #ffffff;
+  background-color: var(--brand-green);
+  border-color: var(--success);
+}
+
+body:not(.imt-blue-page) input[type="checkbox"],
+body:not(.imt-blue-page) input[type="radio"] {
+  accent-color: var(--brand-green-strong);
+}
+
+body.home-page .home-expected-dates {
+  background-color: #16432a;
+  background-image: none;
+  border-color: var(--gold);
+  box-shadow: inset 0 1px 0 rgba(234, 211, 168, 0.12), var(--shadow);
+}
+
+body.home-page .home-expected-dates > .section-head {
+  color: #191b17;
+  background-color: var(--gold);
+  border-color: var(--gold-soft);
+}
+
+body.home-page .home-expected-dates > .section-head :is(h2, p) {
+  color: #191b17;
+}
+
+body.home-page .home-expected-dates > .section-head .eyebrow {
+  color: #193b24;
+}
+
+body.home-page .home-expected-dates > .section-head .pill {
+  color: #ffffff;
+  background-color: var(--brand-green);
+  border-color: var(--brand-green-strong);
+}
+
+body.home-page .home-expected-dates .home-expected-card {
+  min-height: 112px;
+  align-content: center;
+  background-color: var(--gold);
+  border: 1px solid var(--gold-soft);
+  border-top: 4px solid #f1dfb0;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+  transition: transform var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+body.home-page .home-expected-dates .home-expected-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.2);
+}
+
+body.home-page .home-expected-dates .home-expected-card span,
+body.home-page .home-expected-dates .home-expected-card strong {
+  color: #191b17;
+}
+
+body.home-page .home-expected-dates .home-season-history {
+  border-top-color: rgba(234, 211, 168, 0.5);
+}
+
+body.home-page .home-expected-dates .home-season-date-card {
+  padding: 16px;
+  background-color: #123721;
+  border: 1px solid rgba(234, 211, 168, 0.34);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius-md);
+}
+
+body.home-page .home-expected-dates .home-season-date-year,
+body.home-page .home-expected-dates .home-season-date-card dt {
+  color: var(--gold-soft);
+}
+
+body.home-page .home-expected-dates .home-season-start,
+body.home-page .home-expected-dates .home-season-date-card dd,
+body.home-page .home-expected-dates .home-season-history-heading h3 {
+  color: var(--ink);
+}
+
+body.home-page .home-expected-dates .home-season-date-card dl div + div {
+  padding-top: 8px;
+  border-top: 1px solid rgba(234, 211, 168, 0.16);
 }

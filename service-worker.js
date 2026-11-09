@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v139";
+const CACHE_NAME = "lsl-cache-v141";
 const NETWORK_TIMEOUT_MS = 6_000;
 
 /*

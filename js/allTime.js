@@ -3,7 +3,7 @@ import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { decorateCoachGrade } from "./coachRatings.js";
 import { calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, playersWithOVR } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { escapeHTML, formatPercent, setDocumentTitle, slugify, statusMessage, teamProfileHref, unique } from "./utils.js";
-import { setupLayout } from "./main.js?v=20261108-palette1";
+import { setupLayout } from "./main.js?v=20261108-green2";
 
 setupLayout("all-time.html");
 setDocumentTitle("All Time Stats");

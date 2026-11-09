@@ -1,5 +1,5 @@
 import { loadJSON, loadSeasonData } from "./dataLoader.js?v=20261108-data3";
-import { setupLayout } from "./main.js?v=20261108-palette1";
+import { setupLayout } from "./main.js?v=20261108-green2";
 import { SITE } from "./config.js";
 import { escapeHTML, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage, teamProfileHref } from "./utils.js";
 

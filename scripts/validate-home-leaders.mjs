@@ -37,9 +37,13 @@ assert.ok(rookies.every((player) => !priorPlayers.has(player.id)), "rookies have
 assert.ok(goals.length <= 10 && goalies.length <= 10 && rookies.length <= 10, "each tab is capped at the top ten");
 
 const home = renderHomeContent(current, seasons);
+const indexHtml = await readFile(resolve(siteRoot, "index.html"), "utf8");
+const serviceWorker = await readFile(resolve(siteRoot, "service-worker.js"), "utf8");
 const leaderCategories = [...home.matchAll(/data-home-leader-stat="([^"]+)"/g)].map((match) => match[1]);
 assert.deepEqual(leaderCategories, ["goals", "goalies", "rookies"]);
 assert.ok(home.indexOf("2027 Expected Dates") < home.indexOf("Congratulations, EM Haulers FC!"), "2027 dates are the first homepage section");
 assert.doesNotMatch(home, /score-ticker-bar|Extremely Important News|Crazy Stats &amp; Records/);
+assert.match(indexHtml, /home-facts\.css\?v=20261108-green2/, "the expected dates component stylesheet is loaded");
+assert.match(serviceWorker, /\.\/css\/home-facts\.css/, "the expected dates stylesheet is available to the offline app shell");
 
 console.log(`2026 leaders verified: ${goals.length} scorers, ${goalies.length} goalkeepers, ${rookies.length} first-season players.`);

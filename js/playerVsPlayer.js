@@ -8,7 +8,7 @@ import {
   playerTeamForMatch,
   winnerTeamId,
 } from "./leagueEngine.js?v=3.24-playoff-threshold";
-import { setupLayout } from "./main.js?v=20261108-palette1";
+import { setupLayout } from "./main.js?v=20261108-green2";
 import {
   controlSelect,
   escapeHTML,

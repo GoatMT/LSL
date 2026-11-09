@@ -64,7 +64,7 @@ const manifest = JSON.parse(await readFile(resolve(siteRoot, "manifest.json"), "
 assert.match(nav, /label: "Team Builder", href: "team-builder\.html"/);
 assert.match(shell, /\.\/team-builder\.html/);
 assert.match(shell, /\.\/js\/teamBuilderCore\.js/);
-assert.match(html, /20261108-palette1/);
+assert.match(html, /20261108-green2/);
 assert.match(html, /theme-color" content="#242624/);
 assert.match(builderCss, /@media \(max-width: 440px\)/);
 assert.doesNotMatch(builderCss, /max-height:\s*640px/);
@@ -77,14 +77,27 @@ assert.ok(theme.lastIndexOf("Final palette precedence") > theme.indexOf("LSL sha
 assert.match(theme, /:is\(button\.active, \.button\.active/);
 assert.match(theme, /body:not\(\.imt-blue-page\) \.button\.primary[\s\S]*?background-color: var\(--gold\)/);
 assert.match(theme, /\.button\.primary:disabled[\s\S]*?background-color: var\(--soft\)/);
-assert.match(imstStyles, /\.imt-blue-page \{[\s\S]*?--gold: #1f7bd1/);
+assert.match(imstStyles, /\.imt-blue-page \{[\s\S]*?--green: #001a3a[\s\S]*?--gold: #1f7bd1/);
 assert.equal(manifest.theme_color, "#242624");
 const rootPages = (await readdir(siteRoot)).filter((entry) => entry.endsWith(".html"));
 for (const page of rootPages) {
   const source = await readFile(resolve(siteRoot, page), "utf8");
-  assert.match(source, /20261108-palette1/, `${page} refreshes shared asset URLs`);
+  assert.match(source, /20261108-green2/, `${page} refreshes shared asset URLs`);
+  assert.match(source, /modern-system\.css\?v=20261108-green2/, `${page} loads the current design layer`);
   if (page === "tournament.html") assert.match(source, /theme-color" content="#001a3a/);
   else assert.match(source, /theme-color" content="#242624/);
 }
+
+assert.match(theme, /Phase 10: bring remaining community and operations surfaces into the shared system/);
+assert.match(theme, /--green: #0d4923/);
+assert.match(theme, /--green-2: #1b5630/);
+assert.match(theme, /button\.secondary[\s\S]*?background-color: var\(--brand-green\)/);
+assert.match(theme, /body\.home-page \.home-expected-dates[\s\S]*?background-color: #16432a/);
+assert.match(theme, /home-expected-card[\s\S]*?background-color: var\(--gold\)/);
+assert.match(theme, /body:not\(\.imt-blue-page\) :is\(button\.active[\s\S]*?background-color: var\(--brand-green\)/);
+assert.match(theme, /body:not\(\.imt-blue-page\) \.pulse-post-card\.pulse-post-user[\s\S]*?background: var\(--card\)/);
+assert.match(theme, /body:not\(\.imt-blue-page\) \.trade-row:hover[\s\S]*?background: var\(--card-2\)/);
+assert.match(shell, /lsl-cache-v141/);
+assert.match(await readFile(resolve(siteRoot, "js/main.js"), "utf8"), /service-worker\.js\?v=20261108-green2/);
 
 console.log(`Team Builder checks passed: ${playerRowsChecked} real season-player rows, five 11-player formations, division filters, OVR, local-only saves, 42 refreshed pages, and IMST color isolation.`);

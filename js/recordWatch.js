@@ -1,6 +1,6 @@
 import { calculateTeamRecord, computeCombinedPlayerStats } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { loadAllSeasons } from "./dataLoader.js?v=20261108-data3";
-import { setupLayout } from "./main.js?v=20261108-palette1";
+import { setupLayout } from "./main.js?v=20261108-green2";
 import { escapeHTML, setDocumentTitle, statusMessage } from "./utils.js";
 
 setupLayout("record-watch.html");

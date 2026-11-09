@@ -21,10 +21,10 @@ The current base tokens in `css/main.css` are:
 
 ## Proposed Direction
 
-- Use gray as the main interface color, gold for emphasis, black/charcoal for depth, and green only as a restrained accent.
+- Use gray for the main surfaces, gold for primary emphasis, black/charcoal for depth, and LSL green for secondary buttons and selected states.
 - Logo color sampling found frequent opaque values `#9E7921` (gold) and `#0D4923` (green). `--gold: #D1B166` is a lighter text/focus accent so small UI text retains contrast.
 - Preserve distinct team/championship colors where they identify real league teams or winning seasons; they are not general interface colors.
-- Define semantic tokens for text, surface levels, border, focus, success, warning, error, and selected/disabled states.
+- Define semantic tokens for text, surface levels, border, focus, success, warning, error, and selected/disabled states. Green uses `#0D4923` / `#1B5630`; selected controls use green while primary actions remain gold.
 - Establish a compact radius scale and apply it consistently to tables, buttons, fields, cards, and dialogs.
 - Preserve Inter-Madrasah page colors as an explicit exception. Site-wide overrides are scoped to `body:not(.imt-blue-page)`.
 - Keep the current system font stack as baseline. A new typeface should be selected only after checking license, performance, offline behavior, and whether it can be locally bundled.
