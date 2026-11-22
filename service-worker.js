@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v146";
+const CACHE_NAME = "lsl-cache-v152";
 const NETWORK_TIMEOUT_MS = 6_000;
 
 /*
@@ -52,7 +52,11 @@ const APP_SHELL = [
   "./projected.html",
   "./player.html",
   "./player-card-studio.html",
+  "./team.html",
+  "./unites.html",
+  "./live-match-centre.html",
   "./manifest.json",
+  "./data/shared/partners.json",
 
   /* Main CSS */
   "./css/main.css",
@@ -66,6 +70,9 @@ const APP_SHELL = [
   "./css/players.css",
   "./css/player-profile.css?v=20261109-cardstudio1",
   "./css/player-card-studio.css?v=20261109-cardstudio1",
+  "./css/team-starting-seven.css?v=20261121-starting71",
+  "./css/unites.css?v=20261121-unites1",
+  "./css/live-match-centre.css?v=20261121-matchcentre3",
   "./css/player-tiers.css",
   "./css/home-facts.css",
   "./css/records.css",
@@ -90,6 +97,12 @@ const APP_SHELL = [
   "./js/playerTiers.js",
   "./js/playerProfile.js?v=20261109-cardstudio1",
   "./js/playerCardStudio.js?v=20261109-cardstudio1",
+  "./js/teamProfile.js?v=20261121-starting71",
+  "./js/teamStartingSeven.js?v=20261121-starting71",
+  "./js/unites.js?v=20261121-unites1",
+  "./js/liveMatchCentre.js?v=20261121-matchcentre3",
+  "./js/liveMatchCentreModel.js?v=20261121-matchcentre3",
+  "./js/liveMatchCentreSync.js?v=20261121-matchcentre3",
   "./js/projected.js?v=20261109-playerproj1",
   "./js/playerProjectionModel.js?v=20261109-playerproj1",
   "./js/animations.js",
@@ -153,6 +166,15 @@ const NETWORK_FIRST_ASSET_PATHS = [
   "/js/playerCardStudio.js",
   "/css/player-profile.css",
   "/css/player-card-studio.css",
+  "/js/teamProfile.js",
+  "/js/teamStartingSeven.js",
+  "/css/team-starting-seven.css",
+  "/js/unites.js",
+  "/css/unites.css",
+  "/js/liveMatchCentre.js",
+  "/js/liveMatchCentreModel.js",
+  "/js/liveMatchCentreSync.js",
+  "/css/live-match-centre.css",
 ];
 
 /* =========================================================

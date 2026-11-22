@@ -1,6 +1,7 @@
 import { renderFormStrip } from "../components/formStrip.js";
 import { SITE } from "./config.js";
 import { loadAllSeasons } from "./dataLoader.js?v=20261108-data3";
+import { renderStartingSevenPanel, setupStartingSevenGraphic } from "./teamStartingSeven.js?v=20261121-starting71";
 import { calculateStandings, calculateTeamForm, calculateTeamRecord, computeCombinedPlayerStats, computePlayerStats, getAwards, getNextTeamMatch, isCompletedMatch, playersWithOVR, regularSeasonGameLabel, scoreText, teamOVR, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261109-greenprimary1";
 import { escapeHTML, formatDateWithISO, getQueryParam, initials, leadershipRoleLabel, leadershipRoleShort, setDocumentTitle, statusMessage } from "./utils.js";
@@ -365,6 +366,7 @@ function renderProfileNav() {
   const items = [
     ["overview", "Overview"],
     ["roster", "Roster"],
+    ["starting7", "Starting 7"],
     ["stats", "Stats"],
     ["schedule", "Schedule"],
   ];
@@ -628,6 +630,8 @@ function render(allData) {
       ${renderPositionGroups(team, ratings)}
     </section>
 
+    ${renderStartingSevenPanel(team, data.year)}
+
     <section class="section-panel team-profile-panel" id="stats" data-team-panel="stats" hidden>
       <div class="section-head">
         <div>
@@ -663,6 +667,7 @@ function render(allData) {
   `;
 
   setupProfilePanels();
+  setupStartingSevenGraphic(team, data.year);
 }
 
 async function init() {

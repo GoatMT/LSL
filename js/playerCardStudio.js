@@ -46,6 +46,10 @@ function makePlayerCardRows(seasons) {
       latestSeason: latest?.year || "",
       latestTeam: latest?.team || "",
       latestJersey: latest?.jersey || player.jersey || "",
+      clubHistory: (careerByPlayer.get(player.id) || [])
+        .slice()
+        .sort((a, b) => Number(b.year) - Number(a.year))
+        .map((row) => row.year + " " + row.team),
       honors: unique([...playerAwards, ...storedAchievements]),
     };
   }).sort((a, b) => a.name.localeCompare(b.name));
@@ -187,10 +191,10 @@ function renderCard(ctx, player, photo) {
 
   ctx.fillStyle = "#d1b166";
   ctx.font = "900 25px system-ui, 'Segoe UI', sans-serif";
-  ctx.fillText("LATEST RECORDED CLUB  |  " + clean(player.latestSeason, "Season not listed"), 570, 838);
+  ctx.fillText("CLUB HISTORY  |  2024-2026", 570, 838);
   ctx.fillStyle = "#f5f5f2";
-  ctx.font = "800 37px system-ui, 'Segoe UI', sans-serif";
-  wrapText(ctx, clean(player.latestTeam, "Club not recorded"), 570, 888, 520, 47, 2);
+  ctx.font = "700 24px system-ui, 'Segoe UI', sans-serif";
+  wrapText(ctx, player.clubHistory.join("  /  ") || "Club history not recorded", 570, 882, 520, 34, 3);
 
   const keeper = isGoalkeeperOnly(player.position);
   const goalieGames = Number(player.goalkeeperGames) || 0;
@@ -283,8 +287,18 @@ async function init() {
   const ratedPlayers = new Map();
   let renderToken = 0;
 
-  select.innerHTML = players.map((player) => '<option value="' + escapeHTML(player.id) + '">' + escapeHTML(player.name) + " - " + escapeHTML(player.position || "Position not recorded") + "</option>").join("");
-  select.value = initialId;
+  function setOptions(filteredPlayers, selectedId) {
+    if (!filteredPlayers.length) {
+      select.innerHTML = '<option value="">No players match this search</option>';
+      select.disabled = true;
+      return;
+    }
+    select.disabled = false;
+    select.innerHTML = filteredPlayers.map((player) => '<option value="' + escapeHTML(player.id) + '">' + escapeHTML(player.name) + " - " + escapeHTML(player.position || "Position not recorded") + "</option>").join("");
+    select.value = filteredPlayers.some((player) => player.id === selectedId) ? selectedId : filteredPlayers[0].id;
+  }
+
+  setOptions(players, initialId);
 
   async function updateCard() {
     const record = players.find((item) => item.id === select.value);
@@ -308,18 +322,13 @@ async function init() {
 
   search.addEventListener("input", () => {
     const query = search.value.trim().toLocaleLowerCase();
-    [...select.options].forEach((option) => {
-      const player = players.find((item) => item.id === option.value);
-      const searchText = [player.name, player.position || "", player.latestTeam || ""].join(" ").toLocaleLowerCase();
-      option.hidden = Boolean(query) && !searchText.includes(query);
-    });
-    if (select.selectedOptions[0]?.hidden) {
-      const next = [...select.options].find((option) => !option.hidden);
-      if (next) {
-        select.value = next.value;
-        updateCard();
-      }
-    }
+    const filtered = players.filter((player) =>
+      [player.name, player.position || "", player.latestTeam || "", ...player.clubHistory].join(" ").toLocaleLowerCase().includes(query)
+    );
+    const selectedId = select.value;
+    setOptions(filtered, selectedId);
+    feedback.textContent = filtered.length ? "" : "No players match that search.";
+    if (select.value) updateCard();
   });
   select.addEventListener("change", updateCard);
 

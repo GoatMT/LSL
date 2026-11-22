@@ -1,6 +1,6 @@
 {
   "name": "lsl-pulse-functions",
-  "description": "Cloud Functions that send push notifications for new LSL Pulse posts and League News articles.",
+  "description": "LSL Pulse notifications and verified Live Match Centre publishing.",
   "private": true,
   "engines": {
     "node": "20"

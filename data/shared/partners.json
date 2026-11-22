@@ -1,0 +1,14 @@
+{
+  "partners": [
+    {
+      "id": "lantern-of-knowledge-academy",
+      "name": "Lantern of Knowledge Academy",
+      "category": "League partner",
+      "logo": "./Logos/lantern-of-knowledge-academy.png",
+      "url": "https://lanternofknowledgeacademy.ca/",
+      "source": "Existing LSL footer partner link and logo",
+      "seasons": null
+    }
+  ],
+  "sponsors": []
+}

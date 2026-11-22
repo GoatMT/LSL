@@ -5,7 +5,7 @@
 .official-profile-header {
   grid-template-columns: minmax(96px, 132px) minmax(0, 1fr) minmax(100px, 124px);
   gap: 20px;
-  padding: clamp(18px, 3vw, 30px);
+  padding: 24px;
   background:
     linear-gradient(110deg, rgba(13, 73, 35, 0.74), rgba(48, 50, 48, 0.94) 48%),
     var(--panel);
@@ -90,7 +90,7 @@
 }
 
 .official-stat-card strong {
-  font-size: clamp(1.25rem, 3vw, 1.9rem);
+  font-size: 1.75rem;
 }
 
 .official-info-card,
@@ -107,6 +107,10 @@
     grid-template-columns: 82px minmax(0, 1fr) 74px;
     gap: 12px;
     padding: 16px;
+  }
+
+  .official-stat-card strong {
+    font-size: 1.5rem;
   }
 
   .official-profile-photo {

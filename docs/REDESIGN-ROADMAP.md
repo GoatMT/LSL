@@ -76,6 +76,28 @@ Added the linked LSL Player Card Studio as a shared-navigation page and from eac
 
 Checks passed: 43-page/asset audit, 2024-2027 competition runtime validation, Player Card Studio data/OVR/keeper/source/nav/cache assertions, projections, Team Builder, homepage leaders, and IMST checks; changed JavaScript parses. Live browser interaction/visual QA remains pending because this environment has not allowed a local HTTP preview or browser-control session. Phase 11 remains in progress.
 
+## Phase 14: Team Starting 7 Graphic Generator (Feature Complete; Browser QA Pending)
+
+Added a Starting 7 tab on every individual team profile. The renderer accepts only a season-matching lineup explicitly marked confirmed, with a dated source, one of the supported formations, exactly seven distinct roster members, and a unique valid slot for each. Confirmed lineups render a responsive formation graphic with available roster photos, initials fallback, verified jersey numbers or “NO #”, an accessible text roster, PNG download, and share-link action. Download/share controls stay disabled until image loading and graphic drawing complete.
+
+No confirmed Starting 7 records exist in the current 24 team records. Those team pages therefore show an explicit empty state and never infer a lineup from the published roster. Documented the data contract in docs/starting-seven-confirmation.md; no team data was fabricated or changed. Added responsive/reduced-motion styles and refreshed the service-worker cache and team-profile assets for normal reload updates.
+
+Checks passed: focused confirmed/invalid lineup validation, current team-data audit, JavaScript syntax, site assets, runtime competition data, projections, Team Builder, homepage leaders, and IMST checks. Live browser/visual QA remains unavailable because browser control was stopped by the URL-safety check and local loopback access is restricted. Phase 11 remains in progress.
+
+## Phase 15: LSL Unites Community and Sponsor Directory (Feature Complete; Browser QA Pending)
+
+Added LSL Unites to shared navigation as a dedicated directory page. The page separates the one league partner explicitly listed in the existing LSL footer, Lantern of Knowledge Academy, from the historical sponsor archive. Current site records contain no standalone sponsor names or sponsor seasons, so those are not fabricated; the page clearly reports that gap. A searchable season/division archive presents all official team identities loaded from 2024-2026 data without claiming that teams are sponsors. Team profiles, local logos, accessible filters, compact responsive layouts, and reduced-motion styling are included.
+
+Added data/shared/partners.json as the source for verified partner/sponsor listings. Updated the PWA app shell and cache for normal reload updates. Focused validation covers the partner source, empty sponsor register, historical team records/logo paths, navigation, filtering, responsiveness, and cache wiring. Browser visual QA remains pending; Phase 11 remains in progress.
+
+## Phase 16: LSL Live Match Centre (Feature Complete; Firebase Setup and Browser QA Pending)
+
+Added a shared-navigation Live Match Centre for 104 source-backed 2024-2026 regular-season and playoff fixtures. It separates live, upcoming, completed, and delayed/postponed/cancelled views; shows source scores and links to match pages; supports season/division/stage filters; and displays real-time score/status/event overlays plus a latest update feed when Firestore is connected. The published 2027 planning dates and projections are not treated as fixtures. Past matches without a score/status remain unreported, not silently marked cancelled or upcoming.
+
+Added an admin publishing form using Firebase email/password sign-in and a server-verified `lslMatchAdmin` custom claim. A Cloud Function validates status/score/event payloads and writes updates using the Admin SDK. Firestore rules expose the live overlay collection for public reads and deny browser writes. Static season JSON is not changed by live updates. Added administrator setup/deployment instructions; no Firebase deployment, email/password provider configuration, or admin claim assignment was performed in this workspace.
+
+Checks passed: 104 fixtures and unique live-document keys, completed/live/cancelled status resolution, score/event validation, admin-claim checks, read-only Firestore rule assertions, focused page/cache checks, site asset scan, competition runtime data, projections, team tools, Starting 7, Player Card Studio, homepage leaders, and IMST checks. Live Firebase credentials/permissions and browser visual QA remain pending; Phase 11 remains in progress.
+
 ## Phase 1 Risks and Open Items
 
 - No Git worktree was detectable in the canonical folder during this audit, so change history and preexisting uncommitted work are unavailable here.

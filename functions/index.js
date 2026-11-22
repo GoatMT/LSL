@@ -1,8 +1,10 @@
 const { initializeApp } = require("firebase-admin/app");
-const { getFirestore } = require("firebase-admin/firestore");
+const { FieldValue, getFirestore } = require("firebase-admin/firestore");
 const { getMessaging } = require("firebase-admin/messaging");
 const { onDocumentCreated } = require("firebase-functions/v2/firestore");
+const { HttpsError, onCall } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
+const { hasMatchAdminClaim, sanitizeLiveMatchUpdate } = require("./liveMatchValidation");
 
 setGlobalOptions({ maxInstances: 5 });
 
@@ -76,5 +78,40 @@ exports.onNewsArticleMirrored = onDocumentCreated("lslPulse/main/newsMirror/{art
     body: truncate(article.headline || "A new article was just published."),
     url: article.url || "./news.html",
   });
+});
+
+exports.publishLiveMatchUpdate = onCall(async (request) => {
+  if (!hasMatchAdminClaim(request.auth)) {
+    throw new HttpsError("permission-denied", "A verified LSL match-admin account is required.");
+  }
+
+  let update;
+  try {
+    update = sanitizeLiveMatchUpdate(request.data || {});
+  } catch (error) {
+    throw new HttpsError("invalid-argument", error.message || "The match update is invalid.");
+  }
+
+  const documentId = `${update.season}_${update.matchId.toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80) || "match"}`;
+  const matchRef = db.collection("liveMatchCentre").doc(documentId);
+  const event = update.event
+    ? { ...update.event, id: require("node:crypto").randomUUID(), createdAtMs: Date.now() }
+    : null;
+
+  await db.runTransaction(async (transaction) => {
+    const snapshot = await transaction.get(matchRef);
+    const previous = snapshot.exists ? snapshot.data() || {} : {};
+    const events = Array.isArray(previous.events) ? previous.events : [];
+    transaction.set(matchRef, {
+      season: update.season,
+      matchId: update.matchId,
+      status: update.status,
+      score: update.score || previous.score || null,
+      events: event ? [...events, event].slice(-100) : events.slice(-100),
+      updatedAt: FieldValue.serverTimestamp(),
+    });
+  });
+
+  return { ok: true, documentId };
 });
 

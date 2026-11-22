@@ -1533,6 +1533,16 @@ async function init() {
       </section>
     `;
 
+    document.querySelectorAll(".official-profile-photo:not(.placeholder)").forEach((photo) => {
+      photo.addEventListener("error", () => {
+        const fallback = document.createElement("div");
+        fallback.className = "official-profile-photo placeholder";
+        fallback.setAttribute("aria-hidden", "true");
+        fallback.textContent = initials(profile.name);
+        photo.replaceWith(fallback);
+      }, { once: true });
+    });
+
     document.querySelectorAll("[data-profile-section]").forEach((button) => {
       button.addEventListener("click", () => {
         state.profileSection = button.dataset.profileSection || "overview";

@@ -1,14 +1,11 @@
 rules_version = '2';
 
-// IMPORTANT: this file reflects what the LSL Pulse app code actually does
-// (see js/pulseFirebase.js, js/pulseNotifications.js, js/newsMirror.js).
-// There is no real server-verified auth here (accounts are just a
-// username + 4-digit PIN, checked client-side), so these rules are
-// necessarily permissive on writes - they mainly guard against writes with
-// the wrong shape, not against one user editing another's data. If you've
-// already customized rules in the Firebase Console, compare before
-// deploying this - `firebase deploy --only firestore:rules` REPLACES
-// whatever is currently live.
+// The lslPulse account system uses client-side username/PIN checks and does
+// not provide server-verified identity, so its existing write allowances are
+// not authorization. Live Match Centre is separate: clients may read its
+// overlays, but only the claim-checked Cloud Function writes them. If rules
+// were customized in Firebase Console, compare before deploying this file;
+// `firebase deploy --only firestore:rules` replaces the active ruleset.
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -66,6 +63,13 @@ service cloud.firestore {
       allow read: if false;
       allow create, update: if request.resource.data.keys().hasAll(["token", "platform"]);
       allow delete: if false;
+    }
+
+    // Live Match Centre events are public to read; writes are performed only
+    // by the publishLiveMatchUpdate Cloud Function after checking an LSL admin claim.
+    match /liveMatchCentre/{matchId} {
+      allow read: if true;
+      allow write: if false;
     }
   }
 }

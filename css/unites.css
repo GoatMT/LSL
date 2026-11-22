@@ -1,0 +1,98 @@
+.unites-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  align-items: end;
+  gap: 28px;
+  overflow: hidden;
+  border-top: 2px solid var(--gold, #d1b166);
+  background: linear-gradient(118deg, #174329 0%, #202b24 68%, #252725 100%);
+}
+
+.unites-hero-copy { max-width: 750px; }
+.unites-hero h1 { margin: 8px 0 10px; font-size: clamp(2.2rem, 5vw, 3.5rem); }
+.unites-hero-copy p { max-width: 650px; margin: 0; color: var(--muted); font-size: 1.04rem; line-height: 1.65; }
+.unites-hero-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 10px; background: rgb(20 24 21 / 42%); }
+.unites-hero-stats > div { display: grid; gap: 5px; min-width: 0; padding: 14px 10px; text-align: center; }
+.unites-hero-stats > div + div { border-left: 1px solid var(--line); }
+.unites-hero-stats strong { color: #d1b166; font-size: 1.45rem; font-variant-numeric: tabular-nums; }
+.unites-hero-stats span { color: #d4d6d3; font-size: 0.72rem; line-height: 1.3; }
+
+.unites-sponsor-section,
+.unites-partners-section,
+.unites-teams-section { display: grid; gap: 18px; }
+.unites-sponsor-section .section-head,
+.unites-partners-section .section-head,
+.unites-teams-section .section-head { margin: 0; }
+.unites-sponsor-section .section-head h2,
+.unites-partners-section .section-head h2,
+.unites-teams-section .section-head h2 { margin: 4px 0; }
+.unites-sponsor-section .section-head p,
+.unites-partners-section .section-head p,
+.unites-teams-section .section-head p { margin: 0; color: var(--muted); }
+
+.unites-empty { display: grid; grid-template-columns: 48px minmax(0, 1fr); align-items: center; gap: 14px; padding: 18px; border: 1px solid #5a5545; border-radius: 10px; background: #292a25; }
+.unites-empty-mark { display: grid; place-items: center; width: 48px; aspect-ratio: 1; border-radius: 9px; background: #d1b166; color: #252725; font-size: 1.6rem; font-weight: 900; }
+.unites-empty h3 { margin: 0 0 4px; font-size: 1.02rem; }
+.unites-empty p { margin: 0; color: var(--muted); line-height: 1.5; }
+
+.unites-partner-list { display: grid; gap: 12px; }
+.unites-partner { display: grid; grid-template-columns: 128px minmax(0, 1fr) auto; align-items: center; gap: 20px; padding: 18px; border: 1px solid var(--line); border-radius: 10px; background: #303230; }
+.unites-partner-logo { display: grid; place-items: center; width: 128px; height: 112px; padding: 9px; border: 1px solid #555951; border-radius: 9px; background: #20231f; }
+.unites-partner-logo img { display: block; max-width: 100%; max-height: 100%; object-fit: contain; }
+.unites-partner-copy h3 { margin: 4px 0 5px; font-size: 1.2rem; }
+.unites-partner-copy p { margin: 0 0 7px; color: var(--muted); line-height: 1.5; }
+.unites-kicker { color: #d1b166; font-size: 0.72rem; font-weight: 850; text-transform: uppercase; }
+.unites-partner-copy .text-link { display: inline-block; min-height: 32px; padding-top: 5px; font-weight: 750; }
+.unites-record-mark { align-self: start; padding: 7px 9px; border: 1px solid #5f795f; border-radius: 7px; background: #163f25; color: #e1e6df; font-size: 0.72rem; font-weight: 800; white-space: nowrap; }
+
+.unites-controls { display: grid; grid-template-columns: minmax(150px, 0.55fr) minmax(150px, 0.65fr) minmax(220px, 1fr); gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: #252725; }
+.unites-controls label { display: grid; gap: 6px; color: #d1b166; font-size: 0.78rem; font-weight: 800; }
+.unites-controls select,
+.unites-controls input { width: 100%; min-width: 0; min-height: 44px; padding: 9px 12px; border: 1px solid #515651; border-radius: 8px; background: #303230; color: #f5f5f2; font: inherit; }
+.unites-controls select:focus-visible,
+.unites-controls input:focus-visible { outline: 2px solid #d1b166; outline-offset: 2px; }
+.unites-result-count { margin: -6px 0 0; color: var(--muted); font-size: 0.83rem; }
+.unites-team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.unites-team-card { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: center; gap: 12px; min-width: 0; padding: 12px; border: 1px solid var(--line); border-radius: 9px; background: #303230; transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease; }
+.unites-team-card:hover { transform: translateY(-2px); border-color: #d1b166; background: #343733; }
+.unites-team-logo { position: relative; display: grid; place-items: center; width: 64px; aspect-ratio: 1; overflow: hidden; border: 1px solid #5a5c57; border-radius: 9px; background: #222522; }
+.unites-team-logo img { position: absolute; z-index: 1; width: 100%; height: 100%; object-fit: contain; }
+.unites-team-initials { color: #d1b166; font-size: 0.9rem; font-weight: 900; }
+.unites-team-copy { min-width: 0; }
+.unites-team-copy h3 { margin: 3px 0 4px; font-size: 0.98rem; overflow-wrap: anywhere; }
+.unites-team-copy h3 a { color: #f5f5f2; text-decoration: none; }
+.unites-team-copy h3 a:hover { color: #e5c66e; text-decoration: underline; }
+.unites-team-label { color: var(--muted); font-size: 0.76rem; }
+
+@media (max-width: 900px) {
+  .unites-hero { grid-template-columns: minmax(0, 1fr); }
+  .unites-hero-stats { max-width: 560px; }
+  .unites-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .unites-hero { gap: 20px; }
+  .unites-hero-stats > div { padding: 12px 6px; }
+  .unites-hero-stats span { font-size: 0.68rem; }
+  .unites-empty { grid-template-columns: 40px minmax(0, 1fr); padding: 13px; }
+  .unites-empty-mark { width: 40px; }
+  .unites-partner { grid-template-columns: 76px minmax(0, 1fr); gap: 12px; padding: 13px; }
+  .unites-partner-logo { width: 76px; height: 76px; }
+  .unites-record-mark { grid-column: 2; justify-self: start; }
+  .unites-controls { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .unites-team-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .unites-hero,
+  .unites-sponsor-section,
+  .unites-partners-section,
+  .unites-teams-section { animation: unites-enter 400ms ease both; }
+  .unites-partners-section { animation-delay: 55ms; }
+  .unites-teams-section { animation-delay: 100ms; }
+}
+
+@keyframes unites-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
