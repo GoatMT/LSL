@@ -92,7 +92,7 @@ assert.match(renderer, /navigator\.share/);
 assert.match(renderer, /player\.photo/);
 assert.match(styles, /@media \(max-width: 620px\)/);
 assert.match(styles, /prefers-reduced-motion/);
-assert.match(serviceWorker, /lsl-cache-v152/);
+assert.match(serviceWorker, /lsl-cache-v153/);
 assert.match(serviceWorker, /\.\/team\.html/);
 assert.match(serviceWorker, /\.\/js\/teamStartingSeven\.js\?v=20261121-starting71/);
 assert.match(serviceWorker, /\/js\/teamStartingSeven\.js/);

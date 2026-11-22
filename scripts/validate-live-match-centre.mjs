@@ -85,7 +85,7 @@ assert.match(rules, /match \/liveMatchCentre\/\{matchId\} \{[\s\S]*allow read: i
 assert.match(config, /label: "Live Match Centre", href: "live-match-centre\.html"/);
 assert.match(styles, /@media \(max-width: 680px\)/);
 assert.match(styles, /prefers-reduced-motion/);
-assert.match(worker, /lsl-cache-v152/);
+assert.match(worker, /lsl-cache-v153/);
 assert.match(worker, /\.\/live-match-centre\.html/);
 assert.match(worker, /\.\/js\/liveMatchCentreSync\.js\?v=20261121-matchcentre3/);
 await access(resolve(siteRoot, "data/2027/matches.json"));

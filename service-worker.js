@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v152";
+const CACHE_NAME = "lsl-cache-v153";
 const NETWORK_TIMEOUT_MS = 6_000;
 
 /*
@@ -63,6 +63,7 @@ const APP_SHELL = [
   "./css/components.css",
   "./css/responsive.css",
   "./css/modern-system.css",
+  "./css/brand-colors.css?v=20261122-palette1",
   "./css/projected.css?v=20261109-playerproj1",
   "./css/homepage.css",
   "./css/team-builder.css",
@@ -518,12 +519,12 @@ function offlinePageResponse() {
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#111713">
+        <meta name="theme-color" content="#17251c">
         <title>LSL Offline</title>
         <style>
-          :root { color-scheme: dark; font-family: Inter, "Segoe UI", system-ui, sans-serif; background: #111713; color: #f5f7f4; }
+          :root { color-scheme: dark; font-family: Inter, "Segoe UI", system-ui, sans-serif; background: #17251c; color: #f5f7f4; }
           * { box-sizing: border-box; }
-          body { min-height: 100vh; margin: 0; padding: 36px 20px; display: grid; place-items: center; background: #111713; }
+          body { min-height: 100vh; margin: 0; padding: 36px 20px; display: grid; place-items: center; background: #17251c; }
           main { width: min(100%, 760px); text-align: center; }
           .status { display: inline-flex; align-items: center; gap: 9px; color: #e7bd70; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
           .status::before { width: 9px; height: 9px; border-radius: 50%; background: #e7bd70; content: ""; box-shadow: 0 0 0 4px rgb(231 189 112 / 14%); }

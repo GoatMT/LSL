@@ -51,7 +51,7 @@ assert.match(moduleSource, /unites-division/);
 assert.match(styles, /@media \(max-width: 620px\)/);
 assert.match(styles, /prefers-reduced-motion/);
 assert.match(config, /label: "LSL Unites", href: "unites\.html"/);
-assert.match(serviceWorker, /lsl-cache-v152/);
+assert.match(serviceWorker, /lsl-cache-v153/);
 assert.match(serviceWorker, /\.\/unites\.html/);
 assert.match(serviceWorker, /\.\/data\/shared\/partners\.json/);
 assert.match(serviceWorker, /\.\/js\/unites\.js\?v=20261121-unites1/);

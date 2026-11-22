@@ -56,7 +56,7 @@ assert.match(profileController, /Goals Against \/ Game/);
 assert.match(profileController, /Clean Sheets/);
 assert.match(profileController, /official-profile-photo:not\(\.placeholder\)/);
 assert.match(profileStyles, /@media \(max-width: 700px\)/);
-assert.match(serviceWorker, /lsl-cache-v152/);
+assert.match(serviceWorker, /lsl-cache-v153/);
 assert.match(serviceWorker, /\.\/player-card-studio\.html/);
 assert.match(serviceWorker, /\.\/js\/playerCardStudio\.js\?v=20261109-cardstudio1/);
 assert.match(serviceWorker, /\/js\/playerCardStudio\.js/);

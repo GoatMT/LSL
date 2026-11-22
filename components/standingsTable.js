@@ -58,6 +58,7 @@ export function renderStandingsTable(rows = [], season = "") {
                 const leeward2026 = String(season) === "2026" && row.team?.id === "leeward-lions";
                 const rowClasses = [
                   "standings-row",
+                  row.rank === 1 ? "president-trophy" : "",
                   row.bye ? "bye" : row.playoff ? "playoff" : !row.notStarted && !row.scorePending ? "outside" : "",
                   leeward2026 ? "leeward-highlight" : "",
                 ].filter(Boolean).join(" ");
