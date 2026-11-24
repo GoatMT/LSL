@@ -1,5 +1,6 @@
 import { renderPlayerCareerTable } from "../components/careerTable.js";
 import { renderFormStrip } from "../components/formStrip.js";
+import { scheduleMatches } from "./tournamentData.js";
 import { loadAllSeasons, loadJSON } from "./dataLoader.js?v=20261108-data3";
 import { buildPlayerCareer, calculatePlayerForm, computeCombinedPlayerStats, computePlayerStats, computePlayerVsTeamStatsBySeason, getAwards, getCurrentPlayer, getNextTeamMatch, playerOVR, playerTeamForMatch, winnerTeamId } from "./leagueEngine.js?v=3.24-playoff-threshold";
 import { setupLayout } from "./main.js?v=20261109-greenprimary1";
@@ -43,10 +44,7 @@ function tournamentTeamName(team) {
 }
 
 function tournamentMatches(tournament = {}) {
-  return [
-    ...(tournament.matches || []),
-    ...(tournament.playoffs?.rounds || []).flatMap((round) => round.matches || []),
-  ];
+  return scheduleMatches(tournament);
 }
 
 function tournamentTeamRecord(tournament, teamId) {

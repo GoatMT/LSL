@@ -296,7 +296,7 @@ function summary(players, allPlayers) {
     <div class="free-agents-summary-grid" data-free-agent-summary>
       ${statTile("Showing", players.length, `${allPlayers.length} in the full pool`)}
       ${statTile("Waiting", waiting, "latest listed season")}
-      ${statTile("Retired", retired, "no 2026 game or confirmed retirement")}
+      ${statTile("Retired", retired, "no latest-season game or confirmed retirement")}
       ${statTile("Career Goals", goals, experienced ? `Most experienced: ${experienced.name}` : "Across this pool")}
     </div>
   `;
@@ -382,7 +382,7 @@ function render(allPlayers) {
         <span class="eyebrow">LSL Transfer Board</span>
         <h1>Free Agents</h1>
         <p>Every player with at least one recorded LSL game is listed here. Rosters reset after every season, so all players are unattached between seasons.</p>
-        <div class="free-agents-note"><strong>Roster reset: every season</strong><span>No 2026 appearance is treated as retired; statuses are not contract announcements.</span></div>
+        <div class="free-agents-note"><strong>Roster reset: every season</strong><span>Players without a game in the latest completed season are marked Retired; statuses are not contract announcements.</span></div>
       </div>
       <div class="free-agents-hero-actions"><a class="button primary" href="./all-time.html">All Time Stats</a><a class="button secondary" href="./players.html">All Players</a></div>
     </section>

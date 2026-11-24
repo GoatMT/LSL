@@ -28,7 +28,7 @@
       -> Automatically deleted on activation
    ========================================================= */
 
-const CACHE_NAME = "lsl-cache-v153";
+const CACHE_NAME = "lsl-cache-v154";
 const NETWORK_TIMEOUT_MS = 6_000;
 
 /*
@@ -96,7 +96,7 @@ const APP_SHELL = [
   "./js/leagueEngine.js",
   "./js/playerVsPlayer.js",
   "./js/playerTiers.js",
-  "./js/playerProfile.js?v=20261109-cardstudio1",
+  "./js/playerProfile.js?v=20261124-tournament-normalization",
   "./js/playerCardStudio.js?v=20261109-cardstudio1",
   "./js/teamProfile.js?v=20261121-starting71",
   "./js/teamStartingSeven.js?v=20261121-starting71",
@@ -108,7 +108,7 @@ const APP_SHELL = [
   "./js/playerProjectionModel.js?v=20261109-playerproj1",
   "./js/animations.js",
   "./js/hallOfFame.js",
-  "./js/freeAgents.js",
+  "./js/freeAgents.js?v=20261124-status-copy",
   "./js/recordWatch.js",
   "./js/captaincy.js",
   "./js/lslTimeline.js",
